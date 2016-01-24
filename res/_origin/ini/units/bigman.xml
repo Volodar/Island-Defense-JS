@@ -1,0 +1,57 @@
+<tower template="ini/units/templates/creepbattle.xml"
+	   name="bigman"
+	   velocity="40"
+	   health="650"
+	   radius="150"
+     lifecost="2"
+       >
+	  
+  <effects>
+    <positive damage="4" armor="2"/>
+  </effects>
+
+  <extraproperties
+	electro_pos="0x30"
+	electro_size="big"
+	electro_scale="1"
+	fire_pos="0x5"
+	fire_scale="2"
+  freezing_scale="0.35"
+	/>
+
+  <machine_unit start_state="stop">
+    <params>
+      <state_death duration="0.5"/>
+      <state_readyfire charge_volume="99999" delay="0.5"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="90"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.25"/>
+    <node name="health_indicator" pos="-18x66" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_left" value="RepeatForever[Animate[0.5,[folder:bigman::left/,indexes:bigman1_go_00.png,01:24]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.5,[folder:bigman::left/,indexes:bigman1_go_00.png,01:24]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.5,[folder:bigman::left/,indexes:bigman1_go_00.png,01:24]]]"/>
+    <action name="animate_fire" value="Animate[0.5,[folder:bigman::fire/,indexes:bigman1_fire_00.png,01:17]]"/>
+    <action name="animate_die" value="Animate[0.4,[folder:bigman::die/,indexes:bigman1_die_00.png,01:12]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+    </eventlist>
+
+    <eventlist name="on_shoot">
+    </eventlist>
+  </events>
+
+</tower>

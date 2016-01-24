@@ -1,0 +1,102 @@
+<maings>
+  <children>
+    <node name="bg" type="sprite" pos="frame:0.5x0.5" image="images/maings/title_20481536.jpg" strech="frame:1x1:max"/>
+    <node name="logo" type="sprite" pos="frame:0.5x0.73" image="images/maings/logo.png" z="4" visible="no"/>
+
+    <node type="menu" name="mainmenu" pos="0x0">
+      <children>
+        <node name="moregames" type="menuitem" imageN="images/maings/more_button.png" pos="frame:0.5x0.1" callback="moreApps" sound="##sound_button##" visible="##PLATFORM_MOBILE##" scale="0.7x0.7">
+          <children>
+            <node name="normal">
+              <children>
+                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#More apps#" z="2" scale="0.8x0.8"/>
+              </children>
+            </node>
+          </children>
+        </node>
+
+        <node name="restore" type="menuitem" imageN="images/maings/more_button.png" pos="frame:0.8x0.02" callback="restore" sound="##sound_button##" cascadeopacity="no" visible="##PLATFORM_MOBILE##">
+          <children>
+            <node name="normal" cascadeopacity="no" opacity="0">
+              <children>
+                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Restore purchase#" z="2" scale="0.6x0.6" center="0.5x0.5"/>
+                <node name="line" type="sprite" image="images/square.png" scale="250x3" center="0.5x0" pos="120x40"/>
+              </children>
+            </node>
+          </children>
+        </node>
+
+        <node name="exit" type="menuitem" imageN="images/maings/more_button.png" pos="frame:0.5x0.1" callback="exit" sound="##sound_button##" visible="##PLATFORM_PC##" scale="0.7x0.7">
+          <children>
+            <node name="normal">
+              <children>
+                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Exit#" z="2" scale="1x1"/>
+              </children>
+            </node>
+          </children>
+        </node>
+
+        <node name="startgame" type="menuitem" imageN="images/maings/icon_play.png" pos="frame:0.5x0.43" callback="pushGame" sound="##sound_button##" visible="no">
+          <children>
+            <node name="normal">
+              <children>
+                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/titlefont.fnt" text="#play#" z="2" scale="0.7x0.7" center="0.5x0.5" visible="yes"/>
+              </children>
+            </node>
+          </children>
+        </node>
+
+
+      </children>
+    </node>
+
+    <node type="menu" name="menusettings" pos="frame:1x1" visible="no">
+      <children>
+        <node name="settings" type="menuitem" imageN="images/maings/icon_settings.png" pos="-70x-70" callback="settings" sound="##sound_button##" scale="0.8x0.8"/>
+      </children>
+    </node>
+
+
+  </children>
+
+  <actions>
+    <action name="setVisible" value="Show[]"/>
+    <action name="hide" value="MoveBy[0,0,300]"/>
+    <action name="hide2" value="MoveBy[0,0,-300]"/>
+    <action name="show1" value="Sequence[DelayTime[0.5],Show[],BackOut[MoveBy[0.7,0,-300]]]"/>
+    <action name="show2" value="Sequence[Show[],BackOut[MoveBy[0.7,0,300]]]"/>
+    <action name="show3" value="Sequence[BackOut[MoveBy[0.7,0,300]]]"/>
+  </actions>
+  <events>
+    <eventlist name="showTitle">
+      <runaction action="show1" target="title1_text"/>
+      <runaction action="show1" target="title2_text"/>
+    </eventlist>
+    <eventlist name="showLogo">
+      <runaction action="show1" target="logo"/>
+    </eventlist>
+    <eventlist name="oncreate">
+      <runaction action="hide" target="mainmenu/startgame"/>
+      <runaction action="hide2" target="mainmenu/moregames"/>
+      <runaction action="hide2" target="mainmenu/exit"/>
+      <runaction action="hide" target="logo"/>
+      <runaction action="hide" target="title1_text"/>
+      <runaction action="hide" target="title2_text"/>
+    </eventlist>
+    <eventlist name="resourcesloaded">
+      <runaction action="show1" target="mainmenu/startgame"/>
+      <runaction action="show3" target="mainmenu/exit"/>
+    </eventlist>
+    <eventlist name="resourcesloaded2">
+      <runaction action="show2" target="mainmenu/moregames"/>
+    </eventlist>
+  </events>
+
+  <resources>
+    <atlases>
+      <atlas path="images/map/choose.plist"        name="choose"/>
+      <atlas path="images/map/unlock.plist"        name="unlock"/>
+      <atlas path="images/heroroom/heroroom.plist" name="heroroom"/>
+    </atlases>
+  </resources>
+</maings>

@@ -1,0 +1,21 @@
+<tutorial parent="/choose/normal/menu/game" pos="100x120" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_map_tap_here#"/>
+	</children>
+
+  <actions>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+		<eventlist name="onenter">
+      <setproperty target="/maplayer/menu" property="visible" value="no"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="no"/>
+		</eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/maplayer/menu" property="visible" value="yes"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="##PLATFORM_MOBILE##"/>
+    </eventlist>
+	</events>
+	
+</tutorial>

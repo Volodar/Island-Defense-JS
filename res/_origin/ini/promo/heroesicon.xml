@@ -1,0 +1,11 @@
+<node name="promomenu" type="menu" pos="righttop:-64x-64">
+  <children>
+    <node name="open" type="menuitem" imageN="heroroom::hero1/hero1_1.png" pos="0x0" callback="open">
+      <children>
+      </children>
+    </node>
+
+    <node name="timer" type="bmlabel" font="fonts/helvetica.fnt" text="00:00" pos="0x-50" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF"/>
+    
+  </children>
+</node>

@@ -1,5 +1,7 @@
+//Define namespace
+var EU = EU || {};
 
-var HelloWorldLayer = cc.Layer.extend({
+EU.HelloWorldLayer = cc.Layer.extend({
     sprite:null,
     ctor:function () {
         //////////////////////////////
@@ -13,8 +15,16 @@ var HelloWorldLayer = cc.Layer.extend({
         var size = cc.winSize;
 
         var mainscene = ccs.load(res.MainScene_json);
-        this.addChild(mainscene.node);
+        this.addChild(mainscene.node, 1);
 
+        for (var i = 0; i < 16; i++) {
+            var obj = new EU.Node();
+            this.addChild(obj, 1);
+            obj.setPosition(49+i%4*74, 400-Math.floor(i/4)*74)
+        }
+
+        var layer = new cc.LayerGradient(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
+        this.addChild(layer, 0);
         /* you can create scene with following comment code instead of using csb file.
         /////////////////////////////
         // 3. add your codes below...
@@ -40,10 +50,17 @@ var HelloWorldLayer = cc.Layer.extend({
     }
 });
 
-var HelloWorldScene = cc.Scene.extend({
+EU.Node = EU.CCSNode.extend({
+    resFile:res.Node_json,
+    ctor: function() {
+        this._super();
+    }
+});
+
+EU.HelloWorldScene = cc.Scene.extend({
     onEnter:function () {
         this._super();
-        var layer = new HelloWorldLayer();
+        var layer = new EU.HelloWorldLayer();
         this.addChild(layer);
     }
 });

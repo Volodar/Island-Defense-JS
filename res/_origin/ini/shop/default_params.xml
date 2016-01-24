@@ -1,0 +1,13 @@
+<properties>
+    <item name="fuel1" value="250"  price="USD: 1"/>
+	<item name="gold1" value="1540"  price="USD: 1"/>
+	<item name="gold2" value="3390"  price="USD: 2"/>
+	<item name="gold3" value="5550"  price="USD: 3"/>
+	<item name="gold4" value="8010"  price="USD: 4"/>
+	<item name="gold5" value="10780" price="USD: 5"/>
+	<item name="gear1" value="300"   price="USD: 1"/>
+	<item name="gear2" value="600"   price="USD: 2"/>
+	<item name="gear3" value="1200"  price="USD: 3"/>
+	<item name="gift_gear" value="300"  price="FREE" inapp="no"/>
+	<item name="gift_gold" value="100"  price="FREE" inapp="no"/>
+</properties>

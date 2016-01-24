@@ -1,0 +1,9 @@
+<tutorial template="ini/tutorial/units/template.xml" >
+  <children>
+    <node path="body/bgtype" image="images/tutorial/tut5_ground.png"/>
+    <node path="body/name" text="#desant_name#"/>
+    <node path="body/caption" text="#desant_caption#"/>
+    <node path="body/description" text="#desant_desc#"/>
+    <node path="body/unit" animation="RepeatForever[Animate[0.5,[folder:desant.left::,indexes:desant_2_left_00.png,01:15]]]" scale="-1x1"/>
+  </children>
+</tutorial>

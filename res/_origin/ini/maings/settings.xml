@@ -1,0 +1,24 @@
+<menu name="pause">
+  <children>
+    <node name="bg" type="sprite" image="images/gamescene/pause/pause_window.png" z="-1"/>
+    <node name="caption" type="bmlabel" font="fonts/mdefensefont.fnt" text="#settings#" pos="0x180" scale="0.8x0.8"/>
+
+    <node name="resume" type="menuitem" imageN ="images/gamescene/pause/button_x.png" pos="225x177" sound="##sound_button##" callback="resume"/>
+
+    <node name="music_on" type="menuitem" imageN ="images/gamescene/pause/button_music.png" pos="-55x40" visible="no" sound="##sound_button##" callback="music_on"/>
+    <node name="sound_on" type="menuitem" imageN ="images/gamescene/pause/button_sound1.png" pos="55x40" visible="no" sound="##sound_button##" callback="sound_on"/>
+    <node name="music_off" type="menuitem" imageN ="images/gamescene/pause/button_music2.png" pos="-55x40" sound="##sound_button##" callback="music_off"/>
+    <node name="sound_off" type="menuitem" imageN ="images/gamescene/pause/button_sound2.png" pos="55x40" sound="##sound_button##" callback="sound_off"/>
+
+    <node name="fullscreen" type="menuitem" pos="-75x-100" imageN="images/maings/checkbutton_off.png" callback="fullscreen">
+      <paramcollection>
+        <on value="images/maings/checkbutton_on.png"/>
+        <off value="images/maings/checkbutton_off.png"/>
+      </paramcollection>
+      <children>
+        <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#fullscreen#" scale="0.5x0.5" pos="80x30" center="0x0.5" />
+      </children>
+    </node>
+
+  </children>
+</menu>

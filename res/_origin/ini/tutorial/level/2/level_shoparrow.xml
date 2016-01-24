@@ -1,0 +1,22 @@
+<tutorial parent="/gamelayer/interface/menu" autopos="/gamelayer/interface/menu/shop" pos="0x-200" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_openshop#"/>
+    <node path="body/arrow" scale="1x-1" pos="0x40"/>
+  </children>
+	
+	<actions>
+    <action name="bodyfadein" value="Sequence[DelayTime[3.5],FadeTo[0.3,255]]"/>
+    <action name="up" value="BackIn[MoveBy[1,0,200]]"/>
+    <action name="down" value="BackIn[MoveBy[1,0,-200]]"/>
+  </actions>
+
+  <events>
+		<eventlist name="onenter">
+      <setproperty target="/gamelayer/interface/waveicon/icon" property="visible" value="no"/>
+    </eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/gamelayer/interface/waveicon/icon" property="visible" value="yes"/>
+    </eventlist>
+	</events>
+	
+</tutorial>

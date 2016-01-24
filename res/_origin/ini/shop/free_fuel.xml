@@ -1,0 +1,8 @@
+<menuitem name="gold1" template="ini/shop/item.xml">
+  <children>
+    <node path="menu/buy/normal/text" text="#shop_getfree#" pos="108x40" textalign="center" center="0.5x0.5" scale="0.6x0.6"/>
+    <node name="text" text="10" pos="115x395" />
+    <node name="icon_type" pos="115x395" image="images/shop/icon_fuel.png"/>
+    <node name="icon" pos="135x240" image="images/shop/icons/free_fuel.png"/>
+  </children>
+</menuitem>

@@ -1,0 +1,20 @@
+<scorelayer name="scorelayer">
+  <children>
+    <node name="menu" type="menu" pos="0x0">
+      <children>
+        <node name="shop" type="menuitem" imageN ="images/map/button_+.png" pos="halftop:110x-30" sound="##sound_button##" visible="##PLATFORM_MOBILE##"/>
+      </children>
+    </node>
+    
+    <node name="iconstar" type="sprite" image="images/map/star.png" pos="halftop:-200x-27" visible="no"/>
+    <node name="valuestar" type="bmlabel" font="fonts/mdefensefont2.fnt" text="0" pos="halftop:-180x-23" scale="0.6x0.6" center="0x0.5" visible="no"/>
+    
+    <node name="icongold" type="sprite" image="images/map/icon_gold1.png" pos="halftop:-80x-30"/>
+    <node name="valuegold" type="bmlabel" font="fonts/mdefensefont2.fnt" pos="halftop:-50x-25" text="0" scale="0.6x0.6" center="0x0.5"/>
+    
+    <node name="iconfuel" type="sprite" image="images/map/button_fuel.png" pos="halftop:100x-33" visible="no"/>
+    <node name="valuefuel" type="bmlabel" font="fonts/mdefensefont2.fnt" text="0" pos="halftop:120x-23" scale="0.6x0.6" center="0x0.5" visible="no"/>
+    <node name="valuetime" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="halftop:80x-65" scale="0.7x0.6" center="0x0.5" visible="no"/>
+    
+  </children>
+</scorelayer>

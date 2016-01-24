@@ -1,0 +1,34 @@
+<params>
+	<desant_colldown value="17"/>
+	<desant_lifetime value="16"/>
+	<airplane_colldown value="70"/>
+  <distance_to_road value="80"/>
+
+  <landmine_colldown value="20"/>
+  <landmine_count value="5"/>
+  <swat_colldown value="5"/>
+  <swat_count value="3"/>
+  <swat_lifetime value="15"/>
+  <hero3bot_colldown value="25"/>
+  <hero3bot_count value="1"/>
+  <hero3bot_lifetime value="15"/>
+
+  <landmine>
+    <level0 cooldownrate="1.0" count="5"/>
+    <level1 cooldownrate="0.9" count="6"/>
+    <level2 cooldownrate="0.8" count="7"/>
+    <level3 cooldownrate="0.7" count="8"/>
+  </landmine>
+  <swat>
+    <level0 cooldownrate="1.0" lifitimerate="1.0"/>
+    <level1 cooldownrate="0.9" lifitimerate="1.1"/>
+    <level2 cooldownrate="0.8" lifitimerate="1.2"/>
+    <level3 cooldownrate="0.7" lifitimerate="1.3"/>
+  </swat>
+  <hero3bot>
+    <level0 cooldownrate="1.0" lifitimerate="1.0"/>
+    <level1 cooldownrate="0.9" lifitimerate="1.1"/>
+    <level2 cooldownrate="0.8" lifitimerate="1.2"/>
+    <level3 cooldownrate="0.7" lifitimerate="1.3"/>
+  </hero3bot>
+</params>

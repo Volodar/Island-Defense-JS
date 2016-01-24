@@ -1,0 +1,135 @@
+<tutorials>
+  <list>
+    <!--run on map-->
+    <firstask filename="ini/tutorial/map/firstask.xml" />
+    <map_rungame filename="ini/tutorial/map/map_rungame.xml"/>
+    <map_onchoose filename="ini/tutorial/map/map_onchoose.xml"/>
+
+    <!--run on level 0-->
+    <lvl0_imagerules filename="ini/tutorial/level/1/imagerules.xml"/>
+    <lvl0_imagebuildings filename="ini/tutorial/level/1/imagebuildings.xml"/>
+    <lvl0_hero filename="ini/tutorial/level/1/hero.xml" count="2"/>
+    <lvl0_build_tower filename="ini/tutorial/level/1/build_tower.xml"/>
+    <lvl0_runwave filename="ini/tutorial/level/1/runwave.xml"/>
+    <lvl0_runwave_second filename="ini/tutorial/level/1/runwave_second.xml"/>
+    <lvl0_usedesant filename="ini/tutorial/level/1/usedesant.xml"/>
+    <lvl0_desant_arrow filename="ini/tutorial/level/1/usedesantarrow.xml"/>
+    <lvl0_useairbomb filename="ini/tutorial/level/1/useairbomb.xml"/>
+    <lvl0_desant_description filename="ini/tutorial/units/desant.xml"/>
+    <lvl0_airbomb_description filename="ini/tutorial/units/airbomb.xml"/>
+    <lvl0_bonus1 filename="ini/tutorial/level/1/bonus1.xml"/>
+    <lvl0_bonus2 filename="ini/tutorial/level/1/bonus2.xml"/>
+    <lvl0_bonus3 filename="ini/tutorial/level/1/bonus3.xml"/>
+
+    <!--run on level 1-->
+    <level_shop filename="ini/tutorial/level/2/level_shop.xml" forced="yes" dispatch="##PLATFORM_MOBILE##"/>
+    <level_shoparrow filename="ini/tutorial/level/2/level_shoparrow.xml" forced="yes" after="level_shop" dispatch="##PLATFORM_MOBILE##"/>
+    <level_getgift filename="ini/tutorial/level/2/level_getgift.xml" forced="yes" after="level_shoparrow" dispatch="##PLATFORM_MOBILE##"/>
+    <level_dig filename="ini/tutorial/level/2/level_dig.xml" after="level_shoparrow" count="1" dispatch="##PLATFORM_MOBILE##"/>
+
+    <!--run on any level-->
+    <level_haventgears_buildtower filename="ini/tutorial/level/level_haventgears_buildtower.xml" forced="yes" count="1" dispatch="##PLATFORM_MOBILE##"/>
+    <level_haventgears_dig filename="ini/tutorial/level/level_haventgears_dig.xml" forced="yes" count="1" dispatch="##PLATFORM_MOBILE##"/>
+    <level_haventgears_upgradetower filename="ini/tutorial/level/level_haventgears_upgradetower.xml" forced="yes" count="1" dispatch="##PLATFORM_MOBILE##"/>
+
+    <!--using lab-->
+    <lab_openlab filename="ini/tutorial/lab/openlab.xml" forced="yes" count="1"/>
+    <lab_openlab_onlose filename="ini/tutorial/lab/openlab_onlose.xml" forced="yes" count="20"/>
+    <!--    <lab_showscheme filename="ini/tutorial/lab/showscheme.xml" forced="yes" after="lab_openlab" count="1"/>-->
+    <lab_pressupgrade filename="ini/tutorial/lab/pressupgrade.xml" forced="yes" after="lab_openlab" count="1"/>
+    <lab_pressconfirm filename="ini/tutorial/lab/pressconfirm.xml" forced="yes" after="lab_pressupgrade" count="1"/>
+
+    <!--use shop from lab-->
+    <map_shop filename="ini/tutorial/shop/shop_from_lab.xml" forced="yes" count="2" dispatch="##PLATFORM_MOBILE##"/>
+
+    <!--use shop from map-->
+    <map_shop_fuel filename="ini/tutorial/shop/shop_from_map.xml" forced="yes" count="2" dispatch="##PLATFORM_MOBILE##"/>
+    <map_shop_open filename="ini/tutorial/shop/shop_open.xml" forced="yes" count="1" dispatch="##PLATFORM_MOBILE##"/>
+    <map_shop_getgift filename="ini/tutorial/shop/shop_getgift.xml" forced="yes" count="1" dispatch="##PLATFORM_MOBILE##"/>
+
+    <hero_open filename="ini/tutorial/heroroom/open.xml" forced="yes" count="1" after="lab_openlab" dispatch="##USE_HEROROOM##"/>
+    <hero_showlevel filename="ini/tutorial/heroroom/showlevel.xml" forced="yes" after="hero_open" count="1" dispatch="##USE_HEROROOM##"/>
+    <hero_showskillpoint filename="ini/tutorial/heroroom/showskillpoint.xml" after="hero_showlevel" forced="yes" count="1" dispatch="##USE_HEROROOM##"/>
+    <hero_selectskill filename="ini/tutorial/heroroom/selectskill.xml" forced="yes" after="hero_showskillpoint" count="1" dispatch="##USE_HEROROOM##"/>
+    <hero_presstrain filename="ini/tutorial/heroroom/presstrain.xml" forced="yes" after="hero_selectskill" count="1" dispatch="##USE_HEROROOM##"/>
+    <hero_seeotherhero filename="ini/tutorial/heroroom/seeotherhero.xml" forced="yes" after="hero_presstrain" count="1" dispatch="##USE_HEROROOM##"/>
+
+  </list>
+  <events>
+    <run>
+
+      <!---->
+      <map_onenter value="firstask"/>
+      <map_onchoose value="map_onchoose"/>
+      <map_afterwin value="lab_openlab"/>
+      <map_afterwin_force value="map_shop_open"/>
+      <map_losenumber2 value="lab_openlab_onlose"/>
+      <lab_clickupgrade value="lab_pressconfirm"/>
+
+      <level0_enter value="lvl0_imagerules"/>
+      <level0_buildtower value="lvl0_runwave"/>
+      <level0_waveicon value="lvl0_runwave_second"/>
+      <level0_startwave1 value="lvl0_usedesant"/>
+      <level0_startwave3 value="lvl0_usedesant"/>
+      <level0_startwave4 value="lvl0_bonus1"/>
+      <level0_startwave5 value="lvl0_bonus1"/>
+      <level0_startwave6 value="lvl0_airbomb_description"/>
+      <level0_startwave7 value="lvl0_airbomb_description"/>
+      <boxmenu_did_open value="lvl0_bonus2"/>
+      <boxmenu_item_did_selected value="lvl0_bonus3"/>
+
+
+      <level1_enter value="level_shop"/>
+      <level_openshop value="level_getgift"/>
+      <!--<level1_startwave1 value="level_dig"/>-->
+
+      <level3_enter value="lvl0_hero"/>
+
+      <level_haventgear_upgrade value="level_haventgears_upgradetower"/>
+      <level_haventgear_build value="level_haventgears_buildtower"/>
+      <level_haventgear_dig value="level_haventgears_dig"/>
+
+      <lab_haventgold value="map_shop"/>
+      <map_haventfuel value="map_shop_fuel"/>
+
+      <map_showheroroom value="hero_open"/>
+      <heroroom_open value="hero_showlevel"/>
+      
+    </run>
+    <close>
+      <map_onchoose value="map_rungame"/>
+      <map_rungame value="map_onchoose"/>
+
+      <level0_selectplace value="lvl0_build_tower"/>
+      <level1_selectplace value="level_dig"/>
+      <level0_startwave value="lvl0_runwave"/>
+      <clickskillbutton value="lvl0_usedesant"/>
+      <usedesant value="lvl0_desant_arrow"/>
+      <useairbomb value="lvl0_useairbomb"/>
+
+      <lab_clickupgrade value="lab_pressupgrade"/>
+      <lab_clickconfirm value="lab_pressconfirm"/>
+
+      <map_openlab value="lab_openlab"/>
+      <map_openlab value="lab_openlab_onlose"/>
+      <map_openshop value="map_shop"/>
+      <map_openshop value="map_shop_fuel"/>
+      <map_openshop value="map_shop_open"/>
+
+      <boxmenu_did_open value="lvl0_bonus1"/>
+      <boxmenu_item_did_selected value="lvl0_bonus2"/>
+      <boxmenu_item_did_created value="lvl0_bonus3"/>
+
+      <level_openshop value="level_shoparrow"/>
+      <level_openshop value="level_haventgears_upgradetower"/>
+      <level_openshop value="level_haventgears_buildtower"/>
+      <level_openshop value="level_haventgears_dig"/>
+
+      <shop_getgift value="map_shop_getgift"/>
+
+      <hero_skillselect value="hero_selectskill"/>
+      <hero_skilltrain value="hero_presstrain"/>
+      <hero_herochanged value="hero_seeotherhero"/>
+    </close>
+  </events>
+</tutorials>

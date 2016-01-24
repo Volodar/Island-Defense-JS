@@ -1,0 +1,78 @@
+<tower 
+       maxlevel="1" allowmenu="no"
+       unittype="tower"
+       name="walkbomb"
+       radius="45"
+       allowtargets="earth"
+       damagebysector="yes"
+       sectorangle="360"
+       unitlayer="earth"
+       velocity="150"
+       >
+  
+  <effects>
+    <positive damage="10"/>
+  </effects>
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <stop move="move"/>
+      <stop notarget="move"/>
+      <death stop="stop"/>
+
+      <move stop="death"/>
+      <move die="death"/>
+      <stop die="death"/>
+      <move seetarget="death"/>
+      <stop seetarget="death"/>
+    </transitions>
+    <params>
+      <state_death duration="0.5"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180"/>
+      <thresold value="90"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" center="0.5x0.37"/>
+  </children>
+
+  <actions>
+    <action name="animate_move" value="RepeatForever[Animate[0.5,[folder:hero_mine::bomb/,indexes:hero1_walkingbomb_00.png,01:09]]]"/>
+    <action name="animate_die" value="Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <runaction action="animate_die" target="skin"/>
+      <areadamage radius="100" asunittype="tower"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_move" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_move" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_stop">
+    </eventlist>
+
+  </events>
+
+  <paramcollection>
+    <showmenu>no</showmenu>
+  </paramcollection>
+
+</tower>

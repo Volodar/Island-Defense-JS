@@ -1,0 +1,121 @@
+<tower 
+  maxlevel="5"
+  name="rembot" 
+  velocity="30"
+  health="300"
+  unittype="creep"
+  unitlayer="earth"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+  exp="3"
+  >
+  <effects>
+    <positive electroResist="0.5" armor="4" fireResist="5"/>
+  </effects>
+  
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="3"
+    freezing_scale="0.35"
+    freezing_pos="5x-10"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+      <state_readyfire charge_volume="99999" delay="0.7"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="60"/>
+    </params>
+  </mover>
+
+  <skills>
+    <medic radius="400" health="30" frequence="3.5" duration="1" maxtargets="5"
+           units="jeep,tank,helicopter,tank_m,bmp,meh1,meh2,meh3,moto" 
+           effect_description="type:medic,animation:blue" />
+  </skills>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.6x0.18"/>
+    <node type="sprite" name="death" visible="no" opacity="192" center="0.5x0.4"/>
+    <node name="health_indicator" pos="-18x40" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:rembot.run::,indexes:rembot1_run_00.png,01:13]]]"/>
+    <action name="animateH" value="Animate[0.5,[folder:rembot.healing::,indexes:rembot1_hill_00.png,01:13]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"/>
+    <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <setproperty target="death" property="visible" value="yes"/>
+      <action action="animate_die" target="death" state="run"/>
+      <setproperty property="opacity" value="0" target="skin"/>
+    </eventlist>
+    
+    <eventlist name="on_healing">
+      <stopallaction target="skin"/>
+      <action action="animateH" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+    
+    <eventlist name="on_rotate90">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_move">
+      <setproperty property="opacity" value="255" target="skin"/>
+      <setproperty property="visible" value="no" target="death"/>
+    </eventlist>
+
+
+  </events>
+
+</tower>

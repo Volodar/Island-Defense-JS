@@ -1,0 +1,18 @@
+<root>
+  <node name="ACHIEVEMENT_1_2"  event="level_star3normal" value="1"/>
+  <node name="ACHIEVEMENT_1_3"  event="level_successfull" value="24"/>
+  <node name="ACHIEVEMENT_1_4"  event="level_star3hard" value="1"/>
+  <node name="ACHIEVEMENT_1_5"  event="level_successfull_hard" value="24"/>
+  <node name="ACHIEVEMENT_1_6"  event="level_3star" value="24"/>
+  <node name="ACHIEVEMENT_1_7"  event="heroes_open" value="3"/>
+  <node name="ACHIEVEMENT_1_8"  event="herolevel_15" value="1"/>
+  <node name="ACHIEVEMENT_1_9"  event="herolevel_15" value="3"/>
+  <node name="ACHIEVEMENT_1_10" event="lab_buyupgrade" value="1"/>
+  <node name="ACHIEVEMENT_1_11" event="lab_buyupgrade" value="24"/>
+  <node name="ACHIEVEMENT_1_12" event="tower_upgrade_minigun5" value="1"/>
+  <node name="ACHIEVEMENT_1_14" event="tower_upgrade_teslagun5" value="1"/>
+  <node name="ACHIEVEMENT_1_15" event="tower_upgrade_firegun5" value="1"/>
+  <node name="ACHIEVEMENT_1_13" event="tower_upgrade_icegun5" value="1"/>
+  <node name="ACHIEVEMENT_1_16" event="tower_upgrade_roketgun5" value="1"/>
+  <node name="ACHIEVEMENT_1_17" event="tower_upgrade_laser5" value="1"/>
+</root>

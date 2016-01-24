@@ -1,0 +1,184 @@
+<tower 
+  name="helicopter" 
+  velocity="65"
+  health="90"
+  unittype="creep"
+  unitlayer="sky"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+  sound_onmove="##sound_helicopter_move##"
+  exp="3"
+ >
+  <effects>
+    <positive armor="0" fireResist="2"/>
+  </effects>
+  
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="3"
+    freezing_scale="0.4"
+    freezing_pos="0x50"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+      <state_readyfire charge_volume="99999" delay="0.7"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="60"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.0"/>
+    <node type="sprite" name="death" visible="no" center="0.5x0.0"/>
+    <node type="sprite" name="shadow" image="images/creeps/helicopter_shadow.png" center="0.5x0.5"/>
+    <node name="health_indicator" pos="-18x110" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animateL" value="RepeatForever[Animate[0.6,[folder:helicopter2.left::,frames:
+            helicopter2_left_0001.png,
+            helicopter2_left_0002.png,
+            helicopter2_left_0003.png,
+            helicopter2_left_0004.png,
+            helicopter2_left_0005.png,
+            helicopter2_left_0006.png,
+            helicopter2_left_0007.png,
+            helicopter2_left_0008.png,
+            helicopter2_left_0009.png,
+            helicopter2_left_0010.png,
+            helicopter2_left_0011.png,
+            helicopter2_left_0012.png,
+            helicopter2_left_0013.png,
+            helicopter2_left_0014.png,
+            helicopter2_left_0015.png,
+            helicopter2_left_0016.png,
+            helicopter2_left_0017.png,
+            helicopter2_left_0018.png,
+            helicopter2_left_0019.png,
+            ]]]"/>
+    <action name="animateU" value="RepeatForever[Animate[0.6,[folder:helicopter2.up::,frames:
+            helicopter2_back_0001.png,
+            helicopter2_back_0002.png,
+            helicopter2_back_0003.png,
+            helicopter2_back_0004.png,
+            helicopter2_back_0005.png,
+            helicopter2_back_0006.png,
+            helicopter2_back_0007.png,
+            helicopter2_back_0008.png,
+            helicopter2_back_0009.png,
+            helicopter2_back_0010.png,
+            helicopter2_back_0011.png,
+            helicopter2_back_0012.png,
+            helicopter2_back_0013.png,
+            helicopter2_back_0014.png,
+            helicopter2_back_0015.png,
+            helicopter2_back_0016.png,
+            helicopter2_back_0017.png,
+            helicopter2_back_0018.png,
+            helicopter2_back_0019.png,
+            ]]]"/>
+    <action name="animateD" value="RepeatForever[Animate[0.6,[folder:helicopter2.down::,frames:
+            helicopter2_front_0001.png,
+            helicopter2_front_0002.png,
+            helicopter2_front_0003.png,
+            helicopter2_front_0004.png,
+            helicopter2_front_0005.png,
+            helicopter2_front_0006.png,
+            helicopter2_front_0007.png,
+            helicopter2_front_0008.png,
+            helicopter2_front_0009.png,
+            helicopter2_front_0010.png,
+            helicopter2_front_0011.png,
+            helicopter2_front_0012.png,
+            helicopter2_front_0013.png,
+            helicopter2_front_0014.png,
+            helicopter2_front_0015.png,
+            helicopter2_front_0016.png,
+            helicopter2_front_0017.png,
+            helicopter2_front_0018.png,
+            helicopter2_front_0019.png,
+            ]]]"/>
+    <action name="animate_die" value="Animate[0.35,[folder:helicopter.death::,frames:
+            helicopter_death_0001.png,
+            helicopter_death_0002.png,
+            helicopter_death_0003.png,
+            helicopter_death_0004.png,
+            helicopter_death_0005.png,
+            helicopter_death_0006.png,
+            helicopter_death_0007.png,
+            helicopter_death_0008.png,
+            helicopter_death_0009.png,
+            helicopter_death_0010.png,
+            ]]"/>
+    <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <action action="animateU" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <setproperty target="death" property="visible" value="yes"/>
+      <action action="animate_die" target="death" state="run"/>
+      <!--action action="fadeout" target="skin" state="run"/-->
+      <setproperty property="opacity" value="0" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <action action="animateU" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <action action="animateU" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+    
+    <eventlist name="on_rotate90">
+      <action action="animateU" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <action action="animateU" target="skin" state="stop"/>
+      <action action="animateD" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateU" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_move">
+      <setproperty property="opacity" value="255" target="skin"/>
+      <setproperty property="visible" value="no" target="death"/>
+    </eventlist>
+
+
+  </events>
+
+</tower>

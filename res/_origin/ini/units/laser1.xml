@@ -1,0 +1,109 @@
+<tower 
+       maxlevel="5" 
+       unittype="tower"
+       name="laser"
+       radius="300"
+       effect_on_shoot="type:laser,position0:27x30,position1:-27x30,position2:-21x55,position3:21x55"
+       allowtargets="earth,sea"
+       >
+  <effects>
+    <positive damage="200"/>
+  </effects>
+
+  <machine_unit>
+    <transitions>
+      <sleep seetarget="readyfire"/>
+      <readyfire notarget="waittarget"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <waittarget seetarget="readyfire"/>
+      <waittarget relax="waittarget"/>
+    </transitions>
+    <params>
+      <state_readyfire charge_volume="1" delay="8"/>
+      <state_waittarget duration="3.5"/>
+      <state_charging duration="6"/>
+    </params>
+  </machine_unit>
+
+  <machine_move>
+    <transitions>
+      <move stop="stop"/>
+      <stop move="move"/>
+    </transitions>
+  </machine_move>
+
+  <mover>
+    <params>
+      <allowangles value="45,135,225,315"/>
+      <thresold value="45"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" image="laser.1::turret5_1_10001.png" center="0.5x0.34"/>
+  </children>
+
+  <actions>
+    <action name="animate135" value="
+		Sequence[
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_100.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_100.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_100.png,01:08,01]]
+		]"
+		/>
+	<action name="animate315" value="
+		Sequence[
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_300.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_300.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_300.png,01:08,01]]
+		]"
+		/>
+	<action name="animate45" value="
+		Sequence[
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_200.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_200.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_200.png,01:08,01]]
+		]"
+		/>
+	<action name="animate225" value="
+		Sequence[
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_400.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_400.png,01:08]],
+		Animate[0.3,[folder:laser.1::,indexes:turret5_1_400.png,01:08,01]]
+		]"
+		/>
+  </actions>
+
+  <events>
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_sniper##"/>
+    </eventlist>
+    
+    <eventlist name="on_waittarget_45">
+      <setproperty property="image" value="laser.1::turret5_1_10001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_135">
+      <setproperty property="image" value="laser.1::turret5_1_20001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_225">
+      <setproperty property="image" value="laser.1::turret5_1_30001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_315">
+      <setproperty property="image" value="laser.1::turret5_1_40001.png" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_shoot_byangle45">
+      <runaction action="animate45" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle135">
+      <runaction action="animate135" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle225">
+      <runaction action="animate225" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle315">
+      <runaction action="animate315" target="skin"/>
+    </eventlist>
+  </events>
+</tower>

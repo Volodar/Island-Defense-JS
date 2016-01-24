@@ -1,0 +1,48 @@
+<tower digcost="30">
+  <tower name="minigun" >
+	  <costlab value="5,130,260,610,1100"/>
+    <cost value="100,140,210,280,350"/>
+    <sell value="0.8"/>
+    <desc value="minigun_desc"/>
+    <minlevel value="0"/>
+  </tower>
+  <tower name="icegun">
+    <cost value="90,130,170,200,250"/>
+    <costlab value="5,140,270,510,1150"/>
+    <sell value="0.8"/>
+    <minlevel value="0"/>
+    <desc value="icegun_desc"/>
+  </tower>
+  <tower name="firegun">
+    <cost value="120,160,220,280,370"/>
+    <costlab value="5,150,300,700,1200"/>
+    <sell value="0.8"/>
+    <desc value="firegun_desc"/>
+    <minlevel value="1"/>
+  </tower>
+  <tower name="roketgun">
+    <cost value="90,120,150,180,210"/>
+    <costlab value="5,180,440,630,1000"/>
+    <sell value="0.8"/>
+    <desc value="roketgun_desc"/>
+    <minlevel value="2"/>
+  </tower>
+  <tower name="teslagun">
+    <cost value="110,150,190,240,280"/>
+    <costlab value="5,160,320,730,1200"/>
+    <sell value="0.8"/>
+    <desc value="teslagun_desc"/>
+    <minlevel value="3"/>
+  </tower>
+  <tower name="laser">
+    <cost value="150,200,250,300,350"/>
+    <costlab value="5,170,510,780,1300"/>
+    <sell value="0.8"/>
+    <minlevel value="4"/>
+    <desc value="laser_desc"/>
+  </tower>
+
+</tower>
+
+
+

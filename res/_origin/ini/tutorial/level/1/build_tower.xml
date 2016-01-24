@@ -1,0 +1,18 @@
+<tutorial parent="/gamelayer/mainlayer/" pos="530x550" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_buildtower#"/>
+  </children>
+	
+	<actions>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+  </actions>
+	
+	<events>
+		<eventlist name="onenter">
+    </eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/gamelayer/interface/waveicon/icon" property="visible" value="yes"/>
+    </eventlist>
+	</events>
+	
+</tutorial>

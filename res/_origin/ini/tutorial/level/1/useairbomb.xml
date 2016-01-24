@@ -1,0 +1,16 @@
+<tutorial template="ini/tutorial/template_baloon.xml" parent="/gamelayer/interface/menu/bomb" pos="35x140">
+  <children>
+    <node path="body/text" text="#tuturial_useairbomb#" pos="50x4"/>
+    <node path="body/bg" pos="50x0"/>
+  </children>
+
+  <actions>
+    <action name="bodyfadein" value="Sequence[DelayTime[1],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <setproperty target="/gamelayer/interface/menu/bomb" property="visible" value="yes"/>
+    </eventlist>
+  </events>
+</tutorial>

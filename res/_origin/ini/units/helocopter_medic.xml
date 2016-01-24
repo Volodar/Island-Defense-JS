@@ -1,0 +1,60 @@
+<tower template="ini/units/templates/creepbase.xml"
+	   name="helocopter_medic"
+	   velocity="60"
+	   health="100"
+	   radius="150"
+     sound_onmove="##sound_helicopter_move##"
+     unitlayer="sky"
+     exp="3"
+       >
+	  
+  <effects>
+    <positive damage="1.5" armor="0"/>
+  </effects>
+
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="3"
+    freezing_scale="0.4"
+    freezing_pos="0x50"
+    />
+
+  <skills>
+    <medic radius="500" health="25" frequence="3.5" duration="0.3" maxtargets="5"
+           units="soldier,soldier2,bigman,flamethrower"
+           effect_description="type:medic,animation:red" />
+  </skills>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.0"/>
+    <node type="sprite" name="death" visible="no" center="0.5x0.0"/>
+    <node type="sprite" name="shadow" image="images/creeps/helicopter_shadow.png" center="0.5x0.5"/>
+    <node name="health_indicator" pos="-18x110" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_left" value="RepeatForever[Animate[0.6,[folder:helocopter_medic::left/,indexes:helicopter_med_go_00.png,01:18]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.6,[folder:helocopter_medic::up/,indexes:helicopter_med_back_00.png,01:18]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.6,[folder:helocopter_medic::down/,indexes:helicopter_med_front_00.png,01:18]]]"/>
+    <action name="animate_fire" value="Animate[0.6,[folder:helocopter_medic::healing/,indexes:helicopter_med_hill_00.png,01:18]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"/>
+  </actions>
+
+  <events>
+
+    <eventlist name="on_healing">
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_die">
+    </eventlist>
+
+    <eventlist name="on_shoot">
+    </eventlist>
+  </events>
+
+</tower>

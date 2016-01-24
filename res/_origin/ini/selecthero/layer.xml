@@ -1,0 +1,194 @@
+<layer type="selecthero" name="selecthero">
+  <children>
+    <node name="content" type="node" pos="frame:0.5x0">
+      <children>
+        <node name="1136" type="sprite" image="images/heroroom/heroroom1.png" pos="0x384"/>
+        
+        <node name="caption" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#hero_room#" pos="0x710" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+
+        <node name="skin" type="sprite" pos="-330x340"/>
+        <node name="heroname" type="bmlabel" font="fonts/mdefensefont2.fnt" text="1" pos="-330x230" center="0.5x0.5" color="FFFFFF" scale="1x1"/>
+        
+        <node name="level_timer_bg" type="sprite" image="heroroom::progress_level_back.png" pos="-330x150"/>
+        <node name="level_timer" type="progresstimer" image="heroroom::progress_level.png" pos="-330x150"
+              midpoint="0x0.5" barchangerate="1x0" progresstype="bar" percent="50"/>
+        <node name="level" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="-330x153" scale="0.55x0.55" center="0.5x0.5" color="FFFFFF"/>
+        <node name="points" type="bmlabel" font="fonts/helvetica.fnt" text="1" pos="160x465" scale="1x1" center="0x0.5" color="FFFFFF"/>
+        <node name="levelnumbertext" type="bmlabel" font="fonts/helvetica.fnt" text="1" pos="-330x95" scale="0.6x0.6" center="0.5x0.5" color="FFFFFF" textwidth="270" textalign="center"/>
+
+        <node name="menu" type="menu" pos="0x0">
+          <children>
+            <node name="hero1" type="menuitem" imageN="heroroom::hero1/hero1_1.png" imageD="heroroom::hero1/hero1_2.png" pos="-100x588" callback="hero1"/>
+            <node name="hero2" type="menuitem" imageN="heroroom::hero2/hero2_1.png" imageD="heroroom::hero2/hero2_2.png" pos="0x588" callback="hero2"/>
+            <node name="hero3" type="menuitem" imageN="heroroom::hero3/hero3_1.png" imageD="heroroom::hero3/hero3_2.png" pos="+100x588" callback="hero3"/>
+            <node name="skill0" type="menuitem" imageN="heroroom::hero1/i11.png" imageD="heroroom::hero1/i12.png" pos="-78x300" callback="skill1" visible="yes"/>
+            <node name="skill1" type="menuitem" imageN="heroroom::hero1/i21.png" imageD="heroroom::hero1/i22.png" pos="041x300" callback="skill2" visible="yes"/>
+            <node name="skill2" type="menuitem" imageN="heroroom::hero1/i31.png" imageD="heroroom::hero1/i32.png" pos="164x300" callback="skill3" visible="yes"/>
+            <node name="skill3" type="menuitem" imageN="heroroom::hero1/i41.png" imageD="heroroom::hero1/i42.png" pos="288x300" callback="skill4" visible="yes"/>
+            <node name="skill4" type="menuitem" imageN="heroroom::hero1/i51.png" imageD="heroroom::hero1/i52.png" pos="408x300" callback="skill5" visible="yes"/>
+            <node name="reset" type="menuitem" imageN="heroroom::but_reset.png"  pos="405x090" callback="reset" font="fonts/mdefensefont2.fnt" text="#hero_reset#">
+              <children>
+                <node path="normal/text" strech="100x50:min" pos="60x30"/>
+              </children>
+            </node>
+            <node name="train" type="menuitem" imageN="heroroom::but_train.png" imageD="heroroom::but_train2.png" pos="220x090" callback="train" font="fonts/mdefensefont2.fnt" text="#hero_train#">
+              <children>
+                <node path="normal/text" strech="150x30:min" pos="80x30"/>
+                <node path="disabled/text" strech="150x30:min" opacity="128" pos="80x30"/>
+              </children>
+            </node>
+
+            <node name="select" type="menuitem" imageN="heroroom::but_select.png" imageD="heroroom::but_select2.png" pos="-330x95" callback="select" font="fonts/mdefensefont2.fnt" text="#hero_select#">
+              <children>
+                <node path="normal/text" strech="150x40:min" pos="80x30"/>
+                
+              </children>
+            </node>
+            
+			<node name="buyhero" type="menuitem" imageN="heroroom::but_select.png" pos="-330x115" callback="buyhero">
+				<children>
+					<node name="normal">
+						<children>
+							<node name="cost" type="bmlabel" font="fonts/mdefensefont2.fnt" text="USD:999.00" pos="80x30" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF" strech="140x50:min"/>
+						</children>
+					</node>
+				</children>
+			</node>
+			
+			<node name="restore" type="menuitem" imageN="heroroom::but_select.png" pos="-330x60" callback="restore" font="fonts/mdefensefont2.fnt" text="restore">
+				<children>
+					<node path="normal/text" strech="130x30:min" pos="80x30" />
+				</children>
+			</node>
+			
+            <node name="buylevel" type="menuitem" imageN="heroroom::but_lvlup.png" pos="-330x95" callback="buylevel" font="fonts/mdefensefont2.fnt" text="#hero_levelup#">
+              <children>
+                <node name="normal">
+                  <children>
+                    <node name="text" strech="150x35:min" pos="75x52"/>
+                    <node name="cost" type="bmlabel" font="fonts/mdefensefont2.fnt" text="999" pos="65x20" scale="0.5x0.5" center="0x0.5" color="FFFFFF" />
+                    <node name="gold" type="sprite" image="heroroom::icon_gold.png" pos="65x17" center="1x0.5" scale="0.75x0.75"/>
+                  </children>
+                </node>
+              </children>
+            </node>
+
+          </children>
+        </node>
+
+        <node name="skills_back" type="node">
+          <children>
+            <node name="0" type="node" pos="-78x400">
+              <children>
+                <node name="0" type="sprite" image="heroroom::skill_progress_back.png" pos="0x0"/>
+                <node name="1" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-25"/>
+                <node name="2" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-50"/>
+              </children>
+            </node>
+            <node name="1" type="node" pos="041x400">
+              <children>
+                <node name="0" type="sprite" image="heroroom::skill_progress_back.png" pos="0x0"/>
+                <node name="1" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-25"/>
+                <node name="2" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-50"/>
+              </children>
+            </node>
+            <node name="2" type="node" pos="164x400">
+              <children>
+                <node name="0" type="sprite" image="heroroom::skill_progress_back.png" pos="0x0"/>
+                <node name="1" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-25"/>
+                <node name="2" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-50"/>
+              </children>
+            </node>
+            <node name="3" type="node" pos="288x400">
+              <children>
+                <node name="0" type="sprite" image="heroroom::skill_progress_back.png" pos="0x0"/>
+                <node name="1" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-25"/>
+                <node name="2" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-50"/>
+              </children>
+            </node>
+            <node name="4" type="node" pos="408x400">
+              <children>
+                <node name="0" type="sprite" image="heroroom::skill_progress_back.png" pos="0x0"/>
+                <node name="1" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-25"/>
+                <node name="2" type="sprite" image="heroroom::skill_progress_back.png" pos="0x-50"/>
+              </children>
+            </node>
+          </children>
+        </node>
+        <node name="skills" type="node" visible="yes">
+          <children>
+
+            <node name="name" type="bmlabel" font="fonts/helvetica.fnt" pos="-30x222" scale="0.6x0.6" center="0.0x1" textalign="left" text="Name name name name" color="9DCFE0"/>
+            <node name="desc" type="bmlabel" font="fonts/helvetica.fnt" pos="-30x200" scale="0.5x0.5" center="0.0x1" textalign="left" textwidth="950" color="769BA8" text="d e s c desc desc d e s c d e s c desc desc desc desc desc desc desc desc desc desc desc "/>
+            <node name="icon" type="sprite" image="heroroom::hero1/i12.png" pos="-83x195"/>
+
+            <node name="skill0" type="node" pos="-78x400">
+              <children>
+                <node name="level" type="sprite" image="heroroom::j1.png" pos="30x-130"/>
+                <node name="degree2" type="sprite" image="heroroom::skill_progress_0.png" pos="0x0" visible="no"/>
+                <node name="degree1" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-25" visible="no"/>
+                <node name="degree0" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-50" visible="no"/>
+              </children>
+            </node>
+            <node name="skill1" type="node" pos="041x400">
+              <children>
+                <node name="level" type="sprite" image="heroroom::j1.png" pos="30x-130"/>
+                <node name="degree2" type="sprite" image="heroroom::skill_progress_0.png" pos="0x0" visible="no"/>
+                <node name="degree1" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-25" visible="no"/>
+                <node name="degree0" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-50" visible="no"/>
+              </children>
+            </node>
+            <node name="skill2" type="node" pos="164x400">
+              <children>
+                <node name="level" type="sprite" image="heroroom::j1.png" pos="30x-130"/>
+                <node name="degree2" type="sprite" image="heroroom::skill_progress_0.png" pos="0x0" visible="no"/>
+                <node name="degree1" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-25" visible="no"/>
+                <node name="degree0" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-50" visible="no"/>
+              </children>
+            </node>
+            <node name="skill3" type="node" pos="288x400">
+              <children>
+                <node name="level" type="sprite" image="heroroom::j1.png" pos="30x-130"/>
+                <node name="degree2" type="sprite" image="heroroom::skill_progress_0.png" pos="0x0" visible="no"/>
+                <node name="degree1" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-25" visible="no"/>
+                <node name="degree0" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-50" visible="no"/>
+              </children>
+            </node>
+            <node name="skill4" type="node" pos="408x400">
+              <children>
+                <node name="level" type="sprite" image="heroroom::j1.png" pos="30x-130"/>
+                <node name="degree2" type="sprite" image="heroroom::skill_progress_0.png" pos="0x0" visible="no"/>
+                <node name="degree1" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-25" visible="no"/>
+                <node name="degree0" type="sprite" image="heroroom::skill_progress_0.png" pos="0x-50" visible="no"/>
+              </children>
+            </node>
+          </children>
+        </node>
+
+        <node name="menu_close" type="menu" pos="frame:-0.5x0">
+          <children>
+            <node name="close" type="menuitem" imageN="heroroom::button_x.png" pos="right:-40x703" callback="close"/>
+          </children>
+        </node>
+
+      </children>
+    </node>
+
+  </children>
+
+  <actions>
+    <action name="appearance" value="BackOut[MoveTo[0.4,0,0]]"/>
+    <action name="disappearance" value="Sequence[BackIn[MoveTo[0.4,0,-500]],RemoveSelf[]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <setproperty property="pos" value="0x-500"/>
+      <runaction action="appearance"/>
+    </eventlist>
+    <eventlist name="onexit">
+      <runaction action="disappearance"/>
+    </eventlist>
+  </events>
+
+</layer>

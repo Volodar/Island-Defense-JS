@@ -1,0 +1,24 @@
+<tutorial asblockinglayer="yes" pos="frame:0.5x0.5" closebytap="yes">
+  <children>
+    <node name="body" type="node" cascadeopacity="yes" opacity="0" scale="0.8x0.8">
+      <children>
+        <node name="bg" type="sprite" />
+      </children>
+    </node>
+  </children>
+
+  <actions>
+    <action name="fadein" value="FadeTo[0.25,255]"/>
+    <action name="scale" value="ScaleTo[0.2,1,1]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <runaction action="fadein" target="body"/>
+      <runaction action="scale" target="body"/>
+    </eventlist>
+    <eventlist name="onexit">
+    </eventlist>
+  </events>
+
+</tutorial>

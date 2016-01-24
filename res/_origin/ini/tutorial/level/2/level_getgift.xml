@@ -1,0 +1,24 @@
+<tutorial autopos="/shop/gift_gear" parent="/shop" pos="230x-155" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_shop_getgift#"/>
+    <node path="body/arrow" pos="-94x0" scale="1x1" rotation="90"/>
+  </children>
+
+  <actions>
+    <action name="body" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[0],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+		<eventlist name="onenter">
+      <setproperty target="/shop/menu/close" property="visible" value="no"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="no"/>
+    </eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/shop/menu/close" property="visible" value="yes"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="yes"/>
+      <setproperty property="shopgift" value=""/>
+    </eventlist>
+	</events>
+	
+</tutorial>

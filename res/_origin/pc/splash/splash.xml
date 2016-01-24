@@ -1,0 +1,18 @@
+<maings>
+  <children>
+    <node name="0" type="sprite" pos="frame:0.5x0.5" image="images/square.png" strech="frame:1x1:xy"/>
+	  <node name="1" type="sprite" pos="frame:0.5x0.5" image="splash/splash.jpg" strech="frame:1x1:max" opacity="0"/>
+  </children>
+  
+  <actions>
+	  <action name="delay" value="DelayTime[2.5]"/>
+    <action name="1" value="Sequence[DelayTime[0],FadeIn[0.3],DelayTime[1.4],FadeOut[0.3]]"/>
+  </actions>
+  
+  <events>
+    <eventlist name="appearance">
+      <runaction action="1" target="1"/>
+    </eventlist>
+  </events>
+  
+</maings>

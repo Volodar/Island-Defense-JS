@@ -1,0 +1,10 @@
+<tutorial template="ini/tutorial/units/template.xml">
+  <children>
+    <node path="body/bgtype" image="images/tutorial/tut5_ground.png"/>
+    <node path="body/name" text="#flyingfortress_name#"/>
+    <node path="body/caption" text="#flyingfortress_caption#"/>
+    <node path="body/description" text="#flyingfortress_desc#"/>
+    <node path="body/unit" animation="RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]" scale="-0.5x0.5"  pos="-210x60"/>
+    <node name="shadow" type="sprite" image="images/creeps/helicopter_shadow.png" pos="-210x-10"/>
+  </children>
+</tutorial>

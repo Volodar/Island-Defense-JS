@@ -1,0 +1,84 @@
+<node name="boxmenu">
+  <paramcollection>
+    <autoclose value="yes"/>
+  </paramcollection>
+  <children>
+    <node name="box_close" type="menuitem" imageN ="images/gamescene/box_close.png" pos="0x0" sound="##sound_button##" callback="open"/>
+    <node name="box_open" type="menuitem" imageN ="images/gamescene/box_open.png" pos="0x0" sound="##sound_button##" callback="close" visible="no"/>
+
+    <node name="item1" type="menuitem" imageN ="images/gamescene/item1.png" imageD ="images/gamescene/item1_d.png" pos="0x0" sound="##sound_button##" callback="item1" visible="no" z="-1">
+      <children>
+        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+      </children>
+    </node>
+    <node name="item2" type="menuitem" imageN ="images/gamescene/item2.png" imageD ="images/gamescene/item2_d.png" pos="0x0" sound="##sound_button##" callback="item2" visible="no" z="-1">
+      <children>
+        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+      </children>
+    </node>
+    <node name="item3" type="menuitem" imageN ="images/gamescene/item3.png" imageD ="images/gamescene/item3_d.png" pos="0x0" sound="##sound_button##" callback="item3" visible="no" z="-1">
+      <children>
+        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+      </children>
+    </node>
+    <node name="itemshop" type="menuitem" imageN ="images/gamescene/button_itemshop.png" pos="0x0" sound="##sound_button##" callback="itemshop" visible="no" z="-1" scale="0.65x0.65"/>
+
+    <node name="bgitems" type="sprite" image="images/gamescene/box_bg.png" center="1x0.5" scale="0x1" z="-2"/>
+  </children>
+
+  <actions>
+    <action name="open_bg" value="BackOut[ScaleTo[0.4,0.8,1]]"/>
+    <action name="close_bg" value="BackIn[ScaleTo[0.4,0,1]]"/>
+    <action name="item1_in" value="Sequence[Show[],BackOut[MoveTo[0.3,-75,0]]]"/>
+    <action name="item2_in" value="Sequence[Show[],BackOut[MoveTo[0.35,-150,0]]]"/>
+    <action name="item3_in" value="Sequence[Show[],BackOut[MoveTo[0.4,-225,0]]]"/>
+    <action name="item4_in" value="Sequence[Show[],BackOut[MoveTo[0.2,0,70]]]"/>
+    <action name="item1_out" value="Sequence[BackIn[MoveTo[0.3,0,0]],Hide[]]"/>
+    <action name="item2_out" value="Sequence[BackIn[MoveTo[0.35,0,0]],Hide[]]"/>
+    <action name="item3_out" value="Sequence[BackIn[MoveTo[0.4,0,0]],Hide[]]"/>
+    <action name="item4_out" value="Sequence[BackIn[MoveTo[0.2,0,0]],Hide[]]"/>
+  </actions>
+  
+  <events>
+    
+    <eventlist name="open">
+      <runaction action="open_bg" target="bgitems"/>
+      <runaction action="item1_in" target="item1"/>
+      <runaction action="item2_in" target="item2"/>
+      <runaction action="item3_in" target="item3"/>
+      <runaction action="item4_in" target="itemshop"/>
+      <setproperty target="box_close" property="visible" value="no"/>
+      <setproperty target="box_open" property="visible" value="yes"/>
+    </eventlist>
+
+    <eventlist name="open2">
+      <setproperty target="item1" property="scale" value="1x1"/>
+      <setproperty target="item2" property="scale" value="1x1"/>
+      <setproperty target="item3" property="scale" value="1x1"/>
+    </eventlist>
+
+    <eventlist name="item1">
+      <setproperty target="item1" property="scale" value="1.5x1.5"/>
+    </eventlist>
+    <eventlist name="item2">
+      <setproperty target="item2" property="scale" value="1.5x1.5"/>
+    </eventlist>
+    <eventlist name="item3">
+      <setproperty target="item3" property="scale" value="1.5x1.5"/>
+    </eventlist>
+
+    <eventlist name="close">
+      <runaction action="close_bg" target="bgitems"/>
+      <runaction action="item1_out" target="item1"/>
+      <runaction action="item2_out" target="item2"/>
+      <runaction action="item3_out" target="item3"/>
+      <runaction action="item4_out" target="itemshop"/>
+      <setproperty target="box_close" property="visible" value="yes"/>
+      <setproperty target="box_open" property="visible" value="no"/>
+      <setproperty target="item1" property="scale" value="1x1"/>
+      <setproperty target="item2" property="scale" value="1x1"/>
+      <setproperty target="item3" property="scale" value="1x1"/>
+    </eventlist>
+    
+  </events>
+</node>

@@ -1,0 +1,163 @@
+<creeps>
+	<creep name="infantrysecond" directory="infantry/">
+		<param name="bodytype" value="meat"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="10"/>
+		<param name="bodyradius" value="25"/>
+		<param name="soundmove" value="march.wav"/>
+		<effects>
+			<positive damage="0.33" isCanStoppedMove="true"/>
+		</effects>
+	</creep>
+	<creep name="marine" directory="marine/">
+		<param name="bodytype" value="meat"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="12"/>
+		<param name="bodyradius" value="25"/>
+		<param name="soundmove" value="march.wav"/>
+		<effects>
+			<positive damage="0.33" isCanStoppedMove="true"/>
+		</effects>
+	</creep>
+	<creep name="beret" directory="maroon_beret/">
+		<param name="bodytype" value="meat"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="35"/>
+		<param name="health" value="15"/>
+		<param name="bodyradius" value="25"/>
+		<param name="soundmove" value="march.wav"/>
+		<effects>
+			<positive damage="0.33" isCanStoppedMove="true"/>
+		</effects>
+	</creep>
+	<creep name="car0" directory="car0/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="50"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="40"/>
+		<param name="soundmove" value="car0.wav"/>
+		<effects>
+			<positive armor="3" />
+		</effects>
+	</creep>
+	<creep name="car1" directory="car1/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="50"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="40"/>
+		<param name="armor" value="5"/>
+		<param name="soundmove" value="car1.wav"/>
+		<effects>
+			<positive armor="3"/>
+		</effects>
+	</creep>
+	<creep name="car2" directory="car2/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="55"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="40"/>
+		<param name="armor" value="5"/>
+		<param name="soundmove" value="car2.wav"/>
+		<effects>
+			<positive armor="3"/>
+		</effects>
+	</creep>
+	<creep name="tank" directory="tank/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="50"/>
+		<param name="bodyradius" value="40"/>
+		<param name="fireResist" value="100"/>
+		<param name="soundmove" value="tank0.wav"/>
+		<effects>
+			<positive armor="10" fireResist="10" iceResist="5"/>
+		</effects>
+	</creep>
+	<creep name="tank0" directory="tank/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="50"/>
+		<param name="bodyradius" value="40"/>
+		<param name="fireResist" value="100"/>
+		<param name="soundmove" value="tank0.wav"/>
+		<effects>
+			<positive armor="10" fireResist="10" iceResist="5"/>
+		</effects>
+	</creep>
+	<creep name="tank1" directory="tank2/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="50"/>
+		<param name="bodyradius" value="40"/>
+		<param name="fireResist" value="100"/>
+		<param name="soundmove" value="tank0.wav"/>
+		<effects>
+			<positive armor="10" fireResist="10" iceResist="5"/>
+		</effects>
+	</creep>
+	<creep name="tank2" directory="tank3/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="normal"/>
+		<param name="velocitymove" value="30"/>
+		<param name="health" value="50"/>
+		<param name="bodyradius" value="40"/>
+		<param name="fireResist" value="100"/>
+		<param name="soundmove" value="tank1.wav"/>
+		<effects>
+			<positive armor="15" fireResist="10" iceResist="5"/>
+		</effects>
+	</creep>
+	<creep name="rotorplane0" directory="rotorplane0/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="fly"/>
+		<param name="velocitymove" value="100"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="30"/>
+		<param name="soundmove" value="rotorplane0.wav"/>
+		<effects>
+			<positive armor="10" />
+		</effects>
+	</creep>
+	<creep name="rotorplane1" directory="rotorplane1/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="fly"/>
+		<param name="velocitymove" value="100"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="30"/>
+		<param name="soundmove" value="rotorplane1.wav"/>
+		<effects>
+			<positive armor="10"/>
+		</effects>
+	</creep>
+	<creep name="rotorplane2" directory="rotorplane2/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="fly"/>
+		<param name="velocitymove" value="100"/>
+		<param name="health" value="20"/>
+		<param name="bodyradius" value="30"/>
+		<param name="soundmove" value="rotorplane2.wav"/>
+		<effects>
+			<positive armor="10"/>
+		</effects>
+	</creep>
+	<creep name="plane" directory="plane/">
+		<param name="bodytype" value="equipment"/>
+		<param name="unitlayer" value="fly"/>
+		<param name="velocitymove" value="120"/>
+		<param name="health" value="15"/>
+		<param name="bodyradius" value="40"/>
+		<param name="soundmove" value="rotorplane0.wav"/>
+		<effects>
+			<positive armor="15"
+			/>
+		</effects>
+	</creep>
+</creeps>

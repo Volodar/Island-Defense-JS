@@ -1,0 +1,164 @@
+<tower type="hero"
+  maxlevel="1"
+  unittype="hero"
+  name="hero1"
+  radius="150"
+  velocity="150"
+  health="80"
+  unitlayer="earth"
+  maxtargets="4"
+  allowtargets="earth"
+  regeneration="1"
+  skill="landmine"
+  handradius="150"
+  handradiussector="180"
+      >
+  <effects>
+    <positive damage="10" armor="1"/>
+  </effects>
+
+  <skills>
+    <rateparameter rate="1.15" parameter="health" unitskill="0" unitskilllevel="1"/>
+    <rateparameter rate="1.30" parameter="health" unitskill="0" unitskilllevel="2"/>
+    <rateparameter rate="1.50" parameter="health" unitskill="0" unitskilllevel="3"/>
+
+    <rateparameter rate="1.15" parameter="damage" unitskill="1" unitskilllevel="1"/>
+    <rateparameter rate="1.30" parameter="damage" unitskill="1" unitskilllevel="2"/>
+    <rateparameter rate="1.50" parameter="damage" unitskill="1" unitskilllevel="3"/>
+
+    <rateparameter rate="2" parameter="armor" unitskill="2" unitskilllevel="1"/>
+    <rateparameter rate="4" parameter="armor" unitskill="2" unitskilllevel="2"/>
+    <rateparameter rate="8" parameter="armor" unitskill="2" unitskilllevel="3"/>
+
+    <runeventsbytime frequence="30" stopunit="yes" stopduration="2" count="999999" unitskill="3" unitskilllevel="1">
+      <eventlist>
+        <createunit_reverseroute units="hero1_walkbomb1" radius="10" unittype="creep" lifetime="2000"/>
+      </eventlist>
+    </runeventsbytime>
+    <runeventsbytime frequence="25" stopunit="yes" stopduration="2" count="999999" unitskill="3" unitskilllevel="2">
+      <eventlist>
+        <createunit_reverseroute units="hero1_walkbomb2" radius="10" unittype="creep" lifetime="2000"/>
+      </eventlist>
+    </runeventsbytime>
+    <runeventsbytime frequence="25" stopunit="yes" stopduration="2" count="999999" unitskill="3" unitskilllevel="3">
+      <eventlist>
+        <createunit_reverseroute units="hero1_walkbomb3" radius="10" unittype="creep" lifetime="2000"/>
+      </eventlist>
+    </runeventsbytime>
+  </skills>
+
+  <extraproperties
+    electro_pos="0x15"
+    electro_size="small"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="1"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      
+      <stop move="move"/>
+      <stop die="death"/>
+      <stop seetarget="readyfire"/>
+
+      <sleep seetarget="readyfire"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <charging die="death"/>
+
+      <readyfire notarget="stop"/>
+      <readyfire move="move"/>
+      <readyfire stop="stop"/>
+     
+      <readyfire die="death"/>
+      <death stop="stop"/>
+      <death live="stop"/>
+
+    </transitions>
+    <params>
+      <state_death duration="20"/>
+      <state_charging duration="0"/>
+      <state_readyfire charge_volume="5" delay="0.5"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="90"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="selection" visible="yes" center="0.5x0.5" pos="1x21" z="-1"/>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.29"/>
+    <node type="sprite" name="skin_shrapnel" visible="no" center="0.5x0.29"/>
+    <node name="health_indicator" pos="-16x55" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_fire" value="Animate[0.5,[folder:hero1::,indexes:hero1_fire_00.png,01:17]]"/>
+    <action name="animate_left" value="RepeatForever[Animate[0.5,[folder:hero1::,indexes:hero1_go_00.png,01:24]]]"/>
+    <action name="animate_die" value="Animate[0.01,[folder:hero_other::,frames:hero1_headstone_.png]]"/>
+    <action name="animate_nothing" value="RepeatForever[Animate[0.5,[folder:hero1::,indexes:hero1_idle_00.png,01:12]]]"/>
+    <action name="animate_selected" value="RepeatForever[Animate[1.0,[folder:hero_other::,indexes:hero1_aura00.png,01:20]]]"/>
+  
+    <action name="shrapnel_animate" value="Sequence[Show[],Animate[0.5,[folder:hero1::,indexes:hero1_shrapnel_00.png,01:09]],Hide[]]"/>
+    <action name="shrapnel_hideskin" value="Sequence[Hide[0],DelayTime[1.5],Show[0]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <setproperty property="z" target="." value="-9999"/>
+      <action action="animate_die" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+    
+    <eventlist name="on_shoot_byangle180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+    </eventlist>
+
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_desant_shoot##"/>
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_stop">
+      <stopallaction target="skin"/>
+      <action action="animate_nothing" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="onselect">
+      <stopallaction target="selection"/>
+      <action action="animate_selected" target="selection" state="run"/>
+      <setproperty property="visible" target="selection" value="yes"/>
+    </eventlist>
+
+    <eventlist name="ondeselect">
+      <action action="animate_selected" target="selection" state="stop"/>
+      <setproperty property="visible" target="selection" value="no"/>
+    </eventlist>
+
+  </events>
+
+</tower>

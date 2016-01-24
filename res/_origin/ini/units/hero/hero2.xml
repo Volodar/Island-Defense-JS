@@ -1,0 +1,172 @@
+<unit type="hero2"
+  maxlevel="1"
+  unittype="hero"
+  name="hero2"
+  radius="150"
+  velocity="150"
+  health="30"
+  unitlayer="earth"
+  allowtargets="earth"
+  regeneration="100"
+  skill="swat"
+  
+  maxtargets="1"
+  handradius="150"
+  handradiussector="90"
+      >
+  <effects>
+    <positive damage="20" armor="1"/>
+  </effects>
+
+  <skills>
+
+    <rateparameter rate="1.15" parameter="health" unitskill="0" unitskilllevel="1"/>
+    <rateparameter rate="1.30" parameter="health" unitskill="0" unitskilllevel="2"/>
+    <rateparameter rate="1.50" parameter="health" unitskill="0" unitskilllevel="3"/>
+
+    <rateparameter rate="1.15" parameter="damage" unitskill="1" unitskilllevel="1"/>
+    <rateparameter rate="1.30" parameter="damage" unitskill="1" unitskilllevel="2"/>
+    <rateparameter rate="1.50" parameter="damage" unitskill="1" unitskilllevel="3"/>
+
+    <rateparameter rate="2" parameter="armor" unitskill="2" unitskilllevel="1"/>
+    <rateparameter rate="4" parameter="armor" unitskill="2" unitskilllevel="2"/>
+    <rateparameter rate="8" parameter="armor" unitskill="2" unitskilllevel="3"/>
+
+    <sniper radius="200" delay="5" prepare="1" colling="0" unitskill="3" unitskilllevel="1">
+      <aim type="sprite" name="aim"/>
+      <aim_action value="RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"/>
+      <effects>
+        <positive damage="100"/>
+      </effects>
+    </sniper>
+    <sniper radius="200" delay="5" prepare="1" colling="0" unitskill="3" unitskilllevel="2">
+      <aim type="sprite" name="aim"/>
+      <aim_action value="RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"/>
+      <effects>
+        <positive damage="200"/>
+      </effects>
+    </sniper>
+    <sniper radius="200" delay="5" prepare="1" colling="0" unitskill="3" unitskilllevel="3">
+      <aim type="sprite" name="aim"/>
+      <aim_action value="RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"/>
+      <effects>
+        <positive damage="300"/>
+      </effects>
+    </sniper>
+
+
+  </skills>
+
+  <extraproperties
+    electro_pos="0x15"
+    electro_size="small"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="1"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      
+      <stop move="move"/>
+      <stop die="death"/>
+      <stop seetarget="readyfire"/>
+
+      <sleep seetarget="readyfire"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <charging die="death"/>
+
+      <readyfire notarget="stop"/>
+      <readyfire move="move"/>
+      <readyfire stop="stop"/>
+     
+      <readyfire die="death"/>
+      <death stop="stop"/>
+      <death live="stop"/>
+
+    </transitions>
+    <params>
+      <state_death duration="20"/>
+      <state_charging duration="0.0"/>
+      <state_readyfire charge_volume="1" delay="0.5"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180"/>
+      <thresold value="90"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="selection" visible="yes" center="0.5x0.5" pos="1x21" z="-1"/>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.19"/>
+    <node name="health_indicator" pos="-16x55" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_fire" value="Animate[0.4,[folder:hero2::fire/,indexes:hero2fire_00.png,01:20,01]]"/>
+    <action name="animate_fire2" value="Animate[0.4,[folder:hero2::fire_critical/,indexes:hero2_fire2_00.png,01:20,01]]"/>
+    <action name="animate_left" value="RepeatForever[Animate[0.5,[folder:hero2::run/,indexes:hero2run_00.png,01:16]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.5,[folder:hero2::run/,indexes:hero2run_00.png,01:16]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.5,[folder:hero2::run/,indexes:hero2run_00.png,01:16]]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:hero2::die/,indexes:hero2die_00.png,00:22]]"/>
+    <action name="animate_nothing" value="RepeatForever[Animate[1.0,[folder:hero2::stay/,indexes:hero2stay_00.png,01:20]]]"/>
+    <action name="animate_selected" value="RepeatForever[Animate[1.0,[folder:hero_other::,indexes:hero1_aura00.png,01:20]]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <action action="animate_die" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_shoot_byangle180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+    </eventlist>
+
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_desant_shoot##"/>
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_stop">
+      <stopallaction target="skin"/>
+      <action action="animate_nothing" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="onselect">
+      <stopallaction target="selection"/>
+      <action action="animate_selected" target="selection" state="run"/>
+      <setproperty property="visible" target="selection" value="yes"/>
+    </eventlist>
+
+    <eventlist name="ondeselect">
+      <action action="animate_selected" target="selection" state="stop"/>
+      <setproperty property="visible" target="selection" value="no"/>
+    </eventlist>
+
+  </events>
+
+</unit>

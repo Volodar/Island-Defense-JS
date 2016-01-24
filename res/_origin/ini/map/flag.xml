@@ -1,0 +1,81 @@
+<menuitem type="menuitem" imageN ="images/map/##flag_image##.png" center="0.5x0.15">
+  <children>
+    <node name="star1" type="sprite" image="images/map/star1.png" pos="28x75" visible="no"/>
+    <node name="star2" type="sprite" image="images/map/star2.png" pos="28x75" visible="no"/>
+    <node name="star3" type="sprite" image="images/map/star3.png" pos="28x75" visible="no"/>
+
+    <!--node name="fuel" type="node" pos="29x-8">
+      <children>
+        <node name="icon" type="sprite" image="images/map/button_fuel.png" pos="1x-8" visible="yes" center="1x0.5"/>
+        <node name="text" type="bmlabel" font="fonts/mdefensefont2.fnt" text="##fuel_for_level##" pos="-1x0" scale="0.55x0.55" center="0x0.5"/>
+      </children>
+    </node-->
+  </children>
+
+  <actions>
+    <action name="star_scale" value="Sequence[DelayTime[2],BackOut[ScaleTo[0.3,1,1]]]"/>
+
+    <action name="flag_scale" value="Sequence[DelayTime[1],BackOut[ScaleTo[0.3,1,1]]]"/>
+    <action name="flag_fadein" value="Sequence[DelayTime[1],FadeIn[0.3]]"/>
+    <action name="flag_tint" value="Sequence[DelayTime[1],TintTo[0.3,255,255,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="star1_show">
+      <setproperty property="visible" value="yes" target="star1"/>
+      <setproperty property="scale" value="0x0" target="star1"/>
+      <setproperty property="scale" value="0x0" target="fuel"/>
+      <runaction action="star_scale" target="star1"/>
+      <runaction action="star_scale" target="fuel"/>
+
+      <setproperty property="opacity" value="0" target="normal"/>
+      <setproperty property="scale" value="0x0"/>
+      <setproperty property="color" value="FF0000" target="normal"/>
+      <runaction action="flag_scale"/>
+      <runaction action="flag_fadein" target="normal"/>
+      <runaction action="flag_tint" target="normal"/>
+      <playsound sound="##sound_mapflagnew##" predelay="1"/>
+      <playsound sound="##sound_mapflagstar1##" predelay="2"/>
+    </eventlist>
+
+    <eventlist name="star2_show">
+      <setproperty property="visible" value="yes" target="star2"/>
+      <setproperty property="scale" value="0x0" target="star2"/>
+      <runaction action="star_scale" target="star2"/>
+
+      <setproperty property="opacity" value="0" target="normal"/>
+      <setproperty property="scale" value="0x0"/>
+      <setproperty property="color" value="FF0000" target="normal"/>
+      <runaction action="flag_scale"/>
+      <runaction action="flag_fadein" target="normal"/>
+      <runaction action="flag_tint" target="normal"/>
+      <playsound sound="##sound_mapflagnew##" predelay="1"/>
+      <playsound sound="##sound_mapflagstar2##" predelay="2"/>
+    </eventlist>
+
+    <eventlist name="star3_show">
+      <setproperty property="visible" value="yes" target="star3"/>
+      <setproperty property="scale" value="0x0" target="star3"/>
+      <runaction action="star_scale" target="star3"/>
+
+      <setproperty property="opacity" value="0" target="normal"/>
+      <setproperty property="scale" value="0x0"/>
+      <setproperty property="color" value="FF0000" target="normal"/>
+      <runaction action="flag_scale"/>
+      <runaction action="flag_fadein" target="normal"/>
+      <runaction action="flag_tint" target="normal"/>
+      <playsound sound="##sound_mapflagnew##" predelay="1"/>
+      <playsound sound="##sound_mapflagstar3##" predelay="2"/>
+    </eventlist>
+
+    <eventlist name="star1">
+      <setproperty property="visible" value="yes" target="star1"/>
+    </eventlist>
+    <eventlist name="star2">
+      <setproperty property="visible" value="yes" target="star2"/>
+    </eventlist>
+    <eventlist name="star3">
+      <setproperty property="visible" value="yes" target="star3"/>
+    </eventlist>
+  </events>
+</menuitem>

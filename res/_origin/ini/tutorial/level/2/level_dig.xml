@@ -1,0 +1,14 @@
+<tutorial parent="/gamelayer/mainlayer/" pos="625x560" z="999" template="ini/tutorial/template_baloon.xml">
+  <children>
+    <node path="body/text" text="#tuturial_dig#"/>
+    <node path="body/arrow" pos="0x40" scale="1x-1"/>
+  </children>
+
+  <actions>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+  </events>
+
+</tutorial>

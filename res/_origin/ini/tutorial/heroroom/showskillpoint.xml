@@ -1,0 +1,31 @@
+<tutorial parent="/selecthero" z="999" pos="frame:0.5x0.5" nexttutorial="hero_selectskill" closebytap="yes">
+	<children>
+    <node name="body" type="node" pos="0x-150">
+      <children>
+        <node name="bg" type="sprite" image="images/tutorial/tut2.png" />
+      	<node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_showskillpoints#" />
+      </children>
+    </node>
+    <node name="baloon" type="node" cascadeopacity="yes" opacity="0" pos="135x0">
+      <children>
+        <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="0x60" scale="1.5x1.5" center="0.5x0"/>
+      </children>
+    </node>
+  </children>
+
+  <actions>
+    <action name="scaling" value="RepeatForever[EaseInOut[Sequence[DelayTime[0.5],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]],3]]"/>
+    <action name="body" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <runaction action="body" target="baloon"/>
+      <runaction action="bodyfadein" target="baloon"/>
+    </eventlist>
+    <eventlist name="onexit">
+    </eventlist>
+  </events>
+
+</tutorial>

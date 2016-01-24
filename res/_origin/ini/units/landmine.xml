@@ -1,0 +1,61 @@
+<tower 
+       maxlevel="1" allowmenu="no"
+       unittype="tower"
+       name="landmine"
+       radius="45"
+       allowtargets="earth"
+       damagebysector="yes"
+       sectorangle="360"
+       >
+  
+  <effects>
+    <positive damage="10"/>
+  </effects>
+
+  <machine_unit start_state="sleep">
+    <transitions>
+      <sleep seetarget="death"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="0.5"/>
+    </params>
+  </machine_unit>
+
+  <children>
+    <node type="sprite" name="skin" center="0.5x0.37" animation="
+          RepeatForever
+          [
+            Sequence
+            [
+              Animate[0.6..1.0,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]],
+              DelayTime[2..5]
+            ]
+          ]"/>
+  </children>
+
+  <actions>
+    <action name="animate_nothing" value="Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]]"/>
+    <action name="animate_die" value="Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <runaction action="animate_die" target="skin"/>
+      <areadamage radius="100" asunittype="tower"/>
+    </eventlist>
+
+    <eventlist name="on_stop">
+      <stopallaction target="skin"/>
+      <action action="animate_nothing" target="skin" state="run"/>
+    </eventlist>
+
+  </events>
+
+  <paramcollection>
+    <showmenu>no</showmenu>
+  </paramcollection>
+
+</tower>

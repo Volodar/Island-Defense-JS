@@ -1,0 +1,74 @@
+<tower 
+       maxlevel="1" allowmenu="no"
+       unitlayer="any"
+       unittype="tower"
+       name="bonusitem_dynamit"
+       radius="35"
+       allowtargets="earth,sea"
+       damagebysector="yes"
+       sectorangle="360"
+       >
+  
+  <effects>
+    <positive damage="10000"/>
+  </effects>
+
+  <machine_unit start_state="charging">
+    <transitions>
+      <charging ready="death"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="0.5"/>
+      <state_charging duration="1"/>
+    </params>
+  </machine_unit>
+
+  <children>
+    <node type="sprite" name="skin" center="0.5x0.5" image=""  animation="
+          Sequence
+          [
+            Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],
+            Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]
+          ]
+          "/>
+    <node type="menu" name="menu" pos="0x70" visible="no">
+      <children>
+        <node name="activate" type="menuitem" imageN="images/gamescene/button_dyn.png" callback="push_event:die" opacity="128"/>
+      </children>
+    </node>
+  </children>
+
+  <actions>
+    <action name="animate_nothing" value="RepeatForever[Animate[0.3,[folder:dynamit::,indexes:dynamite_00.png,01:08]]]"/>
+    <action name="animate_die" value="Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <runaction action="animate_die" target="skin"/>
+      <areadamage radius="100" asunittype="tower"/>
+    </eventlist>
+
+    <eventlist name="on_charging">
+      <runaction action="animate_nothing" target="skin"/>
+      <playsound sound="##sound_bonusitem_dinamyte##"/>
+    </eventlist>
+    
+    <eventlist name="onselect">
+      <setproperty property="visible" target="menu" value="yes"/>
+    </eventlist>
+
+    <eventlist name="ondeselect">
+      <setproperty property="visible" target="menu" value="no"/>
+    </eventlist>
+
+  </events>
+
+  <paramcollection>
+    <showmenu>no</showmenu>
+  </paramcollection>
+
+</tower>

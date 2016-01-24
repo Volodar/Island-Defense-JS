@@ -1,0 +1,102 @@
+<node type="scrollmenu">
+  <children_nonscissor>
+    <node type="sprite" name="bg" image="images/gamescene/menutower/menu_upgrade0.png" z="-1"/>
+
+    <node type="sprite" name="desc" pos="125x0" image="images/gamescene/menucreatetower/hint_panel.png" z="-1" center="0x0.5" opacity="0">
+      <children>
+        <node name="name" type="bmlabel" font="fonts/mdefensefont2.fnt" text="Anti-aircraft gun" z="2" pos="123x225"  opacity="0" strech="230x50:min"/>
+        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="Anti-aircraft gun" scale="0.6x0.6" z="2" pos="123x200" center="0.5x1" opacity="0" textwidth="220"/>
+        <node name="dmg" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2"  pos="48x28" center="0x0.5" opacity="0"/>
+        <node name="spd" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="120x28" center="0x0.5" opacity="0"/>
+        <node name="rng" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="192x28" center="0x0.5" opacity="0"/>
+      </children>
+    </node>
+
+  </children_nonscissor>
+ 
+  <items>
+    <node type="menuitem" name="upgrade" pos="0x95" imageN="images/gamescene/menutower/menu_upgrade1.png" visible="yes">
+      <children>
+        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+      </children>
+    </node>
+    
+    <node type="menuitem" name="upgrade_un" pos="0x95" imageN="images/gamescene/menutower/menu_upgrade2.png" visible="no">
+      <children>
+        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+      </children>
+    </node>
+    
+    <node type="menuitem" name="lock" pos="0x95" imageN="images/gamescene/menutower/menu_lock2.png" z="9"/>
+    
+    <node type="menuitem" name="sell" pos="0x-95" imageN="images/gamescene/menutower/menu_sell1.png" visible="yes">
+      <children>
+        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+      </children>
+    </node>
+
+    <node type="menuitem" name="confirm" pos="0x0" imageN="images/gamescene/menutower/menu_ok2.png" z="9"/>
+    <node type="menuitem" name="confirm_un" pos="0x0" imageN="images/gamescene/menutower/menu_ok1.png" z="9"/>
+  </items>
+
+  <actions>
+    <action name="appearance" value="BackOut[ScaleTo[0.3,1,1]]"/>
+    <action name="disappearance" value="BackIn[ScaleTo[0.3,0,0]]"/>
+    <action name="fadeout_half" value="FadeTo[0.3,128]"/>
+    <action name="fadein_half" value="FadeTo[0.3,255]"/>
+    <action name="fadeout" value="FadeOut[0.3]"/>
+    <action name="fadein" value="FadeIn[0.3]"/>
+  </actions>
+
+  <events>
+    <eventlist name="appearance">
+      <setproperty property="opacity" value="0" target="bg"/>
+      <setproperty property="opacity" value="0" target="desc"/>
+      <setproperty property="opacity" value="0" target="desc/name"/>
+      <setproperty property="opacity" value="0" target="desc/dmg"/>
+      <setproperty property="opacity" value="0" target="desc/rng"/>
+      <setproperty property="opacity" value="0" target="desc/spd"/>
+      <setproperty property="opacity" value="0" target="desc/text"/>
+      <setproperty property="scale" value="0" target="upgrade"/>
+      <setproperty property="scale" value="0" target="upgrade_un"/>
+      <setproperty property="scale" value="0" target="sell"/>
+      <setproperty property="scale" value="0" target="lock"/>
+      
+      <setproperty property="opacity" value="255" target="upgrade/normal"/>
+      <setproperty property="opacity" value="255" target="upgrade_un/normal"/>
+      <setproperty property="opacity" value="255" target="sell/normal"/>
+      <setproperty property="opacity" value="255" target="lock/normal"/>
+      <runaction action="appearance" target="upgrade"/>
+      <runaction action="appearance" target="upgrade_un"/>
+      <runaction action="appearance" target="sell"/>
+      <runaction action="appearance" target="lock"/>
+      <runaction action="fadein" target="bg"/>
+      <runaction action="fadein" target="desc"/>
+      <runaction action="fadein" target="desc/name"/>
+      <runaction action="fadein" target="desc/dmg"/>
+      <runaction action="fadein" target="desc/rng"/>
+      <runaction action="fadein" target="desc/spd"/>
+      <runaction action="fadein" target="desc/text"/>
+    </eventlist>
+    <eventlist name="disappearance">
+      <runaction action="disappearance" target="upgrade"/>
+      <runaction action="disappearance" target="upgrade_un"/>
+      <runaction action="disappearance" target="sell"/>
+      <runaction action="disappearance" target="lock"/>
+      <runaction action="fadeout" target="bg"/>
+      <runaction action="fadeout" target="desc"/>
+      <runaction action="fadeout" target="desc/name"/>
+      <runaction action="fadeout" target="desc/dmg"/>
+      <runaction action="fadeout" target="desc/rng"/>
+      <runaction action="fadeout" target="desc/spd"/>
+      <runaction action="fadeout" target="desc/text"/>
+    </eventlist>
+
+    <eventlist name="onclick">
+    </eventlist>
+  </events>
+  
+</node>

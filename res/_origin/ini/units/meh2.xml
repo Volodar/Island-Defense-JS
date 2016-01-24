@@ -1,0 +1,58 @@
+<tower template="ini/units/templates/creepbase.xml"
+	   name="meh2"
+	   velocity="35"
+	   health="200"
+	   radius="150"
+       >
+	  
+  <effects>
+    <positive  damage="1.5" iceResist="7" armor="5" fireResist="8"/>
+  </effects>
+
+  <extraproperties
+	electro_pos="0x15"
+	electro_size="small"
+	electro_scale="1"
+	fire_pos="0x0"
+	fire_scale="1.5"
+  freezing_scale="0.65"
+  freezing_pos="0x-25"
+	/>
+
+  <machine_unit start_state="stop">
+    <params>
+      <state_death duration="0.5"/>
+    </params>
+  </machine_unit>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.25"/>
+    <node name="health_indicator" pos="-18x100" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_left" value="RepeatForever[Animate[0.6,[folder:meh2::,indexes:meh_go2_00.png,01:20]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.6,[folder:meh2::,indexes:meh_go2_00.png,01:20]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.6,[folder:meh2::,indexes:meh_go2_00.png,01:20]]]"/>
+    <action name="animate_die" value="Animate[0.5,[folder:meh2::,indexes:meh_b2_00.png,01:16]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die_finish">
+      <createunit units="meh3" radius="0"/>
+    </eventlist>
+
+    <eventlist name="on_shoot">
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="1x1"/>
+    </eventlist>
+
+  </events>
+
+</tower>

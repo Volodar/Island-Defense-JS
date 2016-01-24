@@ -1,0 +1,108 @@
+<tower 
+       unittype="tower"
+       name="minigun"
+       radius="290"
+       effect_on_shoot="type:bullet"
+       allowtargets="earth,sea"
+       >
+  <effects>
+    <positive damage="12"/>
+  </effects>
+
+  <machine_unit>
+    <transitions>
+      <sleep seetarget="readyfire"/>
+      <readyfire notarget="waittarget"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <waittarget seetarget="readyfire"/>
+      <waittarget relax="waittarget"/>
+
+    </transitions>
+    <params>
+      <state_readyfire charge_volume="5" delay="0.1"/>
+      <state_waittarget duration="3"/>
+      <state_charging duration="1"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="45,135,225,315"/>
+      <thresold value="45"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" image="minigun.5::turret1_5_1stage0001.png" center="0.5x0.4"/>
+  </children>
+
+  <actions>
+    <action name="animate135" value="Animate[0.09,[folder:minigun.5::,frames:turret1_5_1stage0001.png,turret1_5_1stage0002.png,turret1_5_1stage0003.png,turret1_5_1stage0004.png,turret1_5_1stage0001.png]]"/>
+    <action name="animate315" value="Animate[0.09,[folder:minigun.5::,frames:turret1_5_3stage0001.png,turret1_5_3stage0002.png,turret1_5_3stage0003.png,turret1_5_3stage0004.png,turret1_5_3stage0001.png]]"/>
+    <action name="animate45"  value="Animate[0.09,[folder:minigun.5::,frames:turret1_5_2stage0001.png,turret1_5_2stage0002.png,turret1_5_2stage0003.png,turret1_5_2stage0004.png,turret1_5_2stage0001.png]]"/>
+    <action name="animate225" value="Animate[0.09,[folder:minigun.5::,frames:turret1_5_4stage0001.png,turret1_5_4stage0002.png,turret1_5_4stage0003.png,turret1_5_4stage0004.png,turret1_5_4stage0001.png]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_cocking">
+    </eventlist>
+    <eventlist name="on_relaxation">
+    </eventlist>
+
+    <eventlist name="on_shoot_byangle45">
+      <runaction action="animate45" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle135">
+      <runaction action="animate135" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle225">
+      <runaction action="animate225" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle315">
+      <runaction action="animate315" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_shoot0">
+        <playsound sound="##sound_minigun5##"/>
+   </eventlist>
+    <eventlist name="on_shoot1">
+    </eventlist>
+    <eventlist name="on_shoot2">
+    </eventlist>
+
+    <eventlist name="on_charging">
+
+    </eventlist>
+
+    <eventlist name="on_waittarget">
+    </eventlist>
+
+    <eventlist name="on_waittarget_45">
+      <setproperty property="image" value="minigun.5::turret1_5_1stage0001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_135">
+      <setproperty property="image" value="minigun.5::turret1_5_2stage0001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_225">
+      <setproperty property="image" value="minigun.5::turret1_5_3stage0001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_315">
+      <setproperty property="image" value="minigun.5::turret1_5_4stage0001.png" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+    </eventlist>
+
+    <eventlist name="on_rotate90">
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+    </eventlist>
+
+  </events>
+
+</tower>

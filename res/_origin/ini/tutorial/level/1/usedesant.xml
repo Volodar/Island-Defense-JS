@@ -1,0 +1,17 @@
+<tutorial template="ini/tutorial/template_baloon.xml" parent="/gamelayer/interface/menu/desant" pos="35x140" nexttutorial="lvl0_desant_arrow">
+  <children>
+    <node path="body/text" text="#tuturial_usedesant#" pos="50x4"/>
+    <node path="body/bg" pos="50x0"/>
+  </children>
+
+  <actions>
+    <action name="up" value="BackOut[MoveTo[1,75,50]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[1],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <setproperty target="/gamelayer/interface/menu/desant" property="visible" value="yes"/>
+    </eventlist>
+  </events>
+</tutorial>

@@ -1,0 +1,50 @@
+<tower template="ini/units/templates/creepbattle.xml"
+	   name="tank_m"
+	   velocity="30"
+	   health="700"
+	   radius="150"
+     exp="4"
+       >
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x-5"
+    fire_scale="2.5"
+    freezing_scale="0.5"
+    freezing_pos="-5x-20"
+    />
+
+  <effects>
+    <positive  fireResist="10" armor="6" damage="10" iceResist="4"/>
+  </effects>
+
+  <machine_unit start_state="stop">
+    <params>
+      <state_death duration="1.0"/>
+      <state_readyfire charge_volume="99999" delay="0.5"/>
+    </params>
+  </machine_unit>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.45"/>
+    <node name="health_indicator" pos="-18x65" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_left" value="RepeatForever[Animate[0.3,[folder:tank_m::left/,indexes:tank2_m_go_00.png,01:10]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.3,[folder:tank_m::up/,indexes:tank2_m_back_00.png,01:10]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.3,[folder:tank_m::down/,indexes:tank2_m_front_00.png,01:10]]]"/>
+    <action name="animate_fire" value="Animate[0.3,[folder:tank_m::fire/,indexes:tank2_m_fire_00.png,01:10]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+    </eventlist>
+
+    <eventlist name="on_shoot">
+    </eventlist>
+  </events>
+
+</tower>

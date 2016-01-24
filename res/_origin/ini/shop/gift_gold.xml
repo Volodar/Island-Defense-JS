@@ -1,0 +1,11 @@
+<menuitem name="gift_gold" template="ini/shop/item.xml">
+  <children>
+    <node path="menu/buy/normal/cost" visible="no"/>
+    <node path="menu/buy/normal/text" text="#shop_freegold#" pos="108x45" />
+
+    <node name="text" text="##shopitem_caption##" pos="115x395" />
+    <node name="icon_type" pos="120x395" image="images/shop/icon_gold.png"/>
+    <node name="icon" pos="135x240" image="images/shop/icons/gold1.png"/>
+    
+  </children>
+</menuitem>

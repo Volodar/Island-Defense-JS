@@ -1,0 +1,71 @@
+<tower 
+       maxlevel="5" 
+       unittype="tower"
+       name="teslagun"
+       radius="200"
+       effect_on_shoot="type:lighting,offset:2x22"
+       allowtargets="earth"
+       maxtargets="2"
+       >
+  <effects>
+    <positive electroRate="28" electroTime="0.5"/>
+  </effects>
+
+  <machine_unit>
+    <transitions>
+
+      <!--
+      <sleep seetarget="cocking"/>
+      <cocking ready="readyfire"/>
+      <readyfire charge="charging"/>
+      <readyfire notarget="waittarget"/>
+      <charging ready="readyfire"/>
+      <waittarget relax="relaxation"/>
+      <waittarget seetarget="readyfire"/>
+      <relaxation sleep="sleep"/>
+      -->
+      <sleep seetarget="readyfire"/>
+      <readyfire notarget="waittarget"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <waittarget seetarget="readyfire"/>
+
+    </transitions>
+    <params>
+      <state_readyfire charge_volume="5" delay="1"/>
+      <state_waittarget duration="999999"/>
+      <state_charging duration="1"/>
+    </params>
+  </machine_unit>
+
+  <machine_move>
+    <transitions>
+      <move stop="stop"/>
+      <stop move="move"/>
+    </transitions>
+  </machine_move>
+
+  <mover>
+    <params>
+      <allowangles value="0"/>
+      <thresold value="0"/>
+    </params>
+  </mover>
+  
+
+  <children>
+    <node type="sprite" name="skin" image="teslagun.1::turret3_10001.png" center="0.5x0.3"/>
+  </children>
+
+  <actions>
+    <action name="animate" value="Animate[0.5,[folder:teslagun.1::,frames:turret3_10001.png,turret3_10002.png,turret3_10003.png,turret3_10004.png,turret3_10005.png,turret3_10006.png,turret3_10007.png,turret3_10008.png,turret3_10009.png,turret3_10010.png,turret3_10011.png,turret3_10012.png,turret3_10013.png,turret3_10014.png,turret3_10015.png,turret3_10016.png,turret3_10017.png,turret3_10018.png,turret3_10019.png,turret3_10020.png,turret3_10001.png]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_tesla1##"/>
+      <runaction action="animate" target="skin"/>
+    </eventlist>
+  </events>
+
+</tower>

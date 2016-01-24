@@ -1,0 +1,14 @@
+<node name="laboratory">
+  <children_nonscissor>
+    <node name="bg" type="sprite" image="images/laboratory/1136.png" pos="0x-35"/>
+    <node name="caption" type="sprite" image="images/laboratory/window_lab_header.png" pos="0x233"/>
+    <node name="text" type="bmlabel" font="fonts/mdefensefont2.fnt" scale="0.7x0.7" pos="0x240" center="0.5x0.5" text="#main_laboratory_caption#" />
+
+    <node name="menu" type="menu" pos="0x0" z="9">
+      <children>
+        <node type="menuitem" name="close" imageN ="images/laboratory/button_x.png" pos="475x228" sound="##sound_button##"/>
+      </children>
+    </node>
+    
+  </children_nonscissor>
+</node>

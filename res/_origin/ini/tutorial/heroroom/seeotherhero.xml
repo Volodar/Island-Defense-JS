@@ -1,0 +1,44 @@
+<tutorial parent="/selecthero" z="999" pos="frame:0.5x0.5">
+	<children>
+    <node name="body" type="node" pos="0x-50">
+      <children>
+        <node name="bg" type="sprite" image="images/tutorial/tut2.png" />
+      	<node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_seeotherhero#" />
+      </children>
+    </node>
+    <node name="baloon" type="node" cascadeopacity="yes" opacity="0" pos="0x130">
+      <children>
+        <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="0x50" scale="1.5x1.5" center="0.5x0"/>
+      </children>
+    </node>
+    <node name="baloon1" type="node" cascadeopacity="yes" opacity="0" pos="80x130">
+      <children>
+        <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="0x50" scale="1.5x1.5" center="0.5x0"/>
+      </children>
+    </node>
+  </children>
+
+  <actions>
+    <action name="scaling" value="RepeatForever[EaseInOut[Sequence[DelayTime[0.5],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]],3]]"/>
+    <action name="body" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <runaction action="body" target="baloon"/>
+      <runaction action="body" target="baloon1"/>
+      <runaction action="bodyfadein" target="baloon"/>
+      <runaction action="bodyfadein" target="baloon1"/>
+      <action action="scaling" target="/selecthero/content/menu/hero2" state="run"/>
+      <action action="scaling" target="/selecthero/content/menu/hero3" state="run"/>
+    </eventlist>
+    <eventlist name="onexit">
+      <action action="scaling" target="/selecthero/content/menu/hero2" state="stop"/>
+      <action action="scaling" target="/selecthero/content/menu/hero3" state="stop"/>
+      <setproperty target="/selecthero/content/menu/hero2" property="scale" value="1x1"/>
+      <setproperty target="/selecthero/content/menu/hero3" property="scale" value="1x1"/>
+    </eventlist>
+  </events>
+
+</tutorial>

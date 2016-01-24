@@ -1,0 +1,102 @@
+<tower
+  unittype="creep"
+  name="soldier_medic"
+  velocity="50"
+  health="140"
+  radius="150"
+  unitlayer="earth"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+  exp=""
+      >
+  <effects>
+    <positive electroResist="9.5" iceResist="7"/>
+  </effects>
+
+  <skills>
+    <medic radius="300" health="35" frequence="3" duration="0.3" maxtargets="4"
+           units="soldier,soldier2,flamethrower,bigman" 
+           effect_description="type:medic,animation:red" />
+  </skills>
+
+  <extraproperties
+    electro_pos="0x15"
+    electro_size="small"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="1.5"
+    freezing_scale="0.2"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="60"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.25"/>
+    <node name="health_indicator" pos="-18x31" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animateL" value="RepeatForever[Animate[0.6,[folder:medic.left::,indexes:medik_run_00.png,01:20]]]"/>
+    <action name="animateU" value="RepeatForever[Animate[0.6,[folder:medic.up::,indexes:medik_back_00.png,01:20]]]"/>
+    <action name="animateD" value="RepeatForever[Animate[0.6,[folder:medic.down::,indexes:medik_front_00.png,01:20]]]"/>
+    <action name="animate_die" value="Animate[0.6,[folder:medic.die::,indexes:medik_die_00.png,01:20]]"/>
+    <action name="animate_fire" value="Animate[0.6,[folder:medic.fire::,indexes:medik_hill_00.png,01:20]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <playsound sound="##sound_soldier_death1##"/>
+      <stopallaction target="skin"/>
+      <action action="animate_die" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_healing">
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate90">
+      <stopallaction target="skin"/>
+      <action action="animateD" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <stopallaction target="skin"/>
+      <action action="animateU" target="skin" state="run"/>
+    </eventlist>
+
+  </events>
+
+</tower>

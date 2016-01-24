@@ -1,0 +1,24 @@
+<?xml version="1.0"?>
+<map startscore="300" healths="20" star1="7" star2="7" star3="7">
+	<waves defaultdelayonewave="100">
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="1" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="2" defaultname="soldier" />
+	</waves>
+	<routes>
+		<route name="0" type="normal">
+			<main>
+				<point x="100" y="384" />
+				<point x="900" y="384" />
+			</main>
+			<left>
+				<point x="100" y="396" />
+				<point x="900" y="396" />
+			</left>
+			<right>
+				<point x="100" y="371" />
+				<point x="900" y="371" />
+			</right>
+		</route>
+	</routes>
+	<decorations />
+	<towerplaces />
+</map>

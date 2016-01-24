@@ -1,0 +1,33 @@
+<tutorial autopos="/laboratory/minigun" parent="/laboratory" pos="220x-175" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_lab_upgrade#"/>
+    <node path="body/arrow" pos="-94x0" scale="1x1" rotation="90"/>
+  </children>
+
+  <actions>
+    <action name="body" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[0],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+		<eventlist name="onenter">
+      <setproperty target="/laboratory/icegun" property="visible" value="no"/>
+      <setproperty target="/laboratory/laser" property="visible" value="no"/>
+      <setproperty target="/laboratory/roketgun" property="visible" value="no"/>
+      <setproperty target="/laboratory/firegun" property="visible" value="no"/>
+      <setproperty target="/laboratory/teslagun" property="visible" value="no"/>
+      <setproperty target="/laboratory/menu/close" property="visible" value="no"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="no"/>
+    </eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/laboratory/icegun" property="visible" value="yes"/>
+      <setproperty target="/laboratory/laser" property="visible" value="yes"/>
+      <setproperty target="/laboratory/roketgun" property="visible" value="yes"/>
+      <setproperty target="/laboratory/firegun" property="visible" value="yes"/>
+      <setproperty target="/laboratory/teslagun" property="visible" value="yes"/>
+      <setproperty target="/laboratory/menu/close" property="visible" value="yes"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="##PLATFORM_MOBILE##"/>
+    </eventlist>
+	</events>
+	
+</tutorial>

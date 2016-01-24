@@ -1,0 +1,10 @@
+<menuitem name="gear3" template="ini/shop/item.xml">
+  <children>
+    <node path="menu/buy/normal/cost" text="##shopitem_cost##"/>
+    
+    <node name="text" text="##shopitem_caption##" pos="115x401" />
+    <node name="icon_type" pos="110x395" image="images/shop/icon_gear.png"/>
+    <node name="icon" pos="135x240" image="images/shop/icons/gear3.png"/>
+    
+  </children>
+</menuitem>

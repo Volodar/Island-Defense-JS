@@ -1,0 +1,24 @@
+<tutorial template="ini/tutorial/template_window.xml" nexttutorial="map_rungame" closebytap="no" >
+  <children>
+    <node name="body">
+      <children>
+        <node name="bg" image="images/tutorial/tut2.png" />
+        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_is_use#" />
+        <node name="menu" type="menu" pos="0x0">
+          <children>
+            <node name="yes" type="menuitem" imageN ="images/tutorial/yes.png" pos="10x-88" sound="##sound_button##" callback="confirm_tutorial_yes">
+              <children>
+                <node name="yes_text" type="bmlabel" pos="70x40" font="fonts/mdefensefont2.fnt" text="#tutorial_yes#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+              </children>
+            </node>
+            <node name="no"  type="menuitem" imageN ="images/tutorial/no.png"  pos="220x-90" sound="##sound_button##" callback="confirm_tutorial_no">
+              <children>
+                <node name="no_text" type="bmlabel" pos="114x44" font="fonts/mdefensefont2.fnt" text="#tutorial_nothanks#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+              </children>
+            </node>
+          </children>
+        </node>
+      </children>
+    </node>
+  </children>
+</tutorial>

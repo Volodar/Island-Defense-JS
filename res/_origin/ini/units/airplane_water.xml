@@ -1,0 +1,13 @@
+<airplane template="ini/units/airplane.xml"
+      radius="60"
+      allowtargets="sea"
+      >
+  <events>
+    <eventlist name="run">
+      <action action="1_explosion_water" target="1_explosion_water" state="run"/>
+      <action action="2_explosion_water" target="2_explosion_water" state="run"/>
+      <action action="3_explosion_water" target="3_explosion_water" state="run"/>
+    </eventlist>
+  </events>
+  
+</airplane>

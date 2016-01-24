@@ -1,0 +1,5 @@
+<tutorial template="ini/tutorial/template_window.xml" nexttutorial="lab_pressupgrade">
+	<children>
+    <node path="body/bg" image="images/tutorial/tut_upgrade.png"/>
+  </children>
+</tutorial>

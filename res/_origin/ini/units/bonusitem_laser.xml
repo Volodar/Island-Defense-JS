@@ -1,0 +1,60 @@
+<tower 
+       maxlevel="1" allowmenu="no"
+       unitlayer="any"
+       unittype="tower"
+       name="bonusitem_laser"
+       radius="600"
+       allowtargets="any"
+       damagebysector="yes"
+       sectorangle="360"
+       >
+  
+  <effects>
+    <positive damage="50"/>
+  </effects>
+
+  <machine_unit start_state="charging">
+    <transitions>
+      <charging ready="readyfire"/>
+      <readyfire charge="death"/>
+      <stop die="death"/>
+      <death stop="death"/>
+    </transitions>
+    <params>
+      <state_death duration="0.0"/>
+      <state_charging duration="0.2"/>
+      <state_readyfire charge_volume="8" delay="0.1" havetarget="no"/>
+    </params>
+  </machine_unit>
+
+  <children>
+    <node type="sprite" name="skin" center="0.5x0.17" color="FFFFFF" scale="3.5x3.5"/>
+  </children>
+
+  <actions>
+    <action name="animate_nothing" value="Animate[1,[folder:spacestrike::,indexes:spacestrike_00.png,01:20]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_charging">
+      <runaction action="animate_nothing" target="skin"/>
+      <playsound sound="##sound_bonusitem_laser##"/>
+    </eventlist>
+    
+    <eventlist name="onselect">
+    </eventlist>
+
+    <eventlist name="ondeselect">
+    </eventlist>
+
+  </events>
+
+  <paramcollection>
+    <showmenu>no</showmenu>
+  </paramcollection>
+
+</tower>

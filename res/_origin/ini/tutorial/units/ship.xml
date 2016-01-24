@@ -1,0 +1,9 @@
+<tutorial template="ini/tutorial/units/template.xml">
+  <children>
+    <node path="body/bgtype" image="images/tutorial/tut5_aqua.png"/>
+    <node path="body/name" text="#ship_name#"/>
+    <node path="body/caption" text="#ship_caption#"/>
+    <node path="body/description" text="#ship_desc#"/>
+    <node path="body/unit" animation="RepeatForever[Animate[0.3..0.4,[folder:ship.left::,indexes:ship1_00.png,01:10]]]"/>
+  </children>
+</tutorial>

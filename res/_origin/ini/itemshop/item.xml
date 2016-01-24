@@ -1,0 +1,44 @@
+<menuitem type="menuitem" name="unnamed" scale_effect="no" imageN ="images/laboratory/ui_panel1.png" sound="##sound_button##">
+  <children>
+    <node name="conteiner" type="node" pos="140x229">
+      <children>
+        <node name="name" type="bmlabel" font="fonts/whitefont1.fnt" text="Tower name" pos="0x130" color="000000" scale="0.8x0.8"/>
+
+        <node name="menu_info" type="menu" pos="0x0" z="9">
+          <children>
+            <node type="menuitem" name="info" imageN ="images/laboratory/icon_i.png" pos="90x190" sound="##sound_button##"/>
+          </children>
+        </node>
+
+        <node name="main" type="node" pos="0x0">
+          <children>
+            <node name="menu" type="menu" pos="0x0" z="9">
+              <children>
+                <node type="menuitem" name="buy" imageN ="images/laboratory/button_upgrade.png" pos="0x-175" visible="yes" sound="##sound_button##">
+                  <children>
+                    <node name="normal">
+                      <children>
+                        <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#itemshop_buy#" pos="95x46" scale="0.6x0.6"/>
+                        <node name="cost" type="bmlabel" font="fonts/mdefensefont.fnt" text="0" pos="85x18" scale="0.4x0.4" center="0x0.5"/>
+                        <node name="icon" type="sprite" image="images/laboratory/icon_coin.png" pos="70x16"/>
+                      </children>
+                    </node>
+                  </children>
+                </node>
+              </children>
+            </node>
+            <node name="icon" type="sprite" pos="0x-10"/>
+            <!--<node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="999" pos="50x-35" scale="1x1" textwidth="350" center="0.5x1"/>-->
+          </children>
+        </node>
+        
+        <node name="info" type="node" pos="0x0" visible="no" >
+          <children>
+            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x0" color="000000" scale="0.8x0.8" textwidth="350" center="0.5x1" textalign="center"/>
+          </children>
+        </node>
+
+      </children>
+    </node>
+  </children>
+</menuitem>

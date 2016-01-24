@@ -1,0 +1,12 @@
+<tutorial template="ini/tutorial/level/1/runwave.xml">
+
+  <actions>
+  </actions>
+
+  <events>
+    <eventlist name="onexit">
+      <setproperty target="/gamelayer/interface/menu/pause" property="visible" value="yes"/>
+      <setproperty target="/gamelayer/interface/menu/shop" property="visible" value="##PLATFORM_MOBILE##"/>
+    </eventlist>
+  </events>
+</tutorial>

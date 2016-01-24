@@ -1,0 +1,306 @@
+<plist version="1.0">
+	<dict>
+    <key>languageid</key>   <string>en</string>
+	
+	<key>window_title</key>   <string>Island Defense</string>
+    <key>main_title1</key>   <string>Island</string>
+    <key>main_title2</key>   <string>Defense</string>
+
+    <key>pause</key>   <string>Pause</string>
+    <key>quit</key>   <string>Quit</string>
+    <key>restart</key>   <string>Restart</string>
+    <key>continue</key>   <string>Continue</string>
+    <key>play</key>   <string>Play</string>
+    <key>more</key>   <string>More</string>
+    <key>rateme</key>   <string>Rate us!</string>
+    <key>rateme_text</key>   <string>Rate now</string>
+    <key>gift_congratulations</key>   <string>Congratulations!</string>
+    <key>gift_text</key>   <string>You have received a gift.</string>
+    
+    <key>victory</key>   <string>Victory</string>
+    <key>defeat</key>   <string>Defeat</string>
+    
+
+    <key>main_shop_caption</key>   <string>Shop</string>
+    <key>shop_buy</key>   <string>Buy</string>
+    <key>shop_getfree</key>   <string>
+Watch ads
+to refill.
+    </string>
+    <key>shop_offerwall</key>   <string>
+Watch ads
+to get.
+    </string>
+    <key>shop_refuel</key>   <string>Refuel</string>
+    <key>shop_freegold</key>   <string>Free</string>
+    <key>shop_freegear</key>   <string>Free</string>
+    
+    <key>main_itemshop_caption</key>   <string>Shop</string>
+    <key>itemshop_buy</key>   <string>Buy</string>
+    
+    <key>main_laboratory_caption</key>   <string>Laboratory</string>
+    <key>laboratory_tower_attack</key>   <string>ATK:</string>
+    <key>laboratory_tower_range</key>   <string>RNG:</string>
+    <key>laboratory_tower_speed</key>   <string>RATE:</string>
+    <key>laboratory_tower_level</key>   <string>Level </string>
+    <key>laboratory_tower_upgrade</key>   <string>Upgrade</string>
+    
+    <key>gamechoose_level</key>   <string>Level </string>
+    <key>gamechoose_normal</key>   <string>Normal</string>
+    <key>gamechoose_hard</key>   <string>Hard</string>
+    <key>gamechoose_reward</key>   <string>Reward:</string>
+    <key>gamechoose_waves</key>   <string>Waves:</string>
+    <key>gamechoose_lives</key>   <string>Lives:</string>
+    <key>gamechoose_start</key>   <string>To Battle</string>
+    <key>gamechoose_hardmode_locked</key>   <string>Complete normal to unlock.</string>
+
+
+    <key>minigun_name</key>   <string>Machine gun</string>
+    <key>icegun_name</key>   <string>Ice bunker</string>
+    <key>firegun_name</key>   <string>Flame squad</string>
+    <key>roketgun_name</key>   <string>Rocket launcher</string>
+    <key>teslagun_name</key>   <string>Tesla mech</string>
+    <key>laser_name</key>   <string>Sniper</string>
+    
+    <key>minigun_desc</key>   <string>Attacks ground units</string>
+    <key>icegun_desc</key>   <string>Slows down enemies</string>
+    <key>firegun_desc</key>   <string>Attacks several enemies at once. Effective against infantry.</string>
+    <key>roketgun_desc</key>   <string>Attacks flying and sea objects</string>
+    <key>teslagun_desc</key>   <string>Attacks several units at once Effective against vehicles.</string>
+    <key>laser_desc</key>   <string>Attacks one unit</string>
+
+    <key>desant_name</key>   <string>Commando</string>
+    <key>desant_caption</key>   <string>His name is Chuck. He can beat a whole squad.</string>
+    <key>desant_desc</key>   <string>
+* Effective against humans
+* Fast charging
+    </string>
+    
+    <key>airbomb_name</key>   <string>Air bomb</string>
+    <key>airbomb_caption</key>   <string>Iron birds have a present for the dictator.</string>
+    <key>airbomb_desc</key>   <string>
+* Effective against multiple units
+* Slow charging
+    </string>
+    
+    <key>soldier_name</key>   <string>Soldier</string>
+    <key>soldier_caption</key>   <string>He will not do harm.</string>
+    <key>soldier_desc</key>   <string>
+* Fast speed
+* Low Health
+    </string>
+    <key>soldier2_name</key>   <string>Heavy soldier</string>
+    <key>soldier2_caption</key>   <string>Strong but afraid of fire</string>
+    <key>soldier2_desc</key>   <string>
+* Great health
+* Slow speed
+    </string>
+    <key>jeep_name</key>   <string>Jeep</string>
+    <key>jeep_caption</key>   <string>Give attention to this unit and be fast.</string>
+    <key>jeep_desc</key>   <string>
+* Immune to flame squad
+* Fast speed
+* Low health
+    </string>
+    <key>tank_name</key>   <string>Tank</string>
+    <key>tank_caption</key>   <string>The dictator thinks we don't have an answer. But we do.</string>
+    <key>tank_desc</key>   <string>
+* Immune to flame squad
+* Low speed
+* Great health
+    </string>
+    <key>helicopter_name</key>   <string>Helicopter</string>
+    <key>helicopter_caption</key>   <string>Tricky to attack, but we have a solution.</string>
+    <key>helicopter_desc</key>   <string>
+* The rocket launcher can destroy it.
+* Medium health
+* Medium speed
+    </string>
+    
+    <key>ship_name</key>   <string>Ship</string>
+    <key>ship_caption</key>   <string>Wow! The dictator has ships!</string>
+    <key>ship_desc</key>   <string>
+* Medium health
+* Medium speed
+* The rocket launcher can beat it.
+    </string>
+    
+    <key>tank_m_name</key>   <string>Tank mastodon</string>
+    <key>tank_m_caption</key>   <string>Big guys - big problems.</string>
+    <key>tank_m_desc</key>   <string>
+* Slow
+* Great Health
+    </string>
+    
+    <key>helocopter_medic_name</key>   <string>Medical helicopter</string>
+    <key>helocopter_medic_caption</key>   <string>The dictator likes the smell of napalm during breakfast.</string>
+    <key>helocopter_medic_desc</key>   <string>
+* Heals infantry
+    </string>
+    
+    <key>flamethrower_name</key>   <string>Flamethrower</string>
+    <key>flamethrower_caption</key>   <string>Graduated from a school of pyromaniacs with honors.</string>
+    <key>flamethrower_desc</key>   <string>
+* Immune to fire
+    </string>
+
+    <key>bigman_name</key>   <string>Big man</string>
+    <key>bigman_caption</key>   <string>Huge flamethrower</string>
+    <key>bigman_desc</key>   <string>
+* Great health
+* Huge damage
+    </string>
+
+    <key>dron_name</key>   <string>Drone</string>
+    <key>dron_caption</key>   <string>Little deadly toy</string>
+    <key>dron_desc</key>   <string>
+* Low health
+* Fast
+    </string>
+
+    <key>flyingfortress_name</key>   <string>Flying fortress</string>
+    <key>flyingfortress_caption</key>   <string>Angry and arrogant, it is a force to be reckoned with.</string>
+    <key>flyingfortress_desc</key>   <string>
+* High health
+* Drops infantry
+    </string>
+
+    <key>cyberman1_name</key>   <string>Cyborg</string>
+    <key>cyberman1_caption</key>   <string>Real cyborg, like in the movies</string>
+    <key>cyberman1_desc</key>   <string>
+* Two health
+* Immune to ice
+    </string>
+
+    <key>moto_name</key>   <string>Tricycle</string>
+    <key>moto_caption</key>   <string>Wind in your face</string>
+    <key>moto_desc</key>   <string>
+* Very fast
+* Low health
+    </string>
+
+    <key>medic_name</key>   <string>Soldier medic</string>
+    <key>medic_caption</key>   <string>Fixes other problem</string>
+    <key>medic_desc</key>   <string>
+* Treats infantry
+    </string>
+
+    <key>rembot_name</key>   <string>Repairs exoskeleton</string>
+    <key>rembot_caption</key>   <string>He was a loader in the past.</string>
+    <key>rembot_desc</key>   <string>
+* Fixes vehicles
+    </string>
+    
+    <key>meh1_name</key>   <string>Combat exoskeleton</string>
+    <key>meh1_caption</key>   <string>Wow! Giant robot!</string>
+    <key>meh1_desc</key>   <string>
+* Multiple lives
+    </string>
+    
+    <key>bmp_name</key>   <string>Infantry fighting vehicle</string>
+    <key>bmp_caption</key>   <string>There is always a good company inside.</string>
+    <key>bmp_desc</key>   <string>
+* Drops soldiers after death
+    </string>
+
+    <key>map_unlock1</key>   <string>
+Sir! Collect stars to fix the ship and proceed with adventure!
+    </string>
+    <key>map_unlock3</key>   <string>
+The dictator blew up a bridge! Collect stars to get to the other side!
+    </string>
+    <key>map_unlock2</key>   <string>
+Ready to see a beautiful island!
+Collect stars and a helicopter will take you there!
+    </string>
+    
+    <key>bonusitem_dynamit_name</key> <string>Dynamite</string>
+    <key>bonusitem_dynamit_desc</key> <string>Deals great damage to enemies</string>
+    <key>bonusitem_ice_name</key> <string>Ice bomb</string>
+    <key>bonusitem_ice_desc</key> <string>Freezes all enemies</string>
+    <key>bonusitem_laser_name</key> <string>Laser</string>
+    <key>bonusitem_laser_desc</key> <string>Destroys all enemies</string>
+
+
+
+    <key>tutorial_yes</key>   <string>OK</string>
+    <key>tutorial_nothanks</key>   <string>No, thanks.</string>
+    <key>tutorial_newenemy</key>   <string>New enemy!</string>
+    <key>tuturial_map_tap_here</key> <string>Click here</string>
+    <key>tuturial_is_use</key> <string>Sir! Your goal is to defend our islands from the dictator's forces. Do you need some help?</string>
+    <key>tuturial_useairbomb</key> <string>New ability</string>
+    <key>tuturial_usedesant</key> <string>New ability</string>
+    <key>tuturial_buildtower</key> <string>Build here.</string>
+    <key>tuturial_rules_destroyenemy</key> <string>Destroy!</string>
+    <key>tuturial_rules_buildtower</key> <string>Build</string>
+    <key>tuturial_rules_protectbase</key> <string>Protect!</string>
+    <key>tuturial_building_tapflag</key> <string>Click flag</string>
+    <key>tuturial_building_choosetower</key> <string>Choose</string>
+    <key>tuturial_building_towerready</key> <string>Ready!</string>
+    <key>tuturial_dig</key> <string>Dig here.</string>
+    <key>tuturial_startwave</key> <string>Start</string>
+    <key>tuturial_lab_open</key> <string>Upgrade towers in the laboratory!</string>
+    <key>tuturial_lab_open_onlose</key> <string>I cannot believe it! Go to the laboratory and upgrade turrets.</string>
+    <key>tuturial_lab_upgrade</key> <string>Upgrade</string>
+    <key>tuturial_lab_confirm</key> <string>Confirm</string>
+    <key>tuturial_open_shop_from_game</key> <string>Your resources are almost exhausted. No problem! Visit our shop.</string>
+    <key>tuturial_openshop</key> <string>Open shop.</string>
+    <key>tuturial_openlab</key> <string>Open lab.</string>
+    <key>tuturial_shop_getgift</key> <string>Get gift.</string>
+    <key>tuturial_open_shop_haventgold</key> <string>Your resources are almost exhausted. No problem! Visit our shop. </string>
+    <key>tuturial_open_shop_haventfuel</key> <string>Your fuel is almost exhausted. No problem! Visit our shop.</string>
+    <key>tuturial_open_shop_haventgear_build</key> <string>Your resources are almost exhausted. No problem! Visit our shop.</string>
+    <key>tuturial_open_shop_haventgear_upgrade</key> <string>Your resources are almost exhausted. No problem! Visit our shop. </string>
+    <key>tuturial_open_shop_haventgear_dig</key> <string>Your resources are almost exhausted. No problem! Visit our shop. </string>
+    
+    <key>tuturial_shop_open_gift</key> <string> You need help to defeat the dictator. I have a small gift for you. </string>
+    
+    <key>tuturial_hero1</key> <string>A powerful hero joins your army!</string>
+    <key>tuturial_hero1_icon</key> <string>Hero</string>
+    <key>tuturial_hero1_skill</key> <string>New power</string>
+   
+   <key>tuturial_bonus_desc1</key> <string>You have a little present. Check it out!</string>
+    <key>tuturial_bonus_desc2</key> <string>Select the dynamite.</string>
+    <key>tuturial_bonus_ballon1</key> <string>Open box.</string>
+    <key>tuturial_bonus_ballon2</key> <string>Select</string>
+    <key>tuturial_bonus_ballon3</key> <string>Throw</string>
+   
+    <key>tap_to_close</key> <string>Click to continue.</string>
+    
+    <key>heroskill_hero1_skill1_name</key> <string>More health</string>
+    <key>heroskill_hero1_skill2_name</key> <string>More armor </string>
+    <key>heroskill_hero1_skill3_name</key> <string>Walking bomb </string>
+    <key>heroskill_hero1_skill4_name</key> <string>More damage </string>
+    <key>heroskill_hero1_skill5_name</key> <string>Landmine (GUI skill) </string>
+                                                    
+    <key>heroskill_hero2_skill1_name</key> <string>Sniper shoot </string>
+    <key>heroskill_hero2_skill2_name</key> <string>More health </string>
+    <key>heroskill_hero2_skill3_name</key> <string>More armor </string>
+    <key>heroskill_hero2_skill4_name</key> <string>More damage </string>
+    <key>heroskill_hero2_skill5_name</key> <string>SWAT (GUI skill) </string>
+                                                    
+    <key>heroskill_hero3_skill1_name</key> <string>Desant </string>
+    <key>heroskill_hero3_skill2_name</key> <string>Shield </string>
+    <key>heroskill_hero3_skill3_name</key> <string>Rage </string>
+    <key>heroskill_hero3_skill4_name</key> <string>More health </string>
+    <key>heroskill_hero3_skill5_name</key> <string>Robot (GUI skill) </string>
+    
+    <key>heroskill_hero1_skill1_desc</key> <string>More health description</string>
+    <key>heroskill_hero1_skill2_desc</key> <string>More armor description </string>
+    <key>heroskill_hero1_skill3_desc</key> <string>Walking bomb description</string>
+    <key>heroskill_hero1_skill4_desc</key> <string>More damage description</string>
+    <key>heroskill_hero1_skill5_desc</key> <string>Landmine (GUI skill) description</string>
+                                                    
+    <key>heroskill_hero2_skill1_desc</key> <string>Sniper shoot description</string>
+    <key>heroskill_hero2_skill2_desc</key> <string>More health description</string>
+    <key>heroskill_hero2_skill3_desc</key> <string>More armor description</string>
+    <key>heroskill_hero2_skill4_desc</key> <string>More damage description </string>
+    <key>heroskill_hero2_skill5_desc</key> <string>SWAT (GUI skill) description</string>
+                                                    
+    <key>heroskill_hero3_skill1_desc</key> <string>Desant description</string>
+    <key>heroskill_hero3_skill2_desc</key> <string>Shield description</string>
+    <key>heroskill_hero3_skill3_desc</key> <string>Rage description </string>
+    <key>heroskill_hero3_skill4_desc</key> <string>More health description</string>
+    <key>heroskill_hero3_skill5_desc</key> <string>Robot (GUI skill) description</string>
+  </dict>
+</plist>

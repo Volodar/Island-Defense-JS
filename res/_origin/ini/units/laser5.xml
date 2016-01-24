@@ -1,0 +1,85 @@
+<tower 
+       maxlevel="5" 
+       unittype="tower"
+       name="laser"
+       radius="280"
+       effect_on_shoot="type:laser,position0:27x30,position1:-27x30,position2:-21x55,position3:21x55"
+       allowtargets="earth,sea"
+       >
+  <effects>
+    <positive damage="550"/>
+  </effects>
+
+  <machine_unit>
+    <transitions>
+      <sleep seetarget="readyfire"/>
+      <readyfire notarget="waittarget"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <waittarget seetarget="readyfire"/>
+      <waittarget relax="waittarget"/>
+    </transitions>
+    <params>
+      <state_readyfire charge_volume="1" delay="8"/>
+      <state_waittarget duration="3.5"/>
+      <state_charging duration="4"/>
+    </params>
+  </machine_unit>
+
+  <machine_move>
+    <transitions>
+      <move stop="stop"/>
+      <stop move="move"/>
+    </transitions>
+  </machine_move>
+
+  <mover>
+    <params>
+      <allowangles value="45,135,225,315"/>
+      <thresold value="45"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" image="laser.5::turret5_5_10001.png" center="0.5x0.34"/>
+  </children>
+
+  <actions>
+    <action name="animate135" value="Animate[0.3,[folder:laser.5::,frames:turret5_5_10001.png,turret5_5_10002.png,turret5_5_10003.png,turret5_5_10004.png,turret5_5_10005.png,turret5_5_10006.png,turret5_5_10007.png,turret5_5_10008.png,turret5_5_10001.png]]"/>
+    <action name="animate315" value="Animate[0.3,[folder:laser.5::,frames:turret5_5_30001.png,turret5_5_30002.png,turret5_5_30003.png,turret5_5_30004.png,turret5_5_30005.png,turret5_5_30006.png,turret5_5_30007.png,turret5_5_30008.png,turret5_5_30001.png]]"/>
+    <action name="animate45"  value="Animate[0.3,[folder:laser.5::,frames:turret5_5_20001.png,turret5_5_20002.png,turret5_5_20003.png,turret5_5_20004.png,turret5_5_20005.png,turret5_5_20006.png,turret5_5_20007.png,turret5_5_20008.png,turret5_5_20001.png]]"/>
+    <action name="animate225" value="Animate[0.3,[folder:laser.5::,frames:turret5_5_40001.png,turret5_5_40002.png,turret5_5_40003.png,turret5_5_40004.png,turret5_5_40005.png,turret5_5_40006.png,turret5_5_40007.png,turret5_5_40008.png,turret5_5_40001.png]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_sniper##"/>
+    </eventlist>
+
+    <eventlist name="on_waittarget_45">
+      <setproperty property="image" value="laser.5::turret5_5_10001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_135">
+      <setproperty property="image" value="laser.5::turret5_5_20001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_225">
+      <setproperty property="image" value="laser.5::turret5_5_30001.png" target="skin"/>
+    </eventlist>
+    <eventlist name="on_waittarget_315">
+      <setproperty property="image" value="laser.5::turret5_5_40001.png" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_shoot_byangle45">
+      <runaction action="animate45" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle135">
+      <runaction action="animate135" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle225">
+      <runaction action="animate225" target="skin"/>
+    </eventlist>
+    <eventlist name="on_shoot_byangle315">
+      <runaction action="animate315" target="skin"/>
+    </eventlist>
+  </events>
+</tower>

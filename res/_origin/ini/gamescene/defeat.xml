@@ -1,0 +1,64 @@
+<node name="win" scale="1x1" pos="frame:0.5x0.7" size="320x640">
+  <children>
+    <node name="shadow" type="sprite" pos="frame:0.0x-0.2" image="images/square.png" strech="frame:3x3:xy" opacity="0" color="000000" z="-99"/>
+    <node name="top" type="sprite" image="images/gamescene/defeat/defeat2.png" z="-1" pos="0x500"/>
+    <node name="defeat" type="sprite" image="images/gamescene/defeat/defeat1.png" z="1" pos="0x1000" scale="0x0" opacity="192">
+      <children>
+        <node name="defeat_text" type="bmlabel" pos="180x70" font="fonts/mdefensefont2.fnt" text="#defeat#" scale="0.9x0.9" z="2" center="0.5x0.5" visible="yes"/>
+      </children>
+    </node>
+    
+    
+    <node name="menu" type="menu" pos="0x0">
+      <children>
+        <node name="close" type="menuitem" imageN="images/gamescene/defeat/defeat_quit.png" pos="0x-190" opacity="0" sound="##sound_button##">
+          <children>
+            <node name="normal">
+              <children>
+                <node name="quit_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#quit#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+              </children>
+            </node>
+          </children>
+        </node>
+        
+        <node name="restart" type="menuitem" imageN="images/gamescene/defeat/defeat_quit.png" pos="0x-290" opacity="0" sound="##sound_button##">
+          <children>
+            <node name="normal">
+              <children>
+                <node name="restart_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="icon" type="sprite" pos="64x26" image="choose::button_fuel.png" scale="0.6x0.6" center="0x0.5"  visible="no"/>
+                
+                <node name="cost" type="bmlabel" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
+              </children>
+            </node>
+          </children>
+        </node>
+      </children>
+    </node>
+  </children>
+  
+  <actions>
+    <action name="shadow" value="FadeTo[0.2,204]]"/>
+    <action name="top" value="BackOut[MoveTo[0.4,0,0]]"/>
+    
+    <action name="defeat1" value="Sequence[DelayTime[0.3],ScaleTo[0.01,20,20],ScaleTo[0.2,1,1]]"/>
+    <action name="defeat2" value="Sequence[DelayTime[0.3],MoveTo[0.2,0,-41],FadeTo[0.1,255]]"/>
+    
+    
+    <action name="menuitem1" value="Sequence[DelayTime[0.4],FadeTo[0.4,255]]"/>
+    <action name="menuitem2" value="Sequence[DelayTime[0.6],FadeTo[0.4,255]]"/>
+  </actions>
+  
+  <events>
+    <eventlist name="run">
+      <runaction action="shadow" target="shadow"/>
+      <runaction action="top" target="top"/>
+      
+      <runaction action="defeat1" target="defeat"/>
+      <runaction action="defeat2" target="defeat"/>
+      
+      <runaction action="menuitem1" target="menu/close"/>
+      <runaction action="menuitem2" target="menu/restart"/>
+    </eventlist>
+  </events>
+</node>

@@ -1,0 +1,11 @@
+<node name="base_point" type="sprite" image="maps.animations::base_icon.png" z="-99999"
+      animation="
+      RepeatForever
+      [
+        Sequence
+        [
+          DelayTime[1..2],
+          Sequence[ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]]
+        ]        
+      ]"
+      />

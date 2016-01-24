@@ -1,0 +1,487 @@
+<?xml version="1.0"?>
+<map startscore="750" healths="20" star1="1" star2="10" star3="15" wave_cooldown="10">
+	<hard startscore="400" healths="2" star1="1" star2="1" star3="1" wave_cooldown="5" />
+	<waves defaultdelayonewave="30">
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="1" defaultname="jeep" />
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="20" defaultroutesubtype="main" defaultrouteindex="1" count="1" defaultname="tank" />
+		<wave routetype="sky" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="main" defaultrouteindex="5" count="2" defaultname="dron" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="2" defaultname="jeep" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="20" defaultroutesubtype="main" defaultrouteindex="1" count="2" defaultname="tank" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="8" defaultroutesubtype="main" defaultrouteindex="1" count="7" defaultname="moto" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="4" defaultname="jeep" />
+		<wave routetype="sky" defaultdelay="2" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="main" defaultrouteindex="5" count="4" defaultname="dron" />
+		<wave>
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="moto" delay="0.5" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="flamethrower" delay="0.5" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="0.5" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+		</wave>
+		<wave>
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="flamethrower" delay="0.5" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="flamethrower" delay="2" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="0.5" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="1" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="helocopter_medic" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="ship" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="ship" delay="6" healthrate="0.75" score="10" routesubtype="main" routeindex="4" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helocopter_medic" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helocopter_medic" delay="8" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helicopter" delay="9" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="2" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="bigman" delay="2" healthrate="0.75" score="20" routesubtype="main" routeindex="0" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="bigman" delay="2" healthrate="0.75" score="20" routesubtype="main" routeindex="0" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="tank_m" delay="2" healthrate="0.75" score="25" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="tank_m" delay="3" healthrate="0.75" score="25" routesubtype="main" routeindex="1" />
+		</wave>
+	</waves>
+	<waves_hard defaultdelayonewave="10">
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="1" defaultname="jeep" />
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="20" defaultroutesubtype="main" defaultrouteindex="1" count="1" defaultname="tank" />
+		<wave routetype="sky" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="main" defaultrouteindex="5" count="2" defaultname="dron" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="2" defaultname="jeep" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="20" defaultroutesubtype="main" defaultrouteindex="1" count="2" defaultname="tank" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="8" defaultroutesubtype="main" defaultrouteindex="1" count="7" defaultname="moto" />
+		<wave routetype="earth" defaultdelay="2" defaulthealthrate="0.75" defaultscore="10" defaultroutesubtype="main" defaultrouteindex="1" count="4" defaultname="jeep" />
+		<wave routetype="sky" defaultdelay="2" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="main" defaultrouteindex="5" count="4" defaultname="dron" />
+		<wave>
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="moto" delay="0.5" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="moto" delay="1" healthrate="0.75" score="8" routesubtype="main" routeindex="1" />
+			<creep name="flamethrower" delay="0.5" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="0.5" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+		</wave>
+		<wave>
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="1" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="dron" delay="2" healthrate="0.75" score="5" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="main" routeindex="0" />
+			<creep name="flamethrower" delay="0.5" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="flamethrower" delay="2" healthrate="0.75" score="15" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="0.5" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="jeep" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="jeep" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="1" />
+			<creep name="tank" delay="1" healthrate="0.75" score="20" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="helocopter_medic" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="ship" delay="2" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="ship" delay="6" healthrate="0.75" score="10" routesubtype="main" routeindex="4" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helocopter_medic" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="ship" delay="1" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helocopter_medic" delay="8" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="helicopter" delay="9" healthrate="0.75" score="10" routesubtype="main" routeindex="5" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="2" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="1" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="bigman" delay="2" healthrate="0.75" score="20" routesubtype="main" routeindex="0" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="bigman" delay="2" healthrate="0.75" score="20" routesubtype="main" routeindex="0" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="tank_m" delay="2" healthrate="0.75" score="25" routesubtype="main" routeindex="1" />
+			<creep name="ship" delay="3" healthrate="0.75" score="10" routesubtype="main" routeindex="3" />
+			<creep name="tank_m" delay="3" healthrate="0.75" score="25" routesubtype="main" routeindex="1" />
+		</wave>
+	</waves_hard>
+	<routes>
+		<route name="0" type="earth">
+			<main>
+				<point x="0" y="422" />
+				<point x="1024" y="422" />
+			</main>
+			<left>
+				<point x="0" y="435" />
+				<point x="1024" y="435" />
+			</left>
+			<right>
+				<point x="0" y="410" />
+				<point x="1024" y="410" />
+			</right>
+		</route>
+		<route name="1" type="earth">
+			<main>
+				<point x="8" y="343" />
+				<point x="1015" y="344" />
+			</main>
+			<left>
+				<point x="7" y="355" />
+				<point x="1014" y="356" />
+			</left>
+			<right>
+				<point x="8" y="330" />
+				<point x="1015" y="331" />
+			</right>
+		</route>
+		<route name="2" type="sea">
+			<main>
+				<point x="5" y="599" />
+				<point x="130" y="591" />
+				<point x="526" y="587" />
+				<point x="656" y="591" />
+				<point x="861" y="580" />
+				<point x="1021" y="578" />
+			</main>
+			<left>
+				<point x="6" y="612" />
+				<point x="131" y="604" />
+				<point x="526" y="600" />
+				<point x="656" y="604" />
+				<point x="862" y="593" />
+				<point x="1022" y="591" />
+			</left>
+			<right>
+				<point x="3" y="587" />
+				<point x="129" y="579" />
+				<point x="526" y="575" />
+				<point x="655" y="579" />
+				<point x="860" y="568" />
+				<point x="1021" y="566" />
+			</right>
+		</route>
+		<route name="3" type="sea">
+			<main>
+				<point x="7" y="165" />
+				<point x="102" y="167" />
+				<point x="169" y="163" />
+				<point x="216" y="167" />
+				<point x="271" y="169" />
+				<point x="343" y="169" />
+				<point x="423" y="160" />
+				<point x="483" y="166" />
+				<point x="551" y="160" />
+				<point x="637" y="147" />
+				<point x="721" y="156" />
+				<point x="777" y="170" />
+				<point x="839" y="169" />
+				<point x="890" y="164" />
+				<point x="926" y="144" />
+				<point x="971" y="134" />
+				<point x="1023" y="135" />
+			</main>
+			<left>
+				<point x="7" y="178" />
+				<point x="103" y="180" />
+				<point x="168" y="176" />
+				<point x="215" y="180" />
+				<point x="271" y="182" />
+				<point x="345" y="182" />
+				<point x="423" y="172" />
+				<point x="482" y="178" />
+				<point x="553" y="172" />
+				<point x="637" y="159" />
+				<point x="716" y="168" />
+				<point x="774" y="182" />
+				<point x="840" y="181" />
+				<point x="897" y="175" />
+				<point x="934" y="155" />
+				<point x="973" y="146" />
+				<point x="1022" y="147" />
+			</left>
+			<right>
+				<point x="8" y="153" />
+				<point x="102" y="155" />
+				<point x="169" y="151" />
+				<point x="218" y="155" />
+				<point x="272" y="157" />
+				<point x="342" y="157" />
+				<point x="422" y="147" />
+				<point x="483" y="153" />
+				<point x="548" y="147" />
+				<point x="636" y="134" />
+				<point x="725" y="143" />
+				<point x="779" y="157" />
+				<point x="837" y="156" />
+				<point x="882" y="152" />
+				<point x="917" y="132" />
+				<point x="968" y="121" />
+				<point x="1023" y="122" />
+			</right>
+		</route>
+		<route name="4" type="sky">
+			<main>
+				<point x="2" y="347" />
+				<point x="90" y="356" />
+				<point x="205" y="356" />
+				<point x="314" y="374" />
+				<point x="455" y="367" />
+				<point x="611" y="371" />
+				<point x="695" y="371" />
+				<point x="780" y="371" />
+				<point x="810" y="367" />
+				<point x="847" y="373" />
+				<point x="879" y="366" />
+				<point x="910" y="371" />
+				<point x="949" y="366" />
+				<point x="1015" y="370" />
+			</main>
+			<left>
+				<point x="0" y="360" />
+				<point x="89" y="368" />
+				<point x="202" y="368" />
+				<point x="313" y="387" />
+				<point x="455" y="379" />
+				<point x="610" y="384" />
+				<point x="695" y="384" />
+				<point x="782" y="384" />
+				<point x="810" y="380" />
+				<point x="848" y="385" />
+				<point x="879" y="379" />
+				<point x="909" y="384" />
+				<point x="950" y="379" />
+				<point x="1013" y="382" />
+			</left>
+			<right>
+				<point x="4" y="335" />
+				<point x="92" y="343" />
+				<point x="207" y="343" />
+				<point x="316" y="362" />
+				<point x="454" y="354" />
+				<point x="611" y="359" />
+				<point x="695" y="359" />
+				<point x="779" y="359" />
+				<point x="811" y="355" />
+				<point x="847" y="360" />
+				<point x="878" y="354" />
+				<point x="910" y="359" />
+				<point x="949" y="354" />
+				<point x="1016" y="357" />
+			</right>
+		</route>
+		<route name="5" type="sky">
+			<main>
+				<point x="-9" y="423" />
+				<point x="99" y="414" />
+				<point x="214" y="408" />
+				<point x="374" y="411" />
+				<point x="485" y="401" />
+				<point x="691" y="413" />
+				<point x="848" y="416" />
+				<point x="1017" y="413" />
+			</main>
+			<left>
+				<point x="-6" y="435" />
+				<point x="100" y="426" />
+				<point x="214" y="420" />
+				<point x="375" y="423" />
+				<point x="485" y="413" />
+				<point x="690" y="426" />
+				<point x="848" y="429" />
+				<point x="1017" y="426" />
+			</left>
+			<right>
+				<point x="-11" y="410" />
+				<point x="97" y="401" />
+				<point x="213" y="395" />
+				<point x="373" y="398" />
+				<point x="484" y="388" />
+				<point x="693" y="401" />
+				<point x="849" y="404" />
+				<point x="1016" y="401" />
+			</right>
+		</route>
+	</routes>
+	<decorations>
+		<base_point x="994" y="386" z="-99999" action="" />
+		<water.1.2 x="130" y="590" z="1" action="" />
+		<water.1.2 x="117" y="132" z="1" action="" />
+		<water.1.2 x="724" y="604" z="1" action="" />
+		<water.1.2 x="442" y="136" z="1" action="" />
+		<water.1.2 x="869" y="113" z="1" action="" />
+		<water.1.3 x="24" y="133" z="1" action="" />
+		<water.1.4 x="33" y="600" z="1" action="" />
+		<water.1.4 x="72" y="624" z="1" action="" />
+		<water.1.4 x="66" y="120" z="1" action="" />
+		<water.1.4 x="60" y="158" z="1" action="" />
+		<water.1.5 x="980" y="128" z="1" action="" />
+		<water.1.5 x="982" y="156" z="1" action="" />
+		<water.1.5 x="985" y="617" z="1" action="" />
+		<water.1.5 x="975" y="590" z="1" action="" />
+		<aligator.1 x="416" y="692" z="1" action="" />
+		<native.3 x="326" y="49" z="1" action="" />
+		<native.2 x="940" y="688" z="1" action="" />
+		<native.1 x="48" y="697" z="1" action="" />
+		<lizard.2 x="621" y="497" z="1" action="" />
+	</decorations>
+	<towerplaces>
+		<place x="142.00" y="295.00" active="yes" />
+		<place x="509.00" y="296.00" active="yes" />
+		<place x="879.00" y="302.00" active="yes" />
+		<place x="148.00" y="485.00" active="yes" />
+		<place x="512.00" y="489.00" active="yes" />
+		<place x="878.00" y="483.00" active="yes" />
+		<place x="334.00" y="485.00" active="yes" />
+		<place x="326.00" y="294.00" active="yes" />
+		<place x="744.00" y="301.00" active="yes" />
+		<place x="744.00" y="487.00" active="yes" />
+		<place x="241.00" y="543.00" active="no" />
+		<place x="817.00" y="535.00" active="no" />
+		<place x="805.00" y="228.00" active="no" />
+		<place x="231.00" y="235.00" active="no" />
+	</towerplaces>
+</map>

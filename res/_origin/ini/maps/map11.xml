@@ -1,0 +1,976 @@
+<?xml version="1.0"?>
+<map startscore="850" healths="20" star1="1" star2="10" star3="15" wave_cooldown="10">
+	<hard startscore="650" healths="5" star1="1" star2="1" star3="1" wave_cooldown="5" exclude="icegun" />
+	<waves defaultdelayonewave="30">
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="5" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="5" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="1" healthrate="0.75" score="20" routesubtype="random" routeindex="1" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="2" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="tank" delay="4" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="0" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="4" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="tank_m" delay="0.3" healthrate="0.75" score="25" routesubtype="main" routeindex="8" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="8" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+		</wave>
+	</waves>
+	<waves_hard defaultdelayonewave="10">
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="5" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="5" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="7" />
+		</wave>
+		<wave>
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="8" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="1" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="4" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="1" healthrate="0.75" score="20" routesubtype="random" routeindex="1" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="2" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="5" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="2" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="3" />
+		</wave>
+		<wave>
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="tank" delay="4" healthrate="0.75" score="20" routesubtype="random" routeindex="7" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="cyberman1" delay="1" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="5" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="0" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="4" />
+			<creep name="jeep" delay="1.5" healthrate="0.75" score="10" routesubtype="random" routeindex="6" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+		</wave>
+		<wave>
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier_medic" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="5" routesubtype="random" routeindex="2" />
+		</wave>
+		<wave>
+			<creep name="tank_m" delay="0.3" healthrate="0.75" score="25" routesubtype="main" routeindex="8" />
+			<creep name="tank" delay="2" healthrate="0.75" score="20" routesubtype="random" routeindex="8" />
+			<creep name="tank" delay="3" healthrate="0.75" score="20" routesubtype="random" routeindex="8" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.4" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="1" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier2" delay="0.3" healthrate="0.75" score="7" routesubtype="random" routeindex="0" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+			<creep name="soldier" delay="0.3" healthrate="0.75" score="4" routesubtype="random" routeindex="3" />
+		</wave>
+	</waves_hard>
+	<routes>
+		<route name="0" type="earth">
+			<main>
+				<point x="790" y="1" />
+				<point x="788" y="82" />
+				<point x="789" y="203" />
+				<point x="795" y="461" />
+				<point x="798" y="766" />
+			</main>
+			<left>
+				<point x="765" y="0" />
+				<point x="763" y="82" />
+				<point x="764" y="203" />
+				<point x="770" y="462" />
+				<point x="773" y="766" />
+			</left>
+			<right>
+				<point x="814" y="1" />
+				<point x="813" y="82" />
+				<point x="814" y="203" />
+				<point x="820" y="461" />
+				<point x="822" y="765" />
+			</right>
+		</route>
+		<route name="1" type="earth">
+			<main>
+				<point x="772" y="0" />
+				<point x="757" y="162" />
+				<point x="703" y="212" />
+				<point x="594" y="214" />
+				<point x="476" y="208" />
+				<point x="308" y="202" />
+				<point x="221" y="255" />
+				<point x="220" y="369" />
+				<point x="220" y="478" />
+				<point x="216" y="574" />
+				<point x="232" y="642" />
+				<point x="323" y="675" />
+				<point x="440" y="680" />
+				<point x="568" y="671" />
+				<point x="719" y="667" />
+				<point x="784" y="688" />
+				<point x="785" y="771" />
+			</main>
+			<left>
+				<point x="748" y="-1" />
+				<point x="735" y="156" />
+				<point x="694" y="200" />
+				<point x="594" y="201" />
+				<point x="477" y="195" />
+				<point x="302" y="190" />
+				<point x="200" y="249" />
+				<point x="195" y="368" />
+				<point x="195" y="478" />
+				<point x="191" y="575" />
+				<point x="214" y="650" />
+				<point x="318" y="687" />
+				<point x="440" y="693" />
+				<point x="569" y="684" />
+				<point x="716" y="679" />
+				<point x="764" y="695" />
+				<point x="760" y="771" />
+			</left>
+			<right>
+				<point x="797" y="0" />
+				<point x="780" y="167" />
+				<point x="713" y="223" />
+				<point x="593" y="226" />
+				<point x="475" y="220" />
+				<point x="314" y="214" />
+				<point x="243" y="261" />
+				<point x="245" y="369" />
+				<point x="245" y="479" />
+				<point x="241" y="573" />
+				<point x="251" y="634" />
+				<point x="328" y="663" />
+				<point x="440" y="668" />
+				<point x="566" y="659" />
+				<point x="723" y="655" />
+				<point x="805" y="681" />
+				<point x="810" y="771" />
+			</right>
+		</route>
+		<route name="2" type="earth">
+			<main>
+				<point x="780" y="-1" />
+				<point x="779" y="207" />
+				<point x="782" y="467" />
+				<point x="683" y="467" />
+				<point x="541" y="467" />
+				<point x="407" y="465" />
+				<point x="272" y="465" />
+				<point x="214" y="501" />
+				<point x="210" y="593" />
+				<point x="267" y="659" />
+				<point x="788" y="659" />
+				<point x="795" y="764" />
+			</main>
+			<left>
+				<point x="755" y="0" />
+				<point x="764" y="458" />
+				<point x="682" y="455" />
+				<point x="541" y="455" />
+				<point x="407" y="453" />
+				<point x="266" y="453" />
+				<point x="192" y="494" />
+				<point x="186" y="597" />
+				<point x="256" y="670" />
+				<point x="770" y="668" />
+				<point x="770" y="764" />
+			</left>
+			<right>
+				<point x="804" y="-1" />
+				<point x="799" y="475" />
+				<point x="683" y="480" />
+				<point x="540" y="480" />
+				<point x="406" y="478" />
+				<point x="279" y="478" />
+				<point x="235" y="507" />
+				<point x="233" y="588" />
+				<point x="277" y="647" />
+				<point x="805" y="649" />
+				<point x="819" y="763" />
+			</right>
+		</route>
+		<route name="3" type="earth">
+			<main>
+				<point x="788" y="1" />
+				<point x="783" y="165" />
+				<point x="740" y="198" />
+				<point x="606" y="203" />
+				<point x="446" y="205" />
+				<point x="317" y="202" />
+				<point x="226" y="253" />
+				<point x="224" y="340" />
+				<point x="227" y="435" />
+				<point x="255" y="468" />
+				<point x="322" y="469" />
+				<point x="426" y="469" />
+				<point x="553" y="473" />
+				<point x="685" y="471" />
+				<point x="790" y="470" />
+				<point x="793" y="669" />
+				<point x="793" y="764" />
+			</main>
+			<left>
+				<point x="763" y="0" />
+				<point x="760" y="159" />
+				<point x="731" y="186" />
+				<point x="605" y="190" />
+				<point x="446" y="192" />
+				<point x="310" y="189" />
+				<point x="204" y="246" />
+				<point x="199" y="340" />
+				<point x="203" y="439" />
+				<point x="245" y="480" />
+				<point x="322" y="482" />
+				<point x="425" y="481" />
+				<point x="552" y="485" />
+				<point x="685" y="483" />
+				<point x="772" y="478" />
+				<point x="768" y="669" />
+				<point x="768" y="764" />
+			</left>
+			<right>
+				<point x="812" y="1" />
+				<point x="805" y="170" />
+				<point x="748" y="209" />
+				<point x="606" y="215" />
+				<point x="445" y="217" />
+				<point x="323" y="214" />
+				<point x="247" y="259" />
+				<point x="248" y="339" />
+				<point x="250" y="430" />
+				<point x="266" y="457" />
+				<point x="323" y="457" />
+				<point x="426" y="456" />
+				<point x="553" y="460" />
+				<point x="684" y="458" />
+				<point x="807" y="461" />
+				<point x="817" y="668" />
+				<point x="818" y="764" />
+			</right>
+		</route>
+		<route name="4" type="earth">
+			<main>
+				<point x="1023" y="462" />
+				<point x="895" y="461" />
+				<point x="796" y="462" />
+				<point x="792" y="669" />
+				<point x="795" y="767" />
+			</main>
+			<left>
+				<point x="1023" y="450" />
+				<point x="895" y="449" />
+				<point x="779" y="454" />
+				<point x="770" y="767" />
+			</left>
+			<right>
+				<point x="1023" y="475" />
+				<point x="895" y="474" />
+				<point x="814" y="471" />
+				<point x="820" y="767" />
+			</right>
+		</route>
+		<route name="5" type="earth">
+			<main>
+				<point x="1025" y="459" />
+				<point x="852" y="459" />
+				<point x="795" y="459" />
+				<point x="706" y="460" />
+				<point x="540" y="461" />
+				<point x="399" y="462" />
+				<point x="264" y="462" />
+				<point x="214" y="510" />
+				<point x="215" y="596" />
+				<point x="261" y="659" />
+				<point x="396" y="665" />
+				<point x="558" y="666" />
+				<point x="678" y="667" />
+				<point x="750" y="668" />
+				<point x="789" y="692" />
+				<point x="796" y="767" />
+			</main>
+			<left>
+				<point x="1025" y="446" />
+				<point x="851" y="446" />
+				<point x="705" y="447" />
+				<point x="539" y="448" />
+				<point x="398" y="449" />
+				<point x="254" y="450" />
+				<point x="190" y="505" />
+				<point x="191" y="599" />
+				<point x="249" y="670" />
+				<point x="395" y="677" />
+				<point x="557" y="678" />
+				<point x="677" y="679" />
+				<point x="743" y="680" />
+				<point x="767" y="699" />
+				<point x="771" y="768" />
+			</left>
+			<right>
+				<point x="1025" y="471" />
+				<point x="852" y="471" />
+				<point x="706" y="472" />
+				<point x="540" y="473" />
+				<point x="399" y="474" />
+				<point x="273" y="473" />
+				<point x="237" y="514" />
+				<point x="238" y="592" />
+				<point x="272" y="647" />
+				<point x="396" y="652" />
+				<point x="558" y="653" />
+				<point x="678" y="654" />
+				<point x="758" y="656" />
+				<point x="810" y="686" />
+				<point x="820" y="765" />
+			</right>
+		</route>
+		<route name="6" type="earth">
+			<main>
+				<point x="210" y="3" />
+				<point x="216" y="144" />
+				<point x="215" y="210" />
+				<point x="216" y="302" />
+				<point x="214" y="453" />
+				<point x="218" y="583" />
+				<point x="253" y="657" />
+				<point x="351" y="685" />
+				<point x="479" y="683" />
+				<point x="545" y="682" />
+				<point x="617" y="680" />
+				<point x="724" y="675" />
+				<point x="760" y="688" />
+				<point x="793" y="708" />
+				<point x="799" y="767" />
+			</main>
+			<left>
+				<point x="185" y="3" />
+				<point x="191" y="144" />
+				<point x="191" y="301" />
+				<point x="189" y="453" />
+				<point x="193" y="585" />
+				<point x="236" y="666" />
+				<point x="347" y="697" />
+				<point x="479" y="695" />
+				<point x="545" y="695" />
+				<point x="617" y="693" />
+				<point x="721" y="687" />
+				<point x="749" y="700" />
+				<point x="772" y="715" />
+				<point x="774" y="769" />
+			</left>
+			<right>
+				<point x="234" y="2" />
+				<point x="240" y="143" />
+				<point x="240" y="302" />
+				<point x="238" y="452" />
+				<point x="242" y="580" />
+				<point x="269" y="647" />
+				<point x="354" y="672" />
+				<point x="478" y="670" />
+				<point x="544" y="670" />
+				<point x="616" y="668" />
+				<point x="728" y="663" />
+				<point x="770" y="677" />
+				<point x="814" y="701" />
+				<point x="823" y="766" />
+			</right>
+		</route>
+		<route name="7" type="earth">
+			<main>
+				<point x="208" y="5" />
+				<point x="217" y="152" />
+				<point x="257" y="212" />
+				<point x="381" y="210" />
+				<point x="527" y="212" />
+				<point x="650" y="214" />
+				<point x="744" y="215" />
+				<point x="798" y="249" />
+				<point x="796" y="461" />
+				<point x="796" y="648" />
+				<point x="796" y="763" />
+			</main>
+			<left>
+				<point x="183" y="6" />
+				<point x="194" y="156" />
+				<point x="246" y="223" />
+				<point x="381" y="222" />
+				<point x="526" y="224" />
+				<point x="649" y="226" />
+				<point x="737" y="227" />
+				<point x="776" y="255" />
+				<point x="771" y="648" />
+				<point x="771" y="763" />
+			</left>
+			<right>
+				<point x="233" y="4" />
+				<point x="241" y="148" />
+				<point x="269" y="201" />
+				<point x="381" y="197" />
+				<point x="527" y="199" />
+				<point x="650" y="201" />
+				<point x="751" y="203" />
+				<point x="820" y="243" />
+				<point x="821" y="648" />
+				<point x="821" y="763" />
+			</right>
+		</route>
+		<route name="8" type="earth">
+			<main>
+				<point x="211" y="5" />
+				<point x="213" y="213" />
+				<point x="210" y="414" />
+				<point x="272" y="469" />
+				<point x="397" y="472" />
+				<point x="547" y="468" />
+				<point x="695" y="463" />
+				<point x="767" y="459" />
+				<point x="789" y="491" />
+				<point x="797" y="536" />
+				<point x="799" y="766" />
+			</main>
+			<left>
+				<point x="186" y="5" />
+				<point x="188" y="212" />
+				<point x="187" y="419" />
+				<point x="262" y="480" />
+				<point x="397" y="484" />
+				<point x="548" y="480" />
+				<point x="697" y="475" />
+				<point x="756" y="470" />
+				<point x="766" y="496" />
+				<point x="772" y="537" />
+				<point x="774" y="766" />
+			</left>
+			<right>
+				<point x="235" y="4" />
+				<point x="237" y="213" />
+				<point x="232" y="408" />
+				<point x="281" y="457" />
+				<point x="396" y="459" />
+				<point x="547" y="455" />
+				<point x="694" y="450" />
+				<point x="779" y="447" />
+				<point x="813" y="487" />
+				<point x="821" y="534" />
+				<point x="823" y="765" />
+			</right>
+		</route>
+	</routes>
+	<decorations>
+		<base_point x="787" y="728" z="1" action="" />
+	</decorations>
+	<towerplaces>
+		<place x="311.00" y="577.00" active="yes" />
+		<place x="419.00" y="579.00" active="yes" />
+		<place x="525.00" y="580.00" active="yes" />
+		<place x="667.00" y="579.00" active="yes" />
+		<place x="312.00" y="393.00" active="yes" />
+		<place x="425.00" y="355.00" active="yes" />
+		<place x="548.00" y="355.00" active="yes" />
+		<place x="664.00" y="325.00" active="yes" />
+		<place x="318.00" y="133.00" active="yes" />
+		<place x="657.00" y="134.00" active="yes" />
+		<place x="894.00" y="404.00" active="yes" />
+		<place x="891.00" y="564.00" active="yes" />
+	</towerplaces>
+</map>

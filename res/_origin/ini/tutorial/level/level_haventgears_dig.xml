@@ -1,0 +1,5 @@
+<tutorial template="ini/tutorial/level/level_haventgears.xml">
+	<children>
+    <node path="body/text"  text="#tuturial_open_shop_haventgear_dig#"/>
+  </children>
+</tutorial>

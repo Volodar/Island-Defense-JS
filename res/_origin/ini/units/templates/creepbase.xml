@@ -1,0 +1,65 @@
+<tower
+  unittype="creep"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+      >
+  
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <stop notarget="move"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="60"/>
+    </params>
+  </mover>
+
+  <events>
+    <eventlist name="on_die">
+      <stopallaction target="skin"/>
+      <action action="animate_die" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_shoot">
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animate_left" target="skin" state="run"/>
+    </eventlist>
+    
+    <eventlist name="on_rotate90">
+      <stopallaction target="skin"/>
+      <action action="animate_down" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <stopallaction target="skin"/>
+      <action action="animate_up" target="skin" state="run"/>
+    </eventlist>
+
+  </events>
+
+</tower>

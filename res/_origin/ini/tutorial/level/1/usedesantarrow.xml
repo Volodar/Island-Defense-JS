@@ -1,0 +1,19 @@
+<tutorial template="ini/tutorial/template_baloon.xml" parent="/gamelayer/mainlayer" pos="590x450" nexttutorial="lvl0_desant_description" z="9999">
+  <children>
+    <node path="body/text" text="#tuturial_usedesant#" pos="0x4"/>
+    <node path="body/bg" pos="0x0"/>
+    <node path="body/arrow" pos="-94x0" rotation="90"/>
+  </children>
+
+  <actions>
+    <action name="up" value="BackOut[MoveTo[1,75,50]]"/>
+    <action name="body" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[1],FadeTo[0.3,255]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <setproperty target="/gamelayer/interface/menu/desant" property="visible" value="yes"/>
+    </eventlist>
+  </events>
+</tutorial>

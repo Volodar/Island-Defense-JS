@@ -1,0 +1,46 @@
+<gamescene>
+  <children>
+    <node name="interface">
+      <children>
+
+        <node name="menu">
+          <children>
+
+            <node name="pause" pos="righttop:-75x50"/>
+            <node name="shop" pos="righttop:-155x50" visible="##PLATFORM_MOBILE##"/>
+            <node name="desant" pos="75x-50"/>
+            <node name="bomb" pos="155x-50"/>
+            <node name="heroskill" pos="235x-50"/>
+            <node name="hero" pos="top:-50x-160"/>
+
+          </children>
+        </node>
+
+      </children>
+    </node>
+
+    <node name="boxmenu" pos="right:-50x-50"/>
+
+  </children>
+
+  <actions>
+    <action name="button_up" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,0,100]]]"/>
+    <action name="button_down" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,0,-100]]]"/>
+    <action name="button_right" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,130,0]]]"/>
+  </actions>
+
+  <events>
+
+    <eventlist name="oncreate">
+      <runaction action="button_up" target="interface/menu/desant"/>
+      <runaction action="button_up" target="interface/menu/bomb"/>
+      <runaction action="button_up" target="interface/menu/heroskill"/>
+      <runaction action="button_up" target="boxmenu"/>
+      <runaction action="button_right" target="interface/menu/hero"/>
+      <runaction action="button_down" target="interface/menu/pause"/>
+      <runaction action="button_down" target="interface/menu/shop"/>
+    </eventlist>
+
+  </events>
+
+</gamescene>

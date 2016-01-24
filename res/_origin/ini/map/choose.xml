@@ -1,0 +1,94 @@
+<node type="layerext" name="choose" pos="frame:0.5x0.5" cascadeopacity="yes">
+  <paramcollection>
+    <pathto_leaderboards>leaderboard</pathto_leaderboards>
+  </paramcollection>
+
+  <children>
+
+    <node name="normal" pos="-300x0" template="ini/map/choose_item.xml">
+      <children>
+        <node path="bg" image="choose::win_normal_diff.png"/>
+        <node path="caption_text" text="#gamechoose_normal#"/>
+        <node path="menu/game" callback="pushgame_normalmode"/>
+        <node path="menu/game_withfuel" callback="pushgame_normalmode"/>
+        <node path="menu/game_withfuel/normal/text" text="##cost_normalmode##"/>
+        <node path="gold/text" text="##gold_normalmode##"/>
+        <node path="gear/text" text="##gear_normalmode##"/>
+        <node path="waves/text" text="##waves_normalmode##"/>
+        <node path="exclude/text" text=""/>
+        <node path="exclude/icon" visible="no"/>
+        <node path="lives/text" text="##lives_normalmode##"/>
+      </children>
+    </node>
+
+    <node name="hard" pos="300x0" template="ini/map/choose_item.xml">
+      <children>
+        <node path="bg" image="choose::win_hard_diff.png"/>
+        <node path="caption_text" text="#gamechoose_hard#"/>
+        <node path="menu/game" callback="pushgame_hardmode"/>
+        <node path="menu/game_withfuel" callback="pushgame_hardmode"/>
+        <node path="menu/game_withfuel/normal/text" text="##cost_hardmode##"/>
+        <node path="gold/text" text="##gold_hardmode##"/>
+        <node path="gear/text" text="##gear_hardmode##"/>
+        <node path="waves/text" text="##waves_hardmode##"/>
+        <node path="exclude/text" text="##exclude_hardmode##"/>
+        <node path="lives/text" text="##lives_hardmode##"/>
+      </children>
+    </node>
+
+    <node name="hard_lock" pos="300x0" template="ini/map/choose_item.xml" visible="no" color="808080">
+      <children>
+        <node path="bg" image="choose::win_hard_diff.png"/>
+        <node path="caption_text" text="#gamechoose_hard#" color="808080"/>
+        <node name="dummy" type="node">
+          <children>
+            <node path="lock" type="sprite" image="choose::lock2.png" pos="0x38" scale="1.2x1.2"/>
+            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#gamechoose_hardmode_locked#" pos="0x-125" scale="0.6x0.6" center="0.5x0.5" color="74C4DF" textwidth="250" textalign="center"/>
+          </children>
+        </node>
+        <node path="reward_text" visible="no"/>
+        <node path="menu/game" visible="no"/>
+        <node path="menu/game_withfuel" visible="no"/>
+        <node path="waves/caption" text=""/>
+        <node path="lives/caption" text=""/>
+        <node path="gold/icon" visible="no"/>
+      </children>
+    </node>
+
+    <node name="preview" type="node" pos="0x0" cascadeopacity="yes">
+      <children>
+        <node name="frame" type="sprite" image="choose::win_for_level2.png" pos="0x40"/>
+        <node name="caption" type="bmlabel" font="fonts/titlefont.fnt" text="##preview_caption##" pos="0x175" strech="230x60:min"/>
+      </children>
+    </node>
+
+    <node name="leaderboard" type="menu" pos="0x-100">
+      <children>
+        <node name="open" type="menuitem" imageN="images/map/leaderboard.png" pos="0x-70" callback="leaderboard_level" sound="##sound_button##" font="fonts/mdefensefont.fnt" text="#leaderboard#">
+          <children>
+            <node path="normal/text" strech="160x21:min" pos="95x25"/>
+          </children>
+        </node>
+      </children>
+    </node>
+
+  </children>
+
+  <actions>
+    <action name="appearance" value="Sequence[MoveBy[0.0,0,-700],BackOut[MoveBy[0.5,0,700]]]"/>
+    <action name="disappearance" value="Sequence[BackIn[MoveBy[0.3,0,-700]],RemoveSelf[]]"/>
+    <action name="fadein" value="FadeIn[0.5]"/>
+    <action name="fadeout" value="FadeIn[0.2]"/>
+  </actions>
+  <events>
+    <eventlist name="onenter">
+      <setproperty property="opacity" value="0"/>
+      <runaction action="appearance"/>
+      <runaction action="fadein"/>
+    </eventlist>
+    <eventlist name="onexit">
+      <runaction action="disappearance"/>
+      <runaction action="fadeout"/>
+    </eventlist>
+  </events>
+</node>

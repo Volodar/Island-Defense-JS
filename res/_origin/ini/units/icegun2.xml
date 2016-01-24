@@ -1,0 +1,60 @@
+<tower 
+       maxlevel="5" 
+       unittype="tower"
+       name="icegun"
+       radius="190"
+       effect_on_shoot="type:ice"
+       allowtargets="earth"
+       maxtargets="5"
+       >
+  <effects>
+    <positive iceRate="14" iceTime="4.5" velocityRate="0.6" velocityTime="3" />
+  </effects>
+
+  <machine_unit>
+    <transitions>
+      <sleep seetarget="readyfire"/>
+      <readyfire notarget="waittarget"/>
+      <readyfire charge="charging"/>
+      <charging ready="readyfire"/>
+      <waittarget seetarget="readyfire"/>
+
+    </transitions>
+    <params>
+      <state_readyfire charge_volume="5" delay="1"/>
+      <state_waittarget duration="999999"/>
+      <state_charging duration="1"/>
+    </params>
+  </machine_unit>
+
+  <machine_move>
+    <transitions>
+      <move stop="stop"/>
+      <stop move="move"/>
+    </transitions>
+  </machine_move>
+
+  <mover>
+    <params>
+      <allowangles value="0"/>
+      <thresold value="0"/>
+    </params>
+  </mover>
+  
+
+  <children>
+    <node type="sprite" name="skin" image="icegun.2::turret6_20001.png" center="0.5x0.3"/>
+  </children>
+
+  <actions>
+    <action name="animate" value="Animate[0.85,[folder:icegun.2::,frames:turret6_20001.png,turret6_20002.png,turret6_20003.png,turret6_20004.png,turret6_20005.png,turret6_20006.png,turret6_20007.png,turret6_20008.png,turret6_20009.png,turret6_20010.png,turret6_20011.png,turret6_20012.png,turret6_20013.png,turret6_20014.png,turret6_20015.png,turret6_20016.png,turret6_20017.png,turret6_20018.png,turret6_20019.png,turret6_20020.png,turret6_20021.png,turret6_20022.png,turret6_20023.png,turret6_20024.png,turret6_20025.png,turret6_20001.png]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_icegun##"/>
+      <runaction action="animate" target="skin"/>
+    </eventlist>
+  </events>
+
+</tower>

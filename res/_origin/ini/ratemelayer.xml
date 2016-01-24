@@ -1,0 +1,55 @@
+<scorelayer name="scorelayer">
+  <children>
+
+    <node type="node" name="rate" scale="0.7x0.7" cascadeopacity="yes" opacity="0" pos="frame:0.5x0.5">
+      <children>
+        <node name="bg" type="sprite" image="images/rateme/rate1.png"/>
+        <node name="menu" type="menu" pos="0x0">
+          <children>
+            <node name="rate" type="menuitem" imageN ="images/rateme/ratebutt.png" pos="0x-200" sound="##sound_button##" callback="rateme"/>
+            <node name="clse" type="menuitem" imageN ="images/rateme/button_x.png" pos="140x200" sound="##sound_button##" callback="close"/>
+          </children>
+        </node>
+      </children>
+    </node>
+
+    <node type="node" name="award" scale="0.0x0.0" cascadeopacity="yes" opacity="0" pos="frame:0.5x0.5">
+      <children>
+        <node name="menu" type="menu" pos="0x0">
+          <children>
+            <node name="rate" type="menuitem" imageN ="images/rateme/rate2.png" pos="0x0" sound="##sound_button##" callback="close"/>
+          </children>
+        </node>
+      </children>
+    </node>
+
+  </children>
+
+
+  <actions>
+    <action name="fadein" value="Spawn[ScaleTo[0.2,1,1],FadeIn[0.2]]"/>
+    <action name="fadein2" value="Sequence[DelayTime[1],Spawn[ScaleTo[0.2,1,1],FadeIn[0.2]]]"/>
+    <action name="fadeout" value="Spawn[ScaleTo[0.2,0.7,0.7],FadeTo[0.2,0]]"/>
+    <action name="remove" value="Sequence[DelayTime[0.2],RemoveSelf[]]"/>
+  </actions>
+
+
+  <events>
+
+    <eventlist name="onenter">
+      <runaction action="fadein" target="rate"/>
+    </eventlist>
+    
+    <eventlist name="showaward">
+      <runaction action="fadein2" target="award"/>
+      <runaction action="fadeout" target="rate"/>
+    </eventlist>
+
+    <eventlist name="onexit">
+      <runaction action="fadeout" target="award"/>
+      <runaction action="fadeout" target="rate"/>
+      <runaction action="remove" target="."/>
+    </eventlist>
+  
+  </events>
+</scorelayer>

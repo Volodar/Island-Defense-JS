@@ -1,0 +1,50 @@
+<node type="layerext" name="choose" pos="frame:0.5x0.5" cascadeopacity="yes">
+  <children>
+
+    <node name="bg" type="sprite" image="##unlock_image##"/>
+
+    <node name="bg_text" type="sprite" image="unlock::win_for_text.png" pos="140x180" scale="1.2x1.2"/>
+    <node name="caption" type="bmlabel" font="fonts/helvetica.fnt" text="##unlock_text##" pos="156x180" textwidth="500" scale="0.5x0.5" color="34342A" textalign="center"/>
+
+    <node name="progress_bg" type="sprite" image="unlock::progress1.png" center="0x0.5" pos="-130x-145"/>
+    <node name="progress_frame" type="sprite" image="unlock::progress2.png"    center="0x0.5" pos="-107x-145"/>
+    <node name="progress_text" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" scale="0.6x0.6" pos="0x-141"/>
+    <node name="star" type="sprite" image="unlock::star_for_progress.png" pos="100x-138"/>
+
+    <node name="menu" type="menu" pos="0x0" cascadeopacity="yes">
+      <children>
+        <node name="unlock" type="menuitem" imageN="unlock::button2.png" font="fonts/whitefont1.fnt" text="0" pos="0x-220" callback="unlock">
+          <children>
+            <node path="normal/text" pos="85x18" scale="0.4x0.4" center="0x0.5"/>
+            <node name="star" type="sprite" image="unlock::star_for_button2.png" pos="85x18" center="1x0.5"/>
+          </children>
+        </node>
+        <node name="unlock_gray" type="menuitem" imageN="unlock::button3.png" font="fonts/whitefont1.fnt" text="0" pos="0x-220" visible="no">
+          <children>
+            <node path="normal/text" pos="85x18" scale="0.4x0.4" center="0x0.5"/>
+            <node name="star" type="sprite" image="unlock::star_for_button2.png" pos="85x18" center="1x0.5"/>
+          </children>
+        </node>
+      </children>
+    </node>
+
+  </children>
+
+  <actions>
+    <action name="appearance" value="Sequence[MoveBy[0.0,0,-700],BackOut[MoveBy[0.5,0,700]]]"/>
+    <action name="disappearance" value="Sequence[BackIn[MoveBy[0.3,0,-700]],RemoveSelf[]]"/>
+    <action name="fadein" value="FadeIn[0.5]"/>
+    <action name="fadeout" value="FadeIn[0.2]"/>
+  </actions>
+  <events>
+    <eventlist name="onenter">
+      <setproperty property="opacity" value="0"/>
+      <runaction action="appearance"/>
+      <runaction action="fadein"/>
+    </eventlist>
+    <eventlist name="onexit">
+      <runaction action="disappearance"/>
+      <runaction action="fadeout"/>
+    </eventlist>
+  </events>
+</node>

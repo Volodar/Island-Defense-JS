@@ -1,0 +1,20 @@
+<tutorial autopos="/maplayer/map/locations/flag0" parent="/maplayer/map" pos="12x140" z="999" template="ini/tutorial/template_baloon.xml">
+	<children>
+    <node path="body/text" text="#tuturial_map_tap_here#"/>
+	</children>
+	
+	<actions>
+  </actions>
+	
+	<events>
+		<eventlist name="onenter">
+      <setproperty target="/maplayer/menu" property="visible" value="no"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="no"/>
+		</eventlist>
+		<eventlist name="onexit">
+      <setproperty target="/maplayer/menu" property="visible" value="yes"/>
+      <setproperty target="/scorelayer/menu/shop" property="visible" value="yes"/>
+    </eventlist>
+	</events>
+	
+</tutorial>

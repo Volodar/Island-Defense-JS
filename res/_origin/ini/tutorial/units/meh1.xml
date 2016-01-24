@@ -1,0 +1,9 @@
+<tutorial template="ini/tutorial/units/template.xml">
+  <children>
+    <node path="body/bgtype" image="images/tutorial/tut5_ground.png"/>
+    <node path="body/name" text="#meh1_name#"/>
+    <node path="body/caption" text="#meh1_caption#"/>
+    <node path="body/description" text="#meh1_desc#"/>
+    <node path="body/unit" animation="RepeatForever[Animate[0.5,[folder:meh1::,indexes:meh_go1_00.png,01:16]]]" center="0.5x0.4"/>
+  </children>
+</tutorial>

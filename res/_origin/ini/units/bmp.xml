@@ -1,0 +1,105 @@
+<tower
+  name="bmp"
+  velocity="60"
+  health="100"
+  unittype="creep"
+  unitlayer="earth"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+	   radius="150"
+  exp="3"
+>
+  <effects>
+    <positive armor="5" fireResist="5" damage="4" iceResist="4"/>
+  </effects>
+
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x-5"
+    fire_scale="3"
+    freezing_scale="0.4"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <stop seetarget="readyfire"/>
+      <stop notarget="move"/>
+      <readyfire charge="readyfire"/>
+      <readyfire notarget="move"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+      <state_readyfire charge_volume="99999" delay="1"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="45"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.21"/>
+    <node type="sprite" name="death" visible="no" opacity="192" center="0.5x0.4"/>
+    <node name="health_indicator" pos="-18x65" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animateL" value="RepeatForever[Animate[0.15,[folder:bmp::,indexes:bmp2_go_00.png,01:05]]]"/>
+    <action name="animateU" value="RepeatForever[Animate[0.15,[folder:bmp::,indexes:bmp2_go_00.png,01:05]]]"/>
+    <action name="animateD" value="RepeatForever[Animate[0.15,[folder:bmp::,indexes:bmp2_go_00.png,01:05]]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,frames:Death_stage0001.png,Death_stage0002.png,Death_stage0003.png,Death_stage0004.png,Death_stage0005.png,Death_stage0006.png,Death_stage0007.png,Death_stage0008.png,Death_stage0009.png,Death_stage0010.png,Death_stage0011.png,Death_stage0012.png,Death_stage0013.png,Death_stage0014.png,Death_stage0015.png,Death_stage0016.png,Death_stage0017.png,Death_stage0018.png,Death_stage0019.png,Death_stage0020.png,Death_stage0021.png,Death_stage0022.png,Death_stage0023.png,Death_stage0024.png,Death_stage0025.png]]"/>
+    <action name="animate_fire" value="Animate[0.5,[folder:bmp::,indexes:bmp2_fire_00.png,01:17]]"/>
+    <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <playsound sound="##sound_jeep_death##"/>
+      <stopallaction target="skin"/>
+      <action action="animate_die" target="skin" state="run"/>
+      <createunit units="soldier,soldier,soldier" radius="30"/>
+    </eventlist>
+
+    <eventlist name="on_shoot">
+      <playsound sound="##sound_jeep_shoot##"/>
+      <stopallaction target="skin"/>
+      <action action="animate_fire" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <stopallaction target="skin"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate90">
+      <stopallaction target="skin"/>
+      <action action="animateD" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <stopallaction target="skin"/>
+      <action action="animateU" target="skin" state="run"/>
+    </eventlist>
+
+  </events>
+
+</tower>

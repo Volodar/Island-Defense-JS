@@ -1,0 +1,36 @@
+<tutorial parent="/gamelayer" pos="0x0" z="999" nexttutorial="">
+  <children>
+    
+    <node name="body" type="node" pos="frame:0.5x0.5" cascadeopacity="yes" opacity="0"  scale="0.7x0.7">
+      <children>
+        <node name="body" type="sprite" image="images/tutorial/tut2.png"/>
+        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="400" center="0x0.5" text="#tuturial_bonus_desc2#" />
+      </children>
+    </node>
+
+    <node name="ballon" type="node" cascadeopacity="yes" opacity="0" pos="right:-280x150">
+      <children>
+        <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
+        <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="0x-40"/>
+        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_bonus_ballon2#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+      </children>
+    </node>
+
+  </children>
+
+  <actions>
+    <action name="movex" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"/>
+    <action name="movey" value="RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"/>
+    <action name="bodyfadein" value="Sequence[DelayTime[0.5],FadeTo[0.3,255]]"/>
+    <action name="fadein" value="Spawn[FadeTo[0.2,255],ScaleTo[0.3,1,1]]"/>
+  </actions>
+
+  <events>
+    <eventlist name="onenter">
+      <runaction action="movey" target="ballon"/>
+      <runaction action="bodyfadein" target="ballon"/>
+      <runaction action="fadein" target="body"/>
+    </eventlist>
+  </events>
+
+</tutorial>

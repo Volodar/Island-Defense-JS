@@ -1,0 +1,30 @@
+<node name="win" type="node" pos="frame:0.5x0.5">
+  <children>
+	<node name="bg" type="sprite" image="images/msgwin.png"/>
+	<node name="text1" type="bmlabel" font="fonts/mdefensefont2.fnt" text="Congrats, you've unlocked:" scale="0.5x0.5" pos="-110x40" textwidth="900" center="0x0.5"/>
+	<node name="text3" type="bmlabel" font="fonts/mdefensefont2.fnt" text="Thanks to AppGratis!" scale="0.5x0.5" pos="-110x-40" textwidth="900" center="0x0.5"/>
+	
+	<node name="gold" type="node" pos="-70x00" >
+		<children>
+			<node name="bg" type="sprite" image="images/map/icon_gold1.png" center="1x0.5" pos="0x-2"/>
+			<node name="text1" type="bmlabel" font="fonts/mdefensefont2.fnt" text="10000" scale="0.5x0.5" pos="0x0" textwidth="900" center="0x0.5"/>
+		</children>
+	</node>
+	
+	<!-- 
+	 <node name="fuel" type="node" pos="90x00">
+		<children>
+			<node name="bg" type="sprite" image="images/map/button_fuel.png" center="1x0.5" pos="0x-5"/>
+			<node name="text1" type="bmlabel" font="fonts/mdefensefont2.fnt" text="10000" scale="0.5x0.5" pos="0x0" textwidth="900" center="0x0.5"/>
+		</children>
+	</node>
+	 -->
+
+	<node name="menu" type="menu" pos="0x0">
+		<children>
+			<node name="shop" type="menuitem" imageN ="images/butok.png" pos="285x-100" sound="##sound_button##" callback="close_redeem_win"/>
+		</children>
+	</node>
+	
+  </children>
+</node>

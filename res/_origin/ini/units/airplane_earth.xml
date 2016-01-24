@@ -1,0 +1,20 @@
+<airplane template="ini/units/airplane.xml"
+      radius="60"
+      allowtargets="earth"
+      >
+  <events>
+    <eventlist name="run">
+      <action action="1_place" target="1_place" state="run"/>
+      <action action="1_explosion" target="1_explosion" state="run"/>
+      <action action="2_place" target="2_place" state="run"/>
+      <action action="2_explosion" target="2_explosion" state="run"/>
+      <action action="3_place" target="3_place" state="run"/>
+      <action action="3_explosion" target="3_explosion" state="run"/>
+
+		<playsound sound="##sound_airbomb_exposion##" predelay="2.0"/>
+		<playsound sound="##sound_airbomb_exposion##" predelay="2.1"/>
+		<playsound sound="##sound_airbomb_exposion##" predelay="2.2"/>
+	</eventlist>
+  </events>
+
+</airplane>

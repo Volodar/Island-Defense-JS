@@ -1,0 +1,79 @@
+<airplane 
+      unittype="tower"
+      sectorangle="360"
+  >
+
+  <effects>
+    <positive damage="180"/>
+  </effects>
+
+  <children>
+    <node type="sprite" name="airplane" pos="-100x500" opacity="255" image="airbomb::plane.png"/>
+
+    <node type="sprite" name="1_bomb" pos="10000x10000" center="0.5x0"/>
+    <node type="sprite" name="1_shadow" pos="10000x10000" center="0.5x1"/>
+    <node type="sprite" name="1_explosion" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##"/>
+    <node type="sprite" name="1_explosion_water" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##"/>
+    <node type="sprite" name="1_place" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
+    
+    <node type="sprite" name="2_bomb" pos="10000x10000" center="0.5x0"/>
+    <node type="sprite" name="2_shadow" pos="10000x10000" center="0.5x1"/>
+    <node type="sprite" name="2_explosion" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##"/>
+    <node type="sprite" name="2_explosion_water" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##"/>
+    <node type="sprite" name="2_place" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
+    
+    <node type="sprite" name="3_bomb" pos="10000x10000" center="0.5x0"/>
+    <node type="sprite" name="3_shadow" pos="10000x10000" center="0.5x1"/>
+    <node type="sprite" name="3_explosion" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##"/>
+    <node type="sprite" name="3_explosion_water" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##"/>
+    <node type="sprite" name="3_place" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
+  </children>
+
+  <actions>
+
+    <action name="1_bomb_move" value="Sequence[DelayTime[1.0],MoveTo[0,##airplane_bomb_posx1##,1000],MoveTo[1,##airplane_bomb_posx1##,##airplane_bomb_posy1##],FadeOut[0.05]]"/>
+    <action name="1_shdw_move" value="Sequence[DelayTime[1.0],MoveTo[0,##airplane_bomb_posx1##,-100],MoveTo[1,##airplane_bomb_posx1##,##airplane_bomb_posy1##],FadeOut[0.05]]"/>
+    <action name="2_bomb_move" value="Sequence[DelayTime[1.1],MoveTo[0,##airplane_bomb_posx2##,1000],MoveTo[1,##airplane_bomb_posx2##,##airplane_bomb_posy2##],FadeOut[0.05]]"/>
+    <action name="2_shdw_move" value="Sequence[DelayTime[1.1],MoveTo[0,##airplane_bomb_posx2##,-100],MoveTo[1,##airplane_bomb_posx2##,##airplane_bomb_posy2##],FadeOut[0.05]]"/>
+    <action name="3_bomb_move" value="Sequence[DelayTime[1.2],MoveTo[0,##airplane_bomb_posx3##,1000],MoveTo[1,##airplane_bomb_posx3##,##airplane_bomb_posy3##],FadeOut[0.05]]"/>
+    <action name="3_shdw_move" value="Sequence[DelayTime[1.2],MoveTo[0,##airplane_bomb_posx3##,-100],MoveTo[1,##airplane_bomb_posx3##,##airplane_bomb_posy3##],FadeOut[0.05]]"/>
+    
+    <action name="1_place" value="Sequence[DelayTime[2.0],FadeIn[0.2],DelayTime[4],FadeOut[0.8]]"/>
+    <action name="1_explosion" value="Sequence[DelayTime[2.0],Animate[0.5,[folder:airbomb::,indexes:explow/expl_00.png,01:16]],FadeOut[0.1]]"/>
+    <action name="1_explosion_water" value="Sequence[DelayTime[2.0],Animate[1,[folder:airbomb::,indexes:splash_water/splash_w_00.png,01:32]],FadeOut[0.1]]"/>
+    <action name="2_place" value="Sequence[DelayTime[2.1],FadeIn[0.2],DelayTime[4],FadeOut[0.8]]"/>
+    <action name="2_explosion" value="Sequence[DelayTime[2.1],Animate[0.5,[folder:airbomb::,indexes:explow/expl_00.png,01:16]],FadeOut[0.1]]"/>
+    <action name="2_explosion_water" value="Sequence[DelayTime[2.1],Animate[1,[folder:airbomb::,indexes:splash_water/splash_w_00.png,01:32]],FadeOut[0.1]]"/>
+    <action name="3_place" value="Sequence[DelayTime[2.2],FadeIn[0.2],DelayTime[4],FadeOut[0.8]]"/>
+    <action name="3_explosion" value="Sequence[DelayTime[2.2],Animate[0.5,[folder:airbomb::,indexes:explow/expl_00.png,01:16]],FadeOut[0.1]]"/>
+    <action name="3_explosion_water" value="Sequence[DelayTime[2.2],Animate[1,[folder:airbomb::,indexes:splash_water/splash_w_00.png,01:32]],FadeOut[0.1]]"/>
+
+    <action name="bomb_anim" value="RepeatForever[Animate[0.3..0.4,[folder:airbomb::,indexes:bomb/bomb_00.png,01:11]]]"/>
+    <action name="shdw_anim" value="RepeatForever[Animate[0.3..0.4,[folder:airbomb::,indexes:shadow/bomb_shadow_00.png,01:11]]]"/>
+    <action name="airplane" value="MoveTo[2,1224,500]"/>
+  </actions>
+  
+  <events>
+    <eventlist name="run">
+      <action action="airplane" target="airplane" state="run"/>
+      
+      <action action="bomb_anim" target="1_bomb" state="run"/>
+      <action action="shdw_anim" target="1_shadow" state="run"/>
+      <action action="bomb_anim" target="2_bomb" state="run"/>
+      <action action="shdw_anim" target="2_shadow" state="run"/>
+      <action action="bomb_anim" target="3_bomb" state="run"/>
+      <action action="shdw_anim" target="3_shadow" state="run"/>
+      
+      <action action="1_bomb_move" target="1_bomb" state="run"/>
+      <action action="1_shdw_move" target="1_shadow" state="run"/>
+      
+      <action action="2_bomb_move" target="2_bomb" state="run"/>
+      <action action="2_shdw_move" target="2_shadow" state="run"/>
+      
+      <action action="3_bomb_move" target="3_bomb" state="run"/>
+      <action action="3_shdw_move" target="3_shadow" state="run"/>
+      
+    </eventlist>
+  </events>
+  
+</airplane>

@@ -1,0 +1,66 @@
+<unit template="ini/units/templates/creepbase.xml"
+  name="flyingfortress"
+  velocity="30"
+  health="430"
+  unitlayer="sky"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+	radius="150"
+  exp="4"
+>
+  <effects>
+    <positive armor="2" fireResist="5" damage="8" iceResist="4"/>
+  </effects>
+
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x-5"
+    fire_scale="3"
+    freezing_scale="0.8"
+    freezing_pos="0x20"
+    />
+
+  <skills>
+    <runeventsbytime frequence="6" stopunit="yes" stopduration="2" count="1">
+      <eventlist>
+        <createunit units="soldier,soldier,soldier2" radius="20"/>
+      </eventlist>
+    </runeventsbytime>
+  </skills>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.5x0.2"/>
+    <node type="sprite" name="death" visible="no" opacity="192" center="0.5x0.4"/>
+    <node type="sprite" name="shadow" center="0.5x0.5" image="airship::shadow.png"/>
+    <node name="health_indicator" pos="-18x65" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animate_left" value="RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"/>
+    <action name="animate_up" value="RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"/>
+    <action name="animate_down" value="RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"/>
+    <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
+  </actions>
+  
+  <events>
+	  <eventlist name="on_rotate180">
+		  <setproperty property="scale" target="skin" value="1x1"/>
+		  <setproperty property="scale" target="shadow" value="1x1"/>
+		  <stopallaction target="skin"/>
+		  <action action="animate_left" target="skin" state="run"/>
+	  </eventlist>
+	  
+	  <eventlist name="on_rotate0">
+		  <setproperty property="scale" target="skin" value="-1x1"/>
+		  <setproperty property="scale" target="shadow" value="-1x1"/>
+		  <stopallaction target="skin"/>
+		  <action action="animate_left" target="skin" state="run"/>
+	  </eventlist>
+  </events>
+
+</unit>

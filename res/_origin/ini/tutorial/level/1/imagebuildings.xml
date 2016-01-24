@@ -1,0 +1,27 @@
+<tutorial template="ini/tutorial/template_window.xml" nexttutorial="lvl0_hero">
+	<children>
+    <node path="body/bg" image="images/tutorial/tut1.png" />
+    
+    <node name="ballon1" type="node" pos="-244x80">
+        <children>
+            <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
+            <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="-60x-40"/>
+            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_building_tapflag#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+        </children>
+    </node>
+    <node name="ballon2" type="node" pos="-220x-120">
+        <children>
+            <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
+            <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="60x40" rotation="180"/>
+            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_building_choosetower#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+        </children>
+    </node>
+    <node name="ballon3" type="node" pos="188x80">
+        <children>
+            <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
+            <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="60x-40"/>
+            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_building_towerready#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+        </children>
+    </node>
+	</children>
+</tutorial>

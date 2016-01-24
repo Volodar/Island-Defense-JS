@@ -1,0 +1,10 @@
+<tutorial template="ini/tutorial/units/template.xml">
+  <children>
+    <node path="body/bgtype" image="images/tutorial/tut5_ground.png"/>
+    <node path="body/name" text="#helocopter_medic_name#"/>
+    <node path="body/caption" text="#helocopter_medic_caption#"/>
+    <node path="body/description" text="#helocopter_medic_desc#"/>
+    <node path="body/unit" animation="RepeatForever[Animate[0.6,[folder:helocopter_medic::left/,indexes:helicopter_med_go_00.png,01:18]]]" scale="-1x1"  pos="-210x40"/>
+    <node name="shadow" type="sprite" image="images/creeps/helicopter_shadow.png" pos="-210x00"/>
+  </children>
+</tutorial>

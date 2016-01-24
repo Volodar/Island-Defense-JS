@@ -1,0 +1,120 @@
+<tower 
+  maxlevel="5"
+  name="ship" 
+  velocity="60"
+  health="130"
+  unittype="creep"
+  unitlayer="sea"
+  lifecost="1"
+  color_fire="FF8080"
+  color_ice="80FFFF"
+  color_electro="FFFF80"
+  >
+  <effects>
+    <positive electroResist="0.5" armor="0" fireResist="10"/>
+  </effects>
+  
+  <extraproperties
+    electro_pos="0x30"
+    electro_size="big"
+    electro_scale="1"
+    fire_pos="0x0"
+    fire_scale="3"
+    freezing_scale="0.4"
+    freezing_pos="0x-15"
+    />
+
+  <machine_unit start_state="stop">
+    <transitions>
+      <move stop="stop"/>
+      <move die="death"/>
+      <stop move="move"/>
+      <stop die="death"/>
+      <death stop="stop"/>
+    </transitions>
+    <params>
+      <state_death duration="1"/>
+      <state_readyfire charge_volume="99999" delay="0.7"/>
+    </params>
+  </machine_unit>
+
+  <mover>
+    <params>
+      <allowangles value="0,180,90,270"/>
+      <thresold value="60"/>
+    </params>
+  </mover>
+
+  <children>
+    <node type="sprite" name="skin" visible="yes" center="0.6x0.18"/>
+    <node type="sprite" name="death" visible="no" opacity="192" center="0.5x0.4"/>
+    <node name="health_indicator" pos="-18x75" z="1"/>
+  </children>
+
+  <actions>
+    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:ship.left::,frames:
+            ship1_0001.png,
+            ship1_0002.png,
+            ship1_0003.png,
+            ship1_0004.png,
+            ship1_0005.png,
+            ship1_0006.png,
+            ship1_0007.png,
+            ship1_0008.png,
+            ship1_0009.png,
+            ship1_0010.png,
+            ]]]"/>
+    <action name="animate_die" value="Animate[1.0,[folder:death::,frames:Death_stage0001.png,Death_stage0002.png,Death_stage0003.png,Death_stage0004.png,Death_stage0005.png,Death_stage0006.png,Death_stage0007.png,Death_stage0008.png,Death_stage0009.png,Death_stage0010.png,Death_stage0011.png,Death_stage0012.png,Death_stage0013.png,Death_stage0014.png,Death_stage0015.png,Death_stage0016.png,Death_stage0017.png,Death_stage0018.png,Death_stage0019.png,Death_stage0020.png,Death_stage0021.png,Death_stage0022.png,Death_stage0023.png,Death_stage0024.png,Death_stage0025.png]]"/>
+    <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
+  </actions>
+
+  <events>
+    <eventlist name="on_die">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <setproperty target="death" property="visible" value="yes"/>
+      <action action="animate_die" target="death" state="run"/>
+      <!--action action="fadeout" target="skin" state="run"/-->
+      <setproperty property="opacity" value="0" target="skin"/>
+    </eventlist>
+
+    <eventlist name="on_rotate180">
+      <setproperty property="scale" target="skin" value="-1x1"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate0">
+      <setproperty property="scale" target="skin" value="1x1"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+    
+    <eventlist name="on_rotate90">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_rotate270">
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="stop"/>
+      <action action="animateL" target="skin" state="run"/>
+    </eventlist>
+
+    <eventlist name="on_move">
+      <setproperty property="opacity" value="255" target="skin"/>
+      <setproperty property="visible" value="no" target="death"/>
+    </eventlist>
+
+
+  </events>
+
+</tower>
