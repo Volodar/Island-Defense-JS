@@ -17,14 +17,10 @@ EU.HelloWorldLayer = cc.Layer.extend({
         var mainscene = ccs.load(res.MainScene_json);
         this.addChild(mainscene.node, 1);
 
-        for (var i = 0; i < 16; i++) {
-            var obj = new EU.Node();
-            this.addChild(obj, 1);
-            obj.setPosition(49+i%4*74, 400-Math.floor(i/4)*74)
-        }
-
         var layer = new cc.LayerGradient(cc.color(0,0,0,255), cc.color(0x46,0x82,0xB4,255));
         this.addChild(layer, 0);
+
+        var xmlContent = EU.pugixml.readXml("res/_origin/ini/creeps.xml");
         /* you can create scene with following comment code instead of using csb file.
         /////////////////////////////
         // 3. add your codes below...
@@ -47,13 +43,6 @@ EU.HelloWorldLayer = cc.Layer.extend({
         */
 
         return true;
-    }
-});
-
-EU.Node = EU.CCSNode.extend({
-    resFile:res.Node_json,
-    ctor: function() {
-        this._super();
     }
 });
 

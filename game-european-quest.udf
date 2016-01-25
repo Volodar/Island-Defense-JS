@@ -25,7 +25,7 @@
         <AndroidVersion Value="android-22" />
         <iOS_Target Value="game-european-quest-mobile" />
         <iOS_BundleID Value="" />
-        <Platform Value="None" />
+        <Platform Value="Web" />
         <RunPlatform Value="None" />
         <FrameworkVersion Value="cocos2d-x-3.10" />
         <IsDebugKeystore Value="True" />
