@@ -49,6 +49,13 @@ EU.touchInfo = (function(){
         });
 })();
 
+EU.Skill = cc.Class.extend(
+{
+    desant : null,
+    bomb : null,
+    heroskill : null
+});
+
 EU.ScoresNode = cc.Node.extend(
 {
     m_scores: {},
@@ -112,6 +119,10 @@ EU.GameGS = (function(){
             /** @type {EU.MenuItemImageWithText} */ rateFast: null,
             /** @type {EU.MenuItemImageWithText} */ pause: null,
             /** @type {EU.MenuItemImageWithText} */ shop: null,
+            /** @type {EU.MenuItemCooldown} */ desant: null,
+            /** @type {EU.MenuItemCooldown} */ bomb: null,
+            /** @type {EU.MenuItemCooldown} */ heroSkill: null,
+            /** @type {EU.HeroIcon} */ hero: null,
             /** @type {cc.Menu} */  menu: null
         },
         //IDialog * m_dialog: null,
@@ -120,7 +131,13 @@ EU.GameGS = (function(){
         /** @type {Array<WaveIcon>} */ _waveIcons: [],
         /** @type {bool} */  _runFlyCamera: null,
 
+        /** @type {bool} */  _skillModeActived: null,
+        /** @type {EU.MenuItemCooldown} */ _selectedSkill: null,
         /** @type {EventListener} */ _touchListenerNormal: null,
+        /** @type {EventListener} */ _touchListenerDesant: null,
+        /** @type {EventListener} */ _touchListenerBomb: null,
+        /** @type {EventListener} */ _touchListenerHero: null,
+        /** @type {EventListener} */ _touchListenerHeroSkill: null,
 
         restartLevel: function()
         {
@@ -172,6 +189,7 @@ EU.GameGS = (function(){
             this._scoresForStartWave = 0;
             this._boughtScoresForSession = 0;
             this._runFlyCamera = true;
+            this._skillModeActived = false;
 
             cc.log( "GameGS.GameGS" );
             this.m_interfaceMenu.menu = null;
@@ -270,9 +288,37 @@ EU.GameGS = (function(){
             touchListenerN.onTouchesEnded = this.onTouchesEnded;
             touchListenerN.onTouchesCancelled = this.onTouchesCancelled;
 
+            var touchListenerSD = cc._EventListenerTouchOneByOne.create();
+            touchListenerSD.onTouchBegan = this.onTouchSkillBegan;
+            var self = this;
+            touchListenerSD.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.desant)};
+            touchListenerSD.onTouchCancelled = this.onTouchSkillCanceled;
+            touchListenerSD.setSwallowTouches( true );
+
+            var touchListenerSB = cc._EventListenerTouchOneByOne.create();
+            touchListenerSB.onTouchBegan = this.onTouchSkillBegan;
+            touchListenerSB.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.bomb)};
+            touchListenerSB.onTouchCancelled = this.onTouchSkillCanceled;
+            touchListenerSB.setSwallowTouches( true );
+
+            var touchListenerSH = cc._EventListenerTouchOneByOne.create();
+            touchListenerSH.onTouchBegan = this.onTouchSkillBegan;
+            touchListenerSH.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.heroskill)};
+            touchListenerSH.onTouchCancelled = this.onTouchSkillCanceled;
+            touchListenerSH.setSwallowTouches( true );
+
+            var touchListenerH = cc._EventListenerTouchOneByOne.create();
+            touchListenerH.onTouchBegan = this.onTouchHeroBegan;
+            touchListenerH.onTouchMoved = this.onTouchHeroMoved;
+            touchListenerH.onTouchEnded = this.onTouchHeroEnded;
+            touchListenerH.onTouchCancelled = this.onTouchHeroCanceled;
 
             //TODO: should destroy old listeners which are not equal to the new listeners
             this._touchListenerNormal = touchListenerN ;
+            this._touchListenerDesant = touchListenerSD ;
+            this._touchListenerBomb = touchListenerSB ;
+            this._touchListenerHeroSkill = touchListenerSH ;
+            this._touchListenerHero = touchListenerH ;
 
             this._scrollInfo = EU.ScrollTouchInfo();
 
@@ -321,23 +367,55 @@ EU.GameGS = (function(){
             var self = this;
             var cb0 = function(obj) { return self.menuShop(obj, true)};
             var cb1 = this.menuPause;
+            var cb2 = function(obj) { return self.menuSkill(obj, EU.Skill.desant)};
+            var cb3 = function(obj) { return self.menuSkill(obj, EU.Skill.bomb)};
+            var cb5 = this.menuHero;
 
             var kPathButtonShop = EU.k.resourceGameSceneFolder + "button_shop.png";
             var kPathButtonPauseNormal = EU.k.resourceGameSceneFolder + "icon_pause.png";
+            var kPathButtonDesantBack = EU.k.resourceGameSceneFolder + "button_desant_2_1.png";
+            var kPathButtonDesantForward = EU.k.resourceGameSceneFolder + "button_desant_2.png";
+            var kPathButtonDesantCancel = EU.k.resourceGameSceneFolder + "button_desant_2_3.png";
+            var kPathButtonBombBack = EU.k.resourceGameSceneFolder + "button_desant_1_1.png";
+            var kPathButtonBombForward = EU.k.resourceGameSceneFolder + "button_desant_1.png";
+            var kPathButtonBombCancel = EU.k.resourceGameSceneFolder + "button_desant_1_3.png";
 
             var cancel = EU.k.resourceGameSceneFolder + "icon_x_10.png";
+            var cdd = this.m_board.getSkillParams( ).cooldownDesant;
+            var cda = this.m_board.getSkillParams( ).cooldownAirplane;
             this.m_interfaceMenu.shop = EU.MenuItemImageWithText.create( kPathButtonShop, cb0 );
             this.m_interfaceMenu.pause = EU.MenuItemImageWithText.create( kPathButtonPauseNormal, cb1 );
+            this.m_interfaceMenu.desant = EU.MenuItemCooldown.create(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
+            this.m_interfaceMenu.bomb = EU.MenuItemCooldown.create(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
+            this.m_interfaceMenu.heroSkill = EU.MenuItemCooldown.create( "", "", 0, null, cancel );
+            this.m_interfaceMenu.hero = HeroIcon.create( "hero" + (UserData.shared().hero_getCurrent() + 1), cb5 );
+            this.m_interfaceMenu.hero.setEnabled( true );
 
+            this.m_interfaceMenu.desant.setAnimationOnFull( "airstike_animation1" );
+            this.m_interfaceMenu.bomb.setAnimationOnFull( "airstike_animation2" );
 
             this.m_interfaceMenu.shop.setName( "shop" );
             this.m_interfaceMenu.pause.setName( "pause" );
+            this.m_interfaceMenu.desant.setName( "desant" );
+            this.m_interfaceMenu.bomb.setName( "bomb" );
+            this.m_interfaceMenu.heroSkill.setName( "heroskill" );
+            this.m_interfaceMenu.hero.setName( "hero" );
+
+            this.m_interfaceMenu.desant.setSound( "##sound_button##" );
+            this.m_interfaceMenu.bomb.setSound( "##sound_button##" );
+            this.m_interfaceMenu.heroSkill.setSound( "##sound_button##" );
 
             this.m_interfaceMenu.menu = Menu.create();
             this.m_interfaceMenu.menu.setName( "menu" );
             this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.shop );
             this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.pause );
+            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.desant );
+            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.bomb );
+            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.heroSkill );
+            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.hero );
             this.m_interfaceMenu.menu.setEnabled( false );
+
+            this.m_interfaceMenu.hero.setVisible( false );
 
             this.m_interfaceMenu.menu.setPosition( cc.POINT_ZERO );
             this.m_interface.addChild( this.m_interfaceMenu.menu, zOrderInterfaceMenu );
@@ -366,6 +444,49 @@ EU.GameGS = (function(){
 
 
             this.createDevMenu();
+        },
+        createHeroMenu: function()
+        {
+            var hero = this.m_board.getHero();
+            if( hero )
+            {
+                var skill = hero.getSkill();
+                this.m_interfaceMenu.hero.setVisible( true );
+                this.m_interfaceMenu.hero.setHero( hero );
+
+                var back = EU.k.resourceGameSceneFolder + "button_" + skill + "_2.png" ;
+                var forward = EU.k.resourceGameSceneFolder + "button_" + skill + "_1.png" ;
+                var cancel = EU.k.resourceGameSceneFolder + "button_" + skill + "_3.png";
+
+                //std.vector<unsigned>
+                var skills = [];
+                HeroExp.shared().skills( this.m_board.getHero().getName(), skills );
+                var level = skills[4];
+
+                var duration = 0.0;
+                if( skill == "landmine" )
+                {
+                    duration = this.m_board.getSkillParams().cooldownLandmine;
+                    duration *= this.m_board.getSkillParams().landmineLevels[level].rateCooldown;
+                }
+                else if( skill == "swat" )
+                {
+                    duration = this.m_board.getSkillParams().cooldownSwat;
+                    duration *= this.m_board.getSkillParams().swatLevels[level].rateCooldown;
+                }
+                else if( skill == "hero3_bot" )
+                {
+                    duration = this.m_board.getSkillParams().cooldownHero3Bot;
+                    duration *= this.m_board.getSkillParams().hero3BotLevels[level].rateCooldown;
+                }
+                else
+                    EU.assert( 0 );
+
+                var self = this;
+                var callback = function(obj) { return self.menuSkill(obj, EU.Skill.heroskill)};
+                this.m_interfaceMenu.heroSkill.init( back, forward, duration, callback, cancel );
+                this.m_interfaceMenu.heroSkill.setAnimationOnFull( skill );
+            }
         },
 
         createDevMenu: function()
@@ -476,9 +597,25 @@ EU.GameGS = (function(){
             this.m_bg.setGlobalZOrder( -2 );
 
             var mode = this.m_board.getGameMode();
+            var decorations = root.getElementsByTagName( "decorations" );
             var xmlparams = root.getElementsByTagName( mode == EU.GameMode.normal ? EU.LevelParams : EU.LevelParamsHard );
             if( !xmlparams )
                 xmlparams = root;
+
+            for(var i=0; i < decorations.children.length; i++){
+                var child = decorations.children[i];
+                var object = null;
+                this.createDecorFromXmlNode( child, object );
+                if( object )
+                {
+                    var z = object.getLocalZOrder();
+                    this.addObject( object, object.getLocalZOrder() );
+                    if( z != 0 )
+                    {
+                        object.setLocalZOrder( z );
+                    }
+                }
+            }
 
             this.m_dalayWaveIcon = xmlparams.getAttribute( "wave_cooldown" );
 
@@ -1320,28 +1457,81 @@ EU.GameGS = (function(){
             }
         }
 
-        setTouchDisabled()
+    menuSkill( Ref * sender, Skill skill )
+    {
+        //close box menu before using skills
+        this.m_box.close();
+
+        EU.MenuItemCooldown * item = dynamic_cast<EU.MenuItemCooldown*>(sender);
+
+        if( _selectedSkill && item == _selectedSkill )
         {
-            _touchListenerNormal.setEnabled( false );
-            _eventDispatcher.removeEventListener( _touchListenerNormal );
+            item.showCancel( false );
+            setTouchNormal();
+        }
+        else if( item != _selectedSkill )
+        {
+            setTouchNormal();
+            setTouchSkill( skill );
+            item.showCancel( true );
+            _selectedSkill = item;
         }
 
-        setTouchNormal()
-        {
-            setTouchDisabled();
-            _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerNormal, this );
-            _touchListenerNormal.setEnabled( true );
+        TutorialManager.shared().dispatch( "clickskillbutton" );
+    }
 
-        }
+    resetSkillButtons()
+    {
+        _selectedSkill = null;
+        this.m_interfaceMenu.bomb.showCancel(false);
+        this.m_interfaceMenu.desant.showCancel(false);
+    }
 
-        menuPause( Ref * sender )
+    setTouchDisabled()
+    {
+        _touchListenerDesant.setEnabled( false );
+        _touchListenerBomb.setEnabled( false );
+        _touchListenerNormal.setEnabled( false );
+        _eventDispatcher.removeEventListener( _touchListenerDesant );
+        _eventDispatcher.removeEventListener( _touchListenerBomb );
+        _eventDispatcher.removeEventListener( _touchListenerNormal );
+    }
+
+    setTouchNormal()
+    {
+        setTouchDisabled();
+        _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerNormal, this );
+        _touchListenerNormal.setEnabled( true );
+        _skillModeActived = false;
+        resetSkillButtons();
+
+    }
+
+    setTouchSkill( Skill skill )
+    {
+        setTouchDisabled();
+        switch( skill )
         {
-            AudioEngine.shared( ).pauseAllEffects( );
-            SmartScene * scene = dynamic_cast<SmartScene*>(getScene( ));
-            var pause = GamePauseLayer.create( "ini/gamescene/pause.xml" );
-            scene.pushLayer( pause, true );
-            pause.setGlobalZOrder( 2 );
+            case Skill.desant:
+                _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerDesant, this );
+                _touchListenerDesant.setEnabled( true );
+                break;
+            case Skill.bomb:
+                _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerBomb, this );
+                _touchListenerBomb.setEnabled( true );
+                break;
         }
+        _skillModeActived = true;
+    }
+
+    menuPause( Ref * sender )
+    {
+        AudioEngine.shared( ).pauseAllEffects( );
+        SmartScene * scene = dynamic_cast<SmartScene*>(getScene( ));
+        var pause = GamePauseLayer.create( "ini/gamescene/pause.xml" );
+        scene.pushLayer( pause, true );
+        pause.setGlobalZOrder( 2 );
+    }
 
         menuShop( Ref*sender, bool gears )
         {
