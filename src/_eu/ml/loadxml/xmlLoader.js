@@ -107,7 +107,7 @@ EU.xmlLoader = {
     },
     /**
      * load a node from file name
-     * @param {String} file
+     * @param {String} path
      */
     load_node_str: function(path) {
         var xmlnode = new EU.pugixml.readXml(path);
