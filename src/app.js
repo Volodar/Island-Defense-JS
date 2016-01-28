@@ -13,11 +13,15 @@ EU.HelloWorldLayer = cc.Layer.extend({
 
         //var xmlContent = EU.pugixml.readXml("res/_origin/ini/creeps.xml");
 
-        var pc = new EU.ParamCollection( "var1:value1,var2:value2" );
-        pc.tolog();
+        this.tests();
 
         return true;
     },
+
+    tests: function() {
+        var pc = new EU.ParamCollection( "var1:value1,var2:value2" );
+        pc.tolog();
+    }
 
 });
 
