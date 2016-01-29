@@ -176,11 +176,11 @@ EU.xmlKey = {
         var scrollmenu = node;
         //Menu * menu = dynamic_cast<Menu*>(node);
         /** @type {EU.MenuItemImageWithText} menuitem */
-        menuitem = node;
+        var menuitem = node;
         /** @type {ccui.Text} label */
-        label = node;
+        var label = node;
         /** @type {cc.ProgressTimer} progress */
-        progress = node;
+        var progress = node;
 
         var value = EU.xmlLoader.macros.parse( rawvalue );
 
@@ -422,22 +422,22 @@ EU.xmlKey = {
     },
     /**
      *
-     * @param {NodeExt} node
+     * @param {EU.NodeExt} node
      */
     bookDirectory: function(node )
     {
         this.unbookDirectory();
         this._directory = node;
-        if( node && node.as_node_pointer() )
-            node.as_node_pointer().retain();
+        if( node && node.as_node_ref() )
+            node.as_node_ref().retain();
     },
     /**
      *
      */
     unbookDirectory: function()
     {
-        if( this._directory && this._directory.as_node_pointer() )
-            this._directory.as_node_pointer().release();
+        if( this._directory && this._directory.as_node_ref() )
+            this._directory.as_node_ref().release();
         this._directory = nullptr;
     }
 };

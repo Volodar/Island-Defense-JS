@@ -3,7 +3,10 @@
     <words>
       <w>framepoint</w>
       <w>iproperty</w>
+      <w>listname</w>
       <w>nodeext</w>
+      <w>xmlevent</w>
+      <w>xmllist</w>
       <w>xmlnode</w>
     </words>
   </dictionary>
