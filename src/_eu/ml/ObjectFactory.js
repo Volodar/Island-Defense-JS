@@ -6,7 +6,7 @@
  * e-mail: tolm_vl@hotmail.com
  * If you received the code is not the author, please contact me
  ******************************************************************************/
-
+/**TESTED**/
 //Define namespace
 var EU = EU || {};
 
@@ -39,5 +39,7 @@ EU.Factory  = {
         //if( type == "scenestack" ) return EU.EventScene.create();
         //if( type == "createnode" ) return EU.EventCreateNode.create();
         //if( type == "statistic_accumulate" ) return EU.EventStatisticAccumulate.create();
+
+        cc.log("cannot create object  by type: " + type);
     },
 }

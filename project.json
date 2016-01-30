@@ -14,10 +14,14 @@
     "jsList" : [
         "src/resource.js",
         "src/_eu/CCS.js",
-        "src/_eu/ml/pugixml/pugixml.js",
         "src/_eu/ml/ParamCollection.js",
+        "src/_eu/ml/loadxml/xmlLoader.js",
         "src/_eu/ml/loadxml/xmlProperties.js",
+        "src/_eu/ml/pugixml/pugixml.js",
+        "src/_eu/ml/common.js",
+        "src/_eu/ml/NodeExt.js",
         "src/_eu/ml/ObjectFactory.js",
+
         "src/app.js"
     ]
 }

@@ -21,7 +21,7 @@ EU.xmlLoader = {
         delimiter_size : function() {
             return this.delimiter.length
         },
-        _macroses: new EU.ParamCollection(),
+        _macroses: new EU.ParamCollection(""),
         set: function(name, value){
             this._macroses[name] = value;
         },
@@ -31,7 +31,7 @@ EU.xmlLoader = {
         },
         clear: function()
         {
-            this._macroses = new EU.ParamCollection();
+            this._macroses = new EU.ParamCollection("");
         },
         erase: function(name)
         {
@@ -109,31 +109,32 @@ EU.xmlLoader = {
      * load a node from file name
      * @param {String} path
      */
-    load_node_str: function(path) {
+    load_node_from_file: function(path) {
         var xmlnode = new EU.pugixml.readXml(path);
         var root = xmlnode.firstElementChild;
-        return this.load_node_xml_node( root );
+        return this.load_node_from_xml_node( root );
     },
     /**
      * load a node from a xmlnode
      * @param {Element} xmlnode
      */
-    load_node_xml_node: function( xmlnode) {
+    load_node_from_xml_node: function( xmlnode) {
+        if( xmlnode == null )
+            return null;
         var type = xmlnode.getAttribute( EU.xmlKey.Type.name );
         var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
-        if( this.isEmpty(template_) == false )
+        if( this.stringIsEmpty(template_) != false )
         {
-            // TODO: EU.Factory
             var node = EU.Factory.build(type);
-            this.load_node_n_xml_node( node, xmlnode );
+            this.load_node_xml_node( node, xmlnode, false );
             return node;
         }
         else
         {
-            var node = this.load_node_str( template_ );
+            var node = this.load_node_from_file( template_ );
             var xmlnodem = xmlnode;
             xmlnodem.removeAttribute( EU.xmlKey.Template.name );
-            load( node, xmlnodem );
+            this.load_node_xml_node( node, xmlnodem, true );
             return node;
         }
     },
@@ -169,26 +170,19 @@ EU.xmlLoader = {
     load_node_n_str: function(node, path ) {
         var xmlnode = new EU.pugixml.readXml(path);
         var root = xmlnode.firstElementChild;
-        load( node, root );
-    },
-    /**
-     * check if string is null or empty
-     * @param str
-     * @returns {boolean}
-     */
-    isEmpty: function (str) {
-        return (!str || 0 === str.length);
+        this.load_node_xml_node( node, root, false );
     },
     /**
      * load xml configuration into a created node
      * @param {EU.Node} node
      * @param {Element} xmlnode
      */
-    load_node_n_xml_node: function (node, xmlnode )
-    {
+    load_node_xml_node: function (node, xmlnode, ignodeTemplate ){
+        if( node == null )
+            return;
         //const std::string& type = xmlnode.attribute( ksType.c_str() ).as_string();
         var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
-        if( this.isEmpty(template_) == false )
+        if( ignodeTemplate == false && this.stringIsEmpty(template_) == false )
         {
             this.load_node_n_str( node, template_ );
         }
@@ -197,7 +191,6 @@ EU.xmlLoader = {
         {
             var attr = xmlnode.attributes[i];
             var name = attr.name;
-            //TODO: setProperty
             EU.xmlLoader.setProperty( node, name, attr.value );
         }
 
@@ -225,6 +218,8 @@ EU.xmlLoader = {
             }
             else if( tag == "actions" )
             {
+                //TODO: loadActions
+                continue;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
                 EU.assert( nodeext instanceof EU.NodeExt, "wrong instance");
@@ -233,6 +228,8 @@ EU.xmlLoader = {
             }
             else if( tag == "events" )
             {
+                //TODO: loadEvents
+                continue;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
                 EU.assert( nodeext instanceof EU.NodeExt, "wrong instance");
@@ -243,7 +240,7 @@ EU.xmlLoader = {
                 var result = false;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                if( nodeext instanceof EU.NodeExt ) {
+                if( nodeext.loadXmlEntity != undefined ) {
                     result = nodeext.loadXmlEntity( tag, xmlentity );
                 }
                 if( !result )
@@ -255,33 +252,38 @@ EU.xmlLoader = {
         }
     },
     /**
+     * Set property for node
+     * @param {cc.Node} node
+     * @param {string} name
+     * @param {string} value
+     */
+    /**
      *
      * @param {cc.Node} node
      * @param {Element} xmlnode
      * @returns {*}
      */
-    getorbuild_node: function( node, xmlnode )
-    {
+    getorbuild_node: function( node, xmlnode ){
         var type = xmlnode.getAttribute( EU.xmlKey.Type.name );
         var name = xmlnode.getAttribute( EU.xmlKey.Name.name );
         var path = xmlnode.getAttribute( EU.xmlKey.Path.name );
         var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
 
-        var child;
+        var child = null;
 
-        if( this.isEmpty(template_) == false )
+        if( this.stringIsEmpty(template_) == false )
         {
             child = this.load_node_str( template_ );
         }
-        if( child == null && this.isEmpty(path) == false )
+        if( child == null && this.stringIsEmpty(path) == false )
         {
             child = this.getNodeByPath( node, path );
         }
-        if( child == null && this.isEmpty(name) == false )
+        if( child == null && this.stringIsEmpty(name) == false )
         {
             child = node.getChildByName( name );
         }
-        if( child && this.isEmpty(type) == false )
+        if( child && this.stringIsEmpty(type) == false )
         {
             log( "Warning! type redefined name[%s] type[%s]", name, type);
         }
@@ -297,8 +299,7 @@ EU.xmlLoader = {
      * @param {cc.Node} node
      * @param {Element} xmlnode
      */
-    load_children: function(node, xmlnode)
-    {
+    load_children: function(node, xmlnode){
         for(var i=0; i < xmlnode.children.length; i++){
             var xmlchild = xmlnode.children[i];
             if (xmlchild.tagName == "node") {
@@ -306,7 +307,7 @@ EU.xmlLoader = {
                 EU.assert( child, "empty child" );
                 if( child == null )
                     continue;
-                load( child, xmlchild );
+                this.load_node_xml_node( child, xmlchild, false );
                 if( child.getParent() == null )
                 {
                     node.addChild( child, child.getLocalZOrder());
@@ -319,8 +320,7 @@ EU.xmlLoader = {
      * @param {String} desc
      * @returns {*}
      */
-    load_action_str: function (desc)
-    {
+    load_action_str: function (desc){
         /**
          * @param {String} desc
          * @returns {string|*}
@@ -659,8 +659,9 @@ EU.xmlLoader = {
      * @param xmlnode
      * @returns {*}
      */
-    load_action_xml_node: function(xmlnode )
-    {
+    load_action_xml_node: function(xmlnode ){
+        //TODO: load_action_xml_node
+        return null;
         var body = xmlnode.getAttribute( "value" );
         return this.load_action_str( body );
     },
@@ -670,8 +671,7 @@ EU.xmlLoader = {
      * @param {EU.ScrollMenu} menu
      * @param {Element} xmlnode
      */
-    load_scrollmenu_items: function(menu, xmlnode )
-    {
+    load_scrollmenu_items: function(menu, xmlnode ){
         for(var i=0; i < xmlnode.children.length; i++){
             var xmlitem = xmlnode.children[i];
 
@@ -690,12 +690,11 @@ EU.xmlLoader = {
         menu.align( menu.getAlignedColums() );
     },
     /**
-     *
+     * load_nonscissor_children
      * @param {EU.ScrollMenu} node
      * @param xmlnode
      */
-    load_nonscissor_children: function(node, xmlnode )
-    {
+    load_nonscissor_children: function(node, xmlnode ){
         for(var i=0; i < xmlnode.children.length; i++){
             var xmlchild = xmlnode.children[i];
             if (xmlchild.tagName == "node") {
@@ -709,12 +708,11 @@ EU.xmlLoader = {
         }
     },
     /**
-     *
+     * load_paramcollection_n_path
      * @param {EU.ParamCollection} params
      * @param {String} path
      */
-    load_paramcollection_n_path: function(params, path )
-    {
+    load_paramcollection_n_path: function(params, path ){
         EU.assert( params );
         var doc = new EU.pugixml.readXml(path);
         var root = doc.firstElementChild;
@@ -724,6 +722,401 @@ EU.xmlLoader = {
             var value = xmlchild.getAttribute( "value" );
             params[name] = value;
         }
-    }
+    },
+    /**
+     * check if string is null or empty
+     * @param str
+     * @returns {boolean}
+     */
+    stringIsEmpty: function (str) {
+        return (!str || 0 === str.length);
+    },
+
+
+    //NodeExt
+    _directory : null,
+    //static std::map<std::string, const int>
+    properties : {},
+    __autofillproperties: function() {
+        EU.xmlLoader.bookProperty( EU.xmlKey.Type.name, EU.xmlKey.Type.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Visible.name, EU.xmlKey.Visible.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Pos.name, EU.xmlKey.Pos.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Scale.name, EU.xmlKey.Scale .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Strech.name, EU.xmlKey.Strech ) ;
+        EU.xmlLoader.bookProperty( EU.xmlKey.Size.name, EU.xmlKey.Size.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Rotation.name, EU.xmlKey.Rotation .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.LocalZ.name, EU.xmlKey.LocalZ ) ;
+        EU.xmlLoader.bookProperty( EU.xmlKey.GlobalZ.name, EU.xmlKey.GlobalZ .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Center.name, EU.xmlKey.Center.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Tag.name, EU.xmlKey.Tag.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeOpacity.name, EU.xmlKey.CascadeOpacity .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeColor.name, EU.xmlKey.CascadeColor .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Image.name, EU.xmlKey.Image .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Blending.name, EU.xmlKey.Blending.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Opacity.name, EU.xmlKey.Opacity.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Color.name, EU.xmlKey.Color .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Animation.name, EU.xmlKey.Animation .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Name.name, EU.xmlKey.Name.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.AlignCols.name, EU.xmlKey.AlignCols.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ImageNormal.name, EU.xmlKey.ImageNormal.int);
+        EU.xmlLoader.bookProperty( EU.xmlKey.ImageSelected.name, EU.xmlKey.ImageSelected .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ImageDisabled.name, EU.xmlKey.ImageDisabled .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Text.name, EU.xmlKey.Text .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Font.name, EU.xmlKey.Font .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.MenuCallBack.name, EU.xmlKey.MenuCallBack .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.TextWidth.name, EU.xmlKey.TextWidth .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.TextAlign.name, EU.xmlKey.TextAlign.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ScaleEffect.name, EU.xmlKey.ScaleEffect .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Sound.name, EU.xmlKey.Sound .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Template.name, EU.xmlKey.Template.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Path.name, EU.xmlKey.Path.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.AlignStartPosition.name, EU.xmlKey.AlignStartPosition.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.GridSize.name, EU.xmlKey.GridSize.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ScissorRect.name, EU.xmlKey.ScissorRect.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ScissorEnabled.name, EU.xmlKey.ScissorEnabled.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ScrollEnabled.name, EU.xmlKey.ScrollEnabled.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.AllowScrollByX.name, EU.xmlKey.AllowScrollByX.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.AllowScrollByY.name, EU.xmlKey.AllowScrollByY.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ProgressType.name, EU.xmlKey.ProgressType.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Percent.name, EU.xmlKey.Percent.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.MidPoint.name, EU.xmlKey.MidPoint.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.BarChangeRate.name, EU.xmlKey.BarChangeRate.int );
+    },
+
+    /**
+     * register properties pair (string -> integer value)
+     * @param name
+     * @param integer name
+     */
+    bookProperty: function ( name, iname ){
+        //if (_DEBUG !== undefined) {
+        //    for (var key in this.properties) {
+        //        // skip loop if the property is from prototype
+        //        if (!this.properties.hasOwnProperty(key)) continue;
+        //
+        //        var obj = this.properties[key];
+        //        EU.assert(obj != iname);
+        //        EU.assert(key != name);
+        //    }
+        //}
+        this.properties[name] = iname;
+    },
+    /**
+     * convert property from string name to integer
+     * @param {String} property
+     * @returns int
+     */
+    strToPropertyType: function (property ){
+        this.first = true;
+        if( this.first )
+        {
+            this.__autofillproperties();
+            this.first = false;
+        }
+        return property in EU.xmlLoader.properties? EU.xmlLoader.properties[property] : 0;
+    },
+    /**
+     * set property for node
+     * @param {cc.Node} node
+     * @param {String} property
+     * @param {String} value
+     */
+    setProperty: function (node, property, value ){
+        if( property == EU.xmlKey.Template.name )
+            return;
+
+        var iproperty = this.strToPropertyType( property );
+        if( false == this.setProperty_int( node, iproperty, value ) )
+        {
+            /** @type {EU.NodeExt} nodeext */
+            var nodeext = node;
+            if( nodeext.setProperty != undefined )
+                nodeext.setPropertyStr( property, value );
+        }
+    },
+    /**
+     * set property for node
+     * @param {cc.Node} node
+     * @param {Integer} property
+     * @param {String} rawvalue
+     * @returns {*}
+     */
+    setProperty_int: function(node, property, rawvalue ){
+        var result = false ;
+        EU.assert( node );
+        //TODO: EU.Language
+        var language = null;//EU.Language.shared();
+
+        var sprite = node instanceof cc.Sprite ? node : null;
+        var progress = node instanceof cc.ProgressTimer ? node : null;
+        var menu = node instanceof cc.Menu ? node : null;
+
+        //TODO: EU.NodeExt
+        var nodeext = node;
+        //TODO: EU.ScrollMenu
+        var label = node instanceof cc.LabelBMFont ? node : null;
+        //TODO: EU.MenuItem
+        var menuitem = node instanceof cc.MenuItem ? node : null;
+        //TODO: EU.ScrollMenu
+        var scrollmenu = null;//node instanceof EU.ScrollMenu ? node : null;
+
+        var value = EU.xmlLoader.macros.parse( rawvalue );
+
+        var point;
+        var size;
+        var frame;
+        var texture = null;
+
+        /** @type {EU.NodeExt} nodeext */
+        if( nodeext != null && nodeext.setPropertyInt != undefined )
+            result = nodeext.setPropertyInt( property, value );
+
+        if( result == false )
+        {
+            //TODO: EU.Common
+            result = true;
+            switch( property )
+            {
+                //for node:
+                case EU.xmlKey.Type.int:
+                    break;
+                case EU.xmlKey.Name.int:
+                    node.setName( value );
+                    break;
+                case EU.xmlKey.Visible.int:
+                    node.setVisible( strToBool( value ) );
+                    break;
+                case EU.xmlKey.Pos.int:
+                    node.setPosition( strToPoint( value ) );
+                    break;
+                case EU.xmlKey.Scale.int:
+                    point = strToPoint( value );
+                    node.setScale( point.x, point.y );
+                    break;
+                case EU.xmlKey.Rotation.int:
+                    node.setRotation( strToFloat( value ) );
+                    break;
+                case EU.xmlKey.Center.int:
+                    node.setAnchorPoint( strToPoint( value ) );
+                    break;
+                case EU.xmlKey.Strech.int:
+                    size = node.getContentSize();
+                    if( cc.sizeEqualToSize( size, cc.size(0,0)) == false )
+                    {
+                        var sx = 0.0;
+                        var sy = 0.0;
+                        var parce = function ()
+                        {
+                            var framepoint;
+                            var mode;
+                            var k = value.lastIndexOf( ":" );
+                            if( k >= 0 )
+                            {
+                                framepoint = value.substr( 0, k );
+                                mode = value.substr( k + 1 );
+                            }
+                            s = strToPoint( framepoint );
+                            sx = s.x / size.width;
+                            sy = s.y / size.height;
+                            return mode;
+                        };
+
+                        var mode = parce( value );
+                        if( mode == "x" )
+                            node.setScaleX( sx );
+                        else if( mode == "y" )
+                            node.setScaleY( sy );
+                        else if( mode == "xy" )
+                            node.setScale( sx, sy );
+                        else if( mode == "max" )
+                            node.setScale( Math.max( sx, sy ) );
+                        else if( mode == "min" )
+                            node.setScale( Math.max( sx, sy ) );
+                        else
+                            EU.assert( !"TODO:" );
+                    }
+                    break;
+                case EU.xmlKey.Size.int:
+                    size.width = strToPoint( value ).x;
+                    size.height = strToPoint( value ).y;
+                    node.setContentSize( size );
+                    break;
+                case EU.xmlKey.Tag.int:
+                    node.setTag( strToInt( value ) );
+                    break;
+                case EU.xmlKey.CascadeColor.int:
+                    node.setCascadeColorEnabled( strToBool( value ) );
+                    break;
+                case EU.xmlKey.CascadeOpacity.int:
+                    node.setCascadeOpacityEnabled( strToBool( value ) );
+                    break;
+                case EU.xmlKey.LocalZ.int:
+                    node.setLocalZOrder( strToInt( value ) );
+                    break;
+                case EU.xmlKey.GlobalZ.int:
+                    node.setGlobalZOrder( strToInt( value ) );
+                    break;
+                //for sprite:
+                case EU.xmlKey.Image.int:
+                    if( sprite )
+                    {
+                        //TODO: EU.ImageManager
+                        //frame = EU.ImageManager.shared().spriteFrame( value );
+                        frame = null;
+                        if( frame )
+                            sprite.setSpriteFrame( frame );
+                        else
+                            sprite.setTexture( "res/_origin/" + value );
+                    }
+                    else if( progress )
+                    {
+                        //TODO: EU.ImageManager
+                        //var sprite = EU.ImageManager.sprite( value );
+                        sprite = null;
+                        if( sprite )
+                            progress.setSprite( sprite );
+                    }
+                    break;
+                //for scroll menu:
+                case EU.xmlKey.Blending.int:
+                    //TODO:Blending property
+                    //EU.assert( sprite instanceof cc.Sprite);
+                    //sprite.setBlendFunc( strToBlendFunc(value) );
+                    break;
+                case EU.xmlKey.Opacity.int:
+                    node.setOpacity( strToInt( value ) );
+                    break;
+                case EU.xmlKey.Color.int:
+                    node.setColor( strToColor3B( value ) );
+                    break;
+                case EU.xmlKey.Animation.int:
+                    node.runAction( EU.xmlLoader.load_action_str( value ) );
+                    break;
+                case EU.xmlKey.AlignCols.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAlignedColums( strToInt( value ) );
+                    break;
+                //for MenuItemImageWithText:
+                case EU.xmlKey.ImageNormal.int:
+                    EU.assert( menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.setImageNormal( value );
+                    break;
+                case EU.xmlKey.ImageSelected.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    menuitem.setImageSelected( value );
+                    break;
+                case EU.xmlKey.ImageDisabled.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    menuitem.setImageDisabled( value );
+                    break;
+                case EU.xmlKey.MenuCallBack.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    if( _directory )
+                        menuitem.setCallback( _directory.get_callback_by_description( value ) );
+                    break;
+                case EU.xmlKey.Sound.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    menuitem.setSound( value );
+                case EU.xmlKey.Text.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
+                    if( label ) label.setString( language.string( value ) );
+                    else menuitem.setText( language.string( value ) ); break;
+                case EU.xmlKey.Font.int:
+                    EU.assert(   menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
+                    //TODO: font value here is without path, so xml value must be changed
+                    if( label ) label.setFontName( value );
+                    else menuitem.setFont( value ); break;
+                case EU.xmlKey.TextWidth.int:
+                    EU.assert(  label instanceof ccui.Text );
+                    if( label ) label.setContentSize( strToFloat( value ) );
+                    break;
+                case EU.xmlKey.TextAlign.int:
+                    EU.assert( label instanceof ccui.Text );
+                    if( label instanceof ccui.Text  )
+                    {
+                        /**
+                         * @type {Number} align
+                         */
+                        var align;
+                        if( value == "center" ) align = cc.TEXT_ALIGNMENT_CENTER;
+                        else if( value == "right" ) align = cc.TEXT_ALIGNMENT_RIGHT;
+                        else align = cc.TEXT_ALIGNMENT_LEFT;
+                        label.setAlignment( align );
+                    }
+                    break;
+                case EU.xmlKey.ScaleEffect.int:
+                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    menuitem.useScaleEffect( strToBool( value ) );
+                    break;
+                case EU.xmlKey.AlignStartPosition.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu );
+                    scrollmenu.setAlignedStartPosition( strToPoint( value ) );
+                    break;
+                case EU.xmlKey.GridSize.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setGrisSize( strToSize( value ) );
+                    break;
+                case EU.xmlKey.ScissorRect.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScissorRect( strToRect( value ) );
+                    break;
+                case EU.xmlKey.ScrollEnabled.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScrollEnabled( strToBool( value ) );
+                    break;
+                case EU.xmlKey.ScissorEnabled.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScissorEnabled( strToBool( value ) );
+                    break;
+                case EU.xmlKey.AllowScrollByX.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAllowScrollByX( strToBool( value ) );
+                    break;
+                case EU.xmlKey.AllowScrollByY.int:
+                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAllowScrollByY( strToBool( value ) );
+                    break;
+                case EU.xmlKey.ProgressType.int:
+                    EU.assert( progress instanceof cc.ProgressTimer);
+                    progress.setType( value == "radial" ? cc.ProgressTimer.TYPE_RADIAL : cc.ProgressTimer.TYPE_BAR );
+                    break;
+                case EU.xmlKey.Percent.int:
+                    EU.assert( progress instanceof cc.ProgressTimer );
+                    progress.setPercentage( strToFloat( value ) );
+                    break;
+                case EU.xmlKey.MidPoint.int:
+                    EU.assert( progress instanceof cc.ProgressTimer );
+                    progress.setMidpoint( strToPoint( value ) );
+                    break;
+                case EU.xmlKey.BarChangeRate.int:
+                    EU.assert( progress instanceof cc.ProgressTimer );
+                    progress.setBarChangeRate( strToPoint( value ) );
+                    break;
+                default:
+                    result = false;
+                    cc.log( "property with name[%d] not dispathed node by name[%s]", property, node.getName() );
+                    break;
+            }
+        }
+        return result;
+    },
+    /**
+     *
+     * @param {NodeExt} node
+     */
+    bookDirectory: function(node ){
+        this.unbookDirectory();
+        this._directory = node;
+        if( node && node.as_node_pointer() )
+            node.as_node_pointer().retain();
+    },
+    /**
+     *
+     */
+    unbookDirectory: function(){
+        if( this._directory && this._directory.as_node_pointer() )
+            this._directory.as_node_pointer().release();
+        this._directory = nullptr;
+    },
 
 };
