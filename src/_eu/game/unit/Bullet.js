@@ -26,23 +26,22 @@ EU.Bullet = EU.Unit.extend({
         timer: null,
         duration: null,
     },
-    ctor: function() {
-        this._super();
+    onExit: function( )
+    {
+    },
+    ctor: function( path, base, target, startAngle, startPosition )
+    {
+        //if( !Unit.init( "", path ) ) return false;
+        //this._super("", path);
+        EU.Unit.prototype.ctor.call(this,"", path);
         this.steering = false ;
         this._isStuck = false ;
         this._trajectory( this.Trajectory.line );
         this._parabolicParams.H = 0;
         this._parabolicParams.timer = 0;
-        this._parabolicParams.duration = cc.randomMinus1To1() * 0.2 + 0.5;
-    },
-    onExit: function( )
-    {
-    },
 
-    init: function( path, base, target, startAngle, startPosition )
-    {
-        if( !Unit.init( "", path ) ) return false;
-        
+        this._parabolicParams.duration = cc.randomMinus1To1() * 0.2 + 0.5;
+
         this._base = base;
         this._target = target;
 
@@ -53,7 +52,7 @@ EU.Bullet = EU.Unit.extend({
         var part = this._target.getParamCollection().get( this._bopyPart, "" );
         var rand = this._target.getParamCollection().get( "random_bullet", "" );
         this._targetPointOffset = EU.Common.strToPoint( part );
-        if( rand.empty() == false )
+        if( EU.xmlLoader.isEmpty(rand) == false )
         {
             var point = EU.Common.strToPoint( rand );
             this._targetPointOffset.x += cc.randomMinus1To1() * point.x / 2;
@@ -97,7 +96,7 @@ EU.Bullet = EU.Unit.extend({
     },
     update: function( dt )
     {
-        Unit.prototype.update.call(this, dt );
+        EU.Unit.prototype.update.call(this, dt );
     },
     clear: function()
     {
@@ -106,12 +105,12 @@ EU.Bullet = EU.Unit.extend({
     },
     readyfire_update: function( dt )
     {
-        Unit.prototype.readyfire_update.call(this, dt );
+        EU.Unit.prototype.readyfire_update.call(this, dt );
 
         var pos = this.computePosition( dt );
         this.turn( pos );
         this.setPosition( pos );
-        var z = _unitLayer == EU.UnitLayer.sky ? 9000 : -pos.y;
+        var z = this._unitLayer == EU.UnitLayer.sky ? 9000 : -pos.y;
         this.setLocalZOrder( z + this._additionalZorder );
     },
     on_die: function()
@@ -132,7 +131,7 @@ EU.Bullet = EU.Unit.extend({
                 this.setType( this._base.getType() );
                 this.applyDamageToTarget( this._target );
 
-                Unit.prototype.on_die.call(this, dt );
+                EU.Unit.prototype.on_die.call(this, dt );
 
                 if( this._isStuck )
                 {

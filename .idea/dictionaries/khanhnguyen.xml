@@ -5,9 +5,13 @@
       <w>iproperty</w>
       <w>listname</w>
       <w>nodeext</w>
+      <w>statename</w>
       <w>xmlevent</w>
       <w>xmllist</w>
+      <w>xmlmachine</w>
       <w>xmlnode</w>
+      <w>xmlparams</w>
+      <w>xmltransitions</w>
     </words>
   </dictionary>
 </component>

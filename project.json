@@ -16,6 +16,7 @@
         "src/_eu/CCS.js",
         "src/_eu/ml/pugixml/pugixml.js",
         "src/_eu/ml/ParamCollection.js",
+        "src/_eu/ml/loadxml/xmlLoader.js",
         "src/app.js"
     ]
 }

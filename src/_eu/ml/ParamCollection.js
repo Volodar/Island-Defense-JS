@@ -13,6 +13,7 @@ EU.ParamCollection = cc.Class.extend({
     },
     // TODO:
     parse: function (string) {
+        if (!string) string = "";
         var l = 0;
         do
         {
