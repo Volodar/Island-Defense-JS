@@ -7,6 +7,10 @@ EU.NodeExt.call(EU.Unit.prototype);
 EU.MachineUnit.call(EU.Unit.prototype);
 
 EU.Unit.implement({
+
+    /** For Test Instance of */
+    __Unit : true,
+
     ObserverHealth : null,
     Extra : function()
     {

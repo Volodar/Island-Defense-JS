@@ -1,11 +1,11 @@
 //Define namespace
 var EU = EU || {};
 
-
-EU.Unit = cc.Class.extend({}
-);
-
 EU.mlEffect = cc.Class.extend({
+
+    /** For Test Instance of */
+    __mlEffect: true,
+
     Negative: function() {
         this.Damage = function()
         {

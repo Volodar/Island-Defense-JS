@@ -31,6 +31,9 @@ EU.touchInfo = (function(){
 
     return cc.Class.extend(
         {
+            /** For Test Instance of */
+            __touchInfo : true,
+
             ctor: function(_nodeBegan, _touch) {
                 this.nodeBegin = _nodeBegan;
                 this.nodeEnd = null;
@@ -51,6 +54,10 @@ EU.touchInfo = (function(){
 
 EU.Skill = cc.Class.extend(
 {
+
+    /** For Test Instance of */
+    __Skill : true,
+
     desant : null,
     bomb : null,
     heroskill : null
@@ -58,6 +65,9 @@ EU.Skill = cc.Class.extend(
 
 EU.ScoresNode = cc.Node.extend(
 {
+    /** For Test Instance of */
+    __ScoresNode : true,
+
     m_scores: {},
     /** @type {ccui.Text} m_heaths */
     m_healths : null,
@@ -666,7 +676,7 @@ EU.GameGS = (function(){
                  * @type {EU.Unit} unit
                  */
                 var unit = this.m_objects.children[i];
-                if( unit instanceof EU.Unit)
+                if( unit.__Unit)
                 {
                     var fire = unit.getChildByName( "fire" );
                     if( fire ) fire.setVisible( true );
@@ -691,7 +701,7 @@ EU.GameGS = (function(){
                      * @type {EU.Unit} unit
                      */
                     var unit = this.m_objects.children[i];
-                    if( unit instanceof EU.Unit)
+                    if( unit.__Unit)
                     {
                         var fire = unit.getChildByName( "fire" );
                         if( fire ) fire.setVisible( false );

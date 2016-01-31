@@ -4,6 +4,9 @@ var EU = EU || {};
 
 EU.Mover = cc.Class.extend(
 {
+    /** For Test Instance of */
+    __Mover: true,
+
     /**@type {cc.math.Vec2[]}*/ _route: [],
     /**@type {cc.math.Vec2}*/ _position: null,
     /**@type {cc.math.Vec2} */_currentDirection: null,

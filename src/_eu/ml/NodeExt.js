@@ -3,6 +3,9 @@ var EU = EU || {};
 
 EU.NodeExt = function(){
 
+    /** For Test Instance of */
+    this.__NodeExt = true;
+
     /** @type {map<EU.EventsList>} */
     this._events = {};
     /** @type {map<cc.Action>} */

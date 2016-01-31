@@ -1,18 +1,23 @@
 //Define namespace
 var EU = EU || {};
 
-EU.MachineExt = EU.Machine.extend({
+EU.MachineExt = function(){
 
-    FSM_ADD_STATE: function(name) {
+    /** For Test Instance of */
+    this.__MachineExt = true;
+
+    EU.Machine.call(this);
+
+    this.FSM_ADD_STATE = function(name) {
         return EU.Machine.add_state( "state_" + name, null).set_string_name(name);
     },
-    FSM_ADD_EVENT: function(name) {
+    this.FSM_ADD_EVENT = function(name) {
         return EU.Machine.add_event( "event_" + name).set_string_name(name);
     },
     /**
      * @type {Element} xmlmachine
      */
-    load: function(  xmlmachine )
+    this.load = function(  xmlmachine )
     {
         for(var i=0; i < xmlmachine.children.length; i++){
             var xmlnode = xmlmachine.children[i];
@@ -35,17 +40,17 @@ EU.MachineExt = EU.Machine.extend({
     /**
      * @type {Element} xmlmachine
      */
-    load_params: function(  xmlparams )
+    this.load_params = function(  xmlparams )
     {},
     /**
      * @type {Element} xmlparams
      */
-    load_other: function(  xmlparams )
+    this.load_other = function(  xmlparams )
     {},
     /**
      * @type {Element} xmlmachine
      */
-    load_transitions: function(  xmltransitions )
+    this.load_transitions = function(  xmltransitions )
     {
         for(var i=0; i < xmltransitions.children.length; i++){
             var node = xmltransitions.children[i];
@@ -60,4 +65,4 @@ EU.MachineExt = EU.Machine.extend({
             from.add_transition( by.get_name(), to.get_name() );
         }
     }
-});
+};

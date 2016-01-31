@@ -15,6 +15,10 @@ EU.assert = function (condition, message) {
 };
 
 EU.xmlLoader = {
+
+    /** For Test Instance of */
+    __xmlLoader: true,
+
     self: this,
     macros: {
         delimiter: "##",
@@ -211,14 +215,14 @@ EU.xmlLoader = {
             {
                 /** @type {EU.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert( scrollmenu instanceof EU.ScrollMenu, "wrong instance");
+                EU.assert( scrollmenu.__ScrollMenu, "wrong instance");
                 this.load_scrollmenu_items( scrollmenu, xmlentity );
             }
             else if( tag == "children_nonscissor" )
             {
                 /** @type {cc.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert( scrollmenu instanceof EU.ScrollMenu, "wrong instance");
+                EU.assert( scrollmenu.__ScrollMenu, "wrong instance");
                 if( scrollmenu ) {
                     this.load_nonscissor_children( scrollmenu, xmlentity );
                 }
@@ -227,7 +231,7 @@ EU.xmlLoader = {
             {
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                EU.assert( nodeext instanceof EU.NodeExt, "wrong instance");
+                EU.assert( nodeext.__NodeExt, "wrong instance");
                 //TODO: loadActions
                 nodeext.loadActions( xmlentity );
             }
@@ -235,7 +239,7 @@ EU.xmlLoader = {
             {
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                EU.assert( nodeext instanceof EU.NodeExt, "wrong instance");
+                EU.assert( nodeext.__NodeExt, "wrong instance");
                 nodeext.loadEvents( xmlentity );
             }
             else
@@ -243,7 +247,7 @@ EU.xmlLoader = {
                 var result = false;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                if( nodeext instanceof EU.NodeExt ) {
+                if( nodeext.__NodeExt ) {
                     result = nodeext.loadXmlEntity( tag, xmlentity );
                 }
                 if( !result )

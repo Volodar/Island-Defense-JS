@@ -3,6 +3,8 @@ var EU = EU || {};
 
 
 EU.Bullet = EU.Unit.extend({
+    /** For Test Instance of */
+    __Bullet: true,
     Trajectory: {
         line: 0,
         parabolic: 1,

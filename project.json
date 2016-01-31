@@ -17,6 +17,15 @@
         "src/_eu/ml/pugixml/pugixml.js",
         "src/_eu/ml/ParamCollection.js",
         "src/_eu/ml/loadxml/xmlLoader.js",
+        "src/_eu/ml/loadxml/xmlProperties.js",
+        "src/_eu/ml/NodeExt.js",
+        "src/_eu/ml/FiniteStateMachine.js",
+        "src/_eu/game/unit/MachineExt.js",
+        "src/_eu/game/unit/MachineUnit.js",
+        "src/_eu/game/unit/Mover.js",
+        "src/_eu/game/unit/Unit.js",
+        "src/_eu/game/unit/Bullet.js",
+        "src/_eu/game/effects.js",
         "src/app.js"
     ]
 }

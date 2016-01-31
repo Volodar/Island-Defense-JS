@@ -153,7 +153,7 @@ EU.xmlKey = {
         {
             /** @type {EU.NodeExt} nodeext */
             var nodeext = node;
-            if( nodeext instanceof EU.NodeExt ) nodeext.setProperty( property, value );
+            if( nodeext.__NodeExt ) nodeext.setProperty( property, value );
         }
     },
     /**
@@ -192,7 +192,7 @@ EU.xmlKey = {
 
         /** @type {EU.NodeExt} nodeext */
         nodeext = node;
-        if( nodeext instanceof EU.NodeExt)
+        if( nodeext.__NodeExt)
             result = nodeext.setProperty( property, value );
 
         if( result == false )
@@ -313,36 +313,36 @@ EU.xmlKey = {
                     node.runAction( EU.xmlLoader.load_action_str( value ) );
                     break;
                 case this.AlignCols.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setAlignedColums( EU.Common.strToInt( value ) );
                     break;
                 //for MenuItemImageWithText:
                 case this.ImageNormal.name:
-                    EU.assert( menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert( menuitem.__MenuItemImageWithText);
                     menuitem.setImageNormal( value );
                     break;
                 case this.ImageSelected.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    EU.assert(  menuitem.__MenuItemImageWithText );
                     menuitem.setImageSelected( value );
                     break;
                 case this.ImageDisabled.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    EU.assert(  menuitem.__MenuItemImageWithText );
                     menuitem.setImageDisabled( value );
                     break;
                 case this.MenuCallBack.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    EU.assert(  menuitem.__MenuItemImageWithText );
                     if( _directory )
                         menuitem.setCallback( _directory.get_callback_by_description( value ) );
                     break;
                 case this.Sound.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    EU.assert(  menuitem.__MenuItemImageWithText );
                     menuitem.setSound( value );
                 case this.Text.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
+                    EU.assert(  menuitem.__MenuItemImageWithText ||  label instanceof ccui.Text );
                     if( label ) label.setString( language.string( value ) );
                     else menuitem.setText( language.string( value ) ); break;
                 case this.Font.name:
-                    EU.assert(   menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
+                    EU.assert(   menuitem.__MenuItemImageWithText ||  label instanceof ccui.Text );
                     //TODO: font value here is without path, so xml value must be changed
                     if( label ) label.setFontName( value );
                     else menuitem.setFont( value ); break;
@@ -365,35 +365,35 @@ EU.xmlKey = {
                     }
                     break;
                 case this.ScaleEffect.name:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
+                    EU.assert(  menuitem.__MenuItemImageWithText );
                     menuitem.useScaleEffect( EU.Common.strToBool( value ) );
                     break;
                 case this.AlignStartPosition.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu );
+                    EU.assert( scrollmenu.__ScrollMenu );
                     scrollmenu.setAlignedStartPosition( EU.Common.strToPoint( value ) );
                     break;
                 case this.GridSize.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setGrisSize( EU.Common.strToSize( value ) );
                     break;
                 case this.ScissorRect.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setScissorRect( EU.Common.strToRect( value ) );
                     break;
                 case this.ScrollEnabled.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setScrollEnabled( EU.Common.strToBool( value ) );
                     break;
                 case this.ScissorEnabled.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setScissorEnabled( EU.Common.strToBool( value ) );
                     break;
                 case this.AllowScrollByX.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setAllowScrollByX( EU.Common.strToBool( value ) );
                     break;
                 case this.AllowScrollByY.name:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert( scrollmenu.__ScrollMenu);
                     scrollmenu.setAllowScrollByY( EU.Common.strToBool( value ) );
                     break;
                 case this.ProgressType.name:

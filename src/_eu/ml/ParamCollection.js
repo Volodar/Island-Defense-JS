@@ -2,6 +2,10 @@
 var EU = EU || {};
 
 EU.ParamCollection = cc.Class.extend({
+
+    /** For Test Instance of */
+    __ParamCollection: true,
+
     self: this,
     delimiter_pair : ':',
     delimiter : ',',
