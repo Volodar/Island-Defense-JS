@@ -123,9 +123,7 @@ var strToPoint = function( value ) {
     var x = strToFloat( string.substr( 0, k ) );
     var y = strToFloat( string.substr( k + 1 ) );
     var p = new cc.Point(x, y );
-
-    var r = p + add;
-    return new cc.Point(p.x + add.y, p.x + add.y);
+    return new cc.Point(p.x + add.y, p.y + add.y);
 };
 /**
  *
