@@ -1,10 +1,13 @@
 /******************************************************************************
  * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
  *
- * Author: Vladimir Tolmachev
- * Project: Defense of Greece
- * e-mail: tolm_vl@hotmail.com
- * If you received the code is not the author, please contact me
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
  ******************************************************************************/
 
 //Define namespace
