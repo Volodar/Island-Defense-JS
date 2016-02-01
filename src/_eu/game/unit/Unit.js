@@ -18,7 +18,7 @@ EU.Unit = cc.Node.extend({
 
     Extra : function()
     {
-        /** @type {cc.math.Vec2} */ this._electroPosition = cc.math.Vec2(0,0);
+        /** @type {cc.math.Vec2} */ this._electroPosition = new cc.math.Vec2(0,0);
         /** @type {String} */ this._electroSize = "";
         /** @type {Number} */ this._electroScale = 0;
         /** @type {cc.math.Vec2} */ this._firePosition = null;
@@ -77,7 +77,7 @@ EU.Unit = cc.Node.extend({
     {
         this.byangle = 0.0;
         this.useangle = 0.0;
-        this.offset = cc.math.Vec2(0,0);
+        this.offset = new cc.math.Vec2(0,0);
     },
     /** @type {String} */ _bulletXml : null,
     /** @type Object<Number, EU.BulletParams>*/ _bulletParams : {},
@@ -183,32 +183,33 @@ EU.Unit = cc.Node.extend({
         //{
             //CC_BREAK_IF( !MachineUnit.ctor.call(this) );
             //CC_BREAK_IF( !MachineMove.init() );
+        xmlFile = xmlFile || "ini.xml";
 
-            this._healthIndicator = EU.IndicatorNode.create();
-            this.addChild( this._healthIndicator );
+        this._healthIndicator = EU.IndicatorNode.create();
+        this.addChild( this._healthIndicator );
 
 
-            this.load_str_n_str( path, xmlFile );
+        this.load_str_n_str( path, xmlFile );
 
-            var level = EU.userData.tower_upgradeLevel( this.getName() );
-            this.setMaxLevelForLevel( level );
+        var level = EU.userData.tower_upgradeLevel( this.getName() );
+        this.setMaxLevelForLevel( level );
 
-            var cb = this.on_mover;
-            this._mover.setOnChangePosition( cb );
-            this._mover.setOnFinish( this.on_movefinish );
+        var cb = this.on_mover;
+        this._mover.setOnChangePosition( cb );
+        this._mover.setOnFinish( this.on_movefinish );
 
-            //if( this._type == UniType.tower )
-            //{
-            //	//Number rate = mlTowersInfo.shared().rate( getName() );
-            //	//_effect.positive.damage *= rate;
-            //	//_effect.positive.fireRate *= rate;
-            //	//_effect.positive.iceRate *= rate;
-            //	//_effect.positive.electroRate *= rate;
-            //	//setRadius( getRadius() * rate );
-            //	//this._fireReady.delay /= rate;
-            //}
+        //if( this._type == UniType.tower )
+        //{
+        //	//Number rate = mlTowersInfo.shared().rate( getName() );
+        //	//_effect.positive.damage *= rate;
+        //	//_effect.positive.fireRate *= rate;
+        //	//_effect.positive.iceRate *= rate;
+        //	//_effect.positive.electroRate *= rate;
+        //	//setRadius( getRadius() * rate );
+        //	//this._fireReady.delay /= rate;
+        //}
 
-            return true;
+        return true;
         //}
         //while( false );
         //return false;
@@ -484,7 +485,7 @@ EU.Unit = cc.Node.extend({
         var target = this._targets.length == 0 ? null : this._targets[0];
         if( target )
         {
-            var now = cc.math.Vec2.subtract(cc.math.Vec2(0,0), target.getPosition(),this.getPosition()).normalize();
+            var now = cc.math.Vec2.subtract(new cc.math.Vec2(0,0), target.getPosition(),this.getPosition()).normalize();
             this._mover.setDirection( now );
             this.on_mover( this.getPosition(), now );
         }
@@ -509,6 +510,8 @@ EU.Unit = cc.Node.extend({
     },
     applyDamage : function( /**@type {EU.Unit} */ damager, time )
     {
+        time = time || 1;
+
         this._currentDamager = damager;
 
         this._effect.applyEffects( damager );
@@ -566,7 +569,7 @@ EU.Unit = cc.Node.extend({
                 var target = this._targets[i];
                 EU.assert( target );
                 var angle = this._bulletParams[this._mover.getCurrentAngle()].useangle;
-                var position = cc.math.Vec2.add(cc.math.Vec2(0,0),
+                var position = cc.math.Vec2.add(new cc.math.Vec2(0,0),
                     this._bulletParams[this._mover.getCurrentAngle()].offset , this.getPosition());
                 var bullet = new EU.Bullet( this._bulletXml, this, target, angle, position );
                 bullet.setType( EU.UnitType.tower );
@@ -655,7 +658,7 @@ EU.Unit = cc.Node.extend({
         var min_dist = 99999 ;
         for( var i = 0; i < route.length; ++i )
         {
-            var dist = cc.math.Vec2.subtract( cc.math.Vec2(0,0), pos.getDistance, route[i]).length();
+            var dist = cc.math.Vec2.subtract( new cc.math.Vec2(0,0), pos.getDistance, route[i]).length();
             if( dist < min_dist )
             {
                 index = i;
