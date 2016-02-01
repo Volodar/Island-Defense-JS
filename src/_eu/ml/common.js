@@ -134,13 +134,13 @@ var strToPoint = function( value ) {
  */
 var strToSize = function( value ){
     var size = new cc.Size(0,0);
-    var k = string.indexOf( "x" );
+    var k = value.indexOf( "x" );
     if( k == -1 ) {
         return cc.Point(0, 0) + add;
     }
     else {
-        size.width = strToFloat( string.substr( 0, k ) );
-        size.height = strToFloat( string.substr( k + 1 ) );
+        size.width = strToFloat( value.substr( 0, k ) );
+        size.height = strToFloat( value.substr( k + 1 ) );
     }
     return size;
 }
