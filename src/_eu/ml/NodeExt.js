@@ -49,14 +49,14 @@ EU.NodeExt = function(){
     this.load_str= function(file )
     {
         if( EU.xmlLoader.isEmpty(file)) return;
-        var xmlnode = new EU.pugixml.readXml(file);
+        var xmlnode = EU.pugixml.readXml( EU.xmlLoader.resourcesRoot + file);
         var root = xmlnode.firstElementChild;
         this.load_xmlnode( root );
     };
     this.load_xmlnode= function( root )
     {
-        EU.xmlLoader.bookDirectory( this );
-        EU.xmlLoader.load( this, root );
+        EU.xmlLoader.bookDirectory( this.as_node_ref() );
+        EU.xmlLoader.load_node_xml_node( this.as_node_ref(), root, false );
         EU.xmlLoader.unbookDirectory();
     };
     this.runEvent= function( eventname )
@@ -65,10 +65,11 @@ EU.NodeExt = function(){
         if( iter != null )
         {
             iter.execute( this );
-        } else {
-            var name = this.as_node_ref() ? EU.Node.prototype.getName.call(this) : "Not node inherited";
-            //log_once( "NodeExt[%s]: event with name [%s] not dispatched", name.c_str( ), eventname.c_str( ) );
         }
+        //else {
+        //    var name = this.as_node_ref() ? EU.Node.prototype.getName.call(this) : "Not node inherited";
+        //    //log_once( "NodeExt[%s]: event with name [%s] not dispatched", name.c_str( ), eventname.c_str( ) );
+        //}
     };
     this.getAction= function( name )
     {

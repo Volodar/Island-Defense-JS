@@ -32,6 +32,9 @@
         "src/_eu/game/unit/Unit.js",
         "src/_eu/game/unit/Bullet.js",
         "src/_eu/game/effects.js",
+        "src/_eu/scenes/MainGS.js",
+        "src/_eu/scenes/LayerLoader.js",
+        "src/_eu/scenes/map/MapLayer.js",
         "src/app.js"
     ]
 }
