@@ -27,6 +27,7 @@ EU.xmlLoader = {
 
     /** For Test Instance of */
     __xmlLoader: true,
+    resourcesRoot : "res/_origin/",
 
     self: this,
     macros: {
@@ -146,7 +147,7 @@ EU.xmlLoader = {
         }
         else
         {
-            var node = this.load_node_from_file( template_ );
+            var node = this.load_node_from_file( EU.xmlLoader.resourcesRoot + template_ );
             var xmlnodem = xmlnode;
             xmlnodem.removeAttribute( EU.xmlKey.Template.name );
             this.load_node_xml_node( node, xmlnodem, true );
@@ -199,7 +200,7 @@ EU.xmlLoader = {
         var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
         if( ignodeTemplate == false && this.stringIsEmpty(template_) == false )
         {
-            this.load_node_n_str( node, template_ );
+            this.load_node_n_str( node, EU.xmlLoader.resourcesRoot + template_ );
         }
 
         for (var i=0; i<xmlnode.attributes.length; i++)
@@ -289,7 +290,7 @@ EU.xmlLoader = {
 
         if( this.stringIsEmpty(template_) == false )
         {
-            child = this.load_node_str( template_ );
+            child = this.load_node_from_file( EU.xmlLoader.resourcesRoot + template_ );
         }
         if( child == null && this.stringIsEmpty(path) == false )
         {
@@ -757,33 +758,33 @@ EU.xmlLoader = {
         EU.xmlLoader.bookProperty( EU.xmlKey.Type.name, EU.xmlKey.Type.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Visible.name, EU.xmlKey.Visible.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Pos.name, EU.xmlKey.Pos.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Scale.name, EU.xmlKey.Scale .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Strech.name, EU.xmlKey.Strech ) ;
+        EU.xmlLoader.bookProperty( EU.xmlKey.Scale.name, EU.xmlKey.Scale.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Strech.name, EU.xmlKey.Strech.int ) ;
         EU.xmlLoader.bookProperty( EU.xmlKey.Size.name, EU.xmlKey.Size.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Rotation.name, EU.xmlKey.Rotation .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.LocalZ.name, EU.xmlKey.LocalZ ) ;
+        EU.xmlLoader.bookProperty( EU.xmlKey.Rotation.name, EU.xmlKey.Rotation.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.LocalZ.name, EU.xmlKey.LocalZ.int ) ;
         EU.xmlLoader.bookProperty( EU.xmlKey.GlobalZ.name, EU.xmlKey.GlobalZ .int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Center.name, EU.xmlKey.Center.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Tag.name, EU.xmlKey.Tag.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeOpacity.name, EU.xmlKey.CascadeOpacity .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeColor.name, EU.xmlKey.CascadeColor .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Image.name, EU.xmlKey.Image .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeOpacity.name, EU.xmlKey.CascadeOpacity.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeColor.name, EU.xmlKey.CascadeColor.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Image.name, EU.xmlKey.Image.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Blending.name, EU.xmlKey.Blending.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Opacity.name, EU.xmlKey.Opacity.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Color.name, EU.xmlKey.Color .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Animation.name, EU.xmlKey.Animation .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Color.name, EU.xmlKey.Color.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Animation.name, EU.xmlKey.Animation.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Name.name, EU.xmlKey.Name.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.AlignCols.name, EU.xmlKey.AlignCols.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.ImageNormal.name, EU.xmlKey.ImageNormal.int);
-        EU.xmlLoader.bookProperty( EU.xmlKey.ImageSelected.name, EU.xmlKey.ImageSelected .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ImageDisabled.name, EU.xmlKey.ImageDisabled .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Text.name, EU.xmlKey.Text .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Font.name, EU.xmlKey.Font .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.MenuCallBack.name, EU.xmlKey.MenuCallBack .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.TextWidth.name, EU.xmlKey.TextWidth .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ImageSelected.name, EU.xmlKey.ImageSelected.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ImageDisabled.name, EU.xmlKey.ImageDisabled.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Text.name, EU.xmlKey.Text.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Font.name, EU.xmlKey.Font.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.MenuCallBack.name, EU.xmlKey.MenuCallBack.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.TextWidth.name, EU.xmlKey.TextWidth.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.TextAlign.name, EU.xmlKey.TextAlign.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ScaleEffect.name, EU.xmlKey.ScaleEffect .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Sound.name, EU.xmlKey.Sound .int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.ScaleEffect.name, EU.xmlKey.ScaleEffect.int );
+        EU.xmlLoader.bookProperty( EU.xmlKey.Sound.name, EU.xmlKey.Sound.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Template.name, EU.xmlKey.Template.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.Path.name, EU.xmlKey.Path.int );
         EU.xmlLoader.bookProperty( EU.xmlKey.AlignStartPosition.name, EU.xmlKey.AlignStartPosition.int );
@@ -842,8 +843,6 @@ EU.xmlLoader = {
             return;
 
         var iproperty = this.strToPropertyType( property );
-        if( property == "sound" )
-            cc.log( property + ":" + value);
         if( false == this.setProperty_int( node, iproperty, value ) )
         {
             /** @type {EU.NodeExt} nodeext */
@@ -918,6 +917,7 @@ EU.xmlLoader = {
                     node.setAnchorPoint( strToPoint( value ) );
                     break;
                 case EU.xmlKey.Strech.int:
+                    break;
                     size = node.getContentSize();
                     if( cc.sizeEqualToSize( size, cc.size(0,0)) == false )
                     {
@@ -978,17 +978,16 @@ EU.xmlLoader = {
                     if( sprite )
                     {
                         //TODO: EU.ImageManager
-                        //frame = EU.ImageManager.shared().spriteFrame( value );
+                        //frame = EU.ImageManager.shared().spriteFrame( EU.xmlLoader.resourcesRoot + value );
                         frame = null;
                         if( frame )
                             sprite.setSpriteFrame( frame );
                         else
-                            sprite.setTexture( "res/_origin/" + value );
+                            sprite.setTexture( EU.xmlLoader.resourcesRoot + value );
                     }
                     else if( progress )
                     {
-                        //TODO: EU.ImageManager
-                        //var sprite = EU.ImageManager.sprite( value );
+                        var sprite = EU.ImageManager.sprite( EU.xmlLoader.resourcesRoot + value );
                         sprite = null;
                         if( sprite )
                             progress.setSprite( sprite );
@@ -1016,15 +1015,15 @@ EU.xmlLoader = {
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
                     EU.assert( menuitem instanceof EU.MenuItemImageWithText);
-                    menuitem.setImageNormal( value );
+                    menuitem.setImageNormal( EU.xmlLoader.resourcesRoot + value );
                     break;
                 case EU.xmlKey.ImageSelected.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.setImageSelected( value );
+                    menuitem.setImageSelected( EU.xmlLoader.resourcesRoot + value );
                     break;
                 case EU.xmlKey.ImageDisabled.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.setImageDisabled( value );
+                    menuitem.setImageDisabled( EU.xmlLoader.resourcesRoot + value );
                     break;
                 case EU.xmlKey.MenuCallBack.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
@@ -1037,16 +1036,16 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.Text.int:
                     if( label instanceof cc.LabelBMFont )
-                        label.setString( "res/_origin" + value );
+                        label.setString( value, true );
                     else if( menuitem instanceof EU.MenuItemImageWithText )
                         menuitem.setText( value );
                     break;
                 case EU.xmlKey.Font.int:
                     //TODO: font value here is without path, so xml value must be changed
                     if( label instanceof cc.LabelBMFont )
-                        label.setFntFile( "res/_origin" + value );
+                        label.setFntFile( EU.xmlLoader.resourcesRoot + value );
                     else if( menuitem instanceof EU.MenuItemImageWithText )
-                        menuitem.setFont( "res/_origin" + value );
+                        menuitem.setFont( EU.xmlLoader.resourcesRoot + value );
                     break;
                 case EU.xmlKey.TextWidth.int:
                     EU.assert(  label instanceof cc.LabelBMFont );
@@ -1116,7 +1115,7 @@ EU.xmlLoader = {
                     break;
                 default:
                     result = false;
-                    cc.log( "property with name[%d] not dispathed node by name[%s]", property, node.getName() );
+                    cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
                     break;
             }
         }

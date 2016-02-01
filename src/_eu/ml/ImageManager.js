@@ -14,7 +14,6 @@
 var EU = EU || {};
 
 EU.ImageManager  = {
-    resourcesRoot : "res/_origin/",
     frames: {},
 
     build: function(type) {
@@ -141,11 +140,11 @@ EU.ImageManager  = {
         }
         else
         {
-            sprite = new cc.Sprite( this.resourcesRoot + spriteFrameOrTexture );
+            sprite = new cc.Sprite( spriteFrameOrTexture );
         }
         if( !sprite )
         {
-            cc.log( "Sprite with resource [%s] not created." + this.resourcesRoot + spriteFrameOrTexture );
+            cc.log( "Sprite with resource not created: " + spriteFrameOrTexture );
         }
         EU.assert( sprite );
         return sprite;
