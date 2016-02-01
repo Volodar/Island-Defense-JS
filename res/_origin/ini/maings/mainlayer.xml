@@ -3,7 +3,6 @@
     <node name="bg" type="sprite" pos="frame:0.5x0.5" image="images/maings/title_20481536.jpg" strech="frame:1x1:max"/>
     <node name="logo" type="sprite" pos="frame:0.5x0.73" image="images/maings/logo.png" z="4" visible="yes"/>
 
-    <!--
 	<node type="menu" name="mainmenu" pos="0x0">
       <children>
         <node name="moregames" type="menuitem" imageN="images/maings/more_button.png" pos="frame:0.5x0.1" callback="moreApps" sound="##sound_button##" visible="##PLATFORM_MOBILE##" scale="0.7x0.7">
@@ -56,7 +55,6 @@
         <node name="settings" type="menuitem" imageN="images/maings/icon_settings.png" pos="-70x-70" callback="settings" sound="##sound_button##" scale="0.8x0.8"/>
       </children>
     </node>
-	-->
 
 
   </children>

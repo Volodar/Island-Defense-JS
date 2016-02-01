@@ -2,7 +2,7 @@
  * Copyright 2014-2016 Vladimir Tolmachev
  *
  * Author: Vladimir Tolmachev
- * Project: Defense of Greece
+ * Project: Island Defense (JS)
  * e-mail: tolm_vl@hotmail.com
  * If you received the code is not the author, please contact me
  ******************************************************************************/
@@ -19,6 +19,7 @@ EU.Factory  = {
         if( type == "particle" ) return cc.CCParticleSystemQuad.create();
         if( type == "progresstimer" ) return cc.ProgressTimer.create(null);
         if( type == "paralax" ) return cc.ParallaxNode.create();
+        if( type == "menuitem" ) return EU.MenuItemImageWithText.create();
         //TODO: change Label to Text
         if( type == "text" ) return cc.Label.create();
         //TODO: build types:

@@ -20,6 +20,7 @@
         "src/_eu/ml/pugixml/pugixml.js",
         "src/_eu/ml/common.js",
         "src/_eu/ml/NodeExt.js",
+        "src/_eu/ml/MenuItemWithText.js",
         "src/_eu/ml/ObjectFactory.js",
         "src/_eu/ml/FiniteStateMachine.js",
         "src/_eu/game/unit/MachineExt.js",
