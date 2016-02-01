@@ -56,7 +56,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         cc.MenuItemImage.initWithCallback( callback, target );
         //_onClick = callback;
     },
-
+    listenTexture: function( file ){
+        var texture = cc.textureCache.getTextureForKey(file);
+        if( texture ) {
+            if (texture.isLoaded())
+                this.locateImages();
+            else
+                texture.addEventListener("load", this.locateImages, this, texture);
+        }
+    },
     setImageNormal: function( file ) {
         if( this._imageNormal == file )
             return;
@@ -64,10 +72,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageNormal );
         this.setNormalImage( image );
         image.setName( kNameImageNormal );
-        var texture = image.getTexture();
-        if( texture )
-        if( texture.isLoaded() ) this.locateImages();
-        else texture.addEventListener("load", this.locateImages, this);
+        this.listenTexture(file);
     },
     setImageSelected: function( file ) {
         if( this._imageSelected == file )
@@ -76,10 +81,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageSelected );
         this.setSelectedImage( image );
         image.setName( kNameImageSelected );
-        var texture = image.getTexture();
-        if( texture )
-        if( texture.isLoaded() ) this.locateImages();
-        else texture.addEventListener("load", this.locateImages, this);
+        this.listenTexture(file);
     },
     setImageDisabled: function( file ) {
         if( this._imageDisabled == file )
@@ -88,10 +90,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageDisabled );
         this.setDisabledImage( image );
         image.setName( kNameImageDisabled );
-        var texture = image.getTexture();
-        if( texture )
-        if( texture.isLoaded() ) this.locateImages();
-        else texture.addEventListener("load", this.locateImages, this);
+        this.listenTexture(file);
     },
     setText: function( string ) {
         if( this._text == string )
@@ -121,8 +120,8 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             }
             else
             {
-                label.setBMFontFilePath( menuitem._font );
-                label.setString( menuitem._text );
+                label.setFntFile( menuitem._font );
+                label.setString( menuitem._text, true );
             }
             label.setPosition( center );
         };
@@ -167,11 +166,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this.getSelectedImage() )allocate( this._labelSelected2, this.getSelectedImage(), this );
         if( this.getDisabledImage() )allocate( this._labelDisabled2, this.getDisabledImage(), this );
     },
-    locateImages: function() {
+    locateImages: function( texture ) {
         if( !this.getNormalImage() )
             return;
 
-        var center = new cc.Point( this.getNormalImage().getContentSize().width , this.getNormalImage().getContentSize().height  );
+        if( texture == undefined || texture.isLoaded() == false )
+            return;
+        texture.removeEventListener("load", this );
+
+        var center = new cc.Point( this.getNormalImage().getContentSize().width / 2, this.getNormalImage().getContentSize().height / 2 );
 
         var node = null;
         if( (node = this.getNormalImage()) ){
