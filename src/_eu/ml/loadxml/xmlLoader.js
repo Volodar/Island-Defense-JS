@@ -56,6 +56,8 @@ EU.xmlLoader = {
          * @returns {String}
          */
         parse: function (string) {
+            if( string == undefined )
+                return "";
             var result = string;
             while( true )
             {
@@ -204,7 +206,8 @@ EU.xmlLoader = {
         {
             var attr = xmlnode.attributes[i];
             var name = attr.name;
-            EU.xmlLoader.setProperty( node, name, attr.value );
+            var value = attr.value;
+            EU.xmlLoader.setProperty( node, name, value );
         }
 
         for(var i=0; i < xmlnode.children.length; i++){
@@ -747,7 +750,7 @@ EU.xmlLoader = {
 
 
     //NodeExt
-    _directory : null,
+    directory : null,
     //static std::map<std::string, const int>
     properties : {},
     __autofillproperties: function() {
@@ -839,6 +842,8 @@ EU.xmlLoader = {
             return;
 
         var iproperty = this.strToPropertyType( property );
+        if( property == "sound" )
+            cc.log( property + ":" + value);
         if( false == this.setProperty_int( node, iproperty, value ) )
         {
             /** @type {EU.NodeExt} nodeext */
@@ -950,8 +955,7 @@ EU.xmlLoader = {
                     }
                     break;
                 case EU.xmlKey.Size.int:
-                    size.width = strToPoint( value ).x;
-                    size.height = strToPoint( value ).y;
+                    size = strToSize(value);
                     node.setContentSize( size );
                     break;
                 case EU.xmlKey.Tag.int:
@@ -1024,28 +1028,33 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.MenuCallBack.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    if( _directory )
-                        menuitem.setCallback( _directory.get_callback_by_description( value ) );
+                    if( this.directory )
+                        menuitem.setCallback( this.directory.get_callback_by_description( value ) );
                     break;
                 case EU.xmlKey.Sound.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
                     menuitem.setSound( value );
+                    break;
                 case EU.xmlKey.Text.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
-                    if( label ) label.setString( language.string( value ) );
-                    else menuitem.setText( language.string( value ) ); break;
+                    if( label instanceof cc.LabelBMFont )
+                        label.setString( "res/_origin" + value );
+                    else if( menuitem instanceof EU.MenuItemImageWithText )
+                        menuitem.setText( value );
+                    break;
                 case EU.xmlKey.Font.int:
-                    EU.assert(   menuitem instanceof EU.MenuItemImageWithText ||  label instanceof ccui.Text );
                     //TODO: font value here is without path, so xml value must be changed
-                    if( label ) label.setFontName( value );
-                    else menuitem.setFont( value ); break;
+                    if( label instanceof cc.LabelBMFont )
+                        label.setFntFile( "res/_origin" + value );
+                    else if( menuitem instanceof EU.MenuItemImageWithText )
+                        menuitem.setFont( "res/_origin" + value );
+                    break;
                 case EU.xmlKey.TextWidth.int:
-                    EU.assert(  label instanceof ccui.Text );
+                    EU.assert(  label instanceof cc.LabelBMFont );
                     if( label ) label.setContentSize( strToFloat( value ) );
                     break;
                 case EU.xmlKey.TextAlign.int:
-                    EU.assert( label instanceof ccui.Text );
-                    if( label instanceof ccui.Text  )
+                    EU.assert( label instanceof cc.LabelBMFont );
+                    if( label instanceof cc.LabelBMFont  )
                     {
                         /**
                          * @type {Number} align
@@ -1118,18 +1127,13 @@ EU.xmlLoader = {
      * @param {NodeExt} node
      */
     bookDirectory: function(node ){
-        this.unbookDirectory();
-        this._directory = node;
-        if( node && node.as_node_pointer() )
-            node.as_node_pointer().retain();
+        this.directory = node;
     },
     /**
      *
      */
     unbookDirectory: function(){
-        if( this._directory && this._directory.as_node_pointer() )
-            this._directory.as_node_pointer().release();
-        this._directory = nullptr;
+        this.directory = null;
     },
 
 };

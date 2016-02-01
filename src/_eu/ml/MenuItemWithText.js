@@ -18,7 +18,7 @@ var kNameImageDisabled = "disabled";
 
 
 EU.MenuItemImageWithText = cc.MenuItemImage.extend({
-    _useScaleEffectOnSelected: false,
+    _useScaleEffectOnSelected: true,
     _imageNormal: "",
     _imageSelected: "",
     _imageDisabled: "",
@@ -36,30 +36,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     _labelDisabled2: null,
 
     ctor: function(){
-    },
-    create1: function( normalImage, selectedImage, disabledImage, fontBMP, text, callback, target ){
-        var menuItem = new EU.MenuItemImageWithText();
-        menuItem.initWithNormalImage(normalImage, selectedImage, disabledImage, fontBMP, text, callback, target);
-        return menuItem;
-    },
-    create2: function( normalImage, selectedImage, fontBMP, text, callback, target ){
-        var menuItem = new EU.MenuItemImageWithText();
-        menuItem.initWithNormalImage(normalImage, selectedImage, normalImage, fontBMP, text, callback, target);
-        return menuItem;
-    },
-    create3: function( normalImage, selectedImage, callback, target ){
-        var menuItem = new EU.MenuItemImageWithText();
-        menuItem.initWithNormalImage(normalImage, selectedImage, normalImage, "", "", callback, target);
-        return menuItem;
-    },
-    create4: function( normalImage, callback, target ){
-        var menuItem = new EU.MenuItemImageWithText();
-        menuItem.initWithNormalImage(normalImage, normalImage, normalImage, "", "", callback, target);
-        return menuItem;
+        cc.MenuItemImage.prototype.ctor.call(this);
     },
     initWithNormalImage: function( normalImage, selectedImage, disabledImage, fontBMP, text, callback, target ){
         this.initWithCallback( callback, target );
-        this.setCallback( callback, target );
         //EU.NodeExt.init();
         this.setCascadeColorEnabled(true);
         this.setCascadeOpacityEnabled(true);
@@ -84,7 +64,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageNormal );
         this.setNormalImage( image );
         image.setName( kNameImageNormal );
-        this.locateImages();
+        var texture = image.getTexture();
+        if( texture )
+        if( texture.isLoaded() ) this.locateImages();
+        else texture.addEventListener("load", this.locateImages, this);
     },
     setImageSelected: function( file ) {
         if( this._imageSelected == file )
@@ -93,7 +76,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageSelected );
         this.setSelectedImage( image );
         image.setName( kNameImageSelected );
-        this.locateImages();
+        var texture = image.getTexture();
+        if( texture )
+        if( texture.isLoaded() ) this.locateImages();
+        else texture.addEventListener("load", this.locateImages, this);
     },
     setImageDisabled: function( file ) {
         if( this._imageDisabled == file )
@@ -102,7 +88,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var image = EU.ImageManager.sprite( this._imageDisabled );
         this.setDisabledImage( image );
         image.setName( kNameImageDisabled );
-        this.locateImages();
+        var texture = image.getTexture();
+        if( texture )
+        if( texture.isLoaded() ) this.locateImages();
+        else texture.addEventListener("load", this.locateImages, this);
     },
     setText: function( string ) {
         if( this._text == string )
@@ -165,7 +154,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
                 label2 = new cc.LabelBMFont(  menuitem._text, menuitem._font, -1, cc.TEXT_ALIGNMENT_LEFT, new cc.Point(0,0))
                 parent.addChild( label2 );
                 label2.setName( kNameText2 );
-                label2.setAnchorPoint(Point(0.5, 0.5));
+                label2.setAnchorPoint(new cc.Point(0.5, 0.5));
             }
             else {
                 label2.setBMFontFilePath( menuitem_font2 );
@@ -182,23 +171,23 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( !this.getNormalImage() )
             return;
 
-        var center = new cc.Point( this.getNormalImage().getContentSize().width / 2, this.getNormalImage().getContentSize().height / 2 );
+        var center = new cc.Point( this.getNormalImage().getContentSize().width , this.getNormalImage().getContentSize().height  );
 
         var node = null;
         if( (node = this.getNormalImage()) ){
-            node.setAnchorPoint( Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
         }
         if( (node = this.getSelectedImage()) ) {
-            node.setAnchorPoint( Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
         }
         if( (node = this.getDisabledImage()) ) {
-            node.setAnchorPoint( Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
@@ -229,7 +218,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         return result;
     },
     selected: function() {
-        this.__super();
+        cc.MenuItem.prototype.selected.call(this);
 
         if( this._useScaleEffectOnSelected ) {
             cc.ScaleTo
@@ -249,7 +238,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         }
     },
     unselected: function() {
-        this.__super();
+        cc.MenuItem.prototype.unselected.call(this);
 
         if( this._useScaleEffectOnSelected ) {
             var  tag = 0x123;
@@ -270,15 +259,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     setEnabled: function( bEnabled ) {
         if( this.isEnabled() == bEnabled )
             return;
-        this.__super( bEnabled );
+        cc.MenuItem.prototype.setEnabled.call(this, bEnabled);
         this.switchAnimation();
     },
     onEnter: function() {
-        this.__super();
+        cc.Node.prototype.onEnter.call(this);
         this.switchAnimation();
     },
     onExit: function() {
-        this.__super();
+        cc.Node.prototype.onExit.call(this);
         this.switchAnimation();
     },
     setSound: function( sound ) {

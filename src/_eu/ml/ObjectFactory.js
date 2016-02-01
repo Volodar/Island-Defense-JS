@@ -25,7 +25,7 @@ EU.Factory  = {
         if( type == "paralax" ) return cc.ParallaxNode.create();
         if( type == "menuitem" ) return EU.MenuItemImageWithText.create();
         //TODO: change Label to Text
-        if( type == "text" ) return cc.Label.create();
+        if( type == "text" ) return cc.LabelBMFont.create();
         //TODO: build types:
         //if( type == "scrollmenu" ) return EU.ScrollMenu.create();
         //if( type == "menuitem" ) return EU.mlMenuItem.create();
