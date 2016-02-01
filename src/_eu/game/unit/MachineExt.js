@@ -9,10 +9,10 @@ EU.MachineExt = function(){
     EU.Machine.call(this);
 
     this.FSM_ADD_STATE = function(name) {
-        return EU.Machine.add_state( "state_" + name, null).set_string_name(name);
+        return this.add_state( "state_" + name, null).set_string_name(name);
     },
     this.FSM_ADD_EVENT = function(name) {
-        return EU.Machine.add_event( "event_" + name).set_string_name(name);
+        return this.add_event( "event_" + name).set_string_name(name);
     },
     /**
      * @type {Element} xmlmachine
@@ -33,7 +33,7 @@ EU.MachineExt = function(){
         var statename = xmlmachine.getAttribute( EU.k.xmlTag.StartState );
         if( EU.xmlLoader.isEmpty(statename) == false )
         {
-            var state = EU.Machine.state( statename );
+            var state = this.state( statename );
             this.start( state.get_name() );
         }
     },
@@ -58,9 +58,9 @@ EU.MachineExt = function(){
             var event = node.attributes[0].name;
             var tostate = node.getAttribute( event );
 
-            var from = EU.Machine.state( state );
-            var to = EU.Machine.state( tostate );
-            var by = EU.Machine.event( event );
+            var from = this.state( state );
+            var to = this.state( tostate );
+            var by = this.event( event );
 
             from.add_transition( by.get_name(), to.get_name() );
         }
