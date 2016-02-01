@@ -303,6 +303,9 @@ EU.xmlLoader = {
      */
     load_children: function(node, xmlnode)
     {
+        /**
+         * Template: FOR_EACHXML_BYTAG
+         */
         for(var i=0; i < xmlnode.children.length; i++){
             var xmlchild = xmlnode.children[i];
             if (xmlchild.tagName == "node") {
