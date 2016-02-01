@@ -1,11 +1,16 @@
 //Define namespace
 var EU = EU || {};
 
-
-EU.Unit = cc.Class.extend({}
-);
+EU.asObject = function(obj, defaultObj){
+    if (obj != null) return obj;
+    return defaultObj;
+};
 
 EU.mlEffect = cc.Class.extend({
+
+    /** For Test Instance of */
+    __mlEffect: true,
+
     Negative: function() {
         this.Damage = function()
         {
@@ -25,7 +30,7 @@ EU.mlEffect = cc.Class.extend({
         this.referentialExtendedDamageIce = 0.0;
         this.referentialExtendedDamageElectro = 0.0;
     },
-    negative: new this.Negative(),
+    negative: null,
 
     Positive: function() {
         this.damage = 0.0;
@@ -43,11 +48,13 @@ EU.mlEffect = cc.Class.extend({
         this.electroResist= 0.0;
         this.iceResist= 0.0;
     },
-    positive: new this.Positive(),
+    positive: null,
     m_unit: null,
 
     ctor: function( selfObject )
     {
+        this.negative = new this.Negative();
+        this.positive = new this.Positive();
         this.m_unit = selfObject ;
 
         this.negative.velocityMoveRate = 1.0;
@@ -100,39 +107,35 @@ EU.mlEffect = cc.Class.extend({
         this.negative = source.negative;
         this.positive = source.positive;
     },
-    asObject: function(obj, defaultObj){
-        if (obj != null) return obj;
-        return defaultObj;
-    },
     /**
      * @param {Element} node
      */
-    load : function( node )
+    load_node : function( node )
     {
         var p = node.getElementsByTagName( "this.positive" );
         var n = node.getElementsByTagName( "this.negative" );
     
-        this.negative.velocityMoveRate = this.asObject(n.getAttribute( "velocityMoveRate" ) , 1.0 );
-        this.negative.velocityMoveTimeLeft = this.asObject(n.getAttribute( "velocityMoveTimeLeft" ), 0.0 );
-        this.negative.armorLowRate = this.asObject(n.getAttribute( "armorLowRate" ), 0.0 );
-        this.negative.armorLowTimeLeft = this.asObject(n.getAttribute( "armorLowTimeLeft" ), 0.0 );
+        this.negative.velocityMoveRate = EU.asObject(n.getAttribute( "velocityMoveRate" ) , 1.0 );
+        this.negative.velocityMoveTimeLeft = EU.asObject(n.getAttribute( "velocityMoveTimeLeft" ), 0.0 );
+        this.negative.armorLowRate = EU.asObject(n.getAttribute( "armorLowRate" ), 0.0 );
+        this.negative.armorLowTimeLeft = EU.asObject(n.getAttribute( "armorLowTimeLeft" ), 0.0 );
     
-        this.positive.damage = this.asObject(p.getAttribute( "damage" ), 0.0 );
-        this.positive.fireRate = this.asObject(p.getAttribute( "fireRate" ), 0.0);
-        this.positive.iceRate = this.asObject(p.getAttribute( "iceRate" ), 0.0);
-        this.positive.electroRate = this.asObject(p.getAttribute( "electroRate" ), 0.0);
-        this.positive.velocityRate = this.asObject(p.getAttribute( "velocityRate" ), 1.0);
+        this.positive.damage = EU.asObject(p.getAttribute( "damage" ), 0.0 );
+        this.positive.fireRate = EU.asObject(p.getAttribute( "fireRate" ), 0.0);
+        this.positive.iceRate = EU.asObject(p.getAttribute( "iceRate" ), 0.0);
+        this.positive.electroRate = EU.asObject(p.getAttribute( "electroRate" ), 0.0);
+        this.positive.velocityRate = EU.asObject(p.getAttribute( "velocityRate" ), 1.0);
     
-        this.positive.fireTime = this.asObject(p.getAttribute( "fireTime" ), 0.0);
-        this.positive.iceTime = this.asObject(p.getAttribute( "iceTime" ), 0.0);
-        this.positive.electroTime = this.asObject(p.getAttribute( "electroTime" ), 0.0);
-        this.positive.velocityTime = this.asObject(p.getAttribute( "velocityTime" ), 0.0);
+        this.positive.fireTime = EU.asObject(p.getAttribute( "fireTime" ), 0.0);
+        this.positive.iceTime = EU.asObject(p.getAttribute( "iceTime" ), 0.0);
+        this.positive.electroTime = EU.asObject(p.getAttribute( "electroTime" ), 0.0);
+        this.positive.velocityTime = EU.asObject(p.getAttribute( "velocityTime" ), 0.0);
     
-        this.positive.isCanStoppedMove = this.asObject(p.getAttribute( "isCanStoppedMove" ) , false );
-        this.positive.armor = this.asObject(p.getAttribute( "armor" ), 0.0);
-        this.positive.fireResist = this.asObject(p.getAttribute( "fireResist" ), 1.0);
-        this.positive.electroResist = this.asObject(p.getAttribute( "electroResist" ), 1.0);
-        this.positive.iceResist = this.asObject(p.getAttribute( "iceResist" ), 1.0);
+        this.positive.isCanStoppedMove = EU.asObject(p.getAttribute( "isCanStoppedMove" ) , false );
+        this.positive.armor = EU.asObject(p.getAttribute( "armor" ), 0.0);
+        this.positive.fireResist = EU.asObject(p.getAttribute( "fireResist" ), 1.0);
+        this.positive.electroResist = EU.asObject(p.getAttribute( "electroResist" ), 1.0);
+        this.positive.iceResist = EU.asObject(p.getAttribute( "iceResist" ), 1.0);
     },
     update: function( dt )
     {

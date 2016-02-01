@@ -11,6 +11,10 @@
 var EU = EU || {};
 
 EU.ParamCollection = cc.Class.extend({
+
+    /** For Test Instance of */
+    __ParamCollection: true,
+
     self: this,
     delimiter_pair : ':',
     delimiter : ',',
@@ -22,6 +26,7 @@ EU.ParamCollection = cc.Class.extend({
     },
     // TODO:
     parse: function (string) {
+        if (!string) string = "";
         var l = 0;
         do
         {
