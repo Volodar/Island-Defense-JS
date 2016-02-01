@@ -17,7 +17,7 @@ EU.MachineExt = function(){
     /**
      * @type {Element} xmlmachine
      */
-    this.load = function(  xmlmachine )
+    this.load_xmlmachine = function(  xmlmachine )
     {
         for(var i=0; i < xmlmachine.children.length; i++){
             var xmlnode = xmlmachine.children[i];

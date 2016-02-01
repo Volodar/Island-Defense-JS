@@ -13,6 +13,7 @@ EU.Mover = cc.Class.extend(
     /**@type {cc.math.Vec2}*/ _truncatedDirection: null,
     _currentAngle: 0,
     _velocity: 0,
+    _defaultvelocity: 0,
     _allowAngles: [],
     _threshold: 0,
     _onChangePosition: null,
@@ -21,7 +22,7 @@ EU.Mover = cc.Class.extend(
     ctor: function () {
     },
 
-    load: function (/** @type {Element} */ xmlnode) {
+    load_element: function (/** @type {Element} */ xmlnode) {
         var xmlparams = xmlnode.getElementsByTagName("params")[0];
         var xmlangles = xmlparams.getElementsByTagName("allowangles")[0];
         var xmlthresold = xmlparams.getElementsByTagName("thresold")[0];
