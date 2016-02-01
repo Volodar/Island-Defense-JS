@@ -11,46 +11,46 @@
   <children>
     <node name="bg" type="sprite"/>
     
-    <node name="caption_text" type="bmlabel" font="fonts/titlefont.fnt" text="" pos="20x145" scale="0.4x0.4" center="0.5x0"/>
+    <node name="caption_text" type="text" font="fonts/titlefont.fnt" text="" pos="20x145" scale="0.4x0.4" center="0.5x0"/>
     
-    <node name="reward_text" type="bmlabel" font="fonts/helvetica.fnt" text="#gamechoose_reward#" pos="0x94" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
+    <node name="reward_text" type="text" font="fonts/helvetica.fnt" text="#gamechoose_reward#" pos="0x94" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
     
     <node name="stars" pos="0x60" type="node" cascadeopacity="yes" cascadecolor="yes"/>
     
     <node name="gold" type="node" pos="20x10" cascadeopacity="yes" cascadecolor="yes">
       <children>
         <node name="icon" type="sprite" image="choose::coin_diff.png" center="0x0.5"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="-5x2" scale="0.6x0.6" center="1x0.5" color="74C4DF"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="" pos="-5x2" scale="0.6x0.6" center="1x0.5" color="74C4DF"/>
       </children>
     </node>
     
     <node name="gear" type="node" pos="-65x-75" cascadeopacity="yes" cascadecolor="yes">
       <children>
         <node name="icon" type="sprite" image="choose::gear_for_diff.png" center="0.5x1"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="-4x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="" pos="-4x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
       </children>
     </node>
     
     <node name="waves" type="node" pos="65x-75" cascadeopacity="yes" cascadecolor="yes">
       <children>
         <node name="icon" type="sprite" image="choose::wave_for_diff.png" center="1x1"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="0x-2" scale="0.6x0.6" center="0x1" color="74C4DF"/>
-        <node name="caption" type="bmlabel" font="fonts/helvetica.fnt" text="#gamechoose_waves#" pos="0x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="" pos="0x-2" scale="0.6x0.6" center="0x1" color="74C4DF"/>
+        <node name="caption" type="text" font="fonts/helvetica.fnt" text="#gamechoose_waves#" pos="0x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
       </children>
     </node>
     
     <node name="exclude" type="node" pos="-65x-150" cascadeopacity="yes" cascadecolor="yes">
       <children>
         <node name="icon" type="sprite" image="choose::x_for_diff.png" center="0.5x1" pos="0x-9"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="0x-10" scale="0.5x0.5" center="0.5x0" color="74C4DF" textwidth="200" textalign="center"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="" pos="0x-10" scale="0.5x0.5" center="0.5x0" color="74C4DF" textwidth="200" textalign="center"/>
       </children>
     </node>
     
     <node name="lives" type="node" pos="65x-150" cascadeopacity="yes" cascadecolor="yes">
       <children>
         <node name="icon" type="sprite" image="choose::heals_for_diff.png" center="1x1"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="0x2" scale="0.6x0.6" center="0x1" color="74C4DF"/>
-        <node name="caption" type="bmlabel" font="fonts/helvetica.fnt" text="#gamechoose_lives#" pos="0x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="" pos="0x2" scale="0.6x0.6" center="0x1" color="74C4DF"/>
+        <node name="caption" type="text" font="fonts/helvetica.fnt" text="#gamechoose_lives#" pos="0x10" scale="0.6x0.6" center="0.5x0" color="74C4DF"/>
       </children>
     </node>
     
@@ -61,7 +61,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="game_text" type="bmlabel" pos="95x34" font="fonts/mdefensefont2.fnt" text="#gamechoose_start#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="game_text" type="text" pos="95x34" font="fonts/mdefensefont2.fnt" text="#gamechoose_start#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
           </children>
@@ -70,7 +70,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="game_text" type="bmlabel" pos="95x45" font="fonts/mdefensefont2.fnt" text="#gamechoose_start#" scale="0.6x0.6" z="2" visible="yes"/>
+                <node name="game_text" type="text" pos="95x45" font="fonts/mdefensefont2.fnt" text="#gamechoose_start#" scale="0.6x0.6" z="2" visible="yes"/>
                 <node name="icon" type="sprite" pos="65x15" image="choose::button_fuel.png" scale="0.7x0.7" center="0x0.5"  visible="yes"/>
                 <node name="text" pos="95x20" scale="0.6x0.6" center="0x0.5" visible="yes"/>
               </children>

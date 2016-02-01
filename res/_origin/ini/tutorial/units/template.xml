@@ -4,10 +4,10 @@
       <children>
         <node name="bg" image="images/tutorial/tut5_win.png" z="-2"/>
         <node name="bgtype" type="sprite" image="" z="-1" pos="-215x32"/>
-        <node name="name" type="bmlabel" font="fonts/helvetica.fnt" scale="1x1" center="0.0x1" pos="-110x127" text="soldier" color="E4BB7F"/>
-        <node name="caption" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" center="0.0x1" pos="-110x77" textwidth="400" text="" />
-        <node name="description" type="bmlabel" font="fonts/helvetica.fnt" scale="0.6x0.6" center="0.0x0" pos="-110x-105" textwidth="400" text="" color="E4BB7F"/>
-        <node name="info_tap" type="bmlabel" font="fonts/helvetica.fnt" scale="0.8x0.8" center="0.5x1" pos="0x-105" text="#tap_to_close#" />
+        <node name="name" type="text" font="fonts/helvetica.fnt" scale="1x1" center="0.0x1" pos="-110x127" text="soldier" color="E4BB7F"/>
+        <node name="caption" type="text" font="fonts/helvetica.fnt" scale="0.7x0.7" center="0.0x1" pos="-110x77" textwidth="400" text="" />
+        <node name="description" type="text" font="fonts/helvetica.fnt" scale="0.6x0.6" center="0.0x0" pos="-110x-105" textwidth="400" text="" color="E4BB7F"/>
+        <node name="info_tap" type="text" font="fonts/helvetica.fnt" scale="0.8x0.8" center="0.5x1" pos="0x-105" text="#tap_to_close#" />
         <node name="unit" type="sprite" pos="-210x40"/>
       </children>
     </node>

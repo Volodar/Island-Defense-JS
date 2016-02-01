@@ -2,7 +2,7 @@
   <children>
     <node name="conteiner" type="node" pos="140x229">
       <children>
-        <node name="name" type="bmlabel" font="fonts/whitefont1.fnt" text="Tower name" pos="0x-10" color="000000" scale="0.55x0.55"/>
+        <node name="name" type="text" font="fonts/whitefont1.fnt" text="Tower name" pos="0x-10" color="000000" scale="0.55x0.55"/>
         <node name="icon" type="sprite" pos="0x90"/>
         <node name="icon2" type="sprite" pos="-90x190"/>
         <node name="icon_locked" type="sprite" image="images/laboratory/lock_icon.png" pos="0x-110" visible="no"/>
@@ -15,9 +15,9 @@
 
         <node name="main" type="node" pos="0x0">
           <children>
-            <node name="dmg" type="bmlabel" pos="-95x-90" font="fonts/helvetica.fnt" text="ATK:" center="0x0.5" color="000000" scale="0.6x0.6"/>
-            <node name="rng" type="bmlabel" pos="30x-90" font="fonts/helvetica.fnt" text="RNG:" center="0x0.5" color="000000" scale="0.6x0.6"/>
-            <node name="spd" type="bmlabel" pos="-40x-122" font="fonts/helvetica.fnt" text="RATE:" center="0x0.5" color="000000" scale="0.6x0.6"/>
+            <node name="dmg" type="text" pos="-95x-90" font="fonts/helvetica.fnt" text="ATK:" center="0x0.5" color="000000" scale="0.6x0.6"/>
+            <node name="rng" type="text" pos="30x-90" font="fonts/helvetica.fnt" text="RNG:" center="0x0.5" color="000000" scale="0.6x0.6"/>
+            <node name="spd" type="text" pos="-40x-122" font="fonts/helvetica.fnt" text="RATE:" center="0x0.5" color="000000" scale="0.6x0.6"/>
 
             <node name="icondmg" type="sprite" image="images/laboratory/icon_atk.png" pos="-112x-90" />
             <node name="iconrng" type="sprite" image="images/laboratory/icon_rng.png" pos="12x-92" />
@@ -31,7 +31,7 @@
                 <node name="3" pos="0x0" type="sprite" image="images/laboratory/prorressbar_level_2.png"/>
                 <node name="4" pos="37x0" type="sprite" image="images/laboratory/prorressbar_level_2.png"/>
                 <node name="5" pos="72x0" type="sprite" image="images/laboratory/prorressbar_level_3.png" scale="-1x1"/>
-                <node name="caption" type="bmlabel" font="fonts/helvetica.fnt" text="" pos="0x2" color="FFFFFF" scale="0.7x0.7"/>
+                <node name="caption" type="text" font="fonts/helvetica.fnt" text="" pos="0x2" color="FFFFFF" scale="0.7x0.7"/>
               </children>
             </node>
 
@@ -41,8 +41,8 @@
                   <children>
                     <node name="normal">
                       <children>
-                        <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#laboratory_tower_upgrade#" pos="95x42" scale="0.6x0.6"/>
-                        <node name="cost" type="bmlabel" font="fonts/mdefensefont.fnt" text="999" pos="100x16" scale="0.4x0.4" center="0x0.5"/>
+                        <node name="text" type="text" font="fonts/mdefensefont.fnt" text="#laboratory_tower_upgrade#" pos="95x42" scale="0.6x0.6"/>
+                        <node name="cost" type="text" font="fonts/mdefensefont.fnt" text="999" pos="100x16" scale="0.4x0.4" center="0x0.5"/>
                         <node name="icon" type="sprite" image="images/laboratory/icon_coin.png" pos="85x14"/>
                       </children>
                     </node>
@@ -55,8 +55,8 @@
               <children>
                 <node type="menuitem" name="confirm" imageN ="images/laboratory/icon_ok.png" pos="-95x-175" sound="##sound_button##"/>
                 <node type="menuitem" name="cancel" imageN ="images/laboratory/icon_no.png" pos="95x-175" sound="##sound_button##"/>
-                <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#laboratory_tower_upgrade#" pos="0x-162" scale="0.6x0.6"/>
-                <node name="cost" type="bmlabel" font="fonts/mdefensefont.fnt" text="999" pos="5x-189" scale="0.4x0.4" center="0x0.5"/>
+                <node name="text" type="text" font="fonts/mdefensefont.fnt" text="#laboratory_tower_upgrade#" pos="0x-162" scale="0.6x0.6"/>
+                <node name="cost" type="text" font="fonts/mdefensefont.fnt" text="999" pos="5x-189" scale="0.4x0.4" center="0x0.5"/>
                 <node name="icon" type="sprite" image="images/laboratory/icon_coin.png" pos="-10x-191"/>
               </children>
             </node>
@@ -66,7 +66,7 @@
         
         <node name="info" type="node" pos="0x0" visible="no" >
           <children>
-            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x-35" color="000000" scale="0.6x0.6" textwidth="250" center="0.5x1"/>
+            <node name="text" type="text" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x-35" color="000000" scale="0.6x0.6" textwidth="250" center="0.5x1"/>
           </children>
         </node>
 

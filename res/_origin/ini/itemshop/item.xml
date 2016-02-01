@@ -2,7 +2,7 @@
   <children>
     <node name="conteiner" type="node" pos="140x229">
       <children>
-        <node name="name" type="bmlabel" font="fonts/whitefont1.fnt" text="Tower name" pos="0x130" color="000000" scale="0.8x0.8"/>
+        <node name="name" type="text" font="fonts/whitefont1.fnt" text="Tower name" pos="0x130" color="000000" scale="0.8x0.8"/>
 
         <node name="menu_info" type="menu" pos="0x0" z="9">
           <children>
@@ -18,8 +18,8 @@
                   <children>
                     <node name="normal">
                       <children>
-                        <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#itemshop_buy#" pos="95x46" scale="0.6x0.6"/>
-                        <node name="cost" type="bmlabel" font="fonts/mdefensefont.fnt" text="0" pos="85x18" scale="0.4x0.4" center="0x0.5"/>
+                        <node name="text" type="text" font="fonts/mdefensefont.fnt" text="#itemshop_buy#" pos="95x46" scale="0.6x0.6"/>
+                        <node name="cost" type="text" font="fonts/mdefensefont.fnt" text="0" pos="85x18" scale="0.4x0.4" center="0x0.5"/>
                         <node name="icon" type="sprite" image="images/laboratory/icon_coin.png" pos="70x16"/>
                       </children>
                     </node>
@@ -28,13 +28,13 @@
               </children>
             </node>
             <node name="icon" type="sprite" pos="0x-10"/>
-            <!--<node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="999" pos="50x-35" scale="1x1" textwidth="350" center="0.5x1"/>-->
+            <!--<node name="count" type="text" font="fonts/helveticastoke.fnt" text="999" pos="50x-35" scale="1x1" textwidth="350" center="0.5x1"/>-->
           </children>
         </node>
         
         <node name="info" type="node" pos="0x0" visible="no" >
           <children>
-            <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x0" color="000000" scale="0.8x0.8" textwidth="350" center="0.5x1" textalign="center"/>
+            <node name="text" type="text" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x0" color="000000" scale="0.8x0.8" textwidth="350" center="0.5x1" textalign="center"/>
           </children>
         </node>
 

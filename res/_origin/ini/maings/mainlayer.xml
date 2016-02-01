@@ -9,7 +9,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#More apps#" z="2" scale="0.8x0.8"/>
+                <node name="start_text" type="text" pos="120x62" font="fonts/mdefensefont2.fnt" text="#More apps#" z="2" scale="0.8x0.8"/>
               </children>
             </node>
           </children>
@@ -19,7 +19,7 @@
           <children>
             <node name="normal" cascadeopacity="no" opacity="0">
               <children>
-                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Restore purchase#" z="2" scale="0.6x0.6" center="0.5x0.5"/>
+                <node name="start_text" type="text" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Restore purchase#" z="2" scale="0.6x0.6" center="0.5x0.5"/>
                 <node name="line" type="sprite" image="images/square.png" scale="250x3" center="0.5x0" pos="120x40"/>
               </children>
             </node>
@@ -30,17 +30,17 @@
           <children>
             <node name="normal">
               <children>
-                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Exit#" z="2" scale="1x1"/>
+                <node name="start_text" type="text" pos="120x62" font="fonts/mdefensefont2.fnt" text="#Exit#" z="2" scale="1x1"/>
               </children>
             </node>
           </children>
         </node>
 
-        <node name="startgame" type="menuitem" imageN="images/maings/icon_play.png" pos="frame:0.5x0.43" callback="pushGame" sound="##sound_button##" visible="no">
+        <node name="startgame" type="menuitem" imageN="images/maings/icon_play.png" pos="frame:0.5x0.43" callback="pushGame" sound="##sound_button##" visible="yes">
           <children>
             <node name="normal">
               <children>
-                <node name="start_text" type="bmlabel" pos="120x62" font="fonts/titlefont.fnt" text="#play#" z="2" scale="0.7x0.7" center="0.5x0.5" visible="yes"/>
+                <node name="start_text" type="text" pos="120x62" font="fonts/titlefont.fnt" text="#play#" z="2" scale="0.7x0.7" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
           </children>
@@ -50,11 +50,11 @@
       </children>
     </node>
 
-    <node type="menu" name="menusettings" pos="frame:1x1" visible="no">
+    <!--<node type="menu" name="menusettings" pos="frame:1x1" visible="no">
       <children>
         <node name="settings" type="menuitem" imageN="images/maings/icon_settings.png" pos="-70x-70" callback="settings" sound="##sound_button##" scale="0.8x0.8"/>
       </children>
-    </node>
+    </node>-->
 
 
   </children>

@@ -1,14 +1,14 @@
 <layer type="selecthero" name="selecthero" pos="frame:0.5x0.5" cascadeopacity="yes" scale="1.1x1.1" size="0x0" opacity="0">
   <children>
     <node name="bg" type="sprite" image="images/promo/bg.png" pos="0x0"/>
-    <node name="points" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroes_promo_caption#" pos="70x215" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+    <node name="points" type="text" font="fonts/mdefensefont2.fnt" text="#heroes_promo_caption#" pos="70x215" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
     
-    <node name="hero1" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero1#" pos="-300x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
-    <node name="hero2" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero2#" pos="0x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
-    <node name="hero3" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero3#" pos="305x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
-    <node name="hero1_name" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroname_0#" pos="-300x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
-    <node name="hero2_name" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroname_2#" pos="-5x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
-    <node name="hero3_name" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#heroname_1#" pos="305x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
+    <node name="hero1" type="text" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero1#" pos="-300x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+    <node name="hero2" type="text" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero2#" pos="0x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+    <node name="hero3" type="text" font="fonts/mdefensefont2.fnt" text="#heroes_promo_hero3#" pos="305x-175" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+    <node name="hero1_name" type="text" font="fonts/mdefensefont2.fnt" text="#heroname_0#" pos="-300x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
+    <node name="hero2_name" type="text" font="fonts/mdefensefont2.fnt" text="#heroname_2#" pos="-5x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
+    <node name="hero3_name" type="text" font="fonts/mdefensefont2.fnt" text="#heroname_1#" pos="305x-110" scale="1x1" center="0.5x0.5" color="FFFFFF" opacity="192"/>
 
     <node name="points" strech="500x50:min"/>
     <node name="hero1" strech="250x50:min" />
@@ -25,7 +25,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="cost" type="bmlabel" font="fonts/mdefensefont2.fnt" text="123456789" pos="75x35" scale="0.75x0.75" center="0.5x0.5" color="FFFFFF" strech="150x60:min"/>
+                <node name="cost" type="text" font="fonts/mdefensefont2.fnt" text="123456789" pos="75x35" scale="0.75x0.75" center="0.5x0.5" color="FFFFFF" strech="150x60:min"/>
               </children>
             </node>
           </children>

@@ -7,7 +7,7 @@
     <!--node name="fuel" type="node" pos="29x-8">
       <children>
         <node name="icon" type="sprite" image="images/map/button_fuel.png" pos="1x-8" visible="yes" center="1x0.5"/>
-        <node name="text" type="bmlabel" font="fonts/mdefensefont2.fnt" text="##fuel_for_level##" pos="-1x0" scale="0.55x0.55" center="0x0.5"/>
+        <node name="text" type="text" font="fonts/mdefensefont2.fnt" text="##fuel_for_level##" pos="-1x0" scale="0.55x0.55" center="0x0.5"/>
       </children>
     </node-->
   </children>

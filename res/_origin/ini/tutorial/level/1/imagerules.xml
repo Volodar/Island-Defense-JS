@@ -6,21 +6,21 @@
             <children>
                 <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
                 <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="60x-40"/>
-                <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_rules_destroyenemy#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+                <node name="text" type="text" font="fonts/helvetica.fnt" text="#tuturial_rules_destroyenemy#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
             </children>
         </node>
         <node name="ballon2" type="node" pos="-102x-110">
             <children>
                 <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
                 <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="60x40" rotation="180"/>
-                <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_rules_buildtower#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+                <node name="text" type="text" font="fonts/helvetica.fnt" text="#tuturial_rules_buildtower#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
             </children>
         </node>
         <node name="ballon3" type="node" pos="104x120">
             <children>
                 <node name="bg" type="sprite" image="images/tutorial/baloon1.png"/>
                 <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="60x-40"/>
-                <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_rules_protectbase#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
+                <node name="text" type="text" font="fonts/helvetica.fnt" text="#tuturial_rules_protectbase#" scale="0.7x0.7" pos="0x4" color="35352B" z="2"/>
             </children>
         </node>
     </children>

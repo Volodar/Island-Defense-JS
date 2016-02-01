@@ -3,7 +3,7 @@
     <node name="body" type="node" pos="0x-150">
       <children>
         <node name="bg" type="sprite" image="images/tutorial/tut2.png" />
-      	<node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_showskillpoints#" />
+      	<node name="text" type="text" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_showskillpoints#" />
       </children>
     </node>
     <node name="baloon" type="node" cascadeopacity="yes" opacity="0" pos="135x0">

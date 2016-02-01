@@ -8,17 +8,17 @@
 
     <node name="item1" type="menuitem" imageN ="images/gamescene/item1.png" imageD ="images/gamescene/item1_d.png" pos="0x0" sound="##sound_button##" callback="item1" visible="no" z="-1">
       <children>
-        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+        <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
     <node name="item2" type="menuitem" imageN ="images/gamescene/item2.png" imageD ="images/gamescene/item2_d.png" pos="0x0" sound="##sound_button##" callback="item2" visible="no" z="-1">
       <children>
-        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+        <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
     <node name="item3" type="menuitem" imageN ="images/gamescene/item3.png" imageD ="images/gamescene/item3_d.png" pos="0x0" sound="##sound_button##" callback="item3" visible="no" z="-1">
       <children>
-        <node name="count" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
+        <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
     <node name="itemshop" type="menuitem" imageN ="images/gamescene/button_itemshop.png" pos="0x0" sound="##sound_button##" callback="itemshop" visible="no" z="-1" scale="0.65x0.65"/>

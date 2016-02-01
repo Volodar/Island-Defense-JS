@@ -3,14 +3,14 @@
     <node name="body" type="node" pos="frame:0.5x0.5">
       <children>
         <node name="bg" type="sprite" image="images/tutorial/tut2.png" />
-      	<node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_open#" />
+      	<node name="text" type="text" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-110x00" textwidth="420" center="0x0.5" text="#tuturial_heroroom_open#" />
       </children>
     </node>
     <node name="baloon" type="node" cascadeopacity="yes" opacity="0" pos="right:-470x75">
       <children>
         <node name="bg" type="sprite" image="images/tutorial/baloon1.png" pos="0x110" scale="0.9x1"/>
         <node name="arrow" type="sprite" image="images/tutorial/baloon1_1.png" z="1" pos="0x70"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="#tuturial_openhero#" scale="0.65x0.7" color="35352B"  pos="0x114"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="#tuturial_openhero#" scale="0.65x0.7" color="35352B"  pos="0x114"/>
       </children>
     </node>
   </children>

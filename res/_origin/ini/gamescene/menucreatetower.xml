@@ -10,11 +10,11 @@
 
     <node type="sprite" name="desc" pos="170x0" image="images/gamescene/menucreatetower/hint_panel.png" z="-1" center="0x0.5" opacity="0">
       <children>
-        <node name="name" type="bmlabel" font="fonts/mdefensefont2.fnt" text="Anti-aircraft gun" z="2" pos="123x225"  opacity="0" strech="230x50:min"/>
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" text="Anti-aircraft gun" scale="0.6x0.6" z="2" pos="123x200" center="0.5x1" opacity="0" textwidth="220"/>
-        <node name="dmg" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2"  pos="48x28" center="0x0.5" opacity="0"/>
-        <node name="spd" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="120x28" center="0x0.5" opacity="0"/>
-        <node name="rng" type="bmlabel" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="192x28" center="0x0.5" opacity="0"/>
+        <node name="name" type="text" font="fonts/mdefensefont2.fnt" text="Anti-aircraft gun" z="2" pos="123x225"  opacity="0" strech="230x50:min"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" text="Anti-aircraft gun" scale="0.6x0.6" z="2" pos="123x200" center="0.5x1" opacity="0" textwidth="220"/>
+        <node name="dmg" type="text" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2"  pos="48x28" center="0x0.5" opacity="0"/>
+        <node name="spd" type="text" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="120x28" center="0x0.5" opacity="0"/>
+        <node name="rng" type="text" font="fonts/mdefensefont2.fnt" text="9" scale="0.4x0.4" z="2" pos="192x28" center="0x0.5" opacity="0"/>
       </children>
     </node>
 
@@ -24,78 +24,78 @@
     <node type="menuitem" name="laser" pos="-120x0" imageN="images/gamescene/menucreatetower/menu_laser1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="laser_un" pos="-120x0" imageN="images/gamescene/menucreatetower/menu_laser2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
     <node type="menuitem" name="firegun" pos="-60x-73" imageN="images/gamescene/menucreatetower/menu_firegun1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="firegun_un" pos="-60x-73" imageN="images/gamescene/menucreatetower/menu_firegun2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
     <node type="menuitem" name="icegun" pos="120x0" imageN="images/gamescene/menucreatetower/menu_icegun1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="icegun_un" pos="120x0" imageN="images/gamescene/menucreatetower/menu_icegun2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
     <node type="menuitem" name="minigun" pos="-60x73" imageN="images/gamescene/menucreatetower/menu_minigun1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x-0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="minigun_un" pos="-60x73" imageN="images/gamescene/menucreatetower/menu_minigun2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x-0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
     <node type="menuitem" name="roketgun" pos="60x73" imageN="images/gamescene/menucreatetower/menu_roketgun1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="roketgun_un" pos="60x73" imageN="images/gamescene/menucreatetower/menu_roketgun2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
     <node type="menuitem" name="teslagun" pos="60x-73" imageN="images/gamescene/menucreatetower/menu_teslagun1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="teslagun_un" pos="60x-73" imageN="images/gamescene/menucreatetower/menu_teslagun2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menucreatetower/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 

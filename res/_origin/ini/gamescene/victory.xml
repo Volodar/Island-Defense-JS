@@ -6,17 +6,17 @@
     <node name="bg_star" type="sprite" image="images/gamescene/victory/victory_3.png" z="-2" pos="0x500"/>
     <node name="victory" type="sprite" image="images/gamescene/victory/victory_2.png" z="1" pos="0x1000" scale="0x0" opacity="192">
       <children>
-        <node name="victory_text" type="bmlabel" pos="180x70" font="fonts/mdefensefont2.fnt" text="#victory#" scale="1.1x1.1" z="2" center="0.5x0.5" visible="yes"/>
+        <node name="victory_text" type="text" pos="180x70" font="fonts/mdefensefont2.fnt" text="#victory#" scale="1.1x1.1" z="2" center="0.5x0.5" visible="yes"/>
       </children>
     </node>
-    <node name="caption" type="bmlabel" font="fonts/mdefensefont.fnt" text="#victory#" pos="0x180" scale="1.0x1.0"/>
+    <node name="caption" type="text" font="fonts/mdefensefont.fnt" text="#victory#" pos="0x180" scale="1.0x1.0"/>
     
     
     <node name="score" type="node" pos="0x500" z="-3" visible="yes">
       <children>
         <node name="bg_score" type="sprite" image="images/gamescene/victory/victory_4.png" z="-1" pos="" />
         <node name="icon" type="sprite" image="images/gamescene/victory/victory_coin.png" z="1" pos="-10x-50"  center="1x0.5"/>
-        <node name="value" type="bmlabel" font="fonts/helvetica.fnt" text="" z="1" pos="-13x-42" center="0x0.5"/>
+        <node name="value" type="text" font="fonts/helvetica.fnt" text="" z="1" pos="-13x-42" center="0x0.5"/>
       </children>
     </node>
     
@@ -45,7 +45,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="continue_text" type="bmlabel" pos="110x60" font="fonts/mdefensefont2.fnt" text="#continue#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="continue_text" type="text" pos="110x60" font="fonts/mdefensefont2.fnt" text="#continue#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
           </children>
@@ -54,10 +54,10 @@
           <children>
             <node name="normal">
               <children>
-                <node name="restart_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="restart_text" type="text" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
                 <node name="icon" type="sprite" pos="64x26" image="choose::button_fuel.png" scale="0.6x0.6" center="0x0.5"  visible="no"/>
                 
-                <node name="cost" type="bmlabel" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
+                <node name="cost" type="text" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
               </children>
             </node>
           </children>

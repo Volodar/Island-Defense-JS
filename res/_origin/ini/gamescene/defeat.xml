@@ -4,7 +4,7 @@
     <node name="top" type="sprite" image="images/gamescene/defeat/defeat2.png" z="-1" pos="0x500"/>
     <node name="defeat" type="sprite" image="images/gamescene/defeat/defeat1.png" z="1" pos="0x1000" scale="0x0" opacity="192">
       <children>
-        <node name="defeat_text" type="bmlabel" pos="180x70" font="fonts/mdefensefont2.fnt" text="#defeat#" scale="0.9x0.9" z="2" center="0.5x0.5" visible="yes"/>
+        <node name="defeat_text" type="text" pos="180x70" font="fonts/mdefensefont2.fnt" text="#defeat#" scale="0.9x0.9" z="2" center="0.5x0.5" visible="yes"/>
       </children>
     </node>
     
@@ -15,7 +15,7 @@
           <children>
             <node name="normal">
               <children>
-                <node name="quit_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#quit#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="quit_text" type="text" pos="90x50" font="fonts/mdefensefont2.fnt" text="#quit#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
           </children>
@@ -25,10 +25,10 @@
           <children>
             <node name="normal">
               <children>
-                <node name="restart_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="restart_text" type="text" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
                 <node name="icon" type="sprite" pos="64x26" image="choose::button_fuel.png" scale="0.6x0.6" center="0x0.5"  visible="no"/>
                 
-                <node name="cost" type="bmlabel" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
+                <node name="cost" type="text" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
               </children>
             </node>
           </children>

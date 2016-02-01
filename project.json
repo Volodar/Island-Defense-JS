@@ -19,6 +19,7 @@
         "src/_eu/ml/ParamCollection.js",
         "src/_eu/ml/loadxml/xmlLoader.js",
         "src/_eu/ml/loadxml/xmlProperties.js",
+        "src/_eu/ml/ImageManager.js",
         "src/_eu/ml/common.js",
         "src/_eu/ml/NodeExt.js",
         "src/_eu/ml/MenuItemWithText.js",

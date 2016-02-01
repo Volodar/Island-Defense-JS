@@ -1,13 +1,13 @@
 <menu name="pause">
   <children>
     <node name="bg" type="sprite" image="images/gamescene/pause/pause_window.png" z="-1"/>
-    <node name="caption" type="bmlabel" font="fonts/mdefensefont.fnt" text="#pause#" pos="0x180" scale="1.0x1.0"/>
+    <node name="caption" type="text" font="fonts/mdefensefont.fnt" text="#pause#" pos="0x180" scale="1.0x1.0"/>
     
     <node name="quit" type="menuitem" imageN ="images/gamescene/pause/button_quit.png" pos="0x-175" sound="##sound_button##" callback="quit">
       <children>
         <node name="normal">
           <children>
-            <node name="restart_text" type="bmlabel" pos="94x56" font="fonts/mdefensefont2.fnt" text="#quit#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+            <node name="restart_text" type="text" pos="94x56" font="fonts/mdefensefont2.fnt" text="#quit#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
           </children>
         </node>
       </children>
@@ -17,10 +17,10 @@
       <children>
         <node name="normal">
           <children>
-        <node name="restart_text" type="bmlabel" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+        <node name="restart_text" type="text" pos="90x50" font="fonts/mdefensefont2.fnt" text="#restart#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
         <node name="icon" type="sprite" pos="64x26" image="choose::button_fuel.png" scale="0.6x0.6" center="0x0.5"  visible="no"/>
         
-        <node name="cost" type="bmlabel" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
+        <node name="cost" type="text" pos="86x30" font="fonts/mdefensefont2.fnt" text="0" scale="0.45x0.45" z="2" center="0x0.5" visible="no"/>
       </children>
     </node>
       </children>

@@ -5,7 +5,7 @@
       </children>
     </node>
 
-    <node name="timer" type="bmlabel" font="fonts/helvetica.fnt" text="00:00" pos="0x-50" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF"/>
+    <node name="timer" type="text" font="fonts/helvetica.fnt" text="00:00" pos="0x-50" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF"/>
     
   </children>
 </node>

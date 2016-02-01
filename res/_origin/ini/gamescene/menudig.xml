@@ -7,13 +7,13 @@
     <node type="menuitem" name="dig" pos="0x95" imageN="images/gamescene/menudig/menu_dig1.png" visible="yes">
       <children>
         <node type="sprite" name="cost_bg" pos="41x-5" image="images/gamescene/menudig/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x-2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x-2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="dig_un" pos="0x95" imageN="images/gamescene/menudig/menu_dig2.png" visible="no">
       <children>
         <node type="sprite" name="cost_bg" pos="41x-5" image="images/gamescene/menudig/menu_price.png" z="1"/>
-        <node name="cost" type="bmlabel" pos="40x-2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
+        <node name="cost" type="text" pos="40x-2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     <node type="menuitem" name="confirm" pos="0x95" imageN="images/gamescene/menudig/menu_ok2.png"  z="9"  visible="no"/>

@@ -3,17 +3,17 @@
     <node name="body" type="node" cascadeopacity="yes" opacity="255" scale="0.8x0.8">
       <children>
         <node name="bg" type="sprite" image="images/tutorial/tut2.png" />
-        <node name="text" type="bmlabel" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-100x20" textwidth="420" center="0x0.5" text="#exit_from_game#" textalign="left"/>
+        <node name="text" type="text" font="fonts/helvetica.fnt" scale="0.7x0.7" pos="-100x20" textwidth="420" center="0x0.5" text="#exit_from_game#" textalign="left"/>
         <node name="menu" type="menu" pos="0x0">
           <children>
             <node name="yes" type="menuitem" imageN ="images/tutorial/yes.png" pos="10x-88" sound="##sound_button##" callback="yes">
               <children>
-                <node name="yes_text" type="bmlabel" pos="70x40" font="fonts/mdefensefont2.fnt" text="#Yes#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="yes_text" type="text" pos="70x40" font="fonts/mdefensefont2.fnt" text="#Yes#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
             <node name="no"  type="menuitem" imageN ="images/tutorial/no.png"  pos="220x-90" sound="##sound_button##" callback="no">
               <children>
-                <node name="no_text" type="bmlabel" pos="114x44" font="fonts/mdefensefont2.fnt" text="#No#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
+                <node name="no_text" type="text" pos="114x44" font="fonts/mdefensefont2.fnt" text="#No#" scale="0.7x0.7" z="2" center="0.5x0.5" visible="yes"/>
               </children>
             </node>
           </children>

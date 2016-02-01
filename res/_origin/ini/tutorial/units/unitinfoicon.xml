@@ -2,7 +2,7 @@
   <children>
     <node name="icon" type="menuitem" imageN ="images/tutorial/newenemy.png" pos="0x0" sound="##sound_button##" callback="showinfo">
         <children>
-    <node name="text" type="bmlabel" pos="44x20" font="fonts/mdefensefont2.fnt" text="#tutorial_newenemy#" scale="0.4x0.4" z="2" center="0.5x0.5" visible="yes"/>
+    <node name="text" type="text" pos="44x20" font="fonts/mdefensefont2.fnt" text="#tutorial_newenemy#" scale="0.4x0.4" z="2" center="0.5x0.5" visible="yes"/>
     </children>
         </node>
   </children>

@@ -4,17 +4,17 @@
       <children>
         <node name="1136" type="sprite" image="images/heroroom/heroroom1.png" pos="0x384"/>
         
-        <node name="caption" type="bmlabel" font="fonts/mdefensefont2.fnt" text="#hero_room#" pos="0x710" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
+        <node name="caption" type="text" font="fonts/mdefensefont2.fnt" text="#hero_room#" pos="0x710" scale="1x1" center="0.5x0.5" color="FFFFFF"/>
 
         <node name="skin" type="sprite" pos="-330x340"/>
-        <node name="heroname" type="bmlabel" font="fonts/mdefensefont2.fnt" text="1" pos="-330x230" center="0.5x0.5" color="FFFFFF" scale="1x1"/>
+        <node name="heroname" type="text" font="fonts/mdefensefont2.fnt" text="1" pos="-330x230" center="0.5x0.5" color="FFFFFF" scale="1x1"/>
         
         <node name="level_timer_bg" type="sprite" image="heroroom::progress_level_back.png" pos="-330x150"/>
         <node name="level_timer" type="progresstimer" image="heroroom::progress_level.png" pos="-330x150"
               midpoint="0x0.5" barchangerate="1x0" progresstype="bar" percent="50"/>
-        <node name="level" type="bmlabel" font="fonts/helveticastoke.fnt" text="0" pos="-330x153" scale="0.55x0.55" center="0.5x0.5" color="FFFFFF"/>
-        <node name="points" type="bmlabel" font="fonts/helvetica.fnt" text="1" pos="160x465" scale="1x1" center="0x0.5" color="FFFFFF"/>
-        <node name="levelnumbertext" type="bmlabel" font="fonts/helvetica.fnt" text="1" pos="-330x95" scale="0.6x0.6" center="0.5x0.5" color="FFFFFF" textwidth="270" textalign="center"/>
+        <node name="level" type="text" font="fonts/helveticastoke.fnt" text="0" pos="-330x153" scale="0.55x0.55" center="0.5x0.5" color="FFFFFF"/>
+        <node name="points" type="text" font="fonts/helvetica.fnt" text="1" pos="160x465" scale="1x1" center="0x0.5" color="FFFFFF"/>
+        <node name="levelnumbertext" type="text" font="fonts/helvetica.fnt" text="1" pos="-330x95" scale="0.6x0.6" center="0.5x0.5" color="FFFFFF" textwidth="270" textalign="center"/>
 
         <node name="menu" type="menu" pos="0x0">
           <children>
@@ -49,7 +49,7 @@
 				<children>
 					<node name="normal">
 						<children>
-							<node name="cost" type="bmlabel" font="fonts/mdefensefont2.fnt" text="USD:999.00" pos="80x30" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF" strech="140x50:min"/>
+							<node name="cost" type="text" font="fonts/mdefensefont2.fnt" text="USD:999.00" pos="80x30" scale="0.5x0.5" center="0.5x0.5" color="FFFFFF" strech="140x50:min"/>
 						</children>
 					</node>
 				</children>
@@ -66,7 +66,7 @@
                 <node name="normal">
                   <children>
                     <node name="text" strech="150x35:min" pos="75x52"/>
-                    <node name="cost" type="bmlabel" font="fonts/mdefensefont2.fnt" text="999" pos="65x20" scale="0.5x0.5" center="0x0.5" color="FFFFFF" />
+                    <node name="cost" type="text" font="fonts/mdefensefont2.fnt" text="999" pos="65x20" scale="0.5x0.5" center="0x0.5" color="FFFFFF" />
                     <node name="gold" type="sprite" image="heroroom::icon_gold.png" pos="65x17" center="1x0.5" scale="0.75x0.75"/>
                   </children>
                 </node>
@@ -118,8 +118,8 @@
         <node name="skills" type="node" visible="yes">
           <children>
 
-            <node name="name" type="bmlabel" font="fonts/helvetica.fnt" pos="-30x222" scale="0.6x0.6" center="0.0x1" textalign="left" text="Name name name name" color="9DCFE0"/>
-            <node name="desc" type="bmlabel" font="fonts/helvetica.fnt" pos="-30x200" scale="0.5x0.5" center="0.0x1" textalign="left" textwidth="950" color="769BA8" text="d e s c desc desc d e s c d e s c desc desc desc desc desc desc desc desc desc desc desc "/>
+            <node name="name" type="text" font="fonts/helvetica.fnt" pos="-30x222" scale="0.6x0.6" center="0.0x1" textalign="left" text="Name name name name" color="9DCFE0"/>
+            <node name="desc" type="text" font="fonts/helvetica.fnt" pos="-30x200" scale="0.5x0.5" center="0.0x1" textalign="left" textwidth="950" color="769BA8" text="d e s c desc desc d e s c d e s c desc desc desc desc desc desc desc desc desc desc desc "/>
             <node name="icon" type="sprite" image="heroroom::hero1/i12.png" pos="-83x195"/>
 
             <node name="skill0" type="node" pos="-78x400">

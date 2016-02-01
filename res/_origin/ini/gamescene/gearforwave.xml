@@ -33,6 +33,6 @@
           ]
         ]"
       />
-    <node name="text" type="bmlabel" pos="0x6" font="fonts/mdefensefont2.fnt" text="##scores##"  center="1x0.5" scale="0.5x0.5"/>
+    <node name="text" type="text" pos="0x6" font="fonts/mdefensefont2.fnt" text="##scores##"  center="1x0.5" scale="0.5x0.5"/>
   </children>
 </node>

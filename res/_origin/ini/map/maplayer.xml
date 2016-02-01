@@ -15,8 +15,8 @@
 				<node name="itemshop" type="menuitem" imageN="images/map/button_itemshop.png" pos="right:-340x75" callback="itemshop" sound="##sound_button##" />
 				<node name="paid" type="menuitem" imageN="##icon_paid_version##" pos="right:-470x75" callback="paidversion" sound="##sound_button##">
 					<children>
-						<node name="text1" type="bmlabel" font="fonts/helveticastoke.fnt" text="#icon_fullversion_noads#" pos="58x145" scale="0.7x0.7" />
-						<node name="text2" type="bmlabel" font="fonts/helveticastoke.fnt" text="#icon_fullversion_heroes#" pos="58x122" scale="0.7x0.7" />
+						<node name="text1" type="text" font="fonts/helveticastoke.fnt" text="#icon_fullversion_noads#" pos="58x145" scale="0.7x0.7" />
+						<node name="text2" type="text" font="fonts/helveticastoke.fnt" text="#icon_fullversion_heroes#" pos="58x122" scale="0.7x0.7" />
 					</children>
 				</node>
 			</children>
@@ -24,7 +24,7 @@
     
 		<node name="leaderboard" type="menu" pos="frame:0x1">
 			<children>
-				<node name="score" type="bmlabel" font="fonts/mdefensefont.fnt" text="score: 99 999 999" pos="20x-20" scale="0.4x0.4" center="0x1"/>
+				<node name="score" type="text" font="fonts/mdefensefont.fnt" text="score: 99 999 999" pos="20x-20" scale="0.4x0.4" center="0x1"/>
         <node name="open" type="menuitem" imageN="images/map/leaderboard.png" pos="110x-80" callback="leaderboard" sound="##sound_button##" font="fonts/mdefensefont.fnt" text="#leaderboard#">
           <children>
             <node path="normal/text" strech="160x21:min" pos="95x25"/>

@@ -1,6 +1,6 @@
 <menuitem type="menuitem" name="unnamed" scale_effect="no" imageN ="images/shop/ui_panel1.png" sound="##sound_button##">
   <children>
-    <node name="text" type="bmlabel" font="fonts/whitefont1.fnt" text="..." pos="135x384" color="000000" scale="0.85x0.85" center="0x0.5"/>
+    <node name="text" type="text" font="fonts/whitefont1.fnt" text="..." pos="135x384" color="000000" scale="0.85x0.85" center="0x0.5"/>
     <node name="icon_type" type="sprite" pos="135x384" center="1x0.5" scale="1.5x1.5"/>
     <node name="icon" type="sprite" pos="135x229"/>
     <node name="menu" type="menu" pos="135x229" z="9">
@@ -9,8 +9,8 @@
           <children>
             <node name="normal">
               <children>
-                <node name="text" type="bmlabel" font="fonts/mdefensefont.fnt" text="#shop_buy#" pos="108x58" scale="0.9x0.85"/>
-                <node name="cost" type="bmlabel" font="fonts/mdefensefont.fnt" text="..." pos="108x22" scale="0.6x0.55"/>
+                <node name="text" type="text" font="fonts/mdefensefont.fnt" text="#shop_buy#" pos="108x58" scale="0.9x0.85"/>
+                <node name="cost" type="text" font="fonts/mdefensefont.fnt" text="..." pos="108x22" scale="0.6x0.55"/>
               </children>
             </node>
           </children>
