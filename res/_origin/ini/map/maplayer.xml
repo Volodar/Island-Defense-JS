@@ -22,7 +22,7 @@
 			</children>
 		</node>
     
-		<node name="leaderboard" type="menu" pos="frame:0x1">
+		<!--node name="leaderboard" type="menu" pos="frame:0x1">
 			<children>
 				<node name="score" type="text" font="fonts/mdefensefont.fnt" text="score: 99 999 999" pos="20x-20" scale="0.4x0.4" center="0x1"/>
         <node name="open" type="menuitem" imageN="images/map/leaderboard.png" pos="110x-80" callback="leaderboard" sound="##sound_button##" font="fonts/mdefensefont.fnt" text="#leaderboard#">
@@ -31,7 +31,7 @@
           </children>
         </node>
 			</children>
-		</node>
+		</node-->
     
 	</children>
 	<locations>
