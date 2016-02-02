@@ -41,14 +41,14 @@ EU.NodeExt = function(){
     this.load_str_n_str= function( path, xmlFile )
     {
         var file = path;
-        if( !EU.xmlLoader.isEmpty(file) && file.substr(-1) != '/' )
+        if( !EU.xmlLoader.stringIsEmpty(file) && file.substr(-1) != '/' )
             file += '/';
         file += xmlFile;
         this.load_str( file );
     };
     this.load_str= function(file )
     {
-        if( EU.xmlLoader.isEmpty(file)) return;
+        if( EU.xmlLoader.stringIsEmpty(file)) return;
         var xmlnode = new EU.pugixml.readXml(file);
         var root = xmlnode.firstElementChild;
         this.load_xmlnode( root );

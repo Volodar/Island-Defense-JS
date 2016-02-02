@@ -108,7 +108,7 @@ EU.WaveGenerator = {
                         /**RouteSubType */
                         var routest = EU.Common.strToRouteSubType( EU.asObject(creep.getAttribute("routesubtype") ));
                         var routeindex = EU.asObject(creep.getAttribute("routeindex"), 0);
-                        if ( EU.xmlLoader.isEmpty(name) ) name = dname;
+                        if ( EU.xmlLoader.stringIsEmpty(name) ) name = dname;
                         if ( healthRate == 0 ) healthRate = dhealthRate;
                         if ( score == 0 ) score = dscore;
                         if ( delay == 0 ) delay = ddelay;

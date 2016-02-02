@@ -44,11 +44,11 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
     setProperty: function( name, value )
     {
         if( name == "color_fire" )
-            this._color_fire = cc.hexToColor( EU.xmlLoader.isEmpty(value) ? "FF0000" : value );
+            this._color_fire = cc.hexToColor( EU.xmlLoader.stringIsEmpty(value) ? "FF0000" : value );
         else if( name == "color_ice" )
-            this._color_ice = cc.hexToColor( EU.xmlLoader.isEmpty(value) ? "00FFFF" : value );
+            this._color_ice = cc.hexToColor( EU.xmlLoader.stringIsEmpty(value) ? "00FFFF" : value );
         else if( name == "color_electro" )
-            this._color_electro = cc.hexToColor( EU.xmlLoader.isEmpty(value) ? "FFFF00" : value );
+            this._color_electro = cc.hexToColor( EU.xmlLoader.stringIsEmpty(value) ? "FFFF00" : value );
         else
             return EU.Unit.prototype.setProperty.call(this, name, value);
         return true;

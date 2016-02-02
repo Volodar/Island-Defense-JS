@@ -332,7 +332,7 @@ EU.Unit = cc.Node.extend({
         }
         else if( name == "unitlayer" )
         {
-            this._unitLayer = EU.xmlLoader.isEmpty(value) ? EU.UnitLayer.any : EU.Common.strToUnitLayer( value );
+            this._unitLayer = EU.xmlLoader.stringIsEmpty(value) ? EU.UnitLayer.any : EU.Common.strToUnitLayer( value );
         }
         else if( name == "sound_onmove" )
         {
