@@ -8,7 +8,7 @@ EU.GAME_ISLANDDEFENSE_THUMPSTAR = 3;
 EU.GAME_STEAM = 4;
 
 EU.k = {
-    resourceGameSceneFolder : null,
+    resourceGameSceneFolder : "res/_origin/images/gamescene/",
     IsometricValue : null,
     configuration : {
         kGameName : null,

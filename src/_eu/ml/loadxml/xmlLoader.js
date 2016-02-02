@@ -850,8 +850,8 @@ EU.xmlLoader = {
         {
             /** @type {EU.NodeExt} nodeext */
             var nodeext = node;
-            if( nodeext.setProperty != undefined )
-                nodeext.setPropertyStr( property, value );
+            if( nodeext.__NodeExt && nodeext.setProperty_str != undefined )
+                nodeext.setProperty_str( property, value );
         }
     },
     /**
