@@ -177,7 +177,7 @@ EU.GameGS = (function(){
             scene.addChild( layer.m_scoresNode, 9 );
             GameGS.getInstance().getGameBoard().loadLevel( levelindex, gamemode );
 
-            if( EU.k.configuration.useBoughtLevelScoresOnlyRestartLevel )
+            if( EU.k.useBoughtLevelScoresOnlyRestartLevel )
             {
                 var boughtScores = game._boughtScoresForSession;
                 GameGS.getInstance()._boughtScoresForSession = boughtScores;
@@ -1209,7 +1209,7 @@ EU.GameGS = (function(){
             this.addChild( window, 99999 );
 
             bool showad = UserData.shared().get_int( EU.k.user.UnShowAd ) == 0;
-            if( showad && EU.k.configuration.useAds )
+            if( showad && EU.k.useAds )
             {
                 var showAd = []()
                 {
@@ -1354,7 +1354,7 @@ EU.GameGS = (function(){
 
                 //run tutorial
                 int index = this.m_board.getCurrentLevelIndex( );
-                if (!(index == 1 && !EU.k.configuration.useInapps)) {
+                if (!(index == 1 && !EU.k.useInapps)) {
                     var event = "level" + intToStr(index) + "_enter";
                     TutorialManager.shared().dispatch(event);
                 }

@@ -48,7 +48,7 @@ EU.ScoreLayer = cc.Scene.extend({
         //CC_BREAK_IF( !Layer::init() );
         //if ( EU.NodeExt.prototype.init.call(this) ) return false;
 
-        if (EU.k.configuration.useFuel) {
+        if (EU.k.useFuel) {
             this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini", "scorelayer_fuel.xml" );
         } else {
             this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini", "scorelayer.xml" );
@@ -72,11 +72,11 @@ EU.ScoreLayer = cc.Scene.extend({
         if( this._shop )
         {
             this._shop.setCallback( this.cb_shop );
-            if( EU.k.configuration.useInapps == false )
+            if( EU.k.useInapps == false )
                 this._shop.setVisible( false );
         }
 
-        if( EU.k.configuration.useFuel == false )
+        if( EU.k.useFuel == false )
         {
             this._fuel.setVisible( false );
             this._time.setVisible( false );
@@ -102,7 +102,7 @@ EU.ScoreLayer = cc.Scene.extend({
         this._fuel.setString( score);
         this._time.setVisible( vis );
 
-        if( EU.k.configuration.useFuel == false )
+        if( EU.k.useFuel == false )
         {
             this._fuel.setVisible( false );
             this._time.setVisible( false );
@@ -125,7 +125,7 @@ EU.ScoreLayer = cc.Scene.extend({
             var scene = this.getScene();
             if (scene.this.getChildByName("shop")) return;
 
-            var shop = EU.ShopLayer.create(EU.k.configuration.useFreeFuel, true, false, false);
+            var shop = EU.ShopLayer.create(EU.k.useFreeFuel, true, false, false);
             if (shop) {
                 scene.pushLayer(shop, true);
             }

@@ -77,7 +77,7 @@ EU.VictoryMenu = cc.Node.extend(
             scene.addChild(scores, 999);
         }
 
-        if (EU.k.configuration.useFuel) {
+        if (EU.k.useFuel) {
             var restart_text = this.getChildByPath_str("menu/restart/normal/restart_text");
             if (restart_text) {
                 restart_text.setPositionY(restart_text.getPositionY() + 14);
@@ -101,7 +101,7 @@ EU.VictoryMenu = cc.Node.extend(
         }
         else {
             if (EU.PC != 1) {
-                var shop = EU.ShopLayer.create(EU.k.configuration.useFreeFuel, false, false, false);
+                var shop = EU.ShopLayer.create(EU.k.useFreeFuel, false, false, false);
                 if (shop) {
                     var scene = cc.director.getRunningScene();
                     /**@type {EU.SmartScene} smartscene */
