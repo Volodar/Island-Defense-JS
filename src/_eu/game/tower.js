@@ -167,19 +167,20 @@ EU.mlTowersInfo = {
     
     load : function ()
     {
-        var doc = new EU.pugixml.readXml("ini/towers.xml");
+        var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/towers.xml");
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
     
-        //var s = root.getElementsByTagName( "laboratory_upgrade" )[0].getAttribute( "value" );
-        //
-        ///** Array<String> */var upgrades = [];
-        //
-        //upgrades = s.split (',' );
-        //for (var i = 0; i < upgrades.length; i++) {
-        //    var value = upgrades[i];
-        //    this._labUpgrade.push( parseFloat( value ) );
-        //}
+        var labUpgrade = root.getElementsByTagName( "laboratory_upgrade" )[0];
+        var s = labUpgrade ? labUpgrade.getAttribute( "value" ) : "";
+
+        /** Array<String> */var upgrades = [];
+
+        upgrades = s.split (',' );
+        for (var i = 0; i < upgrades.length; i++) {
+            var value = upgrades[i];
+            this._labUpgrade.push( parseFloat( value ) );
+        }
 
         var order = 0 ;
         for(var i=0; i < root.children.length; i++){
@@ -215,17 +216,19 @@ EU.mlTowersInfo = {
             //TODO: EU.WORD - I18N.js - Language
             //info.desc = EU.WORD( node.getElementsByTagName( "desc" )[0].getAttribute( "value" ) );
             info.desc = ( node.getElementsByTagName( "desc" )[0].getAttribute( "value" ) );
-            var xmlLabParams = node.getElementsByTagName( "laboratories_params" );
-            info.lab.dmg = EU.asObject( (xmlLabParams && xmlLabParams.length > 0)?xmlLabParams[0].getAttribute( "dmg" ): 0);
-            info.lab.rng = EU.asObject( (xmlLabParams && xmlLabParams.length > 0)?xmlLabParams[0].getAttribute( "rng" ): 0);
-            info.lab.spd = EU.asObject( (xmlLabParams && xmlLabParams.length > 0)?xmlLabParams[0].getAttribute( "spd" ): 0);
-    
+            var labParams = node.getElementsByTagName( "laboratories_params" )[0];
+            if (labParams) {
+
+                info.lab.dmg = EU.asObject(labParams.getAttribute( "dmg" ), 0);
+                info.lab.rng = EU.asObject(labParams.getAttribute( "rng" ), 0);
+                info.lab.spd = EU.asObject(labParams.getAttribute( "spd" ), 0);
+            }
             {//load tower info
                 var maxlevel =  1 ;
                 for ( i = 1; i <= maxlevel; ++i )
                 {
                     var docTemplate;
-                    var doc = new EU.pugixml.readXml("ini/units/" + name +  i  + ".xml");
+                    var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/units/" + name +  i  + ".xml");
                     var root = doc.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = EU.asObject(root.getAttribute( "maxlevel" ), 0);
     
@@ -234,12 +237,12 @@ EU.mlTowersInfo = {
 
                     var xmlEffects = root.getElementsByTagName( "effects" )[0];
                     var xmlMachine = root.getElementsByTagName( "machine_unit" )[0];
-    
+
                     if ( !xmlEffects )
                         xmlEffects = docTemplate.firstElementChild.getElementsByTagName( "effects" )[0];
                     if ( !xmlMachine )
                         xmlMachine = docTemplate.firstElementChild.getElementsByTagName( "machine_unit" )[0];
-    
+
                     var xmlEffectsPositive = xmlEffects.getElementsByTagName( "positive" )[0];
                     var xmlMachineParams = xmlMachine.getElementsByTagName( "params" )[0];
     
@@ -317,7 +320,8 @@ EU.mlTowersInfo = {
 /*
 (function() {
     EU.mlTowersInfo.load();
-    EU.mlTowersInfo.checkAvailabledTowers();
+    //TODO: Re-enable this
+    // EU.mlTowersInfo.checkAvailabledTowers();
 })();
 */
 EU.mlTowersInfo = {
@@ -344,12 +348,12 @@ EU.mlTowersInfo = {
     },
     fetch: function(  name )
     {
-        var doc = new EU.pugixml.readXml("ini/units/" + name + ".xml");
+        var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/units/" + name + ".xml");
         var root = doc.firstElementChild;
 
         while( root.getAttribute( "template" ) )
         {
-            var doc = new EU.pugixml.readXml(root.getAttribute( "template" ));
+            var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + root.getAttribute( "template" ));
             root.removeAttribute( "template" );
     
             var temp = doc.firstElementChild;

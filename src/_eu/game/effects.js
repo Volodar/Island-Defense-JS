@@ -1,11 +1,6 @@
 //Define namespace
 var EU = EU || {};
 
-EU.asObject = function(obj, defaultObj){
-    if (obj != null) return obj;
-    return defaultObj;
-};
-
 EU.mlEffect = cc.Class.extend({
 
     /** For Test Instance of */
