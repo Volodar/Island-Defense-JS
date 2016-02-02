@@ -18,9 +18,12 @@ EU.pugixml = {
     readXml: function(xmlFile){
         var xmlDoc;
         var xmlhttp;
+        var fullPath = xmlFile.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+            xmlFile :
+            EU.xmlLoader.resourcesRoot + xmlFile;
         if (typeof window.DOMParser != "undefined") {
             xmlhttp = new XMLHttpRequest();
-            xmlhttp.open("GET", xmlFile, false);
+            xmlhttp.open("GET", fullPath, false);
             if (xmlhttp.overrideMimeType) {
                 xmlhttp.overrideMimeType('text/xml');
             }
@@ -30,7 +33,7 @@ EU.pugixml = {
         else {
             xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
             xmlDoc.async = "false";
-            xmlDoc.load(xmlFile);
+            xmlDoc.load(fullPath);
         }
         return xmlDoc;
     }

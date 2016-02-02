@@ -51,7 +51,10 @@ EU.NodeExt = function(){
         if( EU.xmlLoader.stringIsEmpty(file)) return;
         var xmlnode = EU.pugixml.readXml( EU.xmlLoader.resourcesRoot + file);
         var root = xmlnode.firstElementChild;
-        this.load_xmlnode( root );
+        if( this.load_xmlnode2 )
+            this.load_xmlnode2( root );
+        else
+            this.load_xmlnode(root);
     };
     this.load_xmlnode= function( root )
     {
@@ -128,7 +131,7 @@ EU.NodeExt = function(){
      * @param {Element} xmlnode */
     this.loadXmlEntity= function(tag, xmlnode )
     {
-        if( tag == EU.k.xmlTag.ParamCollection )
+        if( tag == EU.xmlLoader.k.ParamCollection )
         {
             this.loadParams( xmlnode );
         }

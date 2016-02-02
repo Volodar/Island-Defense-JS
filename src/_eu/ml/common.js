@@ -33,6 +33,8 @@ var strToFloat = function( string ){ return  parseFloat(string); };
  * @param {string} string
  */
 var strToPoint = function( value ) {
+    if( !value )
+        return new cc.Point(0,0);
     var frame = cc.winSize;
     var string = value;
 
@@ -154,6 +156,15 @@ var pointDistance = function( a, b ){
     var y = a.y- b.y;
     return Math.sqrt(x*x+y*y);
 }
+var pointLenght = function(a){
+    return Math.sqrt(a.x*a.x+a.y*a.y);
+}
+var pointAdd = function(a, b){
+    return new cc.Point(a.x + b.x, a.y + b.y);
+};
+var pointDiff = function(a, b){
+    return new cc.Point(a.x - b.x, a.y - b.y);
+};
 /**
  * return square distance between two points
  * @param {cc.Point} a
@@ -314,7 +325,7 @@ var boolToStr = function( value ) {
  * @returns {string}
  */
 var pointToStr = function( point ) {
-    return numberToStr( point.x ) + "x" + numberToStr( point.y );
+    return point.x.toString() + "x" + point.y.toString();
 }
 /**
  *
@@ -322,7 +333,7 @@ var pointToStr = function( point ) {
  * @returns {string}
  */
 var sizeToStr = function( size ) {
-    return numberToStr( size.width ) + "x" + numberToStr( size.height );
+    return size.width.toString() + "x" + size.height.toString();
 }
 /**
  *
@@ -362,7 +373,14 @@ var getNodeByTagsPath = function( root, tagspath ) {
  * @param node
  */
 var getSceneOfNode = function( node ) {
-
+    var root = node;
+    var curr = root;
+    while( curr )
+    {
+        root = curr;
+        curr = root.getParent();
+    }
+    return root;
 }
 
 /**
