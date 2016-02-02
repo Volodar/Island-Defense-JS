@@ -46,7 +46,7 @@ EU.ScoreLayer = cc.Scene.extend({
     init: function()
     {
         //CC_BREAK_IF( !Layer::init() );
-        if ( EU.NodeExt.prototype.init.call(this) ) return false;
+        //if ( EU.NodeExt.prototype.init.call(this) ) return false;
 
         if (EU.k.configuration.useFuel) {
             this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini", "scorelayer_fuel.xml" );

@@ -36,7 +36,7 @@ EU.SplashScene = cc.Layer.extend({
     init: function()
     {
         //CC_BREAK_IF( !Scene::init() );
-        if ( EU.NodeExt.prototype.init.call(this) ) return false;
+        //if ( EU.NodeExt.prototype.init.call(this) ) return false;
 
         this.load_str( EU.xmlLoader.resourcesRoot + "splash/splash.xml" );
         this.runEvent( "appearance" );
