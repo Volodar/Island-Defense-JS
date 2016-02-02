@@ -3,6 +3,10 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(false);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
+
+        EU.xmlLoader.macros.set( "USE_HEROROOM", "yes" );
+        EU.xmlLoader.macros.set( "PLATFORM_MOBILE", "no" );
+
         cc.director.runScene( EU.MainGS.scene() );//run the GameScene
     }, this);
 };
