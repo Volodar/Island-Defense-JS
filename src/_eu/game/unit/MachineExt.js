@@ -31,7 +31,7 @@ EU.MachineExt = function(){
         }
 
         var statename = xmlmachine.getAttribute( EU.k.xmlTag.StartState );
-        if( EU.xmlLoader.isEmpty(statename) == false )
+        if( EU.xmlLoader.stringIsEmpty(statename) == false )
         {
             var state = this.state( statename );
             this.start( state.get_name() );

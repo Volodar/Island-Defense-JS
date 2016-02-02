@@ -54,7 +54,7 @@ EU.Bullet = EU.Unit.extend({
         var part = this._target.getParamCollection().get( this._bopyPart, "" );
         var rand = this._target.getParamCollection().get( "random_bullet", "" );
         this._targetPointOffset = EU.Common.strToPoint( part );
-        if( EU.xmlLoader.isEmpty(rand) == false )
+        if( EU.xmlLoader.stringIsEmpty(rand) == false )
         {
             var point = EU.Common.strToPoint( rand );
             this._targetPointOffset.x += cc.randomMinus1To1() * point.x / 2;
