@@ -11,7 +11,13 @@
  ******************************************************************************/
 
 //Define namespace
- EU = EU || {};
+EU = EU || {};
+
+/** return defaultObj if obj is null or undefined*/
+EU.asObject = function(obj, defaultObj){
+    if (obj != null) return obj;
+    return defaultObj;
+};
 
 /**
  * Convert string to 

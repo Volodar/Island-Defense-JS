@@ -30,8 +30,12 @@
         "src/_eu/game/unit/MachineUnit.js",
         "src/_eu/game/unit/Mover.js",
         "src/_eu/game/unit/Unit.js",
+        "src/_eu/game/unit/UnitWithFadeEffects.js",
         "src/_eu/game/unit/Bullet.js",
+        "src/_eu/game/Airbomb.js",
+        "src/_eu/game/tower.js",
         "src/_eu/game/effects.js",
+        "src/_eu/resources.js",
         "src/app.js"
     ]
 }
