@@ -751,6 +751,9 @@ EU.xmlLoader = {
     stringIsEmpty: function (str) {
         return (!str || 0 === str.length);
     },
+    isEmpty: function (str) {
+        return (!str || 0 === str.length);
+    },
 
 
     //NodeExt
@@ -1030,8 +1033,10 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.MenuCallBack.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    if( this.directory )
-                        menuitem.setCallback( this.directory.get_callback_by_description( value ) );
+                    if( this.directory ) {
+                        var callback = this.directory.get_callback_by_description(value);
+                        menuitem.setCallback(callback,this.directory);
+                    }
                     break;
                 case EU.xmlKey.Sound.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );

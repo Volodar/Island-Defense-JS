@@ -3,7 +3,11 @@ cc.game.onStart = function(){
     cc.view.resizeWithBrowserSize(false);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {
-        cc.director.runScene(new EU.HelloWorldScene());//run the GameScene
+
+        EU.xmlLoader.macros.set( "USE_HEROROOM", "yes" );
+        EU.xmlLoader.macros.set( "PLATFORM_MOBILE", "no" );
+
+        cc.director.runScene( EU.MapLayer.scene() );//run the GameScene
     }, this);
 };
 cc.game.run();

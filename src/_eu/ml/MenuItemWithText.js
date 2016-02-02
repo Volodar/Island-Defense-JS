@@ -9,7 +9,8 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
+    //TODO: sound on click
 var kNameText = "text";
 var kNameText2 = "text2";
 var kNameImageNormal = "normal";
@@ -38,6 +39,17 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     ctor: function(){
         cc.MenuItemImage.prototype.ctor.call(this);
     },
+    /**
+     * initialisation with all parameters
+     * @param {string} normalImage
+     * @param {string} selectedImage
+     * @param {string} disabledImage
+     * @param {string} fontBMP
+     * @param {string} text
+     * @param callback
+     * @param target
+     * @returns {boolean}
+     */
     initWithNormalImage: function( normalImage, selectedImage, disabledImage, fontBMP, text, callback, target ){
         this.initWithCallback( callback, target );
         //EU.NodeExt.init();
@@ -50,12 +62,21 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         this.setText( text );
         return true;
     },
-
+    /**
+     * set callback for activate button
+     * @param callback
+     * @param target
+     */
     setCallback: function( callback, target ) {
         //var base = std::bind( &on_click, this, std::placeholders::_1 );
-        cc.MenuItemImage.initWithCallback( callback, target );
+        cc.MenuItem.prototype.setCallback.call( this, callback, target );
         //_onClick = callback;
     },
+    /**
+     * private function
+     * listen texture and locateAll images by center
+     * @param {string} file
+     */
     listenTexture: function( file ){
         var texture = cc.textureCache.getTextureForKey(file);
         if( texture ) {
@@ -65,6 +86,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
                 texture.addEventListener("load", this.locateImages, this, texture);
         }
     },
+    /**
+     * set image for normal state
+     * @param {string} file
+     */
     setImageNormal: function( file ) {
         if( this._imageNormal == file )
             return;
@@ -74,6 +99,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         image.setName( kNameImageNormal );
         this.listenTexture(file);
     },
+    /**
+     * set image for selected image
+     * @param {string} file
+     */
     setImageSelected: function( file ) {
         if( this._imageSelected == file )
             return;
@@ -83,6 +112,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         image.setName( kNameImageSelected );
         this.listenTexture(file);
     },
+    /**
+     * set image for disabled state
+     * @param {string} file
+     */
     setImageDisabled: function( file ) {
         if( this._imageDisabled == file )
             return;
@@ -92,17 +125,29 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         image.setName( kNameImageDisabled );
         this.listenTexture(file);
     },
+    /**
+     * set text
+     * @param {string} string
+     */
     setText: function( string ) {
         if( this._text == string )
             return;
         this._text = string;
         this.buildText();
     },
+    /**
+     * set fnt font file
+     * @param {string} fontfile
+     */
     setFont: function( fontfile ) {
         if( this._font == fontfile )return;
         this._font = fontfile;
         this.buildText();
     },
+    /**
+     * private function
+     * build all text nodes for every image (normal, selected, disabled)
+     */
     buildText: function() {
         if( this._font.empty() || this._text.empty() )
             return;
@@ -130,16 +175,27 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this.getSelectedImage() )allocate( this._labelSelected, this.getSelectedImage(), this );
         if( this.getDisabledImage() )allocate( this._labelDisabled, this.getDisabledImage(), this );
     },
+    /**
+     * ???
+     * @param {string} string
+     */
     setText2: function( string ) {
         if( this._text2 == string )return;
         this._text2 = string;
         this.buildText2();
     },
+    /**
+     * ???
+     * @param {string} fontfile
+     */
     setFont2: function( fontfile ) {
         if( this._font2 == fontfile )return;
         this._font2 = fontfile;
         this.buildText2();
     },
+    /**
+     * ???
+     */
     buildText2: function() {
         if( this._font2.empty() || this._text2.empty() )
             return;
@@ -166,6 +222,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this.getSelectedImage() )allocate( this._labelSelected2, this.getSelectedImage(), this );
         if( this.getDisabledImage() )allocate( this._labelDisabled2, this.getDisabledImage(), this );
     },
+    /**
+     * locate all images by center of button
+     * @param {cc.Texture} texture
+     */
     locateImages: function( texture ) {
         if( !this.getNormalImage() )
             return;
@@ -196,6 +256,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             node.setCascadeOpacityEnabled( true );
         }
     },
+    /**
+     *
+     * @param (cc.Class)sender
+     */
     on_click: function( sender ) {
         if( this._sound.empty() == false ) {
             //AudioEngine::shared().playEffect( _sound, false, 0 );
@@ -203,6 +267,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._onClick )
             this._onClick( sender );
     },
+    /**
+     * return touched area of the button
+     * @returns {cc.Rect}
+     */
     rect: function() {
         //MenuItem::rect();
         var result = new cc.Rect(this._position.x, this._position.y,
@@ -220,6 +288,9 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
 
         return result;
     },
+    /**
+     * run action on touch the button
+     */
     selected: function() {
         cc.MenuItem.prototype.selected.call(this);
 
@@ -240,6 +311,9 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             }
         }
     },
+    /**
+     * run action on untouch the button
+     */
     unselected: function() {
         cc.MenuItem.prototype.unselected.call(this);
 
@@ -259,46 +333,41 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             }
         }
     },
+    /**
+     *
+     * @param {bool} bEnabled
+     */
     setEnabled: function( bEnabled ) {
         if( this.isEnabled() == bEnabled )
             return;
         cc.MenuItem.prototype.setEnabled.call(this, bEnabled);
-        this.switchAnimation();
     },
+    /**
+     *
+     */
     onEnter: function() {
         cc.Node.prototype.onEnter.call(this);
-        this.switchAnimation();
     },
+    /**
+     *
+     */
     onExit: function() {
         cc.Node.prototype.onExit.call(this);
-        this.switchAnimation();
     },
+    /**
+     * set sound on click
+     * @param {string} sound
+     */
     setSound: function( sound ) {
         this._sound = sound;
     },
-    switchAnimation: function() {
-        return;
-        //	stopActionByTag( kActionTagMenuItemImageWithText_Enabled );
-        //
-        //	if( isEnabled() )
-        //	{
-        //		float part = (CCRANDOM_MINUS1_1() * 0.1f + 1) / 2;
-        //		float s = 1.05f + CCRANDOM_0_1() * 0.05f;
-        //		float t0 = 1 * part;
-        //		float t1 = 2 * part;
-        //		float t2 = 1 * part;
-        //
-        //		var a0 = ScaleTo::create( t0, 1 * s, 1 / s );
-        //		var a1 = ScaleTo::create( t1, 1 / s, 1 * s );
-        //		var a2 = ScaleTo::create( t2, 1, 1 );
-        //		var action = RepeatForever::create( Sequence::create( a0, a1, a2, null ) );
-        //		runAction( action );
-        //		action.setTag( kActionTagMenuItemImageWithText_Enabled );
-        //	}
-    }
 });
-EU.MenuItemImageWithText.call(EU.NodeExt_.prototype);
+EU.NodeExt.call(EU.MenuItemImageWithText.prototype);
 
+/**
+ * creating MenuItemImageWithText
+ * @returns {EU.MenuItemImageWithText}
+ */
 EU.MenuItemImageWithText.create = function(){
     var menuItem = new EU.MenuItemImageWithText();
     menuItem.initWithNormalImage("", "", "", "", "", null, null);

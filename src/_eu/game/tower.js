@@ -35,7 +35,7 @@ EU.mlTowersInfo = {
     _digcost : 0,
     /** Map<String, towerInfo> */
     m_towersInfo : {},
-    _labUpgrade : [],
+    // : [],
     _max_dmg : 0.0,
     _max_rng : 0.0,
     _max_spd : 0.0,
@@ -223,7 +223,6 @@ EU.mlTowersInfo = {
                 info.lab.rng = EU.asObject(labParams.getAttribute( "rng" ), 0);
                 info.lab.spd = EU.asObject(labParams.getAttribute( "spd" ), 0);
             }
-
             {//load tower info
                 var maxlevel =  1 ;
                 for ( i = 1; i <= maxlevel; ++i )
@@ -234,16 +233,16 @@ EU.mlTowersInfo = {
                     if ( maxlevel == 1 ) maxlevel = EU.asObject(root.getAttribute( "maxlevel" ), 0);
     
                     if ( root.getAttribute( "template" ) )
-                        docTemplate  = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + root.getAttribute( "template" ));
-    
+                        docTemplate  = new EU.pugixml.readXml(root.getAttribute( "template" ));
+
                     var xmlEffects = root.getElementsByTagName( "effects" )[0];
-                    var xmlMachine = root.getElementsByTagName( EU.k.xmlTag.MachineUnit )[0];
-    
+                    var xmlMachine = root.getElementsByTagName( "machine_unit" )[0];
+
                     if ( !xmlEffects )
                         xmlEffects = docTemplate.firstElementChild.getElementsByTagName( "effects" )[0];
                     if ( !xmlMachine )
-                        xmlMachine = docTemplate.firstElementChild.getElementsByTagName( EU.k.xmlTag.MachineUnit )[0];
-    
+                        xmlMachine = docTemplate.firstElementChild.getElementsByTagName( "machine_unit" )[0];
+
                     var xmlEffectsPositive = xmlEffects.getElementsByTagName( "positive" )[0];
                     var xmlMachineParams = xmlMachine.getElementsByTagName( "params" )[0];
     
@@ -304,28 +303,27 @@ EU.mlTowersInfo = {
     },
 
     checkAvailabledTowers : function () {
-        //TODO: EU.UserData
-        var passed = EU.UserData.shared().level_getCountPassed();
+        var passed = new EU.UserData.level_getCountPassed();
         for (var key in this.m_towersInfo) {
             var iter = this.m_towersInfo[key];
             if ( iter.minlevel <= passed )
             {
-                var level = EU.UserData.shared().tower_upgradeLevel( key );
+                var level = EU.UserData.tower_upgradeLevel( key );
                 level = Math.max( 1, level );
-                EU.UserData.shared().tower_upgradeLevel( key, level );
+                EU.UserData.tower_upgradeLevel( key, level );
             }
         }
     }
     
 };
 
-
+/*
 (function() {
     EU.mlTowersInfo.load();
     //TODO: Re-enable this
     // EU.mlTowersInfo.checkAvailabledTowers();
 })();
-
+*/
 EU.mlTowersInfo = {
 
     Info: function()

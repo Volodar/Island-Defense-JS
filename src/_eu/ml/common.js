@@ -39,10 +39,12 @@ var strToFloat = function( string ){ return  parseFloat(string); };
  * @param {string} string
  */
 var strToPoint = function( value ) {
+    if( !value )
+        return new cc.Point(0,0);
     var frame = cc.winSize;
     var string = value;
 
-    var add = new cc.Point(0,0);
+    var add = null;
     var addk = string.indexOf( "add:" );
     if( addk != -1 )
     {
@@ -59,7 +61,7 @@ var strToPoint = function( value ) {
         var point = strToPoint( string );
         point.x *= frame.width;
         point.y *= frame.height;
-        return new cc.Point(point.x + add.y, point.y + add.y);
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
 
     var rb = string.indexOf( "right:" );
@@ -68,7 +70,7 @@ var strToPoint = function( value ) {
         string = string.substr( rb + 6 );
         var point = strToPoint( string );
         point.x = frame.width + point.x;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var lt = string.indexOf( "top:" );
     if( lt == 0 )
@@ -76,7 +78,7 @@ var strToPoint = function( value ) {
         string = string.substr( lt + 4 );
         var point = strToPoint( string );
         point.y = frame.height + point.y;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var rt = string.indexOf( "righttop:" );
     if( rt == 0 )
@@ -85,7 +87,7 @@ var strToPoint = function( value ) {
         var point = strToPoint( string );
         point.x = frame.width + point.x;
         point.y = frame.height + point.y;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var hb = string.indexOf( "halfbottom:" );
     if( hb == 0 )
@@ -93,7 +95,7 @@ var strToPoint = function( value ) {
         string = string.substr( hb + 11 );
         var point = strToPoint( string );
         point.x = frame.width / 2 + point.x;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var ht = string.indexOf( "halftop:" );
     if( ht == 0 )
@@ -102,7 +104,7 @@ var strToPoint = function( value ) {
         var point = strToPoint( string );
         point.x = frame.width / 2 + point.x;
         point.y = frame.height + point.y;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var lh = string.indexOf( "lefthalf:" );
     if( lh == 0 )
@@ -110,7 +112,7 @@ var strToPoint = function( value ) {
         string = string.substr( lh + 9 );
         var point = strToPoint( string );
         point.y = frame.height / 2 + point.y;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
     var rh = string.indexOf( "righthalf:" );
     if( rh == 0 )
@@ -119,17 +121,17 @@ var strToPoint = function( value ) {
         var point = strToPoint( string );
         point.x = frame.width + point.x;
         point.y = frame.height / 2 + point.y;
-        return point + add;
+        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
     }
 
     var k = string.indexOf( "x" );
     if( k == -1 )
-        return cc.Point( 0, 0 ) + add;
+        return new cc.Point( 0, 0 ) + add;
 
     var x = strToFloat( string.substr( 0, k ) );
     var y = strToFloat( string.substr( k + 1 ) );
     var p = new cc.Point(x, y );
-    return new cc.Point(p.x + add.y, p.y + add.y);
+    return add == null ? p : new cc.Point(p.x + add.y, p.y + add.y);
 };
 /**
  *
@@ -160,6 +162,15 @@ var pointDistance = function( a, b ){
     var y = a.y- b.y;
     return Math.sqrt(x*x+y*y);
 }
+var pointLenght = function(a){
+    return Math.sqrt(a.x*a.x+a.y*a.y);
+}
+var pointAdd = function(a, b){
+    return new cc.Point(a.x + b.x, a.y + b.y);
+};
+var pointDiff = function(a, b){
+    return new cc.Point(a.x - b.x, a.y - b.y);
+};
 /**
  * return square distance between two points
  * @param {cc.Point} a
@@ -287,12 +298,12 @@ var createRouteAction = function (route, objectSpeed) {
  * @param delimiter
  */
 var split = function( out, values, delimiter ) {
-    if( values.empty() )
+    if( values.lenght > 0 )
         return;
-     string = values;
+    var string = values;
     do
     {
-         k = string.indexOf( delimiter );
+        var k = string.indexOf( delimiter );
         if( k == -1 )
         {
             out[out.length] = string;
@@ -320,7 +331,7 @@ var boolToStr = function( value ) {
  * @returns {string}
  */
 var pointToStr = function( point ) {
-    return numberToStr( point.x ) + "x" + numberToStr( point.y );
+    return point.x.toString() + "x" + point.y.toString();
 }
 /**
  *
@@ -328,7 +339,7 @@ var pointToStr = function( point ) {
  * @returns {string}
  */
 var sizeToStr = function( size ) {
-    return numberToStr( size.width ) + "x" + numberToStr( size.height );
+    return size.width.toString() + "x" + size.height.toString();
 }
 /**
  *
@@ -368,7 +379,14 @@ var getNodeByTagsPath = function( root, tagspath ) {
  * @param node
  */
 var getSceneOfNode = function( node ) {
-
+    var root = node;
+    var curr = root;
+    while( curr )
+    {
+        root = curr;
+        curr = root.getParent();
+    }
+    return root;
 }
 
 /**
@@ -378,22 +396,22 @@ var getSceneOfNode = function( node ) {
  * @returns {*}
  */
 var getNodeByPath = function( root, path_names ) {
+    var names = [];
     split( names, path_names, '/' );
     var node = root;
 
     var i = 0;
     while( node && i < names.length )
     {
-        name = names[i];
+        var name = names[i];
         if( name == ".." )
             node = node.getParent();
-        else if( name == "." )
-            node = node;
-        else if( name.empty() && path_names[0] == '/' )
+        else if( name == "." );
+        else if( name.lenght == 0 && path_names[0] == '/' )
         {
             node = node.getScene();
-            if( node == nullptr )
-                node = Director.getInstance().getRunningScene();
+            if( node == null )
+                node = cc.director.getRunningScene();
         }
         else
             node = node.getChildByName( name );
@@ -626,7 +644,7 @@ var getRandPointInPlace = function( center, radius ) {
 //
 //var strechNode( cc.Node*node, const Strech& strech )
 //{
-//    if( node == nullptr )
+//    if( node == null )
 //        return;
 //
 //    Size size = node.getContentSize();

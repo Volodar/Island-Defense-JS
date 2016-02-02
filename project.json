@@ -15,6 +15,8 @@
         "src/resource.js",
         "src/_eu/CCS.js",
         "src/_eu/consts.js",
+        "src/_eu/configuration.js",
+        "src/_eu/resources.js",
         "src/_eu/ml/pugixml/pugixml.js",
         "src/_eu/ml/ParamCollection.js",
         "src/_eu/ml/loadxml/xmlLoader.js",
@@ -35,6 +37,14 @@
         "src/_eu/game/Airbomb.js",
         "src/_eu/game/tower.js",
         "src/_eu/game/effects.js",
+        "src/_eu/game/tower.js",
+        "src/_eu/support/UserData.js",
+        "src/_eu/support/ScoreCounter.js",
+        "src/_eu/support/support.js",
+        "src/_eu/scenes/MainGS.js",
+        "src/_eu/scenes/MainGS.js",
+        "src/_eu/scenes/Tutorial.js",
+        "src/_eu/scenes/map/MapLayer.js",
         "src/_eu/resources.js",
         "src/app.js"
     ]
