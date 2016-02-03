@@ -172,7 +172,7 @@ EU.mlTowersInfo = {
     
     load : function ()
     {
-        var doc = new EU.pugixml.readXml( "ini/towers.xml");
+        var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/towers.xml");
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
     
@@ -233,7 +233,7 @@ EU.mlTowersInfo = {
                 for ( i = 1; i <= maxlevel; ++i )
                 {
                     var docTemplate;
-                    var doc = new EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml");
+                    var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/units/" + name +  i  + ".xml");
                     var root = doc.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = EU.asObject(root.getAttribute( "maxlevel" ), 0);
     
@@ -353,12 +353,12 @@ EU.mlTowersInfo = {
     },
     fetch: function(  name )
     {
-        var doc = new EU.pugixml.readXml( "ini/units/" + name + ".xml");
+        var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + "ini/units/" + name + ".xml");
         var root = doc.firstElementChild;
 
         while( root.getAttribute( "template" ) )
         {
-            var doc = new EU.pugixml.readXml( root.getAttribute( "template" ));
+            var doc = new EU.pugixml.readXml(EU.xmlLoader.resourcesRoot + root.getAttribute( "template" ));
             root.removeAttribute( "template" );
     
             var temp = doc.firstElementChild;
