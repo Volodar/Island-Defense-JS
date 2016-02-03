@@ -16,11 +16,11 @@ var EU = EU || {};
 
 EU.LoadLevelScene = cc.Scene.extend(
 {
-    /**@type {int} */ _levelIndex : -1,
-    /**@type {GameMode} */ _levelMode : EU.GameMode.normal,
-    /**@type {bool} */ _popSceneOnEnter : false,
+    /**@type {Integer} */ _levelIndex : -1,
+    /**@type {EU.GameMode} */ _levelMode : EU.GameMode.normal,
+    /**@type {Boolean} */ _popSceneOnEnter : false,
     /**@type set<string> */ _units : {},
-    /**@type map<string, Array<map<String,String>>> */ _resourcePacks : {},
+    /**@type Object<string, Array<Object<String,String>>> */ _resourcePacks : {},
 
     /** For Test Instance of */
     __LoadLevelScene : true,
@@ -37,8 +37,8 @@ EU.LoadLevelScene = cc.Scene.extend(
         this._levelMode = mode;
 
 
-        load( "ini/gamescene/loading.xml" );
-        this.parceLevel();
+        this.load_str( "ini/gamescene/loading.xml" );
+        this.parseLevel();
         this.createLoading();
 
     },
@@ -53,140 +53,150 @@ EU.LoadLevelScene = cc.Scene.extend(
     {
         return this.LoadLevelSceneInst;
     },
-//
-//    loadInGameResources: function( packname )
-//    {
-//        var pack = this._resourcePacks.find( packname );
-//        if( pack == this._resourcePacks.end() )
-//            return;
-//
-//        for( auto res : pack->second )
-//        {
-//            Texture2D.setDefaultAlphaPixelFormat(Texture2D.PixelFormat.RGBA4444);
-//            ImageManager.shared().load_plist( res.first, res.second );
-//            Texture2D.setDefaultAlphaPixelFormat(Texture2D.PixelFormat.RGBA8888);
-//            ImageManager.shared().addUnloadPlist( res.second );
-//        }
-//    }
-//
-//    void LoadLevelScene.onEnter()
-//    {
-//        Scene.onEnter();
-//        if( this._popSceneOnEnter )
-//        {
-//            auto delay = DelayTime.create( 2 );
-//            auto call = CallFunc.create( [](){ Director.getInstance()->popScene();} );
-//            runAction( Sequence.createWithTwoActions(delay, call) );
-//        }
-//    }
-//
-//    bool LoadLevelScene.loadXmlEntity( const std.string & tag, const pugi.xml_node & xmlnode )
-//    {
-//        if( tag == "resources" )
-//        {
-//            FOR_EACHXML( xmlnode, xmlPack )
-//            {
-//                std.vector< std.pair<std.string, std.string> > pack;
-//                FOR_EACHXML( xmlPack, xmlRes )
-//                {
-//                    std.string name = xmlRes.attribute( "name" ).as_string();
-//                    std.string path = xmlRes.attribute( "path" ).as_string();
-//                    pack.emplace_back( path, name );
-//                }
-//                std.string packName = xmlPack.attribute( "name" ).as_string();
-//                this._resourcePacks[packName] = pack;
-//            }
-//        }
-//        else
-//            return NodeExt.loadXmlEntity( tag, xmlnode );
-//        return true;
-//    }
-//
-//    void LoadLevelScene.parceLevel()
-//    {
-//        pugi.xml_document doc;
-//        std.string pathToFile = FileUtils.getInstance()->fullPathForFilename( kDirectoryToMaps + intToStr( this._levelIndex ) + ".xml" );
-//        doc.load_file( pathToFile.c_str() );
-//
-//        auto xmlTagWaves = (this._levelMode == GameMode.normal ? k.xmlTag.LevelWaves : k.xmlTag.LevelWavesHard);
-//        auto xmlWaves = doc.root().first_child().child( xmlTagWaves );
-//
-//        auto getUnitName = []( const pugi.xml_node& node )
-//        {
-//            std.string unit;
-//            auto def = node.attribute( "defaultname" );
-//            auto name = node.attribute( "name" );
-//            if( def ) unit = def.as_string();
-//            if( name )unit = name.as_string();
-//            return unit;
-//        };
-//
-//        FOR_EACHXML( xmlWaves, wave )
-//        {
-//            auto name = getUnitName( wave );
-//            if( name.empty() == false )
-//                this._units.insert( name );
-//            FOR_EACHXML( wave, unit )
-//            {
-//                auto name = getUnitName( unit );
-//                if( name.empty() == false )
-//                    this._units.insert( name );
-//            }
-//        }
-//    }
-//
-//    void LoadLevelScene.createLoading()
-//    {
-//        auto layer = LayerLoader.create( std.vector<std.string>(), std.bind( &LoadLevelScene.onLoadingFinished, this ) );
-//
-//        auto addPlist = [this, layer]( const std.string& name )
-//        {
-//            auto pack = this._resourcePacks.find( name );
-//            if( pack == this._resourcePacks.end() )
-//            {
-//            #if USE_CHEATS == 1
-//                MessageBox( name.c_str(), "Unknow creep" );
-//#endif
-//                return;
-//            }
-//
-//            layer->addPlists( pack->second );
-//
-//            for( auto res : pack->second )
-//            {
-//                ImageManager.shared().addUnloadPlist( res.second );
-//            }
-//        };
-//
-//        for( auto& unit : this._units )
-//        {
-//            if( unit.empty() )continue;
-//            addPlist( unit );
-//        }
-//
-//        int heroIndex = UserData.shared().hero_getCurrent() + 1;
-//
-//        addPlist( "game" );
-//        addPlist( "hero" + intToStr( heroIndex ) );
-//
-//        addChild( layer, 999, 0x123 );
-//        layer->loadCurrentTexture();
-//    }
-//
-//    void LoadLevelScene.onLoadingFinished()
-//    {
-//        auto game = GameGS.createScene();
-//        GameGS.getInstance()->getGameBoard().loadLevel( this._levelIndex, this._levelMode );
-//        Director.getInstance()->pushScene( game );
-//        this._popSceneOnEnter = true;
-//
-//        auto layer = getChildByTag(0x123);
-//        if( layer ) layer->setVisible(false);
-//    }
-//
 
+    loadInGameResources: function( packname )
+    {
+        var pack = this._resourcePacks[ packname ];
+        if( !pack ) return;
 
+        for (var i = 0; i < pack.length; i++) {
+            var res = pack[i];
+
+            cc.Texture2D.defaultPixelFormat = cc.Texture2D.PIXEL_FORMAT_RGBA4444;
+
+            var first = {};
+            for(var key in res){
+                if(res.hasOwnProperty(key)){
+                    first.key = key;
+                    first.content =  res[key];
+                    break;
+                }
+            }
+
+            EU.ImageManager.load_plist( first.key, first.content );
+
+            cc.Texture2D.defaultPixelFormat = cc.Texture2D.PIXEL_FORMAT_RGBA8888;
+            EU.ImageManager.addUnloadPlist( first.content );
+        }
+    },
+    onEnter: function()
+    {
+        cc.Scene.prototype.onEnter.call(this);
+        if( this._popSceneOnEnter )
+        {
+            var delay = new cc.DelayTime( 2 );
+            var call = new cc.CallFunc( function(){ cc.director.popScene();} );
+            this.runAction( new cc.Sequence(delay, call) );
+        }
+    },
+
+    loadXmlEntity: function(  tag, xmlnode )
+    {
+        if( tag == "resources" )
+        {
+            for(var i=0; i < xmlnode.children.length; i++){
+                var xmlPack = xmlnode.children[i];
+                var pack = [];
+                for(var j=0; j < xmlPack.children.length; j++){
+                    var xmlRes = xmlPack.children[j];
+                    var name = xmlRes.getAttribute( "name" );
+                    var path = xmlRes.getAttribute( "path" );
+                    var obj = {};
+                    obj[path] = name;
+                    pack.push( obj );
+                }
+                var packName = xmlPack.getAttribute( "name" );
+                this._resourcePacks[packName] = [];
+            }
+        }
+        else
+            return NodeExt.loadXmlEntity( tag, xmlnode );
+        return true;
+    },
+
+    parseLevel: function()
+    {
+        var pathToFile = cc.fileUtils.fullPathForFilename( EU.kDirectoryToMaps + ( this._levelIndex ) + ".xml" );
+
+        var doc = new EU.pugixml.readXml(pathToFile);
+        var root = doc.firstElementChild;
+
+        var xmlTagWaves = (this._levelMode == EU.GameMode.normal ? EU.k.LevelWaves : EU.k.LevelWavesHard);
+
+        var xmlWaves = root.getElementsByTagName( xmlTagWaves )[0];
+
+        var getUnitName = function(node )
+        {
+            var unit;
+            var def = node.getAttribute( "defaultname" );
+            var name = node.getAttribute( "name" );
+            if( def ) unit = def;
+            if( name ) unit = name;
+            return unit;
+        };
+
+        for(var i=0; i < xmlWaves.children.length; i++){
+            var wave = xmlWaves.children[i];
+            var name = getUnitName( wave );
+            if( EU.xmlLoader.stringIsEmpty(name) == false )
+                this._units[name]  = true;
+
+            for(var j=0; j < wave.children.length; j++){
+                var unit = wave.children[j];
+                var name = getUnitName( unit );
+                if( EU.xmlLoader.stringIsEmpty(name) == false )
+                    this._units[name] = true;
+            }
+        }
+    },
+    createLoading: function()
+    {
+        var layer = new cc.LayerLoader();
+        //layer.loadCCNode() std.vector<std.string>(), std.bind( &LoadLevelScene.onLoadingFinished, this ) );
+
+        var addPlist = function( name )
+        {
+            var pack = this._resourcePacks[name];
+            if( !pack )
+            {
+                if (EU.USE_CHEATS == 1) {
+                    EU.MessageBox( name, "Unknow creep" );
+                }
+                return;
+            }
+
+            layer.addPlists( pack );
+
+            for (var i = 0; i < pack.length; i++) {
+                var res = pack[i];
+                EU.ImageManager.addUnloadPlist( res );
+            }
+        };
+
+        for (var unit in this._units) {
+            if (this._units.hasOwnProperty(unit))
+                addPlist( unit );
+        }
+
+        var heroIndex = EU.UserData.hero_getCurrent() + 1;
+
+        addPlist( "game" );
+        addPlist( "hero" + ( heroIndex ) );
+
+        this.addChild( layer, 999, 0x123 );
+        layer.loadCurrentTexture();
+    },
+
+    onLoadingFinished: function()
+    {
+        var game = EU.GameGS.createScene();
+        EU.GameGS.getInstance().getGameBoard().loadLevel( this._levelIndex, this._levelMode );
+        cc.director.pushScene( game );
+        this._popSceneOnEnter = true;
+
+        var layer = this.getChildByTag(0x123);
+        if( layer ) layer.setVisible(false);
+    }
 });
-
 
 EU.NodeExt.call(EU.LoadLevelScene.prototype);
