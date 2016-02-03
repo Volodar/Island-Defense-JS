@@ -16,6 +16,9 @@ var EU = EU || {};
 
 EU.Airbomb = EU.Unit.extend(
 {
+    /** For Test Instance of */
+    __Airbomb : true,
+
     /**Point */
     _targetPoint: new cc.Point(0,0),
 

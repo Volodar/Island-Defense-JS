@@ -21,6 +21,9 @@ EU.TowerPlaseDef = function()
 
 EU.TowerPlace = cc.Sprite.extend(
 {
+    /** For Test Instance of */
+    __TowerPlace : true,
+
     _cost : 0,
     _active : false,
 

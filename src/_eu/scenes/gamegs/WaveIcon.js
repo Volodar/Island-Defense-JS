@@ -15,6 +15,9 @@ var EU = EU || {};
 
 EU.WaveIcon = cc.Menu.extend(
 {
+    /** For Test Instance of */
+    __WaveIcon : true,
+
     //friend class AutoPlayer;
     /**@type {cc.Node} */ _arrow : new cc.Node(),
     /**@type {EU.MenuItemImageWithText} */ _icon : null,

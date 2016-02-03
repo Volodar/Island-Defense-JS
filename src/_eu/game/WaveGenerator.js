@@ -15,6 +15,9 @@ var EU = EU || {};
 
 EU.WaveGenerator = {
 
+    /** For Test Instance of */
+    __WaveGenerator : true,
+
     /**@type {Integer} */
     m_waveIndex: 0,
 

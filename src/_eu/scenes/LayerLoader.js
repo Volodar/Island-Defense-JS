@@ -11,6 +11,11 @@
  ******************************************************************************/
 
 EU.LayerLoader = cc.Layer.extend({
+
+    /** For Test Instance of */
+    __LayerLoader : true,
+
+
     callback: null,
     target: null,
     atlases: {},

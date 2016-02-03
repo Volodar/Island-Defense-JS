@@ -4,6 +4,8 @@ var EU = EU || {};
 
 EU.IndicatorNode = cc.Node.extend({
 
+    /** For Test Instance of */
+    __IndicatorNode : true,
 
     IndicatorWidth : 30,
     /**@type {cc.Sprite}*/ _bg : null,

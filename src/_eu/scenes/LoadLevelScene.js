@@ -22,48 +22,42 @@ EU.LoadLevelScene = cc.Scene.extend(
     /**@type set<string> */ _units : {},
     /**@type map<string, Array<map<String,String>>> */ _resourcePacks : {},
 
+    /** For Test Instance of */
+    __LoadLevelScene : true,
+
     LoadLevelSceneInst: null,
 
-    ctor: function() {
+    ctor: function(level, mode) {
+        this._super();
+
         this.setName( "LoadLevelScene" );
-        //LoadLevelSceneInst = this;
+        this.LoadLevelSceneInst = this;
+
+        this._levelIndex = level;
+        this._levelMode = mode;
+
+
+        load( "ini/gamescene/loading.xml" );
+        this.parceLevel();
+        this.createLoading();
+
+    },
+
+    release: function()
+    {
+        EU.ImageManager.unloadReservedPlists();
+        this.LoadLevelSceneInst = null;
+    },
+
+    getInstance: function()
+    {
+        return this.LoadLevelSceneInst;
     },
 //
-//    release: function()
+//    loadInGameResources: function( packname )
 //    {
-//        EU.ImageManager.unloadReservedPlists();
-//        this.LoadLevelSceneInst = null;
-//    },
-//
-//    bool LoadLevelScene.init( int level, GameMode mode )
-//    {
-//        do
-//        {
-//            _levelIndex = level;
-//            _levelMode = mode;
-//
-//
-//            load( "ini/gamescene/loading.xml" );
-//            parceLevel();
-//            createLoading();
-//
-//
-//
-//            return true;
-//        }
-//        while( false );
-//        return false;
-//    }
-//
-//    LoadLevelScene* LoadLevelScene.getInstance()
-//    {
-//        return LoadLevelSceneInst;
-//    }
-//
-//    void LoadLevelScene.loadInGameResources( const std.string& packname )
-//    {
-//        auto pack = _resourcePacks.find( packname );
-//        if( pack == _resourcePacks.end() )
+//        var pack = this._resourcePacks.find( packname );
+//        if( pack == this._resourcePacks.end() )
 //            return;
 //
 //        for( auto res : pack->second )
@@ -78,7 +72,7 @@ EU.LoadLevelScene = cc.Scene.extend(
 //    void LoadLevelScene.onEnter()
 //    {
 //        Scene.onEnter();
-//        if( _popSceneOnEnter )
+//        if( this._popSceneOnEnter )
 //        {
 //            auto delay = DelayTime.create( 2 );
 //            auto call = CallFunc.create( [](){ Director.getInstance()->popScene();} );
@@ -100,7 +94,7 @@ EU.LoadLevelScene = cc.Scene.extend(
 //                    pack.emplace_back( path, name );
 //                }
 //                std.string packName = xmlPack.attribute( "name" ).as_string();
-//                _resourcePacks[packName] = pack;
+//                this._resourcePacks[packName] = pack;
 //            }
 //        }
 //        else
@@ -111,10 +105,10 @@ EU.LoadLevelScene = cc.Scene.extend(
 //    void LoadLevelScene.parceLevel()
 //    {
 //        pugi.xml_document doc;
-//        std.string pathToFile = FileUtils.getInstance()->fullPathForFilename( kDirectoryToMaps + intToStr( _levelIndex ) + ".xml" );
+//        std.string pathToFile = FileUtils.getInstance()->fullPathForFilename( kDirectoryToMaps + intToStr( this._levelIndex ) + ".xml" );
 //        doc.load_file( pathToFile.c_str() );
 //
-//        auto xmlTagWaves = (_levelMode == GameMode.normal ? k.xmlTag.LevelWaves : k.xmlTag.LevelWavesHard);
+//        auto xmlTagWaves = (this._levelMode == GameMode.normal ? k.xmlTag.LevelWaves : k.xmlTag.LevelWavesHard);
 //        auto xmlWaves = doc.root().first_child().child( xmlTagWaves );
 //
 //        auto getUnitName = []( const pugi.xml_node& node )
@@ -131,12 +125,12 @@ EU.LoadLevelScene = cc.Scene.extend(
 //        {
 //            auto name = getUnitName( wave );
 //            if( name.empty() == false )
-//                _units.insert( name );
+//                this._units.insert( name );
 //            FOR_EACHXML( wave, unit )
 //            {
 //                auto name = getUnitName( unit );
 //                if( name.empty() == false )
-//                    _units.insert( name );
+//                    this._units.insert( name );
 //            }
 //        }
 //    }
@@ -147,8 +141,8 @@ EU.LoadLevelScene = cc.Scene.extend(
 //
 //        auto addPlist = [this, layer]( const std.string& name )
 //        {
-//            auto pack = _resourcePacks.find( name );
-//            if( pack == _resourcePacks.end() )
+//            auto pack = this._resourcePacks.find( name );
+//            if( pack == this._resourcePacks.end() )
 //            {
 //            #if USE_CHEATS == 1
 //                MessageBox( name.c_str(), "Unknow creep" );
@@ -164,7 +158,7 @@ EU.LoadLevelScene = cc.Scene.extend(
 //            }
 //        };
 //
-//        for( auto& unit : _units )
+//        for( auto& unit : this._units )
 //        {
 //            if( unit.empty() )continue;
 //            addPlist( unit );
@@ -182,14 +176,14 @@ EU.LoadLevelScene = cc.Scene.extend(
 //    void LoadLevelScene.onLoadingFinished()
 //    {
 //        auto game = GameGS.createScene();
-//        GameGS.getInstance()->getGameBoard().loadLevel( _levelIndex, _levelMode );
+//        GameGS.getInstance()->getGameBoard().loadLevel( this._levelIndex, this._levelMode );
 //        Director.getInstance()->pushScene( game );
-//        _popSceneOnEnter = true;
+//        this._popSceneOnEnter = true;
 //
 //        auto layer = getChildByTag(0x123);
 //        if( layer ) layer->setVisible(false);
 //    }
-
+//
 
 
 });

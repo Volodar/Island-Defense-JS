@@ -15,6 +15,9 @@ var EU = EU || {};
 
 EU.UnitInfo = cc.Menu.extend(
 {
+    /** For Test Instance of */
+    __UnitInfo : true,
+
     _unitName: "",
 
     ctor: function( unitName )

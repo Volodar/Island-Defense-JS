@@ -16,6 +16,9 @@ var EU = EU || {};
 
 EU.VictoryMenu = cc.Node.extend(
 {
+    /** For Test Instance of */
+    __VictoryMenu : true,
+
     ctor: function( victory, scores, stars )
     {
         this._super();
