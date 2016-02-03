@@ -131,7 +131,7 @@ EU.NodeExt = function(){
      * @param {Element} xmlnode */
     this.loadXmlEntity= function(tag, xmlnode )
     {
-        if( tag == EU.xmlLoader.k.xmlTag.ParamCollection )
+        if( tag == EU.xmlLoader.k.ParamCollection )
         {
             this.loadParams( xmlnode );
         }
