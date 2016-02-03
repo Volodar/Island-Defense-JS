@@ -403,7 +403,7 @@ EU.Common = {
      */
     getNodeByPath: function (root, path_names) {
         var names = [];
-        EU.Common.split(names, path_names, '/');
+        names = path_names.split('/');
         var node = root;
 
         var i = 0;

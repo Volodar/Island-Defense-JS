@@ -11,7 +11,7 @@ EU.NodeExt = function(){
     /** @type {map<cc.Action>} */
     this._actions = {};
     /** @type {EU.ParamCollection} _params*/
-    this._params = null;
+    this._params = new EU.ParamCollection();
     this.as_node_ref= function()
     {
         return (this instanceof cc.Node ? this : null);
@@ -131,7 +131,7 @@ EU.NodeExt = function(){
      * @param {Element} xmlnode */
     this.loadXmlEntity= function(tag, xmlnode )
     {
-        if( tag == EU.xmlLoader.k.ParamCollection )
+        if( tag == EU.xmlLoader.k.xmlTag.ParamCollection )
         {
             this.loadParams( xmlnode );
         }
