@@ -117,9 +117,7 @@ EU.xmlLoader = {
         ActionRemoveSelf: "RemoveSelf",
         ActionShow: "Show",
         ActionHide: "Hide",
-        xmlTag:{
-            ParamCollection: "paramcollection"
-        }
+        ParamCollection: "paramcollection",
     },
     /**
      * load a node from file name

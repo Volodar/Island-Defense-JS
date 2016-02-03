@@ -49,7 +49,7 @@ EU.NodeExt = function(){
     this.load_str= function(file )
     {
         if( EU.xmlLoader.stringIsEmpty(file)) return;
-        var xmlnode = EU.pugixml.readXml( EU.xmlLoader.resourcesRoot + file);
+        var xmlnode = EU.pugixml.readXml( file);
         var root = xmlnode.firstElementChild;
         if( this.load_xmlnode2 )
             this.load_xmlnode2( root );
