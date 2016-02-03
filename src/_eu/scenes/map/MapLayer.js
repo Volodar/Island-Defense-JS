@@ -93,7 +93,7 @@ EU.MapLayer = cc.Layer.extend({
         var node = nodeext.as_node_ref();
         var pathToLeaderboards = nodeext.getParamCollection().get( "pathto_leaderboards", "unknowpath" );
     
-        var leaderboards = getNodeByPath( node, pathToLeaderboards );
+        var leaderboards = EU.Common.getNodeByPath( node, pathToLeaderboards );
         if( leaderboards )
             leaderboards.setVisible( EU.k.useLeaderboards );
     },
@@ -151,7 +151,7 @@ EU.MapLayer = cc.Layer.extend({
         //AudioEngine.shared().playMusic( kMusicMap );
 
         if (EU.k.useInapps == false) {
-            var scene = getSceneOfNode(this);
+            var scene = EU.Common.getSceneOfNode(this);
             var scores = scene.getChildByName("scorelayer");
             if(scores)
             {
@@ -186,7 +186,7 @@ EU.MapLayer = cc.Layer.extend({
             {
                 countlose = 0;
 
-                towers = [];
+                var towers = [];
                 EU.mlTowersInfo.fetch( towers );
                 var towername = towers[0];
                 var level = EU.UserData.tower_upgradeLevel( towername );
@@ -216,7 +216,7 @@ EU.MapLayer = cc.Layer.extend({
             }
             if( countlose > 0 )
             {
-                if( EU.TutorialManager.dispatch( "map_losenumber" + intToStr( countlose ) ) )
+                if( EU.TutorialManager.dispatch( "map_losenumber" + countlose.toString() ) )
                 {
                     dispatched = true;
                     countlose = 0;
@@ -280,10 +280,10 @@ EU.MapLayer = cc.Layer.extend({
         for (var i = 0; i < xmlentity.children.length; i++) {
             var xmlLocation = xmlentity.children[i];
             var loc = new EU.MapLayerLocation;
-            loc.pos = strToPoint(xmlLocation.getAttribute("pos"));
-            loc.posLock = strToPoint(xmlLocation.getAttribute("poslock"));
-            loc.a = strToPoint(xmlLocation.getAttribute("controlA"));
-            loc.b = strToPoint(xmlLocation.getAttribute("controlB"));
+            loc.pos = EU.Common.strToPoint(xmlLocation.getAttribute("pos"));
+            loc.posLock = EU.Common.strToPoint(xmlLocation.getAttribute("poslock"));
+            loc.a = EU.Common.strToPoint(xmlLocation.getAttribute("controlA"));
+            loc.b = EU.Common.strToPoint(xmlLocation.getAttribute("controlB"));
             this.locations[i] = loc;
         }
     },
@@ -365,7 +365,7 @@ EU.MapLayer = cc.Layer.extend({
             if (!this.scrollInfo.node) return;
             this.velocity *= 0.95;
 
-            if (pointLenght(this.velocity) > 0.01)
+            if (EU.Common.pointLength(this.velocity) > 0.01)
             {
                 var winsize = cc.director.getWinSize();
                 var pos = this.scrollInfo.node.getPosition() + this.velocity;
@@ -379,7 +379,7 @@ EU.MapLayer = cc.Layer.extend({
     {
         var dessize = cc.director.getWinSize();
 
-        var scene = getSceneOfNode(this)
+        var scene = EU.Common.getSceneOfNode(this)
         scene.addChild( window, this.getLocalZOrder() + 2 );
         onExit();
 
@@ -400,7 +400,7 @@ EU.MapLayer = cc.Layer.extend({
     {
         onEnter();
 
-        var scene = getSceneOfNode();
+        var scene = EU.Common.getSceneOfNode();
         var shadow = scene.getChildByName( "shadow" );
         if( shadow )
         {
@@ -425,7 +425,7 @@ EU.MapLayer = cc.Layer.extend({
     },
     openRateMe: function()
     {
-        var scene = getSceneOfNode()
+        var scene = EU.Common.getSceneOfNode()
         var layer = EU.RateMeLayer.create();
         if (layer) {
             scene.pushLayer(layer, true);
@@ -446,24 +446,24 @@ EU.MapLayer = cc.Layer.extend({
     },
     cb_lab: function()
     {
-        var scene = getSceneOfNode(this);
+        var scene = EU.Common.getSceneOfNode(this);
         var layer = new EU.Laboratory();
         scene.pushLayer( layer, true );
         EU.TutorialManager.dispatch( "map_openlab" );
     },
     cb_itemshop: function()
     {
-        var scene = getSceneOfNode(this);
+        var scene = EU.Common.getSceneOfNode(this);
         var layer = ItemShop.create();
         scene.pushLayer( layer, true );
         EU.TutorialManager.dispatch( "map_openitemshop" );
     },
     cb_game: function(){
-        var choose = getSceneOfNode(this).getChildByName("choose");
+        var choose = EU.Common.getSceneOfNode(this).getChildByName("choose");
         if( this.menuLocations )
             this.menuLocations.setEnabled( false );
 
-        var cost = EU.LevelParams.shared().getFuel( this.selectedLevelIndex, false );
+        var cost = EU.LevelParams.getFuel( this.selectedLevelIndex, false );
         var fuel = EU.ScoreCounter.getMoney( kScoreFuel );
         if( fuel < cost )
         {
@@ -505,7 +505,7 @@ EU.MapLayer = cc.Layer.extend({
         var layer = this.buildChooseWindow( index );
         if( layer )
         {
-            var scene = getSceneOfNode( this );
+            var scene = EU.Common.getSceneOfNode( this );
             EU.assert( scene );
             scene.pushLayer( layer, true );
             EU.TutorialManager.dispatch( "map_onchoose" );
@@ -536,8 +536,9 @@ EU.MapLayer = cc.Layer.extend({
     },
     activateLocations: function()
     {
-        for( var node in this.curveMarkers )
+        for( var i=0; i < this.curveMarkers; ++i )
         {
+            var node = this.curveMarkers
             node.removeFromParent();
         }
         this.curveMarkers.length = 0;
@@ -583,9 +584,9 @@ EU.MapLayer = cc.Layer.extend({
         };
         function K( L, R, S )
         {
-            var d0 = pointDiff(S, L);
-            var d1 = pointDiff(R, S);
-            if( pointLenght(d0) < 5 )
+            var d0 = EU.Common.pointDiff(S, L);
+            var d1 = EU.Common.pointDiff(R, S);
+            if( EU.Common.pointLength(d0) < 5 )
                 return false;
             var k0 = d0.y == 0 ? 0 : d0.x / d0.y;
             var k1 = d1.y == 0 ? 0 : d1.x / d1.y;
@@ -634,16 +635,16 @@ EU.MapLayer = cc.Layer.extend({
         var E = 0;
         for( ; index < points.length; ++index )
         {
-            var r = pointDiff(points[index], P);
-            while( pointLenght(r) > D - E )
+            var r = EU.Common.pointDiff(points[index], P);
+            while( EU.Common.pointLength(r) > D - E )
             {
-                var rn = pointNormalized(r);
+                var rn = EU.Common.pointNormalized(r);
                 P = new cc.Point(P.x + rn.x * D, P.y + rn.y * D);
                 points2.push( P );
                 E = 0;
-                r = pointDiff(points[index], P);
+                r = EU.Common.pointDiff(points[index], P);
             }
-            E += pointLenght(r);
+            E += EU.Common.pointLength(r);
         }
 
         return points2;
@@ -701,7 +702,6 @@ EU.MapLayer = cc.Layer.extend({
     
         var path;
         var callback = null;
-        var buildIndicator = false;
         var flagResource;
         flagResource = "flag_" + (levelStartIncludeHardMode <= 3 ? levelStartIncludeHardMode.toString() : "hard" );
         if( index < passed )
@@ -710,7 +710,6 @@ EU.MapLayer = cc.Layer.extend({
         }
         else if( levelLocked )
         {
-            buildIndicator = true;
             path = "ini/map/flag_locked.xml";
             position = location.posLock;
         }
@@ -724,7 +723,7 @@ EU.MapLayer = cc.Layer.extend({
             callback = this.cb_showChoose;
         }
     
-        EU.xmlLoader.macros.set( "flag_position", pointToStr( position ) );
+        EU.xmlLoader.macros.set( "flag_position", EU.Common.pointToStr( position ) );
         EU.xmlLoader.macros.set( "flag_image", flagResource );
         var flag = EU.xmlLoader.load_node_from_file( path );
         EU.xmlLoader.macros.erase( "flag_position" );

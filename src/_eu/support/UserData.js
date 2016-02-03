@@ -27,13 +27,13 @@ EU.UserData = {
 
     },
     get_int: function( key, defaultValue ){
-        return strToInt( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
+        return EU.Common.strToInt( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
     },
     get_bool: function( key, defaultValue ){
-        return strToInt( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
+        return EU.Common.strToInt( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
     },
     get_float: function( key, defaultValue ){
-        return strToFloat( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
+        return EU.Common.strToFloat( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
     },
 
     level_getCountPassed: function(){ return 2; },

@@ -907,20 +907,20 @@ EU.xmlLoader = {
                     node.setName( value );
                     break;
                 case EU.xmlKey.Visible.int:
-                    node.setVisible( strToBool( value ) );
+                    node.setVisible( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.Pos.int:
-                    node.setPosition( strToPoint( value ) );
+                    node.setPosition( EU.Common.strToPoint( value ) );
                     break;
                 case EU.xmlKey.Scale.int:
-                    point = strToPoint( value );
+                    point = EU.Common.strToPoint( value );
                     node.setScale( point.x, point.y );
                     break;
                 case EU.xmlKey.Rotation.int:
-                    node.setRotation( strToFloat( value ) );
+                    node.setRotation( EU.Common.strToFloat( value ) );
                     break;
                 case EU.xmlKey.Center.int:
-                    node.setAnchorPoint( strToPoint( value ) );
+                    node.setAnchorPoint( EU.Common.strToPoint( value ) );
                     break;
                 case EU.xmlKey.Strech.int:
                     break;
@@ -929,7 +929,7 @@ EU.xmlLoader = {
                     {
                         var sx = 0.0;
                         var sy = 0.0;
-                        var parce = function ()
+                        var parse = function ()
                         {
                             var framepoint;
                             var mode;
@@ -939,13 +939,13 @@ EU.xmlLoader = {
                                 framepoint = value.substr( 0, k );
                                 mode = value.substr( k + 1 );
                             }
-                            s = strToPoint( framepoint );
+                            s = EU.Common.strToPoint( framepoint );
                             sx = s.x / size.width;
                             sy = s.y / size.height;
                             return mode;
                         };
 
-                        var mode = parce( value );
+                        var mode = parse( value );
                         if( mode == "x" )
                             node.setScaleX( sx );
                         else if( mode == "y" )
@@ -961,23 +961,23 @@ EU.xmlLoader = {
                     }
                     break;
                 case EU.xmlKey.Size.int:
-                    size = strToSize(value);
+                    size = EU.Common.strToSize(value);
                     node.setContentSize( size );
                     break;
                 case EU.xmlKey.Tag.int:
-                    node.setTag( strToInt( value ) );
+                    node.setTag( EU.Common.strToInt( value ) );
                     break;
                 case EU.xmlKey.CascadeColor.int:
-                    node.setCascadeColorEnabled( strToBool( value ) );
+                    node.setCascadeColorEnabled( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.CascadeOpacity.int:
-                    node.setCascadeOpacityEnabled( strToBool( value ) );
+                    node.setCascadeOpacityEnabled( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.LocalZ.int:
-                    node.setLocalZOrder( strToInt( value ) );
+                    node.setLocalZOrder( EU.Common.strToInt( value ) );
                     break;
                 case EU.xmlKey.GlobalZ.int:
-                    node.setGlobalZOrder( strToInt( value ) );
+                    node.setGlobalZOrder( EU.Common.strToInt( value ) );
                     break;
                 //for sprite:
                 case EU.xmlKey.Image.int:
@@ -1006,17 +1006,17 @@ EU.xmlLoader = {
                     //sprite.setBlendFunc( strToBlendFunc(value) );
                     break;
                 case EU.xmlKey.Opacity.int:
-                    node.setOpacity( strToInt( value ) );
+                    node.setOpacity( EU.Common.strToInt( value ) );
                     break;
                 case EU.xmlKey.Color.int:
-                    node.setColor( strToColor3B( value ) );
+                    node.setColor( EU.Common.strToColor3B( value ) );
                     break;
                 case EU.xmlKey.Animation.int:
                     node.runAction( EU.xmlLoader.load_action_str( value ) );
                     break;
                 case EU.xmlKey.AlignCols.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAlignedColums( strToInt( value ) );
+                    scrollmenu.setAlignedColums( EU.Common.strToInt( value ) );
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
@@ -1057,7 +1057,7 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.TextWidth.int:
                     EU.assert(  label instanceof cc.LabelBMFont );
-                    if( label ) label.setContentSize( strToFloat( value ) );
+                    if( label ) label.setContentSize( EU.Common.strToFloat( value ) );
                     break;
                 case EU.xmlKey.TextAlign.int:
                     EU.assert( label instanceof cc.LabelBMFont );
@@ -1075,15 +1075,15 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.ScaleEffect.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.useScaleEffect( strToBool( value ) );
+                    menuitem.useScaleEffect( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.AlignStartPosition.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu );
-                    scrollmenu.setAlignedStartPosition( strToPoint( value ) );
+                    scrollmenu.setAlignedStartPosition( EU.Common.strToPoint( value ) );
                     break;
                 case EU.xmlKey.GridSize.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setGrisSize( strToSize( value ) );
+                    scrollmenu.setGrisSize( EU.Common.strToSize( value ) );
                     break;
                 case EU.xmlKey.ScissorRect.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
@@ -1091,19 +1091,19 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.ScrollEnabled.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setScrollEnabled( strToBool( value ) );
+                    scrollmenu.setScrollEnabled( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.ScissorEnabled.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setScissorEnabled( strToBool( value ) );
+                    scrollmenu.setScissorEnabled( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.AllowScrollByX.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAllowScrollByX( strToBool( value ) );
+                    scrollmenu.setAllowScrollByX( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.AllowScrollByY.int:
                     EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAllowScrollByY( strToBool( value ) );
+                    scrollmenu.setAllowScrollByY( EU.Common.strToBool( value ) );
                     break;
                 case EU.xmlKey.ProgressType.int:
                     EU.assert( progress instanceof cc.ProgressTimer);
@@ -1111,15 +1111,15 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.Percent.int:
                     EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setPercentage( strToFloat( value ) );
+                    progress.setPercentage( EU.Common.strToFloat( value ) );
                     break;
                 case EU.xmlKey.MidPoint.int:
                     EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setMidpoint( strToPoint( value ) );
+                    progress.setMidpoint( EU.Common.strToPoint( value ) );
                     break;
                 case EU.xmlKey.BarChangeRate.int:
                     EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setBarChangeRate( strToPoint( value ) );
+                    progress.setBarChangeRate( EU.Common.strToPoint( value ) );
                     break;
                 default:
                     result = false;
