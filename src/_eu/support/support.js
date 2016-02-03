@@ -15,5 +15,11 @@ var EU = EU || {};
 
 EU.compute_bezier = function( a, b, c, d, t )
 {
-    return (Math.pow( 1 - t, 3 ) * a + 3 * t*(Math.pow( 1 - t, 2 ))*b + 3 * Math.pow( t, 2 )*(1 - t)*c + Math.pow( t, 3 )*d);
+    var v0 = Math.pow( 1 - t, 3 );
+    var v1 = 3 * t*(Math.pow( 1 - t, 2 ));
+    var v2 = 3 * Math.pow( t, 2 )*(1 - t);
+    var v3 = Math.pow( t, 3 );
+    var x = (v0 * a.x + v1 * b.x + v2 * c.x + v3 * d.x);
+    var y = (v0 * a.y + v1 * b.y + v2 * c.y + v3 * d.y);
+    return new cc.Point( x, y );
 }

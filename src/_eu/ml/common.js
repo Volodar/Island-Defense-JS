@@ -28,12 +28,22 @@ var strToBool = function( string ){ return  string == "yes" || string == "y" || 
  * Convert string to var
  * @param {string} string
  */
-var strToInt = function( string ){ return  parseInt(string); };
+var strToInt = function( string ){
+    if( EU.xmlLoader.stringIsEmpty(string) == false )
+        return  parseInt(string);
+    else
+        return "0";
+};
 /**
  * Convert string to float
  * @param {string} string
  */
-var strToFloat = function( string ){ return  parseFloat(string); };
+var strToFloat = function( string ){
+    if( EU.xmlLoader.stringIsEmpty(string) == false )
+        return  parseFloat(string);
+    else
+        return "0";
+};
 /**
  * Convert string to cc.Point
  * @param {string} string
@@ -164,6 +174,12 @@ var pointDistance = function( a, b ){
 }
 var pointLenght = function(a){
     return Math.sqrt(a.x*a.x+a.y*a.y);
+}
+var pointNormalized = function(a){
+    var l = pointLenght(a);
+    if( l < 0.0001 )
+        return new cc.Point(0,0);
+    return new cc.Point(a.x / l, a.y / l);
 }
 var pointAdd = function(a, b){
     return new cc.Point(a.x + b.x, a.y + b.y);

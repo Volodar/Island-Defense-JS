@@ -274,20 +274,17 @@ EU.MapLayer = cc.Layer.extend({
     {
         this.load_xmlnode( root );
 
-        for(var i=0; i < root.children.length; i++) {
-            var xmlentity = root.children[i];
-            var tag = xmlentity.tagName;
-            if( tag == "locations" ) {
-                for (var i = 0; i < xmlentity.children.length; i++) {
-                    var xmlLocation = xmlentity.children[i];
-                    var loc = new EU.MapLayerLocation;
-                    loc.pos = strToPoint(xmlLocation.getAttribute("pos"));
-                    loc.posLock = strToPoint(xmlLocation.getAttribute("poslock"));
-                    loc.a = strToPoint(xmlLocation.getAttribute("controlA"));
-                    loc.b = strToPoint(xmlLocation.getAttribute("controlB"));
-                    this.locations[i] = loc;
-                }
-            }
+        var xmlnode = root.getElementsByTagName("locations");
+        var xmlentity = (xmlnode && xmlnode.length > 0) ? xmlnode[0] : null;
+        if(xmlentity)
+        for (var i = 0; i < xmlentity.children.length; i++) {
+            var xmlLocation = xmlentity.children[i];
+            var loc = new EU.MapLayerLocation;
+            loc.pos = strToPoint(xmlLocation.getAttribute("pos"));
+            loc.posLock = strToPoint(xmlLocation.getAttribute("poslock"));
+            loc.a = strToPoint(xmlLocation.getAttribute("controlA"));
+            loc.b = strToPoint(xmlLocation.getAttribute("controlB"));
+            this.locations[i] = loc;
         }
     },
 
@@ -576,8 +573,8 @@ EU.MapLayer = cc.Layer.extend({
         var times = []
         function push( time, point )
         {
-            points[points.length]( point );
-            times[times.length]( time );
+            points.push( point );
+            times.push( time );
         };
         function insert( pos, time, point )
         {
@@ -586,8 +583,8 @@ EU.MapLayer = cc.Layer.extend({
         };
         function K( L, R, S )
         {
-            var d0 = pointDiff(S - L);
-            var d1 = pointDiff(R - S);
+            var d0 = pointDiff(S, L);
+            var d1 = pointDiff(R, S);
             if( pointLenght(d0) < 5 )
                 return false;
             var k0 = d0.y == 0 ? 0 : d0.x / d0.y;
@@ -635,18 +632,18 @@ EU.MapLayer = cc.Layer.extend({
         var index = 1;
         var D = 18;
         var E = 0;
-        for( ; index < points.size(); ++index )
+        for( ; index < points.length; ++index )
         {
-            var r = points[index] - P;
-            while( r.getLength() > D - E )
+            var r = pointDiff(points[index], P);
+            while( pointLenght(r) > D - E )
             {
-                var rn = r.getNormalized();
-                P = P + rn * (D);
-                points2.push_back( P );
+                var rn = pointNormalized(r);
+                P = new cc.Point(P.x + rn.x * D, P.y + rn.y * D);
+                points2.push( P );
                 E = 0;
-                r = points[index] - P;
+                r = pointDiff(points[index], P);
             }
-            E += r.getLength();
+            E += pointLenght(r);
         }
 
         return points2;
@@ -665,10 +662,12 @@ EU.MapLayer = cc.Layer.extend({
 
         var points = this.buildPoints( a, b, c, d );
         var iteration = 0;
-        var kdelay = 2 / points.size();
-        for( var point in points )
+        var kdelay = 2 / points.length;
+        for( var i=0; i < points.length; ++i )
         {
-            var pointSprite = ImageManager.sprite( "images/map/point.png" );
+            var point = points[i];
+            var pointSprite = EU.ImageManager.sprite( "images/map/point.png" );
+            pointSprite.setName("point");
             pointSprite.setPosition( point );
             this.map.addChild( pointSprite );
             this.curveMarkers.push( pointSprite );

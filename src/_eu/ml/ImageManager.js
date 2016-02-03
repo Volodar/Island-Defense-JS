@@ -140,7 +140,10 @@ EU.ImageManager  = {
         }
         else
         {
-            sprite = new cc.Sprite( spriteFrameOrTexture );
+            var path = spriteFrameOrTexture.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+                spriteFrameOrTexture :
+            EU.xmlLoader.resourcesRoot + spriteFrameOrTexture;
+            sprite = new cc.Sprite( path );
         }
         if( !sprite )
         {

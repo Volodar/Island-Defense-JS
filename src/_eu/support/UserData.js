@@ -36,7 +36,7 @@ EU.UserData = {
         return strToFloat( EU.UserData.get_str(key, (defaultValue ? defaultValue.toString():null)) );
     },
 
-    level_getCountPassed: function(){ return 0; },
+    level_getCountPassed: function(){ return 2; },
 
     clear: function(){},
     save: function(){},
