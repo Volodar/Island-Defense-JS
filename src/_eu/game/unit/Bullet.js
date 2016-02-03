@@ -80,7 +80,7 @@ EU.Bullet = EU.Unit.extend({
             else if( value == "parabolic" )
                 this._trajectory = this.Trajectory.parabolic;
             else
-                assert( 0 );
+                EU.assert( 0 );
         }
         else if( stringproperty == "parabolicheight" )
             this._parabolicParams.H = EU.Common.strToFloat( value );

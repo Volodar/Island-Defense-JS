@@ -44,6 +44,11 @@
         "src/_eu/scenes/MainGS.js",
         "src/_eu/scenes/MainGS.js",
         "src/_eu/scenes/Tutorial.js",
+        "src/_eu/scenes/gamegs/UnitInfo.js",
+        "src/_eu/scenes/gamegs/VictoryMenu.js",
+        "src/_eu/scenes/gamegs/WaveIcon.js",
+        "src/_eu/scenes/ScoreLayer.js",
+        "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",
         "src/_eu/resources.js",
         "src/app.js"

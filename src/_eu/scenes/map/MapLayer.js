@@ -846,14 +846,14 @@ EU.MapLayer = cc.Layer.extend({
     //        var image = pNormal.getParamCollection().at( "starimage" );
     //        split( normal, pNormal.getParamCollection().at( "star" + intToStr( starsN ) ) );
     //        split( hard, pHard.getParamCollection().at( "star" + intToStr( starsH ) ) );
-    //        assert( normal.size() == starsN );
-    //        assert( hard.size() == starsH );
+    //        EU.assert( normal.size() == starsN );
+    //        EU.assert( hard.size() == starsH );
     //        var it = normal.begin();
     //        for( int i = 0; i < starsN; ++i )
     //        {
     //            var pos = strTovar( *(it++) );
     //            Sprite * star = ImageManager.sprite( image );
-    //            assert( star );
+    //            EU.assert( star );
     //            star.setPosition( pos );
     //            pNormal.getChildByPath( "stars" ).addChild( star );
     //        }
@@ -862,7 +862,7 @@ EU.MapLayer = cc.Layer.extend({
     //        {
     //            var pos = strTovar( *(it++) );
     //            Sprite * star = ImageManager.sprite( image );
-    //            assert( star );
+    //            EU.assert( star );
     //            star.setPosition( pos );
     //            pHard.getChildByPath( "stars" ).addChild( star );
     //        }
@@ -920,7 +920,7 @@ EU.MapLayer = cc.Layer.extend({
     //    var buildIndicator = [this, level]( LayerExt*layer )
     //    {
     //        var indicator = layer.getChildByName<Sprite*>( "progress_frame" );
-    //        assert( indicator );
+    //        EU.assert( indicator );
     //        Rect rect = indicator.getTextureRect();
     //        float defaultWidth = rect.size.width;
     //        int needStar = this.locations[level].starsForUnlock;
@@ -931,7 +931,7 @@ EU.MapLayer = cc.Layer.extend({
     //        indicator.setTextureRect( rect );
     //
     //        var label = layer.getChildByName<Label*>( "progress_text" );
-    //        assert( label );
+    //        EU.assert( label );
     //        label.setString( intToStr( stars ) + "/" + intToStr( needStar ) );
     //
     //        var cost = static_cast<Label*>(layer.getChildByPath( "menu/unlock/normal/text" ));

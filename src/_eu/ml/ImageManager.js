@@ -39,7 +39,7 @@ EU.ImageManager  = {
     //        if( result.second )
     //            result.first->second->retain();
     //        else
-    //            assert( 0 );
+    //            EU.assert( 0 );
     //    }
     //    if(frames.size() > 0 )
     //    {
@@ -123,8 +123,8 @@ EU.ImageManager  = {
     //Texture2D * ImageManager::texture( const std::string & texture )
     //{
     //    auto texturecache = Director::getInstance( )->getTextureCache( );
-    //    assert( texturecache );
-    //    assert( shared( ).spriteFrame( texture ) == nullptr );
+    //    EU.assert( texturecache );
+    //    EU.assert( shared( ).spriteFrame( texture ) == nullptr );
     //    return texturecache->addImage( texture );
     //}
     //

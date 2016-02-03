@@ -49,7 +49,7 @@ EU.NodeExt = function(){
     this.load_str= function(file )
     {
         if( EU.xmlLoader.stringIsEmpty(file)) return;
-        var xmlnode = EU.pugixml.readXml( EU.xmlLoader.resourcesRoot + file);
+        var xmlnode = EU.pugixml.readXml( file);
         var root = xmlnode.firstElementChild;
         if( this.load_xmlnode2 )
             this.load_xmlnode2( root );
@@ -123,7 +123,7 @@ EU.NodeExt = function(){
             var xmlparam = xmlnode.children[i];
             var name = xmlparam.tagName;
             var attr = xmlparam.getAttribute( "value" );
-            var value = attr ? attr : xmlparam.text();
+            var value = attr ? attr : xmlparam.textContent;
             this._params.set(name, value);
         }
     };
@@ -131,7 +131,7 @@ EU.NodeExt = function(){
      * @param {Element} xmlnode */
     this.loadXmlEntity= function(tag, xmlnode )
     {
-        if( tag == EU.xmlLoader.k.ParamCollection )
+        if( tag == EU.xmlLoader.k.xmlTag.ParamCollection )
         {
             this.loadParams( xmlnode );
         }

@@ -23,9 +23,9 @@ EU.UnitInfo = cc.Menu.extend(
 
         //if ( EU.NodeExt.prototype.init.call(this) ) return;
 
-        this._unitName = EU.xmlLoader.resourcesRoot + "ini/tutorial/units/" + unitName + ".xml";
+        this._unitName = "ini/tutorial/units/" + unitName + ".xml";
 
-        var path = EU.xmlLoader.resourcesRoot + "ini/tutorial/units/";
+        var path = "ini/tutorial/units/";
         var namefile = "unitinfoicon.xml";
         this.load_str_n_str( path, namefile );
 

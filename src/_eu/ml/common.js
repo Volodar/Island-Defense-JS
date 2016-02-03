@@ -61,7 +61,7 @@ EU.Common = {
         var add = null;
         var addk = string.indexOf("add:");
         if (addk != -1) {
-            assert(addk != 0);
+            EU.assert(addk != 0);
             var s = string.substr(addk + 4);
             add = EU.Common.strToPoint(s);
             string = string.substr(0, addk);
@@ -493,7 +493,7 @@ EU.Common = {
      * @returns {*}
      */
     strToColor3B: function (value) {
-        assert(value.empty() || value.size() == 6);
+        EU.assert(value.empty() || value.size() == 6);
         if (value.empty()) return cc.Color.WHITE;
 
         var r = value.substr(0, 2);
@@ -582,7 +582,7 @@ EU.Common = {
 //    if( mode == "xy" ) return Strech.Mode.both_xy;
 //    if( mode == "max" ) return Strech.Mode.max_scale;
 //    if( mode == "min" ) return Strech.Mode.min_scale;
-//    assert( 0 );
+//    EU.assert( 0 );
 //    return Strech.Mode.unknow;
 //}
 //

@@ -86,7 +86,7 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
                 if( E && !this._fire && !this._ice && this._time_electro < duration * 2 ) { this._fire = false; this._ice = false; this._electro = true; }
                 else if( E && !this._fire && !this._ice && this._electro && (this._time_electro > duration * 2) ) this._electro = false;
     
-                assert( (this._fire + this._ice + this._electro) == 1 );
+                EU.assert( (this._fire + this._ice + this._electro) == 1 );
             }
             else
             {

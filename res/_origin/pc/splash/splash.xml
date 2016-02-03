@@ -1,7 +1,7 @@
 <maings>
   <children>
     <node name="0" type="sprite" pos="frame:0.5x0.5" image="images/square.png" strech="frame:1x1:xy"/>
-	  <node name="1" type="sprite" pos="frame:0.5x0.5" image="splash/splash.jpg" strech="frame:1x1:max" opacity="0"/>
+	  <node name="1" type="sprite" pos="frame:0.5x0.5" image="pc/splash/splash.jpg" strech="frame:1x1:max" opacity="0"/>
   </children>
   
   <actions>

@@ -816,7 +816,7 @@ EU.GameGS = (function(){
         },
         createTree: function( index )
         {
-            assert( 0 );
+            EU.assert( 0 );
             return null;
         },
         onTouchesBegan: function(touches, event )
@@ -1195,7 +1195,7 @@ EU.GameGS = (function(){
 
         openStatisticWindow( FinishLevelParams* params )
         {
-            assert( getChildByName( "win" ) == null );
+            EU.assert( getChildByName( "win" ) == null );
 
             unschedule( schedule_selector( GameGS.update ) );
     //	AdMob.show();
@@ -1812,7 +1812,7 @@ EU.GameGS = (function(){
             {
                 action = a0;
             }
-            assert( action );
+            EU.assert( action );
             runAction( action );
             this.m_label.runAction( a1 );
             this.m_bg.runAction( a2 );

@@ -49,9 +49,9 @@ EU.ScoreLayer = cc.Scene.extend({
         //if ( EU.NodeExt.prototype.init.call(this) ) return false;
 
         if (EU.k.useFuel) {
-            this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini", "scorelayer_fuel.xml" );
+            this.load_str_n_str( "ini", "scorelayer_fuel.xml" );
         } else {
-            this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini", "scorelayer.xml" );
+            this.load_str_n_str( "ini", "scorelayer.xml" );
         }
 
         this._gold = this.getChildByName( "valuegold" );

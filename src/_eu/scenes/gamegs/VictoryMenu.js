@@ -18,6 +18,8 @@ EU.VictoryMenu = cc.Node.extend(
 {
     ctor: function( victory, scores, stars )
     {
+        this._super();
+
         //if ( EU.NodeExt.prototype.init.call(this) ) return false;
         var self = this;
 
@@ -26,7 +28,7 @@ EU.VictoryMenu = cc.Node.extend(
         cc.eventManager.addListener(listener, this);
 
         var ini = victory ? "victory.xml" : "defeat.xml";
-        this.load_str_n_str( EU.xmlLoader.resourcesRoot + "ini/gamescene", ini );
+        this.load_str_n_str(  "ini/gamescene", ini );
 
         var menu = this.getChildByPath_str( "menu" );
         var close = menu ? menu.getChildByName( "close" ) : null;

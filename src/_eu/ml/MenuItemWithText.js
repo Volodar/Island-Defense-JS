@@ -153,7 +153,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             return;
         var allocate = function( label, parent, menuitem )
         {
-            assert( parent );
+            EU.assert( parent );
 
             var center = new cc.Point( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
 
@@ -200,7 +200,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._font2.empty() || this._text2.empty() )
             return;
         var allocate = function( label2, parent, menuitem ) {
-            assert( parent );
+            EU.assert( parent );
 
             var center = new cc.Point( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
 
