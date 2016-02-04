@@ -1057,7 +1057,8 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.TextWidth.int:
                     EU.assert(  label instanceof cc.LabelBMFont );
-                    if( label ) label.setContentSize( EU.Common.strToFloat( value ) );
+                    if( label )
+                        label.setBoundingWidth( EU.Common.strToFloat( value ) );
                     break;
                 case EU.xmlKey.TextAlign.int:
                     EU.assert( label instanceof cc.LabelBMFont );
