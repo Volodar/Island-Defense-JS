@@ -9,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 //Define namespace
 var EU = EU || {};
 
