@@ -949,7 +949,6 @@ EU.xmlLoader = {
                     node.setAnchorPoint(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.Strech.int:
-                    break;
                     size = node.getContentSize();
                     if (cc.sizeEqualToSize(size, cc.size(0, 0)) == false) {
                         var sx = 0.0;
@@ -962,7 +961,7 @@ EU.xmlLoader = {
                                 framepoint = value.substr(0, k);
                                 mode = value.substr(k + 1);
                             }
-                            s = EU.Common.strToPoint(framepoint);
+                            var s = EU.Common.strToPoint(framepoint);
                             sx = s.x / size.width;
                             sy = s.y / size.height;
                             return mode;
