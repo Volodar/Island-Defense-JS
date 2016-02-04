@@ -220,12 +220,8 @@ EU.xmlLoader = {
                 }
             }
             else if (tag == "actions") {
-                //TODO: loadActions
-                continue;
-                /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
                 EU.assert(nodeext.__NodeExt, "wrong instance");
-                //TODO: loadActions
                 nodeext.loadActions(xmlentity);
             }
             else if (tag == "events") {
@@ -358,7 +354,9 @@ EU.xmlLoader = {
             var attr = [];
             var count = 0;
             var l = 0;
-            for (var r = 0; r < params.size(); ++r) {
+            if( params === null || params === undefined )
+                return;
+            for (var r = 0; r < params.length; ++r) {
                 if (params[r] == '[')++count;
                 else if (params[r] == ']')--count;
                 if (count == 0 && params[r] == ',') {
@@ -561,15 +559,15 @@ EU.xmlLoader = {
         };
 
         var action_interval = function (desc) {
-            return this.load_action_str(desc);
+            return EU.xmlLoader.load_action_str(desc);
         };
         //auto action_finitetime = []( const std::string & desc ) { return static_cast<FiniteTimeAction*>(load_action( desc ).ptr()); };
 
         if (type == this.k.ActionSequence || type == this.k.ActionSpawn) {
             var sactions = getAttrs(params);
             var actions = [];
-            for (saction in sactions) {
-                var action = this.load_action_xml_node(saction);
+            for (var key in sactions) {
+                var action = EU.xmlLoader.load_action_str(sactions[key]);
                 /** @type {cc.FiniteTimeAction} fta */
                 var fta = action;
                 if (fta instanceof cc.FiniteTimeAction)
@@ -598,10 +596,10 @@ EU.xmlLoader = {
             return cc.skewBy(FLOAT(0), FLOAT(1), FLOAT(2));
         }
         else if (type == this.k.ActionMoveTo) {
-            return cc.moveTo(FLOAT(0), Point(FLOAT(1), FLOAT(2)));
+            return cc.moveTo(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)));
         }
         else if (type == this.k.ActionMoveBy) {
-            return cc.moveBy(FLOAT(0), Point(FLOAT(1), FLOAT(2)));
+            return cc.moveBy(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)));
         }
         else if (type == this.k.ActionRotateTo) {
             return cc.rotateTo(FLOAT(0), FLOAT(1));
@@ -610,10 +608,10 @@ EU.xmlLoader = {
             return cc.rotateBy(FLOAT(0), FLOAT(1));
         }
         else if (type == this.k.ActionJumpTo) {
-            return cc.jumpTo(FLOAT(0), Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+            return cc.jumpTo(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
         }
         else if (type == this.k.ActionJumpBy) {
-            return cc.jumpBy(FLOAT(0), Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+            return cc.jumpBy(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
         }
         else if (type == this.k.ActionBlink) {
             return cc.blink(FLOAT(0), INT(1));
@@ -677,7 +675,7 @@ EU.xmlLoader = {
             return cc.EaseSineInOut.create(action_interval(attr[0]));
         }
         else if (type == this.k.ActionAnimate) {
-            return cc.animate(buildAnimation(FLOAT(0), attr[1]));
+            return cc.animate(EU.xmlLoader.buildAnimation(FLOAT(0), attr[1]));
         }
 
         //action instant
@@ -710,8 +708,8 @@ EU.xmlLoader = {
      * @returns {*}
      */
     load_action_xml_node: function (xmlnode) {
-        //TODO: load_action_xml_node
-        return null;
+        if( !xmlnode || !xmlnode.getAttribute )
+            return null;
         var body = xmlnode.getAttribute("value");
         return this.load_action_str(body);
     },

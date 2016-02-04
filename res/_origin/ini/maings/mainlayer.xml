@@ -58,7 +58,6 @@
 
 
   </children>
-<!--
   <actions>
     <action name="setVisible" value="Show[]"/>
     <action name="hide" value="MoveBy[0,0,300]"/>
@@ -67,6 +66,7 @@
     <action name="show2" value="Sequence[Show[],BackOut[MoveBy[0.7,0,300]]]"/>
     <action name="show3" value="Sequence[BackOut[MoveBy[0.7,0,300]]]"/>
   </actions>
+<!--
   <events>
     <eventlist name="showTitle">
       <runaction action="show1" target="title1_text"/>
