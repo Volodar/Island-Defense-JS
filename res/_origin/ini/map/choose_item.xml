@@ -6,7 +6,7 @@
     <star4 value="-54x0,-18x0,18x0,54x0"/>
     <star5 value="-36x-15,0x-15,36x-15,18x15,-18x15"/>
     <star6 value="-36x-20,0x-20,36x-20,-36x20,0x20,36x20"/>
-    <starimage value="#star_for_diff.png"/>
+    <starimage value="choose::star_for_diff.png"/>
   </paramcollection>
   <children>
     <node name="bg" type="sprite"/>
@@ -57,7 +57,7 @@
     
     <node name="menu" type="menu" pos="0x0" cascadeopacity="yes" cascadecolor="yes">
       <children>
-        <node name="game" type="menuitem" imageN="#button_tobattle.png" font="fonts/mdefensefont2.fnt" text="" pos="0x-210" visible="##unuse_fuel##">
+        <node name="game" type="menuitem" imageN="choose::button_tobattle.png" font="fonts/mdefensefont2.fnt" text="" pos="0x-210" visible="##unuse_fuel##">
           <children>
             <node name="normal">
               <children>
@@ -66,7 +66,7 @@
             </node>
           </children>
         </node>
-        <node name="game_withfuel" type="menuitem" imageN="#button_tobattle.png" font="fonts/mdefensefont2.fnt" text="0" pos="0x-210" visible="##use_fuel##">
+        <node name="game_withfuel" type="menuitem" imageN="choose::button_tobattle.png" font="fonts/mdefensefont2.fnt" text="0" pos="0x-210" visible="##use_fuel##">
           <children>
             <node name="normal">
               <children>

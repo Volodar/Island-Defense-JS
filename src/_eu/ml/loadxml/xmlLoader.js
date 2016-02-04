@@ -1039,18 +1039,22 @@ EU.xmlLoader = {
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
-                    var isFrame = value ? value[0] == "#" : false;
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
                     var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
                     EU.assert(menuitem instanceof EU.MenuItemImageWithText);
                     menuitem.setImageNormal(image);
                     break;
                 case EU.xmlKey.ImageSelected.int:
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
                     EU.assert(menuitem instanceof EU.MenuItemImageWithText);
-                    menuitem.setImageSelected(EU.xmlLoader.resourcesRoot + value);
+                    menuitem.setImageSelected(image);
                     break;
                 case EU.xmlKey.ImageDisabled.int:
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
                     EU.assert(menuitem instanceof EU.MenuItemImageWithText);
-                    menuitem.setImageDisabled(EU.xmlLoader.resourcesRoot + value);
+                    menuitem.setImageDisabled(image);
                     break;
                 case EU.xmlKey.MenuCallBack.int:
                     EU.assert(menuitem instanceof EU.MenuItemImageWithText);

@@ -78,12 +78,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @param {string} file
      */
     listenTexture: function( file ){
-        var texture = cc.textureCache.getTextureForKey(file);
-        if( !texture )
-        {
-            var frame = cc.spriteFrameCache.getSpriteFrame( file.substr(1) );
-            texture = frame ? frame.getTexture() : null;
-        }
+        var texture = EU.ImageManager.getTextureForKey(file);
         if( texture ) {
             if (texture.isLoaded())
                 this.locateImages(texture);
