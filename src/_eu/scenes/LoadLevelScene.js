@@ -116,7 +116,7 @@ EU.LoadLevelScene = cc.Scene.extend(
 
     parseLevel: function()
     {
-        var pathToFile = cc.fileUtils.fullPathForFilename( EU.kDirectoryToMaps + ( this._levelIndex ) + ".xml" );
+        var pathToFile = EU.kDirectoryToMaps + ( this._levelIndex ) + ".xml";
 
         var doc = new EU.pugixml.readXml(pathToFile);
         var root = doc.firstElementChild;

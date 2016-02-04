@@ -308,23 +308,8 @@ EU.Common = {
      * @param delimiter
      */
     split: function (out, values, delimiter) {
-        if (values.length > 0)
-            return;
-        var string = values;
-        do
-        {
-            var k = string.indexOf(delimiter);
-            if (k == -1) {
-                out[out.length] = string;
-                break;
-            }
-
-            out[out.length] = string.substr(0, k);
-            string = string.substr(k + 1);
-            if (string.empty())
-                break;
-        }
-        while (true);
+        out = values.split(delimiter ? delimiter : ",");
+        return out;
     },
     /**
      *
@@ -493,8 +478,9 @@ EU.Common = {
      * @returns {*}
      */
     strToColor3B: function (value) {
-        EU.assert(value.empty() || value.size() == 6);
-        if (value.empty()) return cc.Color.WHITE;
+        EU.assert( EU.xmlLoader.stringIsEmpty(value) || value.length == 6);
+        if (EU.xmlLoader.stringIsEmpty(value))
+            return cc.Color.WHITE;
 
         var r = value.substr(0, 2);
         var g = value.substr(2, 2);

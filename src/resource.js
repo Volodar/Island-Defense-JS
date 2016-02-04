@@ -7,6 +7,11 @@ var res = {
     mdefensefont_fnt : "fonts/mdefensefont.fnt",
     titlefont_fnt : "fonts/titlefont.fnt",
     whitefont1_fnt : "fonts/whitefont1.fnt",
+    choose_png : "images/map/choose.png",
+    choose : "images/map/choose.plist",
+    map1 : "images/maps/map1.jpg",
+    map2 : "images/maps/map2.jpg",
+    map3 : "images/maps/map3.jpg",
 };
 
 var g_resources = [];

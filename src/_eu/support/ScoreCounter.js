@@ -47,7 +47,7 @@ EU.ScoreCounter = {
     
         if( saveValueToUserData )
         {
-            var s = kUser_Scores_suffix + id.toString();
+            var s = EU.kUser_Scores_suffix + id.toString();
             EU.UserData.write( s, V );
         }
     },    

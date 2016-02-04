@@ -260,7 +260,7 @@ EU.xmlLoader = {
                 }
                 if( !result )
                 {
-                    cc.log( "xml node will not reading. path=[%s]", xmlentity.baseURI);
+                    //cc.log( "xml node will not reading. path:", xmlentity.tagName);
                 }
             }
 
@@ -292,7 +292,7 @@ EU.xmlLoader = {
         }
         if( child == null && this.stringIsEmpty(path) == false )
         {
-            child = this.getNodeByPath( node, path );
+            child = EU.Common.getNodeByPath( node, path );
         }
         if( child == null && this.stringIsEmpty(name) == false )
         {
@@ -300,7 +300,7 @@ EU.xmlLoader = {
         }
         if( child && this.stringIsEmpty(type) == false )
         {
-            log( "Warning! type redefined name[%s] type[%s]", name, type);
+            //cc.log( "Warning! type redefined name[%s] type[%s]", name, type);
         }
         if( child == null )
         {
@@ -982,8 +982,7 @@ EU.xmlLoader = {
                     if( sprite )
                     {
                         //TODO: EU.ImageManager
-                        //frame = EU.ImageManager.shared().spriteFrame( EU.xmlLoader.resourcesRoot + value );
-                        frame = null;
+                        var frame = EU.ImageManager.getSpriteFrame( value );
                         if( frame )
                             sprite.setSpriteFrame( frame );
                         else
@@ -1018,8 +1017,10 @@ EU.xmlLoader = {
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
+                    var isFrame = value ? value[0] == "#" : false;
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
                     EU.assert( menuitem instanceof EU.MenuItemImageWithText);
-                    menuitem.setImageNormal( EU.xmlLoader.resourcesRoot + value );
+                    menuitem.setImageNormal( image );
                     break;
                 case EU.xmlKey.ImageSelected.int:
                     EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
@@ -1121,7 +1122,7 @@ EU.xmlLoader = {
                     break;
                 default:
                     result = false;
-                    cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
+                    //cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
                     break;
             }
         }

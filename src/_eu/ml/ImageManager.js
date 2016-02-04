@@ -128,6 +128,16 @@ EU.ImageManager  = {
     //    return texturecache->addImage( texture );
     //}
     //
+    getSpriteFrame: function(name)
+    {
+        var framename = name;
+        if( framename.indexOf(EU.xmlLoader.resourcesRoot) == 0 )
+            framename = framename.substr( EU.xmlLoader.resourcesRoot.length );
+        if( framename[0] == "#" )
+            framename = framename.substr(1);
+        var frame = cc.spriteFrameCache.getSpriteFrame( framename );
+        return frame;
+    },
     sprite: function( spriteFrameOrTexture )
     {
         var sprite = null;
@@ -140,8 +150,11 @@ EU.ImageManager  = {
         }
         else
         {
-            var path = spriteFrameOrTexture.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
-                spriteFrameOrTexture :
+            var path;
+            if( spriteFrameOrTexture[0] == "#" )
+                path = spriteFrameOrTexture;
+            else
+                path = spriteFrameOrTexture.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ? spriteFrameOrTexture :
             EU.xmlLoader.resourcesRoot + spriteFrameOrTexture;
             sprite = new cc.Sprite( path );
         }

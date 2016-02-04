@@ -28,6 +28,7 @@ EU.MapLayerScrollTouchInfo = cc.Class.extend({
 });
 
 EU.MapLayer = cc.Layer.extend({
+    self: this,
     map: null,
     menuLocations : null,
     velocity: new cc.Point(0,0),
@@ -107,7 +108,7 @@ EU.MapLayer = cc.Layer.extend({
         //{
         //    var score = EU.Leaderboard.getScoreGlobal();
         //    var string = intToStr( score );
-        //    var k = string.size();
+        //    var k = string.length;
         //    while( k > 3 )
         //    {
         //        k -= 3;
@@ -190,7 +191,7 @@ EU.MapLayer = cc.Layer.extend({
                 EU.mlTowersInfo.fetch( towers );
                 var towername = towers[0];
                 var level = EU.UserData.tower_upgradeLevel( towername );
-                var scores = EU.ScoreCounter.getMoney( kScoreCrystals );
+                var scores = EU.ScoreCounter.getMoney( EU.kScoreCrystals );
                 var cost = EU.mlTowersInfo.getCostLab( towername, level + 1 );
                 if(level < 3 && cost <= scores )
                 {
@@ -458,18 +459,18 @@ EU.MapLayer = cc.Layer.extend({
         scene.pushLayer( layer, true );
         EU.TutorialManager.dispatch( "map_openitemshop" );
     },
-    cb_game: function(){
+    cb_game: function( mode ){
         var choose = EU.Common.getSceneOfNode(this).getChildByName("choose");
         if( this.menuLocations )
             this.menuLocations.setEnabled( false );
 
         var cost = EU.LevelParams.getFuel( this.selectedLevelIndex, false );
-        var fuel = EU.ScoreCounter.getMoney( kScoreFuel );
+        var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
         if( fuel < cost )
         {
             if(!EU.k.useInapps || !EU.TutorialManager.dispatch( "map_haventfuel" ) )
             {
-                this.cb_shop( sender );
+                this.cb_shop();
                 if( EU.k.useInapps == false )
                 {
                     this.menuLocations.setEnabled( true );
@@ -499,7 +500,7 @@ EU.MapLayer = cc.Layer.extend({
     cb_showChoose: function( menuItem )
     {
         var name = menuItem.getName();
-        var index = name.substr( 4 );//"flag[0..24]"
+        var index = parseInt(name.substr( 4 ));//"flag[0..24]"
         this.selectedLevelIndex = index;
 
         var layer = this.buildChooseWindow( index );
@@ -507,7 +508,8 @@ EU.MapLayer = cc.Layer.extend({
         {
             var scene = EU.Common.getSceneOfNode( this );
             EU.assert( scene );
-            scene.pushLayer( layer, true );
+            //TODO: scene.pushLayer( layer, true );
+            scene.addChild(layer, 999);
             EU.TutorialManager.dispatch( "map_onchoose" );
         }
         else
@@ -519,7 +521,7 @@ EU.MapLayer = cc.Layer.extend({
     {
         if( levelIndex < this.locations.length )
         {
-            var loadScene = EU.LoadLevelScene.create( levelIndex, mode );
+            var loadScene = new EU.LoadLevelScene( levelIndex, mode );
             cc.director.pushScene( loadScene );
         }
         else
@@ -748,154 +750,142 @@ EU.MapLayer = cc.Layer.extend({
         flag.setPosition( position );
     
         return flag;
-    }
-    //Layervarer buildChooseWindow( int level )
-    //{
-    //    var load = [this]()
-    //    {
-    //        EU.xmlLoader.bookDirectory( this );
-    //        var layer = EU.xmlLoader.load_node<LayerExt>( "ini/map/choose.xml" );
-    //        EU.xmlLoader.unbookDirectory();
-    //        return layer;
-    //    };
+    },
+    buildChooseWindow: function( level )
+    {
+        function load()
+        {
+            var layer = EU.xmlLoader.load_node_from_file( "ini/map/choose.xml" );
+            return layer;
+        }
+        function buildCloseMenu( layer )
+        {
+            var item = cc.MenuItemSprite.create( EU.ImageManager.sprite("images/square.png"), EU.ImageManager.sprite("images/square.png"), layer.removeFromParent, layer );
+            item.getNormalImage().setOpacity( 1 );
+            item.getSelectedImage().setOpacity( 1 );
+            item.setScale( 9999 );
+            var menu = cc.Menu.create( item );
+            layer.addChild( menu, -9999 );
+        }
+        function buildPreviewLevel( layer )
+        {
+            var kWidthPreview = 280;
+            var kHeightPreview = 270;
+            var levelindex = EU.Common.strToInt(level) + 1;
+            var image = "images/maps/map" + levelindex + ".jpg";
+            var sprite = EU.ImageManager.sprite( image );
+            var sx = kWidthPreview / sprite.getContentSize().width;
+            var sy = kHeightPreview / sprite.getContentSize().height;
+            sprite.setScale( sx, sy );
+            var preview = EU.Common.getNodeByPath( layer, "preview" );
+            preview.addChild( sprite, -1 );
+        }
+        function setMacroses()
+        {
+            var costNormal = EU.LevelParams.getFuel( level, false );
+            var costHard = EU.LevelParams.getFuel( level, true );
+            var goldNorm = EU.LevelParams.getAwardGold( level, 3, false );
+            var goldHard = EU.LevelParams.getAwardGold( level, 1, true );
+            var gearNorm = EU.LevelParams.getStartGear( level, false );
+            var gearHard = EU.LevelParams.getStartGear( level, true );
+            var wavesNorm = EU.LevelParams.getWaveCount( level, false );
+            var wavesHard = EU.LevelParams.getWaveCount( level, true );
+            var livesNorm = EU.LevelParams.getLives( level, false );
+            var livesHard = EU.LevelParams.getLives( level, true );
+            var excludeNorm = "";
+            var excludeHard = EU.LevelParams.getExclude(level, true);
+            var caption = "";//TODO: WORD("gamechoose_level") + intToStr( level + 1 );
+            EU.xmlLoader.macros.set( "cost_normalmode", costNormal.toString() );
+            EU.xmlLoader.macros.set( "cost_hardmode", costHard.toString() );
+            EU.xmlLoader.macros.set( "gold_normalmode", goldNorm.toString() );
+            EU.xmlLoader.macros.set( "gold_hardmode", goldHard.toString() );
+            EU.xmlLoader.macros.set( "gear_normalmode", gearNorm.toString() );
+            EU.xmlLoader.macros.set( "gear_hardmode", gearHard.toString() );
+            EU.xmlLoader.macros.set( "waves_normalmode", wavesNorm.toString() );
+            EU.xmlLoader.macros.set( "waves_hardmode", wavesHard.toString() );
+            EU.xmlLoader.macros.set( "lives_normalmode", livesNorm.toString() );
+            EU.xmlLoader.macros.set( "lives_hardmode", livesHard.toString() );
+            EU.xmlLoader.macros.set( "exclude_normalmode", excludeNorm );
+            EU.xmlLoader.macros.set( "exclude_hardmode", excludeHard );
+            EU.xmlLoader.macros.set( "preview_caption", caption );
+            EU.xmlLoader.macros.set( "use_fuel", EU.Common.boolToStr(EU.k.useFuel) );
+            EU.xmlLoader.macros.set( "unuse_fuel", EU.Common.boolToStr(!EU.k.useFuel) );
+        }
+        function unsetMacroses()
+        {
+            EU.xmlLoader.macros.erase( "cost_hardmode" );
+            EU.xmlLoader.macros.erase( "cost_normalmode" );
+            EU.xmlLoader.macros.erase( "gold_hardmode" );
+            EU.xmlLoader.macros.erase( "gold_normalmode" );
+            EU.xmlLoader.macros.erase( "gear_normalmode" );
+            EU.xmlLoader.macros.erase( "gear_hardmode" );
+            EU.xmlLoader.macros.erase( "waves_normalmode" );
+            EU.xmlLoader.macros.erase( "waves_hardmode" );
+            EU.xmlLoader.macros.erase( "lives_normalmode" );
+            EU.xmlLoader.macros.erase( "lives_hardmode" );
+            EU.xmlLoader.macros.erase( "exclude_normalmode" );
+            EU.xmlLoader.macros.erase( "exclude_hardmode" );
+            EU.xmlLoader.macros.erase( "preview_caption" );
+        }
+        function buildStars( layer )
+        {
+            var starsN = 3;
+            var starsH = EU.LevelParams.getMaxStars( level, true );
+            var normalPositions = [];
+            var hardPositions = [];
+            var pNormal = layer.getChildByName( "normal" );
+            var pHard = layer.getChildByName( "hard" );
+            var image = pNormal.getParamCollection().get( "starimage" );
+            normalPositions = EU.Common.split( normalPositions, pNormal.getParamCollection().get( "star" + starsN.toString() ) );
+            hardPositions = EU.Common.split( hardPositions, pHard.getParamCollection().get( "star" + starsH.toString() ) );
+            EU.assert( normalPositions.length == starsN );
+            EU.assert( hardPositions.length == starsH );
+            for( var i = 0; i < starsN; ++i )
+            {
+                var pos = EU.Common.strToPoint( normalPositions[i] );
+                var star = EU.ImageManager.sprite( image );
+                EU.assert( star );
+                star.setPosition( pos );
+                pNormal.getChildByName( "stars" ).addChild( star );
+            }
+            for( var i = 0; i < starsH; ++i )
+            {
+                var pos = EU.Common.strToPoint( hardPositions[i] );
+                var star = EU.ImageManager.sprite( image );
+                EU.assert( star );
+                star.setPosition( pos );
+                pHard.getChildByName( "stars" ).addChild( star );
+            }
+        }
+        function checkHardMode( layer )
+        {
+            var pass = EU.UserData.level_getCountPassed();
+            var locked = pass <= level;
+            var hard = layer.getChildByName( "hard" );
+            var hardlock = layer.getChildByName( "hard_lock" );
+            hard.setVisible( !locked );
+            hardlock.setVisible( locked );
+        }
+
+        setMacroses();
+        EU.xmlLoader.bookDirectory( this );
+        var layer = load();
+        EU.xmlLoader.unbookDirectory();
+        unsetMacroses();
+        if( layer )
+        {
+            this.prepairNodeByConfiguration( layer );
+            buildCloseMenu(layer);
+            buildPreviewLevel(layer);
+            buildStars(layer);
+            checkHardMode(layer);
+            //TODO: this.setKeyDispatcher(layer);
+            layer.runEvent("onenter");
+        }
+        return layer;
+    },
     //
-    //    var buildCloseMenu = [this]( LayerExt * layer )
-    //    {
-    //        var item = MenuItemImage.create( "images/square.png", "images/square.png",
-    //        std.bind( [layer]( Ref* )mutable
-    //        {
-    //            layer.runEvent( "onexit" );
-    //        },
-    //        std.placeholders._1 ) );
-    //        item.getNormalImage().setOpacity( 1 );
-    //        item.getSelectedImage().setOpacity( 1 );
-    //        item.setScale( 9999 );
-    //        var menu = Menu.create( item, null );
-    //        layer.addChild( menu, -9999 );
-    //    };
-    //
-    //    var buildPreviewLevel = [this, level]( Layer * layer )
-    //    {
-    //        const float kWidthPreview = 280;
-    //        const float kHeightPreview = 270;
-    //        var sprite = ImageManager.sprite( "images/maps/map" + intToStr( level + 1 ) + ".jpg" );
-    //        var sx = kWidthPreview / sprite.getContentSize().width;
-    //        var sy = kHeightPreview / sprite.getContentSize().height;
-    //        sprite.setScale( sx, sy );
-    //        var preview = getNodeByPath( layer, "preview" );
-    //        preview.addChild( sprite, -1 );
-    //    };
-    //
-    //    var setMacroses = [level]()
-    //    {
-    //        int costNormal = LevelParams.shared().getFuel( level, false );
-    //        int costHard = LevelParams.shared().getFuel( level, true );
-    //        int goldNorm = LevelParams.shared().getAwardGold( level, 3, false );
-    //        int goldHard = LevelParams.shared().getAwardGold( level, 1, true );
-    //        int gearNorm = LevelParams.shared().getStartGear( level, false );
-    //        int gearHard = LevelParams.shared().getStartGear( level, true );
-    //        int wavesNorm = LevelParams.shared().getWaveCount( level, false );
-    //        int wavesHard = LevelParams.shared().getWaveCount( level, true );
-    //        int livesNorm = LevelParams.shared().getLives( level, false );
-    //        int livesHard = LevelParams.shared().getLives( level, true );
-    //        var excludeNorm = "";
-    //        var excludeHard = LevelParams.shared().getExclude(level, true);
-    //        var caption = WORD("gamechoose_level") + intToStr( level + 1 );
-    //        EU.xmlLoader.macros.set( "cost_normalmode", intToStr( costNormal ) );
-    //        EU.xmlLoader.macros.set( "cost_hardmode", intToStr( costHard ) );
-    //        EU.xmlLoader.macros.set( "gold_normalmode", intToStr( goldNorm ) );
-    //        EU.xmlLoader.macros.set( "gold_hardmode", intToStr( goldHard ) );
-    //        EU.xmlLoader.macros.set( "gear_normalmode", intToStr( gearNorm ) );
-    //        EU.xmlLoader.macros.set( "gear_hardmode", intToStr( gearHard ) );
-    //        EU.xmlLoader.macros.set( "waves_normalmode", intToStr( wavesNorm ) );
-    //        EU.xmlLoader.macros.set( "waves_hardmode", intToStr( wavesHard ) );
-    //        EU.xmlLoader.macros.set( "lives_normalmode", intToStr( livesNorm ) );
-    //        EU.xmlLoader.macros.set( "lives_hardmode", intToStr( livesHard ) );
-    //        EU.xmlLoader.macros.set( "exclude_normalmode", excludeNorm );
-    //        EU.xmlLoader.macros.set( "exclude_hardmode", excludeHard );
-    //        EU.xmlLoader.macros.set( "preview_caption", caption );
-    //        EU.xmlLoader.macros.set( "use_fuel", boolToStr( EU.k.useFuel ) );
-    //        EU.xmlLoader.macros.set( "unuse_fuel", boolToStr( !EU.k.useFuel ) );
-    //    };
-    //
-    //    var unsetMacroses = [level]()
-    //    {
-    //        EU.xmlLoader.macros.erase( "cost_hardmode" );
-    //        EU.xmlLoader.macros.erase( "cost_normalmode" );
-    //        EU.xmlLoader.macros.erase( "gold_hardmode" );
-    //        EU.xmlLoader.macros.erase( "gold_normalmode" );
-    //        EU.xmlLoader.macros.erase( "gear_normalmode" );
-    //        EU.xmlLoader.macros.erase( "gear_hardmode" );
-    //        EU.xmlLoader.macros.erase( "waves_normalmode" );
-    //        EU.xmlLoader.macros.erase( "waves_hardmode" );
-    //        EU.xmlLoader.macros.erase( "lives_normalmode" );
-    //        EU.xmlLoader.macros.erase( "lives_hardmode" );
-    //        EU.xmlLoader.macros.erase( "exclude_normalmode" );
-    //        EU.xmlLoader.macros.erase( "exclude_hardmode" );
-    //        EU.xmlLoader.macros.erase( "preview_caption" );
-    //    };
-    //
-    //    var buldStars = [level]( Layer * layer )
-    //    {
-    //        int starsN = 3;
-    //        int starsH = LevelParams.shared().getMaxStars( level, true );
-    //        std.list< var > normal;
-    //        std.list< var > hard;
-    //        var pNormal = dynamic_cast<NodeExt*>(layer.getChildByName( "normal" ));
-    //        var pHard = dynamic_cast<NodeExt*>(layer.getChildByName( "hard" ));
-    //        var image = pNormal.getParamCollection().at( "starimage" );
-    //        split( normal, pNormal.getParamCollection().at( "star" + intToStr( starsN ) ) );
-    //        split( hard, pHard.getParamCollection().at( "star" + intToStr( starsH ) ) );
-    //        EU.assert( normal.size() == starsN );
-    //        EU.assert( hard.size() == starsH );
-    //        var it = normal.begin();
-    //        for( int i = 0; i < starsN; ++i )
-    //        {
-    //            var pos = strTovar( *(it++) );
-    //            Sprite * star = ImageManager.sprite( image );
-    //            EU.assert( star );
-    //            star.setPosition( pos );
-    //            pNormal.getChildByPath( "stars" ).addChild( star );
-    //        }
-    //        it = hard.begin();
-    //        for( int i = 0; i < starsH; ++i )
-    //        {
-    //            var pos = strTovar( *(it++) );
-    //            Sprite * star = ImageManager.sprite( image );
-    //            EU.assert( star );
-    //            star.setPosition( pos );
-    //            pHard.getChildByPath( "stars" ).addChild( star );
-    //        }
-    //    };
-    //
-    //    var checkHardMode = [level]( LayerExt*layer )
-    //    {
-    //        int pass = EU.UserData.level_getCountPassed();
-    //        bool locked = pass <= level;
-    //        var hard = layer.getChildByName( "hard" );
-    //        var hardlock = layer.getChildByName( "hard_lock" );
-    //        hard.setVisible( !locked );
-    //        hardlock.setVisible( locked );
-    //
-    //    };
-    //
-    //    setMacroses();
-    //    var layer = load();
-    //    unsetMacroses();
-    //    if( layer )
-    //    {
-    //        prepairNodeByConfiguration( layer );
-    //        buildCloseMenu(layer);
-    //        buildPreviewLevel(layer);
-    //        buldStars(layer);
-    //        checkHardMode(layer);
-    //        setKeyDispatcher(layer);
-    //        layer.runEvent("onenter");
-    //    }
-    //    return layer;
-    //}
-    //
-    //Layervarer buildUnlockWindow( int level )
+    //Layervarer buildUnlockWindow( var level )
     //{
     //    var load = [this]()
     //    {
@@ -923,8 +913,8 @@ EU.MapLayer = cc.Layer.extend({
     //        EU.assert( indicator );
     //        Rect rect = indicator.getTextureRect();
     //        float defaultWidth = rect.size.width;
-    //        int needStar = this.locations[level].starsForUnlock;
-    //        int stars = EU.ScoreCounter.getMoney( kScoreStars );
+    //        var needStar = this.locations[level].starsForUnlock;
+    //        var stars = EU.ScoreCounter.getMoney( EU.kScoreStars );
     //        float progress = std.min( 1.f, float( stars ) / float( needStar ) );
     //        float width = defaultWidth * progress;
     //        rect.size.width = width;
@@ -995,11 +985,11 @@ EU.MapLayer = cc.Layer.extend({
     //        }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_F2 )
     //        {
-    //            EU.ScoreCounter.addMoney( kScoreCrystals, 1000, true );
+    //            EU.ScoreCounter.addMoney( EU.kScoreCrystals, 1000, true );
     //        }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_F3 )
     //        {
-    //            EU.ScoreCounter.addMoney( kScoreFuel, 50, true );
+    //            EU.ScoreCounter.addMoney( EU.kScoreFuel, 50, true );
     //        }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_1 ) { var player = AutoPlayer.create( true, true, 1, false ); player.retain(); }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_2 ) { var player = AutoPlayer.create( true, false, 3, false ); player.retain(); }
@@ -1063,5 +1053,6 @@ EU.MapLayer.scene = function(){
     var layer = new EU.MapLayer();
     layer.init();
     scene.addChild( layer );
+    cc.spriteFrameCache.addSpriteFrames( "res/_origin/images/map/choose.plist");
     return scene;
 };

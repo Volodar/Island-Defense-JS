@@ -79,9 +79,14 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      */
     listenTexture: function( file ){
         var texture = cc.textureCache.getTextureForKey(file);
+        if( !texture )
+        {
+            var frame = cc.spriteFrameCache.getSpriteFrame( file.substr(1) );
+            texture = frame ? frame.getTexture() : null;
+        }
         if( texture ) {
             if (texture.isLoaded())
-                this.locateImages();
+                this.locateImages(texture);
             else
                 texture.addEventListener("load", this.locateImages, this, texture);
         }
@@ -149,7 +154,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * build all text nodes for every image (normal, selected, disabled)
      */
     buildText: function() {
-        if( this._font.empty() || this._text.empty() )
+        if( this._font.length == 0 || this._text.length == 0 )
             return;
         var allocate = function( label, parent, menuitem )
         {

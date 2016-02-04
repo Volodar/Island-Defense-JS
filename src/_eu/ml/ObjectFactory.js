@@ -24,13 +24,14 @@ EU.Factory  = {
         if( type == "progresstimer" ) return cc.ProgressTimer.create(null);
         if( type == "paralax" ) return cc.ParallaxNode.create();
         if( type == "menuitem" ) return EU.MenuItemImageWithText.create();
+        if( type == "layerext" ) return new EU.LayerExt;
+        if( type == "nodeext" ) return new EU.NodeExt_;
         //TODO: change Label to Text
         if( type == "text" ) return cc.LabelBMFont.create();
         //TODO: build types:
         //if( type == "scrollmenu" ) return EU.ScrollMenu.create();
         //if( type == "menuitem" ) return EU.mlMenuItem.create();
-        //if( type == "layerext" ) return EU.LayerExt.create();
-        //if( type == "nodeext" ) return EU.NodeExt_.create();
+
         //if( type == "menuext" ) return EU.MenuExt.create();
         //if( type == "panel" ) return EU.Panel.create();
 
