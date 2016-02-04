@@ -7,7 +7,7 @@ cc.game.onStart = function(){
         EU.xmlLoader.macros.set( "USE_HEROROOM", "yes" );
         EU.xmlLoader.macros.set( "PLATFORM_MOBILE", "no" );
 
-        cc.director.runScene( EU.MapLayer.scene() );//run the GameScene
+        cc.director.runScene( EU.MainGS.scene() );//run the GameScene
     }, this);
 };
 cc.game.run();

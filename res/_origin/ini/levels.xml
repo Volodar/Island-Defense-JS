@@ -23,5 +23,4 @@
   <level_22 fuel="31" fuelhard="31" star1="230" star2="240" star3="430" starhard="460" starshard="3" excludetext=""/>
   <level_23 fuel="32" fuelhard="32" star1="240" star2="250" star3="450" starhard="480" starshard="3" excludetext=""/>
   <level_24 fuel="33" fuelhard="33" star1="250" star2="260" star3="470" starhard="500" starshard="3" excludetext=""/>
-  <level_25 fuel="0"  fuelhard="0"  star1="228" star2="456" star3="683" starhard="0" starshard="3" excludetext=""/>
 </levels>

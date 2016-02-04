@@ -82,10 +82,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @param {string} file
      */
     listenTexture: function( file ){
-        var texture = cc.textureCache.getTextureForKey(file);
+        var texture = EU.ImageManager.getTextureForKey(file);
         if( texture ) {
             if (texture.isLoaded())
-                this.locateImages();
+                this.locateImages(texture);
             else
                 texture.addEventListener("load", this.locateImages, this, texture);
         }
@@ -153,7 +153,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * build all text nodes for every image (normal, selected, disabled)
      */
     buildText: function() {
-        if( this._font.empty() || this._text.empty() )
+        if( this._font.length == 0 || this._text.length == 0 )
             return;
         var allocate = function( label, parent, menuitem )
         {

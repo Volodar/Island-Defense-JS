@@ -308,23 +308,8 @@ EU.Common = {
      * @param delimiter
      */
     split: function (out, values, delimiter) {
-        if (values.length > 0)
-            return;
-        var string = values;
-        do
-        {
-            var k = string.indexOf(delimiter);
-            if (k == -1) {
-                out[out.length] = string;
-                break;
-            }
-
-            out[out.length] = string.substr(0, k);
-            string = string.substr(k + 1);
-            if (string.empty())
-                break;
-        }
-        while (true);
+        out = values.split(delimiter ? delimiter : ",");
+        return out;
     },
     /**
      *
@@ -493,8 +478,9 @@ EU.Common = {
      * @returns {*}
      */
     strToColor3B: function (value) {
-        EU.assert(value.empty() || value.size() == 6);
-        if (value.empty()) return cc.Color.WHITE;
+        EU.assert( EU.xmlLoader.stringIsEmpty(value) || value.length == 6);
+        if (EU.xmlLoader.stringIsEmpty(value))
+            return cc.Color.WHITE;
 
         var r = value.substr(0, 2);
         var g = value.substr(2, 2);
@@ -561,137 +547,125 @@ EU.Common = {
         return r;
     },
 
-//TODO: Strech
-//Strech.Strech()
-//: mode( Mode.unknow )
-//, maxScaleX(-1)
-//, maxScaleY(-1)
-//, minScaleX(-1)
-//, minScaleY(-1)
-//{}
-//
-//var Strech.empty()const
-//{
-//    return mode == Mode.unknow;
-//}
-//
-//Strech.Mode strToStrechMode( const & mode )
-//{
-//    if( mode == "x" ) return Strech.Mode.only_x;
-//    if( mode == "y" ) return Strech.Mode.only_y;
-//    if( mode == "xy" ) return Strech.Mode.both_xy;
-//    if( mode == "max" ) return Strech.Mode.max_scale;
-//    if( mode == "min" ) return Strech.Mode.min_scale;
-//    EU.assert( 0 );
-//    return Strech.Mode.unknow;
-//}
-//
-////"frame:1x1:min[max:1,min:0.5]"
-//Strech strToStrech( const & string )
-//{
-//    Strech result;
-//     mode;
-//     size;
-//    size_t paramB = stringind_last_of( "[" );
-//    size_t paramE = stringind_last_of( "]" );
-//    size_t k( .npos );
-//    if( paramB == .npos )
-//    {
-//        k = stringind_last_of( ":" );
-//    }
-//    else
-//    {
-//        size_t pos = stringind( ':', 0 );
-//        while( pos < paramB )
-//        {
-//            k = pos;
-//            pos = stringind( ':', pos + 1 );
-//        }
-//    }
-//
-//    if( k != .npos )
-//    {
-//        size = string.substr( 0, k );
-//        if( paramB == .npos )
-//            mode = string.substr( k + 1 );
-//        else
-//            mode = string.substr( k + 1, paramB - (k + 1) );
-//    }
-//
-//    if( paramB != .npos )
-//    {
-//         paramsString;
-//        if( paramE != .npos )
-//            paramsString = string.substr( paramB + 1, paramE - (paramB + 1) );
-//        else
-//            paramsString = string.substr( paramB + 1 );
-//
-//        ParamCollection pc( paramsString );
-//        result.maxScaleX = pc.isExist( "maxx" ) ? strToFloat( pc.get( "maxx" ) ) : result.maxScaleX;
-//        result.maxScaleY = pc.isExist( "maxu" ) ? strToFloat( pc.get( "maxu" ) ) : result.maxScaleY;
-//        result.minScaleX = pc.isExist( "minx" ) ? strToFloat( pc.get( "minx" ) ) : result.minScaleX;
-//        result.minScaleY = pc.isExist( "miny" ) ? strToFloat( pc.get( "miny" ) ) : result.minScaleY;
-//        if( pc.isExist( "max" ) )
-//            result.maxScaleX = result.maxScaleY = strToFloat( pc.get( "max" ) );
-//        if( pc.isExist( "min" ) )
-//            result.minScaleX = result.minScaleY = strToFloat( pc.get( "min" ) );
-//    }
-//
-//
-//    result.boundingSize = strToSize( size );
-//    result.mode = strToStrechMode( mode );
-//    return result;
-//}
-//
-//var strechNode( cc.Node*node, const Strech& strech )
-//{
-//    if( node == null )
-//        return;
-//
-//    Size size = node.getContentSize();
-//    if( size.width == 0 || size.height == 0 )
-//    {
-//        return;
-//    }
-//     sx = strech.boundingSize.width / size.width;
-//     sy = strech.boundingSize.height / size.height;
-//     ssx = node.getScaleX();
-//     ssy = node.getScaleY();
-//     zx = ssx / fabs( ssx );
-//    switch( strech.mode )
-//    {
-//        case Strech.Mode.max_scale:
-//            ssy = ssx = std.max( sx, sy );
-//            break;
-//        case Strech.Mode.min_scale:
-//            ssy = ssx = std.min( sx, sy );
-//            break;
-//        case Strech.Mode.both_xy:
-//            ssx = sx;
-//            ssy = sy;
-//            break;
-//        case Strech.Mode.only_x:
-//            ssx = sx;
-//            break;
-//        case Strech.Mode.only_y:
-//            ssy = sy;
-//            break;
-//        case Strech.Mode.unknow:
-//            break;
-//    }
-//
-//    if( zx < 0 )
-//    {
-//        ssy = -ssy;
-//    }
-//
-//    if( strech.maxScaleX != -1 ) ssx = std.min( ssx, strech.maxScaleX );
-//    if( strech.maxScaleY != -1 ) ssy = std.min( ssy, strech.maxScaleY );
-//    if( strech.minScaleX != -1 ) ssx = std.max( ssx, strech.minScaleX );
-//    if( strech.minScaleY != -1 ) ssy = std.max( ssy, strech.minScaleY );
-//
-//    node.setScale( ssx, ssy );
-//}
+    Strech : cc.Class.extend({
+        /**
+         * x
+         * y
+         * xy
+         * max
+         * min
+         */
+        mode : "",
+        maxScaleX : -1,
+        maxScaleY : -1,
+        minScaleX : -1,
+        minScaleY : -1,
+        empty: function() {
+            return this.mode.length == 0;
+        }
+    }),
+    strToStrech: function( string )
+    {
+        var result = new EU.Common.Strech();
+        var mode = "";
+        var size = null;
+        var paramB = string.indexOf( "[" );
+        var paramE = string.lastIndexOf( "]" );
+        var k = -1;
+        if( paramB == -1 )
+        {
+            k = string.lastIndexOf( ":" );
+        }
+        else
+        {
+            var pos = string.indexOf( ':', 0 );
+            while( pos < paramB )
+            {
+                k = pos;
+                pos = string.indexOf( ':', pos + 1 );
+            }
+        }
+
+        if( k != -1 )
+        {
+            size = string.substr( 0, k );
+            if( paramB == -1 )
+                mode = string.substr( k + 1 );
+            else
+                mode = string.substr( k + 1, paramB - (k + 1) );
+        }
+
+        if( paramB != -1 )
+        {
+            var paramsString = "";
+            if( paramE != -1 )
+                paramsString = string.substr( paramB + 1, paramE - (paramB + 1) );
+            else
+                paramsString = string.substr( paramB + 1 );
+
+            var pc = new EU.ParamCollection( paramsString );
+            result.maxScaleX = pc.isExist( "maxx" ) ? parseFloat( pc.get( "maxx" ) ) : result.maxScaleX;
+            result.maxScaleY = pc.isExist( "maxu" ) ? parseFloat( pc.get( "maxu" ) ) : result.maxScaleY;
+            result.minScaleX = pc.isExist( "minx" ) ? parseFloat( pc.get( "minx" ) ) : result.minScaleX;
+            result.minScaleY = pc.isExist( "miny" ) ? parseFloat( pc.get( "miny" ) ) : result.minScaleY;
+            if( pc.isExist( "max" ) )
+                result.maxScaleX = result.maxScaleY = parseFloat( pc.get( "max" ) );
+            if( pc.isExist( "min" ) )
+                result.minScaleX = result.minScaleY = parseFloat( pc.get( "min" ) );
+        }
+
+
+        result.boundingSize = EU.Common.strToSize( size );
+        result.mode = mode;
+        return result;
+    },
+    strechNode: function( node, strech )
+    {
+        if( !node )
+            return;
+
+        var size = node.getContentSize();
+        if( size.width == 0 || size.height == 0 )
+        {
+            return;
+        }
+        var sx = strech.boundingSize.width / size.width;
+        var sy = strech.boundingSize.height / size.height;
+        var ssx = node.getScaleX();
+        var ssy = node.getScaleY();
+        var zx = ssx / fabs( ssx );
+        switch( strech.mode )
+        {
+            case "max":
+                ssy = ssx = std.max( sx, sy );
+                break;
+            case "min":
+                ssy = ssx = std.min( sx, sy );
+                break;
+            case "xy":
+                ssx = sx;
+                ssy = sy;
+                break;
+            case "x":
+                ssx = sx;
+                break;
+            case "y":
+                ssy = sy;
+                break;
+            default:
+                break;
+        }
+
+        if( zx < 0 )
+            ssy = -ssy;
+
+        if( strech.maxScaleX != -1 ) ssx = Math.min( ssx, strech.maxScaleX );
+        if( strech.maxScaleY != -1 ) ssy = Math.min( ssy, strech.maxScaleY );
+        if( strech.minScaleX != -1 ) ssx = Math.max( ssx, strech.minScaleX );
+        if( strech.minScaleY != -1 ) ssy = Math.max( ssy, strech.minScaleY );
+
+        node.setScale( ssx, ssy );
+    }
 
 //TODO: ActionEnable
 //TODO: ActionDisable

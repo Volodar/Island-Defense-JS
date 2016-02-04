@@ -9,54 +9,51 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 EU.MainGS = cc.Layer.extend({
     _loadingList: {},
     _menu: null,
     _menuAudio: null,
     _resourcesIsLoaded: false,
 
-    ctor: function(){
+    ctor: function () {
         this._super();
         this.load_str("ini/maings/mainlayer.xml");
 
-        this._menu = this.getChildByName( "mainmenu" );
-        if( this._loadingList.length > 0 ) {
-            this._menu.setEnabled( false );
-            this.loadResources(this.onResourcesDidLoaded, this);
-        }else {
-            this.onResourcesDidLoaded();
-        }
+        this._menu = this.getChildByName("mainmenu");
 
-        this.runEvent( "oncreate" );
+        this.runEvent("oncreate");
 
         //var promo = this.getNodeByPath( this, "menupromo" );
         //if( promo )
         //    promo.setVisible( true );
     },
-    load_xmlnode: function( root )
-    {
-        EU.NodeExt.prototype.load_xmlnode.call( this, root );
-    
-        //var xmlRes = root.child( "resources" );
-        //var xml_tex = xmlRes.child( "textures" );
-        //var xml_atl = xmlRes.child( "atlases" );
-        //FOR_EACHXML( xml_tex, child )
-        //{
-        //    m_loadingList.resources.push_back( child.attribute( "path" ).as_string() );
-        //}
-        //FOR_EACHXML( xml_atl, child )
-        //{
-        //    std::string path = child.attribute( "path" ).as_string();
-        //    std::string name = child.attribute( "name" ).as_string();
-        //    m_loadingList.atlases.push_back( std::pair<std::string, std::string>( path, name ) );
-        //}
-    },
+    load_xmlnode2: function (root) {
+        this.load_xmlnode(root);
 
-    get_callback_by_description: function( name )
-    {
-        if( name == "pushGame" ) return this.pushGame;
-        if( name == "close_redeem_win" ) return this.closeRedeemMsg;
+        var xmlRes = root.getElementsByTagName("resources")[0];
+        var xmlAtlases = xmlRes.getElementsByTagName("atlases")[0];
+        for (var i = 0; i < xmlAtlases.children.length; ++i) {
+            var child = xmlAtlases.children[i];
+            var path = child.getAttribute("path");
+            var name = child.getAttribute("name");
+            EU.ImageManager.load(path, name);
+        }
+
+    },
+    pushGame: function () {
+        if (this._menu.isEnabled() == false)
+            return;
+        this._menu.setEnabled(false);
+        cc.director.pushScene(EU.MapLayer.scene());
+    },
+    closeRedeemMsg: function(){},
+    exit: function(){
+        cc.director.end();
+    },
+    get_callback_by_description: function (name) {
+        if (name == "pushGame") return this.pushGame;
+        if (name == "close_redeem_win") return this.closeRedeemMsg;
         if (name == "exit") return this.exit;
         //TODO: settings
         //if( name == "settings" )
@@ -73,53 +70,21 @@ EU.MainGS = cc.Layer.extend({
         //    return std::bind( cb, std::placeholders::_1 );
         //}
         return null;//EU.NodeExt.prototype.get_callback_by_description.call( this, name );
-    },
-    
+    }
+
     //onEnter: function()
     //{
     //    cc.Node.prototype.onEnter.call(this);
     //    //AudioEngine::shared().playMusic( kMusicMainMenu );
     //    //setKeyboardEnabled( true );
     //},
-    
+
     //onKeyReleased: function( EventKeyboard::KeyCode keyCode, Event* event )
     //{
     //    if( keyCode == EventKeyboard::KeyCode::KEY_BACK )
     //        Director::getInstance()->popScene();
     //}
-    
-    loadResources: function( callback, target )
-    {
-        var layer = new EU.LayerLoader( callback, target );
-        layer.addPlists( this._loadingList );
-        layer.setVisible( false );
-        layer.setTag( 999 );
-        layer.loadCurrentTexture();
-        this.addChild( layer, 999 );
-    },
-    
-    pushGame: function()
-    {
-        if( this._menu.isEnabled() == false )
-            return;
-        this._menu.setEnabled( false );
-        if( this._resourcesIsLoaded )
-            this.onResourcesDidLoaded_runMap();
-        else
-            this.loadResources( this.onResourcesDidLoaded_runMap, this );
-    },
-    
-    onResourcesDidLoaded: function()
-    {
-        this._menu.setEnabled( true );
-        this.removeChildByTag( 999 );
-        if( this._resourcesIsLoaded == false )
-        {
-            this.runEvent( "resourcesloaded" );
-        }
-        this._resourcesIsLoaded = true;
-    },
-    
+
     //void createDevMenu()
     //{
     //    if( isTestDevice() == false )
@@ -168,18 +133,12 @@ EU.MainGS = cc.Layer.extend({
     //    menu->setCascadeOpacityEnabled(true);
     //    menu->setOpacity(true);
     //}
-    
-    onResourcesDidLoaded_runMap: function()
-    {
-        this.onResourcesDidLoaded();
-        cc.director.pushScene( EU.MapLayer.scene() );
-    },
 });
 EU.NodeExt.call(EU.MainGS.prototype);
 
-EU.MainGS.scene = function(){
+EU.MainGS.scene = function () {
     var scene = new cc.Scene();
     var layer = new EU.MainGS();
-    scene.addChild( layer );
+    scene.addChild(layer);
     return scene;
 };

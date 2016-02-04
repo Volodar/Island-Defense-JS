@@ -43,7 +43,7 @@
         <node name="dummy" type="node">
           <children>
             <node path="lock" type="sprite" image="choose::lock2.png" pos="0x38" scale="1.2x1.2"/>
-            <node name="text" type="text" font="fonts/helvetica.fnt" text="#gamechoose_hardmode_locked#" pos="0x-125" scale="0.6x0.6" center="0.5x0.5" color="74C4DF" textwidth="250" textalign="center"/>
+            <node name="text" type="text" font="fonts/helvetica.fnt" text="#gamechoose_hardmode_locked#" pos="0x-125" scale="0.6x0.6" center="0.5x0.5" color="74C4DF" textwidth="350" textalign="center"/>
           </children>
         </node>
         <node path="reward_text" visible="no"/>
@@ -58,7 +58,7 @@
     <node name="preview" type="node" pos="0x0" cascadeopacity="yes">
       <children>
         <node name="frame" type="sprite" image="choose::win_for_level2.png" pos="0x40"/>
-        <node name="caption" type="text" font="fonts/titlefont.fnt" text="##preview_caption##" pos="0x175" strech="230x60:min"/>
+        <node name="caption" type="text" font="fonts/titlefont.fnt" text="##preview_caption##" pos="0x175" scale="0.6x0.6" strech="230x60:min"/>
       </children>
     </node>
 

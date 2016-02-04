@@ -27,28 +27,25 @@ EU.xmlLoader = {
 
     /** For Test Instance of */
     __xmlLoader: true,
-    resourcesRoot : "res/_origin/",
+    resourcesRoot: "res/_origin/",
 
     self: this,
     macros: {
         delimiter: "##",
-        delimiter_size : function() {
+        delimiter_size: function () {
             return this.delimiter.length
         },
         _macroses: new EU.ParamCollection(""),
-        set: function(name, value){
+        set: function (name, value) {
             this._macroses[name] = value;
         },
-        get: function(name)
-        {
+        get: function (name) {
             return this._macroses[name];
         },
-        clear: function()
-        {
+        clear: function () {
             this._macroses = new EU.ParamCollection("");
         },
-        erase: function(name)
-        {
+        erase: function (name) {
             delete this._macroses[name];
         },
 
@@ -57,22 +54,19 @@ EU.xmlLoader = {
          * @returns {String}
          */
         parse: function (string) {
-            if( string == undefined )
+            if (string == undefined)
                 return "";
             var result = string;
-            while( true )
-            {
-                var l = result.indexOf( this.delimiter );
-                var r = result.indexOf( this.delimiter, l + this.delimiter_size() );
+            while (true) {
+                var l = result.indexOf(this.delimiter);
+                var r = result.indexOf(this.delimiter, l + this.delimiter_size());
 
-                if( l >= 0 && r >= 0)
-                {
-                    var macros = result.substr( l + this.delimiter_size(), r - (l + this.delimiter_size()) );
-                    var substitution = this.parse( this.get(macros) );
-                    result = result.replace( result.substr(l, r - l + this.delimiter_size() ), substitution );
+                if (l >= 0 && r >= 0) {
+                    var macros = result.substr(l + this.delimiter_size(), r - (l + this.delimiter_size()));
+                    var substitution = this.parse(this.get(macros));
+                    result = result.replace(result.substr(l, r - l + this.delimiter_size()), substitution);
                 }
-                else
-                {
+                else {
                     break;
                 }
             }
@@ -123,32 +117,30 @@ EU.xmlLoader = {
      * load a node from file name
      * @param {String} path
      */
-    load_node_from_file: function(path) {
+    load_node_from_file: function (path) {
         var xmlnode = new EU.pugixml.readXml(path);
         var root = xmlnode.firstElementChild;
-        return this.load_node_from_xml_node( root );
+        return this.load_node_from_xml_node(root);
     },
     /**
      * load a node from a xmlnode
      * @param {Element} xmlnode
      */
-    load_node_from_xml_node: function( xmlnode) {
-        if( xmlnode == null )
+    load_node_from_xml_node: function (xmlnode) {
+        if (xmlnode == null)
             return null;
-        var type = xmlnode.getAttribute( EU.xmlKey.Type.name );
-        var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
-        if( this.stringIsEmpty(template_) != false )
-        {
+        var type = xmlnode.getAttribute(EU.xmlKey.Type.name);
+        var template_ = xmlnode.getAttribute(EU.xmlKey.Template.name);
+        if (this.stringIsEmpty(template_) != false) {
             var node = EU.Factory.build(type);
-            this.load_node_xml_node( node, xmlnode, false );
+            this.load_node_xml_node(node, xmlnode, false);
             return node;
         }
-        else
-        {
-            var node = this.load_node_from_file( EU.xmlLoader.resourcesRoot + template_ );
+        else {
+            var node = this.load_node_from_file(EU.xmlLoader.resourcesRoot + template_);
             var xmlnodem = xmlnode;
-            xmlnodem.removeAttribute( EU.xmlKey.Template.name );
-            this.load_node_xml_node( node, xmlnodem, true );
+            xmlnodem.removeAttribute(EU.xmlKey.Template.name);
+            this.load_node_xml_node(node, xmlnodem, true);
             return node;
         }
     },
@@ -157,22 +149,21 @@ EU.xmlLoader = {
      * @param {Element} xmlnode
      * @returns {type} event
      */
-    load_event_xml_node: function(xmlnode ) {
+    load_event_xml_node: function (xmlnode) {
         var type = xmlnode.getAttribute("name");
 
         //TODO: create EU.EventBase
-        var event = EU.EventBase.create( type );
-        for (var i=0; i<xmlnode.attributes.length; i++)
-        {
+        var event = EU.EventBase.create(type);
+        for (var i = 0; i < xmlnode.attributes.length; i++) {
             var attr = xmlnode.attributes[i];
             var name = attr.name;
-            var value = this.macros.parse( attr.value);
-            event.setParam( name, value );
+            var value = this.macros.parse(attr.value);
+            event.setParam(name, value);
         }
-        for(var i=0; i < xmlnode.children.length; i++){
+        for (var i = 0; i < xmlnode.children.length; i++) {
             var child = xmlnode.children[i];
             var name = child.getAttribute("name");
-            event.loadXmlEntity( name, child );
+            event.loadXmlEntity(name, child);
         }
         return event;
     },
@@ -181,86 +172,79 @@ EU.xmlLoader = {
      * @param node
      * @param path
      */
-    load_node_n_str: function(node, path ) {
+    load_node_n_str: function (node, path) {
         var xmlnode = new EU.pugixml.readXml(path);
         var root = xmlnode.firstElementChild;
-        this.load_node_xml_node( node, root, false );
+        this.load_node_xml_node(node, root, false);
     },
     /**
      * load xml configuration into a created node
      * @param {EU.Node} node
      * @param {Element} xmlnode
      */
-    load_node_xml_node: function (node, xmlnode, ignodeTemplate ){
-        if( node == null )
+    load_node_xml_node: function (node, xmlnode, ignodeTemplate) {
+        if (node == null)
             return;
         //const std::string& type = xmlnode.attribute( ksType.c_str() ).as_string();
-        var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
-        if( ignodeTemplate == false && this.stringIsEmpty(template_) == false )
-        {
-            this.load_node_n_str( node, EU.xmlLoader.resourcesRoot + template_ );
+        var template_ = xmlnode.getAttribute(EU.xmlKey.Template.name);
+        if (ignodeTemplate == false && this.stringIsEmpty(template_) == false) {
+            this.load_node_n_str(node, EU.xmlLoader.resourcesRoot + template_);
         }
 
-        for (var i=0; i<xmlnode.attributes.length; i++)
-        {
+        for (var i = 0; i < xmlnode.attributes.length; i++) {
             var attr = xmlnode.attributes[i];
             var name = attr.name;
             var value = attr.value;
-            EU.xmlLoader.setProperty( node, name, value );
+            EU.xmlLoader.setProperty(node, name, value);
         }
 
-        for(var i=0; i < xmlnode.children.length; i++){
+        for (var i = 0; i < xmlnode.children.length; i++) {
             var xmlentity = xmlnode.children[i];
 
             var tag = xmlentity.tagName;
-            if( tag == "children" )
-                this.load_children( node, xmlentity );
-            else if( tag == "items" )/*&& type == "scrollmenu"*/ //remove checking type for template
+            if (tag == "children")
+                this.load_children(node, xmlentity);
+            else if (tag == "items")/*&& type == "scrollmenu"*/ //remove checking type for template
             {
                 /** @type {EU.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert( scrollmenu.__ScrollMenu, "wrong instance");
-                this.load_scrollmenu_items( scrollmenu, xmlentity );
+                EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
+                this.load_scrollmenu_items(scrollmenu, xmlentity);
             }
-            else if( tag == "children_nonscissor" )
-            {
+            else if (tag == "children_nonscissor") {
                 /** @type {cc.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert( scrollmenu.__ScrollMenu, "wrong instance");
-                if( scrollmenu ) {
-                    this.load_nonscissor_children( scrollmenu, xmlentity );
+                EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
+                if (scrollmenu) {
+                    this.load_nonscissor_children(scrollmenu, xmlentity);
                 }
             }
-            else if( tag == "actions" )
-            {
+            else if (tag == "actions") {
                 //TODO: loadActions
                 continue;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                EU.assert( nodeext.__NodeExt, "wrong instance");
+                EU.assert(nodeext.__NodeExt, "wrong instance");
                 //TODO: loadActions
-                nodeext.loadActions( xmlentity );
+                nodeext.loadActions(xmlentity);
             }
-            else if( tag == "events" )
-            {
+            else if (tag == "events") {
                 //TODO: loadEvents
                 continue;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                EU.assert( nodeext.__NodeExt, "wrong instance");
-                nodeext.loadEvents( xmlentity );
+                EU.assert(nodeext.__NodeExt, "wrong instance");
+                nodeext.loadEvents(xmlentity);
             }
-            else
-            {
+            else {
                 var result = false;
                 /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
-                if( nodeext.__NodeExt ) {
-                    result = nodeext.loadXmlEntity( tag, xmlentity );
+                if (nodeext.__NodeExt) {
+                    result = nodeext.loadXmlEntity(tag, xmlentity);
                 }
-                if( !result )
-                {
-                    cc.log( "xml node will not reading. path=[%s]", xmlentity.baseURI);
+                if (!result) {
+                    //cc.log( "xml node will not reading. path:", xmlentity.tagName);
                 }
             }
 
@@ -278,32 +262,27 @@ EU.xmlLoader = {
      * @param {Element} xmlnode
      * @returns {*}
      */
-    getorbuild_node: function( node, xmlnode ){
-        var type = xmlnode.getAttribute( EU.xmlKey.Type.name );
-        var name = xmlnode.getAttribute( EU.xmlKey.Name.name );
-        var path = xmlnode.getAttribute( EU.xmlKey.Path.name );
-        var template_ = xmlnode.getAttribute( EU.xmlKey.Template.name );
+    getorbuild_node: function (node, xmlnode) {
+        var type = xmlnode.getAttribute(EU.xmlKey.Type.name);
+        var name = xmlnode.getAttribute(EU.xmlKey.Name.name);
+        var path = xmlnode.getAttribute(EU.xmlKey.Path.name);
+        var template_ = xmlnode.getAttribute(EU.xmlKey.Template.name);
 
         var child = null;
 
-        if( this.stringIsEmpty(template_) == false )
-        {
-            child = this.load_node_from_file( EU.xmlLoader.resourcesRoot + template_ );
+        if (this.stringIsEmpty(template_) == false) {
+            child = this.load_node_from_file(EU.xmlLoader.resourcesRoot + template_);
         }
-        if( child == null && this.stringIsEmpty(path) == false )
-        {
-            child = this.getNodeByPath( node, path );
+        if (child == null && this.stringIsEmpty(path) == false) {
+            child = EU.Common.getNodeByPath(node, path);
         }
-        if( child == null && this.stringIsEmpty(name) == false )
-        {
-            child = node.getChildByName( name );
+        if (child == null && this.stringIsEmpty(name) == false) {
+            child = node.getChildByName(name);
         }
-        if( child && this.stringIsEmpty(type) == false )
-        {
-            log( "Warning! type redefined name[%s] type[%s]", name, type);
+        if (child && this.stringIsEmpty(type) == false) {
+            //cc.log( "Warning! type redefined name[%s] type[%s]", name, type);
         }
-        if( child == null )
-        {
+        if (child == null) {
             //TODO: EU.Factory
             child = EU.Factory.build(type);
         }
@@ -314,21 +293,20 @@ EU.xmlLoader = {
      * @param {cc.Node} node
      * @param {Element} xmlnode
      */
-    load_children: function(node, xmlnode){
+    load_children: function (node, xmlnode) {
         /**
          * Template: FOR_EACHXML_BYTAG
          */
-        for(var i=0; i < xmlnode.children.length; i++){
+        for (var i = 0; i < xmlnode.children.length; i++) {
             var xmlchild = xmlnode.children[i];
             if (xmlchild.tagName == "node") {
-                var child = this.getorbuild_node( node, xmlchild );
-                EU.assert( child, "empty child" );
-                if( child == null )
+                var child = this.getorbuild_node(node, xmlchild);
+                EU.assert(child, "empty child");
+                if (child == null)
                     continue;
-                this.load_node_xml_node( child, xmlchild, false );
-                if( child.getParent() == null )
-                {
-                    node.addChild( child, child.getLocalZOrder());
+                this.load_node_xml_node(child, xmlchild, false);
+                if (child.getParent() == null) {
+                    node.addChild(child, child.getLocalZOrder());
                 }
             }
         }
@@ -338,41 +316,36 @@ EU.xmlLoader = {
      * @param {String} desc
      * @returns {*}
      */
-    load_action_str: function (desc){
+    load_action_str: function (desc) {
         /**
          * @param {String} desc
          * @returns {string|*}
          */
-        var remove_spaces = function (desc)
-        {
+        var remove_spaces = function (desc) {
             return desc.trim();
         };
         /**
          * @param {String} desc
          * @returns {string|*}
          */
-        var getType = function (desc)
-        {
+        var getType = function (desc) {
             var type;
-            var k = desc.indexOf( "[" );
-            if( k >= 0 )
-                type = desc.substr( 0, k );
+            var k = desc.indexOf("[");
+            if (k >= 0)
+                type = desc.substr(0, k);
             return type;
         };
-        var getParams = function (desc)
-        {
+        var getParams = function (desc) {
             var params;
-            var k = desc.indexOf( "[" );
-            if( k >= 0 )
-            {
+            var k = desc.indexOf("[");
+            if (k >= 0) {
                 var count = 1;
                 var l = k + 1;
-                for( ; l < desc.length && count != 0; ++l)
-                {
-                    if( desc[l] == '[' )++count;
-                    else if( desc[l] == ']' )--count;
+                for (; l < desc.length && count != 0; ++l) {
+                    if (desc[l] == '[')++count;
+                    else if (desc[l] == ']')--count;
                 }
-                params = desc.substr( k + 1, l - k - 2 );
+                params = desc.substr(k + 1, l - k - 2);
             }
             return params;
         };
@@ -381,22 +354,19 @@ EU.xmlLoader = {
          * @param {String} params
          * @returns {Array} attr
          */
-        var getAttrs = function (params)
-        {
+        var getAttrs = function (params) {
             var attr = [];
             var count = 0;
             var l = 0;
-            for( var r = 0; r < params.size(); ++r )
-            {
-                if( params[r] == '[' )++count;
-                else if( params[r] == ']' )--count;
-                if( count == 0 && params[r] == ',' )
-                {
-                    attr.push( params.substr( l, r - l ) );
+            for (var r = 0; r < params.size(); ++r) {
+                if (params[r] == '[')++count;
+                else if (params[r] == ']')--count;
+                if (count == 0 && params[r] == ',') {
+                    attr.push(params.substr(l, r - l));
                     l = r + 1;
                 }
             }
-            attr.push( params.substr( l ) );
+            attr.push(params.substr(l));
             return attr;
         };
         /**
@@ -405,7 +375,7 @@ EU.xmlLoader = {
          * @param {string} value
          * @returns {*}
          */
-        var buildAnimation = function( duration, value ) {
+        var buildAnimation = function (duration, value) {
             /**
              *
              * @param {String} string
@@ -528,13 +498,12 @@ EU.xmlLoader = {
             }
 
             var str = value;
-            var folder = _folder( str );
-            var frames = _frames( str, folder );
+            var folder = _folder(str);
+            var frames = _frames(str, folder);
 
             //TODO: createAnimation in Animation.js
-            var animation = EU.Animation.createAnimation( frames, duration );
-            if( animation )
-            {
+            var animation = EU.Animation.createAnimation(frames, duration);
+            if (animation) {
                 animation.retain();
                 _cash[value] = animation;
                 animation = animation.clone();
@@ -542,122 +511,185 @@ EU.xmlLoader = {
             return animation;
         };
 
-        var cleared_desc = this.macros.parse( remove_spaces( desc ) );
-        var type = getType( cleared_desc );
-        var params = getParams( cleared_desc );
-        var attr = getAttrs( params );
+        var cleared_desc = this.macros.parse(remove_spaces(desc));
+        var type = getType(cleared_desc);
+        var params = getParams(cleared_desc);
+        var attr = getAttrs(params);
 
         /**
          * @return {Number}
          */
-        var FLOAT = function (index )
-        {
+        var FLOAT = function (index) {
             var value = attr[index];
-            var k = value.indexOf( ".." );
-            if( k < 0 )
-            {
-                return parseFloat( value );
+            var k = value.indexOf("..");
+            if (k < 0) {
+                return parseFloat(value);
             }
-            else
-            {
-                var l = parseFloat( value.substr( 0, k ) );
-                var r = parseFloat( value.substr( k + 2 ) );
+            else {
+                var l = parseFloat(value.substr(0, k));
+                var r = parseFloat(value.substr(k + 2));
                 var v = Math.random() * (r - l) + l;
-                EU.assert( l <= r );
-                EU.assert( v >= l && v <= r );
+                EU.assert(l <= r);
+                EU.assert(v >= l && v <= r);
                 return v;
             }
         };
         /**
          * @return {Integer}
          */
-        var INT = function( index )
-        {
+        var INT = function (index) {
             var value = attr[index];
-            var k = value.indexOf( ".." );
-            if( k < 0 )
-            {
-                return parseInt( value );
+            var k = value.indexOf("..");
+            if (k < 0) {
+                return parseInt(value);
             }
-            else
-            {
-                var l = parseFloat( value.substr( 0, k ) );
-                var r = parseFloat( value.substr( k + 2 ) );
+            else {
+                var l = parseFloat(value.substr(0, k));
+                var r = parseFloat(value.substr(k + 2));
                 var v = Math.round((Math.random() * (r - l) + l));
-                EU.assert( l <= r );
-                EU.assert( v >= l && v <= r );
+                EU.assert(l <= r);
+                EU.assert(v >= l && v <= r);
                 return v;
             }
         };
         /**
          * @return {boolean}
          */
-        var BOOL = function( index )
-        {
+        var BOOL = function (index) {
             var value = attr[index];
             return (value === 'true');
         };
 
-        var action_interval = function( desc ) { return this.load_action_str( desc ); };
+        var action_interval = function (desc) {
+            return this.load_action_str(desc);
+        };
         //auto action_finitetime = []( const std::string & desc ) { return static_cast<FiniteTimeAction*>(load_action( desc ).ptr()); };
 
-        if( type == this.k.ActionSequence || type == this.k.ActionSpawn )
-        {
-            var sactions = getAttrs( params );
+        if (type == this.k.ActionSequence || type == this.k.ActionSpawn) {
+            var sactions = getAttrs(params);
             var actions = [];
-            for(saction in sactions )
-            {
-                var action = this.load_action_xml_node( saction );
+            for (saction in sactions) {
+                var action = this.load_action_xml_node(saction);
                 /** @type {cc.FiniteTimeAction} fta */
                 var fta = action;
-                if( fta instanceof cc.FiniteTimeAction)
-                    actions.push( fta );
+                if (fta instanceof cc.FiniteTimeAction)
+                    actions.push(fta);
             }
 
-            if( type == this.k.ActionSequence )
-                //
-                return cc.sequence( actions );
+            if (type == this.k.ActionSequence)
+            //
+                return cc.sequence(actions);
             else
-                return cc.spawn( actions );
+                return cc.spawn(actions);
         }
-        else if( type == this.k.ActionDelayTime ) { return cc.delayTime( FLOAT( 0 ) ); }
-        else if( type == this.k.ActionScaleTo ) { return cc.scaleTo( FLOAT( 0 ), FLOAT( 1 ), FLOAT( 2 ) ); }
-        else if( type == this.k.ActionScaleBy ) { return cc.scaleBy( FLOAT( 0 ), FLOAT( 1 ), FLOAT( 2 ) ); }
-        else if( type == this.k.ActionSkewTo ) { return cc.skewTo( FLOAT( 0 ), FLOAT( 1 ), FLOAT( 2 ) ); }
-        else if( type == this.k.ActionSkewBy ) { return cc.skewBy( FLOAT( 0 ), FLOAT( 1 ), FLOAT( 2 ) ); }
-        else if( type == this.k.ActionMoveTo ) { return cc.moveTo( FLOAT( 0 ), Point( FLOAT( 1 ), FLOAT( 2 ) ) ); }
-        else if( type == this.k.ActionMoveBy ) { return cc.moveBy( FLOAT( 0 ), Point( FLOAT( 1 ), FLOAT( 2 ) ) ); }
-        else if( type == this.k.ActionRotateTo ) { return cc.rotateTo( FLOAT( 0 ), FLOAT( 1 ) ); }
-        else if( type == this.k.ActionRotateBy ) { return cc.rotateBy( FLOAT( 0 ), FLOAT( 1 ) ); }
-        else if( type == this.k.ActionJumpTo ) { return cc.jumpTo( FLOAT( 0 ), Point( FLOAT( 1 ), FLOAT( 2 ) ), FLOAT( 3 ), INT( 4 ) ); }
-        else if( type == this.k.ActionJumpBy ) { return cc.jumpBy( FLOAT( 0 ), Point( FLOAT( 1 ), FLOAT( 2 ) ), FLOAT( 3 ), INT( 4 ) ); }
-        else if( type == this.k.ActionBlink ) { return cc.blink( FLOAT( 0 ), INT( 1 ) ); }
-        else if( type == this.k.ActionFadeTo ) { return cc.fadeTo( FLOAT( 0 ), INT( 1 ) ); }
-        else if( type == this.k.ActionFadeIn ) { return cc.fadeIn( FLOAT( 0 ) ); }
-        else if( type == this.k.ActionFadeOut ) { return cc.fadeOut( FLOAT( 0 ) ); }
-        else if( type == this.k.ActionTintTo ) { return cc.tintTo( FLOAT( 0 ), INT( 1 ), INT( 2 ), INT( 3 ) ); }
-        else if( type == this.k.ActionTintBy ) { return cc.tintBy( FLOAT( 0 ), INT( 1 ), INT( 2 ), INT( 3 ) ); }
+        else if (type == this.k.ActionDelayTime) {
+            return cc.delayTime(FLOAT(0));
+        }
+        else if (type == this.k.ActionScaleTo) {
+            return cc.scaleTo(FLOAT(0), FLOAT(1), FLOAT(2));
+        }
+        else if (type == this.k.ActionScaleBy) {
+            return cc.scaleBy(FLOAT(0), FLOAT(1), FLOAT(2));
+        }
+        else if (type == this.k.ActionSkewTo) {
+            return cc.skewTo(FLOAT(0), FLOAT(1), FLOAT(2));
+        }
+        else if (type == this.k.ActionSkewBy) {
+            return cc.skewBy(FLOAT(0), FLOAT(1), FLOAT(2));
+        }
+        else if (type == this.k.ActionMoveTo) {
+            return cc.moveTo(FLOAT(0), Point(FLOAT(1), FLOAT(2)));
+        }
+        else if (type == this.k.ActionMoveBy) {
+            return cc.moveBy(FLOAT(0), Point(FLOAT(1), FLOAT(2)));
+        }
+        else if (type == this.k.ActionRotateTo) {
+            return cc.rotateTo(FLOAT(0), FLOAT(1));
+        }
+        else if (type == this.k.ActionRotateBy) {
+            return cc.rotateBy(FLOAT(0), FLOAT(1));
+        }
+        else if (type == this.k.ActionJumpTo) {
+            return cc.jumpTo(FLOAT(0), Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+        }
+        else if (type == this.k.ActionJumpBy) {
+            return cc.jumpBy(FLOAT(0), Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+        }
+        else if (type == this.k.ActionBlink) {
+            return cc.blink(FLOAT(0), INT(1));
+        }
+        else if (type == this.k.ActionFadeTo) {
+            return cc.fadeTo(FLOAT(0), INT(1));
+        }
+        else if (type == this.k.ActionFadeIn) {
+            return cc.fadeIn(FLOAT(0));
+        }
+        else if (type == this.k.ActionFadeOut) {
+            return cc.fadeOut(FLOAT(0));
+        }
+        else if (type == this.k.ActionTintTo) {
+            return cc.tintTo(FLOAT(0), INT(1), INT(2), INT(3));
+        }
+        else if (type == this.k.ActionTintBy) {
+            return cc.tintBy(FLOAT(0), INT(1), INT(2), INT(3));
+        }
 
-        else if( type == this.k.ActionRepeatForever ) { return cc.repeatForever( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionRepeat ) { return cc.repeat( action_interval( attr[0] ), INT( 1 ) ); }
-        else if( type == this.k.ActionEaseIn ) { return cc.EaseIn.create( action_interval( attr[0] ), FLOAT( 1 ) ); }
-        else if( type == this.k.ActionEaseOut ) { return cc.EaseOut.create( action_interval( attr[0] ), FLOAT( 1 ) ); }
-        else if( type == this.k.ActionEaseInOut ) { return cc.EaseInOut.create( action_interval( attr[0] ), FLOAT( 1 ) ); }
-        else if( type == this.k.ActionBounceIn ) { return cc.EaseBounceIn.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionBounceOut ) { return cc.EaseBounceOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionBounceInOut ) { return cc.EaseBounceInOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionBackIn ) { return cc.EaseBackIn.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionBackOut ) { return cc.EaseBackOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionBackInOut ) { return cc.EaseBackInOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionSineIn ) { return cc.EaseSineIn.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionSineOut ) { return cc.EaseSineOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionSineInOut ) { return cc.EaseSineInOut.create( action_interval( attr[0] ) ); }
-        else if( type == this.k.ActionAnimate ) { return cc.animate( buildAnimation( FLOAT( 0 ), attr[1] ) ); }
+        else if (type == this.k.ActionRepeatForever) {
+            return cc.repeatForever(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionRepeat) {
+            return cc.repeat(action_interval(attr[0]), INT(1));
+        }
+        else if (type == this.k.ActionEaseIn) {
+            return cc.EaseIn.create(action_interval(attr[0]), FLOAT(1));
+        }
+        else if (type == this.k.ActionEaseOut) {
+            return cc.EaseOut.create(action_interval(attr[0]), FLOAT(1));
+        }
+        else if (type == this.k.ActionEaseInOut) {
+            return cc.EaseInOut.create(action_interval(attr[0]), FLOAT(1));
+        }
+        else if (type == this.k.ActionBounceIn) {
+            return cc.EaseBounceIn.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionBounceOut) {
+            return cc.EaseBounceOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionBounceInOut) {
+            return cc.EaseBounceInOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionBackIn) {
+            return cc.EaseBackIn.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionBackOut) {
+            return cc.EaseBackOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionBackInOut) {
+            return cc.EaseBackInOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionSineIn) {
+            return cc.EaseSineIn.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionSineOut) {
+            return cc.EaseSineOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionSineInOut) {
+            return cc.EaseSineInOut.create(action_interval(attr[0]));
+        }
+        else if (type == this.k.ActionAnimate) {
+            return cc.animate(buildAnimation(FLOAT(0), attr[1]));
+        }
 
         //action instant
-        else if( type == this.k.ActionRemoveSelf ) { return cc.removeSelf(); }
-        else if( type == this.k.ActionShow ) { return cc.show(); }
-        else if( type == this.k.ActionHide ) { return cc.hide(); }
+        else if (type == this.k.ActionRemoveSelf) {
+            return cc.removeSelf();
+        }
+        else if (type == this.k.ActionShow) {
+            return cc.show();
+        }
+        else if (type == this.k.ActionHide) {
+            return cc.hide();
+        }
         else {
             if (USE_CHEATS !== undefined && USE_CHEATS == 1) {
 
@@ -677,11 +709,11 @@ EU.xmlLoader = {
      * @param xmlnode
      * @returns {*}
      */
-    load_action_xml_node: function(xmlnode ){
+    load_action_xml_node: function (xmlnode) {
         //TODO: load_action_xml_node
         return null;
-        var body = xmlnode.getAttribute( "value" );
-        return this.load_action_str( body );
+        var body = xmlnode.getAttribute("value");
+        return this.load_action_str(body);
     },
     /**
      * load scroll menu from xml configuration
@@ -689,39 +721,39 @@ EU.xmlLoader = {
      * @param {EU.ScrollMenu} menu
      * @param {Element} xmlnode
      */
-    load_scrollmenu_items: function(menu, xmlnode ){
-        for(var i=0; i < xmlnode.children.length; i++){
+    load_scrollmenu_items: function (menu, xmlnode) {
+        for (var i = 0; i < xmlnode.children.length; i++) {
             var xmlitem = xmlnode.children[i];
 
-            var imageN = this.macros.parse( xmlitem.attribute( "imageN" ));
-            var imageS = this.macros.parse( xmlitem.attribute( "imageS" ));
-            var imageD = this.macros.parse( xmlitem.attribute( "imageD" ));
-            var text = this.macros.parse( xmlitem.attribute( "text" ));
-            var font = this.macros.parse( xmlitem.attribute( "font" ));
+            var imageN = this.macros.parse(xmlitem.attribute("imageN"));
+            var imageS = this.macros.parse(xmlitem.attribute("imageS"));
+            var imageD = this.macros.parse(xmlitem.attribute("imageD"));
+            var text = this.macros.parse(xmlitem.attribute("text"));
+            var font = this.macros.parse(xmlitem.attribute("font"));
 
             var item = null;
-            item = menu.getItemByName(xmlitem.getAttribute( "name" ));
-            if( !item )
-                item = menu.push( imageN, imageS, imageD, font, text, null );
-            this.load_node_n_xml_node( item, xmlitem );
+            item = menu.getItemByName(xmlitem.getAttribute("name"));
+            if (!item)
+                item = menu.push(imageN, imageS, imageD, font, text, null);
+            this.load_node_n_xml_node(item, xmlitem);
         }
-        menu.align( menu.getAlignedColums() );
+        menu.align(menu.getAlignedColums());
     },
     /**
      * load_nonscissor_children
      * @param {EU.ScrollMenu} node
      * @param xmlnode
      */
-    load_nonscissor_children: function(node, xmlnode ){
-        for(var i=0; i < xmlnode.children.length; i++){
+    load_nonscissor_children: function (node, xmlnode) {
+        for (var i = 0; i < xmlnode.children.length; i++) {
             var xmlchild = xmlnode.children[i];
             if (xmlchild.tagName == "node") {
-                var child = this.getorbuild_node( node, xmlchild );
-                EU.assert( child );
-                if( !child ) continue;
-                load( child, xmlchild );
-                if( child.getParent() != node )
-                    node.addChildNotScissor( child, child.getLocalZOrder() );
+                var child = this.getorbuild_node(node, xmlchild);
+                EU.assert(child);
+                if (!child) continue;
+                load(child, xmlchild);
+                if (child.getParent() != node)
+                    node.addChildNotScissor(child, child.getLocalZOrder());
             }
         }
     },
@@ -730,14 +762,14 @@ EU.xmlLoader = {
      * @param {EU.ParamCollection} params
      * @param {String} path
      */
-    load_paramcollection_n_path: function(params, path ){
-        EU.assert( params );
+    load_paramcollection_n_path: function (params, path) {
+        EU.assert(params);
         var doc = new EU.pugixml.readXml(path);
         var root = doc.firstElementChild;
-        for(var i=0; i < root.children.length; i++){
+        for (var i = 0; i < root.children.length; i++) {
             var xmlchild = root.children[i];
-            var name = xmlchild.getAttribute( "name" );
-            var value = xmlchild.getAttribute( "value" );
+            var name = xmlchild.getAttribute("name");
+            var value = xmlchild.getAttribute("value");
             params[name] = value;
         }
     },
@@ -755,53 +787,53 @@ EU.xmlLoader = {
 
 
     //NodeExt
-    directory : null,
+    directory: null,
     //static std::map<std::string, const int>
-    properties : {},
-    __autofillproperties: function() {
-        EU.xmlLoader.bookProperty( EU.xmlKey.Type.name, EU.xmlKey.Type.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Visible.name, EU.xmlKey.Visible.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Pos.name, EU.xmlKey.Pos.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Scale.name, EU.xmlKey.Scale.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Strech.name, EU.xmlKey.Strech.int ) ;
-        EU.xmlLoader.bookProperty( EU.xmlKey.Size.name, EU.xmlKey.Size.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Rotation.name, EU.xmlKey.Rotation.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.LocalZ.name, EU.xmlKey.LocalZ.int ) ;
-        EU.xmlLoader.bookProperty( EU.xmlKey.GlobalZ.name, EU.xmlKey.GlobalZ .int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Center.name, EU.xmlKey.Center.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Tag.name, EU.xmlKey.Tag.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeOpacity.name, EU.xmlKey.CascadeOpacity.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.CascadeColor.name, EU.xmlKey.CascadeColor.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Image.name, EU.xmlKey.Image.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Blending.name, EU.xmlKey.Blending.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Opacity.name, EU.xmlKey.Opacity.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Color.name, EU.xmlKey.Color.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Animation.name, EU.xmlKey.Animation.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Name.name, EU.xmlKey.Name.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.AlignCols.name, EU.xmlKey.AlignCols.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ImageNormal.name, EU.xmlKey.ImageNormal.int);
-        EU.xmlLoader.bookProperty( EU.xmlKey.ImageSelected.name, EU.xmlKey.ImageSelected.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ImageDisabled.name, EU.xmlKey.ImageDisabled.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Text.name, EU.xmlKey.Text.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Font.name, EU.xmlKey.Font.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.MenuCallBack.name, EU.xmlKey.MenuCallBack.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.TextWidth.name, EU.xmlKey.TextWidth.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.TextAlign.name, EU.xmlKey.TextAlign.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ScaleEffect.name, EU.xmlKey.ScaleEffect.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Sound.name, EU.xmlKey.Sound.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Template.name, EU.xmlKey.Template.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Path.name, EU.xmlKey.Path.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.AlignStartPosition.name, EU.xmlKey.AlignStartPosition.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.GridSize.name, EU.xmlKey.GridSize.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ScissorRect.name, EU.xmlKey.ScissorRect.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ScissorEnabled.name, EU.xmlKey.ScissorEnabled.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ScrollEnabled.name, EU.xmlKey.ScrollEnabled.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.AllowScrollByX.name, EU.xmlKey.AllowScrollByX.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.AllowScrollByY.name, EU.xmlKey.AllowScrollByY.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.ProgressType.name, EU.xmlKey.ProgressType.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.Percent.name, EU.xmlKey.Percent.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.MidPoint.name, EU.xmlKey.MidPoint.int );
-        EU.xmlLoader.bookProperty( EU.xmlKey.BarChangeRate.name, EU.xmlKey.BarChangeRate.int );
+    properties: {},
+    __autofillproperties: function () {
+        EU.xmlLoader.bookProperty(EU.xmlKey.Type.name, EU.xmlKey.Type.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Visible.name, EU.xmlKey.Visible.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Pos.name, EU.xmlKey.Pos.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Scale.name, EU.xmlKey.Scale.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Strech.name, EU.xmlKey.Strech.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Size.name, EU.xmlKey.Size.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Rotation.name, EU.xmlKey.Rotation.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.LocalZ.name, EU.xmlKey.LocalZ.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.GlobalZ.name, EU.xmlKey.GlobalZ.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Center.name, EU.xmlKey.Center.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Tag.name, EU.xmlKey.Tag.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.CascadeOpacity.name, EU.xmlKey.CascadeOpacity.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.CascadeColor.name, EU.xmlKey.CascadeColor.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Image.name, EU.xmlKey.Image.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Blending.name, EU.xmlKey.Blending.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Opacity.name, EU.xmlKey.Opacity.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Color.name, EU.xmlKey.Color.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Animation.name, EU.xmlKey.Animation.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Name.name, EU.xmlKey.Name.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.AlignCols.name, EU.xmlKey.AlignCols.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ImageNormal.name, EU.xmlKey.ImageNormal.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ImageSelected.name, EU.xmlKey.ImageSelected.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ImageDisabled.name, EU.xmlKey.ImageDisabled.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Text.name, EU.xmlKey.Text.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Font.name, EU.xmlKey.Font.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.MenuCallBack.name, EU.xmlKey.MenuCallBack.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.TextWidth.name, EU.xmlKey.TextWidth.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.TextAlign.name, EU.xmlKey.TextAlign.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ScaleEffect.name, EU.xmlKey.ScaleEffect.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Sound.name, EU.xmlKey.Sound.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Template.name, EU.xmlKey.Template.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Path.name, EU.xmlKey.Path.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.AlignStartPosition.name, EU.xmlKey.AlignStartPosition.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.GridSize.name, EU.xmlKey.GridSize.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ScissorRect.name, EU.xmlKey.ScissorRect.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ScissorEnabled.name, EU.xmlKey.ScissorEnabled.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ScrollEnabled.name, EU.xmlKey.ScrollEnabled.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.AllowScrollByX.name, EU.xmlKey.AllowScrollByX.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.AllowScrollByY.name, EU.xmlKey.AllowScrollByY.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.ProgressType.name, EU.xmlKey.ProgressType.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.Percent.name, EU.xmlKey.Percent.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.MidPoint.name, EU.xmlKey.MidPoint.int);
+        EU.xmlLoader.bookProperty(EU.xmlKey.BarChangeRate.name, EU.xmlKey.BarChangeRate.int);
     },
 
     /**
@@ -809,7 +841,7 @@ EU.xmlLoader = {
      * @param name
      * @param integer name
      */
-    bookProperty: function ( name, iname ){
+    bookProperty: function (name, iname) {
         //if (_DEBUG !== undefined) {
         //    for (var key in this.properties) {
         //        // skip loop if the property is from prototype
@@ -827,14 +859,13 @@ EU.xmlLoader = {
      * @param {String} property
      * @returns int
      */
-    strToPropertyType: function (property ){
+    strToPropertyType: function (property) {
         this.first = true;
-        if( this.first )
-        {
+        if (this.first) {
             this.__autofillproperties();
             this.first = false;
         }
-        return property in EU.xmlLoader.properties? EU.xmlLoader.properties[property] : 0;
+        return property in EU.xmlLoader.properties ? EU.xmlLoader.properties[property] : 0;
     },
     /**
      * set property for node
@@ -842,17 +873,16 @@ EU.xmlLoader = {
      * @param {String} property
      * @param {String} value
      */
-    setProperty: function (node, property, value ){
-        if( property == EU.xmlKey.Template.name )
+    setProperty: function (node, property, value) {
+        if (property == EU.xmlKey.Template.name)
             return;
 
-        var iproperty = this.strToPropertyType( property );
-        if( false == this.setProperty_int( node, iproperty, value ) )
-        {
+        var iproperty = this.strToPropertyType(property);
+        if (false == this.setProperty_int(node, iproperty, value)) {
             /** @type {EU.NodeExt} nodeext */
             var nodeext = node;
-            if( nodeext.__NodeExt && nodeext.setProperty_str != undefined )
-                nodeext.setProperty_str( property, value );
+            if (nodeext.__NodeExt && nodeext.setProperty_str != undefined)
+                nodeext.setProperty_str(property, value);
         }
     },
     /**
@@ -862,9 +892,9 @@ EU.xmlLoader = {
      * @param {String} rawvalue
      * @returns {*}
      */
-    setProperty_int: function(node, property, rawvalue ){
-        var result = false ;
-        EU.assert( node );
+    setProperty_int: function (node, property, rawvalue) {
+        var result = false;
+        EU.assert(node);
         //TODO: EU.Language
         var language = null;//EU.Language.shared();
 
@@ -881,7 +911,7 @@ EU.xmlLoader = {
         //TODO: EU.ScrollMenu
         var scrollmenu = null;//node instanceof EU.ScrollMenu ? node : null;
 
-        var value = EU.xmlLoader.macros.parse( rawvalue );
+        var value = EU.xmlLoader.macros.parse(rawvalue);
 
         var point;
         var size;
@@ -889,112 +919,103 @@ EU.xmlLoader = {
         var texture = null;
 
         /** @type {EU.NodeExt} nodeext */
-        if( nodeext != null && nodeext.setPropertyInt != undefined )
-            result = nodeext.setPropertyInt( property, value );
+        if (nodeext != null && nodeext.setPropertyInt != undefined)
+            result = nodeext.setPropertyInt(property, value);
 
-        if( result == false )
-        {
+        if (result == false) {
             //TODO: EU.Common
             result = true;
-            switch( property )
-            {
+            switch (property) {
                 //for node:
                 case EU.xmlKey.Type.int:
                     break;
                 case EU.xmlKey.Name.int:
-                    node.setName( value );
+                    node.setName(value);
                     break;
                 case EU.xmlKey.Visible.int:
-                    node.setVisible( EU.Common.strToBool( value ) );
+                    node.setVisible(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.Pos.int:
-                    node.setPosition( EU.Common.strToPoint( value ) );
+                    node.setPosition(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.Scale.int:
-                    point = EU.Common.strToPoint( value );
-                    node.setScale( point.x, point.y );
+                    point = EU.Common.strToPoint(value);
+                    node.setScale(point.x, point.y);
                     break;
                 case EU.xmlKey.Rotation.int:
-                    node.setRotation( EU.Common.strToFloat( value ) );
+                    node.setRotation(EU.Common.strToFloat(value));
                     break;
                 case EU.xmlKey.Center.int:
-                    node.setAnchorPoint( EU.Common.strToPoint( value ) );
+                    node.setAnchorPoint(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.Strech.int:
-                    break;
                     size = node.getContentSize();
-                    if( cc.sizeEqualToSize( size, cc.size(0,0)) == false )
-                    {
+                    if (cc.sizeEqualToSize(size, cc.size(0, 0)) == false) {
                         var sx = 0.0;
                         var sy = 0.0;
-                        var parse = function ()
-                        {
+                        var parse = function () {
                             var framepoint;
                             var mode;
-                            var k = value.lastIndexOf( ":" );
-                            if( k >= 0 )
-                            {
-                                framepoint = value.substr( 0, k );
-                                mode = value.substr( k + 1 );
+                            var k = value.lastIndexOf(":");
+                            if (k >= 0) {
+                                framepoint = value.substr(0, k);
+                                mode = value.substr(k + 1);
                             }
-                            s = EU.Common.strToPoint( framepoint );
+                            var s = EU.Common.strToPoint(framepoint);
                             sx = s.x / size.width;
                             sy = s.y / size.height;
                             return mode;
                         };
 
-                        var mode = parse( value );
-                        if( mode == "x" )
-                            node.setScaleX( sx );
-                        else if( mode == "y" )
-                            node.setScaleY( sy );
-                        else if( mode == "xy" )
-                            node.setScale( sx, sy );
-                        else if( mode == "max" )
-                            node.setScale( Math.max( sx, sy ) );
-                        else if( mode == "min" )
-                            node.setScale( Math.max( sx, sy ) );
+                        var mode = parse(value);
+                        if (mode == "x")
+                            node.setScaleX(sx);
+                        else if (mode == "y")
+                            node.setScaleY(sy);
+                        else if (mode == "xy")
+                            node.setScale(sx, sy);
+                        else if (mode == "max")
+                            node.setScale(Math.max(sx, sy));
+                        else if (mode == "min")
+                            node.setScale(Math.max(sx, sy));
                         else
-                            EU.assert( !"TODO:" );
+                            EU.assert(!"TODO:");
                     }
                     break;
                 case EU.xmlKey.Size.int:
                     size = EU.Common.strToSize(value);
-                    node.setContentSize( size );
+                    node.setContentSize(size);
                     break;
                 case EU.xmlKey.Tag.int:
-                    node.setTag( EU.Common.strToInt( value ) );
+                    node.setTag(EU.Common.strToInt(value));
                     break;
                 case EU.xmlKey.CascadeColor.int:
-                    node.setCascadeColorEnabled( EU.Common.strToBool( value ) );
+                    node.setCascadeColorEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.CascadeOpacity.int:
-                    node.setCascadeOpacityEnabled( EU.Common.strToBool( value ) );
+                    node.setCascadeOpacityEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.LocalZ.int:
-                    node.setLocalZOrder( EU.Common.strToInt( value ) );
+                    node.setLocalZOrder(EU.Common.strToInt(value));
                     break;
                 case EU.xmlKey.GlobalZ.int:
-                    node.setGlobalZOrder( EU.Common.strToInt( value ) );
+                    node.setGlobalZOrder(EU.Common.strToInt(value));
                     break;
                 //for sprite:
                 case EU.xmlKey.Image.int:
-                    if( sprite )
-                    {
+                    if (sprite) {
                         //TODO: EU.ImageManager
-                        //frame = EU.ImageManager.shared().spriteFrame( EU.xmlLoader.resourcesRoot + value );
-                        frame = null;
-                        if( frame )
-                            sprite.setSpriteFrame( frame );
+                        var frame = EU.ImageManager.getSpriteFrame(value);
+                        if (frame)
+                            sprite.setSpriteFrame(frame);
                         else
-                            sprite.setTexture( EU.xmlLoader.resourcesRoot + value );
+                            sprite.setTexture(EU.xmlLoader.resourcesRoot + value);
                     }
-                    else if( progress )
-                    {
-                        var sprite = EU.ImageManager.sprite( EU.xmlLoader.resourcesRoot + value );
+                    else if (progress) {
+                        var sprite = EU.ImageManager.sprite(EU.xmlLoader.resourcesRoot + value);
                         sprite = null;
-                        if( sprite )
-                            progress.setSprite( sprite );
+                        if (sprite)
+                            progress.setSprite(sprite);
                     }
                     break;
                 //for scroll menu:
@@ -1004,124 +1025,131 @@ EU.xmlLoader = {
                     //sprite.setBlendFunc( strToBlendFunc(value) );
                     break;
                 case EU.xmlKey.Opacity.int:
-                    node.setOpacity( EU.Common.strToInt( value ) );
+                    node.setOpacity(EU.Common.strToInt(value));
                     break;
                 case EU.xmlKey.Color.int:
-                    node.setColor( EU.Common.strToColor3B( value ) );
+                    node.setColor(EU.Common.strToColor3B(value));
                     break;
                 case EU.xmlKey.Animation.int:
-                    node.runAction( EU.xmlLoader.load_action_str( value ) );
+                    node.runAction(EU.xmlLoader.load_action_str(value));
                     break;
                 case EU.xmlKey.AlignCols.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAlignedColums( EU.Common.strToInt( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAlignedColums(EU.Common.strToInt(value));
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
-                    EU.assert( menuitem instanceof EU.MenuItemImageWithText);
-                    menuitem.setImageNormal( EU.xmlLoader.resourcesRoot + value );
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.setImageNormal(image);
                     break;
                 case EU.xmlKey.ImageSelected.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.setImageSelected( EU.xmlLoader.resourcesRoot + value );
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.setImageSelected(image);
                     break;
                 case EU.xmlKey.ImageDisabled.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.setImageDisabled( EU.xmlLoader.resourcesRoot + value );
+                    var isFrame = EU.ImageManager.isSpriteFrame(value)
+                    var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.setImageDisabled(image);
                     break;
                 case EU.xmlKey.MenuCallBack.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    if( this.directory ) {
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    if (this.directory) {
                         var callback = this.directory.get_callback_by_description(value);
-                        menuitem.setCallback(callback,this.directory);
+                        menuitem.setCallback(callback, this.directory);
                     }
                     break;
                 case EU.xmlKey.Sound.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.setSound( value );
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.setSound(value);
                     break;
                 case EU.xmlKey.Text.int:
-                    if( label instanceof cc.LabelBMFont )
-                        label.setString( value, true );
-                    else if( menuitem instanceof EU.MenuItemImageWithText )
-                        menuitem.setText( value );
+                    var loc = EU.Language.string(value);
+                    if (label instanceof cc.LabelBMFont)
+                        label.setString(loc, true);
+                    else if (menuitem instanceof EU.MenuItemImageWithText)
+                        menuitem.setText(loc);
                     break;
                 case EU.xmlKey.Font.int:
                     //TODO: font value here is without path, so xml value must be changed
-                    if( label instanceof cc.LabelBMFont )
-                        label.setFntFile( EU.xmlLoader.resourcesRoot + value );
-                    else if( menuitem instanceof EU.MenuItemImageWithText )
-                        menuitem.setFont( EU.xmlLoader.resourcesRoot + value );
+                    if (label instanceof cc.LabelBMFont)
+                        label.setFntFile(EU.xmlLoader.resourcesRoot + value);
+                    else if (menuitem instanceof EU.MenuItemImageWithText)
+                        menuitem.setFont(EU.xmlLoader.resourcesRoot + value);
                     break;
                 case EU.xmlKey.TextWidth.int:
-                    EU.assert(  label instanceof cc.LabelBMFont );
-                    if( label ) label.setContentSize( EU.Common.strToFloat( value ) );
+                    EU.assert(label instanceof cc.LabelBMFont);
+                    if (label)
+                        label.setBoundingWidth(EU.Common.strToFloat(value));
                     break;
                 case EU.xmlKey.TextAlign.int:
-                    EU.assert( label instanceof cc.LabelBMFont );
-                    if( label instanceof cc.LabelBMFont  )
-                    {
+                    EU.assert(label instanceof cc.LabelBMFont);
+                    if (label instanceof cc.LabelBMFont) {
                         /**
                          * @type {Number} align
                          */
                         var align;
-                        if( value == "center" ) align = cc.TEXT_ALIGNMENT_CENTER;
-                        else if( value == "right" ) align = cc.TEXT_ALIGNMENT_RIGHT;
+                        if (value == "center") align = cc.TEXT_ALIGNMENT_CENTER;
+                        else if (value == "right") align = cc.TEXT_ALIGNMENT_RIGHT;
                         else align = cc.TEXT_ALIGNMENT_LEFT;
-                        label.setAlignment( align );
+                        label.setAlignment(align);
                     }
                     break;
                 case EU.xmlKey.ScaleEffect.int:
-                    EU.assert(  menuitem instanceof EU.MenuItemImageWithText );
-                    menuitem.useScaleEffect( EU.Common.strToBool( value ) );
+                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    menuitem.useScaleEffect(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AlignStartPosition.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu );
-                    scrollmenu.setAlignedStartPosition( EU.Common.strToPoint( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAlignedStartPosition(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.GridSize.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setGrisSize( EU.Common.strToSize( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setGrisSize(EU.Common.strToSize(value));
                     break;
                 case EU.xmlKey.ScissorRect.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setScissorRect( strToRect( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScissorRect(strToRect(value));
                     break;
                 case EU.xmlKey.ScrollEnabled.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setScrollEnabled( EU.Common.strToBool( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScrollEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.ScissorEnabled.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setScissorEnabled( EU.Common.strToBool( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setScissorEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AllowScrollByX.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAllowScrollByX( EU.Common.strToBool( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAllowScrollByX(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AllowScrollByY.int:
-                    EU.assert( scrollmenu instanceof EU.ScrollMenu);
-                    scrollmenu.setAllowScrollByY( EU.Common.strToBool( value ) );
+                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    scrollmenu.setAllowScrollByY(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.ProgressType.int:
-                    EU.assert( progress instanceof cc.ProgressTimer);
-                    progress.setType( value == "radial" ? cc.ProgressTimer.TYPE_RADIAL : cc.ProgressTimer.TYPE_BAR );
+                    EU.assert(progress instanceof cc.ProgressTimer);
+                    progress.setType(value == "radial" ? cc.ProgressTimer.TYPE_RADIAL : cc.ProgressTimer.TYPE_BAR);
                     break;
                 case EU.xmlKey.Percent.int:
-                    EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setPercentage( EU.Common.strToFloat( value ) );
+                    EU.assert(progress instanceof cc.ProgressTimer);
+                    progress.setPercentage(EU.Common.strToFloat(value));
                     break;
                 case EU.xmlKey.MidPoint.int:
-                    EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setMidpoint( EU.Common.strToPoint( value ) );
+                    EU.assert(progress instanceof cc.ProgressTimer);
+                    progress.setMidpoint(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.BarChangeRate.int:
-                    EU.assert( progress instanceof cc.ProgressTimer );
-                    progress.setBarChangeRate( EU.Common.strToPoint( value ) );
+                    EU.assert(progress instanceof cc.ProgressTimer);
+                    progress.setBarChangeRate(EU.Common.strToPoint(value));
                     break;
                 default:
                     result = false;
-                    cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
+                    //cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
                     break;
             }
         }
@@ -1131,13 +1159,13 @@ EU.xmlLoader = {
      *
      * @param {NodeExt} node
      */
-    bookDirectory: function(node ){
+    bookDirectory: function (node) {
         this.directory = node;
     },
     /**
      *
      */
-    unbookDirectory: function(){
+    unbookDirectory: function () {
         this.directory = null;
     },
 

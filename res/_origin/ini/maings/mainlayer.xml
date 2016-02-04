@@ -50,11 +50,11 @@
       </children>
     </node>
 
-    <!--<node type="menu" name="menusettings" pos="frame:1x1" visible="no">
+    <node type="menu" name="menusettings" pos="frame:1x1" visible="yes">
       <children>
         <node name="settings" type="menuitem" imageN="images/maings/icon_settings.png" pos="-70x-70" callback="settings" sound="##sound_button##" scale="0.8x0.8"/>
       </children>
-    </node>-->
+    </node>
 
 
   </children>
@@ -91,13 +91,11 @@
       <runaction action="show2" target="mainmenu/moregames"/>
     </eventlist>
   </events>
+  -->
 
   <resources>
     <atlases>
       <atlas path="images/map/choose.plist"        name="choose"/>
-      <atlas path="images/map/unlock.plist"        name="unlock"/>
-      <atlas path="images/heroroom/heroroom.plist" name="heroroom"/>
     </atlases>
   </resources>
-  -->
 </maings>

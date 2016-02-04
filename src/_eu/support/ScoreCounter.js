@@ -13,6 +13,14 @@
 /**TESTED**/
 //Define namespace
 var EU = EU || {};
+
+EU.kScoreLevel = 0;
+EU.kScoreCrystals = 1;
+EU.kScoreHealth = 2;
+EU.kScoreFuel = 3;
+EU.kScoreTime = 4;
+EU.kScoreStars = 5;
+
 EU.ScoreCounter = {
     scores: {},
 
@@ -39,7 +47,7 @@ EU.ScoreCounter = {
     
         if( saveValueToUserData )
         {
-            var s = kUser_Scores_suffix + id.toString();
+            var s = EU.kUser_Scores_suffix + id.toString();
             EU.UserData.write( s, V );
         }
     },    
@@ -79,8 +87,8 @@ EU.ScoreCounter = {
 //    , _max( 10 )
 //{
 //    __log_line( "" );
-//    ScoreCounter::shared().observer( kScoreTime ).add( _ID, std::bind( &ScoreByTime::changeTime, this, std::placeholders::_1 ) );
-//    ScoreCounter::shared().observer( kScoreFuel ).add( _ID, std::bind( &ScoreByTime::changeFuel, this, std::placeholders::_1 ) );
+//    EU.ScoreCounter.observer( EU.kScoreTime ).add( _ID, std::bind( &ScoreByTime::changeTime, this, std::placeholders::_1 ) );
+//    EU.ScoreCounter.observer( EU.kScoreFuel ).add( _ID, std::bind( &ScoreByTime::changeFuel, this, std::placeholders::_1 ) );
 //}
 //
 //ScoreByTime::~ScoreByTime()
@@ -134,13 +142,13 @@ EU.ScoreCounter = {
 //        now.tthis.yday * 60 * 60 * 24;
 //        long long diff = now_sec - last_sec;
 //        __log_line( "" );
-//        ScoreCounter::shared().subMoney( kScoreTime, diff, true );
+//        EU.ScoreCounter.subMoney( EU.kScoreTime, diff, true );
 //        __log_line( "ok0" );
 //    }
 //    else
 //    {
-//        ScoreCounter::shared().setMoney( kScoreTime, _interval, true );
-//        ScoreCounter::shared().setMoney( kScoreFuel, _max, true );
+//        EU.ScoreCounter.setMoney( EU.kScoreTime, _interval, true );
+//        EU.ScoreCounter.setMoney( EU.kScoreFuel, _max, true );
 //    }
 //    savetime();
 //}
@@ -158,17 +166,17 @@ EU.ScoreCounter = {
 //void ScoreByTime::update( float dt )
 //{
 //    __log_line( "" );
-//    if( ScoreCounter::shared().getMoney( kScoreFuel ) >= _max )
+//    if( EU.ScoreCounter.getMoney( EU.kScoreFuel ) >= _max )
 //    {
 //        __log_line( "" );
-//        ScoreCounter::shared().setMoney( kScoreTime, _interval, true );
+//        EU.ScoreCounter.setMoney( EU.kScoreTime, _interval, true );
 //        savetime();
 //    }
 //    _timer += dt;
 //    if( _timer > 1.f )
 //    {
 //        _timer -= 1.f;
-//        ScoreCounter::shared().subMoney( kScoreTime, 1, true );
+//        EU.ScoreCounter.subMoney( EU.kScoreTime, 1, true );
 //    }
 //}
 //
@@ -180,14 +188,14 @@ EU.ScoreCounter = {
 //        var addtime = addfuel * _interval;
 //
 //        if( addtime > 0 )
-//            ScoreCounter::shared().addMoney( kScoreTime, addtime, true );
+//            EU.ScoreCounter.addMoney( EU.kScoreTime, addtime, true );
 //
-//        var fuel = ScoreCounter::shared().getMoney( kScoreFuel );
+//        var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
 //        var nfuel = fuel + addfuel;
 //        if( nfuel > _max ) addfuel = _max - fuel;
 //        addfuel = std::max( addfuel, 0 );
 //        if( addfuel > 0 )
-//            ScoreCounter::shared().addMoney( kScoreFuel, addfuel, true );
+//            EU.ScoreCounter.addMoney( EU.kScoreFuel, addfuel, true );
 //        savetime();
 //    }
 //}
@@ -208,203 +216,182 @@ EU.ScoreCounter = {
 //}
 //
 //
-//void LevelParams::onCreate()
-//{
-//    loadRealParams();
-//    loadLevelParams();
-//
-//    const char * key = "award_was_obtained_for_real_default";
-//    if( EU.UserData.get_int( key ) == 0 )
-//    {
-//        ScoreCounter::shared().addMoney( kScoreCrystals, _goldOnFirstRun, true );
-//        EU.UserData.write( key, 1 );
-//    }
-//}
-//
-//void LevelParams::loadRealParams()
-//{
-//    pugi::xml_document doc;
-//    doc.load_file( "ini/realgold.xml" );
-//    var root = doc.root().first_child();
-//    _goldOnFirstRun = root.child( "default" ).attribute( "value" ).as_int();
-//}
-//
-//void LevelParams::loadLevelParams()
-//{
-//    pugi::xml_document doc;
-//    doc.load_file( "ini/levels.xml" );
-//    var root = doc.root().first_child();
-//
-//    var i = 0;
-//    pugi::xml_node node;
-//    do
-//    {
-//        var tag = "level_" + intToStr( i + 1 );
-//        node = root.child( tag.c_str() );
-//        if( !node )
-//            break;
-//        _params[i].normal.stars.resize( 3 );
-//        _params[i].normal.stars[0] = node.attribute( "star1" ).as_int( 1 );
-//        _params[i].normal.stars[1] = node.attribute( "star2" ).as_int( 1 );
-//        _params[i].normal.stars[2] = node.attribute( "star3" ).as_int( 1 );
-//
-//        _params[i].hard.award = node.attribute( "starhard" ).as_int( 0 );
-//        _params[i].hard.stars = node.attribute( "starshard" ).as_int( 0 );
-//        _params[i].hard.exclude = node.attribute( "excludetext" ).as_string();
-//
-//        if( k::configuration::useFuel )
-//        {
-//            _params[i].normal.fuel = node.attribute( "fuel" ).as_int( 1 );
-//            _params[i].hard.fuel = node.attribute( "fuelhard" ).as_int( 1 );
-//        }
-//        else
-//        {
-//            _params[i].normal.fuel = 0;
-//            _params[i].hard.fuel = 0;
-//        }
-//
-//        parceLevel( i );
-//    }
-//    while( ++i );
-//}
-//
-//void LevelParams::parceLevel(var index)
-//{
-//    pugi::xml_document doc;
-//    doc.load_file( (kDirectoryToMaps + intToStr( index ) + ".xml").c_str() );
-//    var root = doc.root().first_child();
-//
-//    var waveN = root.child( k::xmlTag::LevelWaves );
-//    var waveH = root.child( k::xmlTag::LevelWavesHard );
-//    var normal = root.child( k::xmlTag::LevelParams );
-//    var hard = root.child( k::xmlTag::LevelParamsHard );
-//    if( !normal ) normal = root;
-//
-//    _params[index].normal.gear = normal.attribute( "startscore" ).as_int();
-//    _params[index].hard.gear = hard.attribute( "startscore" ).as_int();
-//    _params[index].normal.lifes = normal.attribute( "healths" ).as_int();
-//    _params[index].hard.lifes = hard.attribute( "healths" ).as_int();
-//    _params[index].normal.exclude = normal.attribute( "exclude" ).as_string();
-//
-//    _params[index].normal.waves = 0;
-//    _params[index].hard.waves = 0;
-//    FOR_EACHXML( waveN, wave ) { _params[index].normal.waves++; }
-//    FOR_EACHXML( waveH, wave ) { _params[index].hard.waves++; }
-//}
-//
-//var LevelParams::getMaxStars( var level, bool forhard )const
-//    {
-//        var iter = _params.find( level );
-//if( iter != _params.end() )
-//{
-//    if( forhard == false )
-//    {
-//        return iter->second.normal.stars.size();
-//    }
-//    else
-//    {
-//        return iter->second.hard.stars;
-//    }
-//}
-//else
-//{
-//    cocos2d::MessageBox(
-//        ("Sorry, I have not award for level [" + intToStr( level ) + "]").c_str(),
-//        "Error" );
-//}
-//return 0;
-//}
-//
-//var LevelParams::getAwardGold( var levelIndex, var stars, bool forhard )const
-//    {
-//        var iter = _params.find( levelIndex );
-//if( iter != _params.end() )
-//{
-//    return forhard ?
-//        (stars > 0 ? iter->second.hard.award : 0 ):
-//        (stars > 0 ? iter->second.normal.stars[stars - 1] : 0);
-//}
-//else
-//{
-//    cocos2d::MessageBox(
-//        ("Sorry, I have not award for level [" + intToStr( levelIndex ) + "]").c_str(),
-//        "Error" );
-//}
-//return 0;
-//}
-//
-//var LevelParams::getFuel( var levelIndex, bool forhard )const
-//    {
-//        var iter = _params.find( levelIndex );
-//if( iter != _params.end() )
-//{
-//    return forhard ?
-//    iter->second.hard.fuel:
-//    iter->second.normal.fuel;
-//}
-//else
-//{
-//    cocos2d::MessageBox(
-//        ("Sorry, I have not fuel for level [" + intToStr( levelIndex ) + "]").c_str(),
-//        "Error" );
-//}
-//return 0;
-//}
-//
-//var LevelParams::getStartGear( var level, bool forhard )const
-//    {
-//        return forhard ?
-//    _params.at( level ).hard.gear :
-//    _params.at( level ).normal.gear;
-//}
-//
-//var LevelParams::getWaveCount( var level, bool forhard )const
-//    {
-//        return forhard ?
-//    _params.at( level ).hard.waves :
-//    _params.at( level ).normal.waves;
-//}
-//
-//var LevelParams::getLives( var level, bool forhard )const
-//    {
-//        return forhard ?
-//    _params.at( level ).hard.lifes :
-//    _params.at( level ).normal.lifes;
-//}
-//
-//var LevelParams::getExclude( var level, bool forhard )const
-//    {
-//        return forhard ?
-//    _params.at( level ).hard.exclude :
-//    _params.at( level ).normal.exclude;
-//}
-//
-//void LevelParams::onLevelStarted( var levelIndex )
-//{
-//    GameMode mode = GameGS::getInstance()->getGameBoard().getGameMode();
-//    var count = getFuel( levelIndex, GameMode::hard == mode );
-//    ScoreCounter::shared().subMoney( kScoreFuel, count, true );
-//    EU.UserData.save();
-//}
-//
-//void LevelParams::onLevelFinished( var index, var stars )
-//{
-//    GameMode mode = GameGS::getInstance()->getGameBoard().getGameMode();
-//    var award = getAwardGold( index, stars, GameMode::hard == mode );
-//    ScoreCounter::shared().addMoney( kScoreCrystals, award, true );
-//
-//    if( stars > 0 )
-//    {
-//        if( mode == GameMode::hard )
-//            stars = getMaxStars( index, false ) + getMaxStars( index, true );
-//        var obtained = EU.UserData.get_int( k::user::LevelStars + intToStr( index ) );
-//        var diff = std::max( 0, stars - obtained );
-//        ScoreCounter::shared().addMoney( kScoreStars, diff, true );
-//        var all = diff;
-//        all += EU.UserData.get_int( k::user::LevelStars + intToStr( index ) );
-//        EU.UserData.write( k::user::LevelStars + intToStr( index ), all );
-//    }
-//    EU.UserData.save();
-//}
-//
-//NS_CC_END;
+EU.LevelParams = {
+    params : {},
+    goldOnFirstRun : 0,
+
+    ctor: function()
+    {
+    },
+    init: function(){
+        this.loadRealParams();
+        this.loadLevelParams();
+
+        var key = "award_was_obtained_for_real_default";
+        if( EU.UserData.get_int( key ) == 0 )
+        {
+            EU.ScoreCounter.addMoney( EU.kScoreCrystals, this.goldOnFirstRun, true );
+            EU.UserData.write( key, 1 );
+        }
+    },
+    loadRealParams: function()
+    {
+        var doc = EU.pugixml.readXml( "ini/realgold.xml");
+        var root = doc.firstElementChild;
+        if( !root )return;
+        root = root.getElementsByTagName("default");
+        root = root[0];
+        if( !root )return;
+        root = root.getAttribute("value");
+        this.goldOnFirstRun = root;
+    },
+
+    loadLevelParams: function()
+    {
+        var doc = EU.pugixml.readXml( "ini/levels.xml");
+        var root = doc.firstElementChild;
+
+        var i = 0;
+        var node = null;
+        do
+        {
+            var tag = "level_" + ( i + 1 ).toString();
+            node = root.getElementsByTagName( tag )[0];
+            if( !node )
+                break;
+            this.params[i] = {};
+            this.params[i].normal = {};
+            this.params[i].normal.stars = [];
+            this.params[i].normal.stars[0] = EU.Common.strToInt(node.getAttribute( "star1" ));
+            this.params[i].normal.stars[1] = EU.Common.strToInt(node.getAttribute( "star2" ));
+            this.params[i].normal.stars[2] = EU.Common.strToInt(node.getAttribute( "star3" ));
+
+            this.params[i].hard = {};
+            this.params[i].hard.award = EU.Common.strToInt(node.getAttribute( "starhard" ));
+            this.params[i].hard.stars = EU.Common.strToInt(node.getAttribute( "starshard" ));
+            this.params[i].hard.exclude = node.getAttribute( "excludetext" );
+
+            if( EU.k.useFuel )
+            {
+                this.params[i].normal.fuel = EU.Common.strToInt(node.getAttribute( "fuel" ) );
+                this.params[i].hard.fuel = EU.Common.strToInt(node.getAttribute( "fuelhard" ) );
+            }
+            else
+            {
+                this.params[i].normal.fuel = 0;
+                this.params[i].hard.fuel = 0;
+            }
+
+            this.parseLevel( i );
+        }
+        while( ++i );
+    },
+    parseLevel: function(index) {
+        var doc = EU.pugixml.readXml(EU.kDirectoryToMaps + index + ".xml");
+        if( !doc )
+            return;
+        var root = doc.firstElementChild;
+
+        var waveN = root.getElementsByTagName(EU.k.LevelWaves)[0];
+        var waveH = root.getElementsByTagName(EU.k.LevelWavesHard)[0];
+        var normal = root.getElementsByTagName(EU.k.LevelParams)[0];
+        var hard = root.getElementsByTagName(EU.k.LevelParamsHard)[0];
+        if (!normal) normal = root;
+
+        this.params[index].normal.gear = EU.Common.strToInt(normal.getAttribute("startscore"));
+        this.params[index].hard.gear = EU.Common.strToInt(hard.getAttribute("startscore"));
+        this.params[index].normal.lifes = EU.Common.strToInt(normal.getAttribute("healths"));
+        this.params[index].hard.lifes = EU.Common.strToInt(hard.getAttribute("healths"));
+        this.params[index].normal.exclude = normal.getAttribute("exclude");
+
+        this.params[index].normal.waves = waveN.children.length;
+        this.params[index].hard.waves = waveH.children.length;
+    },
+
+    getMaxStars: function( level, forhard )
+    {
+        var iter = this.params[level];
+        if( iter  )
+        {
+            if( forhard == false )
+            {
+                return iter.normal.stars.size();
+            }
+            else
+            {
+                return iter.hard.stars;
+            }
+        }
+        return 0;
+    },
+    getAwardGold: function( levelIndex, stars, forhard ) {
+        var iter = this.params[levelIndex];
+        if(iter) {
+            return forhard ?
+                (stars > 0 ? iter.hard.award : 0 ) :
+                (stars > 0 ? iter.normal.stars[stars - 1] : 0);
+        }
+        return 0;
+    },
+    getFuel: function( levelIndex, forhard ) {
+        var iter = this.params[levelIndex];
+        if (iter ) {
+            return forhard ?
+                iter.hard.fuel :
+                iter.normal.fuel;
+        }
+        return 0;
+    },
+    getStartGear: function( level, forhard ) {
+        return forhard ?
+            this.params[level].hard.gear :
+            this.params[level].normal.gear;
+    },
+    getWaveCount: function( level, forhard ) {
+        return forhard ?
+            this.params[level].hard.waves :
+            this.params[level].normal.waves;
+    },
+    getLives: function( level, forhard )
+        {
+            return forhard ?
+        this.params[level].hard.lifes :
+        this.params[level].normal.lifes;
+    },
+    getExclude: function( level, forhard ) {
+        return forhard ?
+            this.params[level].hard.exclude :
+            this.params[level].normal.exclude;
+    },
+    onLevelStarted: function( levelIndex )
+    {
+        var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+        var count = this.getFuel( levelIndex, EU.GameMode.hard == mode );
+        EU.ScoreCounter.subMoney( EU.kScoreFuel, count, true );
+        EU.UserData.save();
+    },
+    //TODO:onLevelFinished
+    onLevelFinished: function( index, stars )
+    {
+        var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+        var award = this.getAwardGold( index, stars, EU.GameMode.hard == mode );
+        EU.ScoreCounter.addMoney( EU.kScoreCrystals, award, true );
+
+        if( stars > 0 )
+        {
+            if( mode == EU.GameMode.hard )
+                stars = this.getMaxStars( index, false ) + this.getMaxStars( index, true );
+            var obtained = EU.UserData.get_int(EU.k.LevelStars + index );
+            var diff = Math.max( 0, stars - obtained );
+            EU.ScoreCounter.addMoney( EU.kScoreStars, diff, true );
+            var all = diff;
+            all += EU.UserData.get_int( EU.k.LevelStars + index );
+            EU.UserData.write(EU.k.LevelStars + index, all);
+        }
+        EU.UserData.save();
+    }
+};
+
+(function() {
+    EU.LevelParams.init();
+})();
