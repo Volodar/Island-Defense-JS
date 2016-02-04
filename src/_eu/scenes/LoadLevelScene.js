@@ -17,7 +17,7 @@ var EU = EU || {};
 EU.LoadLevelScene = cc.Scene.extend(
 {
     /**@type {Integer} */ _levelIndex : -1,
-    /**@type {EU.GameMode} */ _levelMode : EU.GameMode.normal,
+    /**@type {Number} */ _levelMode : EU.GameMode.normal,
     /**@type {Boolean} */ _popSceneOnEnter : false,
     /**@type set<string> */ _units : {},
     /**@type Object<string, Array<Object<String,String>>> */ _resourcePacks : {},
@@ -43,8 +43,9 @@ EU.LoadLevelScene = cc.Scene.extend(
 
     },
 
-    release: function()
+    onExit: function()
     {
+        this._super();
         EU.ImageManager.unloadReservedPlists();
         this.LoadLevelSceneInst = null;
     },
@@ -151,8 +152,8 @@ EU.LoadLevelScene = cc.Scene.extend(
     },
     createLoading: function()
     {
-        var layer = new cc.LayerLoader();
-        //layer.loadCCNode() std.vector<std.string>(), std.bind( &LoadLevelScene.onLoadingFinished, this ) );
+        //TODO: @Volodar check if this is correct?
+        var layer = new EU.LayerLoader(this.onLoadingFinished, this);
 
         var addPlist = function( name )
         {

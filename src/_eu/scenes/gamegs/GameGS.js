@@ -167,7 +167,7 @@ EU.GameGS = (function(){
             scene.resetMainLayer( null );
             EU.assert( this.instanceIsCreate() == false );
 
-            var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+            var dessize = cc.view.getDesignResolutionSize();
             var layer = new GameGS();
             layer.m_scoresNode = ScoresNode.create();
             layer.m_scoresNode.setPosition( 0, dessize.height );
@@ -205,7 +205,7 @@ EU.GameGS = (function(){
             this.m_interfaceMenu.menu = null;
             EU.assert( !gameGSInstance );
 
-            var desSize = cc.EGLView.getDesignResolutionSize();
+            var desSize = cc.view.getDesignResolutionSize();
             var winSize = cc.winSize;
             var sizeMap = EU.k.LevelMapSize;
 
@@ -263,7 +263,7 @@ EU.GameGS = (function(){
             var scene = EU.SmartScene.create( layer );
             scene.setName( "gameScene" );
 
-            var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+            var dessize = cc.view.getDesignResolutionSize();
             layer.m_scoresNode = EU.ScoresNode.create();
             layer.m_scoresNode.setPosition( 0, dessize.height );
             scene.addChild( layer.m_scoresNode, 9 );
@@ -367,7 +367,7 @@ EU.GameGS = (function(){
         createInterface: function()
         {
             cc.log( "GameGS.createInterface" );
-            var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+            var dessize = cc.view.getDesignResolutionSize();
 
             this.m_interface = new cc.Node();
             this.m_interface.setName( "interface" );
@@ -599,7 +599,7 @@ EU.GameGS = (function(){
         {
             cc.log( "GameGS.loadLevel" );
 
-            var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+            var dessize = cc.view.getDesignResolutionSize();
 
             this.m_bg = EU.ImageManager.sprite( ("images/maps/map" + ( index + 1 ) + ".jpg") );
             this.m_bg.setAnchorPoint( cc.Point( 0, 0 ) );
@@ -1231,7 +1231,7 @@ EU.GameGS = (function(){
         {
             var computePointFinish = [this]( const Point & wavebegan )
             {
-                var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+                var dessize = cc.view.getDesignResolutionSize();
                 var mapsize = this.m_bg.getContentSize();
                 mapsize.width *= this.m_mainlayer.getScaleX();
                 mapsize.height *= this.m_mainlayer.getScaleY();
@@ -1252,7 +1252,7 @@ EU.GameGS = (function(){
             };
             var computePointStart = [this]( const Point & finish )
             {
-                var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+                var dessize = cc.view.getDesignResolutionSize();
                 var mapsize = this.m_bg.getContentSize();
                 mapsize.width *= this.m_mainlayer.getScaleX();
                 mapsize.height *= this.m_mainlayer.getScaleY();
@@ -1455,7 +1455,7 @@ EU.GameGS = (function(){
             var shadow = ImageManager.sprite( kPathSpriteSquare );
             if( shadow )
             {
-                var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+                var dessize = cc.view.getDesignResolutionSize();
                 shadow.setName( "shadow" );
                 shadow.setScaleX( dessize.width );
                 shadow.setScaleY( dessize.height );

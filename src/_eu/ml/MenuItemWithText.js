@@ -19,6 +19,10 @@ var kNameImageDisabled = "disabled";
 
 
 EU.MenuItemImageWithText = cc.MenuItemImage.extend({
+
+    /** Test instance of */
+    __MenuItemImageWithText : true,
+
     _useScaleEffectOnSelected: true,
     _imageNormal: "",
     _imageSelected: "",

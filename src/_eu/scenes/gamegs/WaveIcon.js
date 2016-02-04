@@ -89,7 +89,7 @@ EU.WaveIcon = cc.Menu.extend(
 
     update: function( dt )
     {
-        var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+        var dessize = cc.view.getDesignResolutionSize();
         var worldpoint = GameGS.getInstance().getMainLayer().convertToWorldSpace( this._wavestart );
         var point = worldpoint;
         var borderx = 150.0;

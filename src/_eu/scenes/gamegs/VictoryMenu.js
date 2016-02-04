@@ -64,7 +64,7 @@ EU.VictoryMenu = cc.Node.extend(
             label.runAction( action );
         }
 
-        var dessize = cc.director.getOpenGLView().getDesignResolutionSize();
+        var dessize = cc.view.getDesignResolutionSize();
         var size = this.getContentSize();
         var sx = Math.min( 1, dessize.width / size.width );
         var sy = Math.min( 1, dessize.height / size.height );
