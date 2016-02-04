@@ -16,6 +16,18 @@ var EU = EU || {};
 EU.ImageManager  = {
     frames: {},
 
+    onCreate: function(){
+        this.load( "images/map/choose.plist", "choose" );
+    },
+    load: function(path, name){
+        var plist = EU.xmlLoader.resourcesRoot + path;
+        var framePrefix = name + "::";
+        cc.spriteFrameCache.addSpriteFrames(plist);
+        for( var key in cc.spriteFrameCache._spriteFrames ) {
+            var frame = cc.spriteFrameCache._spriteFrames[key];
+            this.frames[framePrefix + key] = frame;
+        }
+    },
     build: function(type) {
     },
     //void ImageManager::load_plist( const std::string & path, const std::string & _name )
@@ -130,12 +142,7 @@ EU.ImageManager  = {
     //
     getSpriteFrame: function(name)
     {
-        var framename = name;
-        if( framename.indexOf(EU.xmlLoader.resourcesRoot) == 0 )
-            framename = framename.substr( EU.xmlLoader.resourcesRoot.length );
-        if( framename[0] == "#" )
-            framename = framename.substr(1);
-        var frame = cc.spriteFrameCache.getSpriteFrame( framename );
+        var frame = this.frames[name];
         return frame;
     },
     sprite: function( spriteFrameOrTexture )
@@ -166,3 +173,6 @@ EU.ImageManager  = {
         return sprite;
     }
 };
+
+(function() {
+})();

@@ -1073,6 +1073,5 @@ EU.MapLayer.scene = function () {
     var layer = new EU.MapLayer();
     layer.init();
     scene.addChild(layer);
-    cc.spriteFrameCache.addSpriteFrames("res/_origin/images/map/choose.plist");
     return scene;
 };

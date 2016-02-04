@@ -73,7 +73,7 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-    
+
     getCostLab : function (  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
@@ -114,7 +114,7 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-    
+
     get_spd : function (  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
@@ -157,35 +157,27 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-    
+
     radiusInPixels: function(  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
         {
             if ( iter.rng.length < level )return 0;
             var v = iter.rng[level - 1];
-        
+
             return (v - this.parameterMin)* (this._max_rng) / (this.parameterMax - this.parameterMin);
         }
         return 0;
     },
-    
+
     load : function ()
     {
         var doc = new EU.pugixml.readXml( "ini/towers.xml");
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
-    
+
         var labUpgrade = root.getElementsByTagName( "laboratory_upgrade" )[0];
         var s = labUpgrade ? labUpgrade.getAttribute( "value" ) : "";
-
-        /** Array<String> */var upgrades = [];
-
-        upgrades = s.split (',' );
-        for (var i = 0; i < upgrades.length; i++) {
-            var value = upgrades[i];
-            this._labUpgrade.push( parseFloat( value ) );
-        }
 
         var order = 0 ;
         for(var i=0; i < root.children.length; i++){
@@ -196,11 +188,11 @@ EU.mlTowersInfo = {
             var costlabXml = node.getElementsByTagName( "costlab" )[0];
             var sellXml = node.getElementsByTagName( "sell" )[0];
             var levelXml = node.getElementsByTagName( "minlevel" )[0];
-    
+
             info.order = order++;
             info.sellRate = EU.asObject(sellXml.getAttribute( "value" ), 0.0);
             info.minlevel = EU.asObject(levelXml.getAttribute( "value" ), 0);
-    
+
             {
                 /** Array<String> */ var costs = [];
                 costs =  costXml.getAttribute( "value").split(',');
@@ -236,7 +228,7 @@ EU.mlTowersInfo = {
                     var doc = new EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml");
                     var root = doc.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = EU.asObject(root.getAttribute( "maxlevel" ), 0);
-    
+
                     if ( root.getAttribute( "template" ) )
                         docTemplate  = new EU.pugixml.readXml(root.getAttribute( "template" ));
 
@@ -250,11 +242,11 @@ EU.mlTowersInfo = {
 
                     var xmlEffectsPositive = xmlEffects.getElementsByTagName( "positive" )[0];
                     var xmlMachineParams = xmlMachine.getElementsByTagName( "params" )[0];
-    
+
                     var delayfire = EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "delay" ), 0.0);
                     var delaycharge = EU.asObject(xmlMachineParams.getElementsByTagName( "state_charging" )[0].getAttribute( "duration" ), 0.0);
                     var volume = EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "charge_volume" ), 0);
-    
+
                     var radius = EU.asObject(root.getAttribute( "radius" ), 0.0);
                     var damage = EU.asObject(xmlEffectsPositive.getAttribute( "damage" ), 0.0);
                     var damageR = EU.asObject(xmlEffectsPositive.getAttribute( "fireRate" ), 0.0) *
@@ -266,16 +258,16 @@ EU.mlTowersInfo = {
                     damage += damageR;
                     damage += damageI;
                     damage += damageE;
-    
+
                     var speed = 1 / (delayfire*volume + delaycharge);
                     var fps = volume * speed;
                     damage *= fps;
-    
+
                     //log( "%s:%d fps = %f", name.c_str(), i, fps );
                     //log( "%s:%d damage = %f", name.c_str(), i, damage );
                     //log( "%s:%d radius = %f", name.c_str(), i, radius );
                     //log( "%s:%d speed = %f", name.c_str(), i, speed );
-    
+
                     EU.assert ( damage > 0 );
                     EU.assert ( radius > 0 );
                     EU.assert ( speed > 0 );
@@ -304,7 +296,7 @@ EU.mlTowersInfo = {
                 v = v / this._max_spd * (this.parameterMax - this.parameterMin) + this.parameterMin;
             }
         }
-    
+
     },
 
     checkAvailabledTowers : function () {
@@ -322,13 +314,12 @@ EU.mlTowersInfo = {
     
 };
 
-/*
 (function() {
     EU.mlTowersInfo.load();
     //TODO: Re-enable this
     // EU.mlTowersInfo.checkAvailabledTowers();
 })();
-*/
+
 EU.mlTowersInfo = {
 
     Info: function()
