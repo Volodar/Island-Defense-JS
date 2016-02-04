@@ -1042,10 +1042,11 @@ EU.xmlLoader = {
                     menuitem.setSound( value );
                     break;
                 case EU.xmlKey.Text.int:
+                    var loc = EU.Language.string(value);
                     if( label instanceof cc.LabelBMFont )
-                        label.setString( value, true );
+                        label.setString( loc, true );
                     else if( menuitem instanceof EU.MenuItemImageWithText )
-                        menuitem.setText( value );
+                        menuitem.setText( loc );
                     break;
                 case EU.xmlKey.Font.int:
                     //TODO: font value here is without path, so xml value must be changed
