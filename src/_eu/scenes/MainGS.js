@@ -11,19 +11,12 @@
  ******************************************************************************/
 /**TESTED**/
 EU.MainGS = cc.Layer.extend({
-    _loadingList: {},
-    _menu: null,
     _menuAudio: null,
-    _resourcesIsLoaded: false,
 
     ctor: function () {
         this._super();
         this.load_str("ini/maings/mainlayer.xml");
-
-        this._menu = this.getChildByName("mainmenu");
-
         this.runEvent("oncreate");
-
         //var promo = this.getNodeByPath( this, "menupromo" );
         //if( promo )
         //    promo.setVisible( true );
@@ -42,9 +35,6 @@ EU.MainGS = cc.Layer.extend({
 
     },
     pushGame: function () {
-        if (this._menu.isEnabled() == false)
-            return;
-        this._menu.setEnabled(false);
         cc.director.pushScene(EU.MapLayer.scene());
     },
     closeRedeemMsg: function(){},
