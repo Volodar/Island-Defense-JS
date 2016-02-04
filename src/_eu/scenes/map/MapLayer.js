@@ -10,18 +10,15 @@
  * If you received the code not from the author, please contact us
  ******************************************************************************/
 
+//Define namespace
+var EU = EU || {};
+
 EU.MapLayerLocation = cc.Class.extend({
     pos : new cc.Point(0,0),
     posLock : new cc.Point(0,0),
     a : new cc.Point(0,0),
     b : new cc.Point(0,0),
     starsForUnlock : 0,
-    ctor: function(){
-
-    }
-});
-
-EU.MapLayerScrollTouchInfo = cc.Class.extend({
     ctor: function(){
 
     }
@@ -40,6 +37,7 @@ EU.MapLayer = cc.Layer.extend({
     curveMarkers: [],
     scrollInfo: null,
     selectedLevelIndex: -1,
+    touchListener : null,
 
     ctor: function() {
         this._super();
@@ -47,6 +45,7 @@ EU.MapLayer = cc.Layer.extend({
     init: function(){
         this.setName( "maplayer" );
 
+        //TODO: dispatch keyboard
         //this.setKeyboardEnabled( true );
 
         this._params = new EU.ParamCollection();
@@ -55,7 +54,7 @@ EU.MapLayer = cc.Layer.extend({
 
         this.map = this.getChildByName( "map" );
 
-        this.scrollInfo = new EU.MapLayerScrollTouchInfo();
+        this.scrollInfo = new EU.ScrollTouchInfo();
         this.scrollInfo.node = this.map;
 
         this.menuLocations = cc.Menu.create();
@@ -69,12 +68,14 @@ EU.MapLayer = cc.Layer.extend({
         this.removeUnUsedButtons();
         this.activateLocations();
 
-        //TODO: touch lostener
-        //var touchL = cc.EventListenerTouchAllAtOnce.create();
-        //touchL.onTouchesBegan = CC_CALLBACK_2( scrollBegan, this );
-        //touchL.onTouchesMoved = CC_CALLBACK_2( scrollMoved, this );
-        //touchL.onTouchesEnded = CC_CALLBACK_2( scrollEnded, this );
-        //_eventDispatcher.addEventListenerWithSceneGraphPriority( touchL, this );
+        this.touchListener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: false,
+            onTouchesBegan: this.scrollBegan,
+            onTouchesMoved: this.scrollMoved,
+            onTouchesEnded: this.scrollEnded,
+            onTouchesCancelled: this.scrollCancelled
+        });
 
 
         //createDevMenu();
@@ -144,6 +145,10 @@ EU.MapLayer = cc.Layer.extend({
     onEnter: function()
     {
         cc.Layer.prototype.onEnter.call(this);
+
+        var locListener = this.touchListener;
+        if (!locListener._isRegistered())
+            cc.eventManager.addListener(locListener, this);
 
         this.scheduleUpdate();
         //MouseHoverScroll.shared().enable();
@@ -318,37 +323,60 @@ EU.MapLayer = cc.Layer.extend({
         //else if( name == "leaderboard" ) this.leaderboardOpenGLobal,
         return null;
     },
-    
+    //_onTouchBegan: function (touch, event) {
+    //    var target = event.getCurrentTarget();
+    //    if (target._state !== cc.MENU_STATE_WAITING || !target._visible || !target.enabled)
+    //        return false;
+    //
+    //    for (var c = target.parent; c != null; c = c.parent) {
+    //        if (!c.isVisible())
+    //            return false;
+    //    }
+    //
+    //    target._selectedItem = target._itemForTouch(touch);
+    //    if (target._selectedItem) {
+    //        target._state = cc.MENU_STATE_TRACKING_TOUCH;
+    //        target._selectedItem.selected();
+    //        target._selectedItem.setNodeDirty();
+    //        return true;
+    //    }
+    //    return false;
+    //},
     scrollBegan: function( touches, event )
     {
-        var touch = touches[0];
-        this.scrollInfo.node = this.map;
-        this.scrollInfo.nodeposBegan = this.map.getPosition();
-        this.scrollInfo.touchBegan = touch.getLocation();
-        this.scrollInfo.touchID = touch.getID();
-        this.isTouching = true;
+        var target = event.getCurrentTarget();
+        target.scrollInfo.touchBegan = touches[0].getLocation();
+        target.scrollInfo.touchID = touches[0].getID();
+        target.scrollInfo.node = target.map;
+        target.scrollInfo.nodeposBegan = target.map.getPosition();
+        target.isTouching = true;
     },
     scrollMoved: function( touches, event )
     {
         var touch = touches[0];
-        if( touch && this.scrollInfo.node )
+        var target = event.getCurrentTarget();
+        if( touch && target.scrollInfo.node )
         {
             var location = touch.getLocation();
-            var shift = location - this.scrollInfo.touchBegan;
-            var pos = this.scrollInfo.nodeposBegan + shift;
-            var winsize = cc.director.getWinvar();
-            var fitpos = this.scrollInfo.fitPosition( pos, winsize );
-    
-            this.scrollInfo.lastShift = new cc.Point( 0, 0 );
-            this.scrollInfo.node.setPosition( fitpos );
-    
-            this.unfilteredVelocity = shift;
+            var shift = EU.Common.pointDiff(location, target.scrollInfo.touchBegan);
+            var pos = EU.Common.pointAdd(target.scrollInfo.nodeposBegan, shift);
+            var winsize = cc.director.getWinSize();
+            var fitpos = target.scrollInfo.fitPosition( pos, winsize );
+
+            target.scrollInfo.lastShift = new cc.Point( 0, 0 );
+            target.scrollInfo.node.setPosition( fitpos );
+
+            target.unfilteredVelocity = shift;
         }
     },
     scrollEnded: function( touches, event )
     {
-        this.isTouching = false;
-        this.velocity *= 0.2;
+        var target = event.getCurrentTarget();
+        target.isTouching = false;
+        target.velocity *= 0.2;
+    },
+    scrollCancelled: function( touch, event )    {
+
     },
     mouseHover: function(event)
     {
@@ -771,7 +799,7 @@ EU.MapLayer = cc.Layer.extend({
         {
             var kWidthPreview = 280;
             var kHeightPreview = 270;
-            var levelindex = EU.Common.strToInt(level) + 1;
+            var levelindex = level + 1;
             var image = "images/maps/map" + levelindex + ".jpg";
             var sprite = EU.ImageManager.sprite( image );
             var sx = kWidthPreview / sprite.getContentSize().width;
@@ -884,7 +912,94 @@ EU.MapLayer = cc.Layer.extend({
         }
         return layer;
     },
+    //TODO: dispatch keyboard
+    //void onKeyReleased( EventKeyboard.KeyCode keyCode, Event* event )
+    //{
+    //    if( keyCode == EventKeyboard.KeyCode.KEY_BACK )
+    //        cc.director.popScene();
     //
+    //    if( isTestDevice() && isTestModeActive() )
+    //    {
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 )
+    //        {
+    //            size_t pass = static_cast<size_t>(EU.UserData.level_getCountPassed());
+    //            if( pass < this.locations.length )
+    //            {
+    //                pass = this.locations.length;
+    //                EU.UserData.level_setCountPassed( pass );
+    //                for( size_t i = 0; i < pass; ++i )
+    //                {
+    //                    EU.UserData.level_setScoresByIndex( i, 1 );
+    //                }
+    //                activateLocations();
+    //            }
+    //        }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F2 )
+    //        {
+    //            EU.ScoreCounter.addMoney( EU.kScoreCrystals, 1000, true );
+    //        }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F3 )
+    //        {
+    //            EU.ScoreCounter.addMoney( EU.kScoreFuel, 50, true );
+    //        }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 ) { var player = AutoPlayer.create( true, true, 1, false ); player.retain(); }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 ) { var player = AutoPlayer.create( true, false, 3, false ); player.retain(); }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); player.setGameMode( GameMode.hard ); }
+    //    }
+    //}
+    //
+
+    /**
+     * Unused functions
+     */
+    //void createPromoMenu()
+    //{
+    //    var menu = getChildByName( "promomenu" );
+    //    if( menu == null && BuyHeroMenu.isShow() )
+    //    {
+    //        var menu = BuyHeroMenu.create();
+    //        if( menu )
+    //            addChild( menu, 999 );
+    //    }
+    //    else if( menu && BuyHeroMenu.isShow() == false )
+    //    {
+    //        menu.removeFromParent();
+    //    }
+    //}
+    //
+    //void createDevMenu()
+    //{
+    //    if( isTestDevice() && isTestModeActive() )
+    //    {
+    //        var item = [this]( Menu * menu, var text, EventKeyboard.KeyCode key, var pos )
+    //        {
+    //            var sendKey = [this]( Ref* sender, EventKeyboard.KeyCode key )mutable
+    //            {
+    //                this.onKeyReleased( key, null );
+    //            };
+    //
+    //            var i = MenuItemTextBG.create( text, Color4F.GRAY, Color3B.BLACK, std.bind( sendKey, std.placeholders._1, key ) );
+    //            menu.addChild( i );
+    //            i.setPosition( pos );
+    //            i.setScale( 1.5f );
+    //        };
+    //
+    //        var menu = Menu.create();
+    //        menu.setPosition( 0, 0 );
+    //        addChild( menu, 9999 );
+    //        var pos( 150, 300 );
+    //        float Y( 45 );
+    //        item( menu, "Open All", EventKeyboard.KeyCode.KEY_F1, pos ); pos.y += Y;
+    //        item( menu, "Gold", EventKeyboard.KeyCode.KEY_F2, pos ); pos.y += Y;
+    //        item( menu, "Fuel", EventKeyboard.KeyCode.KEY_F3, pos ); pos.y += Y;
+    //
+    //        item( menu, "play current level", EventKeyboard.KeyCode.KEY_1, pos ); pos.y += Y;
+    //        item( menu, "play all game", EventKeyboard.KeyCode.KEY_2, pos ); pos.y += Y;
+    //        item( menu, "fast test all levels", EventKeyboard.KeyCode.KEY_3, pos ); pos.y += Y;
+    //        item( menu, "fast test all hards", EventKeyboard.KeyCode.KEY_4, pos ); pos.y += Y;
+    //    }
+    //}
     //Layervarer buildUnlockWindow( var level )
     //{
     //    var load = [this]()
@@ -960,90 +1075,6 @@ EU.MapLayer = cc.Layer.extend({
     //        setKeyDispatcher( layer );
     //    }
     //    return layer;
-    //}
-    //
-    //void onKeyReleased( EventKeyboard.KeyCode keyCode, Event* event )
-    //{
-    //    if( keyCode == EventKeyboard.KeyCode.KEY_BACK )
-    //        cc.director.popScene();
-    //
-    //    if( isTestDevice() && isTestModeActive() )
-    //    {
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 )
-    //        {
-    //            size_t pass = static_cast<size_t>(EU.UserData.level_getCountPassed());
-    //            if( pass < this.locations.length )
-    //            {
-    //                pass = this.locations.length;
-    //                EU.UserData.level_setCountPassed( pass );
-    //                for( size_t i = 0; i < pass; ++i )
-    //                {
-    //                    EU.UserData.level_setScoresByIndex( i, 1 );
-    //                }
-    //                activateLocations();
-    //            }
-    //        }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F2 )
-    //        {
-    //            EU.ScoreCounter.addMoney( EU.kScoreCrystals, 1000, true );
-    //        }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F3 )
-    //        {
-    //            EU.ScoreCounter.addMoney( EU.kScoreFuel, 50, true );
-    //        }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 ) { var player = AutoPlayer.create( true, true, 1, false ); player.retain(); }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 ) { var player = AutoPlayer.create( true, false, 3, false ); player.retain(); }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); player.setGameMode( GameMode.hard ); }
-    //    }
-    //}
-    //
-    //void createPromoMenu()
-    //{
-    //    var menu = getChildByName( "promomenu" );
-    //    if( menu == null && BuyHeroMenu.isShow() )
-    //    {
-    //        var menu = BuyHeroMenu.create();
-    //        if( menu )
-    //            addChild( menu, 999 );
-    //    }
-    //    else if( menu && BuyHeroMenu.isShow() == false )
-    //    {
-    //        menu.removeFromParent();
-    //    }
-    //}
-    //
-    //void createDevMenu()
-    //{
-    //    if( isTestDevice() && isTestModeActive() )
-    //    {
-    //        var item = [this]( Menu * menu, var text, EventKeyboard.KeyCode key, var pos )
-    //        {
-    //            var sendKey = [this]( Ref* sender, EventKeyboard.KeyCode key )mutable
-    //            {
-    //                this.onKeyReleased( key, null );
-    //            };
-    //
-    //            var i = MenuItemTextBG.create( text, Color4F.GRAY, Color3B.BLACK, std.bind( sendKey, std.placeholders._1, key ) );
-    //            menu.addChild( i );
-    //            i.setPosition( pos );
-    //            i.setScale( 1.5f );
-    //        };
-    //
-    //        var menu = Menu.create();
-    //        menu.setPosition( 0, 0 );
-    //        addChild( menu, 9999 );
-    //        var pos( 150, 300 );
-    //        float Y( 45 );
-    //        item( menu, "Open All", EventKeyboard.KeyCode.KEY_F1, pos ); pos.y += Y;
-    //        item( menu, "Gold", EventKeyboard.KeyCode.KEY_F2, pos ); pos.y += Y;
-    //        item( menu, "Fuel", EventKeyboard.KeyCode.KEY_F3, pos ); pos.y += Y;
-    //
-    //        item( menu, "play current level", EventKeyboard.KeyCode.KEY_1, pos ); pos.y += Y;
-    //        item( menu, "play all game", EventKeyboard.KeyCode.KEY_2, pos ); pos.y += Y;
-    //        item( menu, "fast test all levels", EventKeyboard.KeyCode.KEY_3, pos ); pos.y += Y;
-    //        item( menu, "fast test all hards", EventKeyboard.KeyCode.KEY_4, pos ); pos.y += Y;
-    //    }
     //}
 });
 EU.NodeExt.call(EU.MapLayer.prototype);

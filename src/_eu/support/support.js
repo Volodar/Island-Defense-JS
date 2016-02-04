@@ -23,3 +23,29 @@ EU.compute_bezier = function( a, b, c, d, t )
     var y = (v0 * a.y + v1 * b.y + v2 * c.y + v3 * d.y);
     return new cc.Point( x, y );
 }
+
+EU.ScrollTouchInfo = cc.Class.extend({
+
+    touchBegan : null,
+    nodeposBegan : null,
+    lastShift : null,
+    node : null,
+    touchID : null,
+
+    fitPosition: function( position, winsize )
+    {
+        EU.assert( this.node );
+        var pos = position;
+        if( this.node )
+        {
+            var size = this.node.getContentSize();
+            size.width *= this.node.getScale( );
+            size.height  *= this.node.getScale( );
+            pos.x = Math.min( pos.x, 0 );
+            pos.x = Math.max( pos.x, winsize.width - size.width );
+            pos.y = Math.min( pos.y, 0 );
+            pos.y = Math.max( pos.y, winsize.height - size.height );
+        }
+        return pos;
+    }
+});
