@@ -387,6 +387,8 @@ EU.Common = {
      * @returns {*}
      */
     getNodeByPath: function (root, path_names) {
+        if( !path_names || path_names.length == 0 )
+            return root;
         var names = [];
         names = path_names.split('/');
         var node = root;

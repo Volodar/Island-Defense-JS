@@ -150,10 +150,9 @@ EU.xmlLoader = {
      * @returns {type} event
      */
     load_event_xml_node: function (xmlnode) {
-        var type = xmlnode.getAttribute("name");
+        var type = xmlnode.tagName;
 
-        //TODO: create EU.EventBase
-        var event = EU.EventBase.create(type);
+        var event = EU.Factory.build(type);
         for (var i = 0; i < xmlnode.attributes.length; i++) {
             var attr = xmlnode.attributes[i];
             var name = attr.name;
@@ -225,9 +224,6 @@ EU.xmlLoader = {
                 nodeext.loadActions(xmlentity);
             }
             else if (tag == "events") {
-                //TODO: loadEvents
-                continue;
-                /** @type {EU.NodeExt} nodeext */
                 var nodeext = node;
                 EU.assert(nodeext.__NodeExt, "wrong instance");
                 nodeext.loadEvents(xmlentity);

@@ -16,16 +16,23 @@ var EU = EU || {};
 
 EU.Factory  = {
     build: function(type) {
-        if( type == "node" ) return cc.Node.create();
+        if( type == "node" ) return new cc.Node();
         if( type == "sprite" ) return cc.Sprite.create();
         if( type == "menu" ) return cc.Menu.create();
         if( type == "layer" ) return cc.Layer.create();
         if( type == "particle" ) return cc.CCParticleSystemQuad.create();
         if( type == "progresstimer" ) return cc.ProgressTimer.create(null);
         if( type == "paralax" ) return cc.ParallaxNode.create();
-        if( type == "menuitem" ) return EU.MenuItemImageWithText.create();
+        if( type == "menuitem" ) return new EU.MenuItemImageWithText();
         if( type == "layerext" ) return new EU.LayerExt;
         if( type == "nodeext" ) return new EU.NodeExt_;
+        if( type == "action" ) return new EU.EventAction();
+        if( type == "runaction" ) return new EU.EventRunAction();
+        if( type == "stopaction" ) return new EU.EventStopAction();
+        if( type == "stopallaction" ) return new EU.EventStopAllAction();
+        if( type == "setproperty" ) return new EU.EventSetProperty();
+        if( type == "playsound" ) return new EU.EventPlaySound();
+        if( type == "createnode" ) return new EU.EventCreateNode();
         //TODO: change Label to Text
         if( type == "text" ) return cc.LabelBMFont.create();
         //TODO: build types:
@@ -35,15 +42,7 @@ EU.Factory  = {
         //if( type == "menuext" ) return EU.MenuExt.create();
         //if( type == "panel" ) return EU.Panel.create();
 
-        //TODO: build events:
-        //if( type == "action" ) return EU.EventAction.create();
-        //if( type == "runaction" ) return EU.EventRunAction.create();
-        //if( type == "stopaction" ) return EU.EventStopAction.create();
-        //if( type == "stopallaction" ) return EU.EventStopAllAction.create();
-        //if( type == "setproperty" ) return EU.EventSetProperty.create();
-        //if( type == "playsound" ) return EU.EventPlaySound.create();
         //if( type == "scenestack" ) return EU.EventScene.create();
-        //if( type == "createnode" ) return EU.EventCreateNode.create();
         //if( type == "statistic_accumulate" ) return EU.EventStatisticAccumulate.create();
 
         cc.log("cannot create object  by type: " + type);

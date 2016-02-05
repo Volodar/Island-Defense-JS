@@ -3,7 +3,7 @@
     <node name="bg" type="sprite" pos="frame:0.5x0.5" image="images/maings/title_20481536.jpg" strech="frame:1x1:max"/>
     <node name="logo" type="sprite" pos="frame:0.5x0.73" image="images/maings/logo.png" z="4" visible="yes"/>
 
-	<node type="menu" name="mainmenu" pos="0x0">
+	<node type="menu" name="mainmenu" pos="frame:0.5x0">
       <children>
         <node name="moregames" type="menuitem" imageN="images/maings/more_button.png" pos="frame:0.5x0.1" callback="moreApps" sound="##sound_button##" visible="##PLATFORM_MOBILE##" scale="0.7x0.7">
           <children>
@@ -36,7 +36,7 @@
           </children>
         </node>
 
-        <node name="startgame" type="menuitem" imageN="images/maings/icon_play.png" pos="frame:0.5x0.43" callback="pushGame" sound="##sound_button##" visible="yes">
+        <node name="startgame" type="menuitem" imageN="images/maings/icon_play.png" pos="0x-200" callback="pushGame" sound="##sound_button##" visible="no">
           <children>
             <node name="normal">
               <children>
@@ -62,11 +62,11 @@
     <action name="setVisible" value="Show[]"/>
     <action name="hide" value="MoveBy[0,0,300]"/>
     <action name="hide2" value="MoveBy[0,0,-300]"/>
-    <action name="show1" value="Sequence[DelayTime[0.5],Show[],BackOut[MoveBy[0.7,0,-300]]]"/>
+    <action name="show1" value="Sequence[DelayTime[0.5],Show[],BackOut[MoveTo[0.7,0,250]]]"/>
     <action name="show2" value="Sequence[Show[],BackOut[MoveBy[0.7,0,300]]]"/>
     <action name="show3" value="Sequence[BackOut[MoveBy[0.7,0,300]]]"/>
   </actions>
-<!--
+
   <events>
     <eventlist name="showTitle">
       <runaction action="show1" target="title1_text"/>
@@ -76,22 +76,12 @@
       <runaction action="show1" target="logo"/>
     </eventlist>
     <eventlist name="oncreate">
-      <runaction action="hide" target="mainmenu/startgame"/>
-      <runaction action="hide2" target="mainmenu/moregames"/>
-      <runaction action="hide2" target="mainmenu/exit"/>
-      <runaction action="hide" target="logo"/>
-      <runaction action="hide" target="title1_text"/>
-      <runaction action="hide" target="title2_text"/>
-    </eventlist>
-    <eventlist name="resourcesloaded">
       <runaction action="show1" target="mainmenu/startgame"/>
       <runaction action="show3" target="mainmenu/exit"/>
     </eventlist>
-    <eventlist name="resourcesloaded2">
-      <runaction action="show2" target="mainmenu/moregames"/>
+    <eventlist name="resourcesloaded">
     </eventlist>
   </events>
-  -->
 
   <resources>
     <atlases>

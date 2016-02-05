@@ -7,11 +7,11 @@ EU.NodeExt = function(){
     this.__NodeExt = true;
 
     /** @type {map<EU.EventsList>} */
-    this._events = {};
+    this._events = null;
     /** @type {map<cc.Action>} */
-    this._actions = {};
+    this._actions = null;
     /** @type {EU.ParamCollection} _params*/
-    this._params = new EU.ParamCollection();
+    this._params = null;
     this.as_node_ref= function()
     {
         return (this instanceof cc.Node ? this : null);
@@ -65,14 +65,8 @@ EU.NodeExt = function(){
     this.runEvent= function( eventname )
     {
         var iter = this._events[eventname];
-        if( iter != null )
-        {
+        if( iter )
             iter.execute( this );
-        }
-        //else {
-        //    var name = this.as_node_ref() ? EU.Node.prototype.getName.call(this) : "Not node inherited";
-        //    //log_once( "NodeExt[%s]: event with name [%s] not dispatched", name.c_str( ), eventname.c_str( ) );
-        //}
     };
     this.getAction= function( name )
     {
@@ -112,6 +106,8 @@ EU.NodeExt = function(){
                 var xmlevent = xmllist.children[j];
                 var event = EU.xmlLoader.load_event_xml_node( xmlevent );
                 EU.assert( event );
+                if( !(listname in this._events) )
+                    this._events[listname] = new EU.EventsList();
                 this._events[listname].push( event );
             }
         }
@@ -119,6 +115,10 @@ EU.NodeExt = function(){
     /**  @param {Element} xmlnode */
     this.loadParams= function( xmlnode )
     {
+        if( !this._params )
+        {
+            cc.log( "NodeExt: not created this._params. My name is: " + this.as_node_ref().getName());
+        }
         for(var i=0; i < xmlnode.children.length; i++){
             var xmlparam = xmlnode.children[i];
             var name = xmlparam.tagName;
@@ -140,8 +140,22 @@ EU.NodeExt = function(){
 };
 
 
-EU.LayerExt = cc.Layer.extend();
+EU.LayerExt = cc.Layer.extend({
+    ctor: function(){
+        this._super();
+        this._events = {};
+        this._actions = {};
+        this._params = new EU.ParamCollection();
+    }
+});
 EU.NodeExt.call(EU.LayerExt.prototype);
 
-EU.NodeExt_ = cc.Node.extend();
+EU.NodeExt_ = cc.Node.extend({
+    ctor: function(){
+        this._super();
+        this._events = {};
+        this._actions = {};
+        this._params = new EU.ParamCollection();
+    }
+});
 EU.NodeExt.call(EU.NodeExt_.prototype);

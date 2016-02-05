@@ -38,6 +38,10 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
 
     ctor: function(){
         cc.MenuItemImage.prototype.ctor.call(this);
+        this._events = {};
+        this._actions = {};
+        this._params = new EU.ParamCollection();
+        this.initWithNormalImage("", "", "", "", "", null, null);
     },
     /**
      * initialisation with all parameters
@@ -363,13 +367,3 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     },
 });
 EU.NodeExt.call(EU.MenuItemImageWithText.prototype);
-
-/**
- * creating MenuItemImageWithText
- * @returns {EU.MenuItemImageWithText}
- */
-EU.MenuItemImageWithText.create = function(){
-    var menuItem = new EU.MenuItemImageWithText();
-    menuItem.initWithNormalImage("", "", "", "", "", null, null);
-    return menuItem;
-};
