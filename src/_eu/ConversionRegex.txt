@@ -1,0 +1,50 @@
+1. For variables starting with _
+    (.+) _(\w+);
+    /** @type {$1} */ _$2 : ,
+
+
+2. For auto, unsigned
+auto
+var
+unsigned
+var
+float
+var
+std.string
+var
+int
+var
+
+
+3. Class NS to this
+MenuCreateTower::
+this.
+
+
+4. void this.functionName to functionName : function
+\w+ this.(\w+)
+$1: function
+
+5. replace property with this.property
+propertyName
+this.propertyName
+
+6. replace -> with .
+->
+.
+
+7. replace <type>, const to empty string
+<(\w+)*>
+
+const
+
+
+8. replace :: to .
+::
+.
+
+
+7. replace xxf to xx
+(\d)f
+$1
+

@@ -394,9 +394,10 @@ EU.Unit = cc.Node.extend({
             var event = EU.Machine.event( eventname );
 
             var self = this;
-            var callback = function(x){
-                return self.push_event( event.get_name() );
-            };
+            var callback = this.push_event.bind(this, event.get_name());
+            //function(x){
+            //    return self.push_event( event.get_name() );
+            //};
             return callback;
         }
         else return this.get_callback_by_description( name );
