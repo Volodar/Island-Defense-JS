@@ -13,6 +13,15 @@
 //Define namespace
 var EU = EU || {};
 
+/**
+ * Maybe duplicate with ccs.extBezierTo if using 'cocostudio' extension/package.
+ * @param a
+ * @param b
+ * @param c
+ * @param d
+ * @param t
+ * @returns {cc.Point}
+ */
 EU.compute_bezier = function( a, b, c, d, t )
 {
     var v0 = Math.pow( 1 - t, 3 );

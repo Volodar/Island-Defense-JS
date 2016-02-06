@@ -28,6 +28,7 @@
         "src/_eu/ml/ObjectFactory.js",
         "src/_eu/ml/FiniteStateMachine.js",
         "src/_eu/ml/Language.js",
+        "src/_eu/ml/SmartScene.js",
         "src/_eu/game/IndicatorNode.js",
         "src/_eu/game/unit/MachineExt.js",
         "src/_eu/game/unit/MachineUnit.js",
