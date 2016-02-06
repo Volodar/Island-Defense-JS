@@ -55,6 +55,7 @@
         "src/_eu/scenes/ScoreLayer.js",
         "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",
+        "src/_eu/scenes/map/itemshop/ItemShop.js",
         "src/_eu/resources.js",
         "src/app.js"
     ]
