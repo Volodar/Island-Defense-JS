@@ -15,9 +15,7 @@ EU.MainGS = cc.Layer.extend({
 
     ctor: function () {
         this._super();
-        this._events = {};
-        this._actions = {};
-        this._params = new EU.ParamCollection();
+        this.initExt();
 
         this.load_str("ini/maings/mainlayer.xml");
         this.runEvent("oncreate");

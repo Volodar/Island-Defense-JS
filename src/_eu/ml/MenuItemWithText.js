@@ -42,9 +42,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
 
     ctor: function(){
         cc.MenuItemImage.prototype.ctor.call(this);
-        this._events = {};
-        this._actions = {};
-        this._params = new EU.ParamCollection();
+        this.initExt();
         this.initWithNormalImage("", "", "", "", "", null, null);
     },
     /**

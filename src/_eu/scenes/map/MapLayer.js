@@ -48,12 +48,12 @@ EU.MapLayer = cc.Layer.extend({
      *
      */
     init: function () {
+        this.initExt();
         this.setName("maplayer");
 
         //TODO: dispatch keyboard
         //this.setKeyboardEnabled( true );
 
-        this._params = new EU.ParamCollection();
         this.load_str("ini/map/maplayer.xml");
         this.prepairNodeByConfiguration(this);
 

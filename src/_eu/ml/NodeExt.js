@@ -12,6 +12,11 @@ EU.NodeExt = function(){
     this._actions = null;
     /** @type {EU.ParamCollection} _params*/
     this._params = null;
+    this.initExt = function(){
+        this._events = {};
+        this._actions = {};
+        this._params = new EU.ParamCollection();
+    },
     this.as_node_ref= function()
     {
         return (this instanceof cc.Node ? this : null);
@@ -143,9 +148,7 @@ EU.NodeExt = function(){
 EU.LayerExt = cc.Layer.extend({
     ctor: function(){
         this._super();
-        this._events = {};
-        this._actions = {};
-        this._params = new EU.ParamCollection();
+        this.initExt();
     }
 });
 EU.NodeExt.call(EU.LayerExt.prototype);
@@ -153,9 +156,7 @@ EU.NodeExt.call(EU.LayerExt.prototype);
 EU.NodeExt_ = cc.Node.extend({
     ctor: function(){
         this._super();
-        this._events = {};
-        this._actions = {};
-        this._params = new EU.ParamCollection();
+        this.initExt();
     }
 });
 EU.NodeExt.call(EU.NodeExt_.prototype);
