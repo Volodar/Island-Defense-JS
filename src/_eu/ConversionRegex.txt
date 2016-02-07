@@ -1,29 +1,46 @@
-1. For variables starting with _
+/**
+  * Replace the cpp code with the following regular expression to port to javascript language.
+  * Must be careful not to replace the wrong code, so better to go one by one when replacing the code.
+  * BEWARE: must include empty space in these regex too
+*/
+
+1. For class variables starting with _
     (.+) _(\w+);
     /** @type {$1} */ _$2 : ,
 
 
 2. For auto, unsigned
-auto
-var
-unsigned
-var
-float
-var
-std.string
-var
-int
+(auto |int |float |unsigned |std.string )
 var
 
 
-3. Class NS to this
+3. Class NS to this,  addChild to this
 MenuCreateTower::
 this.
 
+ (addChild|removeChild)
+ this.$1
 
-4. void this.functionName to functionName : function
+ push_back
+ push
+
+assert
+EU.assert
+
+.empty() == false
+.length > 0
+
+.back()
+.slice(-1)[0]
+
+pop_back()
+pop()
+
+4. void this.functionName to functionName : function, replace create with new
 \w+ this.(\w+)
 $1: function
+(\w+).create
+new cc.$1
 
 5. replace property with this.property
 propertyName
@@ -33,10 +50,15 @@ this.propertyName
 ->
 .
 
-7. replace <type>, const to empty string
+7. replace <type>, const, Pointer, & to empty string
 <(\w+)*>
 
 const
+
+Pointer
+
+ &
+
 
 
 8. replace :: to .
@@ -44,7 +66,15 @@ const
 .
 
 
+
 7. replace xxf to xx
 (\d)f
 $1
 
+10. adding ending comma
+^    }
+    },
+
+11. others
+.size()
+.length
