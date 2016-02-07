@@ -31,6 +31,8 @@
         "src/_eu/ml/Language.js",
         "src/_eu/ml/Events.js",
         "src/_eu/ml/SmartScene.js",
+        "src/_eu/ml/Scissor.js",
+        "src/_eu/ml/ScrollMenu.js",
         "src/_eu/game/IndicatorNode.js",
         "src/_eu/game/unit/MachineExt.js",
         "src/_eu/game/unit/MachineUnit.js",
@@ -53,10 +55,12 @@
         "src/_eu/scenes/gamegs/UnitInfo.js",
         "src/_eu/scenes/gamegs/VictoryMenu.js",
         "src/_eu/scenes/gamegs/WaveIcon.js",
+        "src/_eu/scenes/gamegs/GamePauseScene.js",
+        "src/_eu/scenes/gamegs/MenuCreateTower.js",
         "src/_eu/scenes/ScoreLayer.js",
         "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",
-        "src/_eu/scenes/map/itemshop/ItemShop.js",
+        "src/_eu/scenes/itemshop/ItemShop.js",
         "src/_eu/resources.js",
         "src/app.js"
     ]

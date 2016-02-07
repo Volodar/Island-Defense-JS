@@ -10,7 +10,7 @@
 
 
 2. For auto, unsigned
-(auto |int |float |unsigned |std.string )
+(auto | int |float |unsigned |std.string |bool |Point |Vec2 )
 var
 
 
@@ -36,6 +36,9 @@ EU.assert
 pop_back()
 pop()
 
+nullptr
+null
+
 4. void this.functionName to functionName : function, replace create with new
 \w+ this.(\w+)
 $1: function
@@ -43,8 +46,10 @@ $1: function
 new cc.$1
 
 5. replace property with this.property
-propertyName
-this.propertyName
+ _(\w+)
+ this._$1
+(_
+(this._
 
 6. replace -> with .
 ->
@@ -58,6 +63,10 @@ const
 Pointer
 
  &
+
+Touch *
+
+.ptr()
 
 
 
@@ -78,3 +87,9 @@ $1
 11. others
 .size()
 .length
+Director.getInstance()
+cc.director
+cc.director.getOpenGLView()
+cc.view
+ set
+ this.set

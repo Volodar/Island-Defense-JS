@@ -369,3 +369,5 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     },
 });
 EU.NodeExt.call(EU.MenuItemImageWithText.prototype);
+
+EU.mlMenuItem = EU.MenuItemImageWithText;

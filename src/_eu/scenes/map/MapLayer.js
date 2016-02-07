@@ -452,7 +452,7 @@ EU.MapLayer = cc.Layer.extend({
      */
     cb_itemshop: function () {
         var scene = EU.Common.getSceneOfNode(this);
-        var layer = ItemShop.create();
+        var layer = new EU.ItemShop();
         scene.pushLayer(layer, true);
         EU.TutorialManager.dispatch("map_openitemshop");
     },

@@ -25,11 +25,11 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     /** @type {cc.MenuItem} */ _hidenButton : null,
     _desc : {
         /**cc.Node*/ node: new cc.Node(),
-        /**cc.Text*/ name: new cc.Text(),
-        /**cc.Text*/ text: new cc.Text(),
-        /**cc.Text*/ dmg: new cc.Text(),
-        /**cc.Text*/ rng: new cc.Text(),
-        /**cc.Text*/ spd: new cc.Text(),
+        /**cc.LabelTTF*/ name: new cc.LabelTTF(),
+        /**cc.LabelTTF*/ text: new cc.LabelTTF(),
+        /**cc.LabelTTF*/ dmg: new cc.LabelTTF(),
+        /**cc.LabelTTF*/ rng: new cc.LabelTTF(),
+        /**cc.LabelTTF*/ spd: new cc.LabelTTF(),
     } ,
 
     /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowers : {},
