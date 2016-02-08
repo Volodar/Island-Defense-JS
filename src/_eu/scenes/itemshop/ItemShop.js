@@ -9,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 EU.ItemShop = EU.ScrollMenu.extend({
     scaleFactor: null,
     removeScoreLayer: null,
