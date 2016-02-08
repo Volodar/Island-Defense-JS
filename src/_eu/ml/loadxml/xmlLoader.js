@@ -207,13 +207,13 @@ EU.xmlLoader = {
             {
                 /** @type {EU.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
+                //EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
                 this.load_scrollmenu_items(scrollmenu, xmlentity);
             }
             else if (tag == "children_nonscissor") {
                 /** @type {cc.ScrollMenu} scrollmenu */
                 var scrollmenu = node;
-                EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
+                //EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
                 if (scrollmenu) {
                     this.load_nonscissor_children(scrollmenu, xmlentity);
                 }
@@ -314,7 +314,13 @@ EU.xmlLoader = {
          * @returns {string|*}
          */
         var remove_spaces = function (desc) {
-            return desc.trim();
+            //return desc.trim();
+            var result = desc;
+            result = result.replace('\t', '');
+            result = result.replace('\n', '');
+            result = result.replace(' ', '');
+            result = result.trim();
+            return result;
         };
         /**
          * @param {String} desc
@@ -684,16 +690,13 @@ EU.xmlLoader = {
         else if (type == this.k.ActionHide) {
             return cc.hide();
         }
-        else {
-            if (USE_CHEATS !== undefined && USE_CHEATS == 1) {
-
-                var message = "undefinited action type [" + type + "] \n";
-                message += "action string: \n";
-                message += cleared_desc;
-                cc.log("%s", message);
-                alert(message + ": Error creating action");
-                EU.assert(0);
-            }
+        else
+        {
+            var message = "undefinited action type [" + type + "] \n";
+            message += "action string: \n";
+            message += cleared_desc;
+            cc.log("%s", message);
+            alert(message + ": Error creating action");
         }
 
         return null;
@@ -745,9 +748,9 @@ EU.xmlLoader = {
                 var child = this.getorbuild_node(node, xmlchild);
                 EU.assert(child);
                 if (!child) continue;
-                load(child, xmlchild);
+                EU.xmlLoader.load_node_xml_node(child, xmlchild, false);
                 if (child.getParent() != node)
-                    node.addChildNotScissor(child, child.getLocalZOrder());
+                    node.addChild(child, child.getLocalZOrder());
             }
         }
     },

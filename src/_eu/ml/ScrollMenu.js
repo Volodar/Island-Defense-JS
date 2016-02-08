@@ -14,46 +14,61 @@
 //Define namespace
 var EU = EU || {};
 
-EU.ScrollMenu = EU.Scissor.extend(
+EU.ScrollMenu = cc.Layer.extend(
 {
-
-    /** @type {Boolean} */ _touchEnabled :false ,
-    /** @type {Boolean} */ _scrollEnabled :false ,
+    /** @type {Boolean} */ _touchEnabled :null ,
+    /** @type {Boolean} */ _scrollEnabled :null ,
 
     /** @type {MenuItem} */ _selected : null,
     /** @type {MenuItem} */ _selectedOnTouchBegan : null,
-    /** @type {Array<MenuItem>} */ _items : [],
+    /** @type {Array<MenuItem>} */ _items : null,
 
-    /** @type {Boolean} */ _scrolled : false,
-    /** @type {Boolean} */ _allowScrollX : true,
-    /** @type {Boolean} */ _allowScrollY : true,
-    /** @type {Integer} */ _alignedCols : 99999,
-    /** @type {cc.Point} */ _scrollAreaPos : new cc.Point(0,0),
-    /** @type {cc.Point} */ _alignedStartPosition : new cc.Point(0,0),
-    /** @type {cc.Size} */ _gridSize : new cc.Size(0,0),
+    /** @type {Boolean} */ _scrolled : null,
+    /** @type {Boolean} */ _allowScrollX : null,
+    /** @type {Boolean} */ _allowScrollY : null,
+    /** @type {Integer} */ _alignedCols : null,
+    /** @type {cc.Point} */ _scrollAreaPos : null,
+    /** @type {cc.Point} */ _alignedStartPosition : null,
+    /** @type {cc.Size} */ _gridSize : null,
+    /** @type {cc.Rect} */ _visibleRect : null,
 
-    //CC_PROPERTY_PASS_BY_REF( int, _alignedCols, AlignedColums );
-    //
-    //CC_SYNTHESIZE( Boolean, _allowScrollX, AllowScrollByX );
-    //CC_SYNTHESIZE( Boolean, _allowScrollY, AllowScrollByY );
-    //
-    //CC_SYNTHESIZE_PASS_BY_REF( Size, _gridSize, GrisSize );
-    //CC_SYNTHESIZE_PASS_BY_REF( Point, _alignedStartPosition, AlignedStartPosition );
-
+    ctor: function()
+    {
+        this._super();
+        this._touchEnabled = false;
+        this._scrollEnabled  = false;
+        this._selected = null;
+        this._selectedOnTouchBegan = null;
+        this._items = [];
+        this._scrolled = false;
+        this._allowScrollX = true;
+        this._allowScrollY = true;
+        this._alignedCols = 99999;
+        this._scrollAreaPos = new cc.Point(0,0);
+        this._alignedStartPosition = new cc.Point(0,0);
+        this._gridSize = new cc.Size(0,0);
+        this._visibleRect = new cc.Rect(0,0,0,0);
+    },
     init: function()
     {
         var result = true ;
 
         var size = cc.view.getDesignResolutionSize();
         this.setContentSize( size );
-        this.setScissorRect( cc.POINT_ZERO, size );
-        this.setScissorEnabled( false );
         this.setTouchEnabled( true );
         this.setScrollEnabled( false );
+        this.setVisibleRect( new cc.Rect(0,0,size.width, size.height) );
 
         return result;
     },
 
+    setVisibleRect: function( rect ){
+        EU.assert( rect );
+        this._visibleRect = rect;
+    },
+    getVisibleRect:function(){
+        return this._visibleRect;
+    },
     isTouchEnabled: function()
     {
         return this._touchEnabled;
@@ -76,17 +91,15 @@ EU.ScrollMenu = EU.Scissor.extend(
 
         this._touchEnabled = flag;
 
-        var touchListener = new cc._EventListenerTouchOneByOne();
-        touchListener.onTouchBegan = this.onTouchBegan.bind(this);
-        touchListener.onTouchMoved = this.onTouchMoved.bind(this);
-        touchListener.onTouchEnded = this.onTouchEnded.bind(this);
-        touchListener.onTouchCancelled = this.onTouchCancelled.bind(this);
-        touchListener.setSwallowTouches( true );
-        
-        //TODO: Check if addListener is the correct porting method
-        cc.eventManager.addListener(touchListener, this);
-        //this._eventDispatcher.addEventListener( touchListener, this );
-
+        this.touchListener = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ONE_BY_ONE,
+            swallowTouches: true,
+            onTouchBegan: this.onTouchBegan,
+            onTouchMoved: this.onTouchMoved,
+            onTouchEnded: this.onTouchEnded,
+            onTouchCancelled: this.onTouchCancelled
+        });
+        cc.eventManager.addListener(this.touchListener, this);
     },
 
     isScrollEnabled: function( )
@@ -101,80 +114,84 @@ EU.ScrollMenu = EU.Scissor.extend(
 
     onTouchBegan: function( /**cc.Touch */ touch, /** cc.Event*/ event)
     {
-        if( this._touchEnabled == false ) return false;
-        var node = this;
+        var target = event.getCurrentTarget();
+        if( target._touchEnabled == false ) return false;
+        var node = target;
         while( node )
         {
             if( node.isVisible() == false ) return false;
             node = node.getParent();
         }
 
-        this._selectedOnTouchBegan = this.getItemForTouch( touch );
-        if( this._selectedOnTouchBegan )
-            this.select( this._selectedOnTouchBegan );
+        target._selectedOnTouchBegan = target.getItemForTouch( touch );
+        if( target._selectedOnTouchBegan )
+            target.select( target._selectedOnTouchBegan );
 
-        if( this._scrollEnabled )
+        if( target._scrollEnabled )
         {
-            var pointLocal = this.convertToNodeSpace( touch.getLocation() );
-            return this.checkTouchInScissorArea( pointLocal );
+            var pointLocal = target.convertToNodeSpace( touch.getLocation() );
+            return target._selectedOnTouchBegan != null;
         }
-        return this._selectedOnTouchBegan != null;
+        return target._selectedOnTouchBegan != null;
     },
 
     onTouchEnded: function( touch, event)
     {
-        if( this._touchEnabled == false ) return;
-        if( this._scrollEnabled && this._scrolled )
+        var target = event.getCurrentTarget();
+        if( target._touchEnabled == false ) return;
+        if( target._scrollEnabled && target._scrolled )
         {
-            this.scrollEnded( touch );
+            target.scrollEnded( touch );
         }
-        var item = this.getItemForTouch( touch );
-        if( item && item == this._selectedOnTouchBegan )
+        var item = target.getItemForTouch( touch );
+        if( item && item == target._selectedOnTouchBegan )
         {
-            this.activate( this._selectedOnTouchBegan );
+            target.activate( target._selectedOnTouchBegan );
         }
-        this._selectedOnTouchBegan = this._selected = null;
+        target._selectedOnTouchBegan = target._selected = null;
     },
 
     onTouchMoved: function( touch, event)
     {
-        if( this._touchEnabled == false ) return;
-        if( this._scrollEnabled )
+        var target = event.getCurrentTarget();
+        if( target._touchEnabled == false ) return;
+        if( target._scrollEnabled )
         {
-            if( this._scrolled )
+            if( target._scrolled )
             {
-                this.scrollMoved( touch );
+                target.scrollMoved( touch );
             }
             else
             {
                 var length = (touch.getStartLocation() - touch.getLocation()).getLength();
                 if( length > 5 )
                 {
-                    this.scrollBegan( touch );
-                    this.unselect( this._selectedOnTouchBegan );
-                    this._selectedOnTouchBegan = null;
+                    target.scrollBegan( touch );
+                    target.unselect( target._selectedOnTouchBegan );
+                    target._selectedOnTouchBegan = null;
                 }
             }
         }
 
-        var item = this.getItemForTouch( touch );
-        if( item != this._selected )
+        var item = target.getItemForTouch( touch );
+        if( item != target._selected )
         {
-            this.unselect( this._selected );
+            target.unselect( target._selected );
         }
-        if( item& this._selected == null& item == this._selectedOnTouchBegan )
+        if( item && target._selected == null && item == target._selectedOnTouchBegan )
         {
-            this.select( this._selectedOnTouchBegan );
+            target.select( target._selectedOnTouchBegan );
         }
     },
 
     onTouchCancelled: function( touch, event)
     {
-        if( this._scrollEnabled&& this._scrolled )
+        var target = event.getCurrentTarget();
+        if( target._scrollEnabled && target._scrolled )
         {
-            this.scrollCanceled( touch );
+            target.scrollCanceled( touch );
         }
-        this.unselect( this._selectedOnTouchBegan );
+        target.unselect( target._selectedOnTouchBegan );
     },
 
     scrollBegan: function( touch )
@@ -228,7 +245,8 @@ EU.ScrollMenu = EU.Scissor.extend(
     fitPosition: function( pos )
     {
         var result = pos;
-        var scissorSize = this.getScissorRect();
+        var visibledRect = this.getVisibleRect();
+        var visibledSize = new cc.Size(visibledRect.width, visibledRect.height);
         var contentSize = this.getContentSize();
 
         var right = true ;
@@ -237,31 +255,35 @@ EU.ScrollMenu = EU.Scissor.extend(
 
         if( right )
         {
-            var min = cc.math.Vec2.subtract(new cc.Point(0,0), scissorSize, contentSize );
-            result.x = std.max( min.x, result.x );
-            result.x = std.min( 0, result.x );
-            result.y = std.max( min.y, result.y );
-            result.y = std.min( 0, result.y );
+            var min = new cc.Point(0,0);
+            min.x = visibledSize.width - contentSize.width;
+            min.x = visibledSize.height - contentSize.height;
+            result.x = Math.max( min.x, result.x );
+            result.x = Math.min( 0, result.x );
+            result.y = Math.max( min.y, result.y );
+            result.y = Math.min( 0, result.y );
         }
         else
         {
-            var max = cc.math.Vec2.subtract(new cc.Point(0,0), scissorSize, contentSize );
+            var max = new cc.Point(0,0);
+            max.x = visibledSize.width - contentSize.width;
+            max.x = visibledSize.height - contentSize.height;
             max.y = -max.y;
-            result.x = std.min( max.x, result.x );
-            result.x = std.max( 0, result.x );
-            result.y = std.min( max.y, result.y );
-            result.y = std.max( 0, result.y );
+            result.x = Math.min( max.x, result.x );
+            result.x = Math.max( 0, result.x );
+            result.y = Math.min( max.y, result.y );
+            result.y = Math.max( 0, result.y );
         }
         return result;
     },
 
-    fitPositionByGrid: function (pos )
+    fitPositionByGrid: function ( pos )
     {
         var result = this._scrollAreaPos;
         if( this._gridSize.width != 0 && this._allowScrollX )
         {
             EU.assert( this._gridSize.width != 0 );
-            if( result.x != this.getScissorRect().size.width - this.getContentSize().width )
+            if( result.x != this.getVisibleRect().size.width - this.getContentSize().width )
             {
                 var i = ((-this._scrollAreaPos.x / this._gridSize.width) + 0.5);
                 result.x = -(this._gridSize.width * i);
@@ -270,7 +292,7 @@ EU.ScrollMenu = EU.Scissor.extend(
         if( this._gridSize.height != 0 && this._allowScrollY )
         {
             EU.assert( this._gridSize.height != 0 );
-            var y = this.getScissorRect().size.height - this.getContentSize().height;
+            var y = this.getVisibleRect().size.height - this.getContentSize().height;
             y = this._gridSize.height < 0 ? -y : y;
             if( result.y != y )
             {
@@ -333,8 +355,8 @@ EU.ScrollMenu = EU.Scissor.extend(
         var point = touch.getLocation();
         var pointLocal = this.convertToNodeSpace( point );
 
-        if( this._scrollEnabled && this.checkTouchInScissorArea( pointLocal ) == false )
-            return null;
+        //if( this._scrollEnabled && this.checkTouchInScissorArea( pointLocal ) == false )
+        //    return null;
 
         for (var i = 0; i < this._items.length; i++) {
             var item = this._items[i];
@@ -404,49 +426,32 @@ EU.ScrollMenu = EU.Scissor.extend(
         return this.push( normalImage, normalImage, normalImage, "", "", callback );
     },
 
-    getChildByName: function( name )
-    {
-        var children = this.getChildren();
-        var nodeChildren = Node.prototype.getChildren.call(this);
-        for (var i = 0; i < nodeChildren.length; i++) {
-            var item = nodeChildren[i];
-            children.push( item);
-        }
-        for (var i = 0; i < children.length; i++) {
-            var child = children[i];
-            if( child.getName() == name )
-                return child;
-        }
-        return null;
-    },
-
     align: function( cols )
     {
         if( this._gridSize.width == 0 && this._gridSize.height == 0 )
             return;
         this.setAlignedColumns( cols );
-        var index = 0;
         var width0 = 0;
         var width1 = 0;
         var height0 = 0;
         var height1 = 0;
         for (var i = 0; i < this._items.length; i++) {
             var item = this._items[i];
-            var row = index / cols;
-            var col = index % cols;
-            var pos;
+            var row = Math.round(i / cols);
+            var col = i % cols;
+            var pos = new cc.Point(0,0);
             pos.x = col * this._gridSize.width + this._gridSize.width / 2;
             pos.y = row * this._gridSize.height + this._gridSize.height / 2;
-            pos += this._alignedStartPosition;
+            pos = EU.Common.pointAdd( pos, this._alignedStartPosition );
 
-            width0 = std.max( width0, pos.x + item.getContentSize().width * item.getAnchorPoint().x );
-            height0 = std.max( height0, pos.y + item.getContentSize().height * item.getAnchorPoint().y );
-            width1 = std.min( width1, pos.x - item.getContentSize().width * item.getAnchorPoint().x );
-            height1 = std.min( height1, pos.y - item.getContentSize().height * item.getAnchorPoint().y );
+            width0 = Math.max( width0, pos.x + item.getContentSize().width * item.getAnchorPoint().x );
+            height0 = Math.max( height0, pos.y + item.getContentSize().height * item.getAnchorPoint().y );
+            width1 = Math.min( width1, pos.x - item.getContentSize().width * item.getAnchorPoint().x );
+            height1 = Math.min( height1, pos.y - item.getContentSize().height * item.getAnchorPoint().y );
 
             item.setPosition( pos );
         }
-        this.setContentSize( Size( Math.abs( width1 - width0 ), Math.abs( height1 - height0 ) ) );
+        this.setContentSize( new cc.Size( Math.abs( width1 - width0 ), Math.abs( height1 - height0 ) ) );
     },
 
     setAlignedColumns: function(  count )
@@ -457,6 +462,29 @@ EU.ScrollMenu = EU.Scissor.extend(
     getAlignedColumns: function( )
     {
         return this._alignedCols;
+    },
+    setAlignedStartPosition: function( point ){
+        this._alignedStartPosition = point;
+    },
+    getAlignedStartPosition: function(){
+        return this._alignedStartPosition ;
+    },
+    setAllowScrollByX: function( value ){
+        this._allowScrollX = value;
+    },
+    getAllowScrollByX: function(){
+        return this._allowScrollX ;
+    },
+    setAllowScrollByY: function( value ){
+        this._allowScrollY = value;
+    },
+    getAllowScrollByY: function(){
+        return this._allowScrollY;
+    },
+    setGrisSize: function( size ){
+        this._gridSize = size;
+    },
+    getGrisSize: function(){
+        return this._gridSize;
     }
-
 });

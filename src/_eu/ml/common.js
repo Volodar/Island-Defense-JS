@@ -435,10 +435,10 @@ EU.Common = {
                 return false;
             parent = parent.getParent();
         }
-        if (point.x > bb.origin.x &&
-            point.x < (bb.origin.x + bb.size.width) &&
-            point.y > bb.origin.y &&
-            point.y < (bb.origin.y + bb.size.height)) {
+        if (point.x > bb.x &&
+            point.x < (bb.x + bb.width) &&
+            point.y > bb.y &&
+            point.y < (bb.y + bb.height)) {
             return true;
         }
         return false;

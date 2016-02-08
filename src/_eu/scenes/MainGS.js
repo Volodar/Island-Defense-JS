@@ -129,8 +129,7 @@ EU.MainGS = cc.Layer.extend({
 EU.NodeExt.call(EU.MainGS.prototype);
 
 EU.MainGS.scene = function () {
-    var scene = new cc.Scene();
     var layer = new EU.MainGS();
-    scene.addChild(layer);
+    var scene = new EU.SmartScene(layer);
     return scene;
 };

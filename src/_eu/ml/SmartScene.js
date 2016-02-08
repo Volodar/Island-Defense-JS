@@ -15,12 +15,13 @@ EU.SmartScene = cc.Scene.extend(
     //void shadow_appearance( var z = 1, var opacity = 204 );
     /** @type {cc.Layer} */ _mainlayer : null,
     /** @type {cc.Sprite} */ _shadow : null,
-    /** @type {Boolean} */ _nowBlockedTopLayer : false ,
-    /** @type {Array<cc.Layer>} deque*/ _stack : [],
+    /** @type {Boolean} */ _nowBlockedTopLayer : null ,
+    /** @type {Array<cc.Layer>} deque*/ _stack : null,
 
     ctor: function( mainlayer )
     {
         this._super();
+        this._stack = [];
         var dessize = cc.view.getDesignResolutionSize();
 
         this.resetMainLayer( mainlayer );
@@ -31,7 +32,7 @@ EU.SmartScene = cc.Scene.extend(
         this._shadow.setScaleY( dessize.height );
         this._shadow.setColor( new cc.Color( 0, 0, 0 ) );
         this._shadow.setOpacity( 0 );
-        this._shadow.setPosition( new cc.Point( dessize.x / 2, dessize.y / 2 ) );
+        this._shadow.setPosition( new cc.Point( dessize.width / 2, dessize.height / 2 ) );
         this.addChild( this._shadow, 1 );
 
         return true;
@@ -98,7 +99,7 @@ EU.SmartScene = cc.Scene.extend(
             var self = this;
             layer.onExit = function() {
                 self.on_layerClosed.call(self, layer);
-                this._super();
+                //this._super();
             };
             this.addChild( layer, z );
 

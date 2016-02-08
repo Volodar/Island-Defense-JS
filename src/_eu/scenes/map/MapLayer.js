@@ -24,18 +24,18 @@ EU.MapLayerLocation = cc.Class.extend({
 });
 
 EU.MapLayer = cc.Layer.extend({
-    self: this,
+    self: null,
     map: null,
     menuLocations: null,
-    velocity: new cc.Point(0, 0),
+    velocity: null,
     unfilteredVelocity: null,
     isTouching: null,
-    locations: [],
-    updateLocations: true,
-    showLaboratoryOnEnter: false,
-    curveMarkers: [],
+    locations: null,
+    updateLocations: null,
+    showLaboratoryOnEnter: null,
+    curveMarkers: null,
     scrollInfo: null,
-    selectedLevelIndex: -1,
+    selectedLevelIndex: null,
     touchListener: null,
 
     /**
@@ -43,6 +43,10 @@ EU.MapLayer = cc.Layer.extend({
      */
     ctor: function () {
         this._super();
+        this.self = this;
+        this.velocity = new cc.Point(0, 0);
+        this.locations = [];
+        this.curveMarkers = [];
     },
     /**
      *
@@ -67,7 +71,7 @@ EU.MapLayer = cc.Layer.extend({
         this.menuLocations.setPosition(0, 0);
         this.map.addChild(this.menuLocations, 1);
 
-        var scale = cc.director.getWinSize().height / this.map.getContentSize().height;
+        var scale = cc.view.getDesignResolutionSize().height / this.map.getContentSize().height;
         this.map.setScale(scale);
 
         this.removeUnUsedButtons();
@@ -179,7 +183,6 @@ EU.MapLayer = cc.Layer.extend({
 
         if (this.menuLocations)
             this.menuLocations.setEnabled(true);
-
 
         var notifyOnEnter = function () {
             EU.TutorialManager.dispatch("map_onenter");
@@ -335,7 +338,7 @@ EU.MapLayer = cc.Layer.extend({
             var location = touch.getLocation();
             var shift = EU.Common.pointDiff(location, target.scrollInfo.touchBegan);
             var pos = EU.Common.pointAdd(target.scrollInfo.nodeposBegan, shift);
-            var winsize = cc.director.getWinSize();
+            var winsize = cc.view.getDesignResolutionSize();
             var fitpos = target.scrollInfo.fitPosition(pos, winsize);
 
             target.scrollInfo.lastShift = new cc.Point(0, 0);
@@ -385,7 +388,7 @@ EU.MapLayer = cc.Layer.extend({
             this.velocity *= 0.95;
 
             if (EU.Common.pointLength(this.velocity) > 0.01) {
-                var winsize = cc.director.getWinSize();
+                var winsize = cc.view.getDesignResolutionSize();
                 var pos = this.scrollInfo.node.getPosition() + this.velocity;
                 var fitpos = this.scrollInfo.fitPosition(pos, winsize);
                 this.scrollInfo.node.setPosition(fitpos);
@@ -511,8 +514,7 @@ EU.MapLayer = cc.Layer.extend({
         if (layer) {
             var scene = EU.Common.getSceneOfNode(this);
             EU.assert(scene);
-            //TODO: scene.pushLayer( layer, true );
-            scene.addChild(layer, 999);
+            scene.pushLayer( layer, true );
             EU.TutorialManager.dispatch("map_onchoose");
         }
         else {
@@ -1069,9 +1071,8 @@ EU.NodeExt.call(EU.MapLayer.prototype);
  * @returns {cc.Scene}
  */
 EU.MapLayer.scene = function () {
-    var scene = new cc.Scene();
     var layer = new EU.MapLayer();
     layer.init();
-    scene.addChild(layer);
+    var scene = new EU.SmartScene(layer);
     return scene;
 };
