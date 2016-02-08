@@ -1073,6 +1073,9 @@ EU.NodeExt.call(EU.MapLayer.prototype);
 EU.MapLayer.scene = function () {
     var layer = new EU.MapLayer();
     layer.init();
+    var score = new EU.ScoreLayer();
     var scene = new EU.SmartScene(layer);
+    scene.addChild( score, 999 );
+    scene.setName( "MapScene" );
     return scene;
 };

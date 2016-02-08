@@ -2,7 +2,6 @@
 var EU = EU || {};
 
 //
-EU.Observer = cc.Class.extend();
 EU.BodyType = cc.Class.extend();
 EU.BodyType.Equipment = cc.Class.extend();
 EU.UnitLayer = cc.Class.extend();

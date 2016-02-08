@@ -9,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 //Define namespace
 var EU = EU || {};
 
@@ -25,8 +25,8 @@ EU.Observer = cc.Node.extend({
         EU.assert(callback && target);
         EU.assert(cc.isFunction(callback));
         this.listeners[ID] = {};
-        this.listeners[ID][callback] = callback;
-        this.listeners[ID][target] = target;
+        this.listeners[ID].callback = callback;
+        this.listeners[ID].target = target;
     },
     remove: function( ID ){
         if( ID in this.listeners )
@@ -38,13 +38,13 @@ EU.Observer = cc.Node.extend({
             var target = this.listeners[ID].target;
             var callback = this.listeners[ID].callback;
             if (arguments.length == 0)
-                target.callback();
+                callback.call(target);
             else if (arguments.length == 1)
-                target.callback(arguments[0]);
+                callback.call(target, arguments[0]);
             else if (arguments.length == 2)
-                target.callback(arguments[0], arguments[1]);
+                callback.call(target, arguments[0], arguments[1]);
             else if (arguments.length == 3)
-                target.callback(arguments[0], arguments[1], arguments[2]);
+                callback.call(target, arguments[0], arguments[1], arguments[2]);
             else
                 EU.assert(0);
         }
