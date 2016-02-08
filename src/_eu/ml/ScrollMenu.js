@@ -1,4 +1,3 @@
-
 /******************************************************************************
  * Copyright 2014-2016 Vladimir Tolmachev
  * Copyright 2016 Visionarity AG
@@ -10,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 //Define namespace
 var EU = EU || {};
 
@@ -104,7 +103,7 @@ EU.ScrollMenu = cc.Layer.extend(
 
     isScrollEnabled: function( )
     {
-            return this._scrollEnabled;
+        return this._scrollEnabled;
     },
 
     setScrollEnabled: function( flag )
@@ -163,7 +162,7 @@ EU.ScrollMenu = cc.Layer.extend(
             }
             else
             {
-                var length = (touch.getStartLocation() - touch.getLocation()).getLength();
+                var length = EU.Common.pointLength(EU.Common.pointDiff(touch.getStartLocation(), touch.getLocation()));
                 if( length > 5 )
                 {
                     target.scrollBegan( touch );
@@ -206,31 +205,31 @@ EU.ScrollMenu = cc.Layer.extend(
         var point = touch.getLocation( );
         var shift = touch.getDelta();
 
-        var newPos = this._scrollAreaPos + shift;
+        var newPos = EU.Common.pointAdd(this._scrollAreaPos, shift);
         newPos = this.fitPosition( newPos );
 
-        shift = newPos - this._scrollAreaPos;
+        shift = EU.Common.pointDiff(newPos, this._scrollAreaPos);
         this._scrollAreaPos = newPos;
-        for (var i = 0; i < this.getChildren().length; i++) {
-            var child = this.getChildren()[i];
-            var pos = child.getPosition( );
+        for (var i = 0; i < this._items.length; i++) {
+            var item = this._items[i];
+            var pos = item.getPosition( );
             pos.x += this._allowScrollX ? shift.x : 0;
             pos.y += this._allowScrollY ? shift.y : 0;
-            child.setPosition( pos );
+            item.setPosition( pos );
         }
     },
 
     scrollEnded: function( touch )
     {
-        EU.assert( this._scrollEnabled );
+        //EU.assert( this._scrollEnabled );
         var pos = this.fitPositionByGrid( this._scrollAreaPos );
-        var shift = cc.math.Vec2.subtract(new cc.Point(0,0), pos, this._scrollAreaPos);
+        var shift = EU.Common.pointDiff(pos, this._scrollAreaPos);
 
-        for (var i = 0; i < this.getChildren().length; i++) {
-            var child = this.getChildren()[i];
-            var to = cc.math.Vec2.add(new cc.Point(0,0), child.getPosition(), shift);
+        for (var i = 0; i < this._items.length; i++) {
+            var item = this._items[i];
+            var to = EU.Common.pointAdd(item.getPosition(), shift);
             var action = ( new cc.MoveTo( 0.2, to )).easing(cc.easeBackOut());
-            child.runAction( action );
+            item.runAction( action );
         }
         this._scrollAreaPos = pos;
         this._scrolled = false;
@@ -257,7 +256,7 @@ EU.ScrollMenu = cc.Layer.extend(
         {
             var min = new cc.Point(0,0);
             min.x = visibledSize.width - contentSize.width;
-            min.x = visibledSize.height - contentSize.height;
+            min.y = visibledSize.height - contentSize.height;
             result.x = Math.max( min.x, result.x );
             result.x = Math.min( 0, result.x );
             result.y = Math.max( min.y, result.y );
@@ -267,7 +266,7 @@ EU.ScrollMenu = cc.Layer.extend(
         {
             var max = new cc.Point(0,0);
             max.x = visibledSize.width - contentSize.width;
-            max.x = visibledSize.height - contentSize.height;
+            max.y = visibledSize.height - contentSize.height;
             max.y = -max.y;
             result.x = Math.min( max.x, result.x );
             result.x = Math.max( 0, result.x );
@@ -279,24 +278,24 @@ EU.ScrollMenu = cc.Layer.extend(
 
     fitPositionByGrid: function ( pos )
     {
-        var result = this._scrollAreaPos;
+        var result = new cc.Point(this._scrollAreaPos.x, this._scrollAreaPos.y);
         if( this._gridSize.width != 0 && this._allowScrollX )
         {
             EU.assert( this._gridSize.width != 0 );
-            if( result.x != this.getVisibleRect().size.width - this.getContentSize().width )
+            if( result.x != this.getVisibleRect().width - this.getContentSize().width )
             {
-                var i = ((-this._scrollAreaPos.x / this._gridSize.width) + 0.5);
+                var i = Math.round((-this._scrollAreaPos.x / this._gridSize.width));
                 result.x = -(this._gridSize.width * i);
             }
         }
         if( this._gridSize.height != 0 && this._allowScrollY )
         {
             EU.assert( this._gridSize.height != 0 );
-            var y = this.getVisibleRect().size.height - this.getContentSize().height;
+            var y = this.getVisibleRect().height - this.getContentSize().height;
             y = this._gridSize.height < 0 ? -y : y;
             if( result.y != y )
             {
-                var i = ((-this._scrollAreaPos.y / this._gridSize.height) + 0.5);
+                var i = Math.round((-this._scrollAreaPos.y / this._gridSize.height));
                 result.y = -(this._gridSize.height * i);
             }
         }

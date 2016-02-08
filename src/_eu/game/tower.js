@@ -180,8 +180,8 @@ EU.mlTowersInfo = {
         var s = labUpgrade ? labUpgrade.getAttribute( "value" ) : "";
 
         var order = 0 ;
-        for(var i=0; i < root.children.length; i++){
-            var node = root.children[i];
+        for(var towerindex=0; towerindex < root.children.length; towerindex++){
+            var node = root.children[towerindex];
             var info = new this.towerInfo();
             var name = node.getAttribute( "name" );
             var costXml = node.getElementsByTagName( "cost" )[0];
@@ -210,9 +210,7 @@ EU.mlTowersInfo = {
                 }
             }
 
-            //TODO: EU.WORD - I18N.js - Language
-            //info.desc = EU.WORD( node.getElementsByTagName( "desc" )[0].getAttribute( "value" ) );
-            info.desc = ( node.getElementsByTagName( "desc" )[0].getAttribute( "value" ) );
+            info.desc = EU.Language.string( node.getElementsByTagName( "desc" )[0].getAttribute( "value" ) );
             var labParams = node.getElementsByTagName( "laboratories_params" )[0];
             if (labParams) {
 
@@ -225,15 +223,15 @@ EU.mlTowersInfo = {
                 for ( i = 1; i <= maxlevel; ++i )
                 {
                     var docTemplate;
-                    var doc = new EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml");
-                    var root = doc.firstElementChild;
-                    if ( maxlevel == 1 ) maxlevel = EU.asObject(root.getAttribute( "maxlevel" ), 0);
+                    var doc2 = new EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml");
+                    var root2 = doc2.firstElementChild;
+                    if ( maxlevel == 1 ) maxlevel = parseInt(EU.asObject(root2.getAttribute( "maxlevel" ), 0));
 
                     if ( root.getAttribute( "template" ) )
-                        docTemplate  = new EU.pugixml.readXml(root.getAttribute( "template" ));
+                        docTemplate  = new EU.pugixml.readXml(root2.getAttribute( "template" ));
 
-                    var xmlEffects = root.getElementsByTagName( "effects" )[0];
-                    var xmlMachine = root.getElementsByTagName( "machine_unit" )[0];
+                    var xmlEffects = root2.getElementsByTagName( "effects" )[0];
+                    var xmlMachine = root2.getElementsByTagName( "machine_unit" )[0];
 
                     if ( !xmlEffects )
                         xmlEffects = docTemplate.firstElementChild.getElementsByTagName( "effects" )[0];
@@ -243,18 +241,18 @@ EU.mlTowersInfo = {
                     var xmlEffectsPositive = xmlEffects.getElementsByTagName( "positive" )[0];
                     var xmlMachineParams = xmlMachine.getElementsByTagName( "params" )[0];
 
-                    var delayfire = EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "delay" ), 0.0);
-                    var delaycharge = EU.asObject(xmlMachineParams.getElementsByTagName( "state_charging" )[0].getAttribute( "duration" ), 0.0);
-                    var volume = EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "charge_volume" ), 0);
+                    var delayfire = parseFloat(EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "delay" ), 0.0));
+                    var delaycharge = parseFloat(EU.asObject(xmlMachineParams.getElementsByTagName( "state_charging" )[0].getAttribute( "duration" ), 0.0));
+                    var volume = parseFloat(EU.asObject(xmlMachineParams.getElementsByTagName( "state_readyfire" )[0].getAttribute( "charge_volume" ), 0));
 
-                    var radius = EU.asObject(root.getAttribute( "radius" ), 0.0);
-                    var damage = EU.asObject(xmlEffectsPositive.getAttribute( "damage" ), 0.0);
-                    var damageR = EU.asObject(xmlEffectsPositive.getAttribute( "fireRate" ), 0.0) *
-                    EU.asObject(xmlEffectsPositive.getAttribute( "fireTime" ), 0.0);
-                    var damageI = EU.asObject(xmlEffectsPositive.getAttribute( "iceRate" ), 0.0)*
-                    EU.asObject(xmlEffectsPositive.getAttribute( "iceTime" ), 0.0);
-                    var damageE = EU.asObject(xmlEffectsPositive.getAttribute( "electroRate" ), 0.0)*
-                    EU.asObject(xmlEffectsPositive.getAttribute( "electroTime" ), 0.0);
+                    var radius = parseFloat(EU.asObject(root2.getAttribute( "radius" ), 0.0));
+                    var damage = parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "damage" ), 0.0));
+                    var damageR = parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "fireRate" ), 0.0)) *
+                        parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "fireTime" ), 0.0));
+                    var damageI = parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "iceRate" ), 0.0))*
+                        parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "iceTime" ), 0.0));
+                    var damageE = parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "electroRate" ), 0.0))*
+                        parseFloat(EU.asObject(xmlEffectsPositive.getAttribute( "electroTime" ), 0.0));
                     damage += damageR;
                     damage += damageI;
                     damage += damageE;
@@ -263,10 +261,10 @@ EU.mlTowersInfo = {
                     var fps = volume * speed;
                     damage *= fps;
 
-                    //log( "%s:%d fps = %f", name.c_str(), i, fps );
-                    //log( "%s:%d damage = %f", name.c_str(), i, damage );
-                    //log( "%s:%d radius = %f", name.c_str(), i, radius );
-                    //log( "%s:%d speed = %f", name.c_str(), i, speed );
+                    //cc.log( "%s:%d fps = %f", name, i, fps );
+                    //cc.log( "%s:%d damage = %f", name, i, damage );
+                    //cc.log( "%s:%d radius = %f", name, i, radius );
+                    //cc.log( "%s:%d speed = %f", name, i, speed );
 
                     EU.assert ( damage > 0 );
                     EU.assert ( radius > 0 );
@@ -284,16 +282,16 @@ EU.mlTowersInfo = {
         for (var key in this.m_towersInfo) {
             var param = this.m_towersInfo[key];
             for (var i = 0; i < param.dmg.length; i++) {
-                var v = param.dmg[i];
-                v = v / this._max_dmg * (this.parameterMax - this.parameterMin) + this.parameterMin;
+                var v = this.m_towersInfo[key].dmg[i];
+                this.m_towersInfo[key].dmg[i] = v / this._max_dmg * (this.parameterMax - this.parameterMin) + this.parameterMin;
             }
             for (var i = 0; i < param.spd.length; i++) {
-                var v = param.spd[i];
-                v = v / this._max_rng * (this.parameterMax - this.parameterMin) + this.parameterMin;
+                var v = this.m_towersInfo[key].spd[i];
+                this.m_towersInfo[key].spd[i] = v / this._max_spd * (this.parameterMax - this.parameterMin) + this.parameterMin;
             }
             for (var i = 0; i < param.rng.length; i++) {
-                var v = param.rng[i];
-                v = v / this._max_spd * (this.parameterMax - this.parameterMin) + this.parameterMin;
+                var v = this.m_towersInfo[key].rng[i];
+                this.m_towersInfo[key].rng[i] = v / this._max_rng * (this.parameterMax - this.parameterMin) + this.parameterMin;
             }
         }
 
@@ -320,7 +318,7 @@ EU.mlTowersInfo = {
     // EU.mlTowersInfo.checkAvailabledTowers();
 })();
 
-EU.mlTowersInfo = {
+EU.mlUnitInfo = {
 
     Info: function()
     {
@@ -342,7 +340,7 @@ EU.mlTowersInfo = {
     
         return new this.Info();
     },
-    fetch: function(  name )
+    fetch: function( name )
     {
         var doc = new EU.pugixml.readXml( "ini/units/" + name + ".xml");
         var root = doc.firstElementChild;

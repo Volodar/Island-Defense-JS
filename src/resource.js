@@ -14,6 +14,7 @@ var res = {
     map3 : "images/maps/map3.jpg",
     itemshop_bg : "images/itemshop/1136.png",
     itemshop_item : "images/laboratory/ui_panel1.png",
+    lab_bg : "images/laboratory/1136.png",
 };
 
 var g_resources = [];

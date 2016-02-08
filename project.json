@@ -60,6 +60,7 @@
         "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",
         "src/_eu/scenes/itemshop/ItemShop.js",
+        "src/_eu/scenes/lab/Laboratory.js",
         "src/_eu/resources.js",
         "src/app.js"
     ]
