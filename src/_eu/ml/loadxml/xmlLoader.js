@@ -211,12 +211,7 @@ EU.xmlLoader = {
                 this.load_scrollmenu_items(scrollmenu, xmlentity);
             }
             else if (tag == "children_nonscissor") {
-                /** @type {cc.ScrollMenu} scrollmenu */
-                var scrollmenu = node;
-                //EU.assert(scrollmenu.__ScrollMenu, "wrong instance");
-                if (scrollmenu) {
-                    this.load_nonscissor_children(scrollmenu, xmlentity);
-                }
+                this.load_children(node, xmlentity);
             }
             else if (tag == "actions") {
                 var nodeext = node;
