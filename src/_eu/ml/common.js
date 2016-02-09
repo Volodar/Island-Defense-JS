@@ -14,7 +14,7 @@
 EU = EU || {};
 
 /** return defaultObj if obj is null or undefined*/
-EU.asObject = function(obj, defaultObj){
+EU.asObject = function (obj, defaultObj) {
     if (obj != null) return obj;
     return defaultObj;
 };
@@ -387,7 +387,7 @@ EU.Common = {
      * @returns {*}
      */
     getNodeByPath: function (root, path_names) {
-        if( !path_names || path_names.length == 0 )
+        if (!path_names || path_names.length == 0)
             return root;
         var names = [];
         names = path_names.split('/');
@@ -397,7 +397,8 @@ EU.Common = {
         while (node && i < names.length) {
             var name = names[i];
             if (name == "..") node = node.getParent();
-            else if (name == "."){}
+            else if (name == ".") {
+            }
             else if (name.length == 0 && path_names[0] == '/') {
                 node = node.getScene();
                 if (node == null)
@@ -480,7 +481,7 @@ EU.Common = {
      * @returns {*}
      */
     strToColor3B: function (value) {
-        EU.assert( EU.xmlLoader.stringIsEmpty(value) || value.length == 6);
+        EU.assert(EU.xmlLoader.stringIsEmpty(value) || value.length == 6);
         if (EU.xmlLoader.stringIsEmpty(value))
             return cc.Color.WHITE;
 
@@ -549,7 +550,7 @@ EU.Common = {
         return r;
     },
 
-    Strech : cc.Class.extend({
+    Strech: cc.Class.extend({
         /**
          * x
          * y
@@ -557,92 +558,83 @@ EU.Common = {
          * max
          * min
          */
-        mode : "",
-        maxScaleX : -1,
-        maxScaleY : -1,
-        minScaleX : -1,
-        minScaleY : -1,
-        empty: function() {
+        mode: "",
+        maxScaleX: -1,
+        maxScaleY: -1,
+        minScaleX: -1,
+        minScaleY: -1,
+        empty: function () {
             return this.mode.length == 0;
         }
     }),
-    strToStrech: function( string )
-    {
+    strToStrech: function (string) {
         var result = new EU.Common.Strech();
         var mode = "";
         var size = null;
-        var paramB = string.indexOf( "[" );
-        var paramE = string.lastIndexOf( "]" );
+        var paramB = string.indexOf("[");
+        var paramE = string.lastIndexOf("]");
         var k = -1;
-        if( paramB == -1 )
-        {
-            k = string.lastIndexOf( ":" );
+        if (paramB == -1) {
+            k = string.lastIndexOf(":");
         }
-        else
-        {
-            var pos = string.indexOf( ':', 0 );
-            while( pos < paramB )
-            {
+        else {
+            var pos = string.indexOf(':', 0);
+            while (pos < paramB) {
                 k = pos;
-                pos = string.indexOf( ':', pos + 1 );
+                pos = string.indexOf(':', pos + 1);
             }
         }
 
-        if( k != -1 )
-        {
-            size = string.substr( 0, k );
-            if( paramB == -1 )
-                mode = string.substr( k + 1 );
+        if (k != -1) {
+            size = string.substr(0, k);
+            if (paramB == -1)
+                mode = string.substr(k + 1);
             else
-                mode = string.substr( k + 1, paramB - (k + 1) );
+                mode = string.substr(k + 1, paramB - (k + 1));
         }
 
-        if( paramB != -1 )
-        {
+        if (paramB != -1) {
             var paramsString = "";
-            if( paramE != -1 )
-                paramsString = string.substr( paramB + 1, paramE - (paramB + 1) );
+            if (paramE != -1)
+                paramsString = string.substr(paramB + 1, paramE - (paramB + 1));
             else
-                paramsString = string.substr( paramB + 1 );
+                paramsString = string.substr(paramB + 1);
 
-            var pc = new EU.ParamCollection( paramsString );
-            result.maxScaleX = pc.isExist( "maxx" ) ? parseFloat( pc.get( "maxx" ) ) : result.maxScaleX;
-            result.maxScaleY = pc.isExist( "maxu" ) ? parseFloat( pc.get( "maxu" ) ) : result.maxScaleY;
-            result.minScaleX = pc.isExist( "minx" ) ? parseFloat( pc.get( "minx" ) ) : result.minScaleX;
-            result.minScaleY = pc.isExist( "miny" ) ? parseFloat( pc.get( "miny" ) ) : result.minScaleY;
-            if( pc.isExist( "max" ) )
-                result.maxScaleX = result.maxScaleY = parseFloat( pc.get( "max" ) );
-            if( pc.isExist( "min" ) )
-                result.minScaleX = result.minScaleY = parseFloat( pc.get( "min" ) );
+            var pc = new EU.ParamCollection(paramsString);
+            result.maxScaleX = pc.isExist("maxx") ? parseFloat(pc.get("maxx")) : result.maxScaleX;
+            result.maxScaleY = pc.isExist("maxu") ? parseFloat(pc.get("maxu")) : result.maxScaleY;
+            result.minScaleX = pc.isExist("minx") ? parseFloat(pc.get("minx")) : result.minScaleX;
+            result.minScaleY = pc.isExist("miny") ? parseFloat(pc.get("miny")) : result.minScaleY;
+            if (pc.isExist("max"))
+                result.maxScaleX = result.maxScaleY = parseFloat(pc.get("max"));
+            if (pc.isExist("min"))
+                result.minScaleX = result.minScaleY = parseFloat(pc.get("min"));
         }
 
 
-        result.boundingSize = EU.Common.strToSize( size );
+        result.boundingSize = EU.Common.strToSize(size);
         result.mode = mode;
         return result;
     },
-    strechNode: function( node, strech )
-    {
-        if( !node )
+    strechNode: function (node, strech) {
+        if (!node)
             return;
 
         var size = node.getContentSize();
-        if( size.width == 0 || size.height == 0 )
-        {
+        if (size.width == 0 || size.height == 0) {
             return;
         }
         var sx = strech.boundingSize.width / size.width;
         var sy = strech.boundingSize.height / size.height;
         var ssx = node.getScaleX();
         var ssy = node.getScaleY();
-        var zx = ssx / fabs( ssx );
-        switch( strech.mode )
-        {
+        var zx = ssx / fabs(ssx);
+        switch (strech.mode) {
             case "max":
-                ssy = ssx = std.max( sx, sy );
+                ssy = ssx = std.max(sx, sy);
                 break;
             case "min":
-                ssy = ssx = std.min( sx, sy );
+                ssy = ssx = std.min(sx, sy);
                 break;
             case "xy":
                 ssx = sx;
@@ -658,77 +650,38 @@ EU.Common = {
                 break;
         }
 
-        if( zx < 0 )
+        if (zx < 0)
             ssy = -ssy;
 
-        if( strech.maxScaleX != -1 ) ssx = Math.min( ssx, strech.maxScaleX );
-        if( strech.maxScaleY != -1 ) ssy = Math.min( ssy, strech.maxScaleY );
-        if( strech.minScaleX != -1 ) ssx = Math.max( ssx, strech.minScaleX );
-        if( strech.minScaleY != -1 ) ssy = Math.max( ssy, strech.minScaleY );
+        if (strech.maxScaleX != -1) ssx = Math.min(ssx, strech.maxScaleX);
+        if (strech.maxScaleY != -1) ssy = Math.min(ssy, strech.maxScaleY);
+        if (strech.minScaleX != -1) ssx = Math.max(ssx, strech.minScaleX);
+        if (strech.minScaleY != -1) ssy = Math.max(ssy, strech.minScaleY);
 
-        node.setScale( ssx, ssy );
+        node.setScale(ssx, ssy);
     }
+};
 
-//TODO: ActionEnable
-//TODO: ActionDisable
-//ActionEnable* ActionEnable.create(){
-//    ActionEnable* ret = new (std.nothrow) ActionEnable();
-//
-//    if( ret )
-//    {
-//        ret.autorelease();
-//    }
-//
-//    return ret;
-//}
-//
-//var ActionEnable.update(  time )
-//{
-//    CC_UNUSED_PARAM( time );
-//    xmlLoader.setProperty( _target, xmlLoader.kEnabled, toStr( true ) );
-//}
-//
-//ActionInstant* ActionEnable.reverse() const
-//    {
-//        return ActionDisable.create();
-//}
-//
-//ActionEnable * ActionEnable.clone() const
-//    {
-//        // no copy constructor
-//        var a = new (std.nothrow) ActionEnable();
-//a.autorelease();
-//return a;
-//}
-//
-//ActionDisable* ActionDisable.create()
-//{
-//    ActionDisable* ret = new (std.nothrow) ActionDisable();
-//
-//    if( ret )
-//    {
-//        ret.autorelease();
-//    }
-//
-//    return ret;
-//}
-//
-//var ActionDisable.update(  time )
-//{
-//    CC_UNUSED_PARAM( time );
-//    xmlLoader.setProperty( _target, xmlLoader.kEnabled, toStr( false ) );
-//}
-//
-//ActionInstant* ActionDisable.reverse() const
-//    {
-//        return ActionDisable.create();
-//}
-//
-//ActionDisable * ActionDisable.clone() const
-//    {
-//        // no copy constructor
-//        var a = new (std.nothrow) ActionDisable();
-//a.autorelease();
-//return a;
-//}
-}
+EU.ActionEnable = cc.Action.extend({
+    update: function (time) {
+        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Enabled.int, EU.Common.boolToStr(true));
+    },
+    reverse: function () {
+        return new EU.ActionDisable();
+    },
+    clone: function () {
+        return new EU.ActionEnable();
+    }
+});
+
+EU.ActionDisable = cc.Action.extend({
+    update: function (time) {
+        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Disabled.int, EU.Common.boolToStr(true));
+    },
+    reverse: function () {
+        return new EU.ActionEnable();
+    },
+    clone: function () {
+        return new EU.ActionDisable();
+    }
+});

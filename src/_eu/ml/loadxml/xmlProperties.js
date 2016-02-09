@@ -59,6 +59,8 @@ EU.xmlKey = {
     Percent: {name: "percent", int: 40},
     MidPoint: {name: "midpoint", int: 41},
     BarChangeRate: {name: "barchangerate", int: 42},
+    Enabled: {name: "enabled", int: 43},
+    Disabled: {name: "disabled", int: 44},
 
     //declare other properties as UserProperties + int constant
     UserProperties: {name: "", int: 43},

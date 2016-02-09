@@ -351,7 +351,7 @@ EU.xmlLoader = {
             var attr = [];
             var count = 0;
             var l = 0;
-            if( params === null || params === undefined )
+            if (params === null || params === undefined)
                 return;
             for (var r = 0; r < params.length; ++r) {
                 if (params[r] == '[')++count;
@@ -685,8 +685,7 @@ EU.xmlLoader = {
         else if (type == this.k.ActionHide) {
             return cc.hide();
         }
-        else
-        {
+        else {
             var message = "undefinited action type [" + type + "] \n";
             message += "action string: \n";
             message += cleared_desc;
@@ -702,7 +701,7 @@ EU.xmlLoader = {
      * @returns {*}
      */
     load_action_xml_node: function (xmlnode) {
-        if( !xmlnode || !xmlnode.getAttribute )
+        if (!xmlnode || !xmlnode.getAttribute)
             return null;
         var body = xmlnode.getAttribute("value");
         return this.load_action_str(body);
@@ -1120,7 +1119,6 @@ EU.xmlLoader = {
                     scrollmenu.setAllowScrollByX(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AllowScrollByY.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
                     scrollmenu.setAllowScrollByY(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.ProgressType.int:
@@ -1138,6 +1136,14 @@ EU.xmlLoader = {
                 case EU.xmlKey.BarChangeRate.int:
                     EU.assert(progress instanceof cc.ProgressTimer);
                     progress.setBarChangeRate(EU.Common.strToPoint(value));
+                    break;
+                case EU.xmlKey.Disabled.int:
+                    menuitem = node;
+                    menuitem.setEnabled(false);
+                    break;
+                case EU.xmlKey.Enabled.int:
+                    menuitem = node;
+                    menuitem.setEnabled(true);
                     break;
                 default:
                     result = false;
