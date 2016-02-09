@@ -1,3 +1,14 @@
+/******************************************************************************
+ * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
+ *
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
+ ******************************************************************************/
 
 //Define namespace
 var EU = EU || {};
@@ -118,28 +129,28 @@ EU.MachineUnit = function() {
         this.FSM_ADD_EVENT( "stop");
         this.FSM_ADD_EVENT( "die");
 
-        this.state( this.State.state_sleep ).add_onActivateCallBack( this.state_sleep_start);
-        this.state( this.State.state_cocking ).add_onActivateCallBack( this.state_cocking_start);
-        this.state( this.State.state_relaxation ).add_onActivateCallBack( this.state_relaxation_start);
-        this.state( this.State.state_readyfire ).add_onActivateCallBack( this.state_readyfire_start);
-        this.state( this.State.state_charging ).add_onActivateCallBack( this.state_charging_start);
-        this.state( this.State.state_waittarget ).add_onActivateCallBack( this.state_waittarget_start);
-        this.state( this.State.state_move ).add_onActivateCallBack( this.state_move_start);
-        this.state( this.State.state_stop ).add_onActivateCallBack( this.state_stop_start);
-        this.state( this.State.state_death ).add_onActivateCallBack( this.state_die_start);
-        this.state( this.State.state_death ).add_onDeactivateCallBack( this.state_die_finish);
-        this.state( this.State.state_enter ).add_onActivateCallBack( this.state_enter_start);
+        this.state_tag( this.State.state_sleep ).add_onActivateCallBack( this.state_sleep_start);
+        this.state_tag( this.State.state_cocking ).add_onActivateCallBack( this.state_cocking_start);
+        this.state_tag( this.State.state_relaxation ).add_onActivateCallBack( this.state_relaxation_start);
+        this.state_tag( this.State.state_readyfire ).add_onActivateCallBack( this.state_readyfire_start);
+        this.state_tag( this.State.state_charging ).add_onActivateCallBack( this.state_charging_start);
+        this.state_tag( this.State.state_waittarget ).add_onActivateCallBack( this.state_waittarget_start);
+        this.state_tag( this.State.state_move ).add_onActivateCallBack( this.state_move_start);
+        this.state_tag( this.State.state_stop ).add_onActivateCallBack( this.state_stop_start);
+        this.state_tag( this.State.state_death ).add_onActivateCallBack( this.state_die_start);
+        this.state_tag( this.State.state_death ).add_onDeactivateCallBack( this.state_die_finish);
+        this.state_tag( this.State.state_enter ).add_onActivateCallBack( this.state_enter_start);
 
-        this.state( this.State.state_charging ).set_updateCallback( this.state_charging_update);
-        this.state( this.State.state_cocking ).set_updateCallback( this.state_cocking_update);
-        this.state( this.State.state_relaxation ).set_updateCallback( this.state_relaxation_update);
-        this.state( this.State.state_readyfire ).set_updateCallback( this.state_readyfire_update);
-        this.state( this.State.state_charging ).set_updateCallback( this.state_charging_update);
-        this.state( this.State.state_waittarget ).set_updateCallback( this.state_waittarget_update);
-        this.state( this.State.state_move ).set_updateCallback( this.state_move_update);
-        this.state( this.State.state_stop ).set_updateCallback( this.state_stop_update);
-        this.state( this.State.state_death ).set_updateCallback( this.state_die_update);
-        this.state( this.State.state_enter ).set_updateCallback( this.state_enter_update);
+        this.state_tag( this.State.state_charging ).set_updateCallback( this.state_charging_update);
+        this.state_tag( this.State.state_cocking ).set_updateCallback( this.state_cocking_update);
+        this.state_tag( this.State.state_relaxation ).set_updateCallback( this.state_relaxation_update);
+        this.state_tag( this.State.state_readyfire ).set_updateCallback( this.state_readyfire_update);
+        this.state_tag( this.State.state_charging ).set_updateCallback( this.state_charging_update);
+        this.state_tag( this.State.state_waittarget ).set_updateCallback( this.state_waittarget_update);
+        this.state_tag( this.State.state_move ).set_updateCallback( this.state_move_update);
+        this.state_tag( this.State.state_stop ).set_updateCallback( this.state_stop_update);
+        this.state_tag( this.State.state_death ).set_updateCallback( this.state_die_update);
+        this.state_tag( this.State.state_enter ).set_updateCallback( this.state_enter_update);
 
         this.start( this.State.state_sleep );
     },

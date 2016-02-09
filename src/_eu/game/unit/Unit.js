@@ -1,3 +1,15 @@
+/******************************************************************************
+ * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
+ *
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
+ ******************************************************************************/
+
 //Define namespace
 var EU = EU || {};
 
@@ -391,7 +403,7 @@ EU.Unit = cc.Node.extend({
         {
             var len = /** {String} */  "push_event:".length;
             /** {String} */ var  eventname = name.substr( len );
-            var event = EU.Machine.event( eventname );
+            var event = EU.Machine.event_str( eventname );
 
             var self = this;
             var callback = this.push_event.bind(this, event.get_name());

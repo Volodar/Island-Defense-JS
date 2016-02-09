@@ -8,9 +8,10 @@
     (.+) _(\w+);
     /** @type {$1} */ _$2 : ,
 
-
 2. For auto, unsigned
-(auto | int |float |unsigned |std.string |bool |Point |Vec2 )
+::
+.
+(auto | int |float |unsigned |std::string|std.string |bool |Point |Vec2 )
 var
 
 
@@ -35,6 +36,9 @@ EU.assert
 
 pop_back()
 pop()
+
+.front()
+[0]
 
 nullptr
 null
@@ -69,13 +73,6 @@ Touch *
 .ptr()
 
 
-
-8. replace :: to .
-::
-.
-
-
-
 7. replace xxf to xx
 (\d)f
 $1
@@ -93,3 +90,5 @@ cc.director.getOpenGLView()
 cc.view
  set
  this.set
+strToFloat
+parseFloat
