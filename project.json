@@ -39,6 +39,7 @@
         "src/_eu/game/unit/Unit.js",
         "src/_eu/game/unit/UnitWithFadeEffects.js",
         "src/_eu/game/unit/Bullet.js",
+        "src/_eu/game/unit/UnitDesant.js",
         "src/_eu/game/Airbomb.js",
         "src/_eu/game/tower.js",
         "src/_eu/game/effects.js",
