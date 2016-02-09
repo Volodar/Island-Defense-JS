@@ -593,10 +593,10 @@ EU.xmlLoader = {
             return cc.skewBy(FLOAT(0), FLOAT(1), FLOAT(2));
         }
         else if (type == this.k.ActionMoveTo) {
-            return cc.moveTo(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)));
+            return cc.moveTo(FLOAT(0), cc.p(FLOAT(1), FLOAT(2)));
         }
         else if (type == this.k.ActionMoveBy) {
-            return cc.moveBy(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)));
+            return cc.moveBy(FLOAT(0), cc.p(FLOAT(1), FLOAT(2)));
         }
         else if (type == this.k.ActionRotateTo) {
             return cc.rotateTo(FLOAT(0), FLOAT(1));
@@ -605,10 +605,10 @@ EU.xmlLoader = {
             return cc.rotateBy(FLOAT(0), FLOAT(1));
         }
         else if (type == this.k.ActionJumpTo) {
-            return cc.jumpTo(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+            return cc.jumpTo(FLOAT(0), cc.p(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
         }
         else if (type == this.k.ActionJumpBy) {
-            return cc.jumpBy(FLOAT(0), new cc.Point(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
+            return cc.jumpBy(FLOAT(0), cc.p(FLOAT(1), FLOAT(2)), FLOAT(3), INT(4));
         }
         else if (type == this.k.ActionBlink) {
             return cc.blink(FLOAT(0), INT(1));
@@ -636,40 +636,40 @@ EU.xmlLoader = {
             return cc.repeat(action_interval(attr[0]), INT(1));
         }
         else if (type == this.k.ActionEaseIn) {
-            return cc.EaseIn.create(action_interval(attr[0]), FLOAT(1));
+            return action_interval(attr[0]).easing(cc.easeIn(FLOAT(1)));
         }
         else if (type == this.k.ActionEaseOut) {
-            return cc.EaseOut.create(action_interval(attr[0]), FLOAT(1));
+            return action_interval(attr[0]).easing(cc.easeOut(FLOAT(1)));
         }
         else if (type == this.k.ActionEaseInOut) {
-            return cc.EaseInOut.create(action_interval(attr[0]), FLOAT(1));
+            return action_interval(attr[0]).easing(cc.easeInOut(FLOAT(1)));
         }
         else if (type == this.k.ActionBounceIn) {
-            return cc.EaseBounceIn.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBounceIn());
         }
         else if (type == this.k.ActionBounceOut) {
-            return cc.EaseBounceOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBounceOut());
         }
         else if (type == this.k.ActionBounceInOut) {
-            return cc.EaseBounceInOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBounceInOut());
         }
         else if (type == this.k.ActionBackIn) {
-            return cc.EaseBackIn.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBackIn());
         }
         else if (type == this.k.ActionBackOut) {
-            return cc.EaseBackOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBackOut());
         }
         else if (type == this.k.ActionBackInOut) {
-            return cc.EaseBackInOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeBackInOut());
         }
         else if (type == this.k.ActionSineIn) {
-            return cc.EaseSineIn.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeSineIn());
         }
         else if (type == this.k.ActionSineOut) {
-            return cc.EaseSineOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeSineOut());
         }
         else if (type == this.k.ActionSineInOut) {
-            return cc.EaseSineInOut.create(action_interval(attr[0]));
+            return action_interval(attr[0]).easing(cc.easeSineInOut());
         }
         else if (type == this.k.ActionAnimate) {
             return cc.animate(EU.xmlLoader.buildAnimation(FLOAT(0), attr[1]));

@@ -30,7 +30,7 @@ EU.compute_bezier = function( a, b, c, d, t )
     var v3 = Math.pow( t, 3 );
     var x = (v0 * a.x + v1 * b.x + v2 * c.x + v3 * d.x);
     var y = (v0 * a.y + v1 * b.y + v2 * c.y + v3 * d.y);
-    return new cc.Point( x, y );
+    return cc.p( x, y );
 }
 
 EU.ScrollTouchInfo = cc.Class.extend({

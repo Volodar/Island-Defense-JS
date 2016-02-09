@@ -20,7 +20,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         this.initExt();
         this.scaleFactor = 0;
         this.removeScoreLayer = false;
-        this.zeroPosition = new cc.Point(0,0);
+        this.zeroPosition = cc.p(0,0);
         this.init();
     },
 
@@ -49,8 +49,8 @@ EU.ItemShop = EU.ScrollMenu.extend({
             this.setPosition( this.zeroPosition );
         }
 
-        var grid = new cc.Size(0,0);
-        var content = new cc.Size(0,0);
+        var grid = cc.size(0,0);
+        var content = cc.size(0,0);
         var items = [];
         items.push( "bonusitem_dynamit" );
         items.push( "bonusitem_ice" );
@@ -71,12 +71,12 @@ EU.ItemShop = EU.ScrollMenu.extend({
             content.height = grid.height;
         }
         //TODO: Scroll menu
-        var visible = new cc.Size( dessize.width, 464 );
-        var asp = new cc.Point( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor );
+        var visible = cc.size( dessize.width, 464 );
+        var asp = cc.p( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor );
         this.setAlignedStartPosition( asp );
         this.setGrisSize( grid );
         this.align( 99 );
-        this.setVisibleRect( new cc.Rect(asp.x, asp.y, visible.width * this.scaleFactor, visible.height * this.scaleFactor ) );
+        this.setVisibleRect( cc.rect(asp.x, asp.y, visible.width * this.scaleFactor, visible.height * this.scaleFactor ) );
         this.setContentSize( content );
         this.setAllowScrollByY( false );
 
@@ -227,7 +227,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
             }
         }
         var dessize = cc.view.getDesignResolutionSize();
-        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, new cc.Point(this.zeroPosition.x, this.zeroPosition.y-dessize.height ) ) );
+        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height ) ) );
         this.runAction( new cc.Sequence( action, new cc.RemoveSelf() ) );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopHide );
@@ -235,7 +235,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
     fadeenter: function()
     {
         var dessize = cc.view.getDesignResolutionSize();
-        this.setPosition( new cc.Point(this.zeroPosition.x, this.zeroPosition.y-dessize.height  ) );
+        this.setPosition( cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height  ) );
         var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
         this.runAction( action );
         //TODO: audio
@@ -270,7 +270,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         var nodeMain = conteiner.getChildByName( "main" );
         var icon = nodeMain ? nodeMain.getChildByName( "icon" ) : null;
 
-        var pos = icon.convertToWorldSpace( new cc.Point(0,0) );
+        var pos = icon.convertToWorldSpace( cc.p(0,0) );
 
         EU.xmlLoader.macros.set( "item", itemname );
         EU.xmlLoader.macros.set( "centerx", ( size.width / 2 ).toString() );

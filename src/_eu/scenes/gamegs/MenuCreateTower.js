@@ -34,7 +34,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
     /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowers : {},
     /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowersUn : {},
-    /** @type {cc.Point} */ _centerPoint : new cc.Point(0,0),
+    /** @type {cc.Point} */ _centerPoint : cc.p(0,0),
 
     onExit: function()
     {
@@ -310,11 +310,11 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
             var pos = this._desc.node.getPosition( );
             pos.x = Math.abs( pos.x );
-            this._desc.node.setAnchorPoint( new cc.Point( 0, 0.5 ) );
+            this._desc.node.setAnchorPoint( cc.p( 0, 0.5 ) );
             if( screenpos.x > dessize.width / 2 )
             {
                 pos.x = -pos.x;
-                this._desc.node.setAnchorPoint( new cc.Point( 1, 0.5 ) );
+                this._desc.node.setAnchorPoint( cc.p( 1, 0.5 ) );
             }
             this._desc.node.setPosition( pos );
         }

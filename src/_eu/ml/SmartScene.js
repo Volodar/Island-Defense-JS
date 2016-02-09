@@ -32,7 +32,7 @@ EU.SmartScene = cc.Scene.extend(
         this._shadow.setScaleY( dessize.height );
         this._shadow.setColor( new cc.Color( 0, 0, 0 ) );
         this._shadow.setOpacity( 0 );
-        this._shadow.setPosition( new cc.Point( dessize.width / 2, dessize.height / 2 ) );
+        this._shadow.setPosition( cc.p( dessize.width / 2, dessize.height / 2 ) );
         this.addChild( this._shadow, 1 );
 
         return true;

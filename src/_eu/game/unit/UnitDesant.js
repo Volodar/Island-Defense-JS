@@ -19,7 +19,7 @@ EU.UnitDesant = EU.Unit.extend(
     /** @type {Number} */ _handRadius : 60 ,
     /** @type {Number} */ _handRadiusSector : 30,
     /** @type {Array<EU.Unit>} */ _targets : [] ,
-    /** @type {cc.Point} */ _basePosition : new cc.Point(0,0) ,
+    /** @type {cc.p} */ _basePosition : cc.p(0,0) ,
     //CC_SYNTHESIZE_PASS_BY_REF( Point, _basePosition, BasePosition );
 
     ctor: function(    path,    xmlFile )
@@ -139,7 +139,7 @@ EU.UnitDesant = EU.Unit.extend(
 
         var radius = cc.pSub(target.getPosition() , this.getPosition()) ;
 
-        var add = new cc.Point( (this._handRadius - 1) * (radius.x < 0 ? 1 : -1), 0 );
+        var add = cc.p( (this._handRadius - 1) * (radius.x < 0 ? 1 : -1), 0 );
 
 
         var a = this.getPosition();

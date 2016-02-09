@@ -43,10 +43,10 @@ EU.ScrollMenu = cc.Layer.extend(
         this._allowScrollX = true;
         this._allowScrollY = true;
         this._alignedCols = 99999;
-        this._scrollAreaPos = new cc.Point(0,0);
-        this._alignedStartPosition = new cc.Point(0,0);
-        this._gridSize = new cc.Size(0,0);
-        this._visibleRect = new cc.Rect(0,0,0,0);
+        this._scrollAreaPos = cc.p(0,0);
+        this._alignedStartPosition = cc.p(0,0);
+        this._gridSize = cc.size(0,0);
+        this._visibleRect = cc.rect(0,0,0,0);
     },
     init: function()
     {
@@ -56,7 +56,7 @@ EU.ScrollMenu = cc.Layer.extend(
         this.setContentSize( size );
         this.setTouchEnabled( true );
         this.setScrollEnabled( false );
-        this.setVisibleRect( new cc.Rect(0,0,size.width, size.height) );
+        this.setVisibleRect( cc.rect(0,0,size.width, size.height) );
 
         return result;
     },
@@ -245,7 +245,7 @@ EU.ScrollMenu = cc.Layer.extend(
     {
         var result = pos;
         var visibledRect = this.getVisibleRect();
-        var visibledSize = new cc.Size(visibledRect.width, visibledRect.height);
+        var visibledSize = cc.size(visibledRect.width, visibledRect.height);
         var contentSize = this.getContentSize();
 
         var right = true ;
@@ -254,7 +254,7 @@ EU.ScrollMenu = cc.Layer.extend(
 
         if( right )
         {
-            var min = new cc.Point(0,0);
+            var min = cc.p(0,0);
             min.x = visibledSize.width - contentSize.width;
             min.y = visibledSize.height - contentSize.height;
             result.x = Math.max( min.x, result.x );
@@ -264,7 +264,7 @@ EU.ScrollMenu = cc.Layer.extend(
         }
         else
         {
-            var max = new cc.Point(0,0);
+            var max = cc.p(0,0);
             max.x = visibledSize.width - contentSize.width;
             max.y = visibledSize.height - contentSize.height;
             max.y = -max.y;
@@ -278,7 +278,7 @@ EU.ScrollMenu = cc.Layer.extend(
 
     fitPositionByGrid: function ( pos )
     {
-        var result = new cc.Point(this._scrollAreaPos.x, this._scrollAreaPos.y);
+        var result = cc.p(this._scrollAreaPos.x, this._scrollAreaPos.y);
         if( this._gridSize.width != 0 && this._allowScrollX )
         {
             EU.assert( this._gridSize.width != 0 );
@@ -438,7 +438,7 @@ EU.ScrollMenu = cc.Layer.extend(
             var item = this._items[i];
             var row = Math.round(i / cols);
             var col = i % cols;
-            var pos = new cc.Point(0,0);
+            var pos = cc.p(0,0);
             pos.x = col * this._gridSize.width + this._gridSize.width / 2;
             pos.y = row * this._gridSize.height + this._gridSize.height / 2;
             pos = EU.Common.pointAdd( pos, this._alignedStartPosition );
@@ -450,7 +450,7 @@ EU.ScrollMenu = cc.Layer.extend(
 
             item.setPosition( pos );
         }
-        this.setContentSize( new cc.Size( Math.abs( width1 - width0 ), Math.abs( height1 - height0 ) ) );
+        this.setContentSize( cc.size( Math.abs( width1 - width0 ), Math.abs( height1 - height0 ) ) );
     },
 
     setAlignedColumns: function(  count )

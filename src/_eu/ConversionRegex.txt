@@ -16,7 +16,7 @@ var
 
 
 3. Class NS to this,  addChild to this
-MenuCreateTower::
+ClassName::
 this.
 
  (addChild|removeChild)

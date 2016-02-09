@@ -20,7 +20,7 @@ EU.Airbomb = EU.Unit.extend(
     __Airbomb : true,
 
     /**Point */
-    _targetPoint: new cc.Point(0,0),
+    _targetPoint: cc.p(0,0),
 
     ctor: function(  path,  xmlFile,   position )
     {
@@ -34,7 +34,7 @@ EU.Airbomb = EU.Unit.extend(
         {
             var dx = cc.randomMinus1To1() * 50;
             var dy = cc.randomMinus1To1() * 50;
-            var pos = cc.math.Vec2.add(new cc.math.Vec2(0,0), position, cc.Point( dx, dy ));
+            var pos = cc.pAdd(position, cc.p( dx, dy ));
             positions.push( pos );
             EU.xmlLoader.macros.set( "airplane_bomb_posx" +  i+1 , ( pos.x ) );
             EU.xmlLoader.macros.set( "airplane_bomb_posy" +  i+1 , ( pos.y ) );

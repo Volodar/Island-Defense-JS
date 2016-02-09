@@ -15,7 +15,7 @@ var EU = EU || {};
 
 EU.TowerPlaseDef = function()
 {
-    this.position = new cc.Point(0,0);
+    this.position = cc.p(0,0);
     this.isActive = true;
 };
 

@@ -15,11 +15,11 @@ EU.Bullet = EU.Unit.extend({
     _base: null,
     /** @type {EU.Unit} */
     _target: null,
-    /** @type {cc.Point} */
+    /** @type {cc.p} */
     _startPoint: null,
-    /** @type {cc.Point} */
+    /** @type {cc.p} */
     _targetPoint: null,
-    /** @type {cc.Point} */
+    /** @type {cc.p} */
     _targetPointOffset: null,
     steering: null,
     _isStuck: null,
@@ -198,9 +198,9 @@ EU.Bullet = EU.Unit.extend({
     },
     updateTargetPoint: function()
     {
-        if( this._targetPoint.equals( cc.POINT_ZERO) || this.steering )
+        if( cc.pointEqualToPoint(this._targetPoint , cc.POINT_ZERO) || this.steering )
         {
-            this._targetPoint = this._target.getPosition() + this._targetPointOffset;
+            this._targetPoint = cc.pAdd(this._target.getPosition() , this._targetPointOffset);
         }
         return this._targetPoint;
     },
@@ -230,7 +230,7 @@ EU.Bullet = EU.Unit.extend({
         var p = p0 + (p1 - p0).getNormalized() * t;
     
     
-        if( this.checkRadiusByEllipse( p, this._targetPoint, this.getRadius() ) )
+        if( EU.Support.checkRadiusByEllipse( p, this._targetPoint, this.getRadius() ) )
             this.push_event( event_die );
     
         return p;

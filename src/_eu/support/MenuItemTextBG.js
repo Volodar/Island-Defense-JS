@@ -59,7 +59,7 @@ EU.MenuItemTextBG = cc.MenuItemLabel.extend({
     setBorders: function(x, y)
     {
         cc.log("MenuItemTextBG.setBorders");
-        this.m_borders = new cc.Point(x, y);
+        this.m_borders = cc.p(x, y);
     },
     
     setText: function(text )
