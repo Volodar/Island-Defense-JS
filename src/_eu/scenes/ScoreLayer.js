@@ -9,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 //Define namespace
 var EU = EU || {};
 
@@ -26,32 +26,33 @@ EU.ScoreLayer = cc.Scene.extend({
     ctor: function()
     {
         this._super();
-        EU.scoreCounter.observer( EU.kScoreTime ).add( _ID, this.change_time );
-        EU.scoreCounter.observer( EU.kScoreFuel ).add( _ID, this.change_fuel );
-        EU.scoreCounter.observer( EU.kScoreCrystals ).add( _ID, this.change_real );
-        EU.scoreCounter.observer( EU.kScoreStars ).add( _ID, this.change_star );
-
-        EU.assert( this.init(), "Cannot init a ScoreLayer");
+        this.init();
     },
 
-    //TODO: is onExit correct for replacing destroy function in cpp?
+    onEnter: function()
+    {
+        this._super();
+        EU.ScoreCounter.observer( EU.kScoreTime ).add( this.__instanceId, this.change_time, this );
+        EU.ScoreCounter.observer( EU.kScoreFuel ).add( this.__instanceId, this.change_fuel, this );
+        EU.ScoreCounter.observer( EU.kScoreCrystals ).add( this.__instanceId, this.change_real, this );
+        EU.ScoreCounter.observer( EU.kScoreStars ).add( this.__instanceId, this.change_star, this );
+        this.updateScore();
+    },
     onExit: function()
     {
-        EU.scoreCounter.observer( EU.kScoreTime ).remove( _ID );
-        EU.scoreCounter.observer( EU.kScoreFuel ).remove( _ID );
-        EU.scoreCounter.observer( EU.kScoreCrystals ).remove( _ID );
-        EU.scoreCounter.observer( EU.kScoreStars ).remove( _ID );
+        this._super();
+        EU.ScoreCounter.observer( EU.kScoreTime ).remove( this.__instanceId );
+        EU.ScoreCounter.observer( EU.kScoreFuel ).remove( this.__instanceId );
+        EU.ScoreCounter.observer( EU.kScoreCrystals ).remove( this.__instanceId );
+        EU.ScoreCounter.observer( EU.kScoreStars ).remove( this.__instanceId );
     },
 
     init: function()
     {
-        //CC_BREAK_IF( !Layer::init() );
-        //if ( EU.NodeExt.prototype.init.call(this) ) return false;
-
         if (EU.k.useFuel) {
-            this.load_str_n_str( "ini", "scorelayer_fuel.xml" );
+            this.load_str( "ini/scorelayer_fuel.xml" );
         } else {
-            this.load_str_n_str( "ini", "scorelayer.xml" );
+            this.load_str( "ini/scorelayer.xml" );
         }
 
         this._gold = this.getChildByName( "valuegold" );
@@ -65,13 +66,13 @@ EU.ScoreLayer = cc.Scene.extend({
         if ( !this._shop ) return false;
         if ( !this._star ) return false;
 
-        this.change_fuel( EU.scoreCounter.getMoney( EU.kScoreFuel ) );
-        this.change_time( EU.scoreCounter.getMoney( EU.kScoreTime ) );
-        this.change_real( EU.scoreCounter.getMoney( EU.kScoreCrystals ) );
-        this.change_star( EU.scoreCounter.getMoney( EU.kScoreStars ) );
+        this.change_fuel( EU.ScoreCounter.getMoney( EU.kScoreFuel ) );
+        this.change_time( EU.ScoreCounter.getMoney( EU.kScoreTime ) );
+        this.change_real( EU.ScoreCounter.getMoney( EU.kScoreCrystals ) );
+        this.change_star( EU.ScoreCounter.getMoney( EU.kScoreStars ) );
         if( this._shop )
         {
-            this._shop.setCallback( this.cb_shop );
+            this._shop.setCallback( this.cb_shop, this );
             if( EU.k.useInapps == false )
                 this._shop.setVisible( false );
         }
@@ -85,6 +86,12 @@ EU.ScoreLayer = cc.Scene.extend({
         return true;
     },
 
+    updateScore: function(){
+        this.change_time( EU.ScoreCounter.getMoney(EU.kScoreTime) );
+        this.change_fuel( EU.ScoreCounter.getMoney(EU.kScoreFuel) );
+        this.change_real( EU.ScoreCounter.getMoney(EU.kScoreCrystals) );
+    },
+
     change_time : function(score )
     {
         var min = parseInt( score ) / 60;
@@ -93,12 +100,12 @@ EU.ScoreLayer = cc.Scene.extend({
         var ss;
         if( min != 0 ) ss = ss + min + "m ";
         if( sec != 0 ) ss = ss + sec + "s";
-        this._time.setString( ss.str() );
+        this._time.setString( ss );
     },
 
     change_fuel : function (score )
     {
-        var vis = score < EU.scoreByTime.max_fuel();
+        var vis = score < EU.ScoreByTime.max_fuel();
         this._fuel.setString( score);
         this._time.setVisible( vis );
 
@@ -119,16 +126,13 @@ EU.ScoreLayer = cc.Scene.extend({
         this._star.setString( ( score ) );
     },
 
-    cb_shop: function(sender ) {
-        if (EU.PC != 1) {
-            /**@type {EU.SmartScene} */
-            var scene = this.getScene();
-            if (scene.this.getChildByName("shop")) return;
+    cb_shop: function(sender) {
+        var scene = EU.Common.getSceneOfNode(this);
+        if (scene.getChildByName("shop")) return;
 
-            var shop = EU.ShopLayer.create(EU.k.useFreeFuel, true, false, false);
-            if (shop) {
-                scene.pushLayer(shop, true);
-            }
+        var shop = EU.ShopLayer.create(EU.k.useFreeFuel, true, false, false);
+        if (shop) {
+            scene.pushLayer(shop, true);
         }
     }
 

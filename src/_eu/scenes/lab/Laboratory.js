@@ -9,21 +9,23 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 EU.Laboratory = EU.ScrollMenu.extend({
     scaleFactor: null,
     zeroPosition: null,
-    self : nullptr,
+    self : null,
     ctor: function()
     {
         this._super();
-        self = this;
-        var dessize = cc.director.getWinSize();
+        this.scaleFactor = 1;
+        this.zeroPosition = new cc.Point(0,0);
+        this.self = this;
+        var dessize = cc.view.getDesignResolutionSize();
         this.setCascadeOpacityEnabled( true );
         this.setCascadeColorEnabled( true );
-        this.setKeyboardEnabled( true );
+        //TODO: this.setKeyboardEnabled( true );
 
-        this.load_str( "ini/laboratory", "lab.xml" );
+        this.load_str( "ini/laboratory/lab.xml" );
 
         var bg = this.getChildByName( "bg" );
         if( bg )
@@ -48,7 +50,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
 
         var grid = new cc.Size(0,0);
         var content = new cc.Size(0,0);
-        towers = [];
+        var towers = [];
         EU.mlTowersInfo.fetch( towers );
         for( var i=0; i< towers.length; ++i )
         {
@@ -70,14 +72,16 @@ EU.Laboratory = EU.ScrollMenu.extend({
             this.setIcon( tower, false );
         }
 
-        this.setAlignedStartPosition( Point( -this.zeroPosition.x, -275 ) * this.scaleFactor );
+        this.setAlignedStartPosition( new cc.Point( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor ) );
         this.setGrisSize( grid );
         this.align( 99 );
 
         var scissor = new cc.Size( dessize.width, 465 );
-        this.setScissorRect( this.getAlignedStartPosition(), scissor * this.scaleFactor );
-        this.setScissorEnabled( true );
+        var asp = this.getAlignedStartPosition();
+        var visibleRect = new cc.Rect(asp.x, asp.y,scissor.width,scissor.height);
+        this.setVisibleRect( visibleRect );
         this.setScrollEnabled( true );
+        this.setTouchEnabled( true );
         this.setContentSize( content );
         this.setAllowScrollByY( false );
 
@@ -104,10 +108,10 @@ EU.Laboratory = EU.ScrollMenu.extend({
     //}
     buildItem: function( tower )
     {
-        var level = EU.UserData.tower_upgradeLevel( tower );
+        var level = EU.UserData.tower_getUpgradeLevel( tower );
         var item = EU.xmlLoader.load_node_from_file( "ini/laboratory/item.xml" );
         item.setName( tower );
-        item.setCallback( this,cb_select, this, tower );
+        item.setCallback( this.cb_select.bind(this, tower), this );
         var conteiner = item.getChildByName( "conteiner" );
         if( conteiner )
         {
@@ -131,7 +135,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
             }
             if( icon2 )
             {
-                xmlLoader.setProperty( icon2, EU.xmlKey.Image.int, "images/laboratory/icon_" + tower + ".png" );
+                EU.xmlLoader.setProperty_int( icon2, EU.xmlKey.Image.int, "images/laboratory/icon_" + tower + ".png" );
             }
             if( indicator )
             {
@@ -143,7 +147,9 @@ EU.Laboratory = EU.ScrollMenu.extend({
             if( menuinfo )
             {
                 var info = menuinfo.getChildByName( "info" );
-                info.setCallback( this.cb_info, this, tower );
+                info.userdata = {};
+                info.userdata.towername = tower;
+                info.setCallback( this.cb_info.bind(this, tower), this );
             }
     
             var menu = mainnode.getChildByName( "menu" );
@@ -152,24 +158,24 @@ EU.Laboratory = EU.ScrollMenu.extend({
                 var button = menu.getChildByName( "buy" );
     
                 button.setName( tower );
-                button.setCallback( this.cb_upgrade, this, tower );
+                button.setCallback( this.cb_upgrade.bind(this,tower), this );
             }
             var menu_confirm = mainnode.getChildByName( "menu_confirm" );
             if( menu_confirm )
             {
-                var ok = menu_confirm.getChildByName( "confirm" );
-                var no = menu_confirm.getChildByName( "cancel" );
+                var ok = EU.Common.getNodeByPath( menu_confirm, "menu/confirm" );
+                var no = EU.Common.getNodeByPath( menu_confirm, "menu/cancel" );
     
                 ok.setName( tower );
                 no.setName( tower );
-                ok.setCallback( this.cb_confirm, this, tower );
-                no.setCallback( this.cb_cancel, this, tower );
+                ok.setCallback( this.cb_confirm.bind(this, tower), this );
+                no.setCallback( this.cb_cancel.bind(this, tower), this );
             }
     
             if( infonode )
             {
                 var text = infonode.getChildByName( "text" );
-                text.setString( mlTowersInfo.get_desc( tower, 1 ) );
+                text.setString( EU.mlTowersInfo.get_desc( tower, 1 ) );
             }
     
             if( level == 0 )
@@ -209,9 +215,9 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },
     cb_confirm: function( tower )
     {
-        var level = EU.UserData.tower_upgradeLevel( tower ) + 1;
+        var level = EU.UserData.tower_getUpgradeLevel( tower ) + 1;
         var cost = EU.mlTowersInfo.getCostLab( tower, level );
-        var score = EU.ScoreCounter.getMoney( kScoreCrystals );
+        var score = EU.ScoreCounter.getMoney( EU.kScoreCrystals );
     
         if( score < cost )
         {
@@ -245,7 +251,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
             this.showConfirmMenu( tower, false );
             this.upgradeTower( tower );
             this.normalStateForAllItemExcept( "" );
-            EU.ScoreCounter.subMoney( kScoreCrystals, cost, true );
+            EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
             //TODO: audio
             //AudioEngine.playEffect( kSoundLabUpgrade );
             EU.UserData.save();
@@ -269,15 +275,15 @@ EU.Laboratory = EU.ScrollMenu.extend({
         for( var i = 0; i < count; ++i )
         {
             var item = this.getItem( i );
-            var opacity = tower.empty() == false ?
-                (item.getName() == tower ? 255 : 64) :
+            var opacity = tower.length > 0 ?
+                (item.getName() == tower ? 255 : 255) :
                 255;
             item.setOpacity( opacity );
         }
     },    
     showConfirmMenu: function( itemname, mode )
     {
-        var level = EU.UserData.tower_upgradeLevel( itemname );
+        var level = EU.UserData.tower_getUpgradeLevel( itemname );
         var item = this.getItemByName( itemname );
         EU.assert( item );
         var conteiner = item.getChildByName( "conteiner" );
@@ -290,9 +296,9 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },
     switchInfoBox: function( itemname, forceHideInfo )
     {
-        var level = EU.UserData.tower_upgradeLevel( itemname );
+        var level = EU.UserData.tower_getUpgradeLevel( itemname );
         var item = this.getItemByName( itemname );
-        assert( item );
+        EU.assert( item );
         var conteiner = item.getChildByName( "conteiner" );
         var infonode = conteiner.getChildByName( "info" );
         var mainnode = conteiner.getChildByName( "main" );
@@ -306,9 +312,9 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },    
     upgradeTower: function( tower )
     {
-        var level = EU.UserData.tower_upgradeLevel( tower ) + 1;
+        var level = EU.UserData.tower_getUpgradeLevel( tower ) + 1;
         level = Math.min( level, 5 );
-        EU.UserData.tower_upgradeLevel( tower, level );
+        EU.UserData.tower_setUpgradeLevel( tower, level );
         this.setIndicator( tower, false );
         this.setCost( tower );
         //TODO: Achievments
@@ -316,7 +322,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },    
     setIndicator: function( tower, nextLevel )
     {
-        var level = UserData.tower_upgradeLevel( tower );
+        var level = EU.UserData.tower_getUpgradeLevel( tower );
         if( nextLevel )
             level = Math.min( level + 1, 5 );
         var item = this.getItemByName( tower );
@@ -350,7 +356,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },    
     setCost: function( tower )
     {
-        var level = EU.UserData.tower_upgradeLevel( tower );
+        var level = EU.UserData.tower_getUpgradeLevel( tower );
         var item = this.getItemByName( tower );
         var cost = EU.mlTowersInfo.getCostLab( tower, level + 1 );
         var cost0 = EU.Common.getNodeByPath( item, "conteiner/main/menu/" + tower + "/normal/cost" );
@@ -366,7 +372,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
         var mainnode = conteiner.getChildByName( "main" );
         if( !mainnode )return;
     
-        var level = EU.UserData.tower_upgradeLevel( tower );
+        var level = EU.UserData.tower_getUpgradeLevel( tower );
         if( nextLevel ) ++level;
         var dmg = mainnode.getChildByName( "dmg" );
         var rng = mainnode.getChildByName( "rng" );
@@ -374,23 +380,23 @@ EU.Laboratory = EU.ScrollMenu.extend({
         var value;
         if( dmg )
         {
-            value = EU.Language.string("laboratory_tower_attack") + mlTowersInfo.get_dmg( tower, level );
+            value = EU.Language.string("laboratory_tower_attack") + Math.round(EU.mlTowersInfo.get_dmg( tower, level ));
             dmg.setString( value );
         }
         if( rng )
         {
-            value = EU.Language.string("laboratory_tower_range") + mlTowersInfo.get_rng( tower, level );
+            value = EU.Language.string("laboratory_tower_range") + Math.round(EU.mlTowersInfo.get_rng( tower, level ));
             rng.setString( value );
         }
         if( spd )
         {
-            value = EU.Language.string("laboratory_tower_speed") + mlTowersInfo.get_spd( tower, level );
+            value = EU.Language.string("laboratory_tower_speed") + Math.round(EU.mlTowersInfo.get_spd( tower, level ));
             spd.setString( value );
         }
     },    
     setIcon: function( tower, nextLevel )
     {
-        var level = EU.UserData.tower_upgradeLevel( tower );
+        var level = EU.UserData.tower_getUpgradeLevel( tower );
         if( nextLevel ) ++level;
         level = Math.min( Math.max( 1, level ), 5 );
     
@@ -399,7 +405,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
         var conteiner = item.getChildByName( "conteiner" );
         if( !conteiner )return;
         var icon = conteiner.getChildByName( "icon" );
-        if( icon ) xmlLoader.setProperty( icon, xmlLoader.kImage, texture );
+        if( icon ) EU.xmlLoader.setProperty_int( icon, EU.xmlKey.Image.int, texture );
     },
     normalStateForAllItemExcept: function( tower )
     {
@@ -424,7 +430,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },
     fadeexit: function()
     {
-        var dessize = cc.director.getWinSize();
+        var dessize = cc.view.getDesignResolutionSize();
         var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, new cc.Point( 0, -dessize.height ) ) ) );
         this.runAction( action );
         //TODO: audio
@@ -432,8 +438,8 @@ EU.Laboratory = EU.ScrollMenu.extend({
     },
     fadeenter: function()
     {
-        var dessize = cc.director.getWinSize();
-        this.setPosition( cc.Common.pointAdd(this.zeroPosition, Point( 0, -dessize.height ) ) );
+        var dessize = cc.view.getDesignResolutionSize();
+        this.setPosition( EU.Common.pointAdd(this.zeroPosition, new cc.Point( 0, -dessize.height ) ) );
         var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
         this.runAction( action );
         //TODO: audio
@@ -441,3 +447,4 @@ EU.Laboratory = EU.ScrollMenu.extend({
     }
 
 });
+EU.NodeExt.call(EU.Laboratory.prototype);

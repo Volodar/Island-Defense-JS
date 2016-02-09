@@ -1,5 +1,12 @@
 cc.game.onStart = function(){
-    cc.view.setDesignResolutionSize(1280, 720, cc.ResolutionPolicy.SHOW_ALL);
+    var sx = cc.director.getWinSize().width;
+    var sy = cc.director.getWinSize().height;
+    var rate = sx / sy;
+    sx = Math.max( 1024, sx );
+    sx = Math.min( 1136, sx );
+    sy = sx / rate;
+
+    cc.view.setDesignResolutionSize(sx, sy, cc.ResolutionPolicy.SHOW_ALL);
     cc.view.resizeWithBrowserSize(true);
     //load resources
     cc.LoaderScene.preload(g_resources, function () {

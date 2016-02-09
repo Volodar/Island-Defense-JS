@@ -9,7 +9,7 @@
  * Project: Island Defense (JS)
  * If you received the code not from the author, please contact us
  ******************************************************************************/
-
+/**TESTED**/
 EU.ItemShop = EU.ScrollMenu.extend({
     scaleFactor: null,
     removeScoreLayer: null,
@@ -21,11 +21,13 @@ EU.ItemShop = EU.ScrollMenu.extend({
         this.scaleFactor = 0;
         this.removeScoreLayer = false;
         this.zeroPosition = new cc.Point(0,0);
+        this.init();
     },
 
     init: function()
     {
-        var dessize = cc.director.getWinSize();
+        EU.ScrollMenu.prototype.init.call(this);
+        var dessize = cc.view.getDesignResolutionSize();
         this.setCascadeOpacityEnabled( true );
         this.setCascadeColorEnabled( true );
         //TODO: keyboard
@@ -48,7 +50,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         }
 
         var grid = new cc.Size(0,0);
-        content = new cc.Size(0,0);
+        var content = new cc.Size(0,0);
         var items = [];
         items.push( "bonusitem_dynamit" );
         items.push( "bonusitem_ice" );
@@ -69,19 +71,18 @@ EU.ItemShop = EU.ScrollMenu.extend({
             content.height = grid.height;
         }
         //TODO: Scroll menu
-        var scissor = new cc.Size( dessize.width, 464 );
-        this.setAlignedStartPosition( Point( -this.zeroPosition.x, -275 ) * this.scaleFactor );
+        var visible = new cc.Size( dessize.width, 464 );
+        var asp = new cc.Point( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor );
+        this.setAlignedStartPosition( asp );
         this.setGrisSize( grid );
         this.align( 99 );
-        this.setScissorRect( this.getAlignedStartPosition(), scissor * this.scaleFactor );
-        this.setScissorEnabled( true );
-        this.setScrollEnabled( true );
+        this.setVisibleRect( new cc.Rect(asp.x, asp.y, visible.width * this.scaleFactor, visible.height * this.scaleFactor ) );
         this.setContentSize( content );
         this.setAllowScrollByY( false );
 
-        if( content.width < scissor.width )
+        if( content.width < visible.width )
         {
-            var diff = scissor.width - content.width;
+            var diff = visible.width - content.width;
             var point = this.getAlignedStartPosition();
             point.x += diff / 2;
             this.setAlignedStartPosition( point );
@@ -116,9 +117,9 @@ EU.ItemShop = EU.ScrollMenu.extend({
         var nodeInfo = conteiner.getChildByName( "info" );
         var info = nodeInfo ? nodeInfo.getChildByName( "text" ) : null;
         var icon = nodeMain ? nodeMain.getChildByName( "icon" ) : null;
-        var buy = this.getNodeByPath( nodeMain, "menu/buy/normal/cost" );
-        var buyButton = this.getNodeByPath( nodeMain, "menu/buy" );
-        var infoButton = this.getNodeByPath( conteiner, "menu_info/info" );
+        var buy = EU.Common.getNodeByPath( nodeMain, "menu/buy/normal/cost" );
+        var buyButton = EU.Common.getNodeByPath( nodeMain, "menu/buy" );
+        var infoButton = EU.Common.getNodeByPath( conteiner, "menu_info/info" );
         if( name )
         {
             var textid = itemname + "_name";
@@ -132,7 +133,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         if( icon )
         {
             var image = "images/itemshop/" + itemname + ".png";
-            EU.xmlLoader.setProperty_int(icon, EU.xmlKey.Image.var, image);
+            EU.xmlLoader.setProperty_int(icon, EU.xmlKey.Image.int, image);
         }
         if( buy )
         {
@@ -150,14 +151,15 @@ EU.ItemShop = EU.ScrollMenu.extend({
     
         return item;
     },
-    cb_buy:function( itemname )
+    cb_buy:function( item )
     {
+        var itemname = item.getName();
         var cost = this.getCost( itemname );
-        var score = EU.ScoreCounter.getMoney( kScoreCrystals );
+        var score = EU.ScoreCounter.getMoney( EU.kScoreCrystals );
     
         if( score < cost )
         {
-            if(k.configuration.useInapps && EU.TutorialManager.dispatch( "itemshop_haventgold" ) )
+            if(EU.k.useInapps && EU.TutorialManager.dispatch( "itemshop_haventgold" ) )
             {
                 this.cb_close( null );
                 return;
@@ -185,19 +187,20 @@ EU.ItemShop = EU.ScrollMenu.extend({
             if( itemname == "bonusitem_ice" ) index = 2;
             if( itemname == "bonusitem_dynamit" ) index = 3;
     
-            UserData.bonusitem_add( index, 1 );
-            ScoreCounter.subMoney( kScoreCrystals, cost, true );
+            EU.UserData.bonusitem_add( index, 1 );
+            EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
             //TODO: audio
             //AudioEngine.playEffect( kSoundShopPurchase );
-            UserData.save();
+            EU.UserData.save();
     
             this.runFly( itemname );
         }
     
-        TutorialManager.dispatch( "itemshop_buy" );
+        EU.TutorialManager.dispatch( "itemshop_buy" );
     },
-    cb_info: function( itemname )
+    cb_info: function( item )
     {
+        var itemname = item.getParent().getParent().getParent().getName();
         var item = this.getItemByName( itemname );
         if( !item )
             return;
@@ -223,29 +226,30 @@ EU.ItemShop = EU.ScrollMenu.extend({
                 scores.removeFromParent();
             }
         }
-        var dessize = cc.director.getWinSize();
-        var action = EaseBackIn.create( MoveTo.create( 0.5, this.zeroPosition + Point( 0, -dessize.height ) ) );
-        this.runAction( Sequence.create( action, RemoveSelf.create(), null) );
+        var dessize = cc.view.getDesignResolutionSize();
+        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, new cc.Point(this.zeroPosition.x, this.zeroPosition.y-dessize.height ) ) );
+        this.runAction( new cc.Sequence( action, new cc.RemoveSelf() ) );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopHide );
     },
     fadeenter: function()
     {
-        var dessize = cc.director.getWinSize();
-        this.setPosition( this.zeroPosition + Point( 0, -dessize.height ) );
-        var action = EaseBackOut.create( MoveTo.create( 0.5, this.zeroPosition ) );
+        var dessize = cc.view.getDesignResolutionSize();
+        this.setPosition( new cc.Point(this.zeroPosition.x, this.zeroPosition.y-dessize.height  ) );
+        var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
         this.runAction( action );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopShow );
 
-        var scene = Director.getInstance().getRunningScene();
+        var scene = cc.director.getRunningScene();
         var score = scene.getChildByName( "scorelayer" );
-        if( !score )
-        {
-            score = ScoreLayer.create();
-            scene.addChild( score, 999 );
-            this.removeScoreLayer = true;
-        }
+        //TODO: Score layer
+        //if( !score )
+        //{
+        //    score = EU.ScoreLayer.create();
+        //    scene.addChild( score, 999 );
+        //    this.removeScoreLayer = true;
+        //}
     },
     getCost: function( itemname )
     {
@@ -259,29 +263,29 @@ EU.ItemShop = EU.ScrollMenu.extend({
     },
     runFly: function( itemname )
     {
-        var size = cc.director.getWinSize();
+        var size = cc.view.getDesignResolutionSize();
         //TODO: ScrollMenu call
         var item = this.getItemByName( itemname );
         var conteiner = item.getChildByName( "conteiner" );
         var nodeMain = conteiner.getChildByName( "main" );
         var icon = nodeMain ? nodeMain.getChildByName( "icon" ) : null;
 
-        var pos = icon.convertToWorldSpace( Point.ZERO );
+        var pos = icon.convertToWorldSpace( new cc.Point(0,0) );
 
-        xmlLoader.macros.set( "item", itemname );
-        xmlLoader.macros.set( "centerx", ( size.width / 2 ).toString() );
-        xmlLoader.macros.set( "centery", ( size.height / 2 ).toString() );
-        xmlLoader.macros.set( "right", ( size.width ).toString() );
-        xmlLoader.macros.set( "position", EU.Common.pointToStr( pos ) );
+        EU.xmlLoader.macros.set( "item", itemname );
+        EU.xmlLoader.macros.set( "centerx", ( size.width / 2 ).toString() );
+        EU.xmlLoader.macros.set( "centery", ( size.height / 2 ).toString() );
+        EU.xmlLoader.macros.set( "right", ( size.width ).toString() );
+        EU.xmlLoader.macros.set( "position", EU.Common.pointToStr( pos ) );
 
-        var node = xmlLoader.load_node( "ini/itemshop/itemfly.xml" );
+        var node = EU.xmlLoader.load_node_from_file( "ini/itemshop/itemfly.xml" );
         var scene = EU.Common.getSceneOfNode( this );
         scene.addChild( node,9999 );
 
-        xmlLoader.macros.erase( "centerx" );
-        xmlLoader.macros.erase( "centery" );
-        xmlLoader.macros.erase( "right" );
-        xmlLoader.macros.erase( "position" );
+        EU.xmlLoader.macros.erase( "centerx" );
+        EU.xmlLoader.macros.erase( "centery" );
+        EU.xmlLoader.macros.erase( "right" );
+        EU.xmlLoader.macros.erase( "position" );
     }
 });
 

@@ -23,8 +23,9 @@ EU.kScoreStars = 5;
 
 EU.ScoreCounter = {
     scores: {},
+    _onChangeScores: {},
 
-    ctor: function(){
+    init: function(){
         for( var i = 0; i<6; ++i )
         {
             var s = EU.kUser_Scores_suffix + i.toString();
@@ -35,6 +36,7 @@ EU.ScoreCounter = {
     },
     change: function( id, value, saveValueToUserData )
     {
+        value = parseInt(value);
         if( !(id in this.scores ) )
         {
             this.scores[id] = 0;
@@ -71,151 +73,134 @@ EU.ScoreCounter = {
     },
     observer: function( id )
     {
-        return null;
-        //return _onChangeScores[id];
+        if( (id in this._onChangeScores) == false )
+            this._onChangeScores[id] = new EU.Observer();
+        return this._onChangeScores[id];
     }
 };
 
 
-//
-///***************************************************************/
-//
-//ScoreByTime::ScoreByTime()
-//: _timer( 0 )
-//    , _time( 0 )
-//    , _interval( 60 )
-//    , _max( 10 )
-//{
-//    __log_line( "" );
-//    EU.ScoreCounter.observer( EU.kScoreTime ).add( _ID, std::bind( &ScoreByTime::changeTime, this, std::placeholders::_1 ) );
-//    EU.ScoreCounter.observer( EU.kScoreFuel ).add( _ID, std::bind( &ScoreByTime::changeFuel, this, std::placeholders::_1 ) );
-//}
-//
-//ScoreByTime::~ScoreByTime()
-//{
-//    __log_line( "" );
-//    savetime();
-//}
-//
-//void ScoreByTime::onCreate()
-//{
-//    __log_line( "" );
-//    pugi::xml_document doc;
-//    doc.load_file( "ini/fuel.xml" );
-//    var root = doc.root().first_child();
-//    _max = root.child( "max" ).attribute( "value" ).as_int();
-//    _interval = root.child( "delay" ).attribute( "value" ).as_int();
-//
-//    log( "ScoreByTime::_max = [%d]", _max );
-//    log( "ScoreByTime::_interval = [%d]", _interval );
-//
-//    Director::getInstance()->getScheduler()->schedule( std::bind( &ScoreByTime::update, this, std::placeholders::_1 ), this, 1, false, "scorebytime" );
-//
-//    checkMaxValue();
-//    checktime();
-//}
-//
-//void ScoreByTime::checkMaxValue( )
-//{
-//    _max = UserData::shared( ).get_int( k::user::MaxFuelValue, _max );
-//}
-//
-//void ScoreByTime::checktime()
-//{
-//    __log_line( "" );
-//    var times = EU.UserData.get_str( "score_timer" );
-//    if( times.empty() == false )
-//    {
-//        struct tm last;
-//        sscanf( times.c_str(), "%d-%d-%d-%d", &last.tthis.sec, &last.tthis.min, &last.tthis.hour, &last.tthis.yday );
-//        time_t time = ::time( 0 );
-//        struct tm now = *localtime( &time );
-//        long long last_sec =
-//        last.tthis.sec +
-//        last.tthis.min * 60 +
-//        last.tthis.hour * 60 * 60 +
-//        last.tthis.yday * 60 * 60 * 24;
-//        long long now_sec =
-//        now.tthis.sec +
-//        now.tthis.min * 60 +
-//        now.tthis.hour * 60 * 60 +
-//        now.tthis.yday * 60 * 60 * 24;
-//        long long diff = now_sec - last_sec;
-//        __log_line( "" );
-//        EU.ScoreCounter.subMoney( EU.kScoreTime, diff, true );
-//        __log_line( "ok0" );
-//    }
-//    else
-//    {
-//        EU.ScoreCounter.setMoney( EU.kScoreTime, _interval, true );
-//        EU.ScoreCounter.setMoney( EU.kScoreFuel, _max, true );
-//    }
-//    savetime();
-//}
-//
-//var ScoreByTime::gettime()const
-//    {
-//        return 0;
-//}
-//
-//var ScoreByTime::getinterval()const
-//    {
-//        return 0;
-//}
-//
-//void ScoreByTime::update( float dt )
-//{
-//    __log_line( "" );
-//    if( EU.ScoreCounter.getMoney( EU.kScoreFuel ) >= _max )
-//    {
-//        __log_line( "" );
-//        EU.ScoreCounter.setMoney( EU.kScoreTime, _interval, true );
-//        savetime();
-//    }
-//    _timer += dt;
-//    if( _timer > 1.f )
-//    {
-//        _timer -= 1.f;
-//        EU.ScoreCounter.subMoney( EU.kScoreTime, 1, true );
-//    }
-//}
-//
-//void ScoreByTime::changeTime( var score )
-//{
-//    if( score <= 0 )
-//    {
-//        var addfuel = (-score) / ( _interval == 0 ? 1 : _interval) + 1;
-//        var addtime = addfuel * _interval;
-//
-//        if( addtime > 0 )
-//            EU.ScoreCounter.addMoney( EU.kScoreTime, addtime, true );
-//
-//        var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
-//        var nfuel = fuel + addfuel;
-//        if( nfuel > _max ) addfuel = _max - fuel;
-//        addfuel = std::max( addfuel, 0 );
-//        if( addfuel > 0 )
-//            EU.ScoreCounter.addMoney( EU.kScoreFuel, addfuel, true );
-//        savetime();
-//    }
-//}
-//
-//void ScoreByTime::changeFuel( var score )
-//{
-//
-//}
-//
-//void ScoreByTime::savetime()
-//{
-//    __log_line( "" );
-//    char buf[128];
-//    time_t time = ::time( 0 );
-//    struct tm now = *localtime( &time );
-//    sprintf( buf, "%d-%d-%d-%d", now.tthis.sec, now.tthis.min, now.tthis.hour, now.tthis.yday );
-//    EU.UserData.write( "score_timer", var(buf) );
-//}
-//
-//
+
+/***************************************************************/
+
+EU.ScoreByTime = {
+    _timer : 0,
+    _time : 0,
+    _interval : 0,
+    _max :0,
+    
+    init: function() {
+        EU.ScoreCounter.observer( EU.kScoreTime ).add( this.__instanceId, this.changeTime, this );
+        EU.ScoreCounter.observer( EU.kScoreFuel ).add( this.__instanceId, this.changeFuel, this );
+        var doc = EU.pugixml.readXml( "ini/fuel.xml");
+        var root = doc.firstElementChild;
+        if( !root )
+            return;
+        this._max = root.getElementsByTagName("max")[0].getAttribute("value");
+        this._interval = root.getElementsByTagName("delay")[0].getAttribute("value");
+
+        cc.director.getScheduler().schedule( this.update, this, this, 1, false, "scorebytime" );
+    
+        this.checkMaxValue();
+        this.checktime();
+    },
+    checkMaxValue: function( )
+    {
+        this._max = EU.UserData.get_int( EU.k.MaxFuelValue, this._max );
+    },
+    
+    checktime: function()
+    {
+        //TODO: check time for add fuel
+        //var times = EU.UserData.get_str( "score_timer" );
+        //if( times.empty() == false )
+        //{
+        //    struct tm last;
+        //    sscanf( times.c_str(), "%d-%d-%d-%d", &last.tthis.sec, &last.tthis.min, &last.tthis.hour, &last.tthis.yday );
+        //    time_t time = .time( 0 );
+        //    struct tm now = *localtime( &time );
+        //    long long last_sec =
+        //    last.tthis.sec +
+        //    last.tthis.min * 60 +
+        //    last.tthis.hour * 60 * 60 +
+        //    last.tthis.yday * 60 * 60 * 24;
+        //    long long now_sec =
+        //    now.tthis.sec +
+        //    now.tthis.min * 60 +
+        //    now.tthis.hour * 60 * 60 +
+        //    now.tthis.yday * 60 * 60 * 24;
+        //    long long diff = now_sec - last_sec;
+        //    __log_line( "" );
+        //    EU.ScoreCounter.subMoney( EU.kScoreTime, diff, true );
+        //    __log_line( "ok0" );
+        //}
+        //else
+        //{
+        //    EU.ScoreCounter.setMoney( EU.kScoreTime, _interval, true );
+        //    EU.ScoreCounter.setMoney( EU.kScoreFuel, _max, true );
+        //}
+        //savetime();
+    },
+    
+    gettime: function()
+    {
+        return 0;
+    },
+    getinterval: function()
+    {
+        return 0;
+    },
+    max_fuel: function(){
+        return this._max;
+    },
+    update: function( dt )
+    {
+        if( EU.ScoreCounter.getMoney( EU.kScoreFuel ) >= this._max )
+        {
+            EU.ScoreCounter.setMoney( EU.kScoreTime, this._interval, true );
+            this.savetime();
+        }
+        this._timer += dt;
+        if( this._timer > 1 )
+        {
+            this._timer -= 1;
+            EU.ScoreCounter.subMoney( EU.kScoreTime, 1, true );
+        }
+    },
+    changeTime: function( score )
+    {
+        if( score <= 0 )
+        {
+            var addfuel = (-score) / ( _interval == 0 ? 1 : _interval) + 1;
+            var addtime = addfuel * _interval;
+    
+            if( addtime > 0 )
+                EU.ScoreCounter.addMoney( EU.kScoreTime, addtime, true );
+    
+            var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
+            var nfuel = fuel + addfuel;
+            if( nfuel > _max ) addfuel = _max - fuel;
+            addfuel = Math.max( addfuel, 0 );
+            if( addfuel > 0 )
+                EU.ScoreCounter.addMoney( EU.kScoreFuel, addfuel, true );
+            this.savetime();
+        }
+    },
+    changeFuel: function( score )
+    {
+    },
+    
+    savetime: function()
+    {
+        //TODO: savetime: function()
+        //char buf[128];
+        //time_t time = .time( 0 );
+        //struct tm now = *localtime( &time );
+        //sprintf( buf, "%d-%d-%d-%d", now.tthis.sec, now.tthis.min, now.tthis.hour, now.tthis.yday );
+        //EU.UserData.write( "score_timer", var(buf) );
+    }
+};
+
 EU.LevelParams = {
     params : {},
     goldOnFirstRun : 0,
@@ -393,5 +378,7 @@ EU.LevelParams = {
 };
 
 (function() {
+    EU.ScoreCounter.init();
+    EU.ScoreByTime.init();
     EU.LevelParams.init();
 })();

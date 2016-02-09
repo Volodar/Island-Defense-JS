@@ -367,6 +367,13 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     setSound: function( sound ) {
         this._sound = sound;
     },
+    /**
+     * Scale effect button on touch
+     * @param value
+     */
+    useScaleEffect: function(value){
+        this._useScaleEffectOnSelected = value;
+    }
 });
 EU.NodeExt.call(EU.MenuItemImageWithText.prototype);
 

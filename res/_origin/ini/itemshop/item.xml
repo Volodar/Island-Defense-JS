@@ -34,7 +34,7 @@
         
         <node name="info" type="node" pos="0x0" visible="no" >
           <children>
-            <node name="text" type="text" font="fonts/helvetica.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x0" color="000000" scale="0.8x0.8" textwidth="350" center="0.5x1" textalign="center"/>
+            <node name="text" type="text" font="fonts/helveticastoke.fnt" text="Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc " pos="0x0"  scale="0.8x0.8" textwidth="300" center="0.5x1" textalign="center"/>
           </children>
         </node>
 
