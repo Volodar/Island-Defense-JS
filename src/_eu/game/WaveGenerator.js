@@ -269,16 +269,24 @@ EU.WaveGenerator = {
 
 EU.WaveInfo = cc.Class.extend(
 {
-    /** @type {Array< string >} */creeps : [],
-    /** @type {Array< var >} */delayOneUnit : [],
-    /** @type {Array< Integer >} */scores : [],
-    /** @type {Array< EU.RouteSubType >} */routeSubType : [],
-    /** @type {Array< Integer >} */routeIndex : [],
-    /** @type {Array< var >} */healthRate : [],
-    /** @type {Array< EU.UnitLayer >} */type : EU.UnitLayer.any,
+    /** @type {Array< string >} */creeps : null,
+    /** @type {Array< var >} */delayOneUnit : null,
+    /** @type {Array< Integer >} */scores : null,
+    /** @type {Array< EU.RouteSubType >} */routeSubType : null,
+    /** @type {Array< Integer >} */routeIndex : null,
+    /** @type {Array< var >} */healthRate : null,
+    /** @type {Array< EU.UnitLayer >} */type : null,
     /** @type {Integer} */index : -1,
     ctor: function()
     {
+        "use strict";
+        this.creeps = [];
+        this.delayOneUnit = [];
+        this.scores = [];
+        this.routeSubType = [];
+        this.routeIndex = [];
+        this.healthRate = [];
+        this.type = EU.UnitLayer.any;
     },
     valid: function()
     {

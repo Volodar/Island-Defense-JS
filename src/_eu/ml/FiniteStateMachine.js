@@ -25,16 +25,20 @@ EU.State = cc.Class.extend(
     /** @type {EU.Machine} */ _machine : null,
     /** @type {string} */ _string_name : "",
     /** @type {Tag} */ _name : EU.Tag.InvalidTag,
-    /** @type {Object<Event.toString(), [Event, Tag]>} */ _transitions : {},
-    /** @type {Array<Tag>} */ _inherited_transitions : [],
+    /** @type {Object<Event.toString(), [Event, Tag]>} */ _transitions : null,
+    /** @type {Array<Tag>} */ _inherited_transitions : null,
 
-    /** @type {Array<Function>} */ _onActivate : [],
-    /** @type {Array<Function>} */ _onDeactivate : [],
+    /** @type {Array<Function>} */ _onActivate : null,
+    /** @type {Array<Function>} */ _onDeactivate : null,
     /** @type {Function} */ _onUpdate : null,
 
 
     ctor: function(machine, cb){
         this._machine = machine;
+        this._transitions = {};
+        this._inherited_transitions = [];
+        this._onActivate = [];
+        this._onDeactivate = [];
         this.add_onActivateCallBack( cb );
     },
 

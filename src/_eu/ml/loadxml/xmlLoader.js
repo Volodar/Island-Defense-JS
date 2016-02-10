@@ -37,16 +37,16 @@ EU.xmlLoader = {
         },
         _macroses: new EU.ParamCollection(""),
         set: function (name, value) {
-            this._macroses[name] = value;
+            this._macroses.set(name, value, true);
         },
         get: function (name) {
-            return this._macroses[name];
+            return this._macroses.get(name);
         },
         clear: function () {
             this._macroses = new EU.ParamCollection("");
         },
         erase: function (name) {
-            delete this._macroses[name];
+            delete this._macroses.params[name];
         },
 
         /**
@@ -54,9 +54,9 @@ EU.xmlLoader = {
          * @returns {String}
          */
         parse: function (string) {
-            if (string == undefined)
+            if (string == undefined || string == null)
                 return "";
-            var result = string;
+            var result = "" + string;
             while (true) {
                 var l = result.indexOf(this.delimiter);
                 var r = result.indexOf(this.delimiter, l + this.delimiter_size());
@@ -761,7 +761,7 @@ EU.xmlLoader = {
             var xmlchild = root.children[i];
             var name = xmlchild.getAttribute("name");
             var value = xmlchild.getAttribute("value");
-            params[name] = value;
+            params.set(name, value, true);
         }
     },
     /**

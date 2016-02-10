@@ -14,12 +14,17 @@
 var EU = EU || {};
 
 EU.MapLayerLocation = cc.Class.extend({
-    pos: cc.p(0, 0),
-    posLock: cc.p(0, 0),
-    a: cc.p(0, 0),
-    b: cc.p(0, 0),
+    pos: null,
+    posLock: null,
+    a: null,
+    b: null,
     starsForUnlock: 0,
     ctor: function () {
+        "use strict";
+        this.pos = cc.p(0, 0);
+        this.posLock = cc.p(0, 0);
+        this.a = cc.p(0, 0);
+        this.b = cc.p(0, 0);
     }
 });
 

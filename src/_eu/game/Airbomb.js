@@ -20,12 +20,13 @@ EU.Airbomb = EU.Unit.extend(
     __Airbomb : true,
 
     /**Point */
-    _targetPoint: cc.p(0,0),
+    _targetPoint: null,
 
     ctor: function(  path,  xmlFile,   position )
     {
         //if ( !NodeExt.init.call(this) ) return;
 
+        this._targetPoint = cc.p(0,0);
         this._targetPoint = position;
 
         var count = 3 ;

@@ -19,15 +19,22 @@ EU.ParamCollection = cc.Class.extend({
     __ParamCollection: true,
 
     self: this,
-    delimiter_pair : ':',
-    delimiter : ',',
-    delimiterinvalue : String.fromCharCode(1),
-    params:{},
+    delimiter_pair : null,
+    delimiter : null,
+    delimiterinvalue : null,
+    params: null,
 
     ctor: function( string ){
+        this.delimiter_pair = ':';
+        this.delimiter = ',';
+        this.delimiterinvalue = String.fromCharCode(1);
+        this.params = {};
         this.parse( string );
     },
-    // TODO:
+    /**
+     *
+     * @param {String} string
+     */
     parse: function (string) {
         if (!string) string = "";
         var l = 0;
@@ -75,27 +82,22 @@ EU.ParamCollection = cc.Class.extend({
                 l = k+1;
             }
             while(true);
-            result += name + (value.empty( ) ? value : (this.delimiter_pair + value));
+            result += name + (EU.xmlLoader.stringIsEmpty(value) ? value : (this.delimiter_pair + value));
         }
         return result;
     },
 
     get : function( name, value ) {
+        value = value || "";
         if( name in this.params )
             return this.params[name];
         else
             return value;
     },
-    get : function( name ) {
-        if( name in this.params )
-            return this.params[name];
-        else
-            return "";
-    },
     set : function( name, value, override ) {
         if( override ){
-            if( name in this.params )
-                this.params[name] = value;
+            //if( name in this.params )
+            this.params[name] = value;
         }
         else {
             if( name in this.params == false )

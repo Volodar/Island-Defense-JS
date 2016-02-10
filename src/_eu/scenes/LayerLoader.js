@@ -18,12 +18,13 @@ EU.LayerLoader = cc.Layer.extend({
 
     callback: null,
     target: null,
-    atlases: {},
+    atlases: null,
 
     ctor: function( callback, target ){
         this._super();
         this.callback = callback;
         this.target = target;
+        this.atlases = {};
     },
     addPlists: function( atlases ){
         this.atlases = atlases;

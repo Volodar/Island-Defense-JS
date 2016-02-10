@@ -19,11 +19,11 @@ EU.WaveIcon = cc.Menu.extend(
     __WaveIcon : true,
 
     //friend class AutoPlayer;
-    /**@type {cc.Node} */ _arrow : new cc.Node(),
+    /**@type {cc.Node} */ _arrow : null,
     /**@type {EU.MenuItemImageWithText} */ _icon : null,
     /**@type {cc.ProgressTimer} */ _timer : null,
     /**@type {function} */ _callback : null,
-    /**@type {cc.Point} */ _wavestart : cc.p(0,0),
+    /**@type {cc.Point} */ _wavestart : null,
     /**@type {Number} */ _elapsed : 0.0,
     /**@type {Number} */ _cooldown : 0.0,
     /**@type {Number} */ _duration : 0.0,
@@ -31,7 +31,11 @@ EU.WaveIcon = cc.Menu.extend(
 
     ctor: function( startwave, delay, cooldown, onclick, type )
     {
+        this._arrow = new cc.Node();
+        this._wavestart = cc.p(0,0);
+
         this._super();
+
         this.setPosition( 0, 0 );
 
         this._callback = onclick;
