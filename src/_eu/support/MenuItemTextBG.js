@@ -48,7 +48,7 @@ EU.MenuItemTextBG = cc.MenuItemLabel.extend({
     
         this.m_bg = EU.ImageManager.sprite( EU.kPathSpriteSquare );
         this.m_bg.setAnchorPoint( cc.POINT_ZERO );
-        this.m_bg.setColor( new cc.Color( colorBG.r * 255, colorBG.g * 255, colorBG.b * 255 ) );
+        this.m_bg.setColor( cc.color( colorBG.r * 255, colorBG.g * 255, colorBG.b * 255 ) );
         this.m_bg.setOpacity( colorBG.a * 255 );
         this.addChild( this.m_bg, -1 );
     

@@ -36,7 +36,7 @@ EU.pugixml = {
                 xmlhttp.overrideMimeType('text/xml');
             }
             var direction = cc.p(0, 0);
-        var rect = cc.rect(0, 0, 0, 0);
+            var rect = cc.rect(0, 0, 0, 0);
 
             xmlhttp.onreadystatechange = function () {
                 //Whatever

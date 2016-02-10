@@ -424,14 +424,14 @@ EU.Laboratory = EU.ScrollMenu.extend({
     cb_close: function()
     {
         this.fadeexit();
-        this.runAction( new cc.Sequence(
-            new cc.DelayTime( 0.5 ),
-            new cc.CallFunc( this.removeFromParent, this )) );
+        this.runAction( cc.sequence(
+            cc.delayTime( 0.5 ),
+            cc.callFunc( this.removeFromParent, this )) );
     },
     fadeexit: function()
     {
         var dessize = cc.view.getDesignResolutionSize();
-        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) ) );
+        var action = cc.moveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) ).easing(cc.easeBackIn());
         this.runAction( action );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopHide );
@@ -440,7 +440,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     {
         var dessize = cc.view.getDesignResolutionSize();
         this.setPosition( EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) );
-        var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
+        var action = cc.moveTo( 0.5, this.zeroPosition ).easing(cc.easeBackOut());
         this.runAction( action );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopShow );

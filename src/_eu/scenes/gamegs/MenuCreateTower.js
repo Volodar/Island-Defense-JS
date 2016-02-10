@@ -32,8 +32,8 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         /**cc.LabelTTF*/ spd: new cc.LabelTTF(),
     } ,
 
-    /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowers : {},
-    /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowersUn : {},
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowers : {},
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowersUn : {},
     /** @type {cc.Point} */ _centerPoint : cc.p(0,0),
 
     onExit: function()

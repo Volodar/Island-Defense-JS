@@ -46,13 +46,13 @@ EU.SplashScene = cc.Layer.extend({
             return false;
 
         var duration = /**FiniteTimeAction*/ action.getDuration();
-        var delay = new cc.delayTime(duration);
-        var func = new cc.callFunc( function()
+        var delay = cc.delayTime(duration);
+        var func = cc.callFunc( function()
         {
             var scene = EU.MainGS.scene();
             cc.director.runScene( scene );
         } );
-        this.runAction( new cc.sequence(delay, func) );
+        this.runAction( cc.sequence(delay, func) );
 
         return true;
     }

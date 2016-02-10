@@ -228,7 +228,7 @@ EU.ScrollMenu = cc.Layer.extend(
         for (var i = 0; i < this._items.length; i++) {
             var item = this._items[i];
             var to = EU.Common.pointAdd(item.getPosition(), shift);
-            var action = ( new cc.MoveTo( 0.2, to )).easing(cc.easeBackOut());
+            var action = (cc.moveTo( 0.2, to )).easing(cc.easeBackOut());
             item.runAction( action );
         }
         this._scrollAreaPos = pos;

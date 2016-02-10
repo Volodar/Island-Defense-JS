@@ -105,7 +105,7 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
                 var a = new Vec3( 1, 1, 1 );
                 var b = (new Vec3( this._color_fire.r, this._color_fire.g, this._color_fire.b)).scale(1.0 / 255) ;
                 var c = (a.add(b.subtract(a)).scale(t)).scale(255);
-                color = new cc.Color( c.x, c.y, c.z );
+                color = cc.color( c.x, c.y, c.z );
             }
             else if( this._ice )
             {
@@ -117,7 +117,7 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
                 var a = new Vec3( 1, 1, 1 );
                 var b = new Vec3( this._color_ice.r, this._color_ice.g, this._color_ice.b).scale(1.0 / 255);
                 var c = (a.add(b.subtract(a)).scale(t)).scale(255);
-                color = new cc.Color( c.x, c.y, c.z );
+                color = cc.color( c.x, c.y, c.z );
             }
             else if( this._electro )
             {
@@ -129,7 +129,7 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
                 var a = new Vec3( 1, 1, 1 );
                 var b = new Vec3( this._color_electro.r, this._color_electro.g, this._color_electro.b ).scale(1.0 / 255);
                 var c = (a.add(b.subtract(a)).scale(t)).scale(255);
-                color = new cc.Color( c.x, c.y, c.z );
+                color = cc.color( c.x, c.y, c.z );
             }
     
         }
