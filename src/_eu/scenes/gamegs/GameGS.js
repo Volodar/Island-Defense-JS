@@ -121,7 +121,7 @@ EU.GameGS = EU.LayerExt.extend({
         EU.assert(this.bg == null);
 
         this.mainlayer.setContentSize(sizeMap);
-        this.mainlayer.setAnchorPoint(Point.ZERO);
+        this.mainlayer.setAnchorPoint(cc.p(0,0));
 
         this.setName("gamelayer");
     },
@@ -248,7 +248,7 @@ EU.GameGS = EU.LayerExt.extend({
 
         this.interface_hero.setVisible(false);
 
-        this.interface_menu.setPosition(Point.ZERO);
+        this.interface_menu.setPosition(cc.p(0,0));
         this.interface.addChild(this.interface_menu, 99);
 
         this.menuCreateTower = new EU.MenuCreateTower();
@@ -262,7 +262,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.menuTower.setGlobalZOrder(99999);
         this.menuDig.setGlobalZOrder(99999);
 
-        this.menuCreateTower.setPosition(Point(0, 0));
+        this.menuCreateTower.setPosition(cc.p(0,0));
         this.menuCreateTower.disappearance();
         this.menuTower.disappearance();
         this.menuDig.disappearance();
@@ -371,7 +371,7 @@ EU.GameGS = EU.LayerExt.extend({
         var desSize = cc.view.getDesignResolutionSize();
 
         this.bg = EU.ImageManager.sprite("images/maps/map" + ( index + 1 ) + ".jpg");
-        this.bg.setAnchorPoint(Point(0, 0));
+        this.bg.setAnchorPoint(cc.p(0,0));
         this.mainlayer.addChild(this.bg, -1);
         this.bg.setGlobalZOrder(-2);
 
@@ -504,7 +504,7 @@ EU.GameGS = EU.LayerExt.extend({
                 this.selectedPlace = null;
             }
         }
-        this.markTowerPlaceOnLocation(Point(-9999, -9999));
+        this.markTowerPlaceOnLocation(cc.p(-9999, -9999));
     },
     setSelectedTowerPlaces: function (place) {
         this.selectedPlace = place;
@@ -544,7 +544,7 @@ EU.GameGS = EU.LayerExt.extend({
         EU.xmlLoader.load_node_xml_node(decoration, root, false);
         decoration.setName(xmlnode.name());
         decoration.setPosition(x, y);
-        decoration.setStartPosition(new cc.Point(x, y));
+        decoration.setStartPosition(cc.p(x, y));
         //decoration.setLocalZOrder( z == 0 ? -y : z );
         decoration.setActionDescription(actiondesc);
 
@@ -1001,21 +1001,21 @@ EU.GameGS = EU.LayerExt.extend({
         var t = 0.05 * value;
 
         var action = new cc.Sequence(
-            new cc.MoveBy(t, new cc.Point(0, +1 * x)),
-            new cc.MoveBy(t, new cc.Point(0, -2 * x)),
-            new cc.MoveBy(t, new cc.Point(0, +1 * x)),
-            new cc.MoveBy(t, new cc.Point(-0.5 * x, 0)),
-            new cc.MoveBy(t, new cc.Point(x, 0)),
-            new cc.MoveBy(t, new cc.Point(-0.5 * x, 0)),
-            new cc.MoveBy(t, new cc.Point(0, 2 * x)),
-            new cc.MoveBy(t, new cc.Point(0, -4 * x)),
-            new cc.MoveBy(t, new cc.Point(0, 2 * x)),
-            new cc.MoveBy(t, new cc.Point(-0.75 * x, 0)),
-            new cc.MoveBy(t, new cc.Point(1.5 * x, 0)),
-            new cc.MoveBy(t, new cc.Point(-0.75 * x, 0)),
-            new cc.MoveBy(t, new cc.Point(0, -2 * x)),
-            new cc.MoveBy(t, new cc.Point(0, 4 * x)),
-            new cc.MoveBy(t, new cc.Point(0, -2 * x)));
+            new cc.MoveBy(t, cc.p(0, +1 * x)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)),
+            new cc.MoveBy(t, cc.p(0, +1 * x)),
+            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(x, 0)),
+            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(0, 2 * x)),
+            new cc.MoveBy(t, cc.p(0, -4 * x)),
+            new cc.MoveBy(t, cc.p(0, 2 * x)),
+            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+            new cc.MoveBy(t, cc.p(1.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)),
+            new cc.MoveBy(t, cc.p(0, 4 * x)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)));
         this.runAction(action);
     },
 
@@ -1049,9 +1049,9 @@ EU.GameGS = EU.LayerExt.extend({
 
     },
     flyCameraAboveMap: function (wave) {
-        //var computePointFinish = [this]( const Point & wavebegan )
-        //var computePointStart = [this]( const Point & finish )
-        //var createAction = [this]( const Point & start, const Point & end )
+        //var computePointFinish = [this]( const point & wavebegan )
+        //var computePointStart = [this]( const point & finish )
+        //var createAction = [this]( const point & start, const point & end )
         //computePointFinish:
         var dessize = cc.view.getDesignResolutionSize();
         var mapsize = this.bg.getContentSize();
@@ -1060,7 +1060,7 @@ EU.GameGS = EU.LayerExt.extend({
         var wavePoint = wave[0];
         wavePoint.x /= this.this.mainlayer.getScaleX();
         wavePoint.y /= this.this.mainlayer.getScaleY();
-        var finish = new cc.Point(0, 0);
+        var finish = cc.p(0, 0);
         if (wavePoint.y > dessize.height / 2) {
             finish.x = 0;
             finish.y = dessize.height - mapsize.height;
@@ -1068,7 +1068,7 @@ EU.GameGS = EU.LayerExt.extend({
         //computePointStart:
         mapsize.width *= this.this.mainlayer.getScaleX();
         mapsize.height *= this.this.mainlayer.getScaleY();
-        var start = new cc.Point(0, 0);
+        var start = cc.p(0, 0);
         if (finish.y >= 0) {
             res.x = 0;
             res.y = dessize.height - mapsize.height;
