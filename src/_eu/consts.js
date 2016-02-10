@@ -138,7 +138,7 @@ EU.k =
     kInappHero3 : "",
     kInappAllHeroes : "",
     //GameScene
-    LevelMapSize : new cc.Size( 1024, 768 ),
+    LevelMapSize : cc.size(1024, 768),
 };
 
 EU.kUser_Level_prefix = "level_"; //level::index::someinfo( complite, scores )

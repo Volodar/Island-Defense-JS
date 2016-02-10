@@ -14,10 +14,10 @@
 var EU = EU || {};
 
 EU.MapLayerLocation = cc.Class.extend({
-    pos: new cc.Point(0, 0),
-    posLock: new cc.Point(0, 0),
-    a: new cc.Point(0, 0),
-    b: new cc.Point(0, 0),
+    pos: cc.p(0, 0),
+    posLock: cc.p(0, 0),
+    a: cc.p(0, 0),
+    b: cc.p(0, 0),
     starsForUnlock: 0,
     ctor: function () {
     }
@@ -44,7 +44,7 @@ EU.MapLayer = cc.Layer.extend({
     ctor: function () {
         this._super();
         this.self = this;
-        this.velocity = new cc.Point(0, 0);
+        this.velocity = cc.p(0, 0);
         this.locations = [];
         this.curveMarkers = [];
     },
@@ -341,7 +341,7 @@ EU.MapLayer = cc.Layer.extend({
             var winsize = cc.view.getDesignResolutionSize();
             var fitpos = target.scrollInfo.fitPosition(pos, winsize);
 
-            target.scrollInfo.lastShift = new cc.Point(0, 0);
+            target.scrollInfo.lastShift = cc.p(0, 0);
             target.scrollInfo.node.setPosition(fitpos);
 
             target.unfilteredVelocity = shift;
@@ -381,7 +381,7 @@ EU.MapLayer = cc.Layer.extend({
         if (this.isTouching) {
             var kFilterAmount = 0.25;
             this.velocity = (this.velocity * kFilterAmount) + (this.unfilteredVelocity * (1.0 - kFilterAmount));
-            this.unfilteredVelocity = new cc.Point(0, 0);
+            this.unfilteredVelocity = cc.p(0, 0);
         }
         else {
             if (!this.scrollInfo.node) return;
@@ -658,7 +658,7 @@ EU.MapLayer = cc.Layer.extend({
             var r = EU.Common.pointDiff(points[index], P);
             while (EU.Common.pointLength(r) > D - E) {
                 var rn = EU.Common.pointNormalized(r);
-                P = new cc.Point(P.x + rn.x * D, P.y + rn.y * D);
+                P = cc.p(P.x + rn.x * D, P.y + rn.y * D);
                 points2.push(P);
                 E = 0;
                 r = EU.Common.pointDiff(points[index], P);

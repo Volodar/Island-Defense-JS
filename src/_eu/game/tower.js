@@ -20,7 +20,6 @@ EU.mlTowersInfo = {
     /** For Test Instance of */
     __mlTowersInfo : true,
 
-
     towerInfo: function() {
         this.sellRate = 0.0;
         this.minlevel = 0;

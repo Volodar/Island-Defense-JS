@@ -48,12 +48,12 @@ EU.Common = {
             return "0";
     },
     /**
-     * Convert string to cc.Point
+     * Convert string to cc.p
      * @param {string} value
      */
     strToPoint: function (value) {
         if (!value)
-            return new cc.Point(0, 0);
+            return cc.p(0, 0);
         var frame = cc.winSize;
         var string = value;
         var point = null;
@@ -73,7 +73,7 @@ EU.Common = {
             point = EU.Common.strToPoint(string);
             point.x *= frame.width;
             point.y *= frame.height;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
 
         var rb = string.indexOf("right:");
@@ -81,14 +81,14 @@ EU.Common = {
             string = string.substr(rb + 6);
             point = EU.Common.strToPoint(string);
             point.x = frame.width + point.x;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var lt = string.indexOf("top:");
         if (lt == 0) {
             string = string.substr(lt + 4);
             point = EU.Common.strToPoint(string);
             point.y = frame.height + point.y;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var rt = string.indexOf("righttop:");
         if (rt == 0) {
@@ -96,14 +96,14 @@ EU.Common = {
             point = EU.Common.strToPoint(string);
             point.x = frame.width + point.x;
             point.y = frame.height + point.y;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var hb = string.indexOf("halfbottom:");
         if (hb == 0) {
             string = string.substr(hb + 11);
             point = EU.Common.strToPoint(string);
             point.x = frame.width / 2 + point.x;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var ht = string.indexOf("halftop:");
         if (ht == 0) {
@@ -111,14 +111,14 @@ EU.Common = {
             point = EU.Common.strToPoint(string);
             point.x = frame.width / 2 + point.x;
             point.y = frame.height + point.y;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var lh = string.indexOf("lefthalf:");
         if (lh == 0) {
             string = string.substr(lh + 9);
             point = EU.Common.strToPoint(string);
             point.y = frame.height / 2 + point.y;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
         var rh = string.indexOf("righthalf:");
         if (rh == 0) {
@@ -126,17 +126,17 @@ EU.Common = {
             point = EU.Common.strToPoint(string);
             point.x = frame.width + point.x;
             point.y = frame.height / 2 + point.y;
-            return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+            return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
         }
 
         var k = string.indexOf("x");
         if (k == -1)
-            return new cc.Point(0, 0) + add;
+            return cc.p(0, 0) + add;
 
         var x = EU.Common.strToFloat(string.substr(0, k));
         var y = EU.Common.strToFloat(string.substr(k + 1));
-        point = new cc.Point(x, y);
-        return add == null ? point : new cc.Point(point.x + add.y, point.y + add.y);
+        point = cc.p(x, y);
+        return add == null ? point : cc.p(point.x + add.y, point.y + add.y);
     },
     /**
      *
@@ -144,10 +144,10 @@ EU.Common = {
      * @returns {*}
      */
     strToSize: function (value) {
-        var size = new cc.Size(0, 0);
+        var size = cc.size(0, 0);
         var k = value.indexOf("x");
         if (k == -1) {
-            return cc.Point(0, 0) + add;
+            return cc.p(0, 0) + add;
         }
         else {
             size.width = EU.Common.strToFloat(value.substr(0, k));
@@ -158,8 +158,8 @@ EU.Common = {
 
     /**
      * return distance between two points
-     * @param {cc.Point} a
-     * @param {cc.Point} b
+     * @param {cc.p} a
+     * @param {cc.p} b
      * @returns {number}
      */
     pointDistance: function (a, b) {
@@ -173,19 +173,19 @@ EU.Common = {
     pointNormalized: function (a) {
         var l = EU.Common.pointLength(a);
         if (l < 0.0001)
-            return new cc.Point(0, 0);
-        return new cc.Point(a.x / l, a.y / l);
+            return cc.p(0, 0);
+        return cc.p(a.x / l, a.y / l);
     },
     pointAdd: function (a, b) {
-        return new cc.Point(a.x + b.x, a.y + b.y);
+        return cc.p(a.x + b.x, a.y + b.y);
     },
     pointDiff: function (a, b) {
-        return new cc.Point(a.x - b.x, a.y - b.y);
+        return cc.p(a.x - b.x, a.y - b.y);
     },
     /**
      * return square distance between two points
-     * @param {cc.Point} a
-     * @param {cc.Point} b
+     * @param {cc.p} a
+     * @param {cc.p} b
      * @returns {number}
      */
     pointDistanceSq: function (a, b) {
@@ -196,8 +196,8 @@ EU.Common = {
 
     /**
      *
-     * @param {cc.Point} a
-     * @param {cc.Point} b
+     * @param {cc.p} a
+     * @param {cc.p} b
      * @returns {number}
      */
     getAngle: function (a, b) {
@@ -207,22 +207,22 @@ EU.Common = {
     /**
      *
      * @param {number} direction
-     * @returns {cc.Point}
+     * @returns {cc.p}
      */
     getVectorByDirection: function (direction) {
         var rad = cc.degreesToRadians(direction);
         var x = Math.cos(rad);
         var y = -Math.sin(rad);
-        return cc.Point(x, y);
+        return cc.p(x, y);
     },
 
     /**
      *
-     * @param {cc.Point} radius
+     * @param {cc.p} radius
      * @returns {number}
      */
     getDirectionByVector: function (radius) {
-        var axis = cc.Point(1, 0);
+        var axis = cc.p(1, 0);
         return EU.Common.getAngle(axis, radius);
     },
     /**
@@ -248,9 +248,9 @@ EU.Common = {
     },
     /**
      * get distance from point to line (A,B)
-     * @param {cc.Point} point
-     * @param {cc.Point} A
-     * @param {cc.Point} B
+     * @param {cc.p} point
+     * @param {cc.p} A
+     * @param {cc.p} B
      * @returns {number}
      */
     getDistance: function (point, A, B) {
@@ -264,9 +264,9 @@ EU.Common = {
     },
     /**
      *
-     * @param {cc.Point} segmentA
-     * @param {cc.Point} segmentB
-     * @param {cc.Point} point
+     * @param {cc.p} segmentA
+     * @param {cc.p} segmentB
+     * @param {cc.p} point
      * @returns {number}
      */
     distanse_pointToLineSegment: function (segmentA, segmentB, point) {
@@ -289,7 +289,7 @@ EU.Common = {
     },
     /**
      *
-     * @param {cc.Point[]} route
+     * @param {cc.p[]} route
      * @param {number} objectSpeed
      * @returns {actions}
      */
@@ -450,7 +450,7 @@ EU.Common = {
      * @returns {string}
      */
     sizeToStr: function (size) {
-        return EU.Common.pointToStr(new cc.Point(size.width, size.height));
+        return EU.Common.pointToStr(cc.p(size.width, size.height));
     },
     /**
      *
@@ -458,7 +458,7 @@ EU.Common = {
      * @returns {cc.Rect}
      */
     strToRect: function (value) {
-        var rect = new cc.Rect(0, 0, 0, 0);
+        var rect = cc.rect(0, 0, 0, 0);
         var list = [];
         EU.Common.split(list, value);
         rect.origin = EU.Common.strToPoint((list.length > 0) ? list[0] : "");
@@ -541,7 +541,7 @@ EU.Common = {
      * @param radius
      */
     getRandPointInPlace: function (center, radius) {
-        var r = cc.Point(0, 0);
+        var r = cc.p(0, 0);
         var angle = Math.random() * Math.PI * 2;
         var ca = Math.cos(angle);
         var sa = Math.sin(angle);
@@ -662,26 +662,26 @@ EU.Common = {
     }
 };
 
-EU.ActionEnable = cc.Action.extend({
-    update: function (time) {
-        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Enabled.int, EU.Common.boolToStr(true));
-    },
-    reverse: function () {
-        return new EU.ActionDisable();
-    },
-    clone: function () {
-        return new EU.ActionEnable();
-    }
-});
-
-EU.ActionDisable = cc.Action.extend({
-    update: function (time) {
-        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Disabled.int, EU.Common.boolToStr(true));
-    },
-    reverse: function () {
-        return new EU.ActionEnable();
-    },
-    clone: function () {
-        return new EU.ActionDisable();
-    }
-});
+//EU.ActionEnable = cc.Action.extend({
+//    update: function (time) {
+//        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Enabled.int, EU.Common.boolToStr(true));
+//    },
+//    reverse: function () {
+//        return new EU.ActionDisable();
+//    },
+//    clone: function () {
+//        return new EU.ActionEnable();
+//    }
+//});
+//
+//EU.ActionDisable = cc.Action.extend({
+//    update: function (time) {
+//        EU.xmlLoader.setProperty_int(this.getTarget(), EU.xmlKey.Disabled.int, EU.Common.boolToStr(true));
+//    },
+//    reverse: function () {
+//        return new EU.ActionEnable();
+//    },
+//    clone: function () {
+//        return new EU.ActionDisable();
+//    }
+//});

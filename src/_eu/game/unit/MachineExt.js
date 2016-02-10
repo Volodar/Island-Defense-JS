@@ -1,3 +1,15 @@
+/******************************************************************************
+ * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
+ *
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
+ ******************************************************************************/
+
 //Define namespace
 var EU = EU || {};
 
@@ -33,7 +45,7 @@ EU.MachineExt = function(){
         var statename = xmlmachine.getAttribute( EU.k.xmlTag.StartState );
         if( EU.xmlLoader.stringIsEmpty(statename) == false )
         {
-            var state = this.state( statename );
+            var state = this.state_str( statename );
             this.start( state.get_name() );
         }
     },
@@ -58,9 +70,9 @@ EU.MachineExt = function(){
             var event = node.attributes[0].name;
             var tostate = node.getAttribute( event );
 
-            var from = this.state( state );
-            var to = this.state( tostate );
-            var by = this.event( event );
+            var from = this.state_str( state );
+            var to = this.state_str( tostate );
+            var by = this.event_str( event );
 
             from.add_transition( by.get_name(), to.get_name() );
         }

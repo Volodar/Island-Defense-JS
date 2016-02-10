@@ -23,7 +23,7 @@ EU.WaveIcon = cc.Menu.extend(
     /**@type {EU.MenuItemImageWithText} */ _icon : null,
     /**@type {cc.ProgressTimer} */ _timer : null,
     /**@type {function} */ _callback : null,
-    /**@type {cc.Point} */ _wavestart : new cc.Point(0,0),
+    /**@type {cc.Point} */ _wavestart : cc.p(0,0),
     /**@type {Number} */ _elapsed : 0.0,
     /**@type {Number} */ _cooldown : 0.0,
     /**@type {Number} */ _duration : 0.0,
@@ -73,7 +73,7 @@ EU.WaveIcon = cc.Menu.extend(
         this._icon.getNormalImage().addChild( this._timer, 1 );
         this._timer.setPosition( Point( this._icon.getNormalImage().getContentSize() / 2 ) );
 
-        var mover = ( new cc.MoveBy( 0.5, new cc.Point( 10, 0 ))).easing(cc.easeInOut(2.0));
+        var mover = ( new cc.MoveBy( 0.5, cc.p( 10, 0 ))).easing(cc.easeInOut(2.0));
         var scaler = ( new cc.ScaleBy( 0.5, 1.05)).easing(cc.easeInOut(2.0));
         var actionarrow = new cc.Sequence( mover, mover.reverse() );
         var actionicon = new cc.Sequence( scaler, scaler.reverse() );

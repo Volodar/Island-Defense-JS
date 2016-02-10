@@ -7,10 +7,10 @@ EU.Mover = cc.Class.extend(
     /** For Test Instance of */
     __Mover: true,
 
-    /**@type {cc.math.Vec2[]}*/ _route: [],
-    /**@type {cc.math.Vec2}*/ _position: null,
-    /**@type {cc.math.Vec2} */_currentDirection: null,
-    /**@type {cc.math.Vec2}*/ _truncatedDirection: null,
+    /**@type {Array<cc.p>} */ _route: [],
+    /**@type {cc.p} */ _position: null,
+    /**@type {cc.p} */_currentDirection: null,
+    /**@type {cc.p} */ _truncatedDirection: null,
     _currentAngle: 0,
     _velocity: 0,
     _defaultvelocity: 0,
@@ -38,24 +38,24 @@ EU.Mover = cc.Class.extend(
     update: function (dt) {
         if (this._route.length == 0)
             return;
-        /**@type {cc.math.Vec2} direction */
-        var direction = new cc.math.Vec2(0, 0);
+        /**@type {cc.p} direction */
+        var direction = cc.p(0, 0);
 
         var moveVelocity = this._velocity;
         while (this._route.length > 0) {
-            direction = cc.math.Vec2.subtract(direction, this._route[0], this.getPosition());
-            var T = direction.length() / (moveVelocity * dt);
+            direction = cc.pSub( this._route[0], this.getPosition());
+            var T = cc.pLength(direction) / (moveVelocity * dt);
             if (T < 1)
                 this._route.shift();
             else
                 break;
         }
-        direction.normalize();
+        cc.pNormalizeIn(direction);
 
         var isometric = (1 + Math.abs(direction.x)) / 2;
-        var shift = direction.scale(moveVelocity * dt * isometric);
+        var shift = cc.pMult(direction, moveVelocity * dt * isometric);
 
-        this.setLocation(cc.math.Vec2.add(new cc.math.Vec2(0, 0), this._position, shift));
+        this.setLocation(cc.pAdd( this._position, shift));
 
         if (this._route.length == 0) {
             this._onFinish();
@@ -68,9 +68,9 @@ EU.Mover = cc.Class.extend(
             this._onFinish();
         }
         else {
-            var direction = this._route.length > 1 ? cc.math.Vec2.subtract(new cc.math.Vec2(0, 0), this._route[1], this._route[0])
-                : new cc.math.Vec2(1, 0);
-            direction.normalize();
+            var direction = this._route.length > 1 ? cc.pSub(this._route[1], this._route[0])
+                : cc.p(1, 0);
+            cc.pNormalizeIn(direction);
             this.setDirection(direction);
             this.setLocation(this._route[0]);
         }
@@ -86,7 +86,7 @@ EU.Mover = cc.Class.extend(
             this._onFinish();
     },
     setLocation: function (position) {
-        var direction = cc.math.Vec2.subtract(new cc.math.Vec2(0, 0), position, this._position).normalize();
+        var direction = cc.pNormalize(cc.pSub( position, this._position));
         this._position = position;
         this.setDirection(direction);
 

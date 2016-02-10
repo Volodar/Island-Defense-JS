@@ -1,3 +1,15 @@
+/******************************************************************************
+ * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
+ *
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
+ ******************************************************************************/
+
 //Define namespace
 var EU = EU || {};
 
@@ -17,12 +29,12 @@ EU.Unit = cc.Node.extend({
 
     Extra : function()
     {
-        /** @type {cc.math.Vec2} */ this._electroPosition = new cc.math.Vec2(0,0);
+        /** @type {cc.p} */ this._electroPosition = cc.p(0,0);
         /** @type {String} */ this._electroSize = "";
         /** @type {Number} */ this._electroScale = 0;
-        /** @type {cc.math.Vec2} */ this._firePosition = null;
+        /** @type {cc.p} */ this._firePosition = cc.p(0,0);
         /** @type {Number} */ this._fireScale = 0;
-        /** @type {cc.math.Vec2} */ this._freezingPosition = null;
+        /** @type {cc.p} */ this._freezingPosition = cc.p(0,0);
         /** @type {Number} */ this._freezingScale = 0;
 
         this.getPositionElectro = function()
@@ -76,7 +88,7 @@ EU.Unit = cc.Node.extend({
     {
         this.byangle = 0.0;
         this.useangle = 0.0;
-        this.offset = new cc.math.Vec2(0,0);
+        this.offset = cc.p(0,0);
     },
     /** @type {String} */ _bulletXml : null,
     /** @type Object<Number, EU.BulletParams>*/ _bulletParams : {},
@@ -390,7 +402,7 @@ EU.Unit = cc.Node.extend({
         {
             var len = /** {String} */  "push_event:".length;
             /** {String} */ var  eventname = name.substr( len );
-            var event = EU.Machine.event( eventname );
+            var event = EU.Machine.event_str( eventname );
 
             var self = this;
             var callback = this.push_event.bind(this, event.get_name());
@@ -485,7 +497,7 @@ EU.Unit = cc.Node.extend({
         var target = this._targets.length == 0 ? null : this._targets[0];
         if( target )
         {
-            var now = cc.math.Vec2.subtract(new cc.math.Vec2(0,0), target.getPosition(),this.getPosition()).normalize();
+            var now = cc.pNormalize(cc.pSub( target.getPosition(), this.getPosition()));
             this._mover.setDirection( now );
             this.on_mover( this.getPosition(), now );
         }
@@ -568,9 +580,8 @@ EU.Unit = cc.Node.extend({
             for (var i = 0; i < this._targets.length; i++) {
                 var target = this._targets[i];
                 EU.assert( target );
-                var angle = this._bulletParams[this._mover.getCurrentAngle()].useangle;
-                var position = cc.math.Vec2.add(new cc.math.Vec2(0,0),
-                    this._bulletParams[this._mover.getCurrentAngle()].offset , this.getPosition());
+                var angle = this._bulletParams[this._mover._currentAngle].useangle;
+                var position = cc.pAdd(this._bulletParams[this._mover._currentAngle].offset , this.getPosition());
                 var bullet = new EU.Bullet( this._bulletXml, this, target, angle, position );
                 bullet.setType( EU.UnitType.tower );
                 GameGS.getInstance().getGameBoard().addUnit( bullet );
@@ -649,16 +660,16 @@ EU.Unit = cc.Node.extend({
     {
         this.runEvent( "on_enter" );
     },
-    moveByRoute : function( /**Array<cc.math.Vec2> */ aroute )
+    moveByRoute : function( /**Array<cc.p> */ aroute )
     {
         var route = aroute;
 
         var pos = this.getPosition();
         var index = 0 ;
         var min_dist = 99999 ;
-        for( var i = 0; i < route.length; ++i )
+        for( var i = 0; i < cc.pLength(route); ++i )
         {
-            var dist = cc.math.Vec2.subtract( new cc.math.Vec2(0,0), pos.getDistance, route[i]).length();
+            var dist = cc.pDistance(pos, route[i]);
             if( dist < min_dist )
             {
                 index = i;

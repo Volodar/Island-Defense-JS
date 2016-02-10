@@ -18,7 +18,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     {
         this._super();
         this.scaleFactor = 1;
-        this.zeroPosition = new cc.Point(0,0);
+        this.zeroPosition = cc.p(0,0);
         this.self = this;
         var dessize = cc.view.getDesignResolutionSize();
         this.setCascadeOpacityEnabled( true );
@@ -48,8 +48,8 @@ EU.Laboratory = EU.ScrollMenu.extend({
         }
 
 
-        var grid = new cc.Size(0,0);
-        var content = new cc.Size(0,0);
+        var grid = cc.size(0,0);
+        var content = cc.size(0,0);
         var towers = [];
         EU.mlTowersInfo.fetch( towers );
         for( var i=0; i< towers.length; ++i )
@@ -72,13 +72,13 @@ EU.Laboratory = EU.ScrollMenu.extend({
             this.setIcon( tower, false );
         }
 
-        this.setAlignedStartPosition( new cc.Point( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor ) );
+        this.setAlignedStartPosition( cc.p( -this.zeroPosition.x * this.scaleFactor, -275 * this.scaleFactor ) );
         this.setGrisSize( grid );
         this.align( 99 );
 
-        var scissor = new cc.Size( dessize.width, 465 );
+        var scissor = cc.size( dessize.width, 465 );
         var asp = this.getAlignedStartPosition();
-        var visibleRect = new cc.Rect(asp.x, asp.y,scissor.width,scissor.height);
+        var visibleRect = cc.rect(asp.x, asp.y,scissor.width,scissor.height);
         this.setVisibleRect( visibleRect );
         this.setScrollEnabled( true );
         this.setTouchEnabled( true );
@@ -431,7 +431,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     fadeexit: function()
     {
         var dessize = cc.view.getDesignResolutionSize();
-        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, new cc.Point( 0, -dessize.height ) ) ) );
+        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) ) );
         this.runAction( action );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopHide );
@@ -439,7 +439,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     fadeenter: function()
     {
         var dessize = cc.view.getDesignResolutionSize();
-        this.setPosition( EU.Common.pointAdd(this.zeroPosition, new cc.Point( 0, -dessize.height ) ) );
+        this.setPosition( EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) );
         var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
         this.runAction( action );
         //TODO: audio

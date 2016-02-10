@@ -161,11 +161,11 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         {
             EU.assert( parent );
 
-            var center = new cc.Point( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
+            var center = cc.p( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
 
             if( !label )
             {
-                label = new cc.LabelBMFont(  menuitem._text, menuitem._font, -1, cc.TEXT_ALIGNMENT_LEFT, new cc.Point(0,0))
+                label = new cc.LabelBMFont(  menuitem._text, menuitem._font, -1, cc.TEXT_ALIGNMENT_LEFT, cc.p(0,0))
                 parent.addChild( label );
                 label.setName( kNameText );
             }
@@ -208,14 +208,14 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var allocate = function( label2, parent, menuitem ) {
             EU.assert( parent );
 
-            var center = new cc.Point( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
+            var center = cc.p( parent.getContentSize().width / 2, parent.getContentSize().height / 2 );
 
             if( !label2 ) {
                 var str = parent.getName();
-                label2 = new cc.LabelBMFont(  menuitem._text, menuitem._font, -1, cc.TEXT_ALIGNMENT_LEFT, new cc.Point(0,0))
+                label2 = new cc.LabelBMFont(  menuitem._text, menuitem._font, -1, cc.TEXT_ALIGNMENT_LEFT, cc.p(0,0))
                 parent.addChild( label2 );
                 label2.setName( kNameText2 );
-                label2.setAnchorPoint(new cc.Point(0.5, 0.5));
+                label2.setAnchorPoint(cc.p(0.5, 0.5));
             }
             else {
                 label2.setBMFontFilePath( menuitem_font2 );
@@ -240,23 +240,23 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
             return;
         texture.removeEventListener("load", this );
 
-        var center = new cc.Point( this.getNormalImage().getContentSize().width / 2, this.getNormalImage().getContentSize().height / 2 );
+        var center = cc.p( this.getNormalImage().getContentSize().width / 2, this.getNormalImage().getContentSize().height / 2 );
 
         var node = null;
         if( (node = this.getNormalImage()) ){
-            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( cc.p( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
         }
         if( (node = this.getSelectedImage()) ) {
-            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( cc.p( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
         }
         if( (node = this.getDisabledImage()) ) {
-            node.setAnchorPoint( new cc.Point( 0.5, 0.5 ) );
+            node.setAnchorPoint( cc.p( 0.5, 0.5 ) );
             node.setPosition( center );
             node.setCascadeColorEnabled( true );
             node.setCascadeOpacityEnabled( true );
@@ -279,7 +279,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      */
     rect: function() {
         //MenuItem::rect();
-        var result = new cc.Rect(this._position.x, this._position.y,
+        var result = cc.rect(this._position.x, this._position.y,
             this._contentSize.width, this._contentSize.height);
 
         var node = this.getNormalImage();
@@ -288,7 +288,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         var size = node.getContentSize();
         var pos = this.getPosition();
         var center = node.getAnchorPoint();
-        result.origin = new cc.Point( -size.width * center.x, -size.height * center.y );
+        result.origin = cc.p( -size.width * center.x, -size.height * center.y );
         result.origin += pos;
         result.size = size;
 

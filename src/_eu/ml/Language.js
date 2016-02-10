@@ -61,18 +61,20 @@ EU.Language  = {
     },
     load: function()
     {
-        var doc = new EU.pugixml.readXml( "lang/lang.xml");
-        var root = doc.firstElementChild;
-        var lang = root.getElementsByTagName("languages")[0];
-        for( var i = 0; i < lang.children.length; ++i )
-        {
-            var node = lang.children[i];
-            var id = node.attributes[0].name;
-            var path = node.attributes[0].value;
-            this.packs[id] = this.loadPack(path);
-            cc.log( "language added: [" + id + "] [" + path + "]");
-        }
-        this.set("en");
+        var cb = function(doc) {
+            var root = doc.firstElementChild;
+            var lang = root.getElementsByTagName("languages")[0];
+            for (var i = 0; i < lang.children.length; ++i) {
+                var node = lang.children[i];
+                var id = node.attributes[0].name;
+                var path = node.attributes[0].value;
+                this.packs[id] = this.loadPack(path);
+                cc.log("language added: [" + id + "] [" + path + "]");
+            }
+            this.set("en");
+        };
+        EU.pugixml.readXml( "lang/lang.xml", cb, this);
+
         //TODO: get system language
         //var def = lang.getAttribute("default");
         //var systemlang = "en"
