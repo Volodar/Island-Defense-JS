@@ -1,1837 +1,1352 @@
-/**
+/******************************************************************************
+ * Copyright 2014-2016 Vladimir Tolmachev
+ * Copyright 2016 Visionarity AG
+ * Vladimir Tolmachev and Visionarity AG have unlimited commercial
+ * licenses for commercial use and customization
  *
- */
+ * Author: Vladimir Tolmachev (tolm_vl@hotmail.com)
+ * Ported C++ to Javascript: Visionarity AG / Vladimir Tolmachev
+ * Project: Island Defense (JS)
+ * If you received the code not from the author, please contact us
+ ******************************************************************************/
+
 //Define namespace
 var EU = EU || {};
 
-EU.zorder =
-{
-    bg: -1000,
-    earth: -999,
-    creep_default: 10,
-    creep_earth: 10,
-    tower: 20,
-    tower_cariage: 19,
-    tower_turret: 25,
-    bullet: 30,
-    tree: 40,
-    creep_sky: 99998,
-    bullet_sky: 99997,
-    sky: 99999,
-    creep_indicator: 100000
-};
+EU.TouchInfo = cc.Class.extend({
+    nodeBegin: null,
+    nodeEnd: null,
+    touch: null,
+    id: null,
+    ctor: function (node, touch) {
+        this.nodeBegin = node;
+        this.id = touch.getID();
+    },
+});
 
-EU.touchInfo = (function(){
+EU.ScoresNode = cc.Node.extend({});
+EU.GameBoard = cc.Class.extend({});
+EU.MenuTower = cc.Menu.extend({});
+EU.MenuTower = cc.Menu.extend({});
+EU.MenuDig = cc.Menu.extend({});
+EU.MenuItemCooldown = cc.Menu.extend({});
+EU.HeroIcon = cc.Node.extend({});
+EU.BoxMenu = cc.Menu.extend({});
 
-    /**
-     *  static variable @type {Integer} _id
-     *  closure return inner function that operate with its outer scope chain
-     */
-    var _id = 0;
+EU.GameGS = EU.LayerExt.extend({
+    /** @type{EU.GameBoard} */ board: null,
+    /** @type{cc.Node} */  mainlayer: null,
+    /** @type{cc.Sprite} */  bg: null,
+    /** @type{cc.Node} */  objects: null,
+    /** @type{cc.Node} */  interface: null,
+    /** @type{Array<EU.TowerPlace>} */ towerPlaces: null,
+    /** @type{EU.TowerPlace} */  selectedPlace: null,
+    /** @type{EU.Unit} */  selectedUnit: null,
+    /** @type{Array<cc.Node>} */ fragments: null,
+    /** @type{Array<string>} */  excludedTowers: null,
+    /** @type{Float} */  dalayWaveIcon: null,
+    /** @type{bool} */  isIntteruptHeroMoving: null,
+    /** @type{Integer} */  scoresForStartWave: null,
+    /** @type{Integer} */  boughtScoresForSession: null,
+    /** @type{EU.MenuCreateTower} */  menuCreateTower: null,
+    /** @type{EU.MenuTower} */  menuTower: null,
+    /** @type{EU.MenuDig} */  menuDig: null,
+    /** @type{EU.ScoresNode} */  scoresNode: null,
+    /** @type{Object<Integer, EU.TouchInfo>} */  touches: null,
+    /** @type{EU.ScrollTouchInfo} */  scrollInfo: null,
+    /** @type{bool} */  enabled: null,
+    /** @type{EU.MenuItemImageWithText} */  interface_rateNormal: null,
+    /** @type{EU.MenuItemImageWithText} */ interface_rateFast: null,
+    /** @type{EU.MenuItemImageWithText} */ interface_pause: null,
+    /** @type{EU.MenuItemImageWithText} */ interface_shop: null,
+    /** @type{EU.MenuItemCooldown} */ interface_desant: null,
+    /** @type{EU.MenuItemCooldown} */ interface_bomb: null,
+    /** @type{EU.MenuItemCooldown} */ interface_heroSkill: null,
+    /** @type{EU.HeroIcon} */  interface_hero: null,
+    /** @type{cc.Menu} */  interface_menu: null,
+    /** @type{EU.BoxMenu} */  box: null,
+    /** @type{Array<EU.WaveIcon>} */  waveIcons: null,
+    /** @type{bool} */  runFlyCamera: null,
+    /** @type{bool} */  skillModeActive: null,
+    /** @type{EU.MenuItemCooldown} */ selectedSkill: null,
+    /** @type{cc.EventListener} */ touchListenerNormal: null,
+    /** @type{cc.EventListener} */ touchListenerDesant: null,
+    /** @type{cc.EventListener} */ touchListenerBomb: null,
+    /** @type{cc.EventListener} */ touchListenerHero: null,
+    /** @type{cc.EventListener} */ touchListenerHeroSkill: null,
 
-    return cc.Class.extend(
-        {
-            /** For Test Instance of */
-            __touchInfo : true,
+    //TODO: ~GameGS()
+    //{
+    //    MouseHoverScroll.setNode( null );
+    //    MouseHoverScroll.setScroller( null );
+    //    __push_auto_check( "~GameGS" );
+    //    gameGSInstance = null;
+    //    this.board.clear();
+    //    ShootsEffectsClear();
+    //
+    //    cc.director().getScheduler().setTimeScale( 1 );
+    //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
+    //
+    //    if( this.scoresNode )
+    //        this.scoresNode.removeFromParent();
+    //},
 
-            ctor: function(_nodeBegan, _touch) {
-                this.nodeBegin = _nodeBegan;
-                this.nodeEnd = null;
-                this.touch = _touch;
-                this.id = _id++;
-            },
-            isLessThan : function (src)
-            {
-                return this.id < src.id;
-            },
+    ctor: function () {
+        this.board = new EU.GameBoard();
+        this.enabled = true;
+        this.dalayWaveIcon = 0;
+        this.scoresForStartWave = 0;
+        this.boughtScoresForSession = 0;
+        this.runFlyCamera = true;
+        this.skillModeActive = false;
 
-            /** @type {cc.Node} */  nodeBegin : null,
-            /** @type {cc.Node} */  nodeEnd : null,
-            /** @type {Touch} */  touch : null,
-            /** @type {Integer} */  id : null
+        this.interface_menu = null;
+
+        var desSize = cc.view.getDesignResolutionSize();
+        var winSize = cc.director().getWinSize();
+        var sizeMap = EU.k.LevelMapSize;
+
+        this.mainlayer = new cc.Node();
+        this.mainlayer.setName("mainlayer");
+        this.addChild(this.mainlayer);
+        var sx = winSize.width / sizeMap.width;
+        var sy = winSize.height / sizeMap.height;
+        var scale = Math.max(sx, sy);
+        this.mainlayer.setScale(scale);
+
+        this.objects = Node.create();
+        this.objects.setName("objects");
+        this.mainlayer.addChild(this.objects, 1);
+
+        EU.assert(this.bg == null);
+
+        this.mainlayer.setContentSize(sizeMap);
+        this.mainlayer.setAnchorPoint(cc.p(0,0));
+
+        this.setName("gamelayer");
+    },
+    getGameBoard: function () {
+        return this.board;
+    },
+
+    init: function () {
+        this.touchListenerNormal = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: false,
+            onTouchesBegan: this.onTouchesBegan,
+            onTouchesMoved: this.onTouchesMoved,
+            onTouchesEnded: this.onTouchesEnded,
+            onTouchesCancelled: this.onTouchesCancelled
         });
-})();
+        this.touchListenerDesant = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: true,
+            onTouchesBegan: this.onTouchSkillBegan,
+            onTouchesMoved: null,
+            onTouchesEnded: this.onTouchSkillEnded.bind(this, EU.Skill.desant),
+            onTouchesCancelled: this.onTouchSkillCanceled
+        });
+        this.touchListenerBomb = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: true,
+            onTouchesBegan: this.onTouchSkillBegan,
+            onTouchesMoved: null,
+            onTouchesEnded: this.onTouchSkillEnded.bind(this, EU.Skill.bomb),
+            onTouchesCancelled: this.onTouchSkillCanceled
+        });
+        this.touchListenerHeroSkill = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: true,
+            onTouchesBegan: this.onTouchSkillBegan,
+            onTouchesMoved: null,
+            onTouchesEnded: this.onTouchSkillEnded.bind(this, EU.Skill.heroskill),
+            onTouchesCancelled: this.onTouchSkillCanceled
+        });
+        this.touchListenerHero = cc.EventListener.create({
+            event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+            swallowTouches: true,
+            onTouchesBegan: this.onTouchHeroBegan,
+            onTouchesMoved: this.onTouchHeroMoved,
+            onTouchesEnded: this.onTouchHeroEnded,
+            onTouchesCancelled: this.onTouchHeroCanceled
+        });
 
-EU.Skill = cc.Class.extend(
-{
+        this.scrollInfo = new EU.ScrollTouchInfo();
 
-    /** For Test Instance of */
-    __Skill : true,
+        this.createInterface();
 
-    desant : null,
-    bomb : null,
-    heroskill : null
-});
+        //TODO:Achievements.setCallbackOnAchievementObtained( std.bind( &achievementsObtained, this, std.placeholders._1 ) );
 
-EU.ScoresNode = cc.Node.extend(
-{
-    /** For Test Instance of */
-    __ScoresNode : true,
+        this.load_str("ini/gamescene/scene.xml");
 
-    m_scores: {},
-    /** @type {ccui.Text} m_heaths */
-    m_healths : null,
-    /** @type {ccui.Text} m_golds */
-    m_golds : null,
-    /** @type {ccui.Text} m_waves */
-    m_waves : null,
-    /** @type {cc.Sprite} m_healthsIcon */
-    m_healthsIcon : null
-});
+        if (EU.k.useInapps == false) {
+            this.interface_shop.setPositionY(-9999);
+        }
 
-EU.GameGS = (function(){
+        this.runEvent("oncreate");
 
-    var zOrderOfArriavalCounter = 0 ;
-    var zOrderInterfaceMenu = 99;
-    var zOrderInterfaceWaveIcon = 100;
+        EU.UserData.write(EU.k.LastGameResult, EU.k.GameResultValueNone);
 
-    var gameGSInstance = null;
+        return true;
+    },
+    createInterface: function () {
+        var desSize = cc.view.getDesignResolutionSize();
 
-    var kExt_png = ".png" ;
-    var kSuffixUn = "_un" ;
+        this.interface = new cc.Node();
+        this.interface.setName("interface");
+        this.addChild(this.interface, 9);
 
-    var gameGS = cc.Layer.extend();
-    cc.extend(gameGS, cc.NodeExt);
-    return gameGS.extend(
-    {
 
-        /** TODO: @type {EU.GameBoard} */ m_board: null,
-        /** @type {cc.Node} */  m_mainlayer: null,
-        /** @type {cc.Sprite} */  m_bg: null,
-        /** @type {cc.Node} */  m_objects: null,
-        /** @type {cc.Node} */  m_interface: null,
-        /** TODO: @type {Array<EU.TowerPlace>} */ m_towerPlaces: [],
-        /** TODO: @type {EU.TowerPlace} */  m_selectedPlace: null,
-        /** TODO: @type {EU.Unit} */ _selectedUnit: null,
-        /** @type {Array<Node>} */ m_fragments: [],
-        /** @type {Array<String>} */ m_excludedTowers: [],
+        var cb0 = this.menuShop.bind(this, true);
+        var cb1 = this.menuPause;
+        var cb2 = this.menuSkill.bind(this, EU.Skill.desant);
+        var cb3 = this.menuSkill.bind(this, EU.Skill.bomb);
+        var cb5 = this.menuHero;
 
-        /** @type {Number} */ m_dalayWaveIcon: null,
+        var kPathButtonShop = EU.k.resourceGameSceneFolder + "button_shop.png";
+        var kPathButtonPauseNormal = EU.k.resourceGameSceneFolder + "icon_pause.png";
+        var kPathButtonDesantBack = EU.k.resourceGameSceneFolder + "button_desant_2_1.png";
+        var kPathButtonDesantForward = EU.k.resourceGameSceneFolder + "button_desant_2.png";
+        var kPathButtonDesantCancel = EU.k.resourceGameSceneFolder + "button_desant_2_3.png";
+        var kPathButtonBombBack = EU.k.resourceGameSceneFolder + "button_desant_1_1.png";
+        var kPathButtonBombForward = EU.k.resourceGameSceneFolder + "button_desant_1.png";
+        var kPathButtonBombCancel = EU.k.resourceGameSceneFolder + "button_desant_1_3.png";
 
-        /** @type {Integer} */ _scoresForStartWave: null,
-        /** @type {Integer} */ _boughtScoresForSession: null,
+        var cancel = EU.k.resourceGameSceneFolder + "icon_x_10.png";
+        var cdd = this.board.getSkillParams().cooldownDesant;
+        var cda = this.board.getSkillParams().cooldownAirplane;
+        this.interface_shop = new EU.MenuItemImageWithText(kPathButtonShop, cb0);
+        this.interface_pause = new EU.MenuItemImageWithText(kPathButtonPauseNormal, cb1);
+        this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
+        this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
+        this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
+        this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
+        this.interface_hero.setEnabled(true);
+        this.interface_desant.setAnimationOnFull("airstike_animation1");
+        this.interface_bomb.setAnimationOnFull("airstike_animation2");
 
-        /** TODO: @type {EU.MenuCreateTower} */ m_menuCreateTower: null,
-        /** TODO: @type {EU.MenuTower} */ m_menuTower: null,
-        /** TODO: @type {EU.MenuDig} */ m_menuDig: null,
-        /** @type {ScoresNode} */ m_scoresNode: null,
+        this.interface_shop.setName("shop");
+        this.interface_pause.setName("pause");
+        this.interface_desant.setName("desant");
+        this.interface_bomb.setName("bomb");
+        this.interface_heroSkill.setName("heroskill");
+        this.interface_hero.setName("hero");
 
-        /** @type {Object<Integer, EU.touchInfo>} */ m_touches: {},
-        /** @type {EU.ScrollTouchInfo} */ _scrollInfo: null,
+        this.interface_desant.setSound("##sound_button##");
+        this.interface_bomb.setSound("##sound_button##");
+        this.interface_heroSkill.setSound("##sound_button##");
 
-        getInterfaceNode: function() { return this.m_interface; },
-        //void shake(var value = 1.f);
-        getMainLayer: function ( ) { return this.m_mainlayer;},
-        getMenuCreateTower: function( ) { return this.m_menuCreateTower; },
-        
-        m_interfaceMenu: {
-            /** @type {EU.MenuItemImageWithText} */ rateNormal: null,
-            /** @type {EU.MenuItemImageWithText} */ rateFast: null,
-            /** @type {EU.MenuItemImageWithText} */ pause: null,
-            /** @type {EU.MenuItemImageWithText} */ shop: null,
-            /** @type {EU.MenuItemCooldown} */ desant: null,
-            /** @type {EU.MenuItemCooldown} */ bomb: null,
-            /** @type {EU.MenuItemCooldown} */ heroSkill: null,
-            /** @type {EU.HeroIcon} */ hero: null,
-            /** @type {cc.Menu} */  menu: null
-        },
-        //IDialog * m_dialog: null,
-        /** @type {BoxMenu} */ m_box: null,
+        this.interface_menu = new cc.Menu();
+        this.interface_menu.setName("menu");
+        this.interface_menu.addChild(this.interface_shop);
+        this.interface_menu.addChild(this.interface_pause);
+        this.interface_menu.addChild(this.interface_desant);
+        this.interface_menu.addChild(this.interface_bomb);
+        this.interface_menu.addChild(this.interface_heroSkill);
+        this.interface_menu.addChild(this.interface_hero);
+        this.interface_menu.setEnabled(false);
 
-        /** @type {Array<WaveIcon>} */ _waveIcons: [],
-        /** @type {bool} */  _runFlyCamera: null,
+        this.interface_hero.setVisible(false);
 
-        /** @type {bool} */  _skillModeActived: null,
-        /** @type {EU.MenuItemCooldown} */ _selectedSkill: null,
-        /** @type {EventListener} */ _touchListenerNormal: null,
-        /** @type {EventListener} */ _touchListenerDesant: null,
-        /** @type {EventListener} */ _touchListenerBomb: null,
-        /** @type {EventListener} */ _touchListenerHero: null,
-        /** @type {EventListener} */ _touchListenerHeroSkill: null,
+        this.interface_menu.setPosition(cc.p(0,0));
+        this.interface.addChild(this.interface_menu, 99);
 
-        restartLevel: function()
+        this.menuCreateTower = new EU.MenuCreateTower();
+        this.menuTower = new EU.MenuTower();
+        this.menuDig = new EU.MenuDig();
+
+        this.interface.addChild(this.menuCreateTower, 999999);
+        this.interface.addChild(this.menuTower, 999999);
+        this.interface.addChild(this.menuDig, 999999);
+        this.menuCreateTower.setGlobalZOrder(99999);
+        this.menuTower.setGlobalZOrder(99999);
+        this.menuDig.setGlobalZOrder(99999);
+
+        this.menuCreateTower.setPosition(cc.p(0,0));
+        this.menuCreateTower.disappearance();
+        this.menuTower.disappearance();
+        this.menuDig.disappearance();
+
+        this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
+        this.addChild(this.box);
+        //TODO: this.createDevMenu();
+    },
+
+    createHeroMenu: function () {
+        var hero = this.board.getHero();
+        if (hero) {
+            var skill = hero.getSkill();
+            this.interface_hero.setVisible(true);
+            this.interface_hero.setHero(hero);
+
+            var back = EU.k.resourceGameSceneFolder + "button_" + skill + "_2.png";
+            var forward = EU.k.resourceGameSceneFolder + "button_" + skill + "_1.png";
+            var cancel = EU.k.resourceGameSceneFolder + "button_" + skill + "_3.png";
+
+            var skills = EU.HeroExp.skills(this.board.getHero().getName());
+            var level = skills[4];
+
+            var duration = 0;
+            if (skill == "landmine") {
+                duration = this.board.getSkillParams().cooldownLandmine;
+                duration *= this.board.getSkillParams().landmineLevels[level].rateCooldown;
+            }
+            else if (skill == "swat") {
+                duration = this.board.getSkillParams().cooldownSwat;
+                duration *= this.board.getSkillParams().swatLevels[level].rateCooldown;
+            }
+            else if (skill == "hero3_bot") {
+                duration = this.board.getSkillParams().cooldownHero3Bot;
+                duration *= this.board.getSkillParams().hero3BotLevels[level].rateCooldown;
+            }
+            else
+                EU.assert(0);
+
+            var callback = this.menuSkill.bind(this, EU.Skill.heroskill);
+            this.interface_heroSkill.init(back, forward, duration, callback, cancel);
+            this.interface_heroSkill.setAnimationOnFull(skill);
+        }
+    },
+    //TODO: createDevMenu()
+    //{
+    //    if( isTestDevice() && isTestModeActive() )
+    //    {
+    //        var item = [this]( Menu * menu, var text, EventKeyboard.KeyCode key, Point pos )
+    //        {
+    //            var sendKey = [this]( Ref* sender, EventKeyboard.KeyCode key )mutable
+    //            {
+    //                this.onKeyReleased( key, null );
+    //            };
+    //
+    //            var i = MenuItemTextBG.create( text, Color4F.GRAY, Color3B.BLACK, std.bind( sendKey, std.placeholders._1, key ) );
+    //            menu.addChild( i );
+    //            i.setPosition( pos );
+    //            i.setScale( 1.5f );
+    //        };
+    //
+    //        var menu = Menu.create();
+    //        menu.setPosition( 0, 0 );
+    //        addChild( menu );
+    //        Point pos( 25, 100 );
+    //        float Y( 45 );
+    //        item( menu, "R 1", EventKeyboard.KeyCode.KEY_1, pos ); pos.y += Y;
+    //        item( menu, "R 2", EventKeyboard.KeyCode.KEY_2, pos ); pos.y += Y;
+    //        item( menu, "R 3", EventKeyboard.KeyCode.KEY_3, pos ); pos.y += Y;
+    //        item( menu, "R 4", EventKeyboard.KeyCode.KEY_4, pos ); pos.y += Y;
+    //        item( menu, "R 5", EventKeyboard.KeyCode.KEY_5, pos ); pos.y += Y;
+    //        item( menu, "R 6", EventKeyboard.KeyCode.KEY_6, pos ); pos.y += Y;
+    //        item( menu, "R 7", EventKeyboard.KeyCode.KEY_7, pos ); pos.y += Y;
+    //        item( menu, "R 8", EventKeyboard.KeyCode.KEY_8, pos ); pos.y += Y;
+    //        item( menu, "R 9", EventKeyboard.KeyCode.KEY_9, pos ); pos.y += Y;
+    //        item( menu, "R 0", EventKeyboard.KeyCode.KEY_0, pos ); pos.y += Y;
+    //        item( menu, "R 99", EventKeyboard.KeyCode.KEY_F9, pos ); pos.y += Y;
+    //        item( menu, "WIN", EventKeyboard.KeyCode.KEY_F1, pos ); pos.y += Y;
+    //    }
+    //},
+
+    clear: function () {
+        //TODO: Achievements.setCallbackOnAchievementObtained( null );
+        EU.ShootsEffectsClear();
+
+        if (this.bg)
+            this.bg.removeFromParent();
+        this.bg = null;
+        this.objects.removeAllChildren();
+        this.objects = null;
+        this.fragments.clear();
+        this.menuTower.setUnit(null);
+        this.menuTower.disappearance();
+
+        this.menuFastModeEnabled(false);
+        this.unscheduleUpdate();
+        true.removeAllChildrenWithCleanup(true);
+    },
+    startGame: function () {
+        //TODO: AudioEngine.playEffect( kSoundGameStart );
+        this.setEnabled(true);
+        this.scheduleUpdate();
+    },
+
+    loadLevel: function (index, xmlroot) {
+        var desSize = cc.view.getDesignResolutionSize();
+
+        this.bg = EU.ImageManager.sprite("images/maps/map" + ( index + 1 ) + ".jpg");
+        this.bg.setAnchorPoint(cc.p(0,0));
+        this.mainlayer.addChild(this.bg, -1);
+        this.bg.setGlobalZOrder(-2);
+
+        var mode = this.board.getGameMode();
+        var decorations = xmlroot.getElementsByName("decorations")[0];
+        var xmlparams = xmlroot.getElementsByName(mode == EU.GameMode.normal ? EU.k.EU.LevelParams : EU.k.LevelParamsHard)[0];
+        if (!xmlparams)
+            xmlparams = xmlroot;
+
+        for (var i = 0; i < decorations.children.length; ++i) {
+            var child = decorations.children[i];
+            var object = this.createDecorFromXmlNode(child);
+            if (object) {
+                var z = object.getLocalZOrder();
+                this.addObject(object, object.getLocalZOrder());
+                if (z != 0) {
+                    object.setLocalZOrder(z);
+                }
+            }
+        }
+
+        this.dalayWaveIcon = parseFloat(xmlparams.getAttribute("wave_cooldown"));
+
+        this.updateWaveCounter();
+
         {
-            /**
-             * @type {EU.GameGS} game
-             */
-            var game = this.getInstance();
-            EU.assert( game );
-            var levelindex = game.getGameBoard().getCurrentLevelIndex();
-            var gamemode = game.getGameBoard().getGameMode();
-            game.clear();
+            //TODO: load game params
+            //var doc = EU.pugixml.readXml( "ini/gameparams.xml" )
+            //var root = doc.root();
+            //for( var& xml : root )
+            //{
+            //    var name = xml.attribute( "name" ).as_string();
+            //    var value = xml.attribute( "value" );
+            //    if( name == "max_score_for_start_wave" )
+            //        this.scoresForStartWave = value.as_int();
+            //}
+            this.scoresForStartWave = 10;
+        }
 
-            /**
-             * TODO: @type {EU.SmartScene} scene
-             */
-            var scene = game.getScene();
-            scene.resetMainLayer( null );
-            EU.assert( this.instanceIsCreate() == false );
+        this.board.startGame();
 
-            var dessize = cc.view.getDesignResolutionSize();
-            var layer = new GameGS();
-            layer.m_scoresNode = ScoresNode.create();
-            layer.m_scoresNode.setPosition( 0, dessize.height );
-            var result = layer.init();
-            EU.assert( result );
-            scene.resetMainLayer( layer );
-            scene.addChild( layer.m_scoresNode, 9 );
-            GameGS.getInstance().getGameBoard().loadLevel( levelindex, gamemode );
+        //TODO: MouseHoverScroll.setScroller(this.scrollInfo);
+        //TODO: MouseHoverScroll.setNode( this.mainlayer );
+    },
+    excludeTower: function (towername) {
+        this.menuCreateTower.addExludedTower(towername);
+    },
+    onEnter: function () {
+        Layer.onEnter();
+        //TODO: setKeyboardEnabled( true );
+        //TODO: MouseHoverScroll.enable();
 
-            if( EU.k.useBoughtLevelScoresOnlyRestartLevel )
-            {
-                var boughtScores = game._boughtScoresForSession;
-                GameGS.getInstance()._boughtScoresForSession = boughtScores;
-                ScoreCounter.shared().addMoney( EU.kScoreLevel, boughtScores, false );
+        //cc.director().getTextureCache().removeUnusedTextures();
+        //TODO: EU.AdMob.hide();
+
+        var music = this.board.isGameStarted() ? EU.kMusicGameBattle : EU.kMusicGamePeace;
+        //TODO: AudioEngine.playMusic( music );
+        //TODO: AudioEngine.shared( ).resumeAllEffects( );
+
+        for (var i = 0; i < this.children.length; ++i) {
+            var child = this.children[i];
+            if (child.__Unit) {
+                var unit = child;
+                var fire = unit.getChildByName("fire");
+                if (fire) fire.setVisible(true);
+            }
+        }
+    },
+    onExit: function () {
+        Layer.onExit();
+        //TODO: setKeyboardEnabled( false );
+        //TODO: MouseHoverScroll.disable();
+        //TODO: AdMob.show();
+        if (this.objects) {
+            for (var i = 0; i < this.children.length; ++i) {
+                var child = this.children[i];
+                if (child.__Unit) {
+                    var unit = child;
+                    var fire = unit.getChildByName("fire");
+                    if (fire) fire.setVisible(false);
+                }
+            }
+        }
+    },
+    //TODO: setProperty_str: function( stringproperty, value )
+    //{
+    //    if( stringproperty == "shake" )
+    //        this.shake( parseFloat(value) );
+    //    else
+    //        return NodeExt.setProperty( stringproperty, value );
+    //    return true;
+    //},
+    addTowerPlace: function (def) {
+        if (this.getTowerPlaceInLocation(def.position))
+            return null;
+        var place = new EU.TowerPlace(def);
+        this.towerPlaces.push(place);
+        this.addObject(place, EU.zorder.earth + 1);
+        return place;
+    },
+    getTowerPlaceInLocation: function (location) {
+        var index = this.getTowerPlaceIndex(location);
+        if (index != -1) {
+            return this.towerPlaces[index];
+        }
+        return null;
+    },
+    getTowerPlaceIndex: function (location) {
+        var result = -1, index = -1;
+        var mind = 999999;
+        var distance = 0;
+        for (var i = 0; i < this.towerPlaces.length; ++i) {
+            var p = this.towerPlaces[i];
+            var c = p.checkClick(location, distance);
+            if (c && distance < mind) {
+                result = index;
+                mind = distance;
+            }
+            ++index;
+        }
+        return result;
+    },
+    eraseTowerPlace: function (place) {
+        for (var i = 0; i < this.towerPlaces.length; ++i) {
+            if (this.towerPlaces[i] == place) {
+                this.towerPlaces.splice(i, 1);
+                this.removeObject(place);
+                this.selectedPlace = null;
+            }
+        }
+        this.markTowerPlaceOnLocation(cc.p(-9999, -9999));
+    },
+    setSelectedTowerPlaces: function (place) {
+        this.selectedPlace = place;
+    },
+    getSelectedTowerPlaces: function () {
+        return this.selectedPlace;
+    },
+    getTowerPlaces: function () {
+        return this.towerPlaces;
+    },
+    resetSelectedPlace: function () {
+        this.selectedPlace = null;
+    },
+    getDecorations: function (name) {
+        var result = []
+        for (var i = 0; i < this.objects.children.length; ++i) {
+            var object = this.objects.children[i];
+            if (object.getName() == name) {
+                if (object.__Decoration)
+                    result.push(decor);
+            }
+        }
+        return result;
+    },
+    createDecorFromXmlNode: function (xmlnode) {
+        var name = xmlnode.name;
+        var actiondesc = xmlnode.getAttribute("action");
+        var x = parseFloat(xmlnode.getAttribute("x"));
+        var y = parseFloat(xmlnode.getAttribute("y"));
+        //float z = xmlnode.attribute( "z" ).as_float();
+
+        var pathToXml = "ini/maps/animations/" + name + ".xml";
+        var doc = EU.pugixml.readXml(pathToXml);
+        var root = doc.getRoot();
+
+        var decoration = new EU.Decoration();
+        EU.xmlLoader.load_node_xml_node(decoration, root, false);
+        decoration.setName(xmlnode.name());
+        decoration.setPosition(x, y);
+        decoration.setStartPosition(cc.p(x, y));
+        //decoration.setLocalZOrder( z == 0 ? -y : z );
+        decoration.setActionDescription(actiondesc);
+
+        if (actiondesc.size() > 0) {
+            var action = EU.xmlLoader.load_action_str(actiondesc);
+            decoration.setAction(action);
+        }
+        return decoration;
+    },
+    onTouchesBegan: function (touches, event) {
+        var self = event.getTarget();
+        if (!self.enabled)
+            return;
+
+        for (var i = 0; i < touches.length; ++i) {
+            var touch = touches[i];
+
+            var location = touch.getLocation();
+            location = self.mainlayer.convertToNodeSpace(location);
+
+            var node = self.getObjectInLocation(location);
+            if (node == null) {
+                var index = self.getTowerPlaceIndex(location);
+                node = (index != -1) ? self.towerPlaces[index] : null;
+            }
+            if (node) {
+                var ti = new EU.TouchInfo(node, touch);
+                self.touches[touch.getID()] = ti;
+            }
+            self.scrollInfo.node = self.mainlayer;
+            self.scrollInfo.nodeposBegan = self.mainlayer.getPosition();
+            self.scrollInfo.touchBegan = touch.getLocation();
+            self.scrollInfo.touchID = touch.getID();
+        }
+    },
+
+    onTouchesMoved: function (touches, event) {
+        var self = event.getTarget();
+        if (!self.enabled)
+            return;
+
+        //#if PC != 1
+        for (var i = 0; i < touches.length; ++i) {
+            var touch = touches[i];
+            if (self.scrollInfo.touchID == touch.getID()) {
+                if (self.scrollInfo.node) {
+                    var location = touch.getLocation();
+                    var shift = EU.Common.pointDiff(location, self.scrollInfo.touchBegan);
+                    var pos = self.scrollInfo.nodeposBegan + shift;
+
+                    pos = self.scrollInfo.fitPosition(pos, cc.director().getWinSize());
+
+                    self.scrollInfo.lastShift = EU.Common.pointDiff(pos, self.scrollInfo.node.getPosition());
+                    self.scrollInfo.node.setPosition(pos);
+                }
+            }
+        }
+        //#endif
+    },
+    onTouchesEnded: function (touches, event) {
+        var self = event.getTarget();
+        self.isIntteruptHeroMoving = false;
+        if (!self.enabled)
+            return;
+        for (var i = 0; i < touches.length; ++i) {
+            var touch = touches[i];
+            if (self.scrollInfo.touchID == i.getID()) {
+                if (self.scrollInfo.node) {
+                    self.scrollInfo.node.reset(null);
+                    self.scrollInfo.touchID = -1;
+                }
             }
 
-            layer.release();
-        },
-        ctor: function(){
-            this._super();
-            this.m_board = null;
-            this.m_bg = null;
-            this.m_objects = null;
-            this.m_interface = null;
-            this.m_selectedPlace = null;
-            this.m_enabled = true;
-            this.m_scoresNode = null;
-            this.m_dalayWaveIcon = 0;
-            this._scoresForStartWave = 0;
-            this._boughtScoresForSession = 0;
-            this._runFlyCamera = true;
-            this._skillModeActived = false;
+            var touchEnd = touch;
+            var touchBegin = self.touches[touchEnd.getID()];
+            var location = self.mainlayer.convertToNodeSpace(touchEnd.getLocation());
+            var startLocation = self.mainlayer.convertToNodeSpace(touchEnd.getStartLocation());
 
-            cc.log( "GameGS.GameGS" );
-            this.m_interfaceMenu.menu = null;
-            EU.assert( !gameGSInstance );
-
-            var desSize = cc.view.getDesignResolutionSize();
-            var winSize = cc.winSize;
-            var sizeMap = EU.k.LevelMapSize;
-
-            this.m_mainlayer = new cc.Node();
-            this.m_mainlayer.setName( "mainlayer" );
-            this.addChild( this.m_mainlayer );
-            var sx = winSize.width / sizeMap.width;
-            var sy = winSize.height / sizeMap.height;
-            var scale = Math.max( sx, sy );
-            this.m_mainlayer.setScale( scale );
-
-            this.m_objects = new cc.Node();
-            this.m_objects.setName( "objects" );
-            this.m_mainlayer.addChild( this.m_objects, 1 );
-
-            EU.assert( this.m_bg == null );
-
-            this.m_mainlayer.setContentSize( sizeMap );
-            this.m_mainlayer.setAnchorPoint( cc.POINT_ZERO );
-
-            gameGSInstance = this;
-
-            this.setName( "gamelayer" );
-        },
-        onExit: function()
-        {
-            //TODO: MouseHoverScroll
-            EU.MouseHoverScroll.shared().setNode( null );
-            EU.MouseHoverScroll.shared().setScroller( null );
-            gameGSInstance = null;
-            this.m_board.clear();
-            //TODO: ShootsEffectsClear
-            EU.ShootsEffectsClear();
-
-            cc.director.getScheduler().setTimeScale( 1 );
-            //TODO: ScoreCounter
-            EU.ScoreCounter.shared().observer( EU.kScoreLevel ).remove(_ID );
-
-            if( this.m_scoresNode )
-                this.m_scoresNode.removeFromParent();
-        },
-        /**
-         * @returns {EU.SmartScene}
-         */
-        createScene: function()
-        {
-            cc.log( "GameGS.createScene" );
-            EU.assert( gameGSInstance == null );
-            var layer = new GameGS();
-            var result = layer.init();
-            cc.assert(result);
-            /**
-             * @type {EU.SmartScene}
-             */
-            var scene = EU.SmartScene.create( layer );
-            scene.setName( "gameScene" );
-
-            var dessize = cc.view.getDesignResolutionSize();
-            layer.m_scoresNode = EU.ScoresNode.create();
-            layer.m_scoresNode.setPosition( 0, dessize.height );
-            scene.addChild( layer.m_scoresNode, 9 );
-
-            layer.release();
-            return scene;
-        },
-        instanceIsCreate: function()
-        {
-            return gameGSInstance != null;
-        },
-        getInstance: function()
-        {
-            if( gameGSInstance == null ) cc.log( "gameGSInstance == null" );
-            return gameGSInstance;
-        },
-        getGameBoard: function()
-        {
-            return this.m_board;
-        },
-        init: function()
-        {
-            cc.log( "GameGS.init" );
-            //if( !cc.Layer.init() ) // CALLED IN ctor FUNCTION
-            //{
-            //    return false;
-            //}
-
-            var touchListenerN = cc._EventListenerTouchAllAtOnce.create();
-            touchListenerN.onTouchesBegan = this.onTouchesBegan;
-            touchListenerN.onTouchesMoved = this.onTouchesMoved;
-            touchListenerN.onTouchesEnded = this.onTouchesEnded;
-            touchListenerN.onTouchesCancelled = this.onTouchesCancelled;
-
-            var touchListenerSD = cc._EventListenerTouchOneByOne.create();
-            touchListenerSD.onTouchBegan = this.onTouchSkillBegan;
-            var self = this;
-            touchListenerSD.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.desant)};
-            touchListenerSD.onTouchCancelled = this.onTouchSkillCanceled;
-            touchListenerSD.setSwallowTouches( true );
-
-            var touchListenerSB = cc._EventListenerTouchOneByOne.create();
-            touchListenerSB.onTouchBegan = this.onTouchSkillBegan;
-            touchListenerSB.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.bomb)};
-            touchListenerSB.onTouchCancelled = this.onTouchSkillCanceled;
-            touchListenerSB.setSwallowTouches( true );
-
-            var touchListenerSH = cc._EventListenerTouchOneByOne.create();
-            touchListenerSH.onTouchBegan = this.onTouchSkillBegan;
-            touchListenerSH.onTouchEnded = function(touch, event) { return self.onTouchSkillEnded(touch, event, EU.Skill.heroskill)};
-            touchListenerSH.onTouchCancelled = this.onTouchSkillCanceled;
-            touchListenerSH.setSwallowTouches( true );
-
-            var touchListenerH = cc._EventListenerTouchOneByOne.create();
-            touchListenerH.onTouchBegan = this.onTouchHeroBegan;
-            touchListenerH.onTouchMoved = this.onTouchHeroMoved;
-            touchListenerH.onTouchEnded = this.onTouchHeroEnded;
-            touchListenerH.onTouchCancelled = this.onTouchHeroCanceled;
-
-            //TODO: should destroy old listeners which are not equal to the new listeners
-            this._touchListenerNormal = touchListenerN ;
-            this._touchListenerDesant = touchListenerSD ;
-            this._touchListenerBomb = touchListenerSB ;
-            this._touchListenerHeroSkill = touchListenerSH ;
-            this._touchListenerHero = touchListenerH ;
-
-            this._scrollInfo = EU.ScrollTouchInfo();
-
-            this.createInterface();
-
-            //TODO: EU.Achievements
-            EU.Achievements.shared().setCallbackOnAchievementObtained( this.achievementsObtained, this, std.placeholders._1 );
-
-            this.load( "ini/gamescene", "scene.xml" );
-
-            if(k.configuration.useInapps == false ) {
-                //hide "shop" button
-                this.m_interfaceMenu.shop.setPositionY(-9999.0);
+            var node = self.getObjectInLocation(location);
+            if (EU.Common.pointDistance(location, startLocation) < 50) {
+                var indexTowerPlace = self.getTowerPlaceIndex(location);
+                if (indexTowerPlace != -1 && touchBegin.nodeBegin == self.towerPlaces[indexTowerPlace]) {
+                    self.isIntteruptHeroMoving = true;
+                    self.onClickByTowerPlace(self.towerPlaces[indexTowerPlace]);
+                }
+                else if (node && node == touchBegin.nodeBegin) {
+                    self.isIntteruptHeroMoving = true;
+                    self.onClickByObject(node);
+                }
+                else {
+                    self.menuTower.disappearance();
+                    self.onEmptyTouch(touchEnd.getLocation());
+                }
+                self.menuDig.disappearance();
+                self.markTowerPlaceOnLocation(location);
             }
+            if (node == null) {
+                self.selectedUnit = null;
+            }
+            self.touches.length = 0;
+        }
+    },
 
+    onTouchesCancelled: function (touches, event) {
+        event.target.onTouchesEnded(touches, event);
+    },
 
-            this.runEvent( "oncreate" );
+    onTouchSkillBegan: function (touch, event) {
+        return true;
+    },
+    onTouchSkillEnded: function (touch, event, skill) {
+        var self = event.target();
+        var location = touch.getLocation();
+        location = self.mainlayer.convertToNodeSpace(location);
+        var dispatched = false;
 
-            //if( k.configuration.interstitialBanerByTime )
-            //{
-            //	var callfunc = CallFunc.create( std.bind( [](){
-            //		AdsPlugin.shared().showInterstitial();
-            //	}));
-            //	var delay = DelayTime.create(k.configuration.interstitialBanerByTimeDelay);
-            //	var action1 = Sequence.create(callfunc, DelayTime.create(2), null);
-            //	var action2 = RepeatForever.create(Sequence.create(delay, callfunc, null));
-            //	runAction(action1);
-            //	runAction(action2);
-            //}
-
-            //TODO: EU.consts
-            UserData.shared().write( EU.k.user.LastGameResult, EU.k.user.GameResultValueNone );
-
-            return true;
-        },
-        createInterface: function()
-        {
-            cc.log( "GameGS.createInterface" );
-            var dessize = cc.view.getDesignResolutionSize();
-
-            this.m_interface = new cc.Node();
-            this.m_interface.setName( "interface" );
-            this.addChild( this.m_interface, 9 );
-
-
-            var self = this;
-            var cb0 = function(obj) { return self.menuShop(obj, true)};
-            var cb1 = this.menuPause;
-            var cb2 = function(obj) { return self.menuSkill(obj, EU.Skill.desant)};
-            var cb3 = function(obj) { return self.menuSkill(obj, EU.Skill.bomb)};
-            var cb5 = this.menuHero;
-
-            var kPathButtonShop = EU.k.resourceGameSceneFolder + "button_shop.png";
-            var kPathButtonPauseNormal = EU.k.resourceGameSceneFolder + "icon_pause.png";
-            var kPathButtonDesantBack = EU.k.resourceGameSceneFolder + "button_desant_2_1.png";
-            var kPathButtonDesantForward = EU.k.resourceGameSceneFolder + "button_desant_2.png";
-            var kPathButtonDesantCancel = EU.k.resourceGameSceneFolder + "button_desant_2_3.png";
-            var kPathButtonBombBack = EU.k.resourceGameSceneFolder + "button_desant_1_1.png";
-            var kPathButtonBombForward = EU.k.resourceGameSceneFolder + "button_desant_1.png";
-            var kPathButtonBombCancel = EU.k.resourceGameSceneFolder + "button_desant_1_3.png";
-
-            var cancel = EU.k.resourceGameSceneFolder + "icon_x_10.png";
-            var cdd = this.m_board.getSkillParams( ).cooldownDesant;
-            var cda = this.m_board.getSkillParams( ).cooldownAirplane;
-            this.m_interfaceMenu.shop = EU.MenuItemImageWithText.create( kPathButtonShop, cb0 );
-            this.m_interfaceMenu.pause = EU.MenuItemImageWithText.create( kPathButtonPauseNormal, cb1 );
-            this.m_interfaceMenu.desant = EU.MenuItemCooldown.create(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
-            this.m_interfaceMenu.bomb = EU.MenuItemCooldown.create(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
-            this.m_interfaceMenu.heroSkill = EU.MenuItemCooldown.create( "", "", 0, null, cancel );
-            this.m_interfaceMenu.hero = HeroIcon.create( "hero" + (UserData.shared().hero_getCurrent() + 1), cb5 );
-            this.m_interfaceMenu.hero.setEnabled( true );
-
-            this.m_interfaceMenu.desant.setAnimationOnFull( "airstike_animation1" );
-            this.m_interfaceMenu.bomb.setAnimationOnFull( "airstike_animation2" );
-
-            this.m_interfaceMenu.shop.setName( "shop" );
-            this.m_interfaceMenu.pause.setName( "pause" );
-            this.m_interfaceMenu.desant.setName( "desant" );
-            this.m_interfaceMenu.bomb.setName( "bomb" );
-            this.m_interfaceMenu.heroSkill.setName( "heroskill" );
-            this.m_interfaceMenu.hero.setName( "hero" );
-
-            this.m_interfaceMenu.desant.setSound( "##sound_button##" );
-            this.m_interfaceMenu.bomb.setSound( "##sound_button##" );
-            this.m_interfaceMenu.heroSkill.setSound( "##sound_button##" );
-
-            this.m_interfaceMenu.menu = Menu.create();
-            this.m_interfaceMenu.menu.setName( "menu" );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.shop );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.pause );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.desant );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.bomb );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.heroSkill );
-            this.m_interfaceMenu.menu.addChild( this.m_interfaceMenu.hero );
-            this.m_interfaceMenu.menu.setEnabled( false );
-
-            this.m_interfaceMenu.hero.setVisible( false );
-
-            this.m_interfaceMenu.menu.setPosition( cc.POINT_ZERO );
-            this.m_interface.addChild( this.m_interfaceMenu.menu, zOrderInterfaceMenu );
-
-            this.m_menuCreateTower = EU.MenuCreateTower.create();
-            this.m_menuTower = EU.MenuTower.create();
-            this.m_menuDig = EU.MenuDig.create();
-
-            this.m_interface.addChild( this.m_menuCreateTower, 999999 );
-            this.m_interface.addChild( this.m_menuTower, 999999 );
-            this.m_interface.addChild( this.m_menuDig, 999999 );
-            this.m_menuCreateTower.setGlobalZOrder( 99999 );
-            this.m_menuTower.setGlobalZOrder( 99999 );
-            this.m_menuDig.setGlobalZOrder( 99999 );
-
-            this.m_menuCreateTower.setPosition( Point( 0, 0 ) );
-            this.m_menuCreateTower.disappearance();
-            this.m_menuTower.disappearance();
-            this.m_menuDig.disappearance();
-
-            //m_interfaceMenu.menu.setEnabled( false );
-
-            //TODO: EU.BoxMenu
-            this.m_box = EU.BoxMenu.create( "ini/gamescene/boxmenu.xml" );
-            this.addChild( this.m_box );
-
-
-            this.createDevMenu();
-        },
-        createHeroMenu: function()
-        {
-            var hero = this.m_board.getHero();
-            if( hero )
+        switch (skill) {
+            case EU.Skill.desant:
             {
-                var skill = hero.getSkill();
-                this.m_interfaceMenu.hero.setVisible( true );
-                this.m_interfaceMenu.hero.setHero( hero );
-
-                var back = EU.k.resourceGameSceneFolder + "button_" + skill + "_2.png" ;
-                var forward = EU.k.resourceGameSceneFolder + "button_" + skill + "_1.png" ;
-                var cancel = EU.k.resourceGameSceneFolder + "button_" + skill + "_3.png";
-
-                //std.vector<unsigned>
-                var skills = [];
-                HeroExp.shared().skills( this.m_board.getHero().getName(), skills );
+                if (self.board.createDesant("desant", location, self.board.getSkillParams().lifetimeDesant)) {
+                    self.interface_desant.run();
+                    dispatched = true;
+                    EU.TutorialManager.dispatch("usedesant");
+                }
+                break;
+            }
+            case EU.Skill.bomb:
+            {
+                var bomb = self.board.createBomb(location);
+                if (bomb) {
+                    self.interface_bomb.run();
+                    dispatched = true;
+                    EU.TutorialManager.dispatch("useairbomb");
+                }
+                break;
+            }
+            case EU.Skill.heroskill:
+            {
+                var skills = EU.HeroExp.skills(self.board.getHero().getName());
                 var level = skills[4];
 
-                var duration = 0.0;
-                if( skill == "landmine" )
-                {
-                    duration = this.m_board.getSkillParams().cooldownLandmine;
-                    duration *= this.m_board.getSkillParams().landmineLevels[level].rateCooldown;
-                }
-                else if( skill == "swat" )
-                {
-                    duration = this.m_board.getSkillParams().cooldownSwat;
-                    duration *= this.m_board.getSkillParams().swatLevels[level].rateCooldown;
-                }
-                else if( skill == "hero3_bot" )
-                {
-                    duration = this.m_board.getSkillParams().cooldownHero3Bot;
-                    duration *= this.m_board.getSkillParams().hero3BotLevels[level].rateCooldown;
-                }
-                else
-                    EU.assert( 0 );
-
-                var self = this;
-                var callback = function(obj) { return self.menuSkill(obj, EU.Skill.heroskill)};
-                this.m_interfaceMenu.heroSkill.init( back, forward, duration, callback, cancel );
-                this.m_interfaceMenu.heroSkill.setAnimationOnFull( skill );
-            }
-        },
-
-        createDevMenu: function()
-        {
-            //TODO: EU.suport
-            if( EU.support.isTestDevice() && EU.support.isTestModeActive() )
-            {
-                var item = function( menu, text, key, pos )
-                {
-                    var sendKey = function( sender,  key )
-                    {
-                        this.onKeyReleased( key, null );
-                    };
-
-                    var self = this;
-                    var sendKeybind = function(obj) { return self.sendKey(obj, true)};
-                    var i = EU.MenuItemTextBG.create( text, Color4F.GRAY, Color3B.BLACK, sendKeybind );
-                    menu.addChild( i );
-                    i.setPosition( pos );
-                    i.setScale( 1.5);
-                };
-    
-                var menu = new cc.Menu();
-                menu.setPosition( 0, 0 );
-                this.addChild( menu );
-                var pos = cc.Point( 25, 100 );
-                var Y = 45;
-                item( menu, "R 1", cc.KEY.num1, pos ); pos.y += Y;
-                item( menu, "R 2", cc.KEY.num2, pos ); pos.y += Y;
-                item( menu, "R 3", cc.KEY.num3, pos ); pos.y += Y;
-                item( menu, "R 4", cc.KEY.num4, pos ); pos.y += Y;
-                item( menu, "R 5", cc.KEY.num5, pos ); pos.y += Y;
-                item( menu, "R 6", cc.KEY.num6, pos ); pos.y += Y;
-                item( menu, "R 7", cc.KEY.num7, pos ); pos.y += Y;
-                item( menu, "R 8", cc.KEY.num8, pos ); pos.y += Y;
-                item( menu, "R 9", cc.KEY.num9, pos ); pos.y += Y;
-                item( menu, "R 0", cc.KEY.num0, pos ); pos.y += Y;
-                item( menu, "R 99", cc.KEY.f9, pos ); pos.y += Y;
-                item( menu, "WIN", cc.KEY.f1, pos ); pos.y += Y;
-            }
-        },
-
-        clear: function()
-        {
-            cc.log( "GameGS.clear" );
-            EU.Achievements.shared().setCallbackOnAchievementObtained( null );
-            EU.ShootsEffectsClear();
-    
-            if( this.m_bg )
-                this.m_bg.removeFromParent();
-            this.m_bg = null;
-            this.m_objects.removeAllChildren();
-            this.m_objects = null;
-            for (var i = 0; i < this.m_towerPlaces.length; i++) {
-                var obj = this.m_towerPlaces[i];
-                this.removeChild( obj )
-            }
-            this.m_towerPlaces.clear();
-    
-            this.m_fragments.clear();
-    
-            this.m_menuTower.setUnit( null );
-            this.m_menuTower.disappearance();
-    
-            this.menuFastModeEnabled( false );
-            this.unschedule( this.schedule_selector( GameGS.update ) );
-    
-            zOrderOfArriavalCounter = 0;
-    
-            //Node * tapLabel = this.m_interface.getChildByTag( kTagTapToContinueLabel );
-            //if( tapLabel ) tapLabel.removeFromParent();
-    
-            this.removeAllChildrenWithCleanup( true );
-        },
-        startGame: function()
-        {
-            cc.log( "GameGS.startGame" );
-            cc.audioEngine.playEffect( EU.kSoundGameStart );
-            this.setEnabled( true );
-
-            schedule( this.schedule_selector( GameGS.update ) );
-        },
-        createPredelayLabel: function()
-        {
-            //__push_auto_check( "GameGS.createPredelayLabel" );
-            //var label = Label.create( WORD( kTextIdTapToContinue ), kFontArialBig );
-            //var action = RepeatForever.create( Sequence.create( ScaleTo.create( 0.5f, 1.2f ), ScaleTo.create( 0.5f, 1.0f ), null ) );
-            //
-            //m_interface.addChild( label, 1, kTagTapToContinueLabel );
-            //label.runAction( action );
-            //label.setPosition( 512, 384 );
-        },
-
-        /**
-         *
-         * @param {Integer} index
-         * @param {Element} root
-         */
-        loadLevel: function( index, root )
-        {
-            cc.log( "GameGS.loadLevel" );
-
-            var dessize = cc.view.getDesignResolutionSize();
-
-            this.m_bg = EU.ImageManager.sprite( ("images/maps/map" + ( index + 1 ) + ".jpg") );
-            this.m_bg.setAnchorPoint( cc.Point( 0, 0 ) );
-            this.m_mainlayer.addChild( this.m_bg, -1 );
-            this.m_bg.setGlobalZOrder( -2 );
-
-            var mode = this.m_board.getGameMode();
-            var decorations = root.getElementsByTagName( "decorations" );
-            var xmlparams = root.getElementsByTagName( mode == EU.GameMode.normal ? EU.LevelParams : EU.LevelParamsHard );
-            if( !xmlparams )
-                xmlparams = root;
-
-            for(var i=0; i < decorations.children.length; i++){
-                var child = decorations.children[i];
-                var object = null;
-                this.createDecorFromXmlNode( child, object );
-                if( object )
-                {
-                    var z = object.getLocalZOrder();
-                    this.addObject( object, object.getLocalZOrder() );
-                    if( z != 0 )
-                    {
-                        object.setLocalZOrder( z );
+                var skill = self.board.getHero() ? self.board.getHero().getSkill() : "";
+                if (skill == "landmine") {
+                    var count = self.board.getSkillParams().landmineLevels[level].count;
+                    var landmine = self.board.createLandMine(location, count);
+                    if (landmine) {
+                        dispatched = true;
+                        EU.TutorialManager.dispatch("uselandmine");
                     }
                 }
-            }
-
-            this.m_dalayWaveIcon = xmlparams.getAttribute( "wave_cooldown" );
-
-            this.updateWaveCounter();
-
-            {
-                var doc = new EU.pugixml.readXml( "ini/gameparams.xml");
-                var root = doc.firstElementChild;
-                for(var i=0; i < root.children.length; i++){
-                    var xml = root.children[i];
-                    var name = xml.getAttribute( "name" );
-                    var value = xml.getAttribute( "value" );
-                    if( name == "max_score_for_start_wave" )
-                        this._scoresForStartWave = parseInt(value);
-                }
-            }
-
-            this.m_board.startGame();
-
-            //TODO: EU.support EU.PC and EU.MouseHoverScroll
-            if (EU.PC !== undefined && EU.PC == 1) {
-                EU.MouseHoverScroll.shared().setScroller(_scrollInfo);
-                EU.MouseHoverScroll.shared().setNode( this.m_mainlayer );
-            }
-        },
-
-        excludeTower: function(towername )
-        {
-            this.m_menuCreateTower.addExludedTower( towername );
-        },
-        onEnter: function()
-        {
-            cc.Layer.prototype.onEnter.call(this);
-            this.setKeyboardEnabled( true );
-            if (EU.PC !== undefined && EU.PC == 1) {
-                EU.MouseHoverScroll.shared().enable();
-            }
-
-            //Director.getInstance().getTextureCache().removeUnusedTextures();
-            //AdMob.hide();
-
-            var music = this.m_board.isGameStarted() ? EU.kMusicGameBattle : EU.kMusicGamePeace;
-            cc.audioEngine.playMusic( music );
-            cc.audioEngine.resumeAllEffects( );
-
-            for(var i=0; i < this.m_objects.length; i++){
-                /**
-                 * @type {EU.Unit} unit
-                 */
-                var unit = this.m_objects.children[i];
-                if( unit.__Unit)
-                {
-                    var fire = unit.getChildByName( "fire" );
-                    if( fire ) fire.setVisible( true );
-                }
-            }
-        },
-
-        onExit: function()
-        {
-            cc.Layer.prototype.onExit.call(this);
-            this.setKeyboardEnabled( false );
-
-            if (EU.PC !== undefined && EU.PC == 1) {
-                EU.MouseHoverScroll.shared().disable();
-            }
-
-            //AdMob.show();
-            if( this.m_objects )
-            {
-                for(var i=0; i < this.m_objects.length; i++){
-                    /**
-                     * @type {EU.Unit} unit
-                     */
-                    var unit = this.m_objects.children[i];
-                    if( unit.__Unit)
-                    {
-                        var fire = unit.getChildByName( "fire" );
-                        if( fire ) fire.setVisible( false );
+                else if (skill == "swat" || skill == "hero3_bot") {
+                    var count = 1;
+                    var lifetime = 0;
+                    var unitName;
+                    if (skill == "swat") {
+                        count = self.board.getSkillParams().swatCount;
+                        lifetime = self.board.getSkillParams().swatLifetime;
+                        lifetime *= self.board.getSkillParams().swatLevels[level].rateLifetime;
+                        unitName = skill;
                     }
-                }
-            }
-        },
-        /**
-         *
-         * @param {String} stringproperty
-         * @param {String} value
-         * @returns {Boolean}
-         */
-        setProperty: function( stringproperty, value )
-        {
-            if( stringproperty == "shake" )
-                this.shake( parseFloat(value) );
-            else
-                return EU.NodeExt.prototype.setProperty.call( this, stringproperty, value );
-            return true;
-        },
-        /**
-         * @param {TowerPlaceDef} def
-         * @returns {TowerPlace}
-         */
-        addTowerPlace: function( def )
-        {
-            if( this.getTowerPlaceInLocation( def.position ) )
-                return null;
-            /**
-             * @type {TowerPlace} place
-             */
-            var place = EU.TowerPlace.create( def );
-            this.m_towerPlaces.push( place );
-            this.addObject( place, zorder.earth + 1 );
-            return place;
-        },
-        /**
-         * @param {cc.Point} location
-         * @returns {TowerPlace}
-         */
-        getTowerPlaceInLocation: function(location )
-        {
-            var index = this.getTowerPlaceIndex( location );
-            if( index != -1 )
-            {
-                return this.m_towerPlaces[index];
-            }
-            return null;
-        },
-        /**
-         * @param {cc.Point} location
-         * @returns {int}
-         */
-        getTowerPlaceIndex: function(location )
-        {
-            var result = -1 , index = 0 ;
-            var mind = 999999 ;
-            var distance = 0 ;
-            for(var i=0; i < this.m_towerPlaces.length; i++){
-                /**
-                 * @type {EU.TowerPlace} unit
-                 */
-                var p = this.m_towerPlaces.children[i];
-                var c = p.checkClick( location, distance );
-                if( c && distance < mind )
-                {
-                    result = index;
-                    mind = distance;
-                }
-                ++index;
-            }
-            return result;
-        },
-        /**
-         * @param {EU.TowerPlace} place
-         * @returns {}
-         */
-        eraseTowerPlace: function(  place )
-        {
-            var iplace = this.m_towerPlaces.indexOf(place);
-            if( iplace >= 0)
-            {
-                //TODO: easier to use cc.pool
-                this.removeObject( place );
-                this.m_towerPlaces.splice(iplace,1);
-                this.m_selectedPlace = null;
-            }
-            this.markTowerPlaceOnLocation( cc.Point( -9999, -9999 ) );
-        },
-        /**
-         * @param {EU.TowerPlace} place
-         */
-        setSelectedTowerPlaces: function( place )
-        {
-            this.m_selectedPlace = place;
-        },
-        /**
-         * @return {EU.TowerPlace}
-         */
-        getSelectedTowerPlaces: function()
-        {
-            return this.m_selectedPlace;
-        },
-        getTowerPlaces: function()
-        {
-                return this.m_towerPlaces;
-        },
-        resetSelectedPlace: function()
-        {
-            this.m_selectedPlace.reset( null );
-        },
-        createTree: function( index )
-        {
-            EU.assert( 0 );
-            return null;
-        },
-        onTouchesBegan: function(touches, event )
-        {
-            if( !this.m_enabled )
-                return;
-
-            for (var i = 0; i < touches.length; i++) {
-                /**
-                 * @type {cc.Touch} touch
-                 */
-                var touch = touches[i];
-
-                var location = touch.getLocation();
-                location = this.m_mainlayer.convertToNodeSpace( location );
-
-                node = this.getObjectInLocation( location );
-                if( node == null )
-                {
-                    var index = this.getTowerPlaceIndex( location );
-                    node = (index != -1) ? this.m_towerPlaces[index] : null;
-                }
-                if( node )
-                {
-                    var ti = new EU.touchInfo( node, touch );
-                    this.m_touches[touch.getID()] = ti;
-                }
-                //else
-                {
-                    this._scrollInfo.node = this.m_mainlayer;
-                    this._scrollInfo.nodeposBegan = this.m_mainlayer.getPosition();
-                    this._scrollInfo.touchBegan = touch.getLocation();
-                    this._scrollInfo.touchID = touch.getID();
-                }
-            }
-        },
-        onTouchesMoved: function( touches, event )
-        {
-
-        },
-
-        onTouchesEnded: function( touches, event )
-        {
-            if( !this.m_enabled )
-                return;
-            for (var i = 0; i < touches.length; i++) {
-                /**
-                 * @type {cc.Touch} touch
-                 */
-                var touch = touches[i];
-
-                if( _scrollInfo.touchID == touch.getID() )
-                {
-                    if( _scrollInfo.node )
-                    {
-                        _scrollInfo.node.reset( null );
-                        _scrollInfo.touchID = -1;
+                    else {
+                        count = self.board.getSkillParams().hero3BotCount;
+                        lifetime = self.board.getSkillParams().hero3BotLifetime;
+                        lifetime *= self.board.getSkillParams().hero3BotLevels[level].rateLifetime;
+                        unitName = skill;
                     }
-                }
 
-                var touchEnd = touch;
-                var touchBegin = this.m_touches[touchEnd.getID()];
-                var location = this.m_mainlayer.convertToNodeSpace( touchEnd.getLocation() );
-                var startLocation = this.m_mainlayer.convertToNodeSpace( touchEnd.getStartLocation() );
-
-                var node = this.getObjectInLocation( location );
-                if( location.getDistance( startLocation ) < 50 )
-                {
-                    var indexTowerPlace = this.getTowerPlaceIndex( location );
-                    if( indexTowerPlace != -1 && touchBegin.nodeBegin == this.m_towerPlaces[indexTowerPlace] )
-                    {
-                        this.onClickByTowerPlace( this.m_towerPlaces[indexTowerPlace] );
+                    var points = EU.Common.computePointsByRadius(points, 15, count);
+                    for (var i = 0; i < points.length; ++i) {
+                        var point = points[i];
+                        var pos = EU.Common.pointAdd(point, location);
+                        var unit = self.board.createDesant(unitName, pos, lifetime);
+                        if (!unit)
+                            self.board.createDesant(unitName, location, lifetime);
+                        if (unit)
+                            dispatched = true;
                     }
-                    else if( node && node == touchBegin.nodeBegin )
-                    {
-                        this.onClickByObject( node );
-                    }
-                    else
-                    {
-                        this.m_menuTower.disappearance();
-                        this.onEmptyTouch( touchEnd.getLocation() );
-                    }
-                    this.m_menuDig.disappearance();
-                    this.markTowerPlaceOnLocation( location );
+                    if (dispatched)
+                        EU.TutorialManager.dispatch("use" + skill);
                 }
-                if( node == null )
-                {
-                    this._selectedUnit.reset( null );
-                }
-                this.m_touches.erase( this.m_touches.find( touchEnd.getID() ) );
-
-            }
-        },
-
-        onTouchesCancelled: function( touches, event )
-        {
-            this.onTouchesEnded( touches, event );
-        },
-        onKeyReleased: function(keyCode, event )
-        {
-            if( keyCode == cc.KEY.back )
-                this.menuPause( null );
-            if( EU.isTestDevice() && EU.isTestModeActive() )
-            {
-                if( keyCode == cc.KEY.num0 )  cc.scheduler.setTimeScale( 0 );
-                if( keyCode == cc.KEY.num1 )  cc.scheduler.setTimeScale( 1 );
-                if( keyCode == cc.KEY.num2 )  cc.scheduler.setTimeScale( 2 );
-                if( keyCode == cc.KEY.num3 )  cc.scheduler.setTimeScale( 3 );
-                if( keyCode == cc.KEY.num4 )  cc.scheduler.setTimeScale( 4 );
-                if( keyCode == cc.KEY.num5 )  cc.scheduler.setTimeScale( 5 );
-                if( keyCode == cc.KEY.num6 )  cc.scheduler.setTimeScale( 6 );
-                if( keyCode == cc.KEY.num7 )  cc.scheduler.setTimeScale( 7 );
-                if( keyCode == cc.KEY.num8 )  cc.scheduler.setTimeScale( 8 );
-                if( keyCode == cc.KEY.num9 )  cc.scheduler.setTimeScale( 9 );
-                if( keyCode == cc.KEY.f9 ) cc.scheduler.setTimeScale( 99 );
-                if( keyCode == cc.KEY.f1 ) this.m_board.onFinishGame();
-            }
-        },
-        /**
-         * @param {EU.Unit} unit
-         */
-        onClickByObject: function( unit )
-        {
-            if( unit.getType() == EU.UnitType.tower )
-            {
-                var showMenu = EU.strToBool( unit.getParamCollection().get( "showmenu", "yes" ) );
-
-                if( showMenu && unit != this._selectedUnit )
-                {
-                    this.m_menuTower.setUnit( unit );
-
-                    var point = unit.getPosition();
-                    this.m_menuTower.setPosition( point );
-                    this.m_menuTower.appearance();
-                    this._selectedUnit.reset( unit );
-                }
-                else
-                {
-                    if( this._selectedUnit )
-                    {
-                        this._selectedUnit.runEvent( "ondeselect" );
-                    }
-                    this.m_menuTower.disappearance();
-                    this._selectedUnit.reset( null );
-                }
-
-            }
-        },
-        onClickByTowerPlace: function( place )
-        {
-
-            cc.audioEngine.playEffect( EU.kSoundGameTowerPlaceSelect );
-            var event = "level" + this.m_board.getCurrentLevelIndex() + "_selectplace";
-            EU.TutorialManager.shared().dispatch( event );
-        },
-        markTowerPlaceOnLocation: function(position )
-        {
-            var hist = this.m_selectedPlace;
-            this.m_selectedPlace = null;
-
-            var index = this.getTowerPlaceIndex( position );
-            if( index != -1 )
-            {
-                this.m_selectedPlace = this.m_towerPlaces[index];
-            }
-
-            if( (!this.m_selectedPlace && hist != this.m_selectedPlace) || (hist == this.m_selectedPlace) )
-            {
-                this.m_menuCreateTower.disappearance();
-                this.m_selectedPlace = null;
-            }
-            if( hist )
-                hist.unselected();
-            if( this.m_selectedPlace )
-                this.m_selectedPlace.selected();
-
-            if( this.m_selectedPlace /*&& hist != this.m_selectedPlace*/ )
-            {
-                this.m_menuTower.disappearance();
-                this.m_menuDig.disappearance();
-                if( this.m_selectedPlace )
-                {
-                    if( this.m_selectedPlace.getActive() )
-                    {
-                        if( !this.m_box.isItemSelected() )
-                        {
-                            this.m_menuCreateTower.appearance();
-                            this.m_menuCreateTower.setClickPoint( this.m_selectedPlace.getPosition() );
-                        }
-                    }
-                    else
-                    {
-                        this.m_menuDig.appearance();
-                        this.m_menuDig.setClickPoint( this.m_selectedPlace.getPosition() );
-                        //m_selectedPlace = null;
-                    }
-                }
-            }
-            //	m_menuCreateTower.setActived( this.m_selectedPlace != null );
-        },
-        onEmptyTouch: function(touchlocation )
-        {
-            var sprite = EU.ImageManager.sprite( EU.k.resourceGameSceneFolder + "empty_touch.png" );
-            if( sprite )
-            {
-                this.addChild( sprite, 9 );
-                sprite.setPosition( touchlocation );
-                sprite.setScale( 0 );
-                var duration = 0.5 ;
-                sprite.runAction( cc.Sequence._actionOneTwo(
-                    new cc.ScaleTo( duration, 1 ),
-                    new cc.CallFunc( Node.removeFromParent, sprite ) )
-                ) ;
-                sprite.runAction( new cc.FadeTo( duration, 128 ) );
-            }
-        },
-        onForbiddenTouch:function (touchlocation )
-        {
-            var sprite = EU.ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_x.png" );
-            if( sprite )
-            {
-                this.addChild( sprite, 9 );
-                sprite.setPosition( touchlocation );
-                sprite.setScale( 0 );
-                var duration = 0.5 ;
-                sprite.runAction( cc.Sequence._actionOneTwo(
-                    (new cc.ScaleTo( duration, 1 )).easing(cc.easeBounceOut() ),
-                    new cc.CallFunc( Node.removeFromParent, sprite ) )
-                ) ;
-                sprite.runAction( new cc.FadeTo( duration, 128 ) );
-            }
-        },
-        onCreateUnit: function( unit )
-        {
-            var type = unit.getType();
-            switch( type )
-            {
-                case EU.UnitType.tower:
-                {
-                    var event = "level" + ( this.m_board.getCurrentLevelIndex() ) + "_buildtower";
-                    EU.TutorialManager.shared().dispatch( event );
-                    break;
-                }
-                case EU.UnitType.creep:
-                {
-                    // TODO: isFileExist is not implemented
-                    var isExist = cc.fileUtils.isFileExist( "ini/tutorial/units/" + unit.getName() + ".xml" );
-                    if( isExist )
-                    {
-                        var key = "showunitinfo_" + unit.getName();
-                        var showed = EU.UserData.shared().get_bool( key );
-                        if( !showed )
-                        {
-                            var info = EU.UnitInfo.create( unit.getName() );
-                            if( info )
-                            {
-                                EU.UserData.shared().write( key, true );
-                                this.m_interface.addChild( info );
-                            }
-                        }
-                    }
-                    break;
-                }
-
-                default:
-                    break;
-            }
-        },
-        onDeathUnit: function( unit )
-        {
-            var type = unit.getType();
-            switch( type )
-            {
-                case EU.UnitType.tower:
-                    break;
-                case EU.UnitType.creep:
-                    break;
-                default:
-                    break;
-            }
-        },
-
-        onDeathCanceled: function( unit )
-        {
-            var type = unit.getType();
-            switch( type )
-            {
-                case EU.UnitType.tower:
-                    break;
-                case EU.UnitType.creep:
-                    break;
-                default:
-                    break;
-            }
-        },
-        /**
-         * @param {EU.WaveInfo} wave
-         */
-        onStartWave: function( wave )
-        {
-            var event = "level" + m_board.getCurrentLevelIndex() + "_startwave" + wave.index;
-            EU.TutorialManager.shared().dispatch( event );
-        },
-        markPriorityTarget: function()
-        {
-        },
-        unmarkPriorityTarget: function()
-        {
-        },
-        onWaveFinished: function()
-        {
-            for (var i = 0; i < this._waveIcons.length; i++) {
-                /**
-                 * @type {EU.WaveIcon} icon
-                 */
-                var icon = this._waveIcons[i];
-                icon.setActive( true );
-            }
-        },
-
-        onFinishGame( FinishLevelParams* params )
-        {
-            var call = CallFunc.create( [this, params](){this.openStatisticWindow( params ); } );
-            var delay = DelayTime.create( 1 );
-            runAction( Sequence.createWithTwoActions( delay, call ) );
-
-            bool success = params.livecurrent > 0;
-            this.m_menuCreateTower.disappearance();
-            this.m_menuTower.disappearance();
-            this.m_menuDig.disappearance();
-            setTouchDisabled();
-            menuFastModeEnabled( false );
-            this.m_interfaceMenu.menu.setEnabled( false );
-            AudioEngine.shared().playEffect( success ? kSoundGameFinishSuccess : kSoundGameFinishFailed );
-
-            UserData.shared().write(
-                EU.k.user.LastGameResult,
-                success ? EU.k.user.GameResultValueWin : EU.k.user.GameResultValueFail );
-
-            if( success )
-            {
-                int wincounter = UserData.shared().get_int(EU.k.user.GameWinCounter);
-                ++wincounter;
-                UserData.shared().write(EU.k.user.GameWinCounter, wincounter);
-            }
-        }
-
-        buyLevelsMoney( int count )
-        {
-            _boughtScoresForSession += count;
-        }
-
-        shake(var value)
-        {
-            const var x = 2.0f * value;
-            const var t = 0.05f * value;
-
-            Vector<FiniteTimeAction*> actions;
-            actions.pushBack( MoveBy.create( t, Point( 0, +1 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, -2 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, +1 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( -0.5*x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 1 * x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( -0.5*x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, 2 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, -4 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, 2 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( -0.75*x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 1.5*x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( -0.75*x, 0 ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, -2 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, 4 * x ) ) );
-            actions.pushBack( MoveBy.create( t, Point( 0, -2 * x ) ) );
-            runAction( Sequence.create( actions ) );
-        }
-
-        openStatisticWindow( FinishLevelParams* params )
-        {
-            EU.assert( getChildByName( "win" ) == null );
-
-            unschedule( schedule_selector( GameGS.update ) );
-    //	AdMob.show();
-
-            bool win = params.livecurrent > 0;
-            int level = this.m_board.getCurrentLevelIndex();
-            int stars = params.stars;
-            int award = LevelParams.shared().getAwardGold( level, stars, this.m_board.getGameMode() == GameMode.hard );
-
-            var window = VictoryMenu.create( win, award, stars );
-            this.addChild( window, 99999 );
-
-            bool showad = UserData.shared().get_int( EU.k.user.UnShowAd ) == 0;
-            if( showad && EU.k.useAds )
-            {
-                var showAd = []()
-                {
-                    AdsPlugin.shared().showInterstitialBanner();
-                };
-                var delay = DelayTime.create( 1 );
-                var call = CallFunc.create( std.bind( showAd ) );
-                var action = Sequence.createWithTwoActions( delay, call );
-                runAction( action );
-            }
-
-            var music = win ? kMusicVictory : kMusicDefeat;
-            AudioEngine.shared().stopMusic();
-            AudioEngine.shared().playEffect( music );
-
-        }
-
-        flyCameraAboveMap( const Point & wave )
-        {
-            var computePointFinish = [this]( const Point & wavebegan )
-            {
-                var dessize = cc.view.getDesignResolutionSize();
-                var mapsize = this.m_bg.getContentSize();
-                mapsize.width *= this.m_mainlayer.getScaleX();
-                mapsize.height *= this.m_mainlayer.getScaleY();
-                Point wave = wavebegan;
-                wave.x /= this.m_mainlayer.getScaleX();
-                wave.y /= this.m_mainlayer.getScaleY();
-                Point res;
-                if( wave.y > dessize.height / 2 )
-                {
-                    res.x = 0;
-                    res.y = dessize.height - mapsize.height;
-                }
-                else
-                {
-                    res = Point( 0, 0 );
-                }
-                return res;
-            };
-            var computePointStart = [this]( const Point & finish )
-            {
-                var dessize = cc.view.getDesignResolutionSize();
-                var mapsize = this.m_bg.getContentSize();
-                mapsize.width *= this.m_mainlayer.getScaleX();
-                mapsize.height *= this.m_mainlayer.getScaleY();
-                Point res;
-
-                if( finish.y < 0 )
-                {
-                    res = Point( 0, 0 );
-                }
-                else
-                {
-                    res.x = 0;
-                    res.y = dessize.height - mapsize.height;
-                }
-
-                return res;
-            };
-            var createAction = [this]( const Point & start, const Point & end )
-            {
-                this.m_mainlayer.setPosition( start );
-
-                var predelay = DelayTime.create( 1.f );
-                var move2 = EaseInOut.create( MoveTo.create( 1.5f, end ), 2 );
-                var call = CallFunc.create( [this]()
-                {
-                    this.setTouchNormal();
-                    this.m_interfaceMenu.menu.setEnabled( true );
-                } );
-
-                return Sequence.create( predelay, move2, call, null );
-            };
-
-            Point finish = computePointFinish( wave );
-            Point start = computePointStart( finish );
-            this.m_mainlayer.runAction( createAction( start, finish ) );
-        }
-
-        createExplosion( const Point& position )
-        {
-
-
-        }
-
-        createExplosionWave( const Point& position )
-        {
-
-        }
-
-        createFragments( const Point& position )
-        {
-
-        }
-
-        createExplosionSpot( const Point& position )
-        {
-
-        }
-
-        createEffect( Unit*base, Unit*target, const var & effect )
-        {
-            var effects = ShootsEffectsCreate( base, target, effect );
-            for( auto& effect : effects )
-            {
-                int z = effect.getLocalZOrder();
-                addObject( effect, 0 );
-                if( z != 0 )
-                    effect.setLocalZOrder( z );
-            }
-        }
-
-
-        createCloud( const Point& position )
-        {
-
-        }
-
-        createRoutesMarkers( const Route & route, UnitLayer type )
-        {
-
-        }
-
-        createIconForWave( const Route & route, const WaveInfo & wave, UnitLayer type, const std.list<std.string> & icons, var delay )
-        {
-            Point start = route.front();
-            var callback = std.bind( &GameGS.startWave, this,
-            std.placeholders._1,
-            std.placeholders._2,
-            std.placeholders._3
-        );
-
-            var icon = WaveIcon.create( start, delay, this.m_dalayWaveIcon, callback, type );
-            icon.setName( "waveicon" );
-            _waveIcons.push_back( icon );
-            this.m_interface.addChild( icon, zOrderInterfaceWaveIcon );
-            if( _runFlyCamera )
-            {
-                _runFlyCamera = false;
-                flyCameraAboveMap( route.front() );
-
-                //run tutorial
-                int index = this.m_board.getCurrentLevelIndex( );
-                if (!(index == 1 && !EU.k.useInapps)) {
-                    var event = "level" + intToStr(index) + "_enter";
-                    TutorialManager.shared().dispatch(event);
-                }
-            }
-
-            var event = "level" + intToStr( this.m_board.getCurrentLevelIndex() ) + "_waveicon";
-            TutorialManager.shared().dispatch( event );
-        }
-
-        removeIconsForWave()
-        {
-            for( auto& icon : _waveIcons )
-            {
-                icon.removeFromParent();
-            }
-            _waveIcons.clear();
-        }
-
-        startWave( WaveIcon* icon, var elapsed, var duration )
-        {
-            var percent( 0 );
-            if( duration > 0.001f )
-            {
-                percent = elapsed / duration;
-                percent = std.max( 0.f, percent );
-                percent = std.min( 1.f, percent );
-                percent = 1 - percent;
-                var award = static_cast<float>(_scoresForStartWave)* percent;
-                int score = static_cast<int>(award);
-                if( score > 0 )
-                {
-                    ScoreCounter.shared().addMoney( kScoreLevel, score, false );
-                    createAddMoneyNodeForWave( score, icon.getPosition() );
-                }
-            }
-
-            WaveGenerator.shared().resume();
-            removeIconsForWave();
-            AudioEngine.shared().playMusic( kMusicGameBattle );
-
-            var event = "level" + intToStr( this.m_board.getCurrentLevelIndex() ) + "_startwave";
-            TutorialManager.shared().dispatch( event );
-
-        }
-
-
-        createAddCrystalNode( var count, const Point & position )
-        {
-
-        }
-
-        updateWaveCounter()
-        {
-            this.m_scoresNode.updateWaves();
-        }
-
-        setOnEnterParam_needExit()
-        {}
-
-        menuFastModeEnabled( bool enabled )
-        {
-        #if (CC_TARGET_PLATFORM == CC_PLATFORM_MAC) || (CC_TARGET_PLATFORM == CC_PLATFORM_IOS)
-            const var fast = 1.95f;
-    #else
-            const var fast = 1.95f;
-    #endif
-            //m_gameRate = enabled ? fast : 1.0f;
-
-            //	var sound = enabled ? kSoundGameFastModeOn : kSoundGameFastModeOff;
-            //	AudioEngine.shared().playEffect( sound );
-
-            //cc.director.getScheduler().setTimeScale( this.m_gameRate );
-
-            if( this.m_interfaceMenu.rateFast ) this.m_interfaceMenu.rateFast.setVisible( !enabled );
-            if( this.m_interfaceMenu.rateNormal ) this.m_interfaceMenu.rateNormal.setVisible( enabled );
-        }
-
-        menuRestart()
-        {
-            //	closeStatisticWindow( false );
-            //	int index = MapLayer.getInstace().getCurrentLevel();
-            //	MapLayer.getInstace().fastStartGame( index );
-            //	cc.director.popScene();
-
-        }
-
-        void runLayer( LayerPointer layer )
-        {
-            int zthis = GameGS.getInstance().getLocalZOrder();
-            int zshadow = zthis + 1;
-            int zlayer = zshadow + 1;
-
-            if( layer )
-            {
-                GameGS.getInstance().getScene().addChild( layer, zlayer );
-                GameGS.getInstance().onExit();
-            }
-            var shadow = ImageManager.sprite( kPathSpriteSquare );
-            if( shadow )
-            {
-                var dessize = cc.view.getDesignResolutionSize();
-                shadow.setName( "shadow" );
-                shadow.setScaleX( dessize.width );
-                shadow.setScaleY( dessize.height );
-                shadow.setColor( Color3B( 0, 0, 0 ) );
-                shadow.setOpacity( 0 );
-                shadow.setPosition( Point( dessize / 2 ) );
-                GameGS.getInstance().getScene().addChild( shadow, zshadow );
-                shadow.runAction( FadeTo.create( 0.2f, 204 ) );
-            }
-        }
-
-    menuSkill( Ref * sender, Skill skill )
-    {
-        //close box menu before using skills
-        this.m_box.close();
-
-        EU.MenuItemCooldown * item = dynamic_cast<EU.MenuItemCooldown*>(sender);
-
-        if( _selectedSkill && item == _selectedSkill )
-        {
-            item.showCancel( false );
-            setTouchNormal();
-        }
-        else if( item != _selectedSkill )
-        {
-            setTouchNormal();
-            setTouchSkill( skill );
-            item.showCancel( true );
-            _selectedSkill = item;
-        }
-
-        TutorialManager.shared().dispatch( "clickskillbutton" );
-    }
-
-    resetSkillButtons()
-    {
-        _selectedSkill = null;
-        this.m_interfaceMenu.bomb.showCancel(false);
-        this.m_interfaceMenu.desant.showCancel(false);
-    }
-
-    setTouchDisabled()
-    {
-        _touchListenerDesant.setEnabled( false );
-        _touchListenerBomb.setEnabled( false );
-        _touchListenerNormal.setEnabled( false );
-        _eventDispatcher.removeEventListener( _touchListenerDesant );
-        _eventDispatcher.removeEventListener( _touchListenerBomb );
-        _eventDispatcher.removeEventListener( _touchListenerNormal );
-    }
-
-    setTouchNormal()
-    {
-        setTouchDisabled();
-        _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerNormal, this );
-        _touchListenerNormal.setEnabled( true );
-        _skillModeActived = false;
-        resetSkillButtons();
-
-    }
-
-    setTouchSkill( Skill skill )
-    {
-        setTouchDisabled();
-        switch( skill )
-        {
-            case Skill.desant:
-                _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerDesant, this );
-                _touchListenerDesant.setEnabled( true );
+                if (dispatched)
+                    self.interface_heroSkill.run();
                 break;
-            case Skill.bomb:
-                _eventDispatcher.addEventListenerWithSceneGraphPriority( _touchListenerBomb, this );
-                _touchListenerBomb.setEnabled( true );
-                break;
-        }
-        _skillModeActived = true;
-    }
-
-    menuPause( Ref * sender )
-    {
-        AudioEngine.shared( ).pauseAllEffects( );
-        SmartScene * scene = dynamic_cast<SmartScene*>(getScene( ));
-        var pause = GamePauseLayer.create( "ini/gamescene/pause.xml" );
-        scene.pushLayer( pause, true );
-        pause.setGlobalZOrder( 2 );
-    }
-
-        menuShop( Ref*sender, bool gears )
-        {
-        #if PC != 1
-            var shop = gears ?
-            ShopLayer.create( false, false, true, true ) :
-            ShopLayer.create( false, true, false, true );
-
-            if( shop )
-            {
-                AudioEngine.shared( ).pauseAllEffects( );
-                SmartScene * scene = dynamic_cast<SmartScene*>(getScene( ));
-                scene.pushLayer( shop, true );
-                shop.setGlobalZOrder( 2 );
-
-                var on_purchase = [this]( int type, int value )
-                {
-                    this.buyLevelsMoney( value );
-                };
-                shop.observerOnPurchase().add( _ID, std.bind( on_purchase, std.placeholders._1, std.placeholders._2 ) );
-
-                TutorialManager.shared().dispatch( "level_openshop" );
-            }
-    #endif
-        }
-
-        menuPauseOff()
-        {
-            onEnter();
-
-            var scene = getScene();
-            var shadow = scene.getChildByName( "shadow" );
-            if( shadow )
-            {
-                var a0 = FadeTo.create( 0.2f, 0 );
-                var a1 = CallFunc.create( std.bind( &Node.removeFromParent, shadow ) );
-                shadow.runAction( Sequence.createWithTwoActions( a0, a1 ) );
             }
         }
 
-        addObject( Node * object, int zOrder )
-        {
-            this.m_objects.addChild( object, -object.getPositionY() );
+        if (dispatched) {
+            self.selectedSkill.reset(null);
+            self.setTouchNormal();
         }
-
-        removeObject( Node * object )
-        {
-            if( this.m_objects )
-                this.m_objects.removeChild( object );
+        else {
+            self.onForbiddenTouch(touch.getLocation());
         }
+    },
+    onTouchSkillCanceled: function (touch, event) {
+        this.setTouchNormal();
+    },
+    onTouchHeroBegan: function (touch, event) {
+        var touches = []
+        touches.push(touch);
+        event.getTarget().onTouchesBegan(touches, event);
+        return true;
+    },
+    onTouchHeroMoved: function (touch, event) {
+        var touches = []
+        touches.push(touch);
+        event.getTarget().onTouchesMoved(touches, event);
+    },
+    onTouchHeroEnded: function (touch, event) {
+        var self = event.getTarget();
+        var touches = []
+        touches.push(touch);
+        self.onTouchesEnded(touches, event);
 
-        update( var dt )
-        {
-    //#ifdef _DEBUG
-    //	dt = std.min<float>(dt, 1.f / 20);
-    //#endif
-            //dt *= this.m_gameRate;
-            this.m_board.update( dt );
-
-    #if PC == 1
-            MouseHoverScroll.shared().update( dt );
-    #endif
-        }
-
-        Unit * GameGS.getObjectInLocation( const Point & location )
-        {
-            Vector<Node*> objects = this.m_objects.getChildren();
-
-            var distance( 2048 * 2048 );
-            Unit * result( NULL );
-            for( int i = 0; i < objects.size(); ++i )
-            {
-                Unit * object = dynamic_cast<Unit*>(objects.at( i ));
-                if( !object )
-                    continue;
-                var d = object.getPosition().getDistance( location );
-                if( d < 50 && d < distance )
-                {
-                    result = object;
-                    distance = d;
-                }
-            }
-            return result;
-        }
-
-        achievementsObtained( const var & nameachiv )
-        {
+        //check click on tower or tower place
+        if (self.isIntteruptHeroMoving)
             return;
+
+        var location = touch.getLocation();
+        if (EU.Common.pointDistance(location, touch.getStartLocation()) > 100)
+            return;
+
+        location = self.mainlayer.convertToNodeSpace(location);
+    },
+    onTouchHeroCanceled: function (touch, event) {
+        event.getTarget().setTouchNormal();
+    },
+    //TODO: onKeyReleased( EventKeyboard.KeyCode keyCode, Event* event )
+    //{
+    //    if( keyCode == EventKeyboard.KeyCode.KEY_BACK )
+    //        menuPause( null );
+    //    if( isTestDevice() && isTestModeActive() )
+    //    {
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director().setTimeRate( 0 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director().setTimeRate( 1 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director().setTimeRate( 2 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director().setTimeRate( 3 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director().setTimeRate( 4 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director().setTimeRate( 5 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director().setTimeRate( 6 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director().setTimeRate( 7 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director().setTimeRate( 8 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director().setTimeRate( 9 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director().setTimeRate( 99 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 ) this.board.onFinishGame();
+    //    }
+    //},
+    onClickByObject: function (unit) {
+        if (unit.getType() == EU.UnitType.tower) {
+            var showMenu = EU.Common.strToBool(unit.getParamCollection().get("showmenu", "yes"));
+
+            if (showMenu && unit != this.selectedUnit) {
+                this.menuTower.setUnit(unit);
+                var point = unit.getPosition();
+                this.menuTower.setPosition(point);
+                this.menuTower.appearance();
+                this.selectedUnit.reset(unit);
+            }
+            else {
+                if (this.selectedUnit) {
+                    this.selectedUnit.runEvent("ondeselect");
+                }
+                this.menuTower.disappearance();
+                this.selectedUnit.reset(null);
+            }
+            if (this.touchListenerHero.isEnabled())
+                this.setTouchNormal();
+        }
+        else if (unit.getType() == EU.UnitType.hero) {
+            if (unit.current_state().get_name() != EU.Unit.State.state_death)
+                this.setTouchHero();
+        }
+    },
+    onClickByTowerPlace: function (place) {
+        //TODO: AudioEngine.playEffect( kSoundGameTowerPlaceSelect );
+
+        var event = "level" + this.board.getCurrentLevelIndex() + "_selectplace";
+        EU.TutorialManager.dispatch(event);
+
+        if (this.touchListenerHero.isEnabled())
+            this.setTouchNormal();
+    },
+    markTowerPlaceOnLocation: function (position) {
+        var hist = this.selectedPlace;
+        this.selectedPlace = null;
+
+        var index = this.getTowerPlaceIndex(position);
+        if (index != -1) {
+            this.selectedPlace = this.towerPlaces[index];
         }
 
-        achievementsWindowClose( Ref * ref )
-        {
-            var scene = cc.director.getRunningScene();
-            var node = scene.getChildByTag( 1 );
-
-            var a1 = EaseBackIn.create( ScaleTo.create( 0.5f, 0 ) );
-            var a2 = CallFunc.create( std.bind( &Director.popScene, cc.director ) );
-            node.runAction( Sequence.create( a1, a2, null ) );
+        if ((!this.selectedPlace && hist != this.selectedPlace) || (hist == this.selectedPlace)) {
+            this.menuCreateTower.disappearance();
+            this.selectedPlace = null;
         }
 
-        ScoresNode.ScoresNode()
-        : this.m_scores()
-            , this.m_healths( null )
-            , this.m_golds( null )
-            , this.m_waves( null )
-        {
-            __push_auto_check( "ScoresNode.ScoresNode" );
-            Node.init();
-            this.m_healths = Label.createWithBMFont(  kFontStroke, "" );
-            this.m_golds = Label.createWithBMFont( kFontStroke, "" );
-            this.m_waves = Label.createWithBMFont( kFontStroke, "" );
+        if (hist)
+            hist.unselected();
+        if (this.selectedPlace)
+            this.selectedPlace.selected();
 
-            this.addChild( this.m_healths, 1 );
-            this.addChild( this.m_golds, 1 );
-            this.addChild( this.m_waves, 1 );
-
-            this.m_healths.setAnchorPoint( Point( 0, 0.5f ) );
-            this.m_golds.setAnchorPoint( Point( 0, 0.5f ) );
-            this.m_waves.setAnchorPoint( Point( 0, 0.5f ) );
-
-            this.m_healths.setPosition( Point( 85, -25 ) );
-            this.m_golds.setPosition( Point( 190, -25 ) );
-            this.m_waves.setPosition( Point( 85, -70 ) );
-
-            this.m_healths.setScale( 0.5f );
-            this.m_golds.setScale( 0.5f );
-            this.m_waves.setScale( 0.5f );
-
-            this.m_healthsIcon = ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_lifes.png" );
-            this.m_healthsIcon.setPosition( 62, -30 );
-            this.addChild( this.m_healthsIcon );
-            var icon = ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_gold1.png" );
-            icon.setPosition( 162, -30 );
-            this.addChild( icon );
-            icon = ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_wave1.png" );
-            icon.setPosition( 62, -75 );
-            this.addChild( icon );
-
-            ScoreCounter.shared().observer( kScoreLevel ).add( _ID, std.bind( &ScoresNode.on_change_money, this, std.placeholders._1 ) );
-            ScoreCounter.shared().observer( kScoreHealth ).add( _ID, std.bind( &ScoresNode.on_change_lifes, this, std.placeholders._1 ) );
+        if (this.selectedPlace /*&& hist != this.selectedPlace*/) {
+            this.menuTower.disappearance();
+            this.menuDig.disappearance();
+            if (this.selectedPlace) {
+                if (this.selectedPlace.getActive()) {
+                    if (!this.box.isItemSelected()) {
+                        this.menuCreateTower.appearance();
+                        this.menuCreateTower.setClickPoint(this.selectedPlace.getPosition());
+                    }
+                }
+                else {
+                    this.menuDig.appearance();
+                    this.menuDig.setClickPoint(this.selectedPlace.getPosition());
+                    //this.selectedPlace = null;
+                }
+            }
         }
 
-        ScoresNode.~ScoresNode()
-        {
-            ScoreCounter.shared().observer( kScoreLevel ).remove( _ID );
-            ScoreCounter.shared().observer( kScoreHealth ).remove( _ID );
+        //	this.menuCreateTower.setActived( this.selectedPlace != null );
+    },
+    onEmptyTouch: function (touchlocation) {
+        var sprite = EU.ImageManager.sprite(k.resourceGameSceneFolder + "empty_touch.png");
+        if (sprite) {
+            this.addChild(sprite, 9);
+            sprite.setPosition(touchlocation);
+            sprite.setScale(0);
+            var duration = 0.5;
+            sprite.runAction(new cc.Sequence(
+                new cc.ScaleTo(duration, 1),
+                new cc.CallFunc(sprite.removeFromParent, sprite))
+            );
+            sprite.runAction(new cc.FadeTo(duration, 128));
         }
-
-        ScoresNode* ScoresNode.create()
-        {
-            ScoresNode* p = new ScoresNode;
-            p.autorelease();
-            return p;
+    },
+    onForbiddenTouch: function (touchlocation) {
+        var sprite = EU.ImageManager.sprite(k.resourceGameSceneFolder + "icon_x.png");
+        if (sprite) {
+            this.addChild(sprite, 9);
+            sprite.setPosition(touchlocation);
+            sprite.setScale(0);
+            var duration = 0.5;
+            sprite.runAction(new cc.Sequence(
+                new cc.EaseBounceOut(new cc.ScaleTo(duration, 1)),
+                new cc.CallFunc(sprite.removeFromParent, sprite))
+            );
+            sprite.runAction(new cc.FadeTo(duration, 128));
         }
-
-        void ScoresNode.updateWaves()
-        {
-            int wave = WaveGenerator.shared().getWaveIndex();
-            int count = WaveGenerator.shared().getWavesCount();
-            var text = intToStr( wave ) + "/" + intToStr( count );
-            this.m_waves.setString( text.c_str() );
-        }
-
-        void ScoresNode.on_change_lifes( int score )
-        {
-            int health = std.max<int>( 0, ScoreCounter.shared().getMoney( kScoreHealth ) );
-            this.m_healths.setString( intToStr( health ) );
-
-            var run = []( Node*node )
+    },
+    onCreateUnit: function (unit) {
+        var type = unit.getType();
+        switch (type) {
+            case EU.UnitType.tower:
             {
-                var s = node.getScale();
-                if( node.getActionByTag( 0x12 ) )
-                    return;
+                var event = "level" + this.board.getCurrentLevelIndex() + "_buildtower";
+                EU.TutorialManager.dispatch(event);
+                break;
+            }
+            case EU.UnitType.creep:
+            {
+                var isExist = FileUtils.getInstance().isFileExist("ini/tutorial/units/" + unit.getName() + ".xml");
+                if (isExist) {
+                    var key = "showunitinfo_" + unit.getName();
+                    var showed = EU.UserData.get_bool(key);
+                    if (!showed) {
+                        var info = new cc.UnitInfo(unit.getName());
+                        if (info) {
+                            EU.UserData.write(key, true);
+                            this.interface.addChild(info);
+                        }
+                    }
+                }
+                break;
+            }
+            case EU.UnitType.hero:
+            {
+                this.createHeroMenu();
+                break;
+            }
 
-                var action = EaseBackInOut.create( Sequence.create(
-                ScaleTo.create( 0.5f, s * 1.5f ),
-                ScaleTo.create( 0.5f, s * 1.0f ),
-                null ) );
-                action.setTag( 0x12 );
-                node.runAction( action );
+            default:
+                break;
+        }
+    },
+    onDeathUnit: function (unit) {
+        var type = unit.getType();
+        switch (type) {
+            case EU.UnitType.tower:
+                break;
+            case EU.UnitType.creep:
+                break;
+            case EU.UnitType.hero:
+                this.interface_heroSkill.stop();
+                this.interface_hero.showCancel(false);
+                if (this.touchListenerHero.isEnabled())
+                    this.setTouchNormal();
+                break;
+            default:
+                break;
+        }
+    },
+    onDeathCanceled: function (unit) {
+        var type = unit.getType();
+        switch (type) {
+            case EU.UnitType.tower:
+                break;
+            case EU.UnitType.creep:
+                break;
+            case EU.UnitType.hero:
+                this.interface_heroSkill.run();
+                break;
+            default:
+                break;
+        }
+    },
+    onStartWave: function (wave) {
+        var event = "level" + this.board.getCurrentLevelIndex() + "_startwave" + wave.index;
+        EU.TutorialManager.dispatch(event);
+    },
+    onWaveFinished: function () {
+        for (var i = 0; i < this.waveIcons.length; ++i) {
+            this.waveIcons[i].setActive(true);
+        }
+    },
+    onFinishGame: function (params) {
+        var call = new cc.CallFunc(this.openStatisticWindow.bind(this, params));
+        var delay = new cc.DelayTime(1);
+        this.runAction(new cc.Sequence(delay, call));
+
+        var success = params.livecurrent > 0;
+        this.menuCreateTower.disappearance();
+        this.menuTower.disappearance();
+        this.menuDig.disappearance();
+        this.setTouchDisabled();
+        this.menuFastModeEnabled(false);
+        this.interface_menu.setEnabled(false);
+        //TODO:AudioEngine.playEffect( success ? kSoundGameFinishSuccess : kSoundGameFinishFailed );
+
+        EU.UserData.write(
+            EU.k.LastGameResult,
+            success ? EU.k.GameResultValueWin : EU.k.GameResultValueFail);
+
+        if (success) {
+            var wincounter = EU.UserData.get_int(EU.k.GameWinCounter);
+            ++wincounter;
+            EU.UserData.write(EU.k.GameWinCounter, wincounter);
+        }
+    },
+    buyLevelsMoney: function (count) {
+        this.boughtScoresForSession += count;
+    },
+    shake: function (value) {
+        var x = 2.0 * value;
+        var t = 0.05 * value;
+
+        var action = new cc.Sequence(
+            new cc.MoveBy(t, cc.p(0, +1 * x)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)),
+            new cc.MoveBy(t, cc.p(0, +1 * x)),
+            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(x, 0)),
+            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(0, 2 * x)),
+            new cc.MoveBy(t, cc.p(0, -4 * x)),
+            new cc.MoveBy(t, cc.p(0, 2 * x)),
+            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+            new cc.MoveBy(t, cc.p(1.5 * x, 0)),
+            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)),
+            new cc.MoveBy(t, cc.p(0, 4 * x)),
+            new cc.MoveBy(t, cc.p(0, -2 * x)));
+        this.runAction(action);
+    },
+
+    openStatisticWindow: function (params) {
+        EU.assert(this.getChildByName("win") == null);
+
+        this.unschedule(schedule_selector(update));
+
+        var win = params.livecurrent > 0;
+        var level = this.board.getCurrentLevelIndex();
+        var stars = params.stars;
+        var award = EU.LevelParams.getAwardGold(level, stars, this.board.getGameMode() == GameMode.hard);
+
+        var window = new EU.VictoryMenu(win, award, stars);
+        this.addChild(window, 99999);
+
+        var showad = EU.UserData.get_int(EU.k.UnShowAd) == 0;
+        if (showad && EU.k.useAds) {
+            var showAd = function () {
+                //TODO: AdsPlugin.showInterstitialBanner();
             };
-
-            run( this.m_healths );
-            run( this.m_healthsIcon );
+            var delay = DelayTime.create(1);
+            var call = CallFunc.create(showAd);
+            var action = new cc.Sequence(delay, call);
+            this.runAction(action);
         }
 
-        void ScoresNode.on_change_money( int score )
-        {
-            int prev = this.m_scores[kScoreLevel];
-            int curr = ScoreCounter.shared().getMoney( kScoreLevel );
-            if( prev != curr )
-            {
-                curr = std.max<int>( 0, curr );
-                this.m_scores[kScoreLevel] = curr;
-                var action = ActionText.create( 0.2f, curr, true );
-                action.setTag( 1 );
-                this.m_golds.stopActionByTag( 1 );
-                this.m_golds.runAction( action );
+        //var music = win ? kMusicVictory : kMusicDefeat;
+        //TODO: AudioEngine.stopMusic();
+        //TODO: AudioEngine.playEffect( music );
+
+    },
+    flyCameraAboveMap: function (wave) {
+        //var computePointFinish = [this]( const point & wavebegan )
+        //var computePointStart = [this]( const point & finish )
+        //var createAction = [this]( const point & start, const point & end )
+        //computePointFinish:
+        var dessize = cc.view.getDesignResolutionSize();
+        var mapsize = this.bg.getContentSize();
+        mapsize.width *= this.this.mainlayer.getScaleX();
+        mapsize.height *= this.this.mainlayer.getScaleY();
+        var wavePoint = wave[0];
+        wavePoint.x /= this.this.mainlayer.getScaleX();
+        wavePoint.y /= this.this.mainlayer.getScaleY();
+        var finish = cc.p(0, 0);
+        if (wavePoint.y > dessize.height / 2) {
+            finish.x = 0;
+            finish.y = dessize.height - mapsize.height;
+        }
+        //computePointStart:
+        mapsize.width *= this.this.mainlayer.getScaleX();
+        mapsize.height *= this.this.mainlayer.getScaleY();
+        var start = cc.p(0, 0);
+        if (finish.y >= 0) {
+            res.x = 0;
+            res.y = dessize.height - mapsize.height;
+        }
+        //createAction
+        this.this.mainlayer.setPosition(start);
+        var callback = function (self) {
+            self.setTouchNormal();
+            self.this.interface_menu.setEnabled(true);
+            self.this.interface_desant.run();
+            self.this.interface_bomb.run();
+            self.this.interface_heroSkill.run();
+        };
+        var preDelay = new cc.DelayTime(1);
+        var move2 = new cc.EaseInOut(new cc.MoveTo(1.5, end), 2);
+        var call = new cc.CallFunc(callback.bind(this));
+        this.this.mainlayer.runAction(new cc.Sequence(preDelay, move2, call));
+    },
+    createEffect: function (base, target, effect) {
+        var effects = EU.ShootsEffectsCreate(base, target, effect);
+        for (var i = 0; i < effects.length; ++i) {
+            var object = effects[i];
+            var z = object.getLocalZOrder();
+            this.addObject(object, 0);
+            if (z != 0)
+                object.setLocalZOrder(z);
+        }
+    },
+    createIconForWave: function (route, waveinfo, unitType, iconlist, delay) {
+        var start = route[0];
+
+        var icon = WaveIcon.create(start, delay, this.dalayWaveIcon, this.startWave, this, unitType);
+        icon.setName("waveicon");
+        this.waveIcons.push(icon);
+        this.interface.addChild(icon, zOrderInterfaceWaveIcon);
+        if (this.runFlyCamera) {
+            this.runFlyCamera = false;
+            this.flyCameraAboveMap(route[0]);
+
+            //run tutorial
+            var index = this.this.board.getCurrentLevelIndex();
+            if (!(index == 1 && !EU.k.useInapps)) {
+                var event = "level" + index + "_enter";
+                EU.TutorialManager.dispatch(event);
             }
         }
 
-        Icon.Icon()
-        : this.m_label( null )
-            , this.m_bg( null )
-        {}
-
-        bool Icon.init( const var & bgResource, const var & text )
-        {
-            this.m_bg = ImageManager.sprite( bgResource.c_str() );
-            if( !m_bg ) return false;
-            this.m_label = Label.createWithBMFont( kFontStroke, text );
-            if( !m_label ) return false;
-            this.addChild( this.m_label );
-            this.addChild( this.m_bg );
-            this.m_label.setAnchorPoint( Point( 1, 0.5 ) );
-            this.m_bg.setAnchorPoint( Point( 0, 0.5 ) );
-            return true;
+        var event = "level" + this.board.getCurrentLevelIndex() + "_waveicon";
+        EU.TutorialManager.dispatch(event);
+    },
+    removeIconsForWave: function () {
+        for (var i = 0; i < this.waveIcons.length; ++i) {
+            this.waveIcons[i].removeFromParent();
         }
-
-        Icon.~Icon()
-        {}
-
-        Icon * Icon.create( const var & bgResource, const var & text )
-        {
-            Icon * ptr = new Icon;
-            if( ptr && ptr.init( bgResource, text ) )
-                ptr.autorelease();
-            return ptr;
-        }
-
-        FiniteTimeAction * Icon.createAndRunAppearanceEffect( var duration, FiniteTimeAction * extraAction )
-        {
-            Vector<FiniteTimeAction*>actions;
-            actions.pushBack( EaseOut.create( MoveBy.create( duration * 0.30f, Point( 0, 35 ) ), 1 ) );
-            actions.pushBack( EaseIn.create( MoveBy.create( duration * 0.25f, Point( 0, -35 ) ), 1 ) );
-            actions.pushBack( EaseOut.create( MoveBy.create( duration * 0.20f, Point( 0, 25 ) ), 1 ) );
-            actions.pushBack( EaseIn.create( MoveBy.create( duration * 0.15f, Point( 0, -25 ) ), 1 ) );
-            actions.pushBack( EaseOut.create( MoveBy.create( duration * 0.10f, Point( 0, 10 ) ), 1 ) );
-            actions.pushBack( EaseIn.create( MoveBy.create( duration * 0.05f, Point( 0, -10 ) ), 1 ) );
-            actions.pushBack( DelayTime.create( duration ) );
-
-            if( extraAction )
-                actions.pushBack( extraAction );
-
-            Sequence * action = Sequence.create( actions );
-
-            runAction( action );
-            this.m_label.runAction( Sequence.create( DelayTime.create( duration ), FadeTo.create( 1, 128 ), null ) );
-            this.m_bg.runAction( Sequence.create( DelayTime.create( duration ), FadeTo.create( 1, 128 ), null ) );
-            return action;
-        }
-
-        FiniteTimeAction * Icon.createAndRunDisappearanceEffect( var duration, FiniteTimeAction * extraAction )
-        {
-            FiniteTimeAction * a0 = MoveBy.create( duration, Point( 15, 100 ) );
-            FiniteTimeAction * a1 = FadeTo.create( duration, 128 );
-            FiniteTimeAction * a2 = FadeTo.create( duration, 128 );
-
-            FiniteTimeAction * action( null );
-            if( extraAction )
-            {
-                Vector<FiniteTimeAction*>arr;
-                arr.pushBack( a0 );
-                arr.pushBack( extraAction );
-                action = Sequence.create( arr );
+        this.waveIcons.clear();
+    },
+    startWave: function (waveIcon, elapsed, duration) {
+        var percent = 0;
+        if (duration > 0.001) {
+            percent = elapsed / duration;
+            percent = Math.max(0, percent);
+            percent = Math.min(1, percent);
+            percent = 1 - percent;
+            var score = this.scoresForStartWave * percent;
+            if (score > 0) {
+                EU.ScoreCounter.addMoney(EU.kScoreLevel, score, false);
+                this.createAddMoneyNodeForWave(score, waveIcon.getPosition());
             }
-            else
-            {
-                action = a0;
+        }
+
+        EU.WaveGenerator.resume();
+        this.removeIconsForWave();
+        //TODO: AudioEngine.playMusic( kMusicGameBattle );
+
+        var event = "level" + this.board.getCurrentLevelIndex() + "_startwave";
+        EU.TutorialManager.dispatch(event);
+
+    },
+    createAddMoneyNodeForWave: function (count, position) {
+        if (count > 0) {
+            EU.xmlLoader.macros.set("scores", count);
+            EU.xmlLoader.macros.set("position", EU.Common.pointToStr(position));
+            var node = EU.xmlLoader.load_node_from_file("ini/gamescene/gearforwave.xml");
+            EU.xmlLoader.macros.erase("scores");
+            EU.xmlLoader.macros.erase("position");
+            this.interface.addChild(node);
+        }
+    },
+    updateWaveCounter: function () {
+        this.scoresNode.updateWaves();
+    },
+    menuFastModeEnabled: function (enabled) {
+        if (this.interface_rateFast) this.interface_rateFast.setVisible(!enabled);
+        if (this.interface_rateNormal) this.interface_rateNormal.setVisible(enabled);
+    },
+    menuRestart: function () {
+        //Old functional
+    },
+    menuSkill: function (sender, skill) {
+        this.box.close();
+        var item = sender;
+
+        if (this.selectedSkill && item == this.selectedSkill) {
+            item.showCancel(false);
+            this.setTouchNormal();
+        }
+        else if (item != this.selectedSkill) {
+            this.setTouchNormal();
+            this.setTouchSkill(skill);
+            item.showCancel(true);
+            this.selectedSkill = item;
+        }
+
+        EU.TutorialManager.dispatch("clickskillbutton");
+    },
+    resetSkillButtons: function () {
+        this.selectedSkill = null;
+        this.interface_bomb.showCancel(false);
+        this.interface_desant.showCancel(false);
+        this.interface_heroSkill.showCancel(false);
+    },
+
+    setTouchDisabled: function () {
+        this.touchListenerDesant.setEnabled(false);
+        this.touchListenerBomb.setEnabled(false);
+        this.touchListenerNormal.setEnabled(false);
+        this.touchListenerHero.setEnabled(false);
+        this.touchListenerHeroSkill.setEnabled(false);
+        this._eventDispatcher.removeEventListener(this.touchListenerDesant);
+        this._eventDispatcher.removeEventListener(this.touchListenerBomb);
+        this._eventDispatcher.removeEventListener(this.touchListenerNormal);
+        this._eventDispatcher.removeEventListener(this.touchListenerHero);
+        this._eventDispatcher.removeEventListener(this.touchListenerHeroSkill);
+    },
+    setTouchNormal: function () {
+        this.setTouchDisabled();
+        this._eventDispatcher.addEventListener(this.touchListenerNormal, this);
+        this.touchListenerNormal.setEnabled(true);
+        this.skillModeActive = false;
+        this.resetSkillButtons();
+
+        this.interface_hero.showCancel(false);
+    },
+    setTouchSkill: function (skill) {
+        this.setTouchDisabled();
+        switch (skill) {
+            case EU.Skill.desant:
+                this._eventDispatcher.addEventListener(this.touchListenerDesant, this);
+                this.touchListenerDesant.setEnabled(true);
+                break;
+            case EU.Skill.bomb:
+                this._eventDispatcher.addEventListener(this.touchListenerBomb, this);
+                this.touchListenerBomb.setEnabled(true);
+                break;
+            case EU.Skill.heroskill:
+                this._eventDispatcher.addEventListener(this.touchListenerHeroSkill, this);
+                this.touchListenerHeroSkill.setEnabled(true);
+                break;
+        }
+        this.skillModeActive = true;
+    },
+    setTouchHero: function () {
+        this.setTouchDisabled();
+        this._eventDispatcher.addEventListener(this.touchListenerHero, this);
+        this.touchListenerHero.setEnabled(true);
+        this.resetSkillButtons();
+        this.skillModeActive = false;
+
+        this.interface_hero.showCancel(true);
+    },
+
+    menuPause: function () {
+        //TODO: AudioEngine.shared( ).pauseAllEffects( );
+        var scene = EU.Common.getSceneOfNode(this);
+        var pause = EU.GamePauseLayer.create("ini/gamescene/pause.xml");
+        scene.pushLayer(pause, true);
+        pause.setGlobalZOrder(2);
+    },
+    listenPurchases: function (typeScore, value) {
+        this.buyLevelsMoney(value);
+    },
+    menuShop: function (sender, gears) {
+        //#if PC != 1
+        var shop = gears ?
+            new EU.ShopLayer(false, false, true, true) :
+            new EU.ShopLayer(false, true, false, true);
+
+        if (shop) {
+            //TODO: AudioEngine.shared( ).pauseAllEffects( );
+            var scene = EU.Common.getSceneOfNode(this);
+            scene.pushLayer(shop, true);
+            shop.setGlobalZOrder(2);
+
+            shop.observerOnPurchase().add(__instanceId, this.listenPurchases, this);
+            EU.TutorialManager.dispatch("level_openshop");
+        }
+        //#endif
+    },
+
+    menuHero: function () {
+        if (this.touchListenerHero.isEnabled() == false)
+            this.setTouchHero();
+        else
+            this.setTouchNormal();
+    },
+
+    addObject: function (object, zOrder) {
+        this.objects.addChild(object, -object.getPositionY());
+    },
+    removeObject: function (object) {
+        if (this.objects)
+            this.objects.removeChild(object);
+    },
+    update: function (dt) {
+        this.board.update(dt);
+        //#if PC == 1
+        //TODO: MouseHoverScroll.update( dt );
+        //#endif
+    },
+    getObjectInLocation: function (location) {
+        var objects = this.objects.getChildren();
+
+        var distance = 2048 * 2048;
+        var result = null;
+        for (var i = 0; i < objects.length; ++i) {
+            var object = objects[i];
+            if (!object.__Unit)
+                continue;
+            var d = EU.Common.pointDistance(object.getPosition(), location);
+            if (d < 50 && d < distance) {
+                result = object;
+                distance = d;
             }
-            EU.assert( action );
-            runAction( action );
-            this.m_label.runAction( a1 );
-            this.m_bg.runAction( a2 );
-            return action;
         }
-
-        void Icon.setIntegerValue( var value )
-        {
-            var s = intToStr( value );
-            const char * c = s.c_str();
-            this.m_label.setString( c );
-        }
-
-
-
-        });
+        return result;
+    },
 });
 
-EU.Icon = cc.Node.extend(
-{
-});
+EU.GameGSInstance = EU.GameGS;
 
+EU.GameGS.restartLevel = function () {
+    var game = EU.GameGSInstance;
+    EU.assert(game);
+    var levelindex = game.board.getCurrentLevelIndex();
+    var gamemode = game.board.getGameMode();
+
+    var scene = EU.Common.getSceneOfNode(this);
+    scene.resetMainLayer(null);
+
+    var dessize = cc.view.getDesignResolutionSize();
+    var layer = new GameGS();
+    layer.this.scoresNode = EU.ScoresNode.create();
+    layer.this.scoresNode.setPosition(0, dessize.height);
+    var result = layer.init();
+    EU.assert(result);
+    scene.resetMainLayer(layer);
+    scene.addChild(layer.this.scoresNode, 9);
+    EU.GameGSInstance.board.loadLevel(levelindex, gamemode);
+
+    if (EU.k.useBoughtLevelScoresOnlyRestartLevel) {
+        var boughtScores = game.this.boughtScoresForSession;
+        EU.GameGSInstance.this.boughtScoresForSession = boughtScores;
+        EU.ScoreCounter.addMoney(EU.kScoreLevel, boughtScores, false);
+    }
+
+    layer.release();
+};
+
+EU.GameGS.createScene = function () {
+    var layer = new EU.GameGS();
+    var result = layer.init();
+    EU.assert(result);
+    var scene = new EU.SmartScene(layer);
+    scene.setName("gameScene");
+
+    var dessize = cc.view.getDesignResolutionSize();
+    layer.this.scoresNode = ScoresNode.create();
+    layer.this.scoresNode.setPosition(0, dessize.height);
+    scene.addChild(layer.this.scoresNode, 9);
+
+    layer.release();
+    return scene;
+};

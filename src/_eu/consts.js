@@ -79,7 +79,7 @@ EU.k =
     GameResultValueFail : 1 ,
     GameResultValueWin : 2 ,
 
-    resourceGameSceneFolder : "res/_origin/images/gamescene/",
+    resourceGameSceneFolder : "images/gamescene/",
     IsometricValue : 1.5,
     kGameName : "IslandDefense",
     useInapps : false,
