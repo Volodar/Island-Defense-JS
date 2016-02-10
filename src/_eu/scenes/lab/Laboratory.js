@@ -182,7 +182,8 @@ EU.Laboratory = EU.ScrollMenu.extend({
             {
                 item.setEnabled( false );
                 item.setOpacity( 128 );
-                menu_confirm.setEnabled( false );
+                //menu_confirm.setEnabled( false );
+                menu_confirm.setVisible( false );
                 menu.setEnabled( false );
                 menuinfo.setEnabled( false );
                 menu.setOpacity( 128 );
@@ -254,7 +255,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
             EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
             //TODO: audio
             //AudioEngine.playEffect( kSoundLabUpgrade );
-            EU.UserData.save();
+            //EU.UserData.save();
         }
         this.setParam( tower, false );
         this.setIcon( tower, false );

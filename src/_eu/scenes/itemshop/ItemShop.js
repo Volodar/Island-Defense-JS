@@ -191,7 +191,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
             EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
             //TODO: audio
             //AudioEngine.playEffect( kSoundShopPurchase );
-            EU.UserData.save();
+            //EU.UserData.save();
     
             this.runFly( itemname );
         }

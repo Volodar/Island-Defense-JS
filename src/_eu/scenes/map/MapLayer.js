@@ -200,7 +200,7 @@ EU.MapLayer = cc.Layer.extend({
                 var towers = [];
                 EU.mlTowersInfo.fetch(towers);
                 var towername = towers[0];
-                var level = EU.UserData.tower_upgradeLevel(towername);
+                var level = EU.UserData.tower_getUpgradeLevel(towername);
                 var scores = EU.ScoreCounter.getMoney(EU.kScoreCrystals);
                 var cost = EU.mlTowersInfo.getCostLab(towername, level + 1);
                 if (level < 3 && cost <= scores) {
@@ -239,7 +239,7 @@ EU.MapLayer = cc.Layer.extend({
                     var towers = []
                     mlTowersInfo.fetch(towers);
                     for (var tower in towers)
-                        maxlevel = maxlevel && EU.UserData.tower_upgradeLevel(tower) == 5;
+                        maxlevel = maxlevel && EU.UserData.tower_getUpgradeLevel(tower) == 5;
                     if (!maxlevel) {
                         mapLayer.cb_lab(null);
                     }
@@ -552,7 +552,7 @@ EU.MapLayer = cc.Layer.extend({
             //    player.release();
             //}
         }
-        EU.UserData.save();
+        //EU.UserData.save();
     },
     /**
      *

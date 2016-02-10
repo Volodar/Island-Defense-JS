@@ -79,7 +79,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                     this._buttonTowersUn[name] = item;
                     item.setCallback( function(p1){return self.onActivate.call(self, p1, false)} );
                 }
-                var level = EU.UserData.tower_upgradeLevel( name );
+                var level = EU.UserData.tower_getUpgradeLevel( name );
                 if( level == 0 )
                     this.setBlockButton( item );
             }

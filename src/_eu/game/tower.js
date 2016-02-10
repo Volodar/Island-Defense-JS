@@ -302,9 +302,9 @@ EU.mlTowersInfo = {
             var iter = this.m_towersInfo[key];
             if ( iter.minlevel <= passed )
             {
-                var level = EU.UserData.tower_upgradeLevel( key );
+                var level = EU.UserData.tower_getUpgradeLevel(key );
                 level = Math.max( 1, level );
-                EU.UserData.tower_upgradeLevel( key, level );
+                EU.UserData.tower_setUpgradeLevel( key, level );
             }
         }
     }
