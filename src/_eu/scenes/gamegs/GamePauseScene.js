@@ -135,7 +135,7 @@ EU.GamePauseLayer = cc.Menu.extend(
     {
         this._super();
         //this.setKeyboardEnabled( true );
-        cc.audioEngine.playEffect( EU.kSoundGamePauseOn , false);
+        EU.AudioEngine.playEffect( EU.kSoundGamePauseOn , false);
 
         if( this._showScores )
         {
@@ -227,23 +227,23 @@ EU.GamePauseLayer = cc.Menu.extend(
     cb_sound: function( sender, enabled )
     {
         //TODO: soundEnabled
-        cc.audioEngine.soundEnabled(enabled);
+        EU.AudioEngine.soundEnabled(enabled);
         this.checkAudio();
     },
 
     cb_music: function( sender, enabled )
     {
         //TODO: soundEnabled
-        cc.audioEngine.soundEnabled(enabled);
+        EU.AudioEngine.soundEnabled(enabled);
         this.checkAudio();
     },
 
     checkAudio: function()
     {
         //TODO: soundEnabled
-        var s = cc.audioEngine.isSoundEnabled();
+        var s = EU.AudioEngine.isSoundEnabled();
         //TODO: soundEnabled
-        var m = cc.audioEngine.isMusicEnabled();
+        var m = EU.AudioEngine.isMusicEnabled();
         if( this._sound_off )this._sound_off.setVisible( !s );
         if( this._sound_on  )this._sound_on.setVisible( s );
         if( this._music_off )this._music_off.setVisible( !m );
@@ -252,7 +252,7 @@ EU.GamePauseLayer = cc.Menu.extend(
 
     gameresume: function()
     {
-        cc.audioEngine.resumeAllEffects();
+        EU.AudioEngine.resumeAllEffects();
         this.setEnabled( false );
         this.removeFromParent();
     },

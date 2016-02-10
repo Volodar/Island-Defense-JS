@@ -189,8 +189,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
     
             EU.UserData.bonusitem_add( index, 1 );
             EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
-            //TODO: audio
-            //AudioEngine.playEffect( kSoundShopPurchase );
+            EU.AudioEngine.playEffect( EU.kSoundShopPurchase );
             //EU.UserData.save();
     
             this.runFly( itemname );
@@ -229,8 +228,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         var dessize = cc.view.getDesignResolutionSize();
         var action = cc.moveTo( 0.5, cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height )).easing(cc.easeBackIn());
         this.runAction( cc.sequence( action, cc.removeSelf() ) );
-        //TODO: audio
-        //AudioEngine.playEffect( kSoundShopHide );
+        EU.AudioEngine.playEffect( EU.kSoundShopHide );
     },
     fadeenter: function()
     {
@@ -238,8 +236,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
         this.setPosition( cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height  ) );
         var action = cc.moveTo( 0.5, this.zeroPosition ).easing(cc.easeBackOut());
         this.runAction( action );
-        //TODO: audio
-        //AudioEngine.playEffect( kSoundShopShow );
+        EU.AudioEngine.playEffect( EU.kSoundShopShow );
 
         var scene = cc.director.getRunningScene();
         var score = scene.getChildByName( "scorelayer" );

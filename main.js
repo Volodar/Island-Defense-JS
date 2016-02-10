@@ -47,10 +47,6 @@ cc.game.onStart = function(){
         EU.ScoreByTime.checktime( );
         /** */
 
-
-        EU.xmlLoader.macros.set( "USE_HEROROOM", "yes" );
-        EU.xmlLoader.macros.set( "PLATFORM_MOBILE", "no" );
-
         if (cc.sys.isMobile) {
             //TODO: inapp here
             //inapp.CallBackPurchase cb = std.bind( ShopLayer.request_answer, std.placeholders._1 );
@@ -117,6 +113,8 @@ cc.game.onStart = function(){
         //showCursor();
     
         cc.director.runScene( EU.MainGS.scene() );//run the GameScene
+        //cc.director.runScene( new EU.AudioMenu() );//run the GameScene
+
     }, this);
 };
 

@@ -10,6 +10,8 @@
  * If you received the code not from the author, please contact us
  ******************************************************************************/
 
+/**TESTED*/
+
 //Define namespace
 var EU = EU || {};
 
@@ -110,11 +112,12 @@ EU.AudioEngine =
         }
         var pathmusic = path;
         pathmusic = EU.xmlLoader.macros.parse( pathmusic );
-        pathmusic = EU.xmlLoader.resourcesRoot + pathmusic;
+        var fullPath = pathmusic.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+            pathmusic : EU.xmlLoader.resourcesRoot + pathmusic;
         //if( cc.path.isFileExist(pathmusic) )
         {
             //pathmusic = cc.fileUtils.fullPathForFilename( pathmusic );
-            cc.audioEngine.playMusic( pathmusic, lopped );
+            cc.audioEngine.playMusic( fullPath, lopped );
         }
     },
 
@@ -128,11 +131,12 @@ EU.AudioEngine =
         }
         var sound = path;
         sound = EU.xmlLoader.macros.parse( path );
-        sound = EU.xmlLoader.resourcesRoot + sound;
+        var fullPath = sound.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+            sound : EU.xmlLoader.resourcesRoot + sound;
         //if( cc.fileUtils.isFileExist(sound) )
         {
             //sound = cc.fileUtils.fullPathForFilename(sound);
-            return cc.audioEngine.playEffect( sound, lopped );
+            return cc.audioEngine.playEffect( fullPath, lopped );
         }
         return -1;
     },

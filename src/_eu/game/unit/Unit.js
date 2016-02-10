@@ -172,7 +172,7 @@ EU.Unit = cc.Node.extend({
     {
         if( this._soundMoveID != -1 )
         {
-            cc.audioEngine.stopEffect( this._soundMoveID );
+            EU.AudioEngine.stopEffect( this._soundMoveID );
             this._soundMoveID = -1;
         }
     },
@@ -634,7 +634,7 @@ EU.Unit = cc.Node.extend({
             this._moveFinished = false;
             if( this._soundMove.length == 0 == false )
             {
-                this._soundMoveID = cc.audioEngine.playEffect( this._soundMove, false );
+                this._soundMoveID = EU.AudioEngine.playEffect( this._soundMove, false );
             }
         }
     },
@@ -647,7 +647,7 @@ EU.Unit = cc.Node.extend({
         }
         if( this._soundMoveID != -1 )
         {
-            cc.audioEngine.stopEffect( this._soundMoveID );
+            EU.AudioEngine.stopEffect( this._soundMoveID );
             this._soundMoveID = -1;
         }
         this._angle = -1;

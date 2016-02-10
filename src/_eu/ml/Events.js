@@ -183,7 +183,7 @@ EU.EventPlaySound = EU.EventBase.extend({
         var key = "EventPlaySound.play" + this.__instanceId;
         cc.director.getScheduler().unschedule( key, this );
         if( this.sound && this.sound.length != 0 )
-            this.soundId = cc.audioEngine.playEffect(this.sound, this.looped);
+            this.soundId = EU.AudioEngine.playEffect(this.sound, this.looped);
         if( this.looped ){
             var key = "EventPlaySound.stop" + this.__instanceId;
             if( cc.director.getScheduler().isScheduled(key, target) == false ){
@@ -195,7 +195,7 @@ EU.EventPlaySound = EU.EventBase.extend({
         var key = "EventPlaySound.stop" + this.__instanceId;
         cc.director.getScheduler().unschedule( key, this );
         if( this.sound ){
-            cc.audioEngine.stopEffect(this.soundId);
+            EU.AudioEngine.stopEffect(this.soundId);
         }
     }
 });

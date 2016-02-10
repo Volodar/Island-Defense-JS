@@ -167,7 +167,7 @@ EU.MapLayer = cc.Layer.extend({
         //MouseHoverScroll.shared().enable();
 
         //TODO: audio
-        //AudioEngine.shared().playMusic( kMusicMap );
+        EU.AudioEngine.playMusic( EU.kMusicMap );
 
         if (EU.k.useInapps == false) {
             var scene = EU.Common.getSceneOfNode(this);

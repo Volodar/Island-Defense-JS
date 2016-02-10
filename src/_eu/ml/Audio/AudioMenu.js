@@ -29,7 +29,7 @@ EU.AudioMenu = cc.Menu.extend(
         this._super();
         var desSize = cc.view.getDesignResolutionSize();
 
-        this.setPosition( cc.POINT_ZERO );
+        this.setPosition( desSize /2, desSize/2 );
 
         var cb0 = EU.AudioEngine.soundEnabled.bind(this, false);
         var cb1 = function() { EU.AudioEngine.soundEnabled(true);  EU.AudioEngine.playEffect2( "" ); } ;

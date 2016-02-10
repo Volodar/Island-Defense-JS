@@ -57,7 +57,7 @@ EU.WaveIcon = cc.Menu.extend(
         var callback = this.on_click;
         this._icon = new EU.MenuItemImageWithText( iconImage, callback );
         this._icon.setSelectedImage( null );
-        this._icon.setSound( kSoundGameWaveIcon );
+        this._icon.setSound( EU.kSoundGameWaveIcon );
         this._icon.setName( "icon" );
         this._arrow = Node.create();
         var arrowsprite = EU.ImageManager.sprite( WaveIconArrow );
@@ -131,7 +131,7 @@ EU.WaveIcon = cc.Menu.extend(
         if( playsound )
         {
             var sound = EU.xmlLoader.macros.parse( "##sound_waveicon##" );
-            cc.audioEngine.playEffect( sound, false );
+            EU.AudioEngine.playEffect( sound, false );
         }
         this._elapsed += dt;
     },
