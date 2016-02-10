@@ -51,16 +51,15 @@ EU.Airbomb = EU.Unit.extend(
             var actionBomb = /**FiniteTimeAction*/ (this.getAction(  (i + 1) + "_bomb_move" ));
             var expl = actionBomb.getDuration();
             var self = this;
-            var exp = new cc.sequence( new cc.delayTime( expl ),
-                new cc.callFunc( function(){self.explosion( self.pos ); } ) );
+            var exp = cc.sequence( cc.delayTime( expl ), cc.callFunc( this.explosion.bind(this, this.pos)));
             this.runAction( exp );
         }
 
         var actionPlace = /**FiniteTimeAction*/ (this.getAction( "3_place" ));
         var life = actionPlace.getDuration();
         var self = this;
-        var die = new cc.sequence( new cc.delayTime( life ),
-            new cc.callFunc( function(){self.die(); } ) );
+        var die = cc.sequence( cc.delayTime( life ),
+            cc.callFunc( this.die.bind(this)) );
         this.runAction( die );
 
         this.runEvent( "run" );

@@ -303,7 +303,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._useScaleEffectOnSelected ) {
             cc.ScaleTo
             var tag = 0x123;
-            var actionN = new cc.EaseIn( new cc.ScaleTo( 0.3, 0.8 ), 2 );
+            var actionN = cc.scaleTo( 0.3, 0.8).easing(cc.easeIn(2));
             var actionS = actionN.clone();
             actionN.setTag( tag );
             actionS.setTag( tag );
@@ -325,7 +325,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
 
         if( this._useScaleEffectOnSelected ) {
             var  tag = 0x123;
-            var actionN = new cc.EaseIn( new cc.ScaleTo( 0.2, 1.0 ), 2 );
+            var actionN = cc.scaleTo( 0.2, 1.0 ).easing(cc.easeIn(2));
             var actionS = actionN.clone();
             actionN.setTag( tag );
             actionS.setTag( tag );

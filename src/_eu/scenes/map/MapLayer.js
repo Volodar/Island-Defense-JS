@@ -200,7 +200,7 @@ EU.MapLayer = cc.Layer.extend({
                 var towers = [];
                 EU.mlTowersInfo.fetch(towers);
                 var towername = towers[0];
-                var level = EU.UserData.tower_upgradeLevel(towername);
+                var level = EU.UserData.tower_getUpgradeLevel(towername);
                 var scores = EU.ScoreCounter.getMoney(EU.kScoreCrystals);
                 var cost = EU.mlTowersInfo.getCostLab(towername, level + 1);
                 if (level < 3 && cost <= scores) {
@@ -239,24 +239,24 @@ EU.MapLayer = cc.Layer.extend({
                     var towers = []
                     mlTowersInfo.fetch(towers);
                     for (var tower in towers)
-                        maxlevel = maxlevel && EU.UserData.tower_upgradeLevel(tower) == 5;
+                        maxlevel = maxlevel && EU.UserData.tower_getUpgradeLevel(tower) == 5;
                     if (!maxlevel) {
                         mapLayer.cb_lab(null);
                     }
                 };
-                mapLayer.runAction(new cc.CallFunc(run, mapLayer))
+                mapLayer.runAction(cc.callFunc(run, mapLayer))
             }
 
         };
 
-        this.runAction(new cc.CallFunc(notifyOnEnter, this));
+        this.runAction(cc.callFunc(notifyOnEnter, this));
 
         var levelResult = EU.UserData.get_int(EU.k.LastGameResult, EU.k.GameResultValueNone);
         var leveFinished =
             levelResult == EU.k.GameResultValueWin ||
             levelResult == EU.k.GameResultValueFail;
         if (leveFinished) {
-            this.runAction(new cc.CallFunc(notifyGameResult, this, this));
+            this.runAction(cc.callFunc(notifyGameResult, this, this));
         }
 
         if (levelResult == EU.k.GameResultValueWin) {
@@ -408,9 +408,9 @@ EU.MapLayer = cc.Layer.extend({
             return;
 
         //open RateMe with delay
-        var call = new cc.CallFunc(this.openRateMe, this);
+        var call = cc.callFunc(this.openRateMe, this);
         var delay = DelayTime.create(0.3);
-        this.runAction(new cc.Sequence(delay, call));
+        this.runAction(cc.sequence(delay, call));
     },
     /**
      *
@@ -552,7 +552,7 @@ EU.MapLayer = cc.Layer.extend({
             //    player.release();
             //}
         }
-        EU.UserData.save();
+        //EU.UserData.save();
     },
     /**
      *
@@ -696,9 +696,9 @@ EU.MapLayer = cc.Layer.extend({
             this.curveMarkers.push(pointSprite);
 
             if (showpath) {
-                var delay = new cc.DelayTime(iteration * kdelay + 2);
-                var scale = new cc.EaseBackOut(new cc.ScaleTo(0.2, 1));
-                var action = new cc.Sequence(delay, scale);
+                var delay = cc.delayTime(iteration * kdelay + 2);
+                var scale = cc.scaleTo(0.2, 1).easing(cc.easeBackOut());
+                var action = cc.sequence(delay, scale);
 
                 pointSprite.setScale(0);
                 pointSprite.runAction(action);

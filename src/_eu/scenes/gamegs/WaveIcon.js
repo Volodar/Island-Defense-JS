@@ -73,12 +73,12 @@ EU.WaveIcon = cc.Menu.extend(
         this._icon.getNormalImage().addChild( this._timer, 1 );
         this._timer.setPosition( Point( this._icon.getNormalImage().getContentSize() / 2 ) );
 
-        var mover = ( new cc.MoveBy( 0.5, cc.p( 10, 0 ))).easing(cc.easeInOut(2.0));
-        var scaler = ( new cc.ScaleBy( 0.5, 1.05)).easing(cc.easeInOut(2.0));
-        var actionarrow = new cc.Sequence( mover, mover.reverse() );
-        var actionicon = new cc.Sequence( scaler, scaler.reverse() );
-        arrowsprite.runAction( new cc.RepeatForever( actionarrow ) );
-        this._icon.runAction( new cc.RepeatForever( actionicon ) );
+        var mover = ( cc.moveBy( 0.5, cc.p( 10, 0 ))).easing(cc.easeInOut(2.0));
+        var scaler = ( cc.scaleBy( 0.5, 1.05)).easing(cc.easeInOut(2.0));
+        var actionarrow = cc.sequence( mover, mover.reverse() );
+        var actionicon = cc.sequence( scaler, scaler.reverse() );
+        arrowsprite.runAction( cc.repeatForever( actionarrow ) );
+        this._icon.runAction( cc.repeatForever( actionicon ) );
 
         this.setVisible( false );
 
@@ -113,9 +113,9 @@ EU.WaveIcon = cc.Menu.extend(
             this._runned = true;
             if( this._duration > 0 )
             {
-                var actiontimer = new cc.ProgressFromTo( this._duration, 0, 100 );
-                var call = new cc.CallFunc( function(){ self.on_click.call(self)});
-                var actiontimer2 = new cc.Sequence( actiontimer, call );
+                var actiontimer = cc.progressFromTo( this._duration, 0, 100 );
+                var call = cc.callFunc( function(){ self.on_click.call(self)});
+                var actiontimer2 = cc.sequence( actiontimer, call );
                 this._timer.runAction( actiontimer2 );
             }
             else

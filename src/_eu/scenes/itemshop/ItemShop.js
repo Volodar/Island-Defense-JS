@@ -191,7 +191,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
             EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
             //TODO: audio
             //AudioEngine.playEffect( kSoundShopPurchase );
-            EU.UserData.save();
+            //EU.UserData.save();
     
             this.runFly( itemname );
         }
@@ -227,8 +227,8 @@ EU.ItemShop = EU.ScrollMenu.extend({
             }
         }
         var dessize = cc.view.getDesignResolutionSize();
-        var action = new cc.EaseBackIn( new cc.MoveTo( 0.5, cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height ) ) );
-        this.runAction( new cc.Sequence( action, new cc.RemoveSelf() ) );
+        var action = cc.moveTo( 0.5, cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height )).easing(cc.easeBackIn());
+        this.runAction( cc.sequence( action, cc.removeSelf() ) );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopHide );
     },
@@ -236,7 +236,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
     {
         var dessize = cc.view.getDesignResolutionSize();
         this.setPosition( cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height  ) );
-        var action = new cc.EaseBackOut( new cc.MoveTo( 0.5, this.zeroPosition ) );
+        var action = cc.moveTo( 0.5, this.zeroPosition ).easing(cc.easeBackOut());
         this.runAction( action );
         //TODO: audio
         //AudioEngine.playEffect( kSoundShopShow );

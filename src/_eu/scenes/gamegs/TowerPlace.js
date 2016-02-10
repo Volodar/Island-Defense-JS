@@ -61,7 +61,7 @@ EU.TowerPlace = cc.Sprite.extend(
             var anim = EU.Animation.createAnimation( frames, duration );
             EU.assert( anim );
     
-            var animate = new cc.repeatForever( new cc.Animate( anim ) );
+            var animate = cc.repeatForever( cc.animate( anim ) );
             var action = animate ;
     
             this.runAction( action );
@@ -69,7 +69,7 @@ EU.TowerPlace = cc.Sprite.extend(
         else
         {
             var texturename = EU.k.resourceGameSceneFolder + "unactive_slot.png";
-            var frame = EU.ImageManager.shared().spriteFrame( texturename );
+            var frame = EU.ImageManager.spriteFrame( texturename );
             if( frame )
             {
                 this.setSpriteFrame( frame );

@@ -22,11 +22,11 @@ EU.IndicatorNode = cc.Node.extend({
 
         this._bg.setAnchorPoint( cc.p( 0.0, 0.0) );
         this._bg.setScale( this.IndicatorWidth, 4 );
-        this._bg.setColor( new cc.Color( 220, 0, 0 ) );
+        this._bg.setColor( cc.color( 220, 0, 0 ) );
 
         this._progressNode.setAnchorPoint( cc.p( 0.0, 0.0) );
         this._progressNode.setScale( this.IndicatorWidth, 4 );
-        this._progressNode.setColor( new cc.Color( 0, 192, 0 ) );
+        this._progressNode.setColor( cc.color( 0, 192, 0 ) );
 
         this.addChild( this._bg, -1 );
         this.addChild( this._progressNode, 1 );

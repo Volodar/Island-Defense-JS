@@ -85,9 +85,9 @@ EU.LoadLevelScene = cc.Scene.extend(
         cc.Scene.prototype.onEnter.call(this);
         if( this._popSceneOnEnter )
         {
-            var delay = new cc.DelayTime( 2 );
-            var call = new cc.CallFunc( function(){ cc.director.popScene();} );
-            this.runAction( new cc.Sequence(delay, call) );
+            var delay = cc.delayTime( 2 );
+            var call = cc.callFunc( function(){ cc.director.popScene();} );
+            this.runAction(cc.sequence(delay, call) );
         }
     },
 

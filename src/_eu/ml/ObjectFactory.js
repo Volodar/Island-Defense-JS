@@ -17,12 +17,12 @@ var EU = EU || {};
 EU.Factory  = {
     build: function(type) {
         if( type == "node" ) return new cc.Node();
-        if( type == "sprite" ) return cc.Sprite.create();
-        if( type == "menu" ) return cc.Menu.create();
-        if( type == "layer" ) return cc.Layer.create();
-        if( type == "particle" ) return cc.CCParticleSystemQuad.create();
-        if( type == "progresstimer" ) return cc.ProgressTimer.create(null);
-        if( type == "paralax" ) return cc.ParallaxNode.create();
+        if( type == "sprite" ) return new cc.Sprite();
+        if( type == "menu" ) return new cc.Menu();
+        if( type == "layer" ) return new cc.Layer();
+        if( type == "particle" ) return new cc.Particle();
+        if( type == "progresstimer" ) return new cc.ProgressTimer(null);
+        if( type == "paralax" ) return new cc.ParallaxNode();
         if( type == "menuitem" ) return new EU.MenuItemImageWithText();
         if( type == "layerext" ) return new EU.LayerExt;
         if( type == "nodeext" ) return new EU.NodeExt_;
@@ -34,7 +34,7 @@ EU.Factory  = {
         if( type == "playsound" ) return new EU.EventPlaySound();
         if( type == "createnode" ) return new EU.EventCreateNode();
         //TODO: change Label to Text
-        if( type == "text" ) return cc.LabelBMFont.create();
+        if( type == "text" ) return new cc.LabelBMFont();
         //TODO: build types:
         //if( type == "scrollmenu" ) return EU.ScrollMenu.create();
         //if( type == "menuitem" ) return EU.mlMenuItem.create();

@@ -488,7 +488,7 @@ EU.Common = {
         var r = value.substr(0, 2);
         var g = value.substr(2, 2);
         var b = value.substr(4, 2);
-        return new cc.Color(parseInt(r, 16), parseInt(g, 16), parseInt(b, 16));
+        return cc.color(parseInt(r, 16), parseInt(g, 16), parseInt(b, 16));
     },
     /**
      *

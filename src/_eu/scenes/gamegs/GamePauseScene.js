@@ -179,8 +179,8 @@ EU.GamePauseLayer = cc.Menu.extend(
 
     cb_resume: function()
     {
-        var func = new cc.CallFunc( this.gameresume.bind( this ) );
-        this.runAction( new cc.Sequence( new cc.DelayTime( this.kFadeDuration ), func ) );
+        var func = cc.callFunc( this.gameresume.bind( this ) );
+        this.runAction( cc.sequence( cc.delayTime( this.kFadeDuration ), func ) );
         this.fadeexit();
     },
 
@@ -192,9 +192,9 @@ EU.GamePauseLayer = cc.Menu.extend(
         var fuel = EU.ScoreCounter.getMoney( kScoreFuel );
         if( cost <= fuel )
         {
-            var delay = new cc.DelayTime( this.kFadeDuration );
-            var func = new cc.CallFunc( this.restart.bind( this ) );
-            this.runAction( new cc.Sequence( delay, func ) );
+            var delay = cc.delayTime( this.kFadeDuration );
+            var func = cc.callFunc( this.restart.bind( this ) );
+            this.runAction( cc.sequence( delay, func ) );
             this.fadeexit();
         }
         else
@@ -215,9 +215,9 @@ EU.GamePauseLayer = cc.Menu.extend(
 
     cb_exit: function( sender )
     {
-        var delay = new cc.DelayTime( this.kFadeDuration );
-        var func = new cc.CallFunc( this.exit.bind( this ) );
-        this.runAction( new cc.Sequence( delay, func, null ) );
+        var delay = cc.delayTime( this.kFadeDuration );
+        var func = cc.callFunc( this.exit.bind( this ) );
+        this.runAction( cc.sequence( delay, func, null ) );
         this.fadeexit();
 
         if( this._resume ) this._resume.setEnabled( false );
@@ -285,15 +285,15 @@ EU.GamePauseLayer = cc.Menu.extend(
             scores.removeFromParent();
         }
 
-        this.runAction( new cc.ScaleTo( this.kFadeDuration, this._scaleFactor * 1.2 ) );
-        this.runAction( new cc.FadeTo( this.kFadeDuration, 0 ) );
+        this.runAction( cc.scaleTo( this.kFadeDuration, this._scaleFactor * 1.2 ) );
+        this.runAction( cc.fadeTo( this.kFadeDuration, 0 ) );
     },
 
     fadeenter: function()
     {
         this.setScale( this._scaleFactor * 1.2 );
-        this.runAction( new cc.ScaleTo( this.kFadeDuration, this._scaleFactor * 1.0 ) );
-        this.runAction( new cc.FadeTo( this.kFadeDuration, 255 ) );
+        this.runAction( cc.scaleTo( this.kFadeDuration, this._scaleFactor * 1.0 ) );
+        this.runAction( cc.fadeTo( this.kFadeDuration, 255 ) );
     },
 
     checkFullscreen: function()

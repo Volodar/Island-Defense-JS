@@ -30,7 +30,7 @@ EU.SmartScene = cc.Scene.extend(
         this._shadow.setName( "shadow" );
         this._shadow.setScaleX( dessize.width );
         this._shadow.setScaleY( dessize.height );
-        this._shadow.setColor( new cc.Color( 0, 0, 0 ) );
+        this._shadow.setColor( cc.color( 0, 0, 0 ) );
         this._shadow.setOpacity( 0 );
         this._shadow.setPosition( cc.p( dessize.width / 2, dessize.height / 2 ) );
         this.addChild( this._shadow, 1 );
@@ -73,12 +73,12 @@ EU.SmartScene = cc.Scene.extend(
         opacity = opacity || 204;
 
         this._shadow.setLocalZOrder( z );
-        this._shadow.runAction( new cc.FadeTo( 0.2, opacity ) );
+        this._shadow.runAction( cc.fadeTo( 0.2, opacity ) );
      },
 
     shadow_disappearance: function()
     {
-        this._shadow.runAction( new cc.FadeTo( 0.2, 0 ) );
+        this._shadow.runAction( cc.fadeTo( 0.2, 0 ) );
      },
 
     /**

@@ -202,12 +202,12 @@ EU.Unit = cc.Node.extend({
 
         this.load_str_n_str( path, xmlFile );
 
-        var level = EU.userData.tower_upgradeLevel( this.getName() );
-        this.setMaxLevelForLevel( level );
+        var level = EU.userData.tower_getUpgradeLevel( this.getName() );
+        this._maxLevelForLevel = level ;
 
         var cb = this.on_mover;
-        this._mover.setOnChangePosition( cb );
-        this._mover.setOnFinish( this.on_movefinish );
+        this._mover._onChangePosition = cb ;
+        this._mover._onFinish = this.on_movefinish ;
 
         //if( this._type == UniType.tower )
         //{

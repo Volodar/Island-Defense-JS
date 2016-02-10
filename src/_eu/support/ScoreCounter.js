@@ -353,7 +353,7 @@ EU.LevelParams = {
         var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
         var count = this.getFuel( levelIndex, EU.GameMode.hard == mode );
         EU.ScoreCounter.subMoney( EU.kScoreFuel, count, true );
-        EU.UserData.save();
+        //EU.UserData.save();
     },
     //TODO:onLevelFinished
     onLevelFinished: function( index, stars )
@@ -373,7 +373,7 @@ EU.LevelParams = {
             all += EU.UserData.get_int( EU.k.LevelStars + index );
             EU.UserData.write(EU.k.LevelStars + index, all);
         }
-        EU.UserData.save();
+        //EU.UserData.save();
     }
 };
 

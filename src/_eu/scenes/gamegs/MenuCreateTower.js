@@ -32,8 +32,8 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         /**cc.LabelTTF*/ spd: new cc.LabelTTF(),
     } ,
 
-    /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowers : {},
-    /** @type {std.map< std.string, MenuItemPointer >} */ _buttonTowersUn : {},
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowers : {},
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowersUn : {},
     /** @type {cc.Point} */ _centerPoint : cc.p(0,0),
 
     onExit: function()
@@ -79,7 +79,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                     this._buttonTowersUn[name] = item;
                     item.setCallback( function(p1){return self.onActivate.call(self, p1, false)} );
                 }
-                var level = EU.UserData.tower_upgradeLevel( name );
+                var level = EU.UserData.tower_getUpgradeLevel( name );
                 if( level == 0 )
                     this.setBlockButton( item );
             }
