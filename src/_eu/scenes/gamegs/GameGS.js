@@ -497,9 +497,7 @@ EU.GameGS = EU.LayerExt.extend({
     eraseTowerPlace: function (place) {
         for (var i = 0; i < this.towerPlaces.length; ++i) {
             if (this.towerPlaces[i] == place) {
-                var l = this.towerPlaces.slice(0, i);
-                var r = this.towerPlaces.slice(i + 1);
-                l.push(r);
+                this.towerPlaces.splice(i, 1);
                 this.removeObject(place);
                 this.selectedPlace = null;
             }

@@ -13,7 +13,7 @@
 //Define namespace
 var EU = EU || {};
 
-EU.TowerPlaseDef = function()
+EU.TowerPlaceDef = function()
 {
     this.position = cc.p(0,0);
     this.isActive = true;
