@@ -11,6 +11,11 @@
  ******************************************************************************/
 /**TESTED**/
 EU.ItemShop = EU.ScrollMenu.extend({
+
+    /** Test instance of */
+    __ItemShop : true,
+
+
     scaleFactor: null,
     removeScoreLayer: null,
     zeroPosition: null,
@@ -170,9 +175,9 @@ EU.ItemShop = EU.ScrollMenu.extend({
                 if( scene )
                 {
                     var layer = scene.getMainLayer();
-                    if( layer instanceof EU.MapLayer )
+                    if( layer.__MapLayer )
                         layer.cb_shop( null );
-                    else if( layer instanceof EU.GameGS )
+                    else if( layer.__GameGS )
                     {
                         if( layer )
                             layer.menuShop(null, false);

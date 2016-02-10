@@ -29,6 +29,10 @@ EU.MapLayerLocation = cc.Class.extend({
 });
 
 EU.MapLayer = cc.Layer.extend({
+
+    /** Test instance of */
+    __MapLayer: true,
+
     self: null,
     map: null,
     menuLocations: null,

@@ -61,6 +61,7 @@ EU.kSoundGameTowerBuy =  EU.kPathSound + "Building" + EU.kSoundsEXT ;
 EU.kSoundGameTowerUpgrade =  EU.kPathSound + "Building" + EU.kSoundsEXT ;
 EU.kSoundGameTowerPlaceActivate =  EU.kPathSound + "Clearing" + EU.kSoundsEXT ;
 EU.kSoundGameTowerPlaceSelect =  EU.kPathSound + "Click_2" + EU.kSoundsEXT ;
+EU.kSoundLayerExt =  EU.kPathSound + "Click_2" + EU.kSoundsEXT ;
 EU.kSoundGameWaveIcon =  EU.kPathSound + "Click" + EU.kSoundsEXT ;
 EU.kSoundShopShow =  EU.kPathSound + "Shop_Open" + EU.kSoundsEXT ;
 EU.kSoundShopHide =  EU.kPathSound + "Shop_Close" + EU.kSoundsEXT ;

@@ -11,6 +11,10 @@
  ******************************************************************************/
 /**TESTED**/
 EU.Laboratory = EU.ScrollMenu.extend({
+
+    /** Test instance of */
+    __Laboratory : true,
+
     scaleFactor: null,
     zeroPosition: null,
     self : null,
@@ -235,7 +239,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
                     if( scene )
                     {
                         var layer = scene.getMainLayer();
-                        if( layer instanceof EU.MapLayer)
+                        if( layer.__MapLayer)
                             map.cb_shop();
                     }
                 }

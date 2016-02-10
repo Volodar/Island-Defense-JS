@@ -149,6 +149,10 @@ EU.LayerExt = cc.Layer.extend({
     ctor: function(){
         this._super();
         this.initExt();
+    },
+    onEnter: function(){
+        this._super();
+        EU.AudioEngine.playEffect( EU.kSoundLayerExt );
     }
 });
 EU.NodeExt.call(EU.LayerExt.prototype);
