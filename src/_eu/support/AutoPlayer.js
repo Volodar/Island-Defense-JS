@@ -276,4 +276,4 @@ EU.AutoPlayer._getInstance = function () {
     }
     return EU.AutoPlayer.sharedInstance;
 };
-EU.autoPlayer = EU.AutoPlayer._getInstance();
+//EU.autoPlayer = EU.AutoPlayer._getInstance();

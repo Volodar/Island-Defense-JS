@@ -384,7 +384,8 @@ EU.xmlLoader = {
              * @returns {*}
              * @private
              */
-            var _folder = function (string) {
+            var string = value;
+            var _folder = function () {
                 var result;
                 var k = string.indexOf("folder:");
                 if (k == 0 || k == 1) {
@@ -405,7 +406,7 @@ EU.xmlLoader = {
              * @returns {*}
              * @private
              */
-            var _frames = function (string, folder) {
+            var _frames = function (folder) {
                 var _list = function () {
                     var list = [];
                     var frames = [];
@@ -428,7 +429,7 @@ EU.xmlLoader = {
                     var frames = [];
                     var k = string.indexOf(lindexes);
                     if (k == 0 || k == 1)
-                        string = string.substr(k + lindexes.size());
+                        string = string.substr(k + lindexes.length);
                     if (string[string.length - 1] == ']') {
                         string = string.slice(0, -1);
                     }
@@ -474,7 +475,7 @@ EU.xmlLoader = {
 
                     var format = "%0" + indexformat.length + "d";
                     for (var i in indexes) {
-                        var frameext = frame + zeroPad(i, indexformat.length + 1) + ext;
+                        var frameext = frame + zeroPad(i, indexformat.length) + ext;
                         var name = folder + frameext;
                         //TODO: ImageManager
                         var frame = EU.ImageManager.getSpriteFrame(name);
@@ -500,16 +501,15 @@ EU.xmlLoader = {
             //        return iter.second.clone();
             //}
 
-            var str = value;
-            var folder = _folder(str);
-            var frames = _frames(str, folder);
+            var folder = _folder();
+            var frames = _frames(folder);
 
             var animation = EU.Animation.createAnimation_t(frames, duration);
-            if (animation) {
-                animation.retain();
-                _cash[value] = animation;
-                animation = animation.clone();
-            }
+            //if (animation) {
+            //    animation.retain();
+            //    _cash[value] = animation;
+            //    animation = animation.clone();
+            //}
             return animation;
         };
 

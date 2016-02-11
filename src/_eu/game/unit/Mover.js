@@ -18,11 +18,17 @@ EU.Mover = cc.Class.extend(
     _threshold: 0,
     _onChangePosition: null,
     _onFinish: null,
+    _unit: null,
 
-    ctor: function () {
+    ctor: function (unit) {
         "use strict";
+        EU.assert( unit );
+        this._unit = unit;
         this._route = [];
         this._allowAngles = [];
+        this._position = cc.p(0,0);
+        this._currentDirection = cc.p(0,0);
+        this._truncatedDirection = cc.p(0,0);
     },
 
     load_element: function (/** @type {Element} */ xmlnode) {
@@ -61,14 +67,14 @@ EU.Mover = cc.Class.extend(
         this.setLocation(cc.pAdd( this._position, shift));
 
         if (this._route.length == 0) {
-            this._onFinish();
+            this._onFinish.call(this._unit);
         }
     },
     setRoute: function (route) {
         this._route = route;
 
         if (this._route.length == 0) {
-            this._onFinish();
+            this._onFinish.call(this._unit);
         }
         else {
             var direction = this._route.length > 1 ? cc.pSub(this._route[1], this._route[0])
@@ -86,7 +92,7 @@ EU.Mover = cc.Class.extend(
     },
     onFinish: function () {
         if (this._onFinish)
-            this._onFinish();
+            this._onFinish.call(this._unit);
     },
     setLocation: function (position) {
         var direction = cc.pNormalize(cc.pSub( position, this._position));
@@ -94,7 +100,7 @@ EU.Mover = cc.Class.extend(
         this.setDirection(direction);
 
         if (this._onChangePosition) {
-            this._onChangePosition(this._position, this._truncatedDirection);
+            this._onChangePosition.call(this._unit, this._position, this._truncatedDirection);
         }
     },
     setDirection: function (direction) {

@@ -130,10 +130,13 @@ EU.Unit = cc.Node.extend({
 
     ctor: function()
     {
+        this._params = new EU.ParamCollection();
+        this._actions = [];
+        this._events = [];
         this._super();
         this._effect = EU.mlEffect( this );
         this._extra = new this.Extra();
-        this._mover =  new EU.Mover();
+        this._mover =  new EU.Mover(this);
         this._angle =  -1  ;
         this._targets =  [];
         this._currentDamager =  null  ;
@@ -198,6 +201,8 @@ EU.Unit = cc.Node.extend({
         //{
             //CC_BREAK_IF( !MachineUnit.ctor.call(this) );
             //CC_BREAK_IF( !MachineMove.init() );
+        this.initMachine();
+        this.initFSM();
         xmlFile = xmlFile || "ini.xml";
 
         this._healthIndicator = new EU.IndicatorNode();
@@ -206,7 +211,7 @@ EU.Unit = cc.Node.extend({
 
         this.load_str_n_str( path, xmlFile );
 
-        var level = EU.userData.tower_getUpgradeLevel( this.getName() );
+        var level = EU.UserData.tower_getUpgradeLevel( this.getName() );
         this._maxLevelForLevel = level ;
 
         var cb = this.on_mover;

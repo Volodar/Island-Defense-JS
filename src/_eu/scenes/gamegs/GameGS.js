@@ -809,7 +809,7 @@ EU.GameGS = EU.LayerExt.extend({
     //    }
     //},
     onClickByObject: function (unit) {
-        if (unit.getType() == EU.UnitType.tower) {
+        if (unit._type == EU.UnitType.tower) {
             var showMenu = EU.Common.strToBool(unit.getParamCollection().get("showmenu", "yes"));
 
             if (showMenu && unit != this.selectedUnit) {
@@ -829,7 +829,7 @@ EU.GameGS = EU.LayerExt.extend({
             if (this.touchListenerHero.isEnabled())
                 this.setTouchNormal();
         }
-        else if (unit.getType() == EU.UnitType.hero) {
+        else if (unit._type == EU.UnitType.hero) {
             if (unit.current_state().get_name() != EU.Unit.State.state_death)
                 this.setTouchHero();
         }
@@ -911,7 +911,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onCreateUnit: function (unit) {
-        var type = unit.getType();
+        var type = unit._type;
         switch (type) {
             case EU.UnitType.tower:
             {
@@ -946,7 +946,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onDeathUnit: function (unit) {
-        var type = unit.getType();
+        var type = unit._type;
         switch (type) {
             case EU.UnitType.tower:
                 break;
@@ -963,7 +963,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onDeathCanceled: function (unit) {
-        var type = unit.getType();
+        var type = unit._type;
         switch (type) {
             case EU.UnitType.tower:
                 break;

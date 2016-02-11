@@ -39,6 +39,8 @@ EU.WaveGenerator = {
 
     /** @type {EU.WaveInfo} */
     m_currentWave: null,
+    /** @type {Integer} */
+    m_currentWaveIndex: null,
 
     /** @type {EU.TimeCounter} */ m_delayUnits : null,
     /** @type {EU.TimeCounter} */ m_delayWaves : null,
@@ -50,6 +52,7 @@ EU.WaveGenerator = {
         this.m_currentWave = new EU.WaveInfo();
         this.m_delayUnits = new EU.Common.TimeCounter();
         this.m_delayWaves = new EU.Common.TimeCounter();
+        this.m_currentWaveIndex = -1;
     },
     load: function(node)
     {
@@ -126,7 +129,8 @@ EU.WaveGenerator = {
         this.m_wavesCount = 0;
         
         while (this.m_waves.length > 0) { this.m_waves.pop(); }
-        this.m_currentWave = this.m_waves[this.m_waves.length - 1];
+        this.m_currentWave = null;
+        this.m_currentWaveIndex = -1;
 
         this.m_delayUnits.set( 0 );
         this.m_delayWaves.set( 0 );
@@ -137,7 +141,8 @@ EU.WaveGenerator = {
     {
         this.m_delayUnits.reset();
         this.m_delayWaves.reset();
-        this.m_currentWave = this.m_waves[this.m_waves.length - 1];
+        this.m_currentWave = null;
+        this.m_currentWaveIndex = -1;
 
         this.m_delayUnits.set( 0 );
 
@@ -160,14 +165,15 @@ EU.WaveGenerator = {
         if( this.m_isRunning == false )
             return;
 
-        if ( this.m_currentWave != this.m_waves.slice(-1)[0] && this.m_currentWave.valid() == false )
+        if ( this.m_currentWave != null && this.m_currentWave.valid() == false )
         {
             this.m_waves.shift();
-            this.m_currentWave = this.m_waves.slice(-1)[0];
+            this.m_currentWave = null;
+            this.m_currentWaveIndex = -1;
             this.onFinishWave();
         }
         else
-        if ( this.m_currentWave != this.m_waves.slice(-1)[0] && this.m_currentWave.valid() )
+        if ( this.m_currentWave != null && this.m_currentWave.valid() )
         {
             this.m_delayUnits.tick( dt );
             if( this.m_delayUnits.is() )
@@ -239,7 +245,7 @@ EU.WaveGenerator = {
 
     generateCreep: function()
     {
-        EU.assert( this.m_currentWave != this.m_waves.slice(-1)[0] );
+        EU.assert( this.m_currentWave != null );
         EU.assert(this.m_currentWave.creeps.length > 0);
         var name = this.m_currentWave.creeps[0];
 
@@ -249,7 +255,7 @@ EU.WaveGenerator = {
         if ( creep )
         {
             var cost = this.m_currentWave.scores[0];
-            creep.setCost( cost );
+            creep._cost = cost;
             creep.setRate( this.m_currentWave.healthRate[0] );
         }
         this.m_currentWave.pop();
