@@ -48,9 +48,9 @@ EU.Common = {
      */
     strToInt: function (string) {
         if (EU.xmlLoader.stringIsEmpty(string) == false)
-            return parseInt(string);
+            return isNaN(parseInt(string)) ? 0 : parseInt(string) ;
         else
-            return "0";
+            return 0;
     },
     /**
      * Convert string to float
@@ -58,9 +58,9 @@ EU.Common = {
      */
     strToFloat: function (string) {
         if (EU.xmlLoader.stringIsEmpty(string) == false)
-            return parseFloat(string);
+            return isNaN(parseFloat(string)) ? 0 : parseFloat(string) ;
         else
-            return "0";
+            return 0;
     },
     /**
      * Convert string to cc.p

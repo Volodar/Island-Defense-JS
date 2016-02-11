@@ -26,6 +26,7 @@ EU.SplashScene = cc.Layer.extend({
     ctor: function()
     {
         this._super();
+        this.initExt();
         EU.assert( this.init(), "Cannot init a SplashScene");
     },
 

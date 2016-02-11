@@ -21,6 +21,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
     ctor: function()
     {
         this._super();
+        this.initExt();
         this.scaleFactor = 1;
         this.zeroPosition = cc.p(0,0);
         this.self = this;

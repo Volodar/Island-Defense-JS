@@ -27,6 +27,7 @@ EU.ScoreLayer = cc.Scene.extend({
     {
         this._super();
         this.init();
+        this.initExt();
     },
 
     onEnter: function()

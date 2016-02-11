@@ -69,7 +69,9 @@ EU.Animation = {
         /**Vector<SpriteFrame>*/ frames = [];
         for (var i = 0; i < textures.length; i++) {
             var texturePath = textures[i];
-            var frame = EU.ImageManager.spriteFrame( texturePath );
+            var texturePath = texturePath.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+                texturePath : EU.xmlLoader.resourcesRoot + texturePath;
+            var frame = EU.ImageManager.sprite( texturePath );
             if( frame )
             {
                 frames.push(frame );

@@ -37,6 +37,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     ctor: function()
     {
         this._super();
+        this.initExt();
         this._buttonTowers = {};
         this._buttonTowersUn = {};
         this._centerPoint = cc.p(0,0);

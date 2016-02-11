@@ -23,6 +23,7 @@ EU.UnitInfo = cc.Menu.extend(
     ctor: function( unitName )
     {
         this._super();
+        this.initExt();
 
         //if ( EU.NodeExt.prototype.init.call(this) ) return;
 

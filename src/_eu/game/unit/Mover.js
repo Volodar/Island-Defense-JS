@@ -23,6 +23,9 @@ EU.Mover = cc.Class.extend(
         "use strict";
         this._route = [];
         this._allowAngles = [];
+        this._position = cc.p(0,0);
+        this._currentDirection = cc.p(0,0);
+        this._truncatedDirection = cc.p(0,0);
     },
 
     load_element: function (/** @type {Element} */ xmlnode) {

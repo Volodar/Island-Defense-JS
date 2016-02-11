@@ -21,6 +21,7 @@ EU.LayerLoader = cc.Layer.extend({
     atlases: null,
 
     ctor: function( callback, target ){
+        this.initExt();
         this._super();
         this.callback = callback;
         this.target = target;

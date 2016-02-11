@@ -40,47 +40,50 @@ EU.TowerPlace = cc.Sprite.extend(
     },
     changeView: function( )
     {
+        var image = "";
         if( this._active )
         {
             var duration = 0.5 + cc.randomMinus1To1()*0.1;
-    
-            var frames = [];
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_02.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_03.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_04.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_05.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_06.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_07.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_08.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_09.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_10.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_11.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_12.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_13.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_14.png" );
-            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_15.png" );
-            var anim = EU.Animation.createAnimation( frames, duration );
-            EU.assert( anim );
-    
-            var animate = cc.repeatForever( cc.animate( anim ) );
-            var action = animate ;
-    
-            this.runAction( action );
+
+            //TODO: EU.Animation
+            //var frames = [];
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_02.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_03.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_04.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_05.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_06.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_07.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_08.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_09.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_10.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_11.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_12.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_13.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_14.png" );
+            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_15.png" );
+            //var anim = EU.Animation.createAnimation( frames, duration );
+            //EU.assert( anim );
+            //
+            //var animate = cc.repeatForever( cc.animate( anim ) );
+            //var action = animate ;
+            //
+            //this.runAction( action );
+            image = EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png";
         }
         else
         {
-            var texturename = EU.k.resourceGameSceneFolder + "unactive_slot.png";
-            var frame = EU.ImageManager.spriteFrame( texturename );
-            if( frame )
-            {
-                this.setSpriteFrame( frame );
-                return;
-            }
-            EU.xmlLoader.setProperty( this, EU.xmlKey.Image.name, texturename );
+            image = EU.k.resourceGameSceneFolder + "unactive_slot.png";
         }
+        var frame = EU.ImageManager.getSpriteFrame( image );
+        if( frame )
+        {
+            this.setSpriteFrame( frame );
+            return;
+        }
+        EU.xmlLoader.setProperty( this, EU.xmlKey.Image.name, image );
     },
-    
+
     checkClick: function(  location,  outDistance )
     {
         outDistance = cc.pDistance(this.getPosition(), location );
@@ -105,13 +108,12 @@ EU.TowerPlace = cc.Sprite.extend(
     setActive: function()
     {
         EU.assert( this._active == false );
-    
+
         this._active = true;
         this.changeView();
     }
 
 });
 
-    
-    
-   
+
+

@@ -34,6 +34,7 @@
         "src/_eu/ml/ScrollMenu.js",
         "src/_eu/ml/Audio/AudioEngine.js",
         "src/_eu/ml/Audio/AudioMenu.js",
+        "src/_eu/ml/Animation.js",
         "src/_eu/game/IndicatorNode.js",
         "src/_eu/game/unit/MachineExt.js",
         "src/_eu/game/unit/MachineUnit.js",

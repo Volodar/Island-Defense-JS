@@ -29,6 +29,7 @@ EU.LoadLevelScene = cc.Scene.extend(
 
     ctor: function(level, mode) {
         this._super();
+        this.initExt();
 
         this.setName( "LoadLevelScene" );
         this.LoadLevelSceneInst = this;

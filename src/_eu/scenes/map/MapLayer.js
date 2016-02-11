@@ -52,6 +52,7 @@ EU.MapLayer = cc.Layer.extend({
      */
     ctor: function () {
         this._super();
+        this.initExt();
         this.self = this;
         this.velocity = cc.p(0, 0);
         this.locations = [];
@@ -61,7 +62,6 @@ EU.MapLayer = cc.Layer.extend({
      *
      */
     init: function () {
-        this.initExt();
         this.setName("maplayer");
 
         //TODO: dispatch keyboard

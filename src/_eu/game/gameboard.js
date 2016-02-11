@@ -560,7 +560,7 @@ EU.GameBoard = cc.Class.extend({
     },
     createCreep: function( name, routeSubType, routeIndex ){
         var creep = this.buildCreep( name );
-        var layer = creep.getUnitLayer();
+        var layer = creep._unitLayer;
         creep.getMover().setRoute( this.getRandomRoute( layer, routeIndex, routeSubType ) );
         creep.move( );
         this.units.push( creep );
@@ -887,7 +887,7 @@ EU.GameBoard = cc.Class.extend({
             routeSubType = EU.RouteSubType.random;
 
         var routes = [];
-        if( index < this.creepsRoutes.length && this.creepsRoutes[index].type == layer )
+        if( index < this.creepsRoutes.length && this.creepsRoutes[index].type == unitLayer )
         {
             routes.push( this.creepsRoutes[index] );
         }
@@ -895,24 +895,24 @@ EU.GameBoard = cc.Class.extend({
         {
             for( var i = 0; i < this.creepsRoutes.length; ++i )
             {
-                if( layer == this.creepsRoutes[i].routeSubType )
+                if( unitLayer == this.creepsRoutes[i].routeSubType )
                 {
                     routes.push( this.creepsRoutes[i] );
                 }
             }
         }
-        var random = rand() % EU.RouteSubType.max;
+        var random = cc.rand() % EU.RouteSubType.max;
         var nindex = index % routes.length;
         EU.assert( nindex < routes.length );
         switch( routeSubType )
         {
-            case EU.RouteSubType.random:    return getRandomRoute( layer, index, random );
+            case EU.RouteSubType.random:    return this.getRandomRoute( unitLayer, index, random );
             case EU.RouteSubType.main:      return routes[nindex].main;
             case EU.RouteSubType.left0:     return routes[nindex].left;
             case EU.RouteSubType.right0:    return routes[nindex].right;
             case EU.RouteSubType.max:       EU.assert( 0 );
         }
-        EU.assert( 0 );
+        //EU.assert( 0 );
         return routes[index].main;
     },
     getRoute: function( unitLayer, position, distance ){
@@ -1025,8 +1025,8 @@ EU.GameBoard = cc.Class.extend({
         return false;
     },
     checkTargetByUnitLayer: function( target, base ){
-        var target_layer = target.getUnitLayer();
-        var allow_targets = base.getAllowTargets();
+        var target_layer = target._unitLayer;
+        var allow_targets = base._allowTargets;
         if( allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(-1) != -1 )
             return true;
         return false;
