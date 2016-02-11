@@ -18,12 +18,15 @@ EU.UnitDesant = EU.Unit.extend(
 {
     /** @type {Number} */ _handRadius : 60 ,
     /** @type {Number} */ _handRadiusSector : 30,
-    /** @type {Array<EU.Unit>} */ _targets : [] ,
-    /** @type {cc.p} */ _basePosition : cc.p(0,0) ,
+    /** @type {Array<EU.Unit>} */ _targets : null,
+    /** @type {cc.p} */ _basePosition : null,
     //CC_SYNTHESIZE_PASS_BY_REF( Point, _basePosition, BasePosition );
 
     ctor: function(    path,    xmlFile )
     {
+        this._targets = [];
+        this._basePosition =  cc.p(0,0) ;
+
         return this.init_str_str( path, xmlFile );
     },
 

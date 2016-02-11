@@ -19,8 +19,8 @@ EU.LoadLevelScene = cc.Scene.extend(
     /**@type {Integer} */ _levelIndex : -1,
     /**@type {Number} */ _levelMode : EU.GameMode.normal,
     /**@type {Boolean} */ _popSceneOnEnter : false,
-    /**@type set<string> */ _units : {},
-    /**@type Object<string, Array<Object<String,String>>> */ _resourcePacks : {},
+    /**@type set<string> */ _units : null,
+    /**@type Object<string, Array<Object<String,String>>> */ _resourcePacks : null,
 
     /** For Test Instance of */
     __LoadLevelScene : true,
@@ -35,6 +35,8 @@ EU.LoadLevelScene = cc.Scene.extend(
 
         this._levelIndex = level;
         this._levelMode = mode;
+        this._units = {};
+        this._resourcePacks = {};
 
 
         this.load_str( "ini/gamescene/loading.xml" );

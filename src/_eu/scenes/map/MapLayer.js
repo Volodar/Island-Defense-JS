@@ -14,16 +14,25 @@
 var EU = EU || {};
 
 EU.MapLayerLocation = cc.Class.extend({
-    pos: cc.p(0, 0),
-    posLock: cc.p(0, 0),
-    a: cc.p(0, 0),
-    b: cc.p(0, 0),
+    pos: null,
+    posLock: null,
+    a: null,
+    b: null,
     starsForUnlock: 0,
     ctor: function () {
+        "use strict";
+        this.pos = cc.p(0, 0);
+        this.posLock = cc.p(0, 0);
+        this.a = cc.p(0, 0);
+        this.b = cc.p(0, 0);
     }
 });
 
 EU.MapLayer = cc.Layer.extend({
+
+    /** Test instance of */
+    __MapLayer: true,
+
     self: null,
     map: null,
     menuLocations: null,
@@ -162,7 +171,7 @@ EU.MapLayer = cc.Layer.extend({
         //MouseHoverScroll.shared().enable();
 
         //TODO: audio
-        //AudioEngine.shared().playMusic( kMusicMap );
+        EU.AudioEngine.playMusic( EU.kMusicMap );
 
         if (EU.k.useInapps == false) {
             var scene = EU.Common.getSceneOfNode(this);

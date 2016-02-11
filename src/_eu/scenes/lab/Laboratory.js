@@ -11,6 +11,10 @@
  ******************************************************************************/
 /**TESTED**/
 EU.Laboratory = EU.ScrollMenu.extend({
+
+    /** Test instance of */
+    __Laboratory : true,
+
     scaleFactor: null,
     zeroPosition: null,
     self : null,
@@ -235,7 +239,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
                     if( scene )
                     {
                         var layer = scene.getMainLayer();
-                        if( layer instanceof EU.MapLayer)
+                        if( layer.__MapLayer)
                             map.cb_shop();
                     }
                 }
@@ -253,8 +257,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
             this.upgradeTower( tower );
             this.normalStateForAllItemExcept( "" );
             EU.ScoreCounter.subMoney( EU.kScoreCrystals, cost, true );
-            //TODO: audio
-            //AudioEngine.playEffect( kSoundLabUpgrade );
+            EU.AudioEngine.playEffect( EU.kSoundLabUpgrade );
             //EU.UserData.save();
         }
         this.setParam( tower, false );
@@ -434,8 +437,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
         var dessize = cc.view.getDesignResolutionSize();
         var action = cc.moveTo( 0.5, EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) ).easing(cc.easeBackIn());
         this.runAction( action );
-        //TODO: audio
-        //AudioEngine.playEffect( kSoundShopHide );
+        EU.AudioEngine.playEffect( EU.kSoundShopHide );
     },
     fadeenter: function()
     {
@@ -443,8 +445,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
         this.setPosition( EU.Common.pointAdd(this.zeroPosition, cc.p( 0, -dessize.height ) ) );
         var action = cc.moveTo( 0.5, this.zeroPosition ).easing(cc.easeBackOut());
         this.runAction( action );
-        //TODO: audio
-        //AudioEngine.playEffect( kSoundShopShow );
+        EU.AudioEngine.playEffect( EU.kSoundShopShow );
     }
 
 });

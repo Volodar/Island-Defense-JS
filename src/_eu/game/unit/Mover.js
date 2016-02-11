@@ -7,19 +7,22 @@ EU.Mover = cc.Class.extend(
     /** For Test Instance of */
     __Mover: true,
 
-    /**@type {Array<cc.p>} */ _route: [],
+    /**@type {Array<cc.p>} */ _route: null,
     /**@type {cc.p} */ _position: null,
     /**@type {cc.p} */_currentDirection: null,
     /**@type {cc.p} */ _truncatedDirection: null,
     _currentAngle: 0,
     _velocity: 0,
     _defaultvelocity: 0,
-    _allowAngles: [],
+    _allowAngles: null,
     _threshold: 0,
     _onChangePosition: null,
     _onFinish: null,
 
     ctor: function () {
+        "use strict";
+        this._route = [];
+        this._allowAngles = [];
     },
 
     load_element: function (/** @type {Element} */ xmlnode) {

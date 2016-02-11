@@ -267,8 +267,8 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @param (cc.Class)sender
      */
     on_click: function( sender ) {
-        if( this._sound.empty() == false ) {
-            //AudioEngine::shared().playEffect( _sound, false, 0 );
+        if( EU.xmlLoader.stringIsEmpty(this._sound) == false ) {
+            EU.AudioEngine.playEffect( this._sound, false, 0 );
         }
         if( this._onClick )
             this._onClick( sender );

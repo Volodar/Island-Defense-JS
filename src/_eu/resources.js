@@ -8,7 +8,7 @@ EU.kFontHelvetica =  "fonts/helvetica.fnt" ;
 EU.kFontHelveticaStroke =  "fonts/helveticastoke.fnt" ;
 
 if(EU._DEBUG) {
-    if (EU.CC_TARGET_PLATFORM == EU.CC_PLATFORM_WIN32)
+    if (cc.sys.platform == cc.sys.WIN32)
         EU.kDirectoryToMaps =  "ini/maps/map" ;
     else
         EU.kDirectoryToMaps =  "ini/maps/map" ;
@@ -20,27 +20,27 @@ else {
 //
 //		Sounds
 //
-if (EU.CC_TARGET_PLATFORM == EU.CC_PLATFORM_IOS){
+if (cc.sys.platform == cc.sys.OS_IOS){
     EU.kPathSound =  "audio/sound/" ;
     EU.kPathMusic =  "audio/music/" ;
     EU.kSoundsEXT =  ".m4a" ;
     EU.kMusicEXT =  ".m4a" ;
 }
-if (EU.CC_TARGET_PLATFORM == EU.CC_PLATFORM_ANDROID){
+if (cc.sys.platform == cc.sys.OS_ANDROID || cc.sys.platform == cc.sys.MOBILE_BROWSER || cc.sys.platform == cc.sys.DESKTOP_BROWSER){
 
     EU.kPathSound =  "audio/sound_ogg/" ;
     EU.kPathMusic =  "audio/music_ogg/" ;
     EU.kSoundsEXT =  ".ogg" ;
     EU.kMusicEXT =  ".ogg" ;
 }
-if (EU.CC_TARGET_PLATFORM == EU.CC_PLATFORM_WIN32){
+if (cc.sys.platform == cc.sys.WIN32){
 
     EU.kPathSound =  "../Resources.win/audio/sound/" ;
     EU.kPathMusic =  "../Resources.win/audio/music/" ;
     EU.kSoundsEXT =  ".wav" ;
     EU.kMusicEXT =  ".wav" ;
 }
-if (EU.CC_TARGET_PLATFORM == EU.CC_PLATFORM_MAC){
+if (cc.sys.platform == cc.sys.MACOS){
     EU.kPathSound =  "audio/sound/" ;
     EU.kPathMusic =  "audio/music/" ;
     EU.kSoundsEXT =  ".m4a" ;
@@ -61,6 +61,7 @@ EU.kSoundGameTowerBuy =  EU.kPathSound + "Building" + EU.kSoundsEXT ;
 EU.kSoundGameTowerUpgrade =  EU.kPathSound + "Building" + EU.kSoundsEXT ;
 EU.kSoundGameTowerPlaceActivate =  EU.kPathSound + "Clearing" + EU.kSoundsEXT ;
 EU.kSoundGameTowerPlaceSelect =  EU.kPathSound + "Click_2" + EU.kSoundsEXT ;
+EU.kSoundLayerExt =  EU.kPathSound + "Click_2" + EU.kSoundsEXT ;
 EU.kSoundGameWaveIcon =  EU.kPathSound + "Click" + EU.kSoundsEXT ;
 EU.kSoundShopShow =  EU.kPathSound + "Shop_Open" + EU.kSoundsEXT ;
 EU.kSoundShopHide =  EU.kPathSound + "Shop_Close" + EU.kSoundsEXT ;

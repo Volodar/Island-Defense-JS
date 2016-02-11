@@ -37,16 +37,16 @@ EU.xmlLoader = {
         },
         _macroses: new EU.ParamCollection(""),
         set: function (name, value) {
-            this._macroses[name] = value;
+            this._macroses.set(name, value, true);
         },
         get: function (name) {
-            return this._macroses[name];
+            return this._macroses.get(name);
         },
         clear: function () {
             this._macroses = new EU.ParamCollection("");
         },
         erase: function (name) {
-            delete this._macroses[name];
+            delete this._macroses.params[name];
         },
 
         /**
@@ -54,9 +54,9 @@ EU.xmlLoader = {
          * @returns {String}
          */
         parse: function (string) {
-            if (string == undefined)
+            if (string == undefined || string == null)
                 return "";
-            var result = string;
+            var result = "" + string;
             while (true) {
                 var l = result.indexOf(this.delimiter);
                 var r = result.indexOf(this.delimiter, l + this.delimiter_size());
@@ -768,7 +768,7 @@ EU.xmlLoader = {
             var xmlchild = root.children[i];
             var name = xmlchild.getAttribute("name");
             var value = xmlchild.getAttribute("value");
-            params[name] = value;
+            params.set(name, value, true);
         }
     },
     /**
@@ -1032,51 +1032,51 @@ EU.xmlLoader = {
                     node.runAction(EU.xmlLoader.load_action_str(value));
                     break;
                 case EU.xmlKey.AlignCols.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setAlignedColums(EU.Common.strToInt(value));
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
                     var isFrame = EU.ImageManager.isSpriteFrame(value)
                     var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     menuitem.setImageNormal(image);
                     break;
                 case EU.xmlKey.ImageSelected.int:
                     var isFrame = EU.ImageManager.isSpriteFrame(value)
                     var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     menuitem.setImageSelected(image);
                     break;
                 case EU.xmlKey.ImageDisabled.int:
                     var isFrame = EU.ImageManager.isSpriteFrame(value)
                     var image = isFrame ? value : EU.xmlLoader.resourcesRoot + value;
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     menuitem.setImageDisabled(image);
                     break;
                 case EU.xmlKey.MenuCallBack.int:
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     if (this.directory) {
                         var callback = this.directory.get_callback_by_description(value);
                         menuitem.setCallback(callback, this.directory);
                     }
                     break;
                 case EU.xmlKey.Sound.int:
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     menuitem.setSound(value);
                     break;
                 case EU.xmlKey.Text.int:
                     var loc = EU.Language.string(value);
                     if (label instanceof cc.LabelBMFont)
                         label.setString(loc, true);
-                    else if (menuitem instanceof EU.MenuItemImageWithText)
+                    else if (menuitem.__MenuItemImageWithText)
                         menuitem.setText(loc);
                     break;
                 case EU.xmlKey.Font.int:
                     //TODO: font value here is without path, so xml value must be changed
                     if (label instanceof cc.LabelBMFont)
                         label.setFntFile(EU.xmlLoader.resourcesRoot + value);
-                    else if (menuitem instanceof EU.MenuItemImageWithText)
+                    else if (menuitem.__MenuItemImageWithText)
                         menuitem.setFont(EU.xmlLoader.resourcesRoot + value);
                     break;
                 case EU.xmlKey.TextWidth.int:
@@ -1098,31 +1098,31 @@ EU.xmlLoader = {
                     }
                     break;
                 case EU.xmlKey.ScaleEffect.int:
-                    EU.assert(menuitem instanceof EU.MenuItemImageWithText);
+                    EU.assert(menuitem.__MenuItemImageWithText);
                     menuitem.useScaleEffect(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AlignStartPosition.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setAlignedStartPosition(EU.Common.strToPoint(value));
                     break;
                 case EU.xmlKey.GridSize.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setGrisSize(EU.Common.strToSize(value));
                     break;
                 case EU.xmlKey.ScissorRect.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setScissorRect(strToRect(value));
                     break;
                 case EU.xmlKey.ScrollEnabled.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setScrollEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.ScissorEnabled.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setScissorEnabled(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AllowScrollByX.int:
-                    EU.assert(scrollmenu instanceof EU.ScrollMenu);
+                    EU.assert(scrollmenu.__ScrollMenu);
                     scrollmenu.setAllowScrollByX(EU.Common.strToBool(value));
                     break;
                 case EU.xmlKey.AllowScrollByY.int:

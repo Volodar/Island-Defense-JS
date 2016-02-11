@@ -11,7 +11,7 @@
  ******************************************************************************/
 /**TESTED**/
 EU.MainGS = cc.Layer.extend({
-    _menuAudio: null,
+    m_menuAudio: null,
 
     ctor: function () {
         this._super();
@@ -62,14 +62,14 @@ EU.MainGS = cc.Layer.extend({
         //    return std::bind( cb, std::placeholders::_1 );
         //}
         return null;//EU.NodeExt.prototype.get_callback_by_description.call( this, name );
-    }
+    },
 
-    //onEnter: function()
-    //{
-    //    cc.Node.prototype.onEnter.call(this);
-    //    //AudioEngine::shared().playMusic( kMusicMainMenu );
-    //    //setKeyboardEnabled( true );
-    //},
+    onEnter: function()
+    {
+        this._super();
+        EU.AudioEngine.playMusic( EU.kMusicMainMenu );
+        //this.setKeypadEnabled( true );
+    },
 
     //onKeyReleased: function( EventKeyboard::KeyCode keyCode, Event* event )
     //{

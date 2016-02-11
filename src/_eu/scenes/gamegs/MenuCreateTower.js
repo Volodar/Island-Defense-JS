@@ -23,18 +23,11 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     /** @type {cc.MenuItem} */ _confirmButton : null,
     /** @type {cc.MenuItem} */ _confirmButtonUn : null,
     /** @type {cc.MenuItem} */ _hidenButton : null,
-    _desc : {
-        /**cc.Node*/ node: new cc.Node(),
-        /**cc.LabelTTF*/ name: new cc.LabelTTF(),
-        /**cc.LabelTTF*/ text: new cc.LabelTTF(),
-        /**cc.LabelTTF*/ dmg: new cc.LabelTTF(),
-        /**cc.LabelTTF*/ rng: new cc.LabelTTF(),
-        /**cc.LabelTTF*/ spd: new cc.LabelTTF(),
-    } ,
+    _desc : null,
 
-    /** @type {std.map< std.string, MenuItem >} */ _buttonTowers : {},
-    /** @type {std.map< std.string, MenuItem >} */ _buttonTowersUn : {},
-    /** @type {cc.Point} */ _centerPoint : cc.p(0,0),
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowers : null,
+    /** @type {std.map< std.string, MenuItem >} */ _buttonTowersUn : null,
+    /** @type {cc.Point} */ _centerPoint : null,
 
     onExit: function()
     {
@@ -44,6 +37,17 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     ctor: function()
     {
         this._super();
+        this._buttonTowers = {};
+        this._buttonTowersUn = {};
+        this._centerPoint = cc.p(0,0);
+        this._desc = {
+            /**cc.Node*/ node: new cc.Node(),
+            /**cc.LabelTTF*/ name: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ text: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ dmg: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ rng: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ spd: new cc.LabelTTF()
+        };
 
         this.load_str_n_str( "ini/gamescene", "menucreatetower.xml" );
 

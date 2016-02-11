@@ -25,7 +25,7 @@ EU.Unit = cc.Node.extend({
     __Unit : true,
 
     /**ObServer<Unit, std::function<void( float, float )>*/
-    observerHealth : new EU.Observer(),
+    observerHealth : null,
 
     Extra : function()
     {
@@ -73,14 +73,14 @@ EU.Unit = cc.Node.extend({
         };
     },
 
-        /** @type {EU.mlEffect} */ _effect : null,
+    /** @type {EU.mlEffect} */ _effect : null,
     /** @type {Extra} */ _extra : null,
     /** @type {EU.Mover} */ _mover : null,
     /** @type {int} */ _angle : 0,
-    /** @type {Array<EU.Unit>} */ _targets : [],
+    /** @type {Array<EU.Unit>} */ _targets : null,
     /** @type {EU.Unit} */ _currentDamager : null,
     /** @type {EU.IndicatorNode} */ _healthIndicator : null,
-    /** @type {Array<EU.UnitSkill>} */ _skills : [],
+    /** @type {Array<EU.UnitSkill>} */ _skills : null,
     /** @type {Number} */ _currentHealth : 0.0,
     /** @type {Integer} */ _soundMoveID : 0,
         
@@ -91,7 +91,7 @@ EU.Unit = cc.Node.extend({
         this.offset = cc.p(0,0);
     },
     /** @type {String} */ _bulletXml : null,
-    /** @type Object<Number, EU.BulletParams>*/ _bulletParams : {},
+    /** @type Object<Number, EU.BulletParams>*/ _bulletParams : null,
 
     _rate : 0.0,
     /** @type {String} */ _effectOnShoot : "",
@@ -118,7 +118,7 @@ EU.Unit = cc.Node.extend({
     _damageShield : 0.0,
     _damageRate : 0.0,
 
-    /** typedef vector<Unit.Pointer>*/ TowersArray: [],
+    /** typedef vector<Unit.Pointer>*/ TowersArray: null,
 
 //    var init( const string & path, const string & xmlFile = "ini.xml" );
 //    void applyDamage( /**@type {EU.Unit} */ damager, Number time = 1 );
@@ -155,6 +155,7 @@ EU.Unit = cc.Node.extend({
         this._damageBySectorAngle =  0  ;
         this._unitLayer =  EU.UnitLayer.earth  ;
         this._allowTargets =  [];
+        this._skills =  [];
         this._maxTargets =  1  ;
         this._type = null ;
         this._soundMove =  "" ;
@@ -163,12 +164,15 @@ EU.Unit = cc.Node.extend({
         this._damageShield =  1  ;
         this._damageRate =  1  ;
         this._exp = 0 ;
+        this._bulletParams = {} ;
+        this.TowersArray = [] ;
+        this.observerHealth = new EU.Observer();
     },
     destroy: function()
     {
         if( this._soundMoveID != -1 )
         {
-            cc.audioEngine.stopEffect( this._soundMoveID );
+            EU.AudioEngine.stopEffect( this._soundMoveID );
             this._soundMoveID = -1;
         }
     },
@@ -630,7 +634,7 @@ EU.Unit = cc.Node.extend({
             this._moveFinished = false;
             if( this._soundMove.length == 0 == false )
             {
-                this._soundMoveID = cc.audioEngine.playEffect( this._soundMove, false );
+                this._soundMoveID = EU.AudioEngine.playEffect( this._soundMove, false );
             }
         }
     },
@@ -643,7 +647,7 @@ EU.Unit = cc.Node.extend({
         }
         if( this._soundMoveID != -1 )
         {
-            cc.audioEngine.stopEffect( this._soundMoveID );
+            EU.AudioEngine.stopEffect( this._soundMoveID );
             this._soundMoveID = -1;
         }
         this._angle = -1;

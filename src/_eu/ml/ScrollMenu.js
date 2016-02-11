@@ -15,6 +15,9 @@ var EU = EU || {};
 
 EU.ScrollMenu = cc.Layer.extend(
 {
+    /** Test instance of */
+    __ScrollMenu : true,
+
     /** @type {Boolean} */ _touchEnabled :null ,
     /** @type {Boolean} */ _scrollEnabled :null ,
 
