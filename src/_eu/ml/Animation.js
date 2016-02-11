@@ -14,88 +14,62 @@
 var EU = EU || {};
 
 EU.Animation = {
-    
-    createAnimation: function( a, b, c, d, e) {
-        "use strict";
-        if ( e !== undefined ) {
-            this.createAnimation5(a,b,c,d,e)
-        }
-        else if ( d !== undefined ) {
-            this.createAnimation4(a,b,c,d)
-        }
-        else if ( b !== undefined ) {
-            this.createAnimation2(a,b)
-        }
-    },
-
-    createAnimation5: function( path, firstIndex, lastIndex, fileExt, duration) {
-        var buildIndex = function(index )
-        {
-            var result = "" + index ;
-            var numbers = std.max( ( "" + firstIndex).length, (""+ lastIndex ).length );
-            while( result.length < numbers )
-            {
+    createAnimation_n: function (path, firstIndex, lastIndex, fileExt, duration) {
+        var buildIndex = function (firstIndex, lastIndex, index) {
+            var result = index.toString();
+            var numbers = Math.max(firstIndex.toString().length, lastIndex.toString().length);
+            while (result.length < numbers) {
                 result = "0" + result;
             }
             return result;
         };
         var indexes = [];
-        if( lastIndex >= firstIndex )
-        {
-            for(var i=firstIndex; i<=lastIndex; ++i )
-            indexes.push( buildIndex( i ) );
+        if (lastIndex >= firstIndex) {
+            for (var i = firstIndex; i <= lastIndex; ++i)
+                indexes.push(buildIndex(firstIndex, lastIndex, i));
         }
-        else
-        {
-            for(var i=lastIndex; i<=firstIndex; ++i )
-            indexes.push( buildIndex( i ) );
-            indexes = indexes.reverse();
+        else {
+            EU.assert(0);
+            //for( i=lastIndex; i<=firstIndex; ++i )
+            //    indexes.push( buildIndex( firstIndex, lastIndex, i ) );
+            //std::reverse(indexes.begin(), indexes.end());
         }
-        return this.createAnimation4(path, indexes, fileExt, duration);
+        return this.createAnimation(path, indexes, fileExt, duration);
     },
 
-    createAnimation4: function( path, indexes, fileExt, duration)
-    {
+    createAnimation_i: function (path, indexes, fileExt, duration) {
         var files = [];
-        for (var i = 0; i < indexes.length; i++) {
-            var index = indexes[i];
-            files.push( path + index + fileExt );
+        for (var i = 0; i < indexes; ++i )
+        {
+            files.push(path + indexes[i] + fileExt);
         }
-        return this.createAnimation2( files, duration );
+        return this.createAnimation(files, duration);
     },
-
-    createAnimation2: function(textures, duration)
-    {
-        /**Vector<SpriteFrame>*/ frames = [];
-        for (var i = 0; i < textures.length; i++) {
+    createAnimation_t: function (textures, duration) {
+        var frames = [];
+        for (var i = 0; i < textures.length; ++i) {
             var texturePath = textures[i];
             var texturePath = texturePath.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
                 texturePath : EU.xmlLoader.resourcesRoot + texturePath;
-            var frame = EU.ImageManager.sprite( texturePath );
-            if( frame )
-            {
-                frames.push(frame );
+            var frame = EU.ImageManager.getSpriteFrame(texturePath);
+            if (frame) {
+                frames.push(frame);
                 continue;
             }
-            //
-            var texture = cc.textureCache.addImage(texturePath);
-            if(!texture)
-            {
-                if (EU.USE_CHEATS == 1) {
-                    var message = "cannot create animation. Path [" + texturePath + "].";
-                    cc.log( "%s", message );
-                    //EU.MessageBox( message, "Animation not created" );
-                }
+            var texture = EU.ImageManager.getTextureForKey(texturePath);
+            if (!texture) {
+                var message = "cannot create animation. Path [" + texturePath + "].";
+                alert(message);
                 continue;
             }
-            var rect = cc.rect();
+            var rect = cc.rect(0, 0, 0, 0);
             rect.width = texture.getContentSize().width;
             rect.height = texture.getContentSize().height;
 
-            frames.push( new cc.SpriteFrame( texturePath, rect) );
+            frames.push(new cc.SpriteFrame(texture, rect));
         }
         var delay = duration / frames.length;
-    
+
         return new cc.Animation(frames, delay);
     }
 };

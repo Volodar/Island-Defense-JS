@@ -32,6 +32,7 @@
         "src/_eu/ml/Events.js",
         "src/_eu/ml/SmartScene.js",
         "src/_eu/ml/ScrollMenu.js",
+        "src/_eu/ml/Animation.js",
         "src/_eu/ml/Audio/AudioEngine.js",
         "src/_eu/ml/Audio/AudioMenu.js",
         "src/_eu/ml/Animation.js",

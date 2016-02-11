@@ -23,24 +23,24 @@ EU.MachineUnit = function() {
     this.State =  EU.MachineUnit.State;
     this.Event =  EU.MachineUnit.Event;
 
-    /** @return void */ this.on_shoot = function( index ) {},
-    /** @return void */ this.on_sleep = function( duration ) {},
-    /** @return void */ this.on_cocking = function( duration ) {},
-    /** @return void */ this.on_relaxation = function( duration ) {},
-    /** @return void */ this.on_readyfire = function( duration ) {},
-    /** @return void */ this.on_charging = function( duration ) {},
-    /** @return void */ this.on_waittarget = function( duration ) {},
-    /** @return void */ this.on_move = function() {},
-    /** @return void */ this.on_stop = function() {},
-    /** @return void */ this.on_die = function() {},
-    /** @return void */ this.on_die_finish = function() {},
-    /** @return void */ this.on_enter = function() {},
-
-    /** @return void */ this.move_update = function( dt ) {},
-    /** @return void */ this.stop_update = function( dt ) {},
-    /** @return void */ this.die_update = function( dt ) {},
-    /** @return void */ this.enter_update = function( dt ) {},
-    /** @return void */ this.readyfire_update = function( dt ) {},
+    ///** @return void */ this.on_shoot = function( index ) {},
+    ///** @return void */ this.on_sleep = function( duration ) {},
+    ///** @return void */ this.on_cocking = function( duration ) {},
+    ///** @return void */ this.on_relaxation = function( duration ) {},
+    ///** @return void */ this.on_readyfire = function( duration ) {},
+    ///** @return void */ this.on_charging = function( duration ) {},
+    ///** @return void */ this.on_waittarget = function( duration ) {},
+    ///** @return void */ this.on_move = function() {},
+    ///** @return void */ this.on_stop = function() {},
+    ///** @return void */ this.on_die = function() {},
+    ///** @return void */ this.on_die_finish = function() {},
+    ///** @return void */ this.on_enter = function() {},
+    //
+    ///** @return void */ this.move_update = function( dt ) {},
+    ///** @return void */ this.stop_update = function( dt ) {},
+    ///** @return void */ this.die_update = function( dt ) {},
+    ///** @return void */ this.enter_update = function( dt ) {},
+    ///** @return void */ this.readyfire_update = function( dt ) {},
 
     
     this.Cocking = function(duration) { this.duration = duration},
@@ -69,7 +69,7 @@ EU.MachineUnit = function() {
     this._timer = null, //float
     this._target = null, //EU.Unit
 
-    this.init = function() {
+    this.initFSM = function() {
         //this._super();
         this._cocking = new this.Cocking( 0.0 );
         this._relaxation = new this.Relaxation( 0.0 );
@@ -81,26 +81,26 @@ EU.MachineUnit = function() {
         this._timer = 0.0;
         this._target = null;
             
-        this.FSM_ADD_STATE( "sleep");
-        this.FSM_ADD_STATE( "enter");
-        this.FSM_ADD_STATE( "cocking");
-        this.FSM_ADD_STATE( "relaxation");
-        this.FSM_ADD_STATE( "readyfire");
-        this.FSM_ADD_STATE( "charging");
-        this.FSM_ADD_STATE( "waittarget");
-        this.FSM_ADD_STATE( "move");
-        this.FSM_ADD_STATE( "stop");
-        this.FSM_ADD_STATE( "death");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_sleep, "sleep");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_enter, "enter");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_cocking, "cocking");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_relaxation, "relaxation");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_readyfire, "readyfire");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_charging, "charging");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_waittarget, "waittarget");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_move, "move");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_stop, "stop");
+        this.FSM_ADD_STATE( EU.MachineUnit.State.state_death, "death");
 
-        this.FSM_ADD_EVENT( "seetarget");
-        this.FSM_ADD_EVENT( "ready");
-        this.FSM_ADD_EVENT( "charge");
-        this.FSM_ADD_EVENT( "notarget");
-        this.FSM_ADD_EVENT( "relax");
-        this.FSM_ADD_EVENT( "sleep");
-        this.FSM_ADD_EVENT( "move");
-        this.FSM_ADD_EVENT( "stop");
-        this.FSM_ADD_EVENT( "die");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_seetarget, "seetarget");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_ready, "ready");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_charge, "charge");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_notarget, "notarget");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_relax, "relax");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_sleep, "sleep");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_move, "move");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_stop, "stop");
+        this.FSM_ADD_EVENT( EU.MachineUnit.Event.event_die, "die");
 
         this.state_tag( this.State.state_sleep ).add_onActivateCallBack( this.state_sleep_start);
         this.state_tag( this.State.state_cocking ).add_onActivateCallBack( this.state_cocking_start);

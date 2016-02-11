@@ -52,7 +52,12 @@ EU.ImageManager  = {
         }
         else
         {
-            return cc.textureCache.getTextureForKey(key);
+            if( key.indexOf( EU.xmlLoader.resourcesRoot ) != 0 )
+                key = EU.xmlLoader.resourcesRoot + key;
+            var texture =  cc.textureCache.getTextureForKey(key);
+            if( !texture )
+                texture = cc.textureCache.addImage(key);
+            return texture;
         }
     },
     sprite: function( spriteFrameOrTexture )

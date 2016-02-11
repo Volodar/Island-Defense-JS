@@ -20,11 +20,13 @@ EU.MachineExt = function(){
 
     EU.Machine.call(this);
 
-    this.FSM_ADD_STATE = function(name) {
-        return this.add_state( "state_" + name, null).set_string_name(name);
+    this.FSM_ADD_STATE = function(tag, name) {
+        EU.assert( tag && name );
+        return this.add_state( tag, null).set_string_name(name);
     },
-    this.FSM_ADD_EVENT = function(name) {
-        return this.add_event( "event_" + name).set_string_name(name);
+    this.FSM_ADD_EVENT = function(tag, name) {
+        EU.assert( tag && name );
+        return this.add_event( tag ).set_string_name(name);
     },
     /**
      * @type {Element} xmlmachine

@@ -159,7 +159,7 @@ EU.State = cc.Class.extend(
         for (var i = 0; i < cblist.length; i++) {
             var callback = cblist[i];
             EU.assert( callback );
-            callback.call(this);
+            callback.call(this._machine);
         }
     },
 
@@ -226,6 +226,11 @@ EU.Machine = function(){
     /** For Test Instance of */
     this.__Machine = true;
 
+    this.initMachine = function(){
+        this._states = [];
+        this._events = [];
+        this._eventsQueue = []
+    }
     this.add_state = function( nameState, onActivate )
     {
         var i = this._state( nameState );
@@ -237,10 +242,9 @@ EU.Machine = function(){
     };
 
     /** @type {State *} */ this._currentState = null;
-    /** @type {StatesList} */ this._states = [];
-    /** @type {EventsList} */ this._events = [];
-    /** @type {std.mutex} */ this._mutexQueueEvents = [];
-    /** @type {std.queue<Event*>} */ _eventsQueue = [];
+    /** @type {StatesList} */ this._states = null;
+    /** @type {EventsList} */ this._events = null;
+    /** @type {std.queue<Event*>} */ this._eventsQueue = null;
 
 
     /*****************************************************************************/
@@ -353,9 +357,6 @@ EU.Machine = function(){
 
     this.process = function()
     {
-        //TODO: std.mutex lock
-        /**std.unique_lock<std.mutex>*/
-        //var lock = ( this._mutexQueueEvents );
         var queue = this._eventsQueue;
         this._eventsQueue = [];
         //lock.unlock();
@@ -375,8 +376,6 @@ EU.Machine = function(){
 
     this.push_event = function( eventTag )
     {
-        //TODO: std.mutex lock
-        //var lock = ( this._mutexQueueEvents );
         var event = this.event_tag( eventTag );
         this._eventsQueue.push( event );
     };

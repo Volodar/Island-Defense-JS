@@ -273,7 +273,7 @@ EU.GameBoard = cc.Class.extend({
 
             if( (unit.getCurrentHealth() <= 0) && (this.death.indexOf( unit ) == -1) )
                 death.push( i );
-            else if( unit.getMoveFinished() == true && unit.getType() == EU.UnitType.creep )
+            else if( unit.getMoveFinished() == true && unit._type == EU.UnitType.creep )
                 removed.push( i );
         }
 
@@ -449,7 +449,6 @@ EU.GameBoard = cc.Class.extend({
             this.units[i].stop();
         }
 
-        this.dispatchDamagers();
         this.dispatchKillers();
 
         if( this.hero )
@@ -472,7 +471,7 @@ EU.GameBoard = cc.Class.extend({
             EU.UserData.level_getScoresByIndex( this.levelIndex );
             EU.UserData.level_setScoresByIndex( this.levelIndex, this.statisticsParams.stars );
 
-            if( this.this.gameMode == GameMode.normal  )
+            if( this.gameMode == EU.GameMode.normal  )
             {
                 if( EU.UserData.get_bool( "level_successfull" + this.levelIndex ) == false )
                 {
@@ -862,8 +861,11 @@ EU.GameBoard = cc.Class.extend({
     },
     checkGameFinished: function(){
         var finishGame = false;
-        finishGame = finishGame || (EU.ScoreCounter.getMoney( EU.kScoreHealth ) <= 0);
-        finishGame = finishGame || (this.isExistCreep( this.units ) == false && this.isFinihedWaves == true);
+        var byHealth = (EU.ScoreCounter.getMoney( EU.kScoreHealth ) <= 0);
+        var isExistCreep = this.isExistCreep( this.units )
+        var byEndOfWaves = (isExistCreep == false && this.isFinihedWaves == true);
+        finishGame = finishGame || byHealth;
+        finishGame = finishGame || byEndOfWaves;
         if( finishGame )
             this.onFinishGame();
 
@@ -901,7 +903,7 @@ EU.GameBoard = cc.Class.extend({
                 }
             }
         }
-        var random = cc.rand() % EU.RouteSubType.max;
+        var random = Math.floor(Math.random()*100) % EU.RouteSubType.max;
         var nindex = index % routes.length;
         EU.assert( nindex < routes.length );
         switch( routeSubType )
@@ -912,7 +914,7 @@ EU.GameBoard = cc.Class.extend({
             case EU.RouteSubType.right0:    return routes[nindex].right;
             case EU.RouteSubType.max:       EU.assert( 0 );
         }
-        //EU.assert( 0 );
+        EU.assert( 0 );
         return routes[index].main;
     },
     getRoute: function( unitLayer, position, distance ){
@@ -960,7 +962,7 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<this.units.length; ++i )
         {
             var tower = this.units[i];
-            var max = tower.getMaxTargets();
+            var max = tower._maxTargets;
             var targets = [];
             tower.get_targets( targets );
             for( var j = 0; j < targets.length; )
@@ -988,7 +990,7 @@ EU.GameBoard = cc.Class.extend({
         result = result && base != null;
         result = result && target != null;
         result = result && target.getCurrentHealth() > 0;
-        result = result && target.current_state().get_name() != MachineUnit.State.state_enter;
+        result = result && target.current_state().get_name() != EU.MachineUnit.State.state_enter;
         result = result && this.checkTargetByArea( target );
         result = result && this.checkTargetByUnitType( target, base );
         result = result && this.checkTargetByEU.UnitLayer( target, base );
@@ -1014,14 +1016,14 @@ EU.GameBoard = cc.Class.extend({
         return result;
     },
     checkTargetByUnitType: function( target, base ){
-        var targetType = target.getType();
-        var baseType = base.getType();
-        if( baseTarget == EU.UnitType.creep && targetType == EU.UnitType.desant ) return true;
-        if( baseTarget == EU.UnitType.creep && targetType == EU.UnitType.hero ) return true;
-        if( baseTarget == EU.UnitType.tower && targetType == EU.UnitType.creep ) return true;
-        if( baseTarget == EU.UnitType.desant && targetType == EU.UnitType.creep ) return true;
-        if( baseTarget == EU.UnitType.hero && targetType == EU.UnitType.creep ) return true;
-        if( baseTarget == EU.UnitType.other && targetType == EU.UnitType.other ) return true;
+        var targetType = target._type;
+        var baseType = base._type;
+        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.desant ) return true;
+        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.hero ) return true;
+        if( baseType == EU.UnitType.tower && targetType == EU.UnitType.creep ) return true;
+        if( baseType == EU.UnitType.desant && targetType == EU.UnitType.creep ) return true;
+        if( baseType == EU.UnitType.hero && targetType == EU.UnitType.creep ) return true;
+        if( baseType == EU.UnitType.other && targetType == EU.UnitType.other ) return true;
         return false;
     },
     checkTargetByUnitLayer: function( target, base ){
@@ -1069,7 +1071,7 @@ EU.GameBoard = cc.Class.extend({
             return false;
         for( var i=0; i<units.length; ++i )
         {
-            if( units[i].getType() == EU.UnitType.creep )
+            if( units[i]._type == EU.UnitType.creep )
                 return true;
         }
         return false;
