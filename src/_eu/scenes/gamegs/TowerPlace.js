@@ -46,42 +46,43 @@ EU.TowerPlace = cc.Sprite.extend(
             var duration = 0.5 + cc.randomMinus1To1()*0.1;
 
             //TODO: EU.Animation
-            //var frames = [];
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_02.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_03.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_04.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_05.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_06.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_07.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_08.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_09.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_10.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_11.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_12.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_13.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_14.png" );
-            //frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_15.png" );
-            //var anim = EU.Animation.createAnimation( frames, duration );
-            //EU.assert( anim );
-            //
-            //var animate = cc.repeatForever( cc.animate( anim ) );
-            //var action = animate ;
-            //
-            //this.runAction( action );
+            var frames = [];
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_02.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_03.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_04.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_05.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_06.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_07.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_08.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_09.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_10.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_11.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_12.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_13.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_14.png" );
+            frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_15.png" );
+            var anim = EU.Animation.createAnimation_t( frames, duration );
+            EU.assert( anim );
+
+            var animate = cc.repeatForever( cc.animate( anim ) );
+            var action = animate ;
+
+            this.runAction( action );
             image = EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png";
         }
         else
         {
             image = EU.k.resourceGameSceneFolder + "unactive_slot.png";
+            var frame = EU.ImageManager.getSpriteFrame( image );
+            if( frame )
+            {
+                this.setSpriteFrame( frame );
+                return;
+            }
+            EU.xmlLoader.setProperty( this, EU.xmlKey.Image.name, image );
         }
-        var frame = EU.ImageManager.getSpriteFrame( image );
-        if( frame )
-        {
-            this.setSpriteFrame( frame );
-            return;
-        }
-        EU.xmlLoader.setProperty( this, EU.xmlKey.Image.name, image );
+
     },
     
     checkClick: function(  location,  outDistance )

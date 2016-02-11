@@ -4,7 +4,7 @@
 	<hard startscore="250" healths="1" star1="1" star2="1" star3="1" wave_cooldown="5" exclude="icegun,roketgun,teslagun,firegun" />
 	<waves defaultdelayonewave="30">
 		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="1" defaultname="soldier" />
-		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="6" defaultname="soldier" />
+		<!--<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="6" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="7" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="8" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="10" defaultname="soldier" />
@@ -57,7 +57,7 @@
 			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
 			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
 			<creep name="soldier" delay="0.5" healthrate="0.75" score="5" routesubtype="random" routeindex="0" />
-		</wave>
+		</wave>-->
 	</waves>
 	<waves_hard defaultdelayonewave="10">
 		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="5" defaultname="soldier" />
