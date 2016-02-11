@@ -20,35 +20,8 @@ EU.MachineUnit = function() {
 
     EU.MachineExt.call(this);
 
-    this.State =  Object.freeze(
-    {
-        state_start : 0,
-        state_enter : 1,
-        state_sleep : 2,
-        state_cocking : 3,
-        state_relaxation : 4,
-        state_readyfire : 5,
-        state_charging : 6,
-        state_waittarget : 7,
-        state_move : 8,
-        state_stop : 9,
-        state_death : 10,
-        state_unknow : 11
-    }),
-    this.Event = Object.freeze(
-    {
-        event_start : 0,
-        event_seetarget : 1,
-        event_ready : 2,
-        event_charge : 3,
-        event_notarget : 4,
-        event_relax : 5,
-        event_sleep : 6,
-        event_move : 7,
-        event_stop : 8,
-        event_die : 9,
-        event_unknow : 10
-    }),
+    this.State =  EU.MachineUnit.State;
+    this.Event =  EU.MachineUnit.Event;
 
     /** @return void */ this.on_shoot = function( index ) {},
     /** @return void */ this.on_sleep = function( duration ) {},
@@ -519,3 +492,33 @@ EU.MachineUnit = function() {
     }
 };
 
+EU.MachineUnit.State =  Object.freeze(
+{
+    state_start : 0,
+    state_enter : 1,
+    state_sleep : 2,
+    state_cocking : 3,
+    state_relaxation : 4,
+    state_readyfire : 5,
+    state_charging : 6,
+    state_waittarget : 7,
+    state_move : 8,
+    state_stop : 9,
+    state_death : 10,
+    state_unknow : 11
+});
+
+EU.MachineUnit.Event = Object.freeze(
+{
+    event_start : 0,
+    event_seetarget : 1,
+    event_ready : 2,
+    event_charge : 3,
+    event_notarget : 4,
+    event_relax : 5,
+    event_sleep : 6,
+    event_move : 7,
+    event_stop : 8,
+    event_die : 9,
+    event_unknow : 10
+});

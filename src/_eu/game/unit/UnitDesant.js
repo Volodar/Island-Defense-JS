@@ -70,7 +70,7 @@ EU.UnitDesant = EU.Unit.extend(
 
         if( this._targets.length > 0 )
         {
-            if( this.current_state( ).get_name( ) != EU.State.state_move && this.isNearestTarget() == false )
+            if( this.current_state( ).get_name( ) != EU.MachineUnit.State.state_move && this.isNearestTarget() == false )
             {
                 var route;
                 this.buildRouteToTarget( route );
@@ -89,7 +89,7 @@ EU.UnitDesant = EU.Unit.extend(
             this.capture_targets( this._targets );
             if( this.isNearestBase() == false )
             {
-                if( this.current_state().get_name() != EU.State.state_move )
+                if( this.current_state().get_name() != EU.MachineUnit.State.state_move )
                 {
                     var route;
                     this.buildRouteToBase( route );

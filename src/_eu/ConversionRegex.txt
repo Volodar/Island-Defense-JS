@@ -5,18 +5,18 @@
 */
 
 1. For class variables starting with _
-    (.+) _(\w+);
-    /** @type {$1} */ _$2 : ,
+^    (.+) _(\w+);
+    /** @type {$1} */ _$2 : null,
 
 2. For auto, unsigned
-::
+(::|->)
 .
 (auto | int |float |unsigned |std::string|std.string |bool |Point |Vec2 )
 var
 
 
 3. Class NS to this,  addChild to this
-ClassName::
+ClassName.
 this.
 
  (addChild|removeChild)
@@ -55,10 +55,6 @@ new cc.$1
 (_
 (this._
 
-6. replace -> with .
-->
-.
-
 7. replace <type>, const, Pointer, & to empty string
 <(\w+)*>
 
@@ -72,10 +68,14 @@ Touch *
 
 .ptr()
 
+.as_string()
+
 
 7. replace xxf to xx
 (\d)f
 $1
+(\d)\.f
+$1.0
 
 10. adding ending comma
 ^    }
@@ -92,3 +92,15 @@ cc.view
  this.set
 strToFloat
 parseFloat
+
+function\( *([^, ]+) (\w+) *\)
+function\( /**@type {$1} */ $2 )
+
+function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
+function\( /**@type {$1} */ $2, /**@type {$3} */ $4 )
+
+.attribute(
+.getAttribute(
+
+std.m
+Math.m

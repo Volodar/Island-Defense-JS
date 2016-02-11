@@ -42,6 +42,10 @@ zOrderInterfaceMenu = 99;
 zOrderInterfaceWaveIcon = 100;
 
 EU.GameGS = EU.LayerExt.extend({
+
+    /** For Test instanceof */
+    __GameGS : true,
+
     /** @type{EU.GameBoard} */ board: null,
     /** @type{cc.Node} */  mainlayer: null,
     /** @type{cc.Sprite} */  bg: null,
