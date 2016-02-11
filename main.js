@@ -47,6 +47,10 @@ cc.game.onStart = function(){
         EU.ScoreByTime.checktime( );
         /** */
 
+
+        /**
+         * applicationDidFinishLaunching
+         */
         if (cc.sys.isMobile) {
             //TODO: inapp here
             //inapp.CallBackPurchase cb = std.bind( ShopLayer.request_answer, std.placeholders._1 );
@@ -119,7 +123,6 @@ cc.game.onStart = function(){
 };
 
 cc.game.onStop = function() {
-    "use strict";
     cc.director.stopAnimation();
     cc.audioEngine.pauseAllEffects();
     cc.audioEngine.pauseMusic();
@@ -165,79 +168,6 @@ cc.game.run();
 //    addTestDevice( "7D2A3ADC-FE0E-4643-8FFB-DB99475934DB" );
 //    addTestDevice( "249C79C3-01AA-401E-B9C5-C3CCF19E5C0C" );
 //#endif
-//}
-//
-//AppDelegate.~AppDelegate()
-//{
-//}
-//
-//bool AppDelegate.applicationDidFinishLaunching()
-//{
-//#if PC != 1
-//    inapp.CallBackPurchase cb = std.bind( ShopLayer.request_answer, std.placeholders._1 );
-//    inapp.setCallbackPurchase( cb );
-//#endif
-//    appgratis.init();
-//
-//    configurePath();
-//    ScoreByTime.shared();
-//    LevelParams.shared();
-//    Achievements.shared();
-//    Language.shared();
-//    if( k.configuration.useLeaderboards )
-//        PlayServises.init();
-//
-//    var setSoundEnabled = []( bool mode ){ UserData.shared().write( "sound_enabled", mode ? true : false ); };
-//    var setMusicEnabled = []( bool mode ){ UserData.shared().write( "music_enabled", mode ? true : false ); };
-//    var isSoundEnabled = [](){ return UserData.shared().get_bool( "sound_enabled", true ); };
-//    var isMusicEnabled = [](){ return UserData.shared().get_bool( "music_enabled", true ); };
-//    EU.AudioEngine.callback_setSoundEnabled( std.bind( setSoundEnabled, std.placeholders._1 ) );
-//    EU.AudioEngine.callback_setMusicEnabled( std.bind( setMusicEnabled, std.placeholders._1 ) );
-//    EU.AudioEngine.callback_isSoundEnabled( std.bind( isSoundEnabled ) );
-//    EU.AudioEngine.callback_isMusicEnabled( std.bind( isMusicEnabled ) );
-//
-//    createWindow();
-//    setDesignResolution();
-//    applyConfigurations();
-//    loadXmlValues( );
-//    registration( );
-//    linkPlugins();
-//
-//    var director = Director.getInstance();
-//
-//#if EDITOR==1
-//    var scene = EditorScene.create( );
-//    director->runWithScene( scene );
-//#else
-//    //var scene = SplashScene.create();
-//    //director->runWithScene( scene.ptr() );
-//    var scene = MainGS.scene();
-//    cc.director.runWithScene( scene.ptr() );
-//#endif
-//
-//    std.list<std.string> items;
-//    items.push_back( k.configuration.kInappFuel1 );
-//    items.push_back( k.configuration.kInappGear1 );
-//    items.push_back( k.configuration.kInappGear2 );
-//    items.push_back( k.configuration.kInappGear3 );
-//    items.push_back( k.configuration.kInappGold1 );
-//    items.push_back( k.configuration.kInappGold2 );
-//    items.push_back( k.configuration.kInappGold3 );
-//    items.push_back( k.configuration.kInappGold4 );
-//    items.push_back( k.configuration.kInappGold5 );
-//    items.push_back( k.configuration.kInappHero2 );
-//    items.push_back( k.configuration.kInappHero3 );
-//    items.push_back( k.configuration.kInappAllHeroes );
-//    for( auto& item : items )
-//    {
-//        var cb = std.bind( [](){} );
-//        inapp.details(item, cb);
-//    }
-//    HeroExp.shared();
-//
-//    showCursor();
-//
-//    return true;
 //}
 //
 //

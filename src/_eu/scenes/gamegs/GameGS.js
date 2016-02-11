@@ -34,6 +34,10 @@ EU.HeroIcon = cc.Node.extend({});
 EU.BoxMenu = cc.Menu.extend({});
 
 EU.GameGS = EU.LayerExt.extend({
+
+    /** For Test instanceof */
+    __GameGS : true,
+
     /** @type{EU.GameBoard} */ board: null,
     /** @type{cc.Node} */  mainlayer: null,
     /** @type{cc.Sprite} */  bg: null,

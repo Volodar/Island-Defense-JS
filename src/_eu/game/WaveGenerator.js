@@ -290,10 +290,12 @@ EU.WaveInfo = cc.Class.extend(
     },
     valid: function()
     {
+        "use strict";
         return this.delayOneUnit.length > 0;
     },
     pop: function()
     {
+        "use strict";
         this.creeps.shift();
         this.delayOneUnit.shift();
         this.scores.shift();
