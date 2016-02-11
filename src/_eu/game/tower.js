@@ -353,15 +353,15 @@ EU.mlUnitInfo = {
             for (var i=0; i<temp.attributes.length; i++)
             {
                 var attr = temp.attributes[i];
-                var name = attr.name;
-                var attrRoot = root.getAttribute(name);
-                if ( !attrRoot ) root.setAttribute( name, attr.value );
+                var tag = attr.name;
+                var attrRoot = root.getAttribute(tag);
+                if ( !attrRoot ) root.setAttribute( tag, attr.value );
             }
         }
     
         var info = new this.Info();
-        info.layer = EU.Common.strToUnitLayer( root.getAttribute( "unitlayer" ) );
-        info.type = EU.Common.strToUnitType( root.getAttribute( "unittype" ) );
+        info.layer = EU.strToUnitLayer( root.getAttribute( "unitlayer" ) );
+        info.type = EU.strToUnitType( root.getAttribute( "unittype" ) );
         info.radius = EU.asObject(root.getAttribute( "radius" ));
     
         this._info[name] = info ;

@@ -28,7 +28,6 @@ EU.FinishLevelParams = cc.Class.extend({
     livetotal : 0,
     stars : 0,
     ctor: function() {
-        this._super();
     }
 });
 
@@ -73,7 +72,7 @@ EU.GameBoard = cc.Class.extend({
     /** Type{EU.GameMode}*/ gameMode : null,
     /** Type{Integer}*/ levelIndex : null,
     /** Type{EU.SkillParams}*/ skillParams : null,
-    /** Type{bool}*/ isGameStarted : null,
+    /** Type{bool}*/ isStarted : null,
     /** Type{bool}*/ isFinihedWaves : null,
     /** Type{bool}*/ isFinihedGame : null,
     /** Type{bool}*/ isFinishedWave : null,
@@ -82,21 +81,26 @@ EU.GameBoard = cc.Class.extend({
     /** Type{Integer}*/ heartsForStar3 : null,
     /** Type{Integer}*/ leaderboardScore : null,
     /** Type{Array< Object{ EU.Unit, Float} >}*/ desants : null,
-    //CC_SYNTHESIZE_PASS_BY_REF( std::vector<TripleRoute>, creepsRoutes, CreepsRoutes ){},
-    //CC_SYNTHESIZE_READONLY( GameMode , gameMode, GameMode){},
-    //CC_SYNTHESIZE_READONLY( var, levelIndex, CurrentLevelIndex ){},
-    //CC_SYNTHESIZE_READONLY( SkillParams, skillParams, SkillParams ){},
 
+    setCreepsRoutes: function(routes){this.creepsRoutes = routes;},
+    getCreepsRoutes: function(){return this.creepsRoutes;},
+    setGameMode: function(mode){this.gameMode = mode;},
+    getGameMode: function(){return this.gameMode;},
+    setCurrentLevelIndex: function(index){this.levelIndex = index;},
+    getCurrentLevelIndex: function(){return this.levelIndex;},
+    setSkillParams: function(params){this.skillParams = params;},
+    getSkillParams: function(){return this.skillParams;},
 
     ctor: function()
     {
         this.units = [];
+        this.death = [];
         this.damagers = {};
         this.creepsRoutes = [];
         this.statisticsParams = new EU.FinishLevelParams();
         this.gameMode = EU.GameMode.normal;
         this.levelIndex = 0;
-        this.isGameStarted = false;
+        this.isStarted = false;
         this.isFinihedWaves = false;
         this.isFinihedGame = false;
         this.isFinishedWave = false;
@@ -105,43 +109,108 @@ EU.GameBoard = cc.Class.extend({
         this.heartsForStar3 = 0;
         this.leaderboardScore = 0;
         this.desants = {};
+        this.skillParams = {};
+
+        this.loadSkillsParams();
+        this.checkDefaultBonusesItems();
     },
     //~GameBoard(){},
+    loadSkillsParams: function(){
+        var doc = EU.pugixml.readXml( "ini/skills.xml" );
+        var root = doc.firstElementChild;
+
+        this.skillParams.cooldownDesant = parseFloat(root.getElementsByTagName( "desant_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.lifetimeDesant = parseFloat(root.getElementsByTagName( "desant_lifetime" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownAirplane = parseFloat(root.getElementsByTagName( "airplane_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.distanceToRoute = parseFloat(root.getElementsByTagName( "distance_to_road" )[0].getAttribute( "value" ));
+
+        this.skillParams.cooldownLandmine = parseFloat(root.getElementsByTagName( "landmine_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownSwat = parseFloat(root.getElementsByTagName( "swat_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownHero3Bot = parseFloat(root.getElementsByTagName( "hero3bot_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.swatCount = parseFloat(root.getElementsByTagName( "swat_count" )[0].getAttribute( "value" ));
+        this.skillParams.swatLifetime = parseFloat(root.getElementsByTagName( "swat_lifetime" )[0].getAttribute( "value" ));
+        this.skillParams.hero3BotCount = parseFloat(root.getElementsByTagName( "hero3bot_count" )[0].getAttribute( "value" ));
+        this.skillParams.hero3BotLifetime = parseFloat(root.getElementsByTagName( "hero3bot_lifetime" )[0].getAttribute( "value" ));
+
+        this.skillParams.cooldownDesant = EU.UserData.get_float( EU.k.DesantCooldown, this.skillParams.cooldownDesant );
+        this.skillParams.lifetimeDesant = EU.UserData.get_float( EU.k.DesantLifeTime, this.skillParams.lifetimeDesant );
+        this.skillParams.cooldownAirplane = EU.UserData.get_float( EU.k.AirplaneCooldown, this.skillParams.cooldownAirplane );
+        this.skillParams.cooldownLandmine = EU.UserData.get_float( EU.k.LandmineCooldown, this.skillParams.cooldownLandmine );
+        this.skillParams.cooldownSwat = EU.UserData.get_float( EU.k.SwatCooldown, this.skillParams.cooldownSwat );
+        this.skillParams.swatCount = EU.UserData.get_int( EU.k.SwatCount, this.skillParams.swatCount );
+        this.skillParams.swatLifetime = EU.UserData.get_int( EU.k.SwatLifetime, this.skillParams.swatLifetime );
+        this.skillParams.cooldownHero3Bot = EU.UserData.get_float( EU.k.Hero3BotCooldown, this.skillParams.cooldownHero3Bot );
+        this.skillParams.hero3BotCount = EU.UserData.get_int( EU.k.Hero3BotCount, this.skillParams.hero3BotCount );
+        this.skillParams.hero3BotLifetime = EU.UserData.get_int( EU.k.Hero3BotLifetime, this.skillParams.hero3BotLifetime );
+
+        this.skillParams.swatLevels = [];
+        this.skillParams.hero3BotLevels = [];
+        this.skillParams.landmineLevels = [];
+
+        for( var i = 0; i < 4; ++i )
+        {
+            this.skillParams.swatLevels[i] = {};
+            this.skillParams.swatLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "swat" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.swatLevels[i].rateLifetime = parseFloat(root.getElementsByTagName( "swat" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "lifitimerate" ));
+
+            this.skillParams.hero3BotLevels[i] = {};
+            this.skillParams.hero3BotLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "hero3bot" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.hero3BotLevels[i].rateLifetime = parseFloat(root.getElementsByTagName( "hero3bot" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "lifitimerate" ));
+
+            this.skillParams.landmineLevels[i] = {};
+            this.skillParams.landmineLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "landmine" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.landmineLevels[i].count = parseInt(root.getElementsByTagName( "landmine" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "count" ));
+        }
+
+    },
+    checkDefaultBonusesItems:function(){
+        var id = "bonusitemdefaultgetted";
+        if( EU.UserData.get_bool( id, true ) )
+        {
+            var doc = EU.pugixml.readXml( "ini/bonusitems.xml" );
+            var root = doc.firstElementChild;
+
+            EU.UserData.bonusitem_add( 3, parseInt(root.getElementsByTagName( "bonusitem_dynamit" )[0].getAttribute( "default" )) );
+            EU.UserData.bonusitem_add( 2, parseInt(root.getElementsByTagName( "bonusitem_ice" )[0].getAttribute( "default" )) );
+            EU.UserData.bonusitem_add( 1, parseInt(root.getElementsByTagName( "bonusitem_laser" )[0].getAttribute( "default" )) );
+            EU.UserData.write( id, false );
+        }
+    },
     loadLevel: function( index, gamemode ){
         this.levelIndex = index;
-        this.gameMode = mode;
+        this.gameMode = gamemode;
 
-        var pathToFile = cc.fileUtils.fullPathForFilename( EU.kDirectoryToMaps + this.levelIndex + ".xml" );
+        var pathToFile = EU.kDirectoryToMaps + this.levelIndex + ".xml";
         var doc = EU.pugixml.readXml( pathToFile );
-        var root = doc.getRoot();
+        var root = doc.firstElementChild;
         if( !root )
             cc.log( "cannot parce file" );
 
         var xmlTagWaves = "";
         var xmlTagParams = "";
-        switch( mode )
+        switch( gamemode )
         {
-            case GameMode.normal:
+            case EU.GameMode.normal:
                 xmlTagParams = EU.k.LevelParams;
                 xmlTagWaves = EU.k.LevelWaves;
                 break;
-            case GameMode.hard:
+            case EU.GameMode.hard:
                 xmlTagParams = EU.k.LevelParamsHard;
                 xmlTagWaves = EU.k.LevelWavesHard;
                 break;
         }
 
-        var routesXml = root.getElementsByName( EU.k.LevelRoutes )[0];
-        var placesXml = root.getElementsByName( EU.k.LevelTowerPlaces )[0];
-        var wavesXml = root.getElementsByName( xmlTagWaves )[0];
-        var paramsXml = root.getElementsByName( xmlTagParams )[0];
+        var routesXml = root.getElementsByTagName( EU.k.LevelRoutes )[0];
+        var placesXml = root.getElementsByTagName( EU.k.LevelTowerPlaces )[0];
+        var wavesXml = root.getElementsByTagName( xmlTagWaves )[0];
+        var paramsXml = root.getElementsByTagName( xmlTagParams )[0];
         if( !paramsXml ) paramsXml = root;
 
         if( !routesXml )cc.log( "routesXml Node not found" );
         if( !placesXml )cc.log( "placesXml Node not found" );
         if( !wavesXml ) cc.log( "wavesXml Node not found" );
 
-        var routes;
+        var routes = [];
 
         this.loadLevelParams(paramsXml);
         var routesload = this.loadRoutes( routesXml );
@@ -161,12 +230,17 @@ EU.GameBoard = cc.Class.extend({
             this.createHero();
     },
     loadLevelParams: function( xmlnode ){
-        var startscore = parseInt( node.getAttribute( EU.k.LevelStartScore ));
-        var healths = parseInt( node.getAttribute( EU.k.LevelHealth ));
-        this.heartsForStar1 = parseInt( node.getAttribute( EU.k.LevelStartStar1 ));
-        this.heartsForStar2 = parseInt( node.getAttribute( EU.k.LevelStartStar2 ));
-        this.heartsForStar3 = parseInt( node.getAttribute( EU.k.LevelStartStar3 ));
-        var exclude = EU.Common.split( exclude, node.getAttribute( "exclude" ) );
+        var startscore = parseInt( xmlnode.getAttribute( EU.k.LevelStartScore ));
+        var healths = parseInt( xmlnode.getAttribute( EU.k.LevelHealth ));
+        this.heartsForStar1 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar1 ));
+        this.heartsForStar2 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar2 ));
+        this.heartsForStar3 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar3 ));
+        var exclude = xmlnode.getAttribute( "exclude" );
+        if( exclude && exclude.length > 0 ) {
+            exclude = exclude.split(",");
+            for( var i=0; i<exclude.length; ++i )
+                EU.GameGSInstance.excludeTower( exclude[i] );
+        }
     
         if( EU.k.useBoughtLevelScoresOnEveryLevel )
         {
@@ -175,11 +249,9 @@ EU.GameBoard = cc.Class.extend({
             startscore += boughtScores;
         }
     
-        for( var i=0; i<exclude.length; ++i )
-            EU.GameGSInstance.excludeTower( exclude[i] );
 
         EU.ScoreCounter.setMoney( EU.kScoreLevel, startscore, false );
-        EU.ScoreCounter.setMoney( kScoreHealth, healths, false );
+        EU.ScoreCounter.setMoney( EU.kScoreHealth, healths, false );
         this.statisticsParams.livetotal = healths;
     },
     update: function( dt ){
@@ -192,8 +264,8 @@ EU.GameBoard = cc.Class.extend({
         var units = [];
         var death = [];
         var removed = [];
-        units.push( this.units );
-        units.push( this.death );
+        units.concat( this.units );
+        units.concat( this.death );
         for( var i=0; i<units.length; ++i )
         {
             var unit = units[i];
@@ -217,7 +289,7 @@ EU.GameBoard = cc.Class.extend({
 
         for( i=0; i<this.death.length; ++i )
         {
-            var unit = this.death[i];
+            unit = this.death[i];
             if( unit.getCurrentHealth() > 0 )
             {
                 EU.GameGSInstance.onDeathCanceled( unit );
@@ -229,7 +301,7 @@ EU.GameBoard = cc.Class.extend({
 
         for( i=0; i<removed.length; ++i )
         {
-            var index = this.units.indexOf( removed[i] );
+            index = this.units.indexOf( removed[i] );
             if( index != -1 )
             {
                 this.units.splice( i );
@@ -288,16 +360,16 @@ EU.GameBoard = cc.Class.extend({
         return route;
     },
     loadRoutes: function( xmlnode ){
-        var routes = {};
+        var routes = [];
         for( var i=0; i<xmlnode.children.length; ++i )
         {
             var child = xmlnode.children[i];
-            var index = parseInt(child.getAttribute( EU.k.name ));
-            var unitLayer = EU.Support.strToEU.UnitLayer( child.getAttribute( EU.k.type ) );
+            var index = parseInt(child.getAttribute( "name" ));
+            var unitLayer = EU.strToUnitLayer( child.getAttribute( EU.k.type ) );
             routes[index] = new EU.TripleRoute();
-            var main = child.getElementsByName( "main" )[0];
-            var left = child.getElementsByName( "left" )[0];
-            var right = child.getElementsByName( "right" )[0];
+            var main = child.getElementsByTagName( "main" )[0];
+            var left = child.getElementsByTagName( "left" )[0];
+            var right = child.getElementsByTagName( "right" )[0];
             routes[index].main = this.loadRoute( main );
             routes[index].left = this.loadRoute( left );
             routes[index].right = this.loadRoute( right );
@@ -324,22 +396,22 @@ EU.GameBoard = cc.Class.extend({
         EU.LevelParams.onLevelStarted( this.levelIndex );
     },
     onPredelayWave: function( waveInfo, delay ){
-        for( var i=0; i<this.creepsRoutes.length; ++i )
-        {
-            if( this.creepsRoutes[i].type == waveInfo.type )
-            {
-                EU.GameGSInstance.createRoutesMarkers( this.creepsRoutes[i].main, this.creepsRoutes[i].type );
-            }
-        }
+        //for( var i=0; i<this.creepsRoutes.length; ++i )
+        //{
+        //    if( this.creepsRoutes[i].type == waveInfo.type )
+        //    {
+        //        EU.GameGSInstance.createRoutesMarkers( this.creepsRoutes[i].main, this.creepsRoutes[i].type );
+        //    }
+        //}
     
-        for( i = 0; i < this.creepsRoutes.length; ++i )
+        for( var i = 0; i < this.creepsRoutes.length; ++i )
         {
             var route = this.creepsRoutes[i];
             var create = false;
-            for( var j=0; j < waveInfo.routeIndex; ++j )
+            for( var j=0; j < waveInfo.routeIndex.length; ++j )
             {
                 var routeindex = waveInfo.routeIndex[j];
-                var creep = wave.creeps[j];
+                var creep = waveInfo.creeps[j];
                 if( routeindex == i )
                 {
                     if( EU.mlUnitInfo.info( creep ).layer == route.type )
@@ -356,9 +428,9 @@ EU.GameBoard = cc.Class.extend({
         EU.WaveGenerator.pause();
     },
     onStartWave: function( waveInfo ){
-        this.isGameStarted = true;
+        this.isStarted = true;
         EU.GameGSInstance.updateWaveCounter();
-        EU.GameGSInstance.onStartWave( wave );
+        EU.GameGSInstance.onStartWave( waveInfo );
         //var sound = EU.xmlLoader.macros.parse( "##sound_wavestart##" );
         //TODO: AudioEngine.playEffect( sound, false, 0 );
         var index = EU.WaveGenerator.getWaveIndex();
@@ -382,13 +454,13 @@ EU.GameBoard = cc.Class.extend({
 
         if( this.hero )
         {
-            var exp = EU.HeroExp.getEXP( this.hero.getName() );
-            exp += EU.HeroExp.getExpOnLevelFinished( this.levelIndex );
-            EU.HeroExp.setEXP( this.hero.getName(), exp );
+            //var exp = EU.HeroExp.getEXP( this.hero.getName() );
+            //exp += EU.HeroExp.getExpOnLevelFinished( this.levelIndex );
+            //EU.HeroExp.setEXP( this.hero.getName(), exp );
         }
 
         this.isFinihedGame = true;
-        this.statisticsParams.livecurrent = EU.ScoreCounter.getMoney( kScoreHealth );
+        this.statisticsParams.livecurrent = EU.ScoreCounter.getMoney( EU.kScoreHealth );
         this.statisticsParams.stars = 0;
         if( this.statisticsParams.livecurrent >= this.heartsForStar1 ) this.statisticsParams.stars = 1;
         if( this.statisticsParams.livecurrent >= this.heartsForStar2 ) this.statisticsParams.stars = 2;
@@ -404,12 +476,12 @@ EU.GameBoard = cc.Class.extend({
             {
                 if( EU.UserData.get_bool( "level_successfull" + this.levelIndex ) == false )
                 {
-                    EU.Achievements.process( "level_successfull", 1 );
+                    //TODO: EU.Achievements.process( "level_successfull", 1 );
                     EU.UserData.write( "level_successfull" + this.levelIndex, true );
                 }
                 if( this.statisticsParams.stars >= 3 && EU.UserData.get_bool( "level_star3normal" + this.levelIndex ) == false )
                 {
-                    EU.Achievements.process( "level_star3normal", 1 );
+                    //TODO: EU.Achievements.process( "level_star3normal", 1 );
                     EU.UserData.write( "level_star3normal" + this.levelIndex, true );
                 }
             }
@@ -417,36 +489,36 @@ EU.GameBoard = cc.Class.extend({
             {
                 if( EU.UserData.get_bool( "level_successfull_hard" + this.levelIndex ) == false )
                 {
-                    EU.Achievements.process( "level_successfull_hard", 1 );
+                    //TODO: EU.Achievements.process( "level_successfull_hard", 1 );
                     EU.UserData.write( "level_successfull_hard" + this.levelIndex, true );
                 }
                 if( this.statisticsParams.stars >= 3 && EU.UserData.get_bool( "level_star3hard" + this.levelIndex ) == false )
                 {
-                    EU.Achievements.process( "level_star3hard", 1 );
+                    //TODO: EU.Achievements.process( "level_star3hard", 1 );
                     EU.UserData.write( "level_star3hard" + this.levelIndex, true );
                 }
             }
 
             if( this.statisticsParams.stars >= 3 && EU.UserData.get_bool( "level_3star" + this.levelIndex ) == false )
             {
-                EU.Achievements.process( "level_3star", 1 );
+                //TODO: EU.Achievements.process( "level_3star", 1 );
                 EU.UserData.write( "level_3star" + this.levelIndex, true );
             }
         }
         else
         {
-            EU.Achievements.process( "level_failed", 1 );
+            //TODO: EU.Achievements.process( "level_failed", 1 );
         }
         this.event_levelFinished();
 
         EU.GameGSInstance.onFinishGame( this.statisticsParams );
         EU.LevelParams.onLevelFinished( this.levelIndex, this.statisticsParams.stars );
         EU.mlTowersInfo.checkAvailabledTowers();
-        EU.HeroExp.checkUnlockedHeroes();
-        EU.Leaderboard.fix( this.levelIndex, this.leaderboardScore * this.statisticsParams.livecurrent );
+        //EU.HeroExp.checkUnlockedHeroes();
+        //EU.Leaderboard.fix( this.levelIndex, this.leaderboardScore * this.statisticsParams.livecurrent );
     },
     isGameStarted: function(){
-        return this.isGameStarted;
+        return this.isStarted;
     },
     onDamage: function( damager, target, damage ){
         this.damagers[damager] += damage;
@@ -520,8 +592,8 @@ EU.GameBoard = cc.Class.extend({
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         EU.GameGSInstance.eraseTowerPlace( place );
         EU.GameGSInstance.onCreateUnit( tower );
-        EU.Achievements.shared( ).process( "spend_gold", cost );
-        EU.Achievements.process( "build_tower", 1 );
+        //TODO: EU.Achievements.shared( ).process( "spend_gold", cost );
+        //TODO: EU.Achievements.process( "build_tower", 1 );
         this.statisticsParams.spentscores += cost;
         this.event_towerBuild( place, tower );
         return tower;
@@ -530,7 +602,7 @@ EU.GameBoard = cc.Class.extend({
         var xmlfile = name + ".xml";
         var unit = null;
         var dummy = 0;
-        if( EU.Support.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
+        if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
             unit = UnitDesant.create( "ini/units", xmlfile );
         if( unit )
         {
@@ -546,9 +618,9 @@ EU.GameBoard = cc.Class.extend({
         var dist_water = 9999;
         var dist_earth = 9999;
     
-        if( EU.Support.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
+        if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
             name = "airplane_water.xml";
-        else if( EU.Support.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        else if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
             name = "airplane_earth.xml";
     
         if( name == "airplane_water.xml" && dist_earth < dist_water )
@@ -567,7 +639,7 @@ EU.GameBoard = cc.Class.extend({
     },
     createLandMine: function( position, count ){
         var dist_earth = 9999;
-        if( !EU.Support.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        if( !EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
             return null;
     
         var result = null;
@@ -585,7 +657,7 @@ EU.GameBoard = cc.Class.extend({
     createBonusItem: function( position, name ){
         var dist = 9999;
         var layer = EU.mlUnitInfo.info( name ).layer;
-        if( !EU.Support.checkPointOnRoute( position, this.skillParams.distanceToRoute, layer, dist ) )
+        if( !EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, layer, dist ) )
             return null;
 
         var item = Unit.create( "ini/units", name + ".xml" );
@@ -603,7 +675,7 @@ EU.GameBoard = cc.Class.extend({
         {
             var decor = decorations[i];
             var dist = 9999;
-            EU.Support.checkPointOnRoute( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
+            EU.checkPointOnRoute( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
             if( dist < dist_min )
             {
                 min = index;
@@ -671,13 +743,13 @@ EU.GameBoard = cc.Class.extend({
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
 
         if( (level + 1) == maxlevel )
-            EU.Achievements.process( "upgrade_towermax", 1 );
+            //TODO: EU.Achievements.process( "upgrade_towermax", 1 );
         this.statisticsParams.spentscores += cost;
 
         this.event_towerUpgrade( tower );
 
         var nameevent = "tower_upgrade_" + newTower.getName() + newTower.getLevel();
-        EU.Achievements.process( nameevent, 1 );
+        //TODO: EU.Achievements.process( nameevent, 1 );
         return newTower;
     },
     removeTower: function( tower ){
@@ -700,8 +772,8 @@ EU.GameBoard = cc.Class.extend({
             EU.GameGSInstance.addTowerPlace( def );
             EU.GameGSInstance.removeObject( tower );
             this.statisticsParams.spentscores -= costSell;
-            EU.Achievements.process( "collect_gold", costSell );
-            EU.Achievements.process( "sell_tower", 1 );
+            //TODO: EU.Achievements.process( "collect_gold", costSell );
+            //TODO: EU.Achievements.process( "sell_tower", 1 );
             this.event_towerSell( tower );
         }
     },
@@ -715,8 +787,8 @@ EU.GameBoard = cc.Class.extend({
         {
             //var sound = EU.xmlLoader.macros.parse( "##sound_gameplayerdamage##" );
             //TODO: AudioEngine.playEffect( sound, false, 0 );
-            EU.ScoreCounter.subMoney( kScoreHealth, cost, false );
-            EU.Achievements.process( "skip_enemies", 1 );
+            EU.ScoreCounter.subMoney( EU.kScoreHealth, cost, false );
+            //TODO: EU.Achievements.process( "skip_enemies", 1 );
         }
         EU.GameGSInstance.removeObject( unit );
 
@@ -738,8 +810,8 @@ EU.GameBoard = cc.Class.extend({
     preDeath: function( unit ){
         var cost = unit.getCost();
         EU.ScoreCounter.addMoney( EU.kScoreLevel, cost, false );
-        EU.Achievements.process( "collect_gold", cost );
-        EU.Achievements.process( "kill_enemies", 1 );
+        //TODO: EU.Achievements.process( "collect_gold", cost );
+        //TODO: EU.Achievements.process( "kill_enemies", 1 );
         EU.GameGSInstance.onDeathUnit( unit );
         this.statisticsParams.scores += cost;
 
@@ -761,7 +833,7 @@ EU.GameBoard = cc.Class.extend({
         unit.die();
         this.death.insert( unit );
     },
-    death: function( creep ){
+    deathUnit: function( creep ){
         var index = -1;
         for( var i=0; i<this.death.length; ++i ){
             if( this.death[i] == creep ){
@@ -790,7 +862,7 @@ EU.GameBoard = cc.Class.extend({
     },
     checkGameFinished: function(){
         var finishGame = false;
-        finishGame = finishGame || (EU.ScoreCounter.getMoney( kScoreHealth ) <= 0);
+        finishGame = finishGame || (EU.ScoreCounter.getMoney( EU.kScoreHealth ) <= 0);
         finishGame = finishGame || (this.isExistCreep( this.units ) == false && this.isFinihedWaves == true);
         if( finishGame )
             this.onFinishGame();
@@ -848,7 +920,7 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<this.creepsRoutes.length; ++i)
         {
             var route = this.creepsRoutes[i];
-            var check = EU.Support.checkPointOnRoute( position, route, distance, distance );
+            var check = EU.checkPointOnRoute( position, route, distance, distance );
             if( check )
             {
                 result = route;
@@ -962,7 +1034,7 @@ EU.GameBoard = cc.Class.extend({
     checkTargetByRadius: function( target, center, radius ){
         var a = center;
         var b = target.getPosition();
-        var result = EU.Support.checkRadiusByEllipse( a, b, radius );
+        var result = EU.checkRadiusByEllipse( a, b, radius );
         return result;
     },
     checkTargetBySector: function( target,  base ){
@@ -984,12 +1056,23 @@ EU.GameBoard = cc.Class.extend({
             var index = this.killers.indexOf( this.hero );
             if( index != -1 )
             {
-                var exp = EU.HeroExp.getEXP( this.hero.getName() );
-                for( var i=0; i<this.killers[index].length; ++i )
-                    exp += this.killers[index][i].getExp();
-                EU.HeroExp.setEXP( this.hero.getName(), exp );
+                //var exp = EU.HeroExp.getEXP( this.hero.getName() );
+                //for( var i=0; i<this.killers[index].length; ++i )
+                //    exp += this.killers[index][i].getExp();
+                //EU.HeroExp.setEXP( this.hero.getName(), exp );
             }
         }
+    },
+    isExistCreep: function( units )
+    {
+        if( !units )
+            return false;
+        for( var i=0; i<units.length; ++i )
+        {
+            if( units[i].getType() == EU.UnitType.creep )
+                return true;
+        }
+        return false;
     },
     event_towerBuild: function( place, unit ){
         //ParamCollection p;
@@ -1018,7 +1101,7 @@ EU.GameBoard = cc.Class.extend({
     },
     event_levelFinished: function(){
         //ParamCollection p;
-        //if( EU.ScoreCounter.getMoney( kScoreHealth ) > 1 )
+        //if( EU.ScoreCounter.getMoney( EU.kScoreHealth ) > 1 )
         //    p["event"] = "LevelComplete";
         //else
         //    p["event"] = "LevelFailed";
@@ -1026,7 +1109,7 @@ EU.GameBoard = cc.Class.extend({
         //p["level"] = intToStr( this.levelIndex );
         //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
         //p["stars"] = intToStr( this.statisticsParams.stars );
-        //p["health"] = intToStr( EU.ScoreCounter.getMoney( kScoreHealth ) );
+        //p["health"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreHealth ) );
         //p["gear"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreLevel ) );
         //TODO: flurry.logEvent( p );
     },

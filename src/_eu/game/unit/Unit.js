@@ -200,7 +200,7 @@ EU.Unit = cc.Node.extend({
             //CC_BREAK_IF( !MachineMove.init() );
         xmlFile = xmlFile || "ini.xml";
 
-        this._healthIndicator = EU.IndicatorNode.create();
+        this._healthIndicator = new EU.IndicatorNode();
         this.addChild( this._healthIndicator );
 
 
@@ -277,13 +277,13 @@ EU.Unit = cc.Node.extend({
         /** UnitSkill.Pointer*/ var skill;
 
         if( type == "medic" )
-            skill = EU.UnitSkillMedic.create( xmlnode, this );
+            skill = new EU.UnitSkillMedic( xmlnode, this );
         else if( type == "runeventsbytime" )
-            skill = EU.UnitSkillRunTasksByTime.create( xmlnode, this );
+            skill = new EU.UnitSkillRunTasksByTime( xmlnode, this );
         else if( type == "skillcounter" )
-            skill = EU.UnitSkillCounter.create( xmlnode, this );
+            skill = new EU.UnitSkillCounter( xmlnode, this );
         else if( type == "rateparameter" )
-            skill = EU.UnitSkillRateParameter.create( xmlnode, this );
+            skill = new EU.UnitSkillRateParameter( xmlnode, this );
 
         return skill;
     },

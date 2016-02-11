@@ -13,8 +13,7 @@
 //Define namespace
 var EU = EU || {};
 
-EU.WaveIcon = cc.Menu.extend(
-{
+EU.WaveIcon = cc.Menu.extend({
     /** For Test Instance of */
     __WaveIcon : true,
 
@@ -23,23 +22,24 @@ EU.WaveIcon = cc.Menu.extend(
     /**@type {EU.MenuItemImageWithText} */ _icon : null,
     /**@type {cc.ProgressTimer} */ _timer : null,
     /**@type {function} */ _callback : null,
-    /**@type {cc.Point} */ _wavestart : null,
+    /**@type {cc.p} */ _wavestart : null,
     /**@type {Number} */ _elapsed : 0.0,
     /**@type {Number} */ _cooldown : 0.0,
     /**@type {Number} */ _duration : 0.0,
     /**@type {Boolean} */ _runned : false,
+    _target : null,
 
-    ctor: function( startwave, delay, cooldown, onclick, type )
+    ctor: function( startwave, delay, cooldown, onclick, target, type )
     {
+        this._super();
         this._arrow = new cc.Node();
         this._wavestart = cc.p(0,0);
-
-        this._super();
 
         this.setPosition( 0, 0 );
 
         this._callback = onclick;
-        this.assert( this._callback );
+        this._target = target;
+        EU.assert( this._callback );
         this._cooldown = Math.min( delay, cooldown );
         this._duration = delay;
 
@@ -55,11 +55,12 @@ EU.WaveIcon = cc.Menu.extend(
             iconImage = WaveIconEarth;
 
         var callback = this.on_click;
-        this._icon = new EU.MenuItemImageWithText( iconImage, callback );
+        this._icon = new EU.MenuItemImageWithText( iconImage, callback, this );
+        this._icon.initWithNormalImage(iconImage,iconImage,iconImage,"","",callback, this);
         this._icon.setSelectedImage( null );
         this._icon.setSound( EU.kSoundGameWaveIcon );
         this._icon.setName( "icon" );
-        this._arrow = Node.create();
+        this._arrow = new cc.Node();
         var arrowsprite = EU.ImageManager.sprite( WaveIconArrow );
         this._timer = new cc.ProgressTimer( EU.ImageManager.sprite( WaveIconTimer ) );
         EU.assert( this._icon );
@@ -71,11 +72,11 @@ EU.WaveIcon = cc.Menu.extend(
         this.addChild( this._icon );
         this._icon.addChild( this._arrow, -1 );
         this._arrow.addChild( arrowsprite );
-        this._arrow.setPosition( Point( this._icon.getNormalImage().getContentSize().width / 2,
+        this._arrow.setPosition( cc.p( this._icon.getNormalImage().getContentSize().width / 2,
             this._icon.getNormalImage().getContentSize().height / 2 ) );
         arrowsprite.setPosition( 35, 0 );
         this._icon.getNormalImage().addChild( this._timer, 1 );
-        this._timer.setPosition( Point( this._icon.getNormalImage().getContentSize() / 2 ) );
+        this._timer.setPosition( cc.p( this._icon.getNormalImage().getContentSize() / 2 ) );
 
         var mover = ( cc.moveBy( 0.5, cc.p( 10, 0 ))).easing(cc.easeInOut(2.0));
         var scaler = ( cc.scaleBy( 0.5, 1.05)).easing(cc.easeInOut(2.0));
@@ -94,7 +95,7 @@ EU.WaveIcon = cc.Menu.extend(
     update: function( dt )
     {
         var dessize = cc.view.getDesignResolutionSize();
-        var worldpoint = GameGS.getInstance().getMainLayer().convertToWorldSpace( this._wavestart );
+        var worldpoint = EU.GameGSInstance.getMainLayer().convertToWorldSpace( this._wavestart );
         var point = worldpoint;
         var borderx = 150.0;
         var bordery = 120.0;
@@ -137,9 +138,9 @@ EU.WaveIcon = cc.Menu.extend(
     },
     on_click: function()
     {
-        if( this._callback )
+        if( this._callback && this._target )
         {
-            this._callback( this, this._elapsed, this._duration );
+            this._callback.call( this._target, this._elapsed, this._duration );
         }
     },
     setActive: function(variable)

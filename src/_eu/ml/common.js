@@ -20,6 +20,21 @@ EU.asObject = function (obj, defaultObj) {
 };
 
 EU.Common = {
+
+    TimeCounter : cc.Class.extend({
+        counter:null,
+        timer:null,
+        ctor: function(){
+            counter = 0;
+            timer = 0;
+        },
+        set: function( time ) { this.timer = time; this.reset(); },
+        reset: function() { this.counter = this.timer; },
+        tick: function( elapsetime ) { this.counter -= elapsetime; },
+        value: function() { return this.timer; },
+        is:function() { return this.counter <= 0; },
+    }),
+
     /**
      * Convert string to
      * @param {string} string ("yes", "true", "Y", "y", "Yes")

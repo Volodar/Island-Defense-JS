@@ -13,11 +13,14 @@
 //Define namespace
 var EU = EU || {};
 
-EU.TowerPlaceDef = function()
-{
-    this.position = cc.p(0,0);
-    this.isActive = true;
-};
+EU.TowerPlaceDef = cc.Class.extend({
+    position: null,
+    isActive: null,
+    ctor: function(){
+        this.position = cc.p(0,0);
+        this.isActive = true;
+    }
+});
 
 EU.TowerPlace = cc.Sprite.extend(
 {

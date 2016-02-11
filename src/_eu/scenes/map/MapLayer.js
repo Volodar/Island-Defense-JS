@@ -98,8 +98,8 @@ EU.MapLayer = cc.Layer.extend({
 
         //createDevMenu();
 
-        //MouseHoverScroll.shared().setScroller( this.scrollInfo );
-        //MouseHoverScroll.shared().setNode( this.map );
+        EU.MouseHoverScroll.setScroller( this.scrollInfo );
+        EU.MouseHoverScroll.setNode( this.map );
     },
     /**
      *
@@ -168,7 +168,7 @@ EU.MapLayer = cc.Layer.extend({
             cc.eventManager.addListener(locListener, this);
 
         this.scheduleUpdate();
-        //MouseHoverScroll.shared().enable();
+        EU.MouseHoverScroll.enable();
 
         //TODO: audio
         EU.AudioEngine.playMusic( EU.kMusicMap );
@@ -281,7 +281,7 @@ EU.MapLayer = cc.Layer.extend({
     onExit: function () {
         cc.Layer.prototype.onExit.call(this);
         this.unscheduleUpdate();
-        //MouseHoverScroll.shared().disable();
+        EU.MouseHoverScroll.disable();
     },
     /**
      *
@@ -403,7 +403,7 @@ EU.MapLayer = cc.Layer.extend({
                 this.scrollInfo.node.setPosition(fitpos);
             }
         }
-        //MouseHoverScroll.shared().update( delta );
+        EU.MouseHoverScroll.update( delta );
     },
     /**
      *
@@ -549,8 +549,10 @@ EU.MapLayer = cc.Layer.extend({
      */
     runLevel: function (levelIndex, mode) {
         if (levelIndex < this.locations.length) {
-            var loadScene = new EU.LoadLevelScene(levelIndex, mode);
-            cc.director.pushScene(loadScene);
+            //var scene = new EU.LoadLevelScene(levelIndex, mode);
+            var scene = EU.GameGS.createScene();
+            EU.GameGSInstance.getGameBoard().loadLevel( levelIndex, mode );
+            cc.director.pushScene(scene);
         }
         else {
             //TODO: AutoPlayer

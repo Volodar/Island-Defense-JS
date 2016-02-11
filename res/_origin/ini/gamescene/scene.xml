@@ -8,10 +8,10 @@
 
             <node name="pause" pos="righttop:-75x50"/>
             <node name="shop" pos="righttop:-155x50" visible="##PLATFORM_MOBILE##"/>
-            <node name="desant" pos="75x-50"/>
+            <!--<node name="desant" pos="75x-50"/>
             <node name="bomb" pos="155x-50"/>
             <node name="heroskill" pos="235x-50"/>
-            <node name="hero" pos="top:-50x-160"/>
+            <node name="hero" pos="top:-50x-160"/>-->
 
           </children>
         </node>
@@ -19,7 +19,7 @@
       </children>
     </node>
 
-    <node name="boxmenu" pos="right:-50x-50"/>
+    <!--<node name="boxmenu" pos="right:-50x-50"/>-->
 
   </children>
 

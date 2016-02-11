@@ -24,14 +24,22 @@ EU.TouchInfo = cc.Class.extend({
     },
 });
 
-EU.ScoresNode = cc.Node.extend({});
-EU.GameBoard = cc.Class.extend({});
 EU.MenuTower = cc.Menu.extend({});
 EU.MenuTower = cc.Menu.extend({});
 EU.MenuDig = cc.Menu.extend({});
-EU.MenuItemCooldown = cc.Menu.extend({});
+EU.MenuItemCooldown = cc.MenuItem.extend({});
 EU.HeroIcon = cc.Node.extend({});
 EU.BoxMenu = cc.Menu.extend({});
+
+EU.Skill = {
+    desant : 0,
+    bomb : 1,
+    heroskill : 2
+};
+
+zOrderOfArriavalCounter = 0;
+zOrderInterfaceMenu = 99;
+zOrderInterfaceWaveIcon = 100;
 
 EU.GameGS = EU.LayerExt.extend({
 
@@ -48,14 +56,14 @@ EU.GameGS = EU.LayerExt.extend({
     /** @type{EU.Unit} */  selectedUnit: null,
     /** @type{Array<cc.Node>} */ fragments: null,
     /** @type{Array<string>} */  excludedTowers: null,
-    /** @type{Float} */  dalayWaveIcon: null,
+    /** @type{Number} */  dalayWaveIcon: null,
     /** @type{bool} */  isIntteruptHeroMoving: null,
     /** @type{Integer} */  scoresForStartWave: null,
     /** @type{Integer} */  boughtScoresForSession: null,
     /** @type{EU.MenuCreateTower} */  menuCreateTower: null,
     /** @type{EU.MenuTower} */  menuTower: null,
     /** @type{EU.MenuDig} */  menuDig: null,
-    /** @type{EU.ScoresNode} */  scoresNode: null,
+    /** @type{EU.ScoreNode} */  scoreNode: null,
     /** @type{Object<Integer, EU.TouchInfo>} */  touches: null,
     /** @type{EU.ScrollTouchInfo} */  scrollInfo: null,
     /** @type{bool} */  enabled: null,
@@ -79,6 +87,7 @@ EU.GameGS = EU.LayerExt.extend({
     /** @type{cc.EventListener} */ touchListenerHero: null,
     /** @type{cc.EventListener} */ touchListenerHeroSkill: null,
 
+
     //TODO: ~GameGS()
     //{
     //    MouseHoverScroll.setNode( null );
@@ -88,14 +97,15 @@ EU.GameGS = EU.LayerExt.extend({
     //    this.board.clear();
     //    ShootsEffectsClear();
     //
-    //    cc.director().getScheduler().setTimeScale( 1 );
+    //    cc.director.getScheduler().setTimeScale( 1 );
     //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
     //
-    //    if( this.scoresNode )
-    //        this.scoresNode.removeFromParent();
+    //    if( this.scoreNode )
+    //        this.scoreNode.removeFromParent();
     //},
 
     ctor: function () {
+        this._super();
         this.board = new EU.GameBoard();
         this.enabled = true;
         this.dalayWaveIcon = 0;
@@ -103,22 +113,26 @@ EU.GameGS = EU.LayerExt.extend({
         this.boughtScoresForSession = 0;
         this.runFlyCamera = true;
         this.skillModeActive = false;
+        this.enabled = false;
+        this.towerPlaces = [];
+        this.waveIcons = [];
+        this.scrollInfo = new EU.ScrollTouchInfo();
+        this.touches = {};
 
         this.interface_menu = null;
 
         var desSize = cc.view.getDesignResolutionSize();
-        var winSize = cc.director().getWinSize();
         var sizeMap = EU.k.LevelMapSize;
 
         this.mainlayer = new cc.Node();
         this.mainlayer.setName("mainlayer");
         this.addChild(this.mainlayer);
-        var sx = winSize.width / sizeMap.width;
-        var sy = winSize.height / sizeMap.height;
+        var sx = desSize.width / sizeMap.width;
+        var sy = desSize.height / sizeMap.height;
         var scale = Math.max(sx, sy);
         this.mainlayer.setScale(scale);
 
-        this.objects = Node.create();
+        this.objects = new cc.Node();
         this.objects.setName("objects");
         this.mainlayer.addChild(this.objects, 1);
 
@@ -128,6 +142,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.mainlayer.setAnchorPoint(cc.p(0,0));
 
         this.setName("gamelayer");
+        EU.GameGSInstance = this;
     },
     getGameBoard: function () {
         return this.board;
@@ -224,55 +239,55 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
         this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
         this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
-        this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
-        this.interface_hero.setEnabled(true);
-        this.interface_desant.setAnimationOnFull("airstike_animation1");
-        this.interface_bomb.setAnimationOnFull("airstike_animation2");
+        //TODO:this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
+        //TODO:this.interface_hero.setEnabled(true);
+        //TODO:this.interface_desant.setAnimationOnFull("airstike_animation1");
+        //TODO:this.interface_bomb.setAnimationOnFull("airstike_animation2");
 
         this.interface_shop.setName("shop");
         this.interface_pause.setName("pause");
-        this.interface_desant.setName("desant");
-        this.interface_bomb.setName("bomb");
-        this.interface_heroSkill.setName("heroskill");
-        this.interface_hero.setName("hero");
+        //TODO:this.interface_desant.setName("desant");
+        //TODO:this.interface_bomb.setName("bomb");
+        //TODO:this.interface_heroSkill.setName("heroskill");
+        //TODO:this.interface_hero.setName("hero");
 
-        this.interface_desant.setSound("##sound_button##");
-        this.interface_bomb.setSound("##sound_button##");
-        this.interface_heroSkill.setSound("##sound_button##");
+        //TODO:this.interface_desant.setSound("##sound_button##");
+        //TODO:this.interface_bomb.setSound("##sound_button##");
+        //TODO:this.interface_heroSkill.setSound("##sound_button##");
 
         this.interface_menu = new cc.Menu();
         this.interface_menu.setName("menu");
         this.interface_menu.addChild(this.interface_shop);
         this.interface_menu.addChild(this.interface_pause);
-        this.interface_menu.addChild(this.interface_desant);
-        this.interface_menu.addChild(this.interface_bomb);
-        this.interface_menu.addChild(this.interface_heroSkill);
-        this.interface_menu.addChild(this.interface_hero);
+        //TODO:this.interface_menu.addChild(this.interface_desant);
+        //TODO:this.interface_menu.addChild(this.interface_bomb);
+        //TODO:this.interface_menu.addChild(this.interface_heroSkill);
+        //TODO:this.interface_menu.addChild(this.interface_hero);
         this.interface_menu.setEnabled(false);
 
-        this.interface_hero.setVisible(false);
+        //TODO:this.interface_hero.setVisible(false);
 
         this.interface_menu.setPosition(cc.p(0,0));
         this.interface.addChild(this.interface_menu, 99);
 
-        this.menuCreateTower = new EU.MenuCreateTower();
-        this.menuTower = new EU.MenuTower();
-        this.menuDig = new EU.MenuDig();
+        //TODO:this.menuCreateTower = new EU.MenuCreateTower();
+        //TODO:this.menuTower = new EU.MenuTower();
+        //TODO:this.menuDig = new EU.MenuDig();
 
-        this.interface.addChild(this.menuCreateTower, 999999);
-        this.interface.addChild(this.menuTower, 999999);
-        this.interface.addChild(this.menuDig, 999999);
-        this.menuCreateTower.setGlobalZOrder(99999);
-        this.menuTower.setGlobalZOrder(99999);
-        this.menuDig.setGlobalZOrder(99999);
+        //TODO:this.interface.addChild(this.menuCreateTower, 999999);
+        //TODO: this.interface.addChild(this.menuTower, 999999);
+        //TODO:this.interface.addChild(this.menuDig, 999999);
+        //TODO:this.menuCreateTower.setGlobalZOrder(99999);
+        //TODO:this.menuTower.setGlobalZOrder(99999);
+        //TODO:this.menuDig.setGlobalZOrder(99999);
 
-        this.menuCreateTower.setPosition(cc.p(0,0));
-        this.menuCreateTower.disappearance();
-        this.menuTower.disappearance();
-        this.menuDig.disappearance();
+        //TODO:this.menuCreateTower.setPosition(cc.p(0,0));
+        //TODO:this.menuCreateTower.disappearance();
+        //TODO:this.menuTower.disappearance();
+        //TODO:this.menuDig.disappearance();
 
-        this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
-        this.addChild(this.box);
+        //TODO:this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
+        //TODO:this.addChild(this.box);
         //TODO: this.createDevMenu();
     },
 
@@ -322,13 +337,13 @@ EU.GameGS = EU.LayerExt.extend({
     //                this.onKeyReleased( key, null );
     //            };
     //
-    //            var i = MenuItemTextBG.create( text, Color4F.GRAY, Color3B.BLACK, std.bind( sendKey, std.placeholders._1, key ) );
+    //            var i = new EU.MenuItemTextBG( text, Color4F.GRAY, Color3B.BLACK, std.bind( sendKey, std.placeholders._1, key ) );
     //            menu.addChild( i );
     //            i.setPosition( pos );
     //            i.setScale( 1.5f );
     //        };
     //
-    //        var menu = Menu.create();
+    //        var menu = new cc.Menu();
     //        menu.setPosition( 0, 0 );
     //        addChild( menu );
     //        Point pos( 25, 100 );
@@ -350,7 +365,7 @@ EU.GameGS = EU.LayerExt.extend({
 
     clear: function () {
         //TODO: Achievements.setCallbackOnAchievementObtained( null );
-        EU.ShootsEffectsClear();
+        //TODO: EU.ShootsEffectsClear();
 
         if (this.bg)
             this.bg.removeFromParent();
@@ -372,19 +387,18 @@ EU.GameGS = EU.LayerExt.extend({
     },
 
     loadLevel: function (index, xmlroot) {
-        var desSize = cc.view.getDesignResolutionSize();
-
         this.bg = EU.ImageManager.sprite("images/maps/map" + ( index + 1 ) + ".jpg");
         this.bg.setAnchorPoint(cc.p(0,0));
         this.mainlayer.addChild(this.bg, -1);
         this.bg.setGlobalZOrder(-2);
 
         var mode = this.board.getGameMode();
-        var decorations = xmlroot.getElementsByName("decorations")[0];
-        var xmlparams = xmlroot.getElementsByName(mode == EU.GameMode.normal ? EU.k.EU.LevelParams : EU.k.LevelParamsHard)[0];
+        var decorations = xmlroot.getElementsByTagName("decorations")[0];
+        var xmlparams = xmlroot.getElementsByTagName(mode == EU.GameMode.normal ? EU.k.LevelParams : EU.k.LevelParamsHard)[0];
         if (!xmlparams)
             xmlparams = xmlroot;
 
+        if( decorations )
         for (var i = 0; i < decorations.children.length; ++i) {
             var child = decorations.children[i];
             var object = this.createDecorFromXmlNode(child);
@@ -397,7 +411,7 @@ EU.GameGS = EU.LayerExt.extend({
             }
         }
 
-        this.dalayWaveIcon = parseFloat(xmlparams.getAttribute("wave_cooldown"));
+        this.dalayWaveIcon = parseFloat( xmlparams.getAttribute("wave_cooldown") );
 
         this.updateWaveCounter();
 
@@ -424,11 +438,11 @@ EU.GameGS = EU.LayerExt.extend({
         this.menuCreateTower.addExludedTower(towername);
     },
     onEnter: function () {
-        Layer.onEnter();
+        this._super();
         //TODO: setKeyboardEnabled( true );
         //TODO: MouseHoverScroll.enable();
 
-        //cc.director().getTextureCache().removeUnusedTextures();
+        //cc.director.getTextureCache().removeUnusedTextures();
         //TODO: EU.AdMob.hide();
 
         var music = this.board.isGameStarted() ? EU.kMusicGameBattle : EU.kMusicGamePeace;
@@ -445,7 +459,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onExit: function () {
-        Layer.onExit();
+        this._super();
         //TODO: setKeyboardEnabled( false );
         //TODO: MouseHoverScroll.disable();
         //TODO: AdMob.show();
@@ -473,7 +487,7 @@ EU.GameGS = EU.LayerExt.extend({
             return null;
         var place = new EU.TowerPlace(def);
         this.towerPlaces.push(place);
-        this.addObject(place, EU.zorder.earth + 1);
+        this.addObject(place);
         return place;
     },
     getTowerPlaceInLocation: function (location) {
@@ -532,7 +546,7 @@ EU.GameGS = EU.LayerExt.extend({
         return result;
     },
     createDecorFromXmlNode: function (xmlnode) {
-        var name = xmlnode.name;
+        var name = xmlnode.tagName;
         var actiondesc = xmlnode.getAttribute("action");
         var x = parseFloat(xmlnode.getAttribute("x"));
         var y = parseFloat(xmlnode.getAttribute("y"));
@@ -540,7 +554,7 @@ EU.GameGS = EU.LayerExt.extend({
 
         var pathToXml = "ini/maps/animations/" + name + ".xml";
         var doc = EU.pugixml.readXml(pathToXml);
-        var root = doc.getRoot();
+        var root = doc.firstElementChild;
 
         var decoration = new EU.Decoration();
         EU.xmlLoader.load_node_xml_node(decoration, root, false);
@@ -557,7 +571,7 @@ EU.GameGS = EU.LayerExt.extend({
         return decoration;
     },
     onTouchesBegan: function (touches, event) {
-        var self = event.getTarget();
+        var self = event.getCurrentTarget();
         if (!self.enabled)
             return;
 
@@ -584,7 +598,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
 
     onTouchesMoved: function (touches, event) {
-        var self = event.getTarget();
+        var self = event.getCurrentTarget();
         if (!self.enabled)
             return;
 
@@ -597,7 +611,7 @@ EU.GameGS = EU.LayerExt.extend({
                     var shift = EU.Common.pointDiff(location, self.scrollInfo.touchBegan);
                     var pos = self.scrollInfo.nodeposBegan + shift;
 
-                    pos = self.scrollInfo.fitPosition(pos, cc.director().getWinSize());
+                    pos = self.scrollInfo.fitPosition(pos, cc.director.getWinSize());
 
                     self.scrollInfo.lastShift = EU.Common.pointDiff(pos, self.scrollInfo.node.getPosition());
                     self.scrollInfo.node.setPosition(pos);
@@ -607,15 +621,15 @@ EU.GameGS = EU.LayerExt.extend({
         //#endif
     },
     onTouchesEnded: function (touches, event) {
-        var self = event.getTarget();
+        var self = event.getCurrentTarget();
         self.isIntteruptHeroMoving = false;
         if (!self.enabled)
             return;
         for (var i = 0; i < touches.length; ++i) {
             var touch = touches[i];
-            if (self.scrollInfo.touchID == i.getID()) {
+            if (self.scrollInfo.touchID == touch.getID()) {
                 if (self.scrollInfo.node) {
-                    self.scrollInfo.node.reset(null);
+                    self.scrollInfo.node = null;
                     self.scrollInfo.touchID = -1;
                 }
             }
@@ -698,7 +712,7 @@ EU.GameGS = EU.LayerExt.extend({
                     }
                 }
                 else if (skill == "swat" || skill == "hero3_bot") {
-                    var count = 1;
+                    count = 1;
                     var lifetime = 0;
                     var unitName;
                     if (skill == "swat") {
@@ -734,30 +748,30 @@ EU.GameGS = EU.LayerExt.extend({
         }
 
         if (dispatched) {
-            self.selectedSkill.reset(null);
+            self.selectedSkill = null;
             self.setTouchNormal();
         }
         else {
             self.onForbiddenTouch(touch.getLocation());
         }
     },
-    onTouchSkillCanceled: function (touch, event) {
+    onTouchSkillCanceled: function () {/*touch, event*/
         this.setTouchNormal();
     },
     onTouchHeroBegan: function (touch, event) {
-        var touches = []
+        var touches = [];
         touches.push(touch);
-        event.getTarget().onTouchesBegan(touches, event);
+        event.getCurrentTarget().onTouchesBegan(touches, event);
         return true;
     },
     onTouchHeroMoved: function (touch, event) {
-        var touches = []
+        var touches = [];
         touches.push(touch);
-        event.getTarget().onTouchesMoved(touches, event);
+        event.getCurrentTarget().onTouchesMoved(touches, event);
     },
     onTouchHeroEnded: function (touch, event) {
-        var self = event.getTarget();
-        var touches = []
+        var self = event.getCurrentTarget();
+        var touches = [];
         touches.push(touch);
         self.onTouchesEnded(touches, event);
 
@@ -769,10 +783,10 @@ EU.GameGS = EU.LayerExt.extend({
         if (EU.Common.pointDistance(location, touch.getStartLocation()) > 100)
             return;
 
-        location = self.mainlayer.convertToNodeSpace(location);
+        //location = self.mainlayer.convertToNodeSpace(location);
     },
     onTouchHeroCanceled: function (touch, event) {
-        event.getTarget().setTouchNormal();
+        event.getCurrentTarget().setTouchNormal();
     },
     //TODO: onKeyReleased( EventKeyboard.KeyCode keyCode, Event* event )
     //{
@@ -780,17 +794,17 @@ EU.GameGS = EU.LayerExt.extend({
     //        menuPause( null );
     //    if( isTestDevice() && isTestModeActive() )
     //    {
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director().setTimeRate( 0 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director().setTimeRate( 1 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director().setTimeRate( 2 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director().setTimeRate( 3 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director().setTimeRate( 4 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director().setTimeRate( 5 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director().setTimeRate( 6 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director().setTimeRate( 7 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director().setTimeRate( 8 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director().setTimeRate( 9 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director().setTimeRate( 99 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director.setTimeRate( 0 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director.setTimeRate( 1 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director.setTimeRate( 2 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director.setTimeRate( 3 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director.setTimeRate( 4 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director.setTimeRate( 5 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director.setTimeRate( 6 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director.setTimeRate( 7 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director.setTimeRate( 8 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director.setTimeRate( 9 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director.setTimeRate( 99 );
     //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 ) this.board.onFinishGame();
     //    }
     //},
@@ -803,14 +817,14 @@ EU.GameGS = EU.LayerExt.extend({
                 var point = unit.getPosition();
                 this.menuTower.setPosition(point);
                 this.menuTower.appearance();
-                this.selectedUnit.reset(unit);
+                this.selectedUnit = unit;
             }
             else {
                 if (this.selectedUnit) {
                     this.selectedUnit.runEvent("ondeselect");
                 }
                 this.menuTower.disappearance();
-                this.selectedUnit.reset(null);
+                this.selectedUnit = null;
             }
             if (this.touchListenerHero.isEnabled())
                 this.setTouchNormal();
@@ -1039,8 +1053,8 @@ EU.GameGS = EU.LayerExt.extend({
             var showAd = function () {
                 //TODO: AdsPlugin.showInterstitialBanner();
             };
-            var delay = DelayTime.create(1);
-            var call = CallFunc.create(showAd);
+            var delay = new cc.DelayTime(1);
+            var call = cc.CallFunc(showAd);
             var action = new cc.Sequence(delay, call);
             this.runAction(action);
         }
@@ -1057,37 +1071,37 @@ EU.GameGS = EU.LayerExt.extend({
         //computePointFinish:
         var dessize = cc.view.getDesignResolutionSize();
         var mapsize = this.bg.getContentSize();
-        mapsize.width *= this.this.mainlayer.getScaleX();
-        mapsize.height *= this.this.mainlayer.getScaleY();
+        mapsize.width *= this.mainlayer.getScaleX();
+        mapsize.height *= this.mainlayer.getScaleY();
         var wavePoint = wave[0];
-        wavePoint.x /= this.this.mainlayer.getScaleX();
-        wavePoint.y /= this.this.mainlayer.getScaleY();
+        wavePoint.x /= this.mainlayer.getScaleX();
+        wavePoint.y /= this.mainlayer.getScaleY();
         var finish = cc.p(0, 0);
         if (wavePoint.y > dessize.height / 2) {
             finish.x = 0;
             finish.y = dessize.height - mapsize.height;
         }
         //computePointStart:
-        mapsize.width *= this.this.mainlayer.getScaleX();
-        mapsize.height *= this.this.mainlayer.getScaleY();
+        mapsize.width *= this.mainlayer.getScaleX();
+        mapsize.height *= this.mainlayer.getScaleY();
         var start = cc.p(0, 0);
         if (finish.y >= 0) {
             res.x = 0;
             res.y = dessize.height - mapsize.height;
         }
         //createAction
-        this.this.mainlayer.setPosition(start);
-        var callback = function (self) {
-            self.setTouchNormal();
-            self.this.interface_menu.setEnabled(true);
-            self.this.interface_desant.run();
-            self.this.interface_bomb.run();
-            self.this.interface_heroSkill.run();
-        };
-        var preDelay = new cc.DelayTime(1);
-        var move2 = new cc.EaseInOut(new cc.MoveTo(1.5, end), 2);
-        var call = new cc.CallFunc(callback.bind(this));
-        this.this.mainlayer.runAction(new cc.Sequence(preDelay, move2, call));
+        this.mainlayer.setPosition(start);
+        var preDelay = new cc.DelayTime(0.5);
+        var move2 = new cc.EaseInOut(new cc.MoveTo(0.5, finish), 2);
+        var call = new cc.CallFunc(this.endOfFlyCameraAboveMap, this);
+        this.mainlayer.runAction(new cc.Sequence(preDelay, move2, call));
+    },
+    endOfFlyCameraAboveMap:function(){
+        this.setTouchNormal();
+        this.interface_menu.setEnabled(true);
+        //this.interface_desant.run();
+        //this.interface_bomb.run();
+        //this.interface_heroSkill.run();
     },
     createEffect: function (base, target, effect) {
         var effects = EU.ShootsEffectsCreate(base, target, effect);
@@ -1102,16 +1116,16 @@ EU.GameGS = EU.LayerExt.extend({
     createIconForWave: function (route, waveinfo, unitType, iconlist, delay) {
         var start = route[0];
 
-        var icon = WaveIcon.create(start, delay, this.dalayWaveIcon, this.startWave, this, unitType);
+        var icon = new EU.WaveIcon(start, delay, this.dalayWaveIcon, this.startWave, this, unitType);
         icon.setName("waveicon");
         this.waveIcons.push(icon);
         this.interface.addChild(icon, zOrderInterfaceWaveIcon);
         if (this.runFlyCamera) {
             this.runFlyCamera = false;
-            this.flyCameraAboveMap(route[0]);
+            this.flyCameraAboveMap(route);
 
             //run tutorial
-            var index = this.this.board.getCurrentLevelIndex();
+            var index = this.board.getCurrentLevelIndex();
             if (!(index == 1 && !EU.k.useInapps)) {
                 var event = "level" + index + "_enter";
                 EU.TutorialManager.dispatch(event);
@@ -1125,7 +1139,7 @@ EU.GameGS = EU.LayerExt.extend({
         for (var i = 0; i < this.waveIcons.length; ++i) {
             this.waveIcons[i].removeFromParent();
         }
-        this.waveIcons.clear();
+        this.waveIcons.length = 0;
     },
     startWave: function (waveIcon, elapsed, duration) {
         var percent = 0;
@@ -1160,7 +1174,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     updateWaveCounter: function () {
-        this.scoresNode.updateWaves();
+        this.scoreNode.updateWaves();
     },
     menuFastModeEnabled: function (enabled) {
         if (this.interface_rateFast) this.interface_rateFast.setVisible(!enabled);
@@ -1188,9 +1202,9 @@ EU.GameGS = EU.LayerExt.extend({
     },
     resetSkillButtons: function () {
         this.selectedSkill = null;
-        this.interface_bomb.showCancel(false);
-        this.interface_desant.showCancel(false);
-        this.interface_heroSkill.showCancel(false);
+        //TODO:this.interface_bomb.showCancel(false);
+        //TODO:this.interface_desant.showCancel(false);
+        //TODO:this.interface_heroSkill.showCancel(false);
     },
 
     setTouchDisabled: function () {
@@ -1199,34 +1213,34 @@ EU.GameGS = EU.LayerExt.extend({
         this.touchListenerNormal.setEnabled(false);
         this.touchListenerHero.setEnabled(false);
         this.touchListenerHeroSkill.setEnabled(false);
-        this._eventDispatcher.removeEventListener(this.touchListenerDesant);
-        this._eventDispatcher.removeEventListener(this.touchListenerBomb);
-        this._eventDispatcher.removeEventListener(this.touchListenerNormal);
-        this._eventDispatcher.removeEventListener(this.touchListenerHero);
-        this._eventDispatcher.removeEventListener(this.touchListenerHeroSkill);
+        cc.eventManager.removeListener(this.touchListenerDesant);
+        cc.eventManager.removeListener(this.touchListenerBomb);
+        cc.eventManager.removeListener(this.touchListenerNormal);
+        cc.eventManager.removeListener(this.touchListenerHero);
+        cc.eventManager.removeListener(this.touchListenerHeroSkill);
     },
     setTouchNormal: function () {
         this.setTouchDisabled();
-        this._eventDispatcher.addEventListener(this.touchListenerNormal, this);
+        cc.eventManager.addListener(this.touchListenerNormal, this);
         this.touchListenerNormal.setEnabled(true);
         this.skillModeActive = false;
         this.resetSkillButtons();
 
-        this.interface_hero.showCancel(false);
+        //TODO:this.interface_hero.showCancel(false);
     },
     setTouchSkill: function (skill) {
         this.setTouchDisabled();
         switch (skill) {
             case EU.Skill.desant:
-                this._eventDispatcher.addEventListener(this.touchListenerDesant, this);
+                cc.eventManager.addListener(this.touchListenerDesant, this);
                 this.touchListenerDesant.setEnabled(true);
                 break;
             case EU.Skill.bomb:
-                this._eventDispatcher.addEventListener(this.touchListenerBomb, this);
+                cc.eventManager.addListener(this.touchListenerBomb, this);
                 this.touchListenerBomb.setEnabled(true);
                 break;
             case EU.Skill.heroskill:
-                this._eventDispatcher.addEventListener(this.touchListenerHeroSkill, this);
+                cc.eventManager.addListener(this.touchListenerHeroSkill, this);
                 this.touchListenerHeroSkill.setEnabled(true);
                 break;
         }
@@ -1234,7 +1248,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
     setTouchHero: function () {
         this.setTouchDisabled();
-        this._eventDispatcher.addEventListener(this.touchListenerHero, this);
+        cc.eventManager.addListener(this.touchListenerHero, this);
         this.touchListenerHero.setEnabled(true);
         this.resetSkillButtons();
         this.skillModeActive = false;
@@ -1245,7 +1259,7 @@ EU.GameGS = EU.LayerExt.extend({
     menuPause: function () {
         //TODO: AudioEngine.shared( ).pauseAllEffects( );
         var scene = EU.Common.getSceneOfNode(this);
-        var pause = EU.GamePauseLayer.create("ini/gamescene/pause.xml");
+        var pause = new EU.GamePauseLayer("ini/gamescene/pause.xml");
         scene.pushLayer(pause, true);
         pause.setGlobalZOrder(2);
     },
@@ -1307,9 +1321,11 @@ EU.GameGS = EU.LayerExt.extend({
         }
         return result;
     },
+    setEnabled: function( mode ){this.enabled = mode;},
+    getMainLayer: function(){return this.mainlayer; }
 });
 
-EU.GameGSInstance = EU.GameGS;
+EU.GameGSInstance = null;
 
 EU.GameGS.restartLevel = function () {
     var game = EU.GameGSInstance;
@@ -1322,12 +1338,12 @@ EU.GameGS.restartLevel = function () {
 
     var dessize = cc.view.getDesignResolutionSize();
     var layer = new GameGS();
-    layer.this.scoresNode = EU.ScoresNode.create();
-    layer.this.scoresNode.setPosition(0, dessize.height);
+    layer.this.scoreNode = new EU.ScoreNode();
+    layer.this.scoreNode.setPosition(0, dessize.height);
     var result = layer.init();
     EU.assert(result);
     scene.resetMainLayer(layer);
-    scene.addChild(layer.this.scoresNode, 9);
+    scene.addChild(layer.this.scoreNode, 9);
     EU.GameGSInstance.board.loadLevel(levelindex, gamemode);
 
     if (EU.k.useBoughtLevelScoresOnlyRestartLevel) {
@@ -1347,10 +1363,9 @@ EU.GameGS.createScene = function () {
     scene.setName("gameScene");
 
     var dessize = cc.view.getDesignResolutionSize();
-    layer.this.scoresNode = ScoresNode.create();
-    layer.this.scoresNode.setPosition(0, dessize.height);
-    scene.addChild(layer.this.scoresNode, 9);
+    layer.scoreNode = new EU.ScoreNode();
+    layer.scoreNode.setPosition(0, dessize.height);
+    scene.addChild(layer.scoreNode, 9);
 
-    layer.release();
     return scene;
 };
