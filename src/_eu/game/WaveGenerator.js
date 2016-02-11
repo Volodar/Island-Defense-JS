@@ -144,7 +144,7 @@ EU.WaveGenerator = {
         this.m_waveIndex = 0;
         this.m_wavesCount = this.m_waves.length;
         this.m_delayWavesNow = false;
-        EU.GameGS.getInstance().updateWaveCounter();
+        EU.GameGSInstance.updateWaveCounter();
         this.resume();
     },
     pause: function()
@@ -189,7 +189,7 @@ EU.WaveGenerator = {
             if( this.m_delayWavesNow == false )
             {
                 this.m_delayWavesNow = true;
-                if ( this.m_waves.empty() == false )
+                if ( this.m_waves.length > 0 )
                 {
                     this.onPredelayWave( this.m_waves[0] );
                 }
@@ -199,9 +199,9 @@ EU.WaveGenerator = {
             {
                 this.m_delayWaves.reset();
                 this.m_delayWavesNow = false;
-                if ( this.m_waves.empty() == false )
+                if ( this.m_waves.length > 0 )
                 {
-                    this.m_currentWave = this.m_waves.begin();
+                    this.m_currentWave = this.m_waves[0];
                     EU.assert( this.m_currentWave.valid() );
                     this.onStartWave(this.m_currentWave );
                     var delay = this.m_currentWave.delayOneUnit[0];
@@ -213,19 +213,19 @@ EU.WaveGenerator = {
 
     onPredelayWave: function(wave )
     {
-        EU.GameGS.getInstance().updateWaveCounter();
-        EU.GameGS.getInstance( ).getGameBoard( ).onPredelayWave( wave, (this.m_waveIndex != 0? this.m_delayWaves.value() : 0) );
+        EU.GameGSInstance.updateWaveCounter();
+        EU.GameGSInstance.getGameBoard( ).onPredelayWave( wave, (this.m_waveIndex != 0? this.m_delayWaves.value() : 0) );
     },
 
     onStartWave: function(wave )
     {
         this.m_waveIndex = Math.min( this.m_waveIndex + 1, this.m_wavesCount );
-        EU.GameGS.getInstance( ).getGameBoard( ).onStartWave( wave );
+        EU.GameGSInstance.getGameBoard( ).onStartWave( wave );
     },
 
     onFinishWave: function()
     {
-        EU.GameGS.getInstance().getGameBoard().onFinishWave();
+        EU.GameGSInstance.getGameBoard().onFinishWave();
         if ( this.m_waves.length == 0 )
         {
             this.onFinishAllWaves();
@@ -234,7 +234,7 @@ EU.WaveGenerator = {
 
     onFinishAllWaves: function()
     {
-        EU.GameGS.getInstance().getGameBoard().onFinishWaves();
+        EU.GameGSInstance.getGameBoard().onFinishWaves();
     },
 
     generateCreep: function()
@@ -245,7 +245,7 @@ EU.WaveGenerator = {
 
         var rst = this.m_currentWave.routeSubType[0];
         var ri = this.m_currentWave.routeIndex[0];
-        var creep = EU.GameGS.getInstance().getGameBoard().createCreep(name, rst, ri);
+        var creep = EU.GameGSInstance.getGameBoard().createCreep(name, rst, ri);
         if ( creep )
         {
             var cost = this.m_currentWave.scores[0];

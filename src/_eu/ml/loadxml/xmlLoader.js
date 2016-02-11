@@ -422,18 +422,18 @@ EU.xmlLoader = {
                     }
                     return frames;
                 };
-                var _indexes = function () {
-                    var _indexes = "indexes:";
+                var _indexes = function (string) {
+                    var lindexes = "indexes:";
                     var list = [];
                     var frames = [];
-                    var k = string.indexOf(_indexes);
+                    var k = string.indexOf(lindexes);
                     if (k == 0 || k == 1)
-                        string = string.substr(k + _indexes.size());
+                        string = string.substr(k + lindexes.size());
                     if (string[string.length - 1] == ']') {
                         string = string.slice(0, -1);
                     }
                     list = string.split(',');
-                    EU.assert(list.size() >= 2, "size must be >= 2");
+                    EU.assert(list.length >= 2, "size must be >= 2");
                     var frame = list[0];
                     var ext;
                     k = frame.lastIndexOf(".");
@@ -477,7 +477,7 @@ EU.xmlLoader = {
                         var frameext = frame + zeroPad(i, indexformat.length + 1) + ext;
                         var name = folder + frameext;
                         //TODO: ImageManager
-                        var frame = ImageManager.shared().spriteFrame(name);
+                        var frame = EU.ImageManager.getSpriteFrame(name);
                         if (frame)
                             frames.push(name);
                     }
@@ -487,17 +487,18 @@ EU.xmlLoader = {
                 if (string.indexOf("frames:") >= 0)
                     return _list();
                 else if (string.indexOf("indexes:") >= 0)
-                    return _indexes();
+                    return _indexes(string);
                 EU.assert(0, "");
                 return [];
             };
 
-            var _cash = {};
-            if (DEBUG !== undefined) {
-                var iter = _cash[value];
-                if (iter != null)
-                    return iter.second.clone();
-            }
+            //TODO: cache of animations
+            //var _cash = {};
+            //if (DEBUG !== undefined) {
+            //    var iter = _cash[value];
+            //    if (iter != null)
+            //        return iter.second.clone();
+            //}
 
             var str = value;
             var folder = _folder(str);
@@ -679,7 +680,7 @@ EU.xmlLoader = {
             return action_interval(attr[0]).easing(cc.easeSineInOut());
         }
         else if (type == this.k.ActionAnimate) {
-            return cc.animate(EU.xmlLoader.buildAnimation(FLOAT(0), attr[1]));
+            return cc.animate(buildAnimation(FLOAT(0), attr[1]));
         }
 
         //action instant

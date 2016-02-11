@@ -63,6 +63,7 @@
         "src/_eu/scenes/gamegs/GameGS.js",
         "src/_eu/scenes/gamegs/ScoreNode.js",
         "src/_eu/scenes/gamegs/TowerPlace.js",
+        "src/_eu/scenes/gamegs/Decoration.js",
         "src/_eu/scenes/ScoreLayer.js",
         "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",

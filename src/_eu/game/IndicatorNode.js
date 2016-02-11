@@ -14,9 +14,8 @@ EU.IndicatorNode = cc.Node.extend({
     ctor: function( )
     {
         this._super();
-        //TODO:ImageManager
-        this._bg = ImageManager.shared().sprite( "images/square.png" );
-        this._progressNode = ImageManager.sprite( "images/square.png" );
+        this._bg = EU.ImageManager.sprite( "images/square.png" );
+        this._progressNode = EU.ImageManager.sprite( "images/square.png" );
         EU.assert( this._bg );
         EU.assert( this._progressNode );
 
