@@ -273,6 +273,13 @@ EU.xmlLoader = {
             //TODO: EU.Factory
             child = EU.Factory.build(type);
         }
+        if( child == null ){
+            cc.log( "EU.xmlLoader.getorbuild_node:");
+            cc.log( "    type:" + type);
+            cc.log( "    name:" + name);
+            cc.log( "    path:" + path);
+            cc.log( "    template:" + template_);
+        }
         return child;
     },
     /**

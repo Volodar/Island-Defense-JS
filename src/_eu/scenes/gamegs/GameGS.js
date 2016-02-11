@@ -24,14 +24,18 @@ EU.TouchInfo = cc.Class.extend({
     },
 });
 
-EU.ScoresNode = cc.Node.extend({});
-EU.GameBoard = cc.Class.extend({});
 EU.MenuTower = cc.Menu.extend({});
 EU.MenuTower = cc.Menu.extend({});
 EU.MenuDig = cc.Menu.extend({});
-EU.MenuItemCooldown = cc.Menu.extend({});
+EU.MenuItemCooldown = cc.MenuItem.extend({});
 EU.HeroIcon = cc.Node.extend({});
 EU.BoxMenu = cc.Menu.extend({});
+
+EU.Skill = {
+    desant : 0,
+    bomb : 1,
+    heroskill : 2
+};
 
 EU.GameGS = EU.LayerExt.extend({
     /** @type{EU.GameBoard} */ board: null,
@@ -51,7 +55,7 @@ EU.GameGS = EU.LayerExt.extend({
     /** @type{EU.MenuCreateTower} */  menuCreateTower: null,
     /** @type{EU.MenuTower} */  menuTower: null,
     /** @type{EU.MenuDig} */  menuDig: null,
-    /** @type{EU.ScoresNode} */  scoresNode: null,
+    /** @type{EU.ScoresNode} */  scoreNode: null,
     /** @type{Object<Integer, EU.TouchInfo>} */  touches: null,
     /** @type{EU.ScrollTouchInfo} */  scrollInfo: null,
     /** @type{bool} */  enabled: null,
@@ -84,14 +88,15 @@ EU.GameGS = EU.LayerExt.extend({
     //    this.board.clear();
     //    ShootsEffectsClear();
     //
-    //    cc.director().getScheduler().setTimeScale( 1 );
+    //    cc.director.getScheduler().setTimeScale( 1 );
     //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
     //
-    //    if( this.scoresNode )
-    //        this.scoresNode.removeFromParent();
+    //    if( this.scoreNode )
+    //        this.scoreNode.removeFromParent();
     //},
 
     ctor: function () {
+        this._super();
         this.board = new EU.GameBoard();
         this.enabled = true;
         this.dalayWaveIcon = 0;
@@ -103,18 +108,17 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_menu = null;
 
         var desSize = cc.view.getDesignResolutionSize();
-        var winSize = cc.director().getWinSize();
         var sizeMap = EU.k.LevelMapSize;
 
         this.mainlayer = new cc.Node();
         this.mainlayer.setName("mainlayer");
         this.addChild(this.mainlayer);
-        var sx = winSize.width / sizeMap.width;
-        var sy = winSize.height / sizeMap.height;
+        var sx = desSize.width / sizeMap.width;
+        var sy = desSize.height / sizeMap.height;
         var scale = Math.max(sx, sy);
         this.mainlayer.setScale(scale);
 
-        this.objects = Node.create();
+        this.objects = new cc.Node();
         this.objects.setName("objects");
         this.mainlayer.addChild(this.objects, 1);
 
@@ -124,6 +128,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.mainlayer.setAnchorPoint(cc.p(0,0));
 
         this.setName("gamelayer");
+        EU.GameGSInstance = this;
     },
     getGameBoard: function () {
         return this.board;
@@ -220,55 +225,55 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
         this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
         this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
-        this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
-        this.interface_hero.setEnabled(true);
-        this.interface_desant.setAnimationOnFull("airstike_animation1");
-        this.interface_bomb.setAnimationOnFull("airstike_animation2");
+        //TODO:this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
+        //TODO:this.interface_hero.setEnabled(true);
+        //TODO:this.interface_desant.setAnimationOnFull("airstike_animation1");
+        //TODO:this.interface_bomb.setAnimationOnFull("airstike_animation2");
 
         this.interface_shop.setName("shop");
         this.interface_pause.setName("pause");
-        this.interface_desant.setName("desant");
-        this.interface_bomb.setName("bomb");
-        this.interface_heroSkill.setName("heroskill");
-        this.interface_hero.setName("hero");
+        //TODO:this.interface_desant.setName("desant");
+        //TODO:this.interface_bomb.setName("bomb");
+        //TODO:this.interface_heroSkill.setName("heroskill");
+        //TODO:this.interface_hero.setName("hero");
 
-        this.interface_desant.setSound("##sound_button##");
-        this.interface_bomb.setSound("##sound_button##");
-        this.interface_heroSkill.setSound("##sound_button##");
+        //TODO:this.interface_desant.setSound("##sound_button##");
+        //TODO:this.interface_bomb.setSound("##sound_button##");
+        //TODO:this.interface_heroSkill.setSound("##sound_button##");
 
         this.interface_menu = new cc.Menu();
         this.interface_menu.setName("menu");
         this.interface_menu.addChild(this.interface_shop);
         this.interface_menu.addChild(this.interface_pause);
-        this.interface_menu.addChild(this.interface_desant);
-        this.interface_menu.addChild(this.interface_bomb);
-        this.interface_menu.addChild(this.interface_heroSkill);
-        this.interface_menu.addChild(this.interface_hero);
+        //TODO:this.interface_menu.addChild(this.interface_desant);
+        //TODO:this.interface_menu.addChild(this.interface_bomb);
+        //TODO:this.interface_menu.addChild(this.interface_heroSkill);
+        //TODO:this.interface_menu.addChild(this.interface_hero);
         this.interface_menu.setEnabled(false);
 
-        this.interface_hero.setVisible(false);
+        //TODO:this.interface_hero.setVisible(false);
 
         this.interface_menu.setPosition(cc.p(0,0));
         this.interface.addChild(this.interface_menu, 99);
 
-        this.menuCreateTower = new EU.MenuCreateTower();
-        this.menuTower = new EU.MenuTower();
-        this.menuDig = new EU.MenuDig();
+        //TODO:this.menuCreateTower = new EU.MenuCreateTower();
+        //TODO:this.menuTower = new EU.MenuTower();
+        //TODO:this.menuDig = new EU.MenuDig();
 
-        this.interface.addChild(this.menuCreateTower, 999999);
-        this.interface.addChild(this.menuTower, 999999);
-        this.interface.addChild(this.menuDig, 999999);
-        this.menuCreateTower.setGlobalZOrder(99999);
-        this.menuTower.setGlobalZOrder(99999);
-        this.menuDig.setGlobalZOrder(99999);
+        //TODO:this.interface.addChild(this.menuCreateTower, 999999);
+        //TODO: this.interface.addChild(this.menuTower, 999999);
+        //TODO:this.interface.addChild(this.menuDig, 999999);
+        //TODO:this.menuCreateTower.setGlobalZOrder(99999);
+        //TODO:this.menuTower.setGlobalZOrder(99999);
+        //TODO:this.menuDig.setGlobalZOrder(99999);
 
-        this.menuCreateTower.setPosition(cc.p(0,0));
-        this.menuCreateTower.disappearance();
-        this.menuTower.disappearance();
-        this.menuDig.disappearance();
+        //TODO:this.menuCreateTower.setPosition(cc.p(0,0));
+        //TODO:this.menuCreateTower.disappearance();
+        //TODO:this.menuTower.disappearance();
+        //TODO:this.menuDig.disappearance();
 
-        this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
-        this.addChild(this.box);
+        //TODO:this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
+        //TODO:this.addChild(this.box);
         //TODO: this.createDevMenu();
     },
 
@@ -424,7 +429,7 @@ EU.GameGS = EU.LayerExt.extend({
         //TODO: setKeyboardEnabled( true );
         //TODO: MouseHoverScroll.enable();
 
-        //cc.director().getTextureCache().removeUnusedTextures();
+        //cc.director.getTextureCache().removeUnusedTextures();
         //TODO: EU.AdMob.hide();
 
         var music = this.board.isGameStarted() ? EU.kMusicGameBattle : EU.kMusicGamePeace;
@@ -593,7 +598,7 @@ EU.GameGS = EU.LayerExt.extend({
                     var shift = EU.Common.pointDiff(location, self.scrollInfo.touchBegan);
                     var pos = self.scrollInfo.nodeposBegan + shift;
 
-                    pos = self.scrollInfo.fitPosition(pos, cc.director().getWinSize());
+                    pos = self.scrollInfo.fitPosition(pos, cc.director.getWinSize());
 
                     self.scrollInfo.lastShift = EU.Common.pointDiff(pos, self.scrollInfo.node.getPosition());
                     self.scrollInfo.node.setPosition(pos);
@@ -776,17 +781,17 @@ EU.GameGS = EU.LayerExt.extend({
     //        menuPause( null );
     //    if( isTestDevice() && isTestModeActive() )
     //    {
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director().setTimeRate( 0 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director().setTimeRate( 1 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director().setTimeRate( 2 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director().setTimeRate( 3 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director().setTimeRate( 4 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director().setTimeRate( 5 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director().setTimeRate( 6 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director().setTimeRate( 7 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director().setTimeRate( 8 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director().setTimeRate( 9 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director().setTimeRate( 99 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director.setTimeRate( 0 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director.setTimeRate( 1 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director.setTimeRate( 2 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director.setTimeRate( 3 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director.setTimeRate( 4 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director.setTimeRate( 5 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director.setTimeRate( 6 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director.setTimeRate( 7 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director.setTimeRate( 8 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director.setTimeRate( 9 );
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director.setTimeRate( 99 );
     //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 ) this.board.onFinishGame();
     //    }
     //},
@@ -1156,7 +1161,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     updateWaveCounter: function () {
-        this.scoresNode.updateWaves();
+        this.scoreNode.updateWaves();
     },
     menuFastModeEnabled: function (enabled) {
         if (this.interface_rateFast) this.interface_rateFast.setVisible(!enabled);
@@ -1305,7 +1310,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
 });
 
-EU.GameGSInstance = EU.GameGS;
+EU.GameGSInstance = null;
 
 EU.GameGS.restartLevel = function () {
     var game = EU.GameGSInstance;
@@ -1318,12 +1323,12 @@ EU.GameGS.restartLevel = function () {
 
     var dessize = cc.view.getDesignResolutionSize();
     var layer = new GameGS();
-    layer.this.scoresNode = EU.ScoresNode.create();
-    layer.this.scoresNode.setPosition(0, dessize.height);
+    layer.this.scoreNode = EU.ScoresNode.create();
+    layer.this.scoreNode.setPosition(0, dessize.height);
     var result = layer.init();
     EU.assert(result);
     scene.resetMainLayer(layer);
-    scene.addChild(layer.this.scoresNode, 9);
+    scene.addChild(layer.this.scoreNode, 9);
     EU.GameGSInstance.board.loadLevel(levelindex, gamemode);
 
     if (EU.k.useBoughtLevelScoresOnlyRestartLevel) {
@@ -1343,10 +1348,9 @@ EU.GameGS.createScene = function () {
     scene.setName("gameScene");
 
     var dessize = cc.view.getDesignResolutionSize();
-    layer.this.scoresNode = ScoresNode.create();
-    layer.this.scoresNode.setPosition(0, dessize.height);
-    scene.addChild(layer.this.scoresNode, 9);
+    layer.scoreNode = new EU.ScoreNode();
+    layer.scoreNode.setPosition(0, dessize.height);
+    scene.addChild(layer.scoreNode, 9);
 
-    layer.release();
     return scene;
 };

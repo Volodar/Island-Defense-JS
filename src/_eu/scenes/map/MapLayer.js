@@ -540,8 +540,10 @@ EU.MapLayer = cc.Layer.extend({
      */
     runLevel: function (levelIndex, mode) {
         if (levelIndex < this.locations.length) {
-            var loadScene = new EU.LoadLevelScene(levelIndex, mode);
-            cc.director.pushScene(loadScene);
+            //var scene = new EU.LoadLevelScene(levelIndex, mode);
+            var scene = EU.GameGS.createScene();
+            EU.GameGSInstance.getGameBoard().loadLevel( levelIndex, mode );
+            cc.director.pushScene(scene);
         }
         else {
             //TODO: AutoPlayer

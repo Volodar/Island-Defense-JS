@@ -28,7 +28,6 @@ EU.FinishLevelParams = cc.Class.extend({
     livetotal : 0,
     stars : 0,
     ctor: function() {
-        this._super();
     }
 });
 
@@ -82,11 +81,15 @@ EU.GameBoard = cc.Class.extend({
     /** Type{Integer}*/ heartsForStar3 : null,
     /** Type{Integer}*/ leaderboardScore : null,
     /** Type{Array< Object{ EU.Unit, Float} >}*/ desants : null,
-    //CC_SYNTHESIZE_PASS_BY_REF( std::vector<TripleRoute>, creepsRoutes, CreepsRoutes ){},
-    //CC_SYNTHESIZE_READONLY( GameMode , gameMode, GameMode){},
-    //CC_SYNTHESIZE_READONLY( var, levelIndex, CurrentLevelIndex ){},
-    //CC_SYNTHESIZE_READONLY( SkillParams, skillParams, SkillParams ){},
 
+    setCreepsRoutes: function(routes){this.creepsRoutes = routes;},
+    getCreepsRoutes: function(){return this.creepsRoutes;},
+    setGameMode: function(mode){this.gameMode = mode;},
+    getGameMode: function(){return this.gameMode;},
+    setCurrentLevelIndex: function(index){this.levelIndex = index;},
+    getCurrentLevelIndex: function(){return this.levelIndex;},
+    setSkillParams: function(params){this.skillParams = params;},
+    getSkillParams: function(){return this.skillParams;},
 
     ctor: function()
     {
@@ -105,36 +108,101 @@ EU.GameBoard = cc.Class.extend({
         this.heartsForStar3 = 0;
         this.leaderboardScore = 0;
         this.desants = {};
+        this.skillParams = {};
+
+        this.loadSkillsParams();
+        this.checkDefaultBonusesItems();
     },
     //~GameBoard(){},
+    loadSkillsParams: function(){
+        var doc = EU.pugixml.readXml( "ini/skills.xml" );
+        var root = doc.firstElementChild;
+
+        this.skillParams.cooldownDesant = parseFloat(root.getElementsByTagName( "desant_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.lifetimeDesant = parseFloat(root.getElementsByTagName( "desant_lifetime" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownAirplane = parseFloat(root.getElementsByTagName( "airplane_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.distanceToRoute = parseFloat(root.getElementsByTagName( "distance_to_road" )[0].getAttribute( "value" ));
+
+        this.skillParams.cooldownLandmine = parseFloat(root.getElementsByTagName( "landmine_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownSwat = parseFloat(root.getElementsByTagName( "swat_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.cooldownHero3Bot = parseFloat(root.getElementsByTagName( "hero3bot_colldown" )[0].getAttribute( "value" ));
+        this.skillParams.swatCount = parseFloat(root.getElementsByTagName( "swat_count" )[0].getAttribute( "value" ));
+        this.skillParams.swatLifetime = parseFloat(root.getElementsByTagName( "swat_lifetime" )[0].getAttribute( "value" ));
+        this.skillParams.hero3BotCount = parseFloat(root.getElementsByTagName( "hero3bot_count" )[0].getAttribute( "value" ));
+        this.skillParams.hero3BotLifetime = parseFloat(root.getElementsByTagName( "hero3bot_lifetime" )[0].getAttribute( "value" ));
+
+        this.skillParams.cooldownDesant = EU.UserData.get_float( EU.k.DesantCooldown, this.skillParams.cooldownDesant );
+        this.skillParams.lifetimeDesant = EU.UserData.get_float( EU.k.DesantLifeTime, this.skillParams.lifetimeDesant );
+        this.skillParams.cooldownAirplane = EU.UserData.get_float( EU.k.AirplaneCooldown, this.skillParams.cooldownAirplane );
+        this.skillParams.cooldownLandmine = EU.UserData.get_float( EU.k.LandmineCooldown, this.skillParams.cooldownLandmine );
+        this.skillParams.cooldownSwat = EU.UserData.get_float( EU.k.SwatCooldown, this.skillParams.cooldownSwat );
+        this.skillParams.swatCount = EU.UserData.get_int( EU.k.SwatCount, this.skillParams.swatCount );
+        this.skillParams.swatLifetime = EU.UserData.get_int( EU.k.SwatLifetime, this.skillParams.swatLifetime );
+        this.skillParams.cooldownHero3Bot = EU.UserData.get_float( EU.k.Hero3BotCooldown, this.skillParams.cooldownHero3Bot );
+        this.skillParams.hero3BotCount = EU.UserData.get_int( EU.k.Hero3BotCount, this.skillParams.hero3BotCount );
+        this.skillParams.hero3BotLifetime = EU.UserData.get_int( EU.k.Hero3BotLifetime, this.skillParams.hero3BotLifetime );
+
+        this.skillParams.swatLevels = [];
+        this.skillParams.hero3BotLevels = [];
+        this.skillParams.landmineLevels = [];
+
+        for( var i = 0; i < 4; ++i )
+        {
+            this.skillParams.swatLevels[i] = {};
+            this.skillParams.swatLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "swat" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.swatLevels[i].rateLifetime = parseFloat(root.getElementsByTagName( "swat" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "lifitimerate" ));
+
+            this.skillParams.hero3BotLevels[i] = {};
+            this.skillParams.hero3BotLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "hero3bot" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.hero3BotLevels[i].rateLifetime = parseFloat(root.getElementsByTagName( "hero3bot" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "lifitimerate" ));
+
+            this.skillParams.landmineLevels[i] = {};
+            this.skillParams.landmineLevels[i].rateCooldown = parseFloat(root.getElementsByTagName( "landmine" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "cooldownrate" ));
+            this.skillParams.landmineLevels[i].count = parseInt(root.getElementsByTagName( "landmine" )[0].getElementsByTagName( "level" + i )[0].getAttribute( "count" ));
+        }
+
+    },
+    checkDefaultBonusesItems:function(){
+        var id = "bonusitemdefaultgetted";
+        if( EU.UserData.get_bool( id, true ) )
+        {
+            doc = EU.pugixml.readXml( "ini/bonusitems.xml" );
+            var root = doc.firstElementChild;
+
+            EU.UserData.bonusitem_add( 3, parseInt(root.getElementsByTagName( "bonusitem_dynamit" )[0].getAttribute( "default" )) );
+            EU.UserData.bonusitem_add( 2, parseInt(root.getElementsByTagName( "bonusitem_ice" )[0].getAttribute( "default" )) );
+            EU.UserData.bonusitem_add( 1, parseInt(root.getElementsByTagName( "bonusitem_laser" )[0].getAttribute( "default" )) );
+            EU.UserData.write( id, false );
+        }
+    },
     loadLevel: function( index, gamemode ){
         this.levelIndex = index;
-        this.gameMode = mode;
+        this.gameMode = gamemode;
 
-        var pathToFile = cc.fileUtils.fullPathForFilename( EU.kDirectoryToMaps + this.levelIndex + ".xml" );
+        var pathToFile = EU.kDirectoryToMaps + this.levelIndex + ".xml";
         var doc = EU.pugixml.readXml( pathToFile );
-        var root = doc.getRoot();
+        var root = doc.firstElementChild;
         if( !root )
             cc.log( "cannot parce file" );
 
         var xmlTagWaves = "";
         var xmlTagParams = "";
-        switch( mode )
+        switch( gamemode )
         {
-            case GameMode.normal:
+            case EU.GameMode.normal:
                 xmlTagParams = EU.k.LevelParams;
                 xmlTagWaves = EU.k.LevelWaves;
                 break;
-            case GameMode.hard:
+            case EU.GameMode.hard:
                 xmlTagParams = EU.k.LevelParamsHard;
                 xmlTagWaves = EU.k.LevelWavesHard;
                 break;
         }
 
-        var routesXml = root.getElementsByName( EU.k.LevelRoutes )[0];
-        var placesXml = root.getElementsByName( EU.k.LevelTowerPlaces )[0];
-        var wavesXml = root.getElementsByName( xmlTagWaves )[0];
-        var paramsXml = root.getElementsByName( xmlTagParams )[0];
+        var routesXml = root.getElementsByTagName( EU.k.LevelRoutes )[0];
+        var placesXml = root.getElementsByTagName( EU.k.LevelTowerPlaces )[0];
+        var wavesXml = root.getElementsByTagName( xmlTagWaves )[0];
+        var paramsXml = root.getElementsByTagName( xmlTagParams )[0];
         if( !paramsXml ) paramsXml = root;
 
         if( !routesXml )cc.log( "routesXml Node not found" );
@@ -161,12 +229,17 @@ EU.GameBoard = cc.Class.extend({
             this.createHero();
     },
     loadLevelParams: function( xmlnode ){
-        var startscore = parseInt( node.getAttribute( EU.k.LevelStartScore ));
-        var healths = parseInt( node.getAttribute( EU.k.LevelHealth ));
-        this.heartsForStar1 = parseInt( node.getAttribute( EU.k.LevelStartStar1 ));
-        this.heartsForStar2 = parseInt( node.getAttribute( EU.k.LevelStartStar2 ));
-        this.heartsForStar3 = parseInt( node.getAttribute( EU.k.LevelStartStar3 ));
-        var exclude = EU.Common.split( exclude, node.getAttribute( "exclude" ) );
+        var startscore = parseInt( xmlnode.getAttribute( EU.k.LevelStartScore ));
+        var healths = parseInt( xmlnode.getAttribute( EU.k.LevelHealth ));
+        this.heartsForStar1 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar1 ));
+        this.heartsForStar2 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar2 ));
+        this.heartsForStar3 = parseInt( xmlnode.getAttribute( EU.k.LevelStartStar3 ));
+        var exclude = xmlnode.getAttribute( "exclude" );
+        if( exclude && exclude.length > 0 ) {
+            exclude = exclude.split(",");
+            for( var i=0; i<exclude.length; ++i )
+                EU.GameGSInstance.excludeTower( exclude[i] );
+        }
     
         if( EU.k.useBoughtLevelScoresOnEveryLevel )
         {
@@ -175,11 +248,9 @@ EU.GameBoard = cc.Class.extend({
             startscore += boughtScores;
         }
     
-        for( var i=0; i<exclude.length; ++i )
-            EU.GameGSInstance.excludeTower( exclude[i] );
 
         EU.ScoreCounter.setMoney( EU.kScoreLevel, startscore, false );
-        EU.ScoreCounter.setMoney( kScoreHealth, healths, false );
+        EU.ScoreCounter.setMoney( EU.kScoreHealth, healths, false );
         this.statisticsParams.livetotal = healths;
     },
     update: function( dt ){
@@ -292,12 +363,12 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<xmlnode.children.length; ++i )
         {
             var child = xmlnode.children[i];
-            var index = parseInt(child.getAttribute( EU.k.name ));
-            var unitLayer = EU.Support.strToEU.UnitLayer( child.getAttribute( EU.k.type ) );
+            var index = parseInt(child.getAttribute( "name" ));
+            var unitLayer = EU.Support.strToUnitLayer( child.getAttribute( EU.k.type ) );
             routes[index] = new EU.TripleRoute();
-            var main = child.getElementsByName( "main" )[0];
-            var left = child.getElementsByName( "left" )[0];
-            var right = child.getElementsByName( "right" )[0];
+            var main = child.getElementsByTagName( "main" )[0];
+            var left = child.getElementsByTagName( "left" )[0];
+            var right = child.getElementsByTagName( "right" )[0];
             routes[index].main = this.loadRoute( main );
             routes[index].left = this.loadRoute( left );
             routes[index].right = this.loadRoute( right );
@@ -388,7 +459,7 @@ EU.GameBoard = cc.Class.extend({
         }
 
         this.isFinihedGame = true;
-        this.statisticsParams.livecurrent = EU.ScoreCounter.getMoney( kScoreHealth );
+        this.statisticsParams.livecurrent = EU.ScoreCounter.getMoney( EU.kScoreHealth );
         this.statisticsParams.stars = 0;
         if( this.statisticsParams.livecurrent >= this.heartsForStar1 ) this.statisticsParams.stars = 1;
         if( this.statisticsParams.livecurrent >= this.heartsForStar2 ) this.statisticsParams.stars = 2;
@@ -715,7 +786,7 @@ EU.GameBoard = cc.Class.extend({
         {
             //var sound = EU.xmlLoader.macros.parse( "##sound_gameplayerdamage##" );
             //TODO: AudioEngine.playEffect( sound, false, 0 );
-            EU.ScoreCounter.subMoney( kScoreHealth, cost, false );
+            EU.ScoreCounter.subMoney( EU.kScoreHealth, cost, false );
             EU.Achievements.process( "skip_enemies", 1 );
         }
         EU.GameGSInstance.removeObject( unit );
@@ -790,7 +861,7 @@ EU.GameBoard = cc.Class.extend({
     },
     checkGameFinished: function(){
         var finishGame = false;
-        finishGame = finishGame || (EU.ScoreCounter.getMoney( kScoreHealth ) <= 0);
+        finishGame = finishGame || (EU.ScoreCounter.getMoney( EU.kScoreHealth ) <= 0);
         finishGame = finishGame || (this.isExistCreep( this.units ) == false && this.isFinihedWaves == true);
         if( finishGame )
             this.onFinishGame();
@@ -1018,7 +1089,7 @@ EU.GameBoard = cc.Class.extend({
     },
     event_levelFinished: function(){
         //ParamCollection p;
-        //if( EU.ScoreCounter.getMoney( kScoreHealth ) > 1 )
+        //if( EU.ScoreCounter.getMoney( EU.kScoreHealth ) > 1 )
         //    p["event"] = "LevelComplete";
         //else
         //    p["event"] = "LevelFailed";
@@ -1026,7 +1097,7 @@ EU.GameBoard = cc.Class.extend({
         //p["level"] = intToStr( this.levelIndex );
         //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
         //p["stars"] = intToStr( this.statisticsParams.stars );
-        //p["health"] = intToStr( EU.ScoreCounter.getMoney( kScoreHealth ) );
+        //p["health"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreHealth ) );
         //p["gear"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreLevel ) );
         //TODO: flurry.logEvent( p );
     },

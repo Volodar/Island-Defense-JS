@@ -23,21 +23,21 @@ EU.ScoreNode = cc.Node.extend({
     ctor: function(){
         this._super();
         this.scores = {};
-        this.healths = new cc.LabelBMFont( kFontStroke, "" );
-        this.golds = new cc.LabelBMFont( kFontStroke, "" );
-        this.waves = new cc.LabelBMFont( kFontStroke, "" );
+        this.healths = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
+        this.golds = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
+        this.waves = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
         
         this.addChild( this.healths, 1 );
         this.addChild( this.golds, 1 );
         this.addChild( this.waves, 1 );
         
-        this.healths.setAnchorPoint( Point( 0, 0.5 ) );
-        this.golds.setAnchorPoint( Point( 0, 0.5 ) );
-        this.waves.setAnchorPoint( Point( 0, 0.5 ) );
+        this.healths.setAnchorPoint( cc.p( 0, 0.5 ) );
+        this.golds.setAnchorPoint( cc.p( 0, 0.5 ) );
+        this.waves.setAnchorPoint( cc.p( 0, 0.5 ) );
         
-        this.healths.setPosition( Point( 85, -25 ) );
-        this.golds.setPosition( Point( 190, -25 ) );
-        this.waves.setPosition( Point( 85, -70 ) );
+        this.healths.setPosition( cc.p( 85, -25 ) );
+        this.golds.setPosition( cc.p( 190, -25 ) );
+        this.waves.setPosition( cc.p( 85, -70 ) );
         
         this.healths.setScale( 0.5 );
         this.golds.setScale( 0.5 );
@@ -53,8 +53,8 @@ EU.ScoreNode = cc.Node.extend({
         icon.setPosition( 62, -75 );
         this.addChild( icon );
         
-        EU.ScoreCounter.observer( EU.kScoreLevel ).add( __instanceId, this.on_change_money, this );
-        EU.ScoreCounter.observer( EU.kScoreHealth ).add( __instanceId, this.on_change_lifes, this );
+        EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.on_change_money, this );
+        EU.ScoreCounter.observer( EU.kScoreHealth ).add( this.__instanceId, this.on_change_lifes, this );
     },
     //ScoresNode.~ScoresNode()
     //{
@@ -70,12 +70,12 @@ EU.ScoreNode = cc.Node.extend({
     },
     on_change_money: function( score )
     {
-        var prev = this.scores[kScoreLevel];
+        var prev = this.scores[EU.kScoreLevel];
         var curr = EU.ScoreCounter.getMoney( EU.kScoreLevel );
         if( prev != curr )
         {
             curr = Math.max( 0, curr );
-            this.scores[kScoreLevel] = curr;
+            this.scores[EU.kScoreLevel] = curr;
             this.golds.setString( curr );
         }
     },

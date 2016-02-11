@@ -57,6 +57,8 @@
         "src/_eu/scenes/gamegs/WaveIcon.js",
         "src/_eu/scenes/gamegs/GamePauseScene.js",
         "src/_eu/scenes/gamegs/MenuCreateTower.js",
+        "src/_eu/scenes/gamegs/GameGS.js",
+        "src/_eu/scenes/gamegs/ScoreNode.js",
         "src/_eu/scenes/ScoreLayer.js",
         "src/_eu/scenes/SplashScene.js",
         "src/_eu/scenes/map/MapLayer.js",
