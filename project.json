@@ -51,7 +51,7 @@
         "src/_eu/support/UserData.js",
         "src/_eu/support/ScoreCounter.js",
         "src/_eu/support/support.js",
-        "src/_eu/scenes/MainGS.js",
+        "src/_eu/support/AutoPlayer.js",
         "src/_eu/scenes/MainGS.js",
         "src/_eu/scenes/Tutorial.js",
         "src/_eu/scenes/LoadLevelScene.js",

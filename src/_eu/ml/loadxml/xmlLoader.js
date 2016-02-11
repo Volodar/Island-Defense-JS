@@ -496,7 +496,6 @@ EU.xmlLoader = {
             var folder = _folder(str);
             var frames = _frames(str, folder);
 
-            //TODO: createAnimation in Animation.js
             var animation = EU.Animation.createAnimation(frames, duration);
             if (animation) {
                 animation.retain();
