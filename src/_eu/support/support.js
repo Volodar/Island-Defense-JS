@@ -13,6 +13,51 @@
 //Define namespace
 var EU = EU || {};
 
+/**Type:Array<cc.p> */EU.Route = [];
+
+EU.UnitLayer = {
+    earth : 0,
+    sky : 1,
+    sea : 2,
+    any : 3
+};
+
+EU.UnitType = {
+    creep : 0,
+    tower: 1,
+    desant: 2,
+    hero: 3,
+    other: 4
+};
+
+EU.RouteSubType = {
+    defaultvalue : -1,
+    random : -1,
+    main : 0,
+    left0 : 1,
+    right0 : 2,
+    max : 3
+};
+
+EU.TripleRoute = cc.Class.extend({
+    type : null,
+    main : null,
+    left : null,
+    right : null,
+    ctor: function(){
+        this.type = EU.RouteSubType.main;
+        this.main = [];
+        this.left = [];
+        this.right = [];
+    }
+});
+
+EU.BodyType = {
+    defaultvalue : 0,
+    equipment : 0,
+    meat : 1
+};
+
 /**
  * Maybe duplicate with ccs.extBezierTo if using 'cocostudio' extension/package.
  * @param a
@@ -295,7 +340,7 @@ EU.MouseHoverScroll = {
             onMouseMove: this.mouseHover,
             onMouseUp: null,
             onMouseDown: null,
-            onMouseScroll: null,
+            onMouseScroll: null
         });
         cc.eventManager.addListener(this.touchListener, -9999);
         this.node = null;

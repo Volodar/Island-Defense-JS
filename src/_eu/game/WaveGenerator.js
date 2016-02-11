@@ -38,29 +38,19 @@ EU.WaveGenerator = {
     m_waves: [],
 
     /** @type {EU.WaveInfo} */
-    m_currentWave: new EU.WaveInfo(),
+    m_currentWave: null,
 
-    /** @type {EU.TimeCounter} */ m_delayUnits : new EU.TimeCounter(),
-    /** @type {EU.TimeCounter} */ m_delayWaves : new EU.TimeCounter(),
+    /** @type {EU.TimeCounter} */ m_delayUnits : null,
+    /** @type {EU.TimeCounter} */ m_delayWaves : null,
     /** @type {Boolean} */ m_delayWavesNow : true,
     /** @type {Boolean} */ m_isRunning : true,
 
 
-    /*
-     samples:
-     <waves defaultdelayonewave="5">
-     <wave index="0">
-     <creep name="tank" delay="1" healthrate="1" score="10"/>
-     <creep name="car" delay="0.5" healthrate="1" score="10"/>
-     <creep name="car" delay="0.5" healthrate="1" score="10"/>
-     <creep name="car" delay="0.5" healthrate="1" score="10"/>
-     <creep name="car" delay="0.5" healthrate="1" score="10"/>
-     </wave>
-     <wave index="0" defaultdelay="2.9" defaulthealthrate="1" defaultscore="10" defaultname="rotorplane0" count="5" />
-     </waves>
-
-     */
-
+    init: function(){
+        this.m_currentWave = new EU.WaveInfo();
+        this.m_delayUnits = new EU.Common.TimeCounter();
+        this.m_delayWaves = new EU.Common.TimeCounter();
+    },
     load: function(node)
     {
         this.m_delayWaves.set( EU.asObject(node.getAttribute("defaultdelayonewave"), 0.0) );
@@ -74,18 +64,18 @@ EU.WaveGenerator = {
                 var wave = this.m_waves[this.m_waves.length - 1];
                 wave.index = index++;
 
-                wave.type = EU.Common.strToUnitLayer( EU.asObject(waveXml.getAttribute("routetype"), null) );
+                wave.type = EU.strToUnitLayer( EU.asObject(waveXml.getAttribute("routetype"), null) );
                 var dname = EU.asObject(waveXml.getAttribute("defaultname"), null);
                 var dhealthRate = EU.asObject(waveXml.getAttribute("defaulthealthrate"), 0.0);
                 var dscore = EU.asObject(waveXml.getAttribute("defaultscore"), 0.0);
                 var ddelay = EU.asObject(waveXml.getAttribute("defaultdelay"), 0.0);
-                var droutest = EU.Common.strToRouteSubType( EU.asObject(waveXml.getAttribute("defaultroutesubtype"), null) );
+                var droutest = EU.strToRouteSubType( EU.asObject(waveXml.getAttribute("defaultroutesubtype"), null) );
                 var drouteindex = EU.asObject(waveXml.getAttribute("defaultrouteindex"), 0);
                 var count = EU.asObject(waveXml.getAttribute("count"), 0);
 
                 if ( count != 0 )
                 {
-                    EU.assert(dname.empty() == false );
+                    EU.assert(dname ? dname.length > 0 : false );
                     EU.assert(dhealthRate != 0 );
                     EU.assert(dscore != 0 );
                     EU.assert(ddelay != 0 );
@@ -109,7 +99,7 @@ EU.WaveGenerator = {
                         var score = EU.asObject(creep.getAttribute("score"), 0);
                         var delay = EU.asObject(creep.getAttribute("delay"), 0.0);
                         /**RouteSubType */
-                        var routest = EU.Common.strToRouteSubType( EU.asObject(creep.getAttribute("routesubtype") ));
+                        var routest = EU.strToRouteSubType( EU.asObject(creep.getAttribute("routesubtype") ));
                         var routeindex = EU.asObject(creep.getAttribute("routeindex"), 0);
                         if ( EU.xmlLoader.stringIsEmpty(name) ) name = dname;
                         if ( healthRate == 0 ) healthRate = dhealthRate;
@@ -180,7 +170,7 @@ EU.WaveGenerator = {
         if ( this.m_currentWave != this.m_waves.slice(-1)[0] && this.m_currentWave.valid() )
         {
             this.m_delayUnits.tick( dt );
-            if( this.m_delayUnits )
+            if( this.m_delayUnits.is() )
             {
                 this.generateCreep();
                 if( this.m_currentWave.valid() )
@@ -302,3 +292,7 @@ EU.WaveInfo = cc.Class.extend(
         this.routeIndex.shift();
     }
 });
+
+(function(){
+    EU.WaveGenerator.init();
+})();
