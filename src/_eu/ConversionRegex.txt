@@ -22,7 +22,7 @@ this.
 var
 
 
- (addChild|removeChild|runAction|scheduleUpdate|removeFromParent)
+ (addChild|removeChild|runAction|scheduleUpdate|removeFromParent|runEvent|unscheduleUpdate|hideConfirmButton)
  this.$1
 
  push_back
@@ -60,8 +60,8 @@ const
 
 .Pointer
 
- &[^&]
-(space)
+ &([^&])
+ $1
 
 Touch *
 
@@ -98,7 +98,7 @@ cc.view
  set
  this.set
 
-function\( *([^, ]+) (\w+) *\)
+function\( *([^, ]+) +(\w+) *\)
 function\( /**@type {$1} */ $2 )
 
 function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
@@ -121,6 +121,8 @@ Math.m
 
 strTo
 EU.Common.strTo
+intToStr
+
 
 k.
 EU.k.
@@ -167,5 +169,13 @@ EU.xmlLoader.k(\w+)
 EU.xmlKey.$1.int
 ImageManager.shared()
 EU.ImageManager
+ScoreCounter.shared()
+EU.ScoreCounter
+mlTowersInfo.shared()
+EU.mlTowersInfo
+TutorialManager.shared( )
+EU.TutorialManager
 this.~(\w+)
 onExit: function
+kScore
+EU.kScore

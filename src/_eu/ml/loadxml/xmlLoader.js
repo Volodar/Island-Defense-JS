@@ -458,6 +458,7 @@ EU.xmlLoader = {
                             if (indexformat.length < b.length) indexformat = b;
                             var l = parseInt(a);
                             var r = parseInt(b);
+                            EU.assert(!isNaN( l ) && !isNaN(  r  ));
                             for (var i = l; i != r; (r > l ? ++i : --i)) {
                                 indexes.push(i);
                             }
