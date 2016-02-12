@@ -3,7 +3,7 @@
 	<normal startscore="375" healths="20" star1="1" star2="10" star3="15" wave_cooldown="10" />
 	<hard startscore="250" healths="1" star1="1" star2="1" star3="1" wave_cooldown="5" exclude="icegun,roketgun,teslagun,firegun" />
 	<waves defaultdelayonewave="30">
-		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="1" defaultname="soldier" />
+		<wave routetype="earth" defaultdelay="0.5" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="5" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="6" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="7" defaultname="soldier" />
 		<wave routetype="earth" defaultdelay="1" defaulthealthrate="0.75" defaultscore="5" defaultroutesubtype="random" defaultrouteindex="0" count="8" defaultname="soldier" />

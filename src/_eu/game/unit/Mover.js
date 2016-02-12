@@ -36,12 +36,14 @@ EU.Mover = cc.Class.extend(
         var xmlangles = xmlparams.getElementsByTagName("allowangles")[0];
         var xmlthresold = xmlparams.getElementsByTagName("thresold")[0];
 
-        var angles = xmlangles.getAttribute("value").split(',');
-        for (var i = 0; i < angles.length; i++) {
-            var angle = angles[i];
-            this._allowAngles.push(parseInt(angle));
+        if( xmlangles ) {
+            var angles = xmlangles.getAttribute("value").split(',');
+            for (var i = 0; i < angles.length; i++) {
+                var angle = angles[i];
+                this._allowAngles.push(parseInt(angle));
+            }
         }
-        this._thresold = parseFloat(xmlthresold.attribute("value"));
+        if( xmlthresold )this._thresold = parseFloat(xmlthresold.getAttribute("value"));
     },
 
     update: function (dt) {
@@ -51,16 +53,17 @@ EU.Mover = cc.Class.extend(
         var direction = cc.p(0, 0);
 
         var moveVelocity = this._velocity;
-        while (this._route.length > 0) {
-            direction = cc.pSub( this._route[0], this.getPosition());
-            var T = cc.pLength(direction) / (moveVelocity * dt);
-            if (T < 1)
-                this._route.shift();
-            else
-                break;
+        if( moveVelocity * dt > 0 ) {
+            while (this._route.length > 0) {
+                direction = cc.pSub(this._route[0], this.getPosition());
+                var T = cc.pLength(direction) / (moveVelocity * dt);
+                if (T < 1)
+                    this._route.shift();
+                else
+                    break;
+            }
+            cc.pNormalizeIn(direction);
         }
-        cc.pNormalizeIn(direction);
-
         var isometric = (1 + Math.abs(direction.x)) / 2;
         var shift = cc.pMult(direction, moveVelocity * dt * isometric);
 

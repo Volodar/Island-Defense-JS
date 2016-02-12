@@ -132,24 +132,24 @@ EU.MachineUnit = function() {
     {},
     this.load_params = function(/**@type {Element} */xmlparams )
     {
-        var xmlfire = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitStateFire )[0];
-        var xmlwait = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitStateWait )[0];
-        var xmlcocking = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitStateCocking )[0];
-        var xmlcharging = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitStateCharging )[0];
-        var xmlrelaxation = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitStateRelaxation )[0];
-        var xmldeath = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitDie )[0];
-        var xmlenter = xmlparams.getElementsByTagName( EU.k.xmlTag.MachineUnitEnter )[0];
+        var xmlfire = xmlparams.getElementsByTagName( EU.k.MachineUnitStateFire )[0];
+        var xmlwait = xmlparams.getElementsByTagName( EU.k.MachineUnitStateWait )[0];
+        var xmlcocking = xmlparams.getElementsByTagName( EU.k.MachineUnitStateCocking )[0];
+        var xmlcharging = xmlparams.getElementsByTagName( EU.k.MachineUnitStateCharging )[0];
+        var xmlrelaxation = xmlparams.getElementsByTagName( EU.k.MachineUnitStateRelaxation )[0];
+        var xmldeath = xmlparams.getElementsByTagName( EU.k.MachineUnitDie )[0];
+        var xmlenter = xmlparams.getElementsByTagName( EU.k.MachineUnitEnter )[0];
 
-        this._fireReady.charge_volume = parseInt(xmlfire.attribute( "charge_volume" ));
+        if( xmlfire )this._fireReady.charge_volume = parseInt(xmlfire.getAttribute( "charge_volume" ));
         this._fireReady.charge_volume_default = this._fireReady.charge_volume;
-        this._fireReady.delay = parseFloat(xmlfire.attribute( "delay" ));
-        this._fireReady.havetarget = !(xmlfire.attribute( "havetarget" ) === "no");
-        this._wait.duration = parseFloat(xmlwait.attribute( "duration" ));
-        this._cocking.duration = parseFloat(xmlcocking.attribute( "duration" ));
-        this._charging.duration = parseFloat(xmlcharging.attribute( "duration" ));
-        this._relaxation.duration = parseFloat(xmlrelaxation.attribute( "duration" ));
-        this._death.duration = parseFloat(xmldeath.attribute( "duration" ));
-        this._enter.duration = parseFloat(xmlenter.attribute( "duration" ));
+        if( xmlfire )this._fireReady.delay = parseFloat(xmlfire.getAttribute( "delay" ));
+        if( xmlfire )this._fireReady.havetarget = EU.Common.strToBool(xmlfire.getAttribute( "havetarget" ));
+        if( xmlwait )this._wait.duration = parseFloat(xmlwait.getAttribute( "duration" ));
+        if( xmlcocking )this._cocking.duration = parseFloat(xmlcocking.getAttribute( "duration" ));
+        if( xmlcharging )this._charging.duration = parseFloat(xmlcharging.getAttribute( "duration" ));
+        if( xmlrelaxation )this._relaxation.duration = parseFloat(xmlrelaxation.getAttribute( "duration" ));
+        if( xmldeath )this._death.duration = parseFloat(xmldeath.getAttribute( "duration" ));
+        if( xmlenter )this._enter.duration = parseFloat(xmlenter.getAttribute( "duration" ));
     },
     this.capture_target = function( target )
     {
@@ -159,11 +159,6 @@ EU.MachineUnit = function() {
     this.get_target = function( )
     {
         return null;
-    },
-    this.update = function(dt )
-    {
-        this.process( );
-        this.current_state().update( dt);
     },
     this.move = function( )
     {
@@ -522,3 +517,9 @@ EU.MachineUnit.Event = Object.freeze(
     event_die : 9,
     event_unknow : 10
 });
+
+EU.MachineUnit.prototype.update = function(dt )
+{
+    this.process( );
+    this.current_state().update( dt);
+};

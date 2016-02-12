@@ -36,15 +36,15 @@ EU.MachineExt = function(){
         for(var i=0; i < xmlmachine.children.length; i++){
             var xmlnode = xmlmachine.children[i];
             var tag = xmlnode.tagName;
-            if( tag == EU.k.xmlTag.MachineUnitStateTransitions )
+            if( tag == EU.k.MachineUnitStateTransitions )
                 this.load_transitions( xmlnode );
-            else if( tag == EU.k.xmlTag.MachineUnitParams )
+            else if( tag == EU.k.MachineUnitParams )
                 this.load_params( xmlnode );
             else
                 this.load_other( xmlnode );
         }
 
-        var statename = xmlmachine.getAttribute( EU.k.xmlTag.StartState );
+        var statename = xmlmachine.getAttribute( EU.k.StartState );
         if( EU.xmlLoader.stringIsEmpty(statename) == false )
         {
             var state = this.state_str( statename );
@@ -70,7 +70,7 @@ EU.MachineExt = function(){
             var node = xmltransitions.children[i];
             var state = node.tagName;
             var event = node.attributes[0].name;
-            var tostate = node.getAttribute( event );
+            var tostate = node.attributes[0].value;
 
             var from = this.state_str( state );
             var to = this.state_str( tostate );
