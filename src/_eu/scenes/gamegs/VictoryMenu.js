@@ -22,6 +22,7 @@ EU.VictoryMenu = cc.Node.extend(
     ctor: function( victory, scores, stars )
     {
         this._super();
+        this.initExt();
 
         //if ( EU.NodeExt.prototype.init.call(this) ) return false;
         var self = this;

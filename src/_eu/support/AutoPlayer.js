@@ -43,7 +43,7 @@ EU.AutoPlayer = cc.Class.extend(
     {
         var scene = cc.director.getRunningScene();
         var node = scene.getChildByName( "maplayer" );
-        return node.__MapLayer ? node : null;
+        return node && node.__MapLayer ? node : null;
     },
 
     getGame: function()
@@ -76,7 +76,7 @@ EU.AutoPlayer = cc.Class.extend(
             this._currentLevel = 0;
 
         //TODO: check if setTimeScale can replace setTimeRate
-        cc.scheduler.setTimeScale( rate );
+        cc.director.getScheduler().setTimeScale( rate );
 
         this.SCHEDULE( this.state_selectLevel, 1 );
 
@@ -272,7 +272,7 @@ EU.AutoPlayer.firstUseInstance = true;
 EU.AutoPlayer._getInstance = function () {
     if (EU.AutoPlayer.firstUseInstance) {
         EU.AutoPlayer.firstUseInstance = false;
-        EU.AutoPlayer.sharedInstance = new EU.AutoPlayer();
+        EU.AutoPlayer.sharedInstance = new EU.AutoPlayer(null, null, 1, false);
     }
     return EU.AutoPlayer.sharedInstance;
 };

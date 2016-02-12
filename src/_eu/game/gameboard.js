@@ -471,7 +471,7 @@ EU.GameBoard = cc.Class.extend({
             EU.UserData.level_getScoresByIndex( this.levelIndex );
             EU.UserData.level_setScoresByIndex( this.levelIndex, this.statisticsParams.stars );
 
-            if( this.gameMode == GameMode.normal  )
+            if( this.gameMode == EU.GameMode.normal  )
             {
                 if( EU.UserData.get_bool( "level_successfull" + this.levelIndex ) == false )
                 {

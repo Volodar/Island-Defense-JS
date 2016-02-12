@@ -130,6 +130,7 @@ EU.Unit = cc.Node.extend({
 
     ctor: function()
     {
+        this.initExt();
         this._params = new EU.ParamCollection();
         this._actions = [];
         this._events = [];
@@ -215,8 +216,8 @@ EU.Unit = cc.Node.extend({
         this._maxLevelForLevel = level ;
 
         var cb = this.on_mover;
-        this._mover._onChangePosition = cb ;
-        this._mover._onFinish = this.on_movefinish ;
+        this._mover._onChangePosition = cb.bind(this) ;
+        this._mover._onFinish = this.on_movefinish.bind(this) ;
 
         //if( this._type == UniType.tower )
         //{
@@ -243,19 +244,19 @@ EU.Unit = cc.Node.extend({
 
     loadXmlEntity : function(/**@type {String} */ tag, /** @type {Element} */ xmlnode )
     {
-        if( tag == EU.k.xmlTag.MachineUnit )
+        if( tag == EU.k.MachineUnit )
         {
             this.load_xmlmachine( xmlnode );
         }
-        else if( tag == EU.k.xmlTag.Effects )
+        else if( tag == EU.k.Effects )
         {
             this._effect.load_node( xmlnode );
         }
-        else if( tag == EU.k.xmlTag.Mover )
+        else if( tag == EU.k.Mover )
         {
             this._mover.load_element( xmlnode );
         }
-        else if( tag == EU.k.xmlTag.ExtraProperties )
+        else if( tag == EU.k.ExtraProperties )
         {
             this._extra._electroPosition = EU.Common.strToPoint( xmlnode.getAttribute( "electro_pos" ) );
             this._extra._electroSize = xmlnode.getAttribute( "electro_size" );
@@ -265,7 +266,7 @@ EU.Unit = cc.Node.extend({
             this._extra._freezingPosition = EU.Common.strToPoint( xmlnode.getAttribute( "freezing_pos" ) );
             this._extra._freezingScale = EU.asObject(xmlnode.getAttribute( "freezing_scale" ) , 0.5 );
         }
-        else if( tag == EU.k.xmlTag.UnitSkills )
+        else if( tag == EU.k.UnitSkills )
         {
             this.loadXmlSkills( xmlnode );
         }
@@ -323,8 +324,8 @@ EU.Unit = cc.Node.extend({
             var velocity = EU.Common.strToFloat( value );
             //var random = CCRANDOM_MINUS1_1() * 0.1f + 1;
             //velocity *= random;
-            this._mover.setVelocity( velocity );
-            this._mover.setDefaultVelocity( velocity );
+            this._mover._velocity = velocity ;
+            this._mover._defaultvelocity = velocity ;
         }
         else if( name == "unittype" )
         {

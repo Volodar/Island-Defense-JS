@@ -72,7 +72,7 @@ EU.ImageManager  = {
             frame = this.frames[spriteFrameOrTexture];
         if( frame )
         {
-            sprite = new cc.Sprite( frame );
+            sprite = new cc.SpriteFrame( frame );
         }
         else
         {
