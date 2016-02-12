@@ -37,10 +37,10 @@ EU.MainGS = cc.Layer.extend({
 
     },
     pushGame: function () {
-        var scene = EU.GameGS.createScene();
-        EU.GameGSInstance.getGameBoard().loadLevel( 0, EU.GameMode.normal );
-        cc.director.pushScene(scene);
-        //cc.director.pushScene(EU.MapLayer.scene());
+        //var scene = EU.GameGS.createScene();
+        //EU.GameGSInstance.getGameBoard().loadLevel( 0, EU.GameMode.normal );
+        //cc.director.pushScene(scene);
+        cc.director.pushScene(EU.MapLayer.scene());
     },
     closeRedeemMsg: function(){},
     exit: function(){

@@ -35,7 +35,7 @@
           "/>
     <node type="menu" name="menu" pos="0x70" visible="no">
       <children>
-        <node name="activate" type="menuitem" imageN="images/gamescene/button_dyn.png" callback="push_event:die" opacity="128"/>
+        <node name="activate" type="menuitem" imageN="gamescene::button_dyn.png" callback="push_event:die" opacity="128"/>
       </children>
     </node>
   </children>

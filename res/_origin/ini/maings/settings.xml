@@ -1,14 +1,14 @@
 <menu name="pause">
   <children>
-    <node name="bg" type="sprite" image="images/gamescene/pause/pause_window.png" z="-1"/>
+    <node name="bg" type="sprite" image="gamescene::pause/pause_window.png" z="-1"/>
     <node name="caption" type="text" font="fonts/mdefensefont.fnt" text="#settings#" pos="0x180" scale="0.8x0.8"/>
 
-    <node name="resume" type="menuitem" imageN ="images/gamescene/pause/button_x.png" pos="225x177" sound="##sound_button##" callback="resume"/>
+    <node name="resume" type="menuitem" imageN ="gamescene::pause/button_x.png" pos="225x177" sound="##sound_button##" callback="resume"/>
 
-    <node name="music_on" type="menuitem" imageN ="images/gamescene/pause/button_music.png" pos="-55x40" visible="no" sound="##sound_button##" callback="music_on"/>
-    <node name="sound_on" type="menuitem" imageN ="images/gamescene/pause/button_sound1.png" pos="55x40" visible="no" sound="##sound_button##" callback="sound_on"/>
-    <node name="music_off" type="menuitem" imageN ="images/gamescene/pause/button_music2.png" pos="-55x40" sound="##sound_button##" callback="music_off"/>
-    <node name="sound_off" type="menuitem" imageN ="images/gamescene/pause/button_sound2.png" pos="55x40" sound="##sound_button##" callback="sound_off"/>
+    <node name="music_on" type="menuitem" imageN ="gamescene::pause/button_music.png" pos="-55x40" visible="no" sound="##sound_button##" callback="music_on"/>
+    <node name="sound_on" type="menuitem" imageN ="gamescene::pause/button_sound1.png" pos="55x40" visible="no" sound="##sound_button##" callback="sound_on"/>
+    <node name="music_off" type="menuitem" imageN ="gamescene::pause/button_music2.png" pos="-55x40" sound="##sound_button##" callback="music_off"/>
+    <node name="sound_off" type="menuitem" imageN ="gamescene::pause/button_sound2.png" pos="55x40" sound="##sound_button##" callback="sound_off"/>
 
     <node name="fullscreen" type="menuitem" pos="-75x-100" imageN="images/maings/checkbutton_off.png" callback="fullscreen">
       <paramcollection>

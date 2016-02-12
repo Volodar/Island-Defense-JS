@@ -1,8 +1,8 @@
 <node type="scrollmenu">
   <children_nonscissor>
-    <node type="sprite" name="bg" image="images/gamescene/menutower/menu_upgrade0.png" z="-1"/>
+    <node type="sprite" name="bg" image="gamescene::menutower/menu_upgrade0.png" z="-1"/>
 
-    <node type="sprite" name="desc" pos="125x0" image="images/gamescene/menucreatetower/hint_panel.png" z="-1" center="0x0.5" opacity="0">
+    <node type="sprite" name="desc" pos="125x0" image="gamescene::menucreatetower/hint_panel.png" z="-1" center="0x0.5" opacity="0">
       <children>
         <node name="name" type="text" font="fonts/mdefensefont2.fnt" text="Anti-aircraft gun" z="2" pos="123x225"  opacity="0" strech="230x50:min"/>
         <node name="text" type="text" font="fonts/helvetica.fnt" text="Anti-aircraft gun" scale="0.6x0.6" z="2" pos="123x200" center="0.5x1" opacity="0" textwidth="220"/>
@@ -15,31 +15,31 @@
   </children_nonscissor>
  
   <items>
-    <node type="menuitem" name="upgrade" pos="0x95" imageN="images/gamescene/menutower/menu_upgrade1.png" visible="yes">
+    <node type="menuitem" name="upgrade" pos="0x95" imageN="gamescene::menutower/menu_upgrade1.png" visible="yes">
       <children>
-        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node type="sprite" name="cost_bg" pos="41x0" image="gamescene::menutower/menu_price.png" z="1"/>
         <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     
-    <node type="menuitem" name="upgrade_un" pos="0x95" imageN="images/gamescene/menutower/menu_upgrade2.png" visible="no">
+    <node type="menuitem" name="upgrade_un" pos="0x95" imageN="gamescene::menutower/menu_upgrade2.png" visible="no">
       <children>
-        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node type="sprite" name="cost_bg" pos="41x0" image="gamescene::menutower/menu_price.png" z="1"/>
         <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
     
-    <node type="menuitem" name="lock" pos="0x95" imageN="images/gamescene/menutower/menu_lock2.png" z="9"/>
+    <node type="menuitem" name="lock" pos="0x95" imageN="gamescene::menutower/menu_lock2.png" z="9"/>
     
-    <node type="menuitem" name="sell" pos="0x-95" imageN="images/gamescene/menutower/menu_sell1.png" visible="yes">
+    <node type="menuitem" name="sell" pos="0x-95" imageN="gamescene::menutower/menu_sell1.png" visible="yes">
       <children>
-        <node type="sprite" name="cost_bg" pos="41x0" image="images/gamescene/menutower/menu_price.png" z="1"/>
+        <node type="sprite" name="cost_bg" pos="41x0" image="gamescene::menutower/menu_price.png" z="1"/>
         <node name="cost" type="text" pos="40x2" font="fonts/helvetica.fnt" text="999" scale="0.5x0.5" z="2"/>
       </children>
     </node>
 
-    <node type="menuitem" name="confirm" pos="0x0" imageN="images/gamescene/menutower/menu_ok2.png" z="9"/>
-    <node type="menuitem" name="confirm_un" pos="0x0" imageN="images/gamescene/menutower/menu_ok1.png" z="9"/>
+    <node type="menuitem" name="confirm" pos="0x0" imageN="gamescene::menutower/menu_ok2.png" z="9"/>
+    <node type="menuitem" name="confirm_un" pos="0x0" imageN="gamescene::menutower/menu_ok1.png" z="9"/>
   </items>
 
   <actions>

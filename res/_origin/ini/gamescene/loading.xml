@@ -14,7 +14,7 @@
       <atlas path="images/effects/healing.red.plist"        name="healing.red"/>
       <atlas path="images/maps/animations/animations.plist"        name="maps.animations"/>
       <atlas path="images/maps/animations/animations2.plist"        name="maps.animations2"/>
-      <atlas path="images/gamescene/buttoln_skills.plist"        name="buttoln_skills"/>
+      <atlas path="gamescene::buttoln_skills.plist"        name="buttoln_skills"/>
       <atlas path="images/bonusitems/dynamit.plist"    name="dynamit"/>
       <atlas path="images/bonusitems/spacestrike.plist"    name="spacestrike"/>
       <atlas path="images/bonusitems/bombice.plist"    name="bombice"/>

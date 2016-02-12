@@ -3,27 +3,27 @@
     <autoclose value="yes"/>
   </paramcollection>
   <children>
-    <node name="box_close" type="menuitem" imageN ="images/gamescene/box_close.png" pos="0x0" sound="##sound_button##" callback="open"/>
-    <node name="box_open" type="menuitem" imageN ="images/gamescene/box_open.png" pos="0x0" sound="##sound_button##" callback="close" visible="no"/>
+    <node name="box_close" type="menuitem" imageN ="gamescene::box_close.png" pos="0x0" sound="##sound_button##" callback="open"/>
+    <node name="box_open" type="menuitem" imageN ="gamescene::box_open.png" pos="0x0" sound="##sound_button##" callback="close" visible="no"/>
 
-    <node name="item1" type="menuitem" imageN ="images/gamescene/item1.png" imageD ="images/gamescene/item1_d.png" pos="0x0" sound="##sound_button##" callback="item1" visible="no" z="-1">
+    <node name="item1" type="menuitem" imageN ="gamescene::item1.png" imageD ="gamescene::item1_d.png" pos="0x0" sound="##sound_button##" callback="item1" visible="no" z="-1">
       <children>
         <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
-    <node name="item2" type="menuitem" imageN ="images/gamescene/item2.png" imageD ="images/gamescene/item2_d.png" pos="0x0" sound="##sound_button##" callback="item2" visible="no" z="-1">
+    <node name="item2" type="menuitem" imageN ="gamescene::item2.png" imageD ="gamescene::item2_d.png" pos="0x0" sound="##sound_button##" callback="item2" visible="no" z="-1">
       <children>
         <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
-    <node name="item3" type="menuitem" imageN ="images/gamescene/item3.png" imageD ="images/gamescene/item3_d.png" pos="0x0" sound="##sound_button##" callback="item3" visible="no" z="-1">
+    <node name="item3" type="menuitem" imageN ="gamescene::item3.png" imageD ="gamescene::item3_d.png" pos="0x0" sound="##sound_button##" callback="item3" visible="no" z="-1">
       <children>
         <node name="count" type="text" font="fonts/helveticastoke.fnt" text="0" pos="50x18" scale="0.5x0.5"/>
       </children>
     </node>
-    <node name="itemshop" type="menuitem" imageN ="images/gamescene/button_itemshop.png" pos="0x0" sound="##sound_button##" callback="itemshop" visible="no" z="-1" scale="0.65x0.65"/>
+    <node name="itemshop" type="menuitem" imageN ="gamescene::button_itemshop.png" pos="0x0" sound="##sound_button##" callback="itemshop" visible="no" z="-1" scale="0.65x0.65"/>
 
-    <node name="bgitems" type="sprite" image="images/gamescene/box_bg.png" center="1x0.5" scale="0x1" z="-2"/>
+    <node name="bgitems" type="sprite" image="gamescene::box_bg.png" center="1x0.5" scale="0x1" z="-2"/>
   </children>
 
   <actions>

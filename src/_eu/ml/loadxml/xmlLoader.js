@@ -380,7 +380,6 @@ EU.xmlLoader = {
         var buildAnimation = function (duration, value) {
             /**
              *
-             * @param {String} string
              * @returns {*}
              * @private
              */
@@ -401,7 +400,6 @@ EU.xmlLoader = {
             };
             /**
              *
-             * @param {String} string
              * @param {String} folder
              * @returns {*}
              * @private
@@ -427,7 +425,7 @@ EU.xmlLoader = {
                     var lindexes = "indexes:";
                     var list = [];
                     var frames = [];
-                    var k = string.indexOf(lindexes);
+                    k = string.indexOf(lindexes);
                     if (k == 0 || k == 1)
                         string = string.substr(k + lindexes.length);
                     if (string[string.length - 1] == ']') {
@@ -445,7 +443,7 @@ EU.xmlLoader = {
                     var indexformat = [];
                     var indexes = [];
                     while (list.length > 0) {
-                        var string = list[0];
+                        string = list[0];
                         var k = string.indexOf(":");
                         if (k < 0) {
                             var index = parseInt(string);
@@ -471,16 +469,17 @@ EU.xmlLoader = {
                     function zeroPad(nr, length) {
                         var len = (length - String(nr).length) + 1;
                         return len > 0 ? new Array(len).join('0') + nr : nr;
-                    };
+                    }
 
                     var format = "%0" + indexformat.length + "d";
-                    for (var i in indexes) {
-                        var frameext = frame + zeroPad(i, indexformat.length) + ext;
-                        var name = folder + frameext;
+                    for (i =0; i<indexes.length; ++i) {
+                        index = indexes[i];
+                        var frameext = frame + zeroPad(index, indexformat.length) + ext;
+                        var frameName = folder + frameext;
                         //TODO: ImageManager
-                        var frame = EU.ImageManager.getSpriteFrame(name);
-                        if (frame)
-                            frames.push(name);
+                        var spriteFrame = EU.ImageManager.getSpriteFrame(frameName);
+                        if (spriteFrame)
+                            frames.push(frameName);
                     }
 
                     return frames;

@@ -1,5 +1,5 @@
 <node name="score" type="node" cascadecolor="yes" cascadeopacity="yes" pos="100x100">
   <children>
-    <node name="icon" type="sprite" pos="0x0" image="images/gamescene/##resource##" center="0x0.5"/>
+    <node name="icon" type="sprite" pos="0x0" image="gamescene::##resource##" center="0x0.5"/>
   </children>
 </node>
