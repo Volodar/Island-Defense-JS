@@ -10,6 +10,8 @@
  * If you received the code not from the author, please contact us
  ******************************************************************************/
 
+//Define namespace
+var EU = EU || {};
 
 EU.GamePauseLayer = cc.Menu.extend(
 {
@@ -169,7 +171,7 @@ EU.GamePauseLayer = cc.Menu.extend(
                 this.checkFullscreen();
 
                 var layer = new this.DialogRestartGame();
-                var scene = this.getScene(); //SmartScene
+                var scene = EU.Common.getSceneOfNode(this);
                 scene.pushLayer( layer, true );
             };
             return cb.bind(this);
@@ -310,4 +312,4 @@ EU.GamePauseLayer = cc.Menu.extend(
 
 });
 
-//public NodeExt
+EU.NodeExt.call(EU.GamePauseLayer.prototype);

@@ -219,8 +219,6 @@ EU.Event = cc.Class.extend({
 });
 
 
-
-
 EU.Machine = function(){
 
     /** For Test Instance of */
@@ -230,7 +228,7 @@ EU.Machine = function(){
         this._states = [];
         this._events = [];
         this._eventsQueue = []
-    }
+    };
     this.add_state = function( nameState, onActivate )
     {
         var i = this._state( nameState );

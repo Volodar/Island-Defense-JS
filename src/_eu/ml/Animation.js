@@ -14,7 +14,22 @@
 var EU = EU || {};
 
 EU.Animation = {
+
+    createAnimation: function( a, b, c, d, e) {
+        "use strict";
+        if ( e !== undefined ) {
+            this.createAnimation_n(a,b,c,d,e)
+        }
+        else if ( d !== undefined ) {
+            this.createAnimation_i(a,b,c,d)
+        }
+        else if ( b !== undefined ) {
+            this.createAnimation_t(a,b)
+        }
+    },
+
     createAnimation_n: function (path, firstIndex, lastIndex, fileExt, duration) {
+        "use strict";
         var buildIndex = function (firstIndex, lastIndex, index) {
             var result = index.toString();
             var numbers = Math.max(firstIndex.toString().length, lastIndex.toString().length);
@@ -38,6 +53,7 @@ EU.Animation = {
     },
 
     createAnimation_i: function (path, indexes, fileExt, duration) {
+        "use strict";
         var files = [];
         for (var i = 0; i < indexes; ++i )
         {
@@ -46,6 +62,7 @@ EU.Animation = {
         return this.createAnimation(files, duration);
     },
     createAnimation_t: function (textures, duration) {
+        "use strict";
         var frames = [];
         for (var i = 0; i < textures.length; ++i) {
             var texturePath = textures[i];

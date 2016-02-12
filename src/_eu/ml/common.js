@@ -392,7 +392,7 @@ EU.Common = {
             root = curr;
             curr = root.getParent();
         }
-        return root;
+        return root instanceof cc.Scene ? root : null;
     },
 
     /**
@@ -415,7 +415,7 @@ EU.Common = {
             else if (name == ".") {
             }
             else if (name.length == 0 && path_names[0] == '/') {
-                node = node.getScene();
+                node = EU.Common.getSceneOfNode(node);
                 if (node == null)
                     node = cc.director.getRunningScene();
             }

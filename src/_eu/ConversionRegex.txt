@@ -8,18 +8,21 @@
 ^    (.+) _(\w+);
     /** @type {$1} */ _$2 : null,
 
+
+3. Class NS to this,  addChild to this
+ClassName::
+this.
+Node.
+this.
+
 2. For auto, unsigned
 (::|->)
 .
-(auto | int |float |unsigned |std::string|std.string |bool |Point |Vec2 )
+(auto | int |float |unsigned |std::string|std.string |bool |Point |Vec2 |size_t |IntrusivePtr )
 var
 
 
-3. Class NS to this,  addChild to this
-ClassName.
-this.
-
- (addChild|removeChild)
+ (addChild|removeChild|runAction|scheduleUpdate|removeFromParent)
  this.$1
 
  push_back
@@ -30,6 +33,8 @@ EU.assert
 
 .empty() == false
 .length > 0
+.empty()
+.length == 0
 
 .back()
 .slice(-1)[0]
@@ -43,33 +48,35 @@ pop()
 nullptr
 null
 
-4. void this.functionName to functionName : function, replace create with new
-\w+ this.(\w+)
-$1: function
-(\w+).create
-new cc.$1
 
 5. replace property with this.property
- _(\w+)
- this._$1
+([^/*//][^\w"\.])_(\w+)
+$1this._$2
 (_
 (this._
 
 7. replace <type>, const, Pointer, & to empty string
-<(\w+)*>
-
 const
 
-Pointer
+.Pointer
 
- &
+ &[^&]
+(space)
 
 Touch *
 
 .ptr()
 
+.c_str()
+
 .as_string()
 
+
+4. void this.functionName to functionName : function, replace create with new
+\w+ this.(\w+)
+$1: function
+(\w+).create
+new cc.$1
 
 7. replace xxf to xx
 (\d)f
@@ -90,8 +97,6 @@ cc.director.getOpenGLView()
 cc.view
  set
  this.set
-strToFloat
-parseFloat
 
 function\( *([^, ]+) (\w+) *\)
 function\( /**@type {$1} */ $2 )
@@ -99,8 +104,68 @@ function\( /**@type {$1} */ $2 )
 function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
 function\( /**@type {$1} */ $2, /**@type {$3} */ $4 )
 
+function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
+function\( /**@type {$1} */ $2, /**@type {$3} */ $4, /**@type {$5} */ $6 )
+
+function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
+function\( /**@type {$1} */ $2, /**@type {$3} */ $4, /**@type {$5} */ $6, /**@type {$7} */ $8 )
+
+function\( *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *, *([^, ]+) +(\w+) *\)
+function\( /**@type {$1} */ $2, /**@type {$3} */ $4, /**@type {$5} */ $6, /**@type {$7} */ $8, /**@type {$9} */ $10 )
+
 .attribute(
 .getAttribute(
 
 std.m
 Math.m
+
+strTo
+EU.Common.strTo
+
+k.
+EU.k.
+
+std.vector<std.string>
+/**@type {Array<String>} */
+pugi.xml_document
+/**@type {Element} */
+
+CCRANDOM_MINUS1_1
+cc.randomMinus1To1
+
+createAnimation
+EU.Animation.createAnimation
+
+new cc.Animate
+cc.animate
+new cc.CallFunc
+cc.callFunc
+new cc.Sequence
+cc.sequence
+new cc.DelayTime
+cc.delayTime
+new cc.Move
+cc.move
+new cc.Fade
+cc.fade
+new cc.RemoveSelf
+cc.removeSelf
+
+std.bind\((.+),
+$1.bind(
+{Unit}
+{EU.Unit}
+{float}
+{Number}
+( 0 )
+ = 0;
+ Point(
+ cc.p(
+xmlLoader
+EU.xmlLoader
+EU.xmlLoader.k(\w+)
+EU.xmlKey.$1.int
+ImageManager.shared()
+EU.ImageManager
+this.~(\w+)
+onExit: function
