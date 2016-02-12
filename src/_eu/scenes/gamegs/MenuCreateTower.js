@@ -80,7 +80,9 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                 }
                 else
                 {
-                    name.erase( name.begin() + (name.size() - 3), name.end() );
+                    //name.erase( name.begin() + (name.length - 3), name.end() );
+                    name = name.slice( 0, -4);
+
                     this._buttonTowersUn[name] = item;
                     item.setCallback( function(p1){return self.onActivate.call(self, p1, false)} );
                 }
@@ -93,11 +95,11 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         this._desc.node = this.getChildByName( "desc" );
         if( this._desc.node )
         {
-            this._desc.name.reset( this._desc.node.getChildByName( "name" ) );
-            this._desc.text.reset( this._desc.node.getChildByName( "text" ) );
-            this._desc.dmg.reset( this._desc.node.getChildByName( "dmg" ) );
-            this._desc.rng.reset( this._desc.node.getChildByName( "rng" ) );
-            this._desc.spd.reset( this._desc.node.getChildByName( "spd" ) );
+            this._desc.name = ( this._desc.node.getChildByName( "name" ) );
+            this._desc.text = ( this._desc.node.getChildByName( "text" ) );
+            this._desc.dmg = ( this._desc.node.getChildByName( "dmg" ) );
+            this._desc.rng = ( this._desc.node.getChildByName( "rng" ) );
+            this._desc.spd = ( this._desc.node.getChildByName( "spd" ) );
         }
 
         this.setVisible( false );
@@ -129,7 +131,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         var node = sender;
         if( ! (node instanceof cc.MenuItem)) return;
         //TODO: Implement InstrusivePtr on cc.Class.prototype
-        this._hidenButton.reset( node );
+        this._hidenButton = ( node );
         //this._hidenButton.setVisible( false );
 
         var name = this._hidenButton.getName();
@@ -188,7 +190,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         this._confirmButtonUn.setVisible( false );
         if( this._hidenButton )
             this._hidenButton.setVisible( true );
-        this._hidenButton.reset( null );
+        this._hidenButton = ( null );
     },
 
     changeCost: function()
@@ -232,7 +234,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
             this.runEvent( "disappearance" );
             this._disabled = true;
 
-            EU.Support.hideRadius();
+            EU.hideRadius();
             EU.ScoreCounter.observer( EU.kScoreLevel ).remove( this.__instanceId );
             this.unscheduleUpdate();
         }

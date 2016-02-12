@@ -43,7 +43,7 @@ EU.BoxMenu = cc.Menu.extend(
 
         this.init_machine();
 
-        this.load( xml );
+        this.load_str( xml );
 
         this.displayCountItems();
 
@@ -52,6 +52,7 @@ EU.BoxMenu = cc.Menu.extend(
 
     init_machine: function()
     {
+        this.initMachine();
         this.add_state(this.state.state_close, this.callback_close.bind(this)).set_string_name("close");
         this.add_state(this.state.state_open, this.callback_open.bind( this)).set_string_name("open");
         this.add_state(this.state.state_wait, this.callback_wait.bind( this)).set_string_name("wait");
@@ -61,13 +62,13 @@ EU.BoxMenu = cc.Menu.extend(
         this.add_event( this.event.event_wait );
         this.add_event( this.event.event_cancel );
 
-        this.state( this.state.state_close ).add_transition( this.event.event_open, this.state.state_open );
-        this.state( this.state.state_open ).add_transition( this.event.event_close, this.state.state_close );
-        this.state( this.state.state_open ).add_transition( this.event.event_wait, this.state.state_wait );
-        this.state( this.state.state_wait ).add_transition( this.event.event_close, this.state.state_close );
-        this.state( this.state.state_wait ).add_transition( this.event.event_cancel, this.state.state_open );
+        this.state_tag( this.state.state_close ).add_transition( this.event.event_open, this.state.state_open );
+        this.state_tag( this.state.state_open ).add_transition( this.event.event_close, this.state.state_close );
+        this.state_tag( this.state.state_open ).add_transition( this.event.event_wait, this.state.state_wait );
+        this.state_tag( this.state.state_wait ).add_transition( this.event.event_close, this.state.state_close );
+        this.state_tag( this.state.state_wait ).add_transition( this.event.event_cancel, this.state.state_open );
 
-        this.state( this.state.state_close ).add_onDeactivateCallBack( this.close_deactivate.bind( this ) );
+        this.state_tag( this.state.state_close ).add_onDeactivateCallBack( this.close_deactivate.bind( this ) );
 
         this.start( this.state.state_close );
 
@@ -211,9 +212,10 @@ EU.BoxMenu = cc.Menu.extend(
 
     displayCountItems: function()
     {
+        var self = this;
         var display = function(index )
         {
-            var menuitem = this.getChildByName( "item" + index );
+            var menuitem = self.getChildByName( "item" + index );
             if (! menuitem instanceof cc.MenuItem) menuitem = null;
 
             var label = menuitem.getChildByName( "count" );

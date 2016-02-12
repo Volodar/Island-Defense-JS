@@ -184,7 +184,7 @@ EU.xmlLoader = {
     load_node_xml_node: function (node, xmlnode, ignodeTemplate) {
         if (node == null)
             return;
-        //const std::string& type = xmlnode.attribute( ksType.c_str() ).as_string();
+        //const std::string& type = xmlnode.getAttribute( ksType.c_str() ).as_string();
         var template_ = xmlnode.getAttribute(EU.xmlKey.Template.name);
         if (ignodeTemplate == false && this.stringIsEmpty(template_) == false) {
             this.load_node_n_str(node, EU.xmlLoader.resourcesRoot + template_);
@@ -723,19 +723,19 @@ EU.xmlLoader = {
         for (var i = 0; i < xmlnode.children.length; i++) {
             var xmlitem = xmlnode.children[i];
 
-            var imageN = this.macros.parse(xmlitem.attribute("imageN"));
-            var imageS = this.macros.parse(xmlitem.attribute("imageS"));
-            var imageD = this.macros.parse(xmlitem.attribute("imageD"));
-            var text = this.macros.parse(xmlitem.attribute("text"));
-            var font = this.macros.parse(xmlitem.attribute("font"));
+            var imageN = this.macros.parse(xmlitem.getAttribute("imageN"));
+            var imageS = this.macros.parse(xmlitem.getAttribute("imageS"));
+            var imageD = this.macros.parse(xmlitem.getAttribute("imageD"));
+            var text = this.macros.parse(xmlitem.getAttribute("text"));
+            var font = this.macros.parse(xmlitem.getAttribute("font"));
 
             var item = null;
             item = menu.getItemByName(xmlitem.getAttribute("name"));
             if (!item)
                 item = menu.push(imageN, imageS, imageD, font, text, null);
-            this.load_node_n_xml_node(item, xmlitem);
+            this.load_node_xml_node(item, xmlitem);
         }
-        menu.align(menu.getAlignedColums());
+        menu.align(menu.getAlignedColumns());
     },
     /**
      * load_nonscissor_children

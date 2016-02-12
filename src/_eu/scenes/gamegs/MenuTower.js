@@ -118,7 +118,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
             this._waitSellConfirm = false;
             this._waitUpgradeConfirm = false;
 
-            this.hideRadius();
+            EU.hideRadius();
             this.unscheduleUpdate();
             this._disabled = true;
         }

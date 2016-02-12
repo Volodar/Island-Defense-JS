@@ -185,7 +185,7 @@ EU.UserData = {
         //var node = root.child( key );
         //if( !node )
         //    node = root.appendChild( key );
-        //var attr = node.attribute( "value" );
+        //var attr = node.getAttribute( "value" );
         //if( !attr ) {
         //    var val = "value";
         //    attr = node[val]  = "";
@@ -202,7 +202,7 @@ EU.UserData = {
 
         //var root = this.UD.Doc.root().child( "root" );
         //var node = root.child( key.c_str( ) );
-        //var value = node.attribute( "value" ).as_string( "" );
+        //var value = node.getAttribute( "value" ).as_string( "" );
 
         if( !EU.xmlLoader.stringIsEmpty(value))
             value = this.kUseEncode ? this.decode( value ) : value;

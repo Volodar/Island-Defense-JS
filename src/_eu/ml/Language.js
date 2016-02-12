@@ -78,7 +78,7 @@ EU.Language  = {
         //TODO: get system language
         //var def = lang.getAttribute("default");
         //var systemlang = "en"
-        //var forced = lang.attribute("forced").value();
+        //var forced = lang.getAttribute("forced").value();
         //if (forced.length() > 0) {
         //    set(forced);
         //    return;

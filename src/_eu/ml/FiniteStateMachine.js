@@ -194,13 +194,13 @@ EU.Event = cc.Class.extend({
 
     set_name: function( name )
     {
-        EU.assert( this._machine.is_exist_event( name ) == false );
+        EU.assert( this._machine.is_exist_event_tag( name ) == false );
         this._name = name;
     },
 
     set_string_name: function(name )
     {
-        EU.assert( this._machine.is_exist_event( name ) == false );
+        EU.assert( this._machine.is_exist_event_str( name ) == false );
         this._string_name = name;
     },
     get_name: function()
@@ -231,7 +231,7 @@ EU.Machine = function(){
     };
     this.add_state = function( nameState, onActivate )
     {
-        var i = this._state( nameState );
+        var i = this._get_state( nameState );
         EU.assert( this._isvalid( i ) == false );
         var state = new EU.State( this, onActivate );
         state.set_name( nameState );
@@ -265,7 +265,7 @@ EU.Machine = function(){
 
     this.is_exist_state = function( name )
     {
-        return this._isvalid( this._state( name ) );
+        return this._isvalid( this._get_state( name ) );
     };
 
     this.is_exist_state = function( name )
@@ -278,12 +278,12 @@ EU.Machine = function(){
         return false;
     };
 
-    this.is_exist_event = function( name )
+    this.is_exist_event_tag = function( name )
     {
         return this._isvalid( this._event( name ) );
     };
 
-    this.is_exist_event = function( name )
+    this.is_exist_event_str = function( name )
     {
         for (var i = 0; i < this._fsmEvents.length; i++) {
             var event = this._fsmEvents[i];
@@ -328,7 +328,7 @@ EU.Machine = function(){
 
     this.state_tag = function( tag )
     {
-        var i = this._state( tag );
+        var i = this._get_state( tag );
         EU.assert( this._isvalid( i ) );
         return i;
     };
@@ -363,7 +363,7 @@ EU.Machine = function(){
         {
             var event = queue[0];
             var nextState = this._currentState.process( event );
-            var iState = this._state( nextState );
+            var iState = this._get_state( nextState );
             if( this._isvalid( iState ) )
             {
                 this._set_state( iState );
@@ -393,7 +393,7 @@ EU.Machine = function(){
         return null;
     };
 
-    this._state = function(tag )
+    this._get_state = function(tag )
     {
         for (var i = 0; i < this._states.length; i++) {
             var state = this._states[i];

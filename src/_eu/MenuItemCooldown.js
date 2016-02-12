@@ -59,7 +59,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
             var disabler = cc.callFunc(this.setEnabled.bind(this, false ));
             var enabler = cc.callFunc( this.setEnabled.bind(this, true ) );
             var call = cc.callFunc( this.onFull.bind(this) );
-            this._action = cc.sequence( disabler, timer, enabler, call, null );
+            this._action = cc.sequence( disabler, timer, enabler, call );
         }
 
         if( this._cancelImageResource != resourceCancel && resourceCancel.length > 0 )
@@ -172,7 +172,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
         var animation = EU.Animation.createAnimation( frames, 0.5 );
         var animate = cc.animate( animation );
         var remover = cc.callFunc( sprite.removeFromParent.bind(sprite) );
-        var action = cc.sequence( animate, remover, null );
+        var action = cc.sequence( animate, remover );
 
         sprite.runAction( action );
         this.getNormalImage().addChild( sprite, 99 );

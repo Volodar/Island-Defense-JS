@@ -24,12 +24,7 @@ EU.TouchInfo = cc.Class.extend({
     },
 });
 
-EU.MenuTower = cc.Menu.extend({});
-EU.MenuTower = cc.Menu.extend({});
-EU.MenuDig = cc.Menu.extend({});
-EU.MenuItemCooldown = cc.MenuItem.extend({});
 EU.HeroIcon = cc.Node.extend({});
-EU.BoxMenu = cc.Menu.extend({});
 
 EU.Skill = {
     desant : 0,
@@ -270,24 +265,24 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_menu.setPosition(cc.p(0,0));
         this.interface.addChild(this.interface_menu, 99);
 
-        //TODO:this.menuCreateTower = new EU.MenuCreateTower();
-        //TODO:this.menuTower = new EU.MenuTower();
-        //TODO:this.menuDig = new EU.MenuDig();
+        this.menuCreateTower = new EU.MenuCreateTower();
+        this.menuTower = new EU.MenuTower();
+        this.menuDig = new EU.MenuDig();
 
-        //TODO:this.interface.addChild(this.menuCreateTower, 999999);
-        //TODO: this.interface.addChild(this.menuTower, 999999);
-        //TODO:this.interface.addChild(this.menuDig, 999999);
-        //TODO:this.menuCreateTower.setGlobalZOrder(99999);
-        //TODO:this.menuTower.setGlobalZOrder(99999);
-        //TODO:this.menuDig.setGlobalZOrder(99999);
+        this.interface.addChild(this.menuCreateTower, 999999);
+        this.interface.addChild(this.menuTower, 999999);
+        this.interface.addChild(this.menuDig, 999999);
+        this.menuCreateTower.setGlobalZOrder(99999);
+        this.menuTower.setGlobalZOrder(99999);
+        this.menuDig.setGlobalZOrder(99999);
 
-        //TODO:this.menuCreateTower.setPosition(cc.p(0,0));
-        //TODO:this.menuCreateTower.disappearance();
-        //TODO:this.menuTower.disappearance();
-        //TODO:this.menuDig.disappearance();
+        this.menuCreateTower.setPosition(cc.p(0,0));
+        this.menuCreateTower.disappearance();
+        this.menuTower.disappearance();
+        this.menuDig.disappearance();
 
-        //TODO:this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
-        //TODO:this.addChild(this.box);
+        this.box = new EU.BoxMenu("ini/gamescene/boxmenu.xml");
+        this.addChild(this.box);
         //TODO: this.createDevMenu();
     },
 
@@ -421,8 +416,8 @@ EU.GameGS = EU.LayerExt.extend({
             //var root = doc.root();
             //for( var& xml : root )
             //{
-            //    var name = xml.attribute( "name" ).as_string();
-            //    var value = xml.attribute( "value" );
+            //    var name = xml.getAttribute( "name" ).as_string();
+            //    var value = xml.getAttribute( "value" );
             //    if( name == "max_score_for_start_wave" )
             //        this.scoresForStartWave = value.as_int();
             //}
@@ -550,7 +545,7 @@ EU.GameGS = EU.LayerExt.extend({
         var actiondesc = xmlnode.getAttribute("action");
         var x = parseFloat(xmlnode.getAttribute("x"));
         var y = parseFloat(xmlnode.getAttribute("y"));
-        //float z = xmlnode.attribute( "z" ).as_float();
+        //float z = xmlnode.getAttribute( "z" ).as_float();
 
         var pathToXml = "ini/maps/animations/" + name + ".xml";
         var doc = EU.pugixml.readXml(pathToXml);
@@ -883,7 +878,7 @@ EU.GameGS = EU.LayerExt.extend({
         //	this.menuCreateTower.setActived( this.selectedPlace != null );
     },
     onEmptyTouch: function (touchlocation) {
-        var sprite = EU.ImageManager.sprite(k.resourceGameSceneFolder + "empty_touch.png");
+        var sprite = EU.ImageManager.sprite(EU.k.resourceGameSceneFolder + "empty_touch.png");
         if (sprite) {
             this.addChild(sprite, 9);
             sprite.setPosition(touchlocation);
@@ -897,7 +892,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onForbiddenTouch: function (touchlocation) {
-        var sprite = EU.ImageManager.sprite(k.resourceGameSceneFolder + "icon_x.png");
+        var sprite = EU.ImageManager.sprite(EU.k.resourceGameSceneFolder + "icon_x.png");
         if (sprite) {
             this.addChild(sprite, 9);
             sprite.setPosition(touchlocation);

@@ -16,7 +16,7 @@ EU.NodeExt = function(){
         this._events = {};
         this._actions = {};
         this._params = new EU.ParamCollection();
-    },
+    };
     this.as_node_ref= function()
     {
         return (this instanceof cc.Node ? this : null);
