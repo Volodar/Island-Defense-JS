@@ -73,7 +73,6 @@ EU.ImageManager  = {
         if( frame )
         {
             sprite = new cc.Sprite( frame );
-            //sprite = new cc.SpriteFrame( frame );
         }
         else
         {

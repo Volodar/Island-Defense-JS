@@ -216,8 +216,8 @@ EU.Unit = cc.Node.extend({
         this._maxLevelForLevel = level ;
 
         var cb = this.on_mover;
-        this._mover._onChangePosition = cb.bind(this) ;
-        this._mover._onFinish = this.on_movefinish.bind(this) ;
+        this._mover._onChangePosition = cb ;
+        this._mover._onFinish = this.on_movefinish ;
 
         //if( this._type == UniType.tower )
         //{

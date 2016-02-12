@@ -422,9 +422,6 @@ EU.xmlLoader = {
                     return frames;
                 };
                 var _indexes = function (string) {
-                    if (string.indexOf("solder1_leftright00") > 0){
-                        cc.log("crashhere");
-                    }
                     var lindexes = "indexes:";
                     var list = [];
                     var frames = [];
@@ -449,7 +446,7 @@ EU.xmlLoader = {
                         string = list[0];
                         var k = string.indexOf(":");
                         if (k < 0) {
-                            var index = EU.Common.strToInt(string);
+                            var index = parseInt(string);
                             indexes.push(index);
                             if (indexformat.length < string.length)
                                 indexformat = string;
@@ -459,9 +456,9 @@ EU.xmlLoader = {
                             var b = string.substr(k + 1);
                             if (indexformat.length < a.length) indexformat = a;
                             if (indexformat.length < b.length) indexformat = b;
-                            var l = EU.Common.strToInt(a);
-                            var r = EU.Common.strToInt(b);
-                            for (var i = l; i!= r; (r > l ? ++i : --i)) {
+                            var l = parseInt(a);
+                            var r = parseInt(b);
+                            for (var i = l; i != r; (r > l ? ++i : --i)) {
                                 indexes.push(i);
                             }
                             indexes.push(r);
@@ -527,11 +524,11 @@ EU.xmlLoader = {
             var value = attr[index];
             var k = value.indexOf("..");
             if (k < 0) {
-                return EU.Common.strToFloat(value);
+                return parseFloat(value);
             }
             else {
-                var l = EU.Common.strToFloat(value.substr(0, k));
-                var r = EU.Common.strToFloat(value.substr(k + 2));
+                var l = parseFloat(value.substr(0, k));
+                var r = parseFloat(value.substr(k + 2));
                 var v = Math.random() * (r - l) + l;
                 EU.assert(l <= r);
                 EU.assert(v >= l && v <= r);
@@ -545,11 +542,11 @@ EU.xmlLoader = {
             var value = attr[index];
             var k = value.indexOf("..");
             if (k < 0) {
-                return EU.Common.strToInt(value);
+                return parseInt(value);
             }
             else {
-                var l = EU.Common.strToFloat(value.substr(0, k));
-                var r = EU.Common.strToFloat(value.substr(k + 2));
+                var l = parseFloat(value.substr(0, k));
+                var r = parseFloat(value.substr(k + 2));
                 var v = Math.round((Math.random() * (r - l) + l));
                 EU.assert(l <= r);
                 EU.assert(v >= l && v <= r);
