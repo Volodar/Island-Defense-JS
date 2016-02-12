@@ -146,6 +146,9 @@ EU.NodeExt = function(){
 
 
 EU.LayerExt = cc.Layer.extend({
+
+    __LayerExt: true,
+
     ctor: function(){
         this._super();
         this.initExt();
@@ -158,6 +161,8 @@ EU.LayerExt = cc.Layer.extend({
 EU.NodeExt.call(EU.LayerExt.prototype);
 
 EU.NodeExt_ = cc.Node.extend({
+    __NodeExt_: true,
+
     ctor: function(){
         this._super();
         this.initExt();
