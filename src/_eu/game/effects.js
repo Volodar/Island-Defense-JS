@@ -1,48 +1,82 @@
 //Define namespace
 var EU = EU || {};
 
+EU.NegativeDamage = cc.Class.extend({
+    damageTime: null,
+    damageRate: null,
+    ctor: function() {
+        this.damageTime = 0.0;
+        this.damageRate = 0.0;
+    }
+}),
+
 EU.mlEffect = cc.Class.extend({
 
     /** For Test Instance of */
     __mlEffect: true,
 
-    Negative: function() {
-        this.Damage = function()
-        {
-            this.damageTime = 0.0;
-            this.damageRate = 0.0;
-        };
-        this.velocityMoveRate = 0.0;
-        this.velocityMoveTimeLeft = 0.0;
-        this.armorLowRate = 0.0;
-        this.armorLowTimeLeft = 0.0;
+    Negative: cc.Class.extend({
+        velocityMoveRate: null,
+        velocityMoveTimeLeft: null,
+        armorLowRate: null,
+        armorLowTimeLeft: null,
 
-        this.fire = new this.Damage();
-        this.ice = new this.Damage();
-        this.electro = new this.Damage();
+        fire: null,
+        ice: null,
+        electro: null,
 
-        this.referentialExtendedDamageFire = 0.0;
-        this.referentialExtendedDamageIce = 0.0;
-        this.referentialExtendedDamageElectro = 0.0;
-    },
+        referentialExtendedDamageFire: null,
+        referentialExtendedDamageIce: null,
+        referentialExtendedDamageElectro: null,
+
+        ctor: function () {
+            this.velocityMoveRate = 0.0;
+            this.velocityMoveTimeLeft = 0.0;
+            this.armorLowRate = 0.0;
+            this.armorLowTimeLeft = 0.0;
+
+            this.fire = new EU.NegativeDamage();
+            this.ice = new EU.NegativeDamage();
+            this.electro = new EU.NegativeDamage();
+
+            this.referentialExtendedDamageFire = 0.0;
+            this.referentialExtendedDamageIce = 0.0;
+            this.referentialExtendedDamageElectro = 0.0;
+        }
+    }),
+    Positive: cc.Class.extend({
+        damage: null,
+        armor: null,
+        isCanStoppedMove: null,
+        fireRate: null,
+        iceRate: null,
+        electroRate: null,
+        velocityRate: null,
+        fireTime: null,
+        iceTime: null,
+        electroTime: null,
+        velocityTime: null,
+        fireResist: null,
+        electroResist: null,
+        iceResist: null,
+        ctor: function() {
+            this.damage = 0.0;
+            this.armor = 0.0;
+            this.isCanStoppedMove = false;
+            this.fireRate = 0.0;
+            this.iceRate = 0.0;
+            this.electroRate = 0.0;
+            this.velocityRate = 0.0;
+            this.fireTime = 0.0;
+            this.iceTime = 0.0;
+            this.electroTime = 0.0;
+            this.velocityTime = 0.0;
+            this.fireResist = 0.0;
+            this.electroResist = 0.0;
+            this.iceResist = 0.0;
+        }
+    }),
     negative: null,
-
-    Positive: function() {
-        this.damage = 0.0;
-        this.armor = 0.0;
-        this.isCanStoppedMove = false;
-        this.fireRate= 0.0;
-        this.iceRate= 0.0;
-        this.electroRate= 0.0;
-        this.velocityRate= 0.0;
-        this.fireTime= 0.0;
-        this.iceTime= 0.0;
-        this.electroTime= 0.0;
-        this.velocityTime= 0.0;
-        this.fireResist= 0.0;
-        this.electroResist= 0.0;
-        this.iceResist= 0.0;
-    },
     positive: null,
     m_unit: null,
 
@@ -65,7 +99,7 @@ EU.mlEffect = cc.Class.extend({
         this.negative.referentialExtendedDamageIce = 0.0;
         this.negative.referentialExtendedDamageFire = 0.0;
         this.negative.referentialExtendedDamageElectro = 0.0;
-    
+
         this.positive.damage = 0.0;
         this.positive.fireRate = 0.0;
         this.positive.iceRate = 0.0;
@@ -107,30 +141,34 @@ EU.mlEffect = cc.Class.extend({
      */
     load_node : function( node )
     {
-        var p = node.getElementsByTagName( "this.positive" );
-        var n = node.getElementsByTagName( "this.negative" );
-    
-        this.negative.velocityMoveRate = EU.asObject(n.getAttribute( "velocityMoveRate" ) , 1.0 );
-        this.negative.velocityMoveTimeLeft = EU.asObject(n.getAttribute( "velocityMoveTimeLeft" ), 0.0 );
-        this.negative.armorLowRate = EU.asObject(n.getAttribute( "armorLowRate" ), 0.0 );
-        this.negative.armorLowTimeLeft = EU.asObject(n.getAttribute( "armorLowTimeLeft" ), 0.0 );
-    
-        this.positive.damage = EU.asObject(p.getAttribute( "damage" ), 0.0 );
-        this.positive.fireRate = EU.asObject(p.getAttribute( "fireRate" ), 0.0);
-        this.positive.iceRate = EU.asObject(p.getAttribute( "iceRate" ), 0.0);
-        this.positive.electroRate = EU.asObject(p.getAttribute( "electroRate" ), 0.0);
-        this.positive.velocityRate = EU.asObject(p.getAttribute( "velocityRate" ), 1.0);
-    
-        this.positive.fireTime = EU.asObject(p.getAttribute( "fireTime" ), 0.0);
-        this.positive.iceTime = EU.asObject(p.getAttribute( "iceTime" ), 0.0);
-        this.positive.electroTime = EU.asObject(p.getAttribute( "electroTime" ), 0.0);
-        this.positive.velocityTime = EU.asObject(p.getAttribute( "velocityTime" ), 0.0);
-    
-        this.positive.isCanStoppedMove = EU.asObject(p.getAttribute( "isCanStoppedMove" ) , false );
-        this.positive.armor = EU.asObject(p.getAttribute( "armor" ), 0.0);
-        this.positive.fireResist = EU.asObject(p.getAttribute( "fireResist" ), 1.0);
-        this.positive.electroResist = EU.asObject(p.getAttribute( "electroResist" ), 1.0);
-        this.positive.iceResist = EU.asObject(p.getAttribute( "iceResist" ), 1.0);
+        var p = node.getElementsByTagName( "this.positive" )[0];
+        var n = node.getElementsByTagName( "this.negative" )[0];
+
+        if( n ) {
+            this.negative.velocityMoveRate = EU.asObject(n.getAttribute("velocityMoveRate"), 1.0);
+            this.negative.velocityMoveTimeLeft = EU.asObject(n.getAttribute("velocityMoveTimeLeft"), 0.0);
+            this.negative.armorLowRate = EU.asObject(n.getAttribute("armorLowRate"), 0.0);
+            this.negative.armorLowTimeLeft = EU.asObject(n.getAttribute("armorLowTimeLeft"), 0.0);
+        }
+
+        if( p ) {
+            this.positive.damage = EU.asObject(p.getAttribute("damage"), 0.0);
+            this.positive.fireRate = EU.asObject(p.getAttribute("fireRate"), 0.0);
+            this.positive.iceRate = EU.asObject(p.getAttribute("iceRate"), 0.0);
+            this.positive.electroRate = EU.asObject(p.getAttribute("electroRate"), 0.0);
+            this.positive.velocityRate = EU.asObject(p.getAttribute("velocityRate"), 1.0);
+
+            this.positive.fireTime = EU.asObject(p.getAttribute("fireTime"), 0.0);
+            this.positive.iceTime = EU.asObject(p.getAttribute("iceTime"), 0.0);
+            this.positive.electroTime = EU.asObject(p.getAttribute("electroTime"), 0.0);
+            this.positive.velocityTime = EU.asObject(p.getAttribute("velocityTime"), 0.0);
+
+            this.positive.isCanStoppedMove = EU.asObject(p.getAttribute("isCanStoppedMove"), false);
+            this.positive.armor = EU.asObject(p.getAttribute("armor"), 0.0);
+            this.positive.fireResist = EU.asObject(p.getAttribute("fireResist"), 1.0);
+            this.positive.electroResist = EU.asObject(p.getAttribute("electroResist"), 1.0);
+            this.positive.iceResist = EU.asObject(p.getAttribute("iceResist"), 1.0);
+        }
     },
     update: function( dt )
     {
@@ -139,7 +177,7 @@ EU.mlEffect = cc.Class.extend({
         this.negative.electro.damageTime = Math.max( this.negative.electro.damageTime - dt, 0.0);
         this.negative.velocityMoveTimeLeft = Math.max( this.negative.velocityMoveTimeLeft - dt, 0.0);
         this.negative.armorLowTimeLeft = Math.max( this.negative.armorLowTimeLeft - dt, 0.0);
-    
+
         if( this.negative.fire.damageTime <= 0.0)
         this.negative.referentialExtendedDamageFire = 0.0;
         if( this.negative.ice.damageTime <= 0.0)
@@ -151,11 +189,11 @@ EU.mlEffect = cc.Class.extend({
     {
         EU.assert( damager );
         var effect = damager.getEffect();
-    
+
         this.negative.referentialExtendedDamageIce += Math.max( 0.0, effect.positive.iceRate * effect.positive.iceTime / this.positive.iceResist );
         this.negative.referentialExtendedDamageFire += Math.max( 0.0, effect.positive.fireRate * effect.positive.fireTime / this.positive.fireResist );
         this.negative.referentialExtendedDamageElectro += Math.max( 0.0, effect.positive.electroRate * effect.positive.electroTime / this.positive.electroResist );
-    
+
         this.negative.fire.damageTime = Math.max(this.negative.fire.damageTime, effect.positive.fireTime);
         this.negative.fire.damageRate = Math.max(this.negative.fire.damageRate, effect.positive.fireRate / this.positive.fireResist );
         this.negative.ice.damageTime = Math.max(this.negative.ice.damageTime, effect.positive.iceTime);
@@ -168,7 +206,7 @@ EU.mlEffect = cc.Class.extend({
         this.negative.ice.damageRate = Math.max(this.negative.ice.damageRate, 0.0);
         this.negative.electro.damageTime = Math.max(this.negative.electro.damageTime, 0.0);
         this.negative.electro.damageRate = Math.max(this.negative.electro.damageRate, 0.0);
-    
+
         this.negative.velocityMoveTimeLeft = Math.max( this.negative.velocityMoveTimeLeft, effect.positive.velocityTime );
         this.negative.velocityMoveRate = Math.max( 0.0, Math.min( this.negative.velocityMoveRate, effect.positive.velocityRate ) );
     },
@@ -182,7 +220,7 @@ EU.mlEffect = cc.Class.extend({
         var damage = 0.0;
         var effect = damager.getEffect();
         damage = Math.max( 0.0, effect.positive.damage - this.positive.armor );
-    
+
         return damage;
     },
     computeMoveVelocityRate: function()

@@ -264,8 +264,10 @@ EU.GameBoard = cc.Class.extend({
         var units = [];
         var death = [];
         var removed = [];
-        units.concat( this.units );
-        units.concat( this.death );
+        for( var i=0;i<this.units.length;++i)
+            units.push(this.units[i]);
+        for( var i=0;i<this.death.length;++i)
+            units.push(this.death[i]);
         for( var i=0; i<units.length; ++i )
         {
             var unit = units[i];

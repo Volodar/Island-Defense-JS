@@ -116,7 +116,7 @@ EU.State = cc.Class.extend(
     update: function(  data )
     {
         if( this._onUpdate )
-            this._onUpdate( data );
+            this._onUpdate.call(this._machine, data );
     },
 
     onActivate: function()
@@ -213,7 +213,7 @@ EU.Event = cc.Class.extend({
     },
     toString: function() {
         "use strict";
-        return this.__instanceId;
+        return this._string_name;
     }
 
 });
@@ -226,7 +226,7 @@ EU.Machine = function(){
 
     this.initMachine = function(){
         this._states = [];
-        this._events = [];
+        this._fsmEvents = [];
         this._eventsQueue = []
     };
     this.add_state = function( nameState, onActivate )
@@ -241,7 +241,7 @@ EU.Machine = function(){
 
     /** @type {State *} */ this._currentState = null;
     /** @type {StatesList} */ this._states = null;
-    /** @type {EventsList} */ this._events = null;
+    /** @type {EventsList} */ this._fsmEvents = null;
     /** @type {std.queue<Event*>} */ this._eventsQueue = null;
 
 
@@ -254,7 +254,7 @@ EU.Machine = function(){
     //{
     //    for( var i : this._states )
     //    delete i;
-    //    for( var i : this._events )
+    //    for( var i : this._fsmEvents )
     //    delete i;
     //}
 
@@ -285,8 +285,8 @@ EU.Machine = function(){
 
     this.is_exist_event = function( name )
     {
-        for (var i = 0; i < this._events.length; i++) {
-            var event = this._events[i];
+        for (var i = 0; i < this._fsmEvents.length; i++) {
+            var event = this._fsmEvents[i];
             if( event.get_string_name() == name )
                 return true;
         }
@@ -299,9 +299,9 @@ EU.Machine = function(){
 
         var event = new EU.Event(this );
         event.set_name( nameEvent );
-        this._events.push( event );
+        this._fsmEvents.push( event );
 
-        return this._events.slice(-1)[0];
+        return this._fsmEvents.slice(-1)[0];
     };
 
     this.event_tag = function( tag )
@@ -313,10 +313,10 @@ EU.Machine = function(){
 
     this.event_str = function( name )
     {
-        for (var i = 0; i < this._events.length; i++) {
-            var event = this._events[i];
+        for (var i = 0; i < this._fsmEvents.length; i++) {
+            var event = this._fsmEvents[i];
             if (event.get_string_name() == name )
-            return event;
+                return event;
         }
         EU.assert( 0 );
         //TODO: this dummy can be static variable
@@ -385,8 +385,8 @@ EU.Machine = function(){
 
     this._event = function(tag )
     {
-        for (var i = 0; i < this._events.length; i++) {
-            var event = this._events[i];
+        for (var i = 0; i < this._fsmEvents.length; i++) {
+            var event = this._fsmEvents[i];
             if (event.get_name() == tag )
                 return event;
         }

@@ -921,7 +921,9 @@ EU.GameGS = EU.LayerExt.extend({
             }
             case EU.UnitType.creep:
             {
-                var isExist = FileUtils.getInstance().isFileExist("ini/tutorial/units/" + unit.getName() + ".xml");
+                //TODO: Show unit description
+                //var isExist = cc.fileUtils.getInstance().isFileExist("ini/tutorial/units/" + unit.getName() + ".xml");
+                var isExist = false;
                 if (isExist) {
                     var key = "showunitinfo_" + unit.getName();
                     var showed = EU.UserData.get_bool(key);

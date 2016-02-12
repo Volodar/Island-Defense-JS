@@ -135,7 +135,7 @@ EU.Unit = cc.Node.extend({
         this._actions = [];
         this._events = [];
         this._super();
-        this._effect = EU.mlEffect( this );
+        this._effect = new EU.mlEffect( this );
         this._extra = new this.Extra();
         this._mover =  new EU.Mover(this);
         this._angle =  -1  ;
@@ -171,6 +171,8 @@ EU.Unit = cc.Node.extend({
         this._bulletParams = {} ;
         this.TowersArray = [] ;
         this.observerHealth = new EU.Observer();
+        this._healthIndicator = new EU.IndicatorNode();
+        this.addChild( this._healthIndicator );
     },
     destroy: function()
     {
@@ -206,10 +208,6 @@ EU.Unit = cc.Node.extend({
         this.initFSM();
         xmlFile = xmlFile || "ini.xml";
 
-        this._healthIndicator = new EU.IndicatorNode();
-        this.addChild( this._healthIndicator );
-
-
         this.load_str_n_str( path, xmlFile );
 
         var level = EU.UserData.tower_getUpgradeLevel( this.getName() );
@@ -242,40 +240,6 @@ EU.Unit = cc.Node.extend({
         this.start( this.current_state().get_name() );
     },
 
-    loadXmlEntity : function(/**@type {String} */ tag, /** @type {Element} */ xmlnode )
-    {
-        if( tag == EU.k.MachineUnit )
-        {
-            this.load_xmlmachine( xmlnode );
-        }
-        else if( tag == EU.k.Effects )
-        {
-            this._effect.load_node( xmlnode );
-        }
-        else if( tag == EU.k.Mover )
-        {
-            this._mover.load_element( xmlnode );
-        }
-        else if( tag == EU.k.ExtraProperties )
-        {
-            this._extra._electroPosition = EU.Common.strToPoint( xmlnode.getAttribute( "electro_pos" ) );
-            this._extra._electroSize = xmlnode.getAttribute( "electro_size" );
-            this._extra._electroScale = EU.asObject(xmlnode.getAttribute( "electro_scale" ),  1.0 );
-            this._extra._firePosition = EU.Common.strToPoint( xmlnode.getAttribute( "fire_pos" ) );
-            this._extra._fireScale = EU.asObject(xmlnode.getAttribute( "fire_scale" ), 1.0 );
-            this._extra._freezingPosition = EU.Common.strToPoint( xmlnode.getAttribute( "freezing_pos" ) );
-            this._extra._freezingScale = EU.asObject(xmlnode.getAttribute( "freezing_scale" ) , 0.5 );
-        }
-        else if( tag == EU.k.UnitSkills )
-        {
-            this.loadXmlSkills( xmlnode );
-        }
-        else
-        {
-            return this.loadXmlEntity( tag, xmlnode );
-        }
-        return true;
-    },
 
     loadXmlSkill : function( /** @type {Element} */ xmlnode )
     {
@@ -304,108 +268,6 @@ EU.Unit = cc.Node.extend({
         }
     },
 
-    setProperty : function(/**@type {String} */ name,/**@type {String} */ value )
-    {
-        var result = true;
-        //setName( root.getAttribute( "name" ).as_string( "unnamed" ) );
-
-        if( name == "radius" )
-        {
-            this._radius = ( EU.Common.strToFloat( value ) );
-        }
-        else if( name == "health" )
-        {
-            this._currentHealth =
-                this._defaultHealth =
-                    this._health = EU.Common.strToFloat( value );
-        }
-        else if( name == "velocity" )
-        {
-            var velocity = EU.Common.strToFloat( value );
-            //var random = CCRANDOM_MINUS1_1() * 0.1f + 1;
-            //velocity *= random;
-            this._mover._velocity = velocity ;
-            this._mover._defaultvelocity = velocity ;
-        }
-        else if( name == "unittype" )
-        {
-            this._type = EU.Common.strToUnitType( value );
-        }
-        else if( name == "effect_on_shoot" )
-        {
-            this._effectOnShoot = value;
-        }
-        else if( name == "maxlevel" )
-        {
-            this._maxLevel = EU.Common.strToInt( value );
-        }
-        else if( name == "damagebysector" )
-        {
-            this._damageBySector = EU.Common.strToBool( value );
-        }
-        else if( name == "sectorangle" )
-        {
-            this._damageBySectorAngle = EU.Common.strToFloat( value );
-        }
-        else if( name == "maxtargets" )
-        {
-            this._maxTargets = EU.Common.strToInt( value );
-        }
-        else if( name == "unitlayer" )
-        {
-            this._unitLayer = EU.xmlLoader.stringIsEmpty(value) ? EU.UnitLayer.any : EU.Common.strToUnitLayer( value );
-        }
-        else if( name == "sound_onmove" )
-        {
-            this._soundMove = EU.xmlLoader.macros.parse( value );
-        }
-        else if( name == "lifecost" )
-        {
-            this._lifecost = EU.Common.strToInt( value );
-        }
-        else if( name == "allowtargets" )
-        {
-            /** {Array<String>} */ var targets = [];
-            targets = value.split(',');
-            for (var i = 0; i < targets.length; i++) {
-                var target = targets[i];
-                this._allowTargets.push( EU.Common.strToUnitLayer( target ) );
-            }
-        }
-        else if( name == "additionalzorder" )
-        {
-            this._additionalZorder = EU.Common.strToInt( value );
-        }
-        else if( name == "exp" )
-        {
-            this._exp = EU.Common.strToFloat( value );
-        }
-        else if( name == "bullet" )
-        {
-            this._bulletXml = value;
-        }
-        else if( name == "bullet_params" )
-        {
-            //45,30,0x0:	135:150,0x0:	225,210,0x0:	315,330,0x0
-            /** {Array<String>} */ var params = [];
-            params = value.split('|');
-            for (var i = 0; i < params.length; i++) {
-                var param = targets[i];
-                /** {Array<String>} */ var args = [];
-                param = args.split(',');
-                /**BulletParams*/ var bp = new this.BulletParams();
-                bp.byangle = EU.Common.strToInt( args[0] );
-                bp.useangle = EU.Common.strToInt( args[1] );
-                bp.offset = EU.Common.strToPoint( args[2] );
-                this._bulletParams[bp.byangle] = bp;
-            }
-        }
-        else
-        {
-            result = this.setProperty( name, value );
-        }
-        return result;
-    },
     get_callback_by_description : function(/**@type {String} */ name )
     {
         if( name.indexOf( "push_event:" ) == 0 )
@@ -453,43 +315,6 @@ EU.Unit = cc.Node.extend({
         this._healthIndicator = null ;
         this.start( this.state_sleep );
     },
-    update : function( dt )
-    {
-        var execution = false ;
-        for (var i = 0; i < this._skills.length; i++) {
-            var skill = this._skills[i];
-            execution = execution || skill.execution();
-        }
-
-        if( this.current_state().get_name() != this.State.state_death )
-        for (var i = 0; i < this._skills.length; i++) {
-            var skill = this._skills[i];
-
-            var allow = (execution == false) || (skill.execution());
-            //TODO: EU.Skill.getOnlyState().length
-            allow = allow && (skill.getOnlyState().length == 0 ? true : skill.getOnlyState() == this.current_state().get_string_name());
-            if( allow )
-                skill.update( dt, this );
-        }
-
-        if( execution == false )
-        {
-            var needturn = true;
-            needturn = needturn && this.current_state().get_name() != this.State.state_move;
-            needturn = needturn && this.current_state().get_name() != this.State.state_death;
-            needturn = needturn && this.current_state().get_name() != this.State.state_enter;
-            if( needturn )
-            {
-                this.turn( dt );
-            }
-            this.update( dt );
-
-            this._effect.update( dt );
-            this.applyVelocityRate( dt );
-            this.applyTimedDamage( dt );
-        }
-    },
-
     applyVelocityRate : function( dt )
     {
         var rate = this._effect.computeMoveVelocityRate();
@@ -697,9 +522,10 @@ EU.Unit = cc.Node.extend({
         this._currentHealth = value;
         var progress = this._currentHealth / (this._health != 0 ? this._health : 1);
         var isVisible = this._currentHealth < this._defaultHealth * this._rate && this._currentHealth > 0;
-        this._healthIndicator.setProgress( progress );
-        this._healthIndicator.setVisible( isVisible );
-
+        if( this._healthIndicator ) {
+            this._healthIndicator.setProgress(progress);
+            this._healthIndicator.setVisible(isVisible);
+        }
         this.observerHealth.pushevent( this._currentHealth, this._defaultHealth * this._rate );
     },
 
@@ -817,7 +643,182 @@ EU.Unit = cc.Node.extend({
         this.setCurrentHealth( health );
         this._health = ( health );
     },
+    getMoveFinished: function(){return this._moveFinished; }
 });
 
 EU.NodeExt.call(EU.Unit.prototype);
 EU.MachineUnit.call(EU.Unit.prototype);
+
+EU.Unit.prototype.update = function( dt )
+{
+    var execution = false ;
+    for (var i = 0; i < this._skills.length; i++) {
+        var skill = this._skills[i];
+        execution = execution || skill.execution();
+    }
+
+    if( this.current_state().get_name() != this.State.state_death )
+        for (var i = 0; i < this._skills.length; i++) {
+            var skill = this._skills[i];
+
+            var allow = (execution == false) || (skill.execution());
+            //TODO: EU.Skill.getOnlyState().length
+            allow = allow && (skill.getOnlyState().length == 0 ? true : skill.getOnlyState() == this.current_state().get_string_name());
+            if( allow )
+                skill.update( dt, this );
+        }
+
+    if( execution == false )
+    {
+        var needturn = true;
+        needturn = needturn && this.current_state().get_name() != this.State.state_move;
+        needturn = needturn && this.current_state().get_name() != this.State.state_death;
+        needturn = needturn && this.current_state().get_name() != this.State.state_enter;
+        if( needturn )
+        {
+            this.turn( dt );
+        }
+        EU.MachineUnit.prototype.update.call( this, dt );
+
+        this._effect.update( dt );
+        this.applyVelocityRate( dt );
+        this.applyTimedDamage( dt );
+    }
+};
+
+EU.Unit.prototype.loadXmlEntity = function(/**@type {String} */ tag, /** @type {Element} */ xmlnode )
+{
+    if( tag == EU.k.MachineUnit )
+    {
+        this.load_xmlmachine( xmlnode );
+    }
+    else if( tag == EU.k.Effects )
+    {
+        this._effect.load_node( xmlnode );
+    }
+    else if( tag == EU.k.Mover )
+    {
+        this._mover.load_element( xmlnode );
+    }
+    else if( tag == EU.k.ExtraProperties )
+    {
+        this._extra._electroPosition = EU.Common.strToPoint( xmlnode.getAttribute( "electro_pos" ) );
+        this._extra._electroSize = xmlnode.getAttribute( "electro_size" );
+        this._extra._electroScale = EU.asObject(xmlnode.getAttribute( "electro_scale" ),  1.0 );
+        this._extra._firePosition = EU.Common.strToPoint( xmlnode.getAttribute( "fire_pos" ) );
+        this._extra._fireScale = EU.asObject(xmlnode.getAttribute( "fire_scale" ), 1.0 );
+        this._extra._freezingPosition = EU.Common.strToPoint( xmlnode.getAttribute( "freezing_pos" ) );
+        this._extra._freezingScale = EU.asObject(xmlnode.getAttribute( "freezing_scale" ) , 0.5 );
+    }
+    else if( tag == EU.k.UnitSkills )
+    {
+        this.loadXmlSkills( xmlnode );
+    }
+    else
+    {
+        return this.loadXmlEntity( tag, xmlnode );
+    }
+    return true;
+};
+EU.Unit.prototype.setProperty_str = function(/**@type {String} */ name,/**@type {String} */ value )
+{
+    var result = true;
+    //setName( root.getAttribute( "name" ).as_string( "unnamed" ) );
+
+    if( name == "radius" )
+    {
+        this._radius = ( parseFloat( value ) );
+    }
+    else if( name == "health" )
+    {
+        this._currentHealth =
+            this._defaultHealth =
+                this._health = parseFloat( value );
+    }
+    else if( name == "velocity" )
+    {
+        var velocity = parseFloat( value );
+        //var random = CCRANDOM_MINUS1_1() * 0.1f + 1;
+        //velocity *= random;
+        this._mover._velocity = velocity ;
+        this._mover._defaultvelocity = velocity ;
+    }
+    else if( name == "unittype" )
+    {
+        this._type = EU.strToUnitType( value );
+    }
+    else if( name == "effect_on_shoot" )
+    {
+        this._effectOnShoot = value;
+    }
+    else if( name == "maxlevel" )
+    {
+        this._maxLevel = parseInt( value );
+    }
+    else if( name == "damagebysector" )
+    {
+        this._damageBySector = EU.Common.strToBool( value );
+    }
+    else if( name == "sectorangle" )
+    {
+        this._damageBySectorAngle = parseFloat( value );
+    }
+    else if( name == "maxtargets" )
+    {
+        this._maxTargets = parseInt( value );
+    }
+    else if( name == "unitlayer" )
+    {
+        this._unitLayer = EU.xmlLoader.stringIsEmpty(value) ? EU.UnitLayer.any : EU.strToUnitLayer( value );
+    }
+    else if( name == "sound_onmove" )
+    {
+        this._soundMove = EU.xmlLoader.macros.parse( value );
+    }
+    else if( name == "lifecost" )
+    {
+        this._lifecost = parseInt( value );
+    }
+    else if( name == "allowtargets" )
+    {
+        /** {Array<String>} */ var targets = [];
+        targets = value.split(',');
+        for (var i = 0; i < targets.length; i++) {
+            var target = targets[i];
+            this._allowTargets.push( EU.strToUnitLayer( target ) );
+        }
+    }
+    else if( name == "additionalzorder" )
+    {
+        this._additionalZorder = parseInt( value );
+    }
+    else if( name == "exp" )
+    {
+        this._exp = parseFloat( value );
+    }
+    else if( name == "bullet" )
+    {
+        this._bulletXml = value;
+    }
+    else if( name == "bullet_params" )
+    {
+        //45,30,0x0:	135:150,0x0:	225,210,0x0:	315,330,0x0
+        /** {Array<String>} */ var params = [];
+        params = value.split('|');
+        for (var i = 0; i < params.length; i++) {
+            var param = targets[i];
+            /** {Array<String>} */ var args = [];
+            param = args.split(',');
+            /**BulletParams*/ var bp = new this.BulletParams();
+            bp.byangle = parseInt( args[0] );
+            bp.useangle = parseInt( args[1] );
+            bp.offset = EU.Common.strToPoint( args[2] );
+            this._bulletParams[bp.byangle] = bp;
+        }
+    }
+    else
+    {
+        //result = EU.NodeExt.prototype.setProperty_str.call(this, name, value );
+    }
+    return result;
+};

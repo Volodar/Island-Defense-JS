@@ -58,7 +58,7 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
         EU.Unit.prototype.update.call(this, dt );
         var Vec3 = cc.math.Vec3;
     
-        var color = cc.WHITE;
+        var color = cc.color(255,255,255,255);
     
         var effect = this.getEffect( );
         if( effect.negative.fire.damageTime > 0 ||

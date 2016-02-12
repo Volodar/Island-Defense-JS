@@ -416,8 +416,8 @@ EU.xmlLoader = {
                         string = string.slice(0, -1);
                     }
                     list = string.split(',');
-                    for (var frame in list) {
-                        frames.push(folder + frame);
+                    for (var i=0; i< list.length; ++i) {
+                        frames.push(folder + list[i]);
                     }
                     return frames;
                 };
@@ -863,7 +863,7 @@ EU.xmlLoader = {
             this.__autofillproperties();
             this.first = false;
         }
-        return property in EU.xmlLoader.properties ? EU.xmlLoader.properties[property] : 0;
+        return property in EU.xmlLoader.properties ? EU.xmlLoader.properties[property] : -1;
     },
     /**
      * set property for node
