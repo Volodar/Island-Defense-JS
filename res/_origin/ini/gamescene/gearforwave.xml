@@ -18,7 +18,7 @@
       "
   >
   <children>
-    <node name="icon" type="sprite" pos="0x0" image="images/gamescene/icon_gold1.png" center="0x0.5"
+    <node name="icon" type="sprite" pos="0x0" image="gamescene::icon_gold1.png" center="0x0.5"
       animation="
         RepeatForever
         [
@@ -28,7 +28,7 @@
             [
               folder:,
               frames:
-              images/gamescene/icon_gold1.png,
+              gamescene::icon_gold1.png,
             ]
           ]
         ]"

@@ -1,9 +1,9 @@
 <menu name="pause">
   <children>
-    <node name="bg" type="sprite" image="images/gamescene/pause/pause_window.png" z="-1"/>
+    <node name="bg" type="sprite" image="gamescene::pause/pause_window.png" z="-1"/>
     <node name="caption" type="text" font="fonts/mdefensefont.fnt" text="#pause#" pos="0x180" scale="1.0x1.0"/>
     
-    <node name="quit" type="menuitem" imageN ="images/gamescene/pause/button_quit.png" pos="0x-175" sound="##sound_button##" callback="quit">
+    <node name="quit" type="menuitem" imageN ="gamescene::pause/button_quit.png" pos="0x-175" sound="##sound_button##" callback="quit">
       <children>
         <node name="normal">
           <children>
@@ -12,8 +12,8 @@
         </node>
       </children>
     </node>
-    <node name="resume" type="menuitem" imageN ="images/gamescene/pause/button_x.png" pos="225x177" sound="##sound_button##" callback="resume"/>
-    <node name="restart" type="menuitem" imageN ="images/gamescene/pause/button_restart.png" pos="0.5x-75" sound="##sound_button##" callback="restart">
+    <node name="resume" type="menuitem" imageN ="gamescene::pause/button_x.png" pos="225x177" sound="##sound_button##" callback="resume"/>
+    <node name="restart" type="menuitem" imageN ="gamescene::pause/button_restart.png" pos="0.5x-75" sound="##sound_button##" callback="restart">
       <children>
         <node name="normal">
           <children>
@@ -27,16 +27,16 @@
     </node>
 
 
-    <node name="music_on" type="menuitem" imageN ="images/gamescene/pause/button_music.png" pos="-55x40" visible="no" sound="##sound_button##" callback="music_on"/>
-    <node name="sound_on" type="menuitem" imageN ="images/gamescene/pause/button_sound1.png" pos="55x40" visible="no" sound="##sound_button##" callback="sound_on"/>
-    <node name="music_off" type="menuitem" imageN ="images/gamescene/pause/button_music2.png" pos="-55x40" sound="##sound_button##" callback="music_off"/>
-    <node name="sound_off" type="menuitem" imageN ="images/gamescene/pause/button_sound2.png" pos="55x40" sound="##sound_button##" callback="sound_off"/>
+    <node name="music_on" type="menuitem" imageN ="gamescene::pause/button_music.png" pos="-55x40" visible="no" sound="##sound_button##" callback="music_on"/>
+    <node name="sound_on" type="menuitem" imageN ="gamescene::pause/button_sound1.png" pos="55x40" visible="no" sound="##sound_button##" callback="sound_on"/>
+    <node name="music_off" type="menuitem" imageN ="gamescene::pause/button_music2.png" pos="-55x40" sound="##sound_button##" callback="music_off"/>
+    <node name="sound_off" type="menuitem" imageN ="gamescene::pause/button_sound2.png" pos="55x40" sound="##sound_button##" callback="sound_off"/>
     
-    <!--<node name="store" type="menuitem" imageN ="images/gamescene/pause/button_shop.png" pos="115x40" sound="##sound_button##"/>
-     <node name="music_on" type="menuitem" imageN ="images/gamescene/pause/button_music.png" pos="-115x40" visible="no"/>
-     <node name="sound_on" type="menuitem" imageN ="images/gamescene/pause/button_sound1.png" pos="0x40" visible="no"/>
-     <node name="music_off" type="menuitem" imageN ="images/gamescene/pause/button_music2.png" pos="-115x40"/>
-     <node name="sound_off" type="menuitem" imageN ="images/gamescene/pause/button_sound2.png" pos="0x40"/>
+    <!--<node name="store" type="menuitem" imageN ="gamescene::pause/button_shop.png" pos="115x40" sound="##sound_button##"/>
+     <node name="music_on" type="menuitem" imageN ="gamescene::pause/button_music.png" pos="-115x40" visible="no"/>
+     <node name="sound_on" type="menuitem" imageN ="gamescene::pause/button_sound1.png" pos="0x40" visible="no"/>
+     <node name="music_off" type="menuitem" imageN ="gamescene::pause/button_music2.png" pos="-115x40"/>
+     <node name="sound_off" type="menuitem" imageN ="gamescene::pause/button_sound2.png" pos="0x40"/>
      -->
   </children>
 </menu>

@@ -2,9 +2,9 @@
   <children>
     <node name="shadow" type="sprite" pos="frame:0.0x-0.3" image="images/square.png" strech="frame:3x3:xy" opacity="0" color="000000" z="-99"/>
     
-    <node name="top" type="sprite" image="images/gamescene/victory/victory_1.png" z="-1" pos="0x500"/>
-    <node name="bg_star" type="sprite" image="images/gamescene/victory/victory_3.png" z="-2" pos="0x500"/>
-    <node name="victory" type="sprite" image="images/gamescene/victory/victory_2.png" z="1" pos="0x1000" scale="0x0" opacity="192">
+    <node name="top" type="sprite" image="gamescene::victory/victory_1.png" z="-1" pos="0x500"/>
+    <node name="bg_star" type="sprite" image="gamescene::victory/victory_3.png" z="-2" pos="0x500"/>
+    <node name="victory" type="sprite" image="gamescene::victory/victory_2.png" z="1" pos="0x1000" scale="0x0" opacity="192">
       <children>
         <node name="victory_text" type="text" pos="180x70" font="fonts/mdefensefont2.fnt" text="#victory#" scale="1.1x1.1" z="2" center="0.5x0.5" visible="yes"/>
       </children>
@@ -14,34 +14,34 @@
     
     <node name="score" type="node" pos="0x500" z="-3" visible="yes">
       <children>
-        <node name="bg_score" type="sprite" image="images/gamescene/victory/victory_4.png" z="-1" pos="" />
-        <node name="icon" type="sprite" image="images/gamescene/victory/victory_coin.png" z="1" pos="-10x-50"  center="1x0.5"/>
+        <node name="bg_score" type="sprite" image="gamescene::victory/victory_4.png" z="-1" pos="" />
+        <node name="icon" type="sprite" image="gamescene::victory/victory_coin.png" z="1" pos="-10x-50"  center="1x0.5"/>
         <node name="value" type="text" font="fonts/helvetica.fnt" text="" z="1" pos="-13x-42" center="0x0.5"/>
       </children>
     </node>
     
     <node name="star1" type="node" pos="0x-145" z="9" visible="">
       <children>
-        <node name="1" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="0x1500" scale="0x0"/>
+        <node name="1" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="0x1500" scale="0x0"/>
       </children>
     </node>
     <node name="star2" type="node" pos="0x-145" z="9" visible="">
       <children>
-        <node name="1" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="-1500x0000" scale="0"/>
-        <node name="2" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="1500x0000" scale="0"/>
+        <node name="1" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="-1500x0000" scale="0"/>
+        <node name="2" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="1500x0000" scale="0"/>
       </children>
     </node>
     <node name="star3" type="node" pos="0x-145" z="9" visible="">
       <children>
-        <node name="2" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="-1500x0000" scale="0"/>
-        <node name="1" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="0x1500" scale="0x0"/>
-        <node name="3" type="sprite" image="images/gamescene/victory/victory_star.png" z="1" pos="1500x0000" scale="0x0"/>
+        <node name="2" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="-1500x0000" scale="0"/>
+        <node name="1" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="0x1500" scale="0x0"/>
+        <node name="3" type="sprite" image="gamescene::victory/victory_star.png" z="1" pos="1500x0000" scale="0x0"/>
       </children>
     </node>
     
     <node name="menu" type="menu" pos="0x0">
       <children>
-        <node name="close" type="menuitem" imageN="images/gamescene/victory/victory_cont.png" pos="0x-340" opacity="0" font="fonts/mdefensefont2.fnt">
+        <node name="close" type="menuitem" imageN="gamescene::victory/victory_cont.png" pos="0x-340" opacity="0" font="fonts/mdefensefont2.fnt">
           <children>
             <node name="normal">
               <children>
@@ -50,7 +50,7 @@
             </node>
           </children>
         </node>
-        <node name="restart" type="menuitem" imageN="images/gamescene/victory/victory_restart.png" pos="0x-450" opacity="0" sound="##sound_button##">
+        <node name="restart" type="menuitem" imageN="gamescene::victory/victory_restart.png" pos="0x-450" opacity="0" sound="##sound_button##">
           <children>
             <node name="normal">
               <children>

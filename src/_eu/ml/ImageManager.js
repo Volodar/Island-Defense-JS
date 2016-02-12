@@ -25,8 +25,9 @@ EU.ImageManager  = {
         cc.spriteFrameCache.addSpriteFrames(plist);
         for( var key in cc.spriteFrameCache._spriteFrames ) {
             var frame = cc.spriteFrameCache._spriteFrames[key];
-            this.frames[framePrefix + key] = frame;
-            cc.spriteFrameCache._spriteFrames[key] = undefined;
+            var fullname = framePrefix + key;
+            this.frames[fullname] = frame;
+            delete cc.spriteFrameCache._spriteFrames[key];
         }
         this.atlases[name] = true;
     },
@@ -48,7 +49,10 @@ EU.ImageManager  = {
         if( this.isSpriteFrame(key) )
         {
             var frame = this.getSpriteFrame(key);
-            return frame.getTexture();
+            if( frame != undefined )
+                return frame.getTexture();
+            else
+                EU.assert(0);
         }
         else
         {
