@@ -148,19 +148,16 @@ EU.AudioEngine =
 
     stopEffect: function(id )
     {
-        id = EU.xmlLoader.resourcesRoot + id;
         cc.audioEngine.stopEffect( id );
     },
 
     pauseEffect: function(id )
     {
-        id = EU.xmlLoader.resourcesRoot + id;
         cc.audioEngine.pauseEffect( id );
     },
 
     resumeEffect: function(id )
     {
-        id = EU.xmlLoader.resourcesRoot + id;
         cc.audioEngine.resumeEffect( id );
     },
 

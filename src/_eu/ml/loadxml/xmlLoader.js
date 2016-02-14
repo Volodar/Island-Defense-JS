@@ -300,7 +300,11 @@ EU.xmlLoader = {
                     continue;
                 this.load_node_xml_node(child, xmlchild, false);
                 if (child.getParent() == null) {
-                    node.addChild(child, child.getLocalZOrder());
+                    if (node instanceof cc.Menu && ! (child instanceof cc.MenuItem)) {
+                        cc.Node.prototype.addChild.call(node, child, child.getLocalZOrder);
+                    } else {
+                        node.addChild(child, child.getLocalZOrder());
+                    }
                 }
             }
         }

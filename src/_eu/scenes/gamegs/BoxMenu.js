@@ -16,6 +16,8 @@ var EU = EU || {};
 
 EU.BoxMenu = cc.Menu.extend(
 {
+    __BoxMenu: true,
+
     state: Object.freeze(
     {
         state_close : 0,
@@ -216,10 +218,10 @@ EU.BoxMenu = cc.Menu.extend(
         var display = function(index )
         {
             var menuitem = self.getChildByName( "item" + index );
-            if (! menuitem instanceof cc.MenuItem) menuitem = null;
+            if (! (menuitem instanceof cc.MenuItem)) menuitem = null;
 
             var label = menuitem.getChildByName( "count" );
-            if (! label instanceof cc.LabelTTF) label = null;
+            if (! (label instanceof cc.LabelBMFont)) label = null;
 
             var count = EU.UserData.bonusitem_count( index );
             label.setString( count );
