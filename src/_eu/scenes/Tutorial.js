@@ -233,6 +233,7 @@ EU.TutorialManager = {
 
     dispatch: function( eventname,  params )
     {
+        //TODO: remove returns here
         return;
         
         var result = false;
