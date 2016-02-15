@@ -19,7 +19,7 @@
       </children>
     </node>
 
-    <!--<node name="boxmenu" pos="right:-50x-50"/>-->
+    <node name="boxmenu" pos="right:-50x-50"/>
 
   </children>
 
