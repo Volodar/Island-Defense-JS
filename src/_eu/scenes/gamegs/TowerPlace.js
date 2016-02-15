@@ -85,10 +85,12 @@ EU.TowerPlace = cc.Sprite.extend(
 
     },
     
-    checkClick: function(  location,  outDistance )
+    checkClick: function(  location )
     {
-        outDistance = cc.pDistance(this.getPosition(), location );
-        return EU.checkRadiusByEllipse( location, this.getPosition(), 50 );
+        var result = {};
+        result.clicked = EU.checkRadiusByEllipse( location, this.getPosition(), 50 );
+        result.distance = cc.pDistance(this.getPosition(), location );
+        return result;
     },
     selected: function( )
     {

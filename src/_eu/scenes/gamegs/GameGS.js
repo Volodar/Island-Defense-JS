@@ -211,10 +211,10 @@ EU.GameGS = EU.LayerExt.extend({
         this.addChild(this.interface, 9);
 
 
-        var cb0 = this.menuShop.bind(this, true);
+        var cb0 = this.menuShop.bind(true);
         var cb1 = this.menuPause;
-        var cb2 = this.menuSkill.bind(this, EU.Skill.desant);
-        var cb3 = this.menuSkill.bind(this, EU.Skill.bomb);
+        var cb2 = this.menuSkill.bind(EU.Skill.desant);
+        var cb3 = this.menuSkill.bind(EU.Skill.bomb);
         var cb5 = this.menuHero;
 
         var kPathButtonShop = EU.k.resourceGameSceneFolder + "button_shop.png";
@@ -229,10 +229,10 @@ EU.GameGS = EU.LayerExt.extend({
         var cancel = EU.k.resourceGameSceneFolder + "icon_x_10.png";
         var cdd = this.board.getSkillParams().cooldownDesant;
         var cda = this.board.getSkillParams().cooldownAirplane;
-        this.interface_shop = new EU.MenuItemImageWithText(kPathButtonShop, cb0);
-        this.interface_pause = new EU.MenuItemImageWithText(kPathButtonPauseNormal, cb1);
-        this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, kPathButtonDesantCancel);
-        this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, kPathButtonBombCancel);
+        this.interface_shop = new EU.MenuItemImageWithText(kPathButtonShop, cb0, this);
+        this.interface_pause = new EU.MenuItemImageWithText(kPathButtonPauseNormal, kPathButtonPauseNormal, kPathButtonPauseNormal, "", "", cb1, this);
+        this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, this, kPathButtonDesantCancel);
+        this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, this, kPathButtonBombCancel);
         this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
         //TODO:this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
         //TODO:this.interface_hero.setEnabled(true);
@@ -376,7 +376,7 @@ EU.GameGS = EU.LayerExt.extend({
         true.removeAllChildrenWithCleanup(true);
     },
     startGame: function () {
-        //TODO: AudioEngine.playEffect( kSoundGameStart );
+        //EU.AudioEngine.playEffect( EU.kSoundGameStart );
         this.setEnabled(true);
         this.scheduleUpdate();
     },
@@ -441,8 +441,8 @@ EU.GameGS = EU.LayerExt.extend({
         //TODO: EU.AdMob.hide();
 
         var music = this.board.isGameStarted() ? EU.kMusicGameBattle : EU.kMusicGamePeace;
-        //TODO: AudioEngine.playMusic( music );
-        //TODO: AudioEngine.shared( ).resumeAllEffects( );
+        //EU.AudioEngine.playMusic( music );
+        //EU.AudioEngine.resumeAllEffects( );
 
         for (var i = 0; i < this.children.length; ++i) {
             var child = this.children[i];
@@ -493,17 +493,15 @@ EU.GameGS = EU.LayerExt.extend({
         return null;
     },
     getTowerPlaceIndex: function (location) {
-        var result = -1, index = -1;
+        var result = -1;
         var mind = 999999;
-        var distance = 0;
         for (var i = 0; i < this.towerPlaces.length; ++i) {
             var p = this.towerPlaces[i];
-            var c = p.checkClick(location, distance);
-            if (c && distance < mind) {
-                result = index;
-                mind = distance;
+            var c = p.checkClick(location);
+            if (c.clicked && c.distance < mind) {
+                result = i;
+                mind = c.distance;
             }
-            ++index;
         }
         return result;
     },
@@ -604,9 +602,9 @@ EU.GameGS = EU.LayerExt.extend({
                 if (self.scrollInfo.node) {
                     var location = touch.getLocation();
                     var shift = EU.Common.pointDiff(location, self.scrollInfo.touchBegan);
-                    var pos = self.scrollInfo.nodeposBegan + shift;
+                    var pos = EU.Common.pointAdd(self.scrollInfo.nodeposBegan, shift);
 
-                    pos = self.scrollInfo.fitPosition(pos, cc.director.getWinSize());
+                    pos = self.scrollInfo.fitPosition(pos, cc.view.getDesignResolutionSize());
 
                     self.scrollInfo.lastShift = EU.Common.pointDiff(pos, self.scrollInfo.node.getPosition());
                     self.scrollInfo.node.setPosition(pos);
@@ -635,7 +633,7 @@ EU.GameGS = EU.LayerExt.extend({
             var startLocation = self.mainlayer.convertToNodeSpace(touchEnd.getStartLocation());
 
             var node = self.getObjectInLocation(location);
-            if (EU.Common.pointDistance(location, startLocation) < 50) {
+            //if (EU.Common.pointDistance(location, startLocation) < 50) {
                 var indexTowerPlace = self.getTowerPlaceIndex(location);
                 if (indexTowerPlace != -1 && touchBegin.nodeBegin == self.towerPlaces[indexTowerPlace]) {
                     self.isIntteruptHeroMoving = true;
@@ -651,7 +649,7 @@ EU.GameGS = EU.LayerExt.extend({
                 }
                 self.menuDig.disappearance();
                 self.markTowerPlaceOnLocation(location);
-            }
+            //}
             if (node == null) {
                 self.selectedUnit = null;
             }
@@ -830,7 +828,7 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onClickByTowerPlace: function (place) {
-        //TODO: AudioEngine.playEffect( kSoundGameTowerPlaceSelect );
+        //EU.AudioEngine.playEffect( EU.kSoundGameTowerPlaceSelect );
 
         var event = "level" + this.board.getCurrentLevelIndex() + "_selectplace";
         EU.TutorialManager.dispatch(event);
@@ -875,7 +873,7 @@ EU.GameGS = EU.LayerExt.extend({
             }
         }
 
-        //	this.menuCreateTower.setActived( this.selectedPlace != null );
+        this.menuCreateTower.setActived( this.selectedPlace != null );
     },
     onEmptyTouch: function (touchlocation) {
         var sprite = EU.ImageManager.sprite(EU.k.resourceGameSceneFolder + "empty_touch.png");
@@ -994,7 +992,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.setTouchDisabled();
         this.menuFastModeEnabled(false);
         this.interface_menu.setEnabled(false);
-        //TODO:AudioEngine.playEffect( success ? kSoundGameFinishSuccess : kSoundGameFinishFailed );
+        //EU.AudioEngine.playEffect( success ? EU.kSoundGameFinishSuccess : EU.kSoundGameFinishFailed );
 
         EU.UserData.write(
             EU.k.LastGameResult,
@@ -1056,9 +1054,9 @@ EU.GameGS = EU.LayerExt.extend({
             this.runAction(action);
         }
 
-        //var music = win ? kMusicVictory : kMusicDefeat;
-        //TODO: AudioEngine.stopMusic();
-        //TODO: AudioEngine.playEffect( music );
+        var music = win ? kMusicVictory : kMusicDefeat;
+        //EU.AudioEngine.stopMusic();
+        //EU.AudioEngine.playEffect( music );
 
     },
     flyCameraAboveMap: function (wave) {
@@ -1154,7 +1152,7 @@ EU.GameGS = EU.LayerExt.extend({
 
         EU.WaveGenerator.resume();
         this.removeIconsForWave();
-        //TODO: AudioEngine.playMusic( kMusicGameBattle );
+        //EU.AudioEngine.playMusic( kMusicGameBattle );
 
         var event = "level" + this.board.getCurrentLevelIndex() + "_startwave";
         EU.TutorialManager.dispatch(event);
@@ -1254,7 +1252,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
 
     menuPause: function () {
-        //TODO: AudioEngine.shared( ).pauseAllEffects( );
+        //EU.AudioEngine.pauseAllEffects( );
         var scene = EU.Common.getSceneOfNode(this);
         var pause = new EU.GamePauseLayer("ini/gamescene/pause.xml");
         scene.pushLayer(pause, true);
@@ -1270,7 +1268,7 @@ EU.GameGS = EU.LayerExt.extend({
             new EU.ShopLayer(false, true, false, true);
 
         if (shop) {
-            //TODO: AudioEngine.shared( ).pauseAllEffects( );
+            //EU.AudioEngine.pauseAllEffects( );
             var scene = EU.Common.getSceneOfNode(this);
             scene.pushLayer(shop, true);
             shop.setGlobalZOrder(2);
@@ -1332,17 +1330,17 @@ EU.GameGS.restartLevel = function () {
     var levelindex = game.board.getCurrentLevelIndex();
     var gamemode = game.board.getGameMode();
 
-    var scene = EU.Common.getSceneOfNode(this);
+    var scene = EU.Common.getSceneOfNode(game);
     scene.resetMainLayer(null);
 
     var dessize = cc.view.getDesignResolutionSize();
-    var layer = new GameGS();
-    layer.this.scoreNode = new EU.ScoreNode();
-    layer.this.scoreNode.setPosition(0, dessize.height);
+    var layer = new EU.GameGS();
+    layer.scoreNode = new EU.ScoreNode();
+    layer.scoreNode.setPosition(0, dessize.height);
     var result = layer.init();
     EU.assert(result);
     scene.resetMainLayer(layer);
-    scene.addChild(layer.this.scoreNode, 9);
+    scene.addChild(layer.scoreNode, 9);
     EU.GameGSInstance.board.loadLevel(levelindex, gamemode);
 
     if (EU.k.useBoughtLevelScoresOnlyRestartLevel) {
@@ -1350,8 +1348,6 @@ EU.GameGS.restartLevel = function () {
         EU.GameGSInstance.this.boughtScoresForSession = boughtScores;
         EU.ScoreCounter.addMoney(EU.kScoreLevel, boughtScores, false);
     }
-
-    layer.release();
 };
 
 EU.GameGS.createScene = function () {

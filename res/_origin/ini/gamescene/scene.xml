@@ -24,9 +24,9 @@
   </children>
 
   <actions>
-    <action name="button_up" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,0,100]]]"/>
-    <action name="button_down" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,0,-100]]]"/>
-    <action name="button_right" value="Sequence[DelayTime[3],BackOut[MoveBy[0.5,130,0]]]"/>
+    <action name="button_up" value="Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,100]]]"/>
+    <action name="button_down" value="Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,-100]]]"/>
+    <action name="button_right" value="Sequence[DelayTime[1],BackOut[MoveBy[0.5,130,0]]]"/>
   </actions>
 
   <events>

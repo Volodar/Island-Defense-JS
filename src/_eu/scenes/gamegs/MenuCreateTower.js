@@ -81,7 +81,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                 else
                 {
                     //name.erase( name.begin() + (name.length - 3), name.end() );
-                    name = name.slice( 0, -4);
+                    name = name.slice( 0, -3);
 
                     this._buttonTowersUn[name] = item;
                     item.setCallback( function(p1){return self.onActivate.call(self, p1, false)} );
@@ -174,7 +174,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
             this.hideConfirmButton();
             this.runEvent( "onconfirm" );
 
-            EU.GameGS.getInstance().getGameBoard().createTower( towername );
+            EU.GameGSInstance.getGameBoard().createTower( towername );
             this.disappearance();
         }
         else
@@ -221,7 +221,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         this.hideConfirmButton();
         this.runEvent( "appearance" );
         this._disabled = false;
-        EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.onChangeMoney.bind(this));
+        EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.onChangeMoney, this);
         this.changeCost();
         this.onChangeMoney( EU.ScoreCounter.getMoney( EU.kScoreLevel ) );
         this.scheduleUpdate();
@@ -278,7 +278,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     onChangeMoney: function( money )
     {
         for( var iter in this._buttonTowers )
-        if (this._buttonTowers.hasOwnProperty(icon)) {
+        if (this._buttonTowers.hasOwnProperty(iter)) {
 
             var but0 = this._buttonTowers[iter];
             var but1 = this._buttonTowersUn[iter];
@@ -295,7 +295,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
         if( this._confirmButtonUn.isVisible() )
         {
-            var cost = EU.mlTowersInfo.getCost( this._confirmButtonUn.getName(), 1 );
+            cost = EU.mlTowersInfo.getCost( this._confirmButtonUn.getName(), 1 );
             if( cost <= money )
             {
                 this._confirmButtonUn.setVisible( false );
@@ -307,7 +307,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
     update: function( )
     {
-        var point = EU.GameGS.getInstance().getMainLayer().convertToWorldSpace( this._centerPoint );
+        var point = EU.GameGSInstance.getMainLayer().convertToWorldSpace( this._centerPoint );
         this.setPosition( point );
 
         if( this._desc.node )

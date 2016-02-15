@@ -48,8 +48,8 @@ EU.VictoryMenu = cc.Node.extend(
         }
         if( cost )
         {
-            var index = EU.GameGS.getInstance().getGameBoard().getCurrentLevelIndex( );
-            var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+            var index = EU.GameGSInstance().getGameBoard().getCurrentLevelIndex( );
+            var mode = EU.GameGSInstance().getGameBoard().getGameMode();
             var value = EU.LevelParams.shared().getFuel( index, GameMode.hard == mode );
             cost.setString( value );
         }
@@ -98,7 +98,7 @@ EU.VictoryMenu = cc.Node.extend(
 
     cb_restart: function() {
         var index = EU.GameGS.getInstance( ).getGameBoard( ).getCurrentLevelIndex( );
-        var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+        var mode = EU.GameGSInstance().getGameBoard().getGameMode();
         var cost = EU.LevelParams.shared().getFuel( index, GameMode.hard == mode );
         var fuel = EU.ScoreCounter.shared().getMoney( EU.kScoreFuel );
         if( cost <= fuel )

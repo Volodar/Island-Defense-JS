@@ -31,6 +31,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
         this._action = null;
         this._duration = 0;
         this._cancelImage = null;
+        this._cancelImageResource = resourceCancel;
 
         var e = "";
 

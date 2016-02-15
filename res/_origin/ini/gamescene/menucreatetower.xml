@@ -115,18 +115,18 @@
   <events>
     <eventlist name="appearance">
       <setproperty property="opacity" value="0" target="bg"/>
-      <setproperty property="scale" value="0" target="laser"/>
-      <setproperty property="scale" value="0" target="laser_un"/>
-      <setproperty property="scale" value="0" target="firegun"/>
-      <setproperty property="scale" value="0" target="firegun_un"/>
-      <setproperty property="scale" value="0" target="icegun"/>
-      <setproperty property="scale" value="0" target="icegun_un"/>
-      <setproperty property="scale" value="0" target="minigun"/>
-      <setproperty property="scale" value="0" target="minigun_un"/>
-      <setproperty property="scale" value="0" target="roketgun"/>
-      <setproperty property="scale" value="0" target="roketgun_un"/>
-      <setproperty property="scale" value="0" target="teslagun"/>
-      <setproperty property="scale" value="0" target="teslagun_un"/>
+      <setproperty property="scale" value="0x0" target="laser"/>
+      <setproperty property="scale" value="0x0" target="laser_un"/>
+      <setproperty property="scale" value="0x0" target="firegun"/>
+      <setproperty property="scale" value="0x0" target="firegun_un"/>
+      <setproperty property="scale" value="0x0" target="icegun"/>
+      <setproperty property="scale" value="0x0" target="icegun_un"/>
+      <setproperty property="scale" value="0x0" target="minigun"/>
+      <setproperty property="scale" value="0x0" target="minigun_un"/>
+      <setproperty property="scale" value="0x0" target="roketgun"/>
+      <setproperty property="scale" value="0x0" target="roketgun_un"/>
+      <setproperty property="scale" value="0x0" target="teslagun"/>
+      <setproperty property="scale" value="0x0" target="teslagun_un"/>
 
       <setproperty property="opacity" value="255" target="laser/normal"/>
       <setproperty property="opacity" value="255" target="laser_un/normal"/>

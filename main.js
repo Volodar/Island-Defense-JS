@@ -45,6 +45,7 @@ cc.game.onStart = function(){
         cc.audioEngine.resumeAllEffects();
         cc.audioEngine.resumeMusic();
         EU.ScoreByTime.checktime( );
+        //EU.mlTowersInfo.checkAvailabledTowers();
         /** */
 
 

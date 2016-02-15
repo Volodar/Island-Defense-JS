@@ -307,8 +307,6 @@ EU.mlTowersInfo = {
 
 (function() {
     EU.mlTowersInfo.load();
-    //TODO: Re-enable this
-    // EU.mlTowersInfo.checkAvailabledTowers();
 })();
 
 EU.mlUnitInfo = {

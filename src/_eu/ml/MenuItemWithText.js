@@ -43,7 +43,14 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     ctor: function(){
         cc.MenuItemImage.prototype.ctor.call(this);
         this.initExt();
-        this.initWithNormalImage("", "", "", "", "", null, null);
+        if( arguments.length == 3 && cc.isString(arguments[0]) && cc.isFunction(arguments[1] && cc.isObject(arguments[2])) )
+            this.initWithNormalImage(arguments[0], "", "", "", "", arguments[1], arguments[2]);
+        else if( arguments.length == 4 && cc.isString(arguments[0]) && cc.isString(arguments[1]) && cc.isFunction(arguments[2] && cc.isObject(arguments[3])) )
+            this.initWithNormalImage(arguments[0], arguments[1], "", "", "", arguments[2], arguments[3]);
+        else if( arguments.length == 7 )
+            this.initWithNormalImage( arguments[0], arguments[1], arguments[2], arguments[3], arguments[4], arguments[5], arguments[6]);
+        else
+            this.initWithNormalImage("", "", "", "", "", null, null);
     },
     /**
      * initialisation with all parameters
