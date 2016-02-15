@@ -51,8 +51,10 @@ EU.Mover = cc.Class.extend(
     },
 
     update: function (dt) {
-        if (this._route.length == 0)
+        if (this._route.length == 0) {
+            this.onFinish();
             return;
+        }
         /**@type {cc.p} direction */
         var direction = cc.p(0, 0);
 

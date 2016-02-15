@@ -1292,8 +1292,10 @@ EU.GameGS = EU.LayerExt.extend({
         this.objects.addChild(object, -object.getPositionY());
     },
     removeObject: function (object) {
-        if (this.objects)
+        if (this.objects && object){
             this.objects.removeChild(object);
+            object.removeFromParent();
+        }
     },
     update: function (dt) {
         this.board.update(dt);

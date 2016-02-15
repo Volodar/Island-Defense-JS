@@ -304,9 +304,10 @@ EU.GameBoard = cc.Class.extend({
         for( i=0; i<removed.length; ++i )
         {
             index = this.units.indexOf( removed[i] );
+            EU.assert( index != -1 );
             if( index != -1 )
             {
-                this.units.splice( i );
+                this.units.splice( i, 1 );
                 this.remove( removed[i] );
             }
         }

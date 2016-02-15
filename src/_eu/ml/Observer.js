@@ -30,7 +30,7 @@ EU.Observer = cc.Node.extend({
     },
     remove: function( ID ){
         if( ID in this.listeners )
-            this.listeners[ID] = undefined;
+            delete this.listeners[ID];
     },
     pushevent: function() {
         if( this.lockCounter == 0 )
