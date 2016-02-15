@@ -11,11 +11,11 @@ EU.Mover = cc.Class.extend(
     /**@type {cc.p} */ _position: null,
     /**@type {cc.p} */_currentDirection: null,
     /**@type {cc.p} */ _truncatedDirection: null,
-    _currentAngle: 0,
-    _velocity: 0,
-    _defaultvelocity: 0,
+    _currentAngle: null,
+    _velocity: null,
+    _defaultvelocity: null,
     _allowAngles: null,
-    _threshold: 0,
+    _threshold: null,
     _onChangePosition: null,
     _onFinish: null,
     _unit: null,
@@ -29,6 +29,10 @@ EU.Mover = cc.Class.extend(
         this._position = cc.p(0,0);
         this._currentDirection = cc.p(0,0);
         this._truncatedDirection = cc.p(0,0);
+        this._currentAngle = 0;
+        this._velocity = 0;
+        this._defaultvelocity = 0;
+        this._threshold = 0;
     },
 
     load_element: function (/** @type {Element} */ xmlnode) {
@@ -74,7 +78,7 @@ EU.Mover = cc.Class.extend(
         }
     },
     setRoute: function (route) {
-        this._route = route;
+        this._route = route.slice();
 
         if (this._route.length == 0) {
             this._onFinish.call(this._unit);

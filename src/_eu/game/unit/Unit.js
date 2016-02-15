@@ -81,8 +81,8 @@ EU.Unit = cc.Node.extend({
     /** @type {EU.Unit} */ _currentDamager : null,
     /** @type {EU.IndicatorNode} */ _healthIndicator : null,
     /** @type {Array<EU.UnitSkill>} */ _skills : null,
-    /** @type {Number} */ _currentHealth : 0.0,
-    /** @type {Integer} */ _soundMoveID : 0,
+    /** @type {Number} */ _currentHealth : null,
+    /** @type {Integer} */ _soundMoveID : null,
         
     BulletParams : function()
     {
@@ -94,7 +94,7 @@ EU.Unit = cc.Node.extend({
     /** @type Object<Number, EU.BulletParams>*/ _bulletParams : null,
 
     _rate : 0.0,
-    /** @type {String} */ _effectOnShoot : "",
+    /** @type {String} */ _effectOnShoot : null,
     /** @type {Integer} */ _level : null,
     /** @type {Integer} */ _maxLevel : null,
     /** @type {Integer} */ _maxLevelForLevel : null,
@@ -113,10 +113,10 @@ EU.Unit = cc.Node.extend({
     /** @type {String} */ _soundMove : "",
     /** @type {Integer} */ _lifecost : null,
     /** @type {Number} */ _exp : null,
-    _additionalZorder : 0,
+    _additionalZorder : null,
 
-    _damageShield : 0.0,
-    _damageRate : 0.0,
+    _damageShield : null,
+    _damageRate : null,
 
     /** typedef vector<Unit.Pointer>*/ TowersArray: null,
 
@@ -126,7 +126,9 @@ EU.Unit = cc.Node.extend({
     getMover: function() { return this._mover; },
     getDirection: function() { return this._angle; },
     getCurrentHealth: function() { return this._currentHealth; },
-
+    getLevel: function() { return this._level; },
+    getDamageBySector: function(){return this._damageBySector;},
+    getDamageBySectorAngle: function(){return this._damageBySectorAngle;},
 
     ctor: function()
     {
@@ -596,7 +598,7 @@ EU.Unit = cc.Node.extend({
     on_die_finish : function()
     {
         this.runEvent( "on_die_finish" );
-        GameGS.getInstance().getGameBoard().death( this );
+        GameGS.getInstance().getGameBoard().deathUnit( this );
     },
     move_update : function( dt )
     {

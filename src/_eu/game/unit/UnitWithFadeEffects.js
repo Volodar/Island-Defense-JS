@@ -16,12 +16,12 @@ var EU = EU || {};
 EU.UnitWithFadeEffects = EU.Unit.extend({
 
     //bool init( const std::string & path, const std::string & xmlFile = "ini.xml" );
-    _time_ice : 0.0,
-    _time_fire : 0.0,
-    _time_electro : 0.0,
-    _fire : false,
-    _ice : false,
-    _electro : false,
+    _time_ice : null,
+    _time_fire : null,
+    _time_electro : null,
+    _fire : null,
+    _ice : null,
+    _electro : null,
     /** Color3B* */ _color_fire : null,
     /** Color3B* */ _color_ice : null,
     /** Color3B* */ _color_electro : null,
@@ -31,6 +31,12 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
     ctor: function(path, xmlFile )
     {
         this._super();
+        this._time_ice = 0.0;
+        this._time_fire = 0.0;
+        this._time_electro = 0.0;
+        this._fire = false;
+        this._ice = false;
+        this._electro = false;
         if ( EU.Unit.prototype.init_str_str.call(this, path, xmlFile ) ) return false;
     
         this.setCascadeColorEnabled( true );

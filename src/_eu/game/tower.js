@@ -47,8 +47,7 @@ EU.mlTowersInfo = {
     /** float */ parameterMin : 1 ,
     /** float */ parameterMax : 10 ,
 
-    fetch : function ( /** Array<String> */ towers )
-    {
+    fetch : function ( /** Array<String> */ towers ) {
         for (var key in this.m_towersInfo) {
             if (key.length > 0) towers.push( key );
         }
@@ -72,7 +71,6 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-
     getCostLab : function (  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
@@ -113,7 +111,6 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-
     get_spd : function (  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
@@ -156,7 +153,6 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-
     radiusInPixels: function(  name, level ) {
         var iter = this.m_towersInfo[name];
         if ( iter )
@@ -168,9 +164,7 @@ EU.mlTowersInfo = {
         }
         return 0;
     },
-
-    load : function ()
-    {
+    load : function () {
         var doc = new EU.pugixml.readXml( "ini/towers.xml");
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
@@ -295,7 +289,6 @@ EU.mlTowersInfo = {
         }
 
     },
-
     checkAvailabledTowers : function () {
         var passed = new EU.UserData.level_getCountPassed();
         for (var key in this.m_towersInfo) {
@@ -307,7 +300,8 @@ EU.mlTowersInfo = {
                 EU.UserData.tower_setUpgradeLevel( key, level );
             }
         }
-    }
+    },
+    getCostForDig: function(){ return this._digcost; }
     
 };
 

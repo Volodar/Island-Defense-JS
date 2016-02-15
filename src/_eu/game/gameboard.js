@@ -84,11 +84,11 @@ EU.GameBoard = cc.Class.extend({
 
     setCreepsRoutes: function(routes){this.creepsRoutes = routes;},
     getCreepsRoutes: function(){return this.creepsRoutes;},
-    setGameMode: function(mode){this.gameMode = mode;},
+    //setGameMode: function(mode){this.gameMode = mode;},
     getGameMode: function(){return this.gameMode;},
-    setCurrentLevelIndex: function(index){this.levelIndex = index;},
+    //setCurrentLevelIndex: function(index){this.levelIndex = index;},
     getCurrentLevelIndex: function(){return this.levelIndex;},
-    setSkillParams: function(params){this.skillParams = params;},
+    //setSkillParams: function(params){this.skillParams = params;},
     getSkillParams: function(){return this.skillParams;},
 
     ctor: function()
@@ -245,7 +245,7 @@ EU.GameBoard = cc.Class.extend({
         if( EU.k.useBoughtLevelScoresOnEveryLevel )
         {
             var key = EU.k.BoughtScores + EU.kScoreLevel;
-            var boughtScores = EU.UserData.get_int( key, 0 );
+            boughtScores = EU.UserData.get_int( key, 0 );
             startscore += boughtScores;
         }
     
@@ -266,17 +266,17 @@ EU.GameBoard = cc.Class.extend({
         var removed = [];
         for( var i=0;i<this.units.length;++i)
             units.push(this.units[i]);
-        for( var i=0;i<this.death.length;++i)
+        for( i=0;i<this.death.length;++i)
             units.push(this.death[i]);
-        for( var i=0; i<units.length; ++i )
+        for( i=0; i<units.length; ++i )
         {
             var unit = units[i];
             unit.update( dt );
 
             if( (unit.getCurrentHealth() <= 0) && (this.death.indexOf( unit ) == -1) )
-                death.push( i );
+                death.push( unit );
             else if( unit.getMoveFinished() == true && unit._type == EU.UnitType.creep )
-                removed.push( i );
+                removed.push( unit );
         }
 
         for( i=0; i<death.length; ++i )
@@ -307,7 +307,7 @@ EU.GameBoard = cc.Class.extend({
             if( index != -1 )
             {
                 this.units.splice( i );
-                remove( removed[i] );
+                this.remove( removed[i] );
             }
         }
 
@@ -315,17 +315,17 @@ EU.GameBoard = cc.Class.extend({
         this.checkGameFinished();
     },
     updateSkills: function( dt ){
-        for( var desant in this.desants )
+        for( var unit in this.desants )
         {
-            this.desants[desant] -= dt;
-            if( this.desants[desant] <= 0 )
+            this.desants[unit] -= dt;
+            if( this.desants[unit] <= 0 )
             {
                 var index = this.units.indexOf( desant );
                 EU.assert( index != -1 );
                 if( index != -1 )
                     this.units.splice( index, 1 );
-                remove( desant );
-                this.desants[desant] = undefined;
+                this.remove( unit );
+                this.desants[unit] = undefined;
             }
         }
     },
@@ -433,8 +433,8 @@ EU.GameBoard = cc.Class.extend({
         this.isStarted = true;
         EU.GameGSInstance.updateWaveCounter();
         EU.GameGSInstance.onStartWave( waveInfo );
-        //var sound = EU.xmlLoader.macros.parse( "##sound_wavestart##" );
-        //TODO: AudioEngine.playEffect( sound, false, 0 );
+        var sound = EU.xmlLoader.macros.parse( "##sound_wavestart##" );
+        EU.AudioEngine.playEffect( sound, false, 0 );
         var index = EU.WaveGenerator.getWaveIndex();
         this.event_startwave( index );
     },
@@ -527,13 +527,13 @@ EU.GameBoard = cc.Class.extend({
     onKill: function( damager, target ){
         this.killers[damager].push( target );
     },
-    isTowerPlace: function( location ){
-        var index = EU.GameGSInstance.getTowerPlaceIndex( location );
-        return index != -1;
-    },
+    //isTowerPlace: function( location ){
+    //    var index = EU.GameGSInstance.getTowerPlaceIndex( location );
+    //    return index != -1;
+    //},
     buildTower: function( name, level, unit ){
-        var resource = name + level;
         //TODO: load reource
+        //var resource = name + level;
         //if( EU.LoadLevelScene.getInstance() )
         //    EU.LoadLevelScene.loadInGameResources(resource);
 
@@ -548,7 +548,7 @@ EU.GameBoard = cc.Class.extend({
         creep.setName( name );
         return creep;
     },
-    createCreep: function( name, route, position ){
+    createCreepOnRoute: function( name, route, position ){
         var creep = this.buildCreep( name );
         creep.getMover().setRoute( route );
         creep.move();
@@ -579,7 +579,7 @@ EU.GameBoard = cc.Class.extend({
         var cost = EU.mlTowersInfo.getCost( name, 1 );
         if( cost > EU.ScoreCounter.getMoney( EU.kScoreLevel ) )
         {
-            //TODO: AudioEngine.playEffect( kSoundGameTowerBuyCancel );
+            EU.AudioEngine.playEffect( kSoundGameTowerBuyCancel );
             return null;
         }
     
@@ -589,7 +589,7 @@ EU.GameBoard = cc.Class.extend({
     
         this.addUnit( tower );
     
-        //TODO: AudioEngine.playEffect( kSoundGameTowerBuy );
+        EU.AudioEngine.playEffect( kSoundGameTowerBuy );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         EU.GameGSInstance.eraseTowerPlace( place );
         EU.GameGSInstance.onCreateUnit( tower );
@@ -686,8 +686,8 @@ EU.GameBoard = cc.Class.extend({
         }
         if( min != -1 )
         {
-            var index = EU.UserData.hero_getCurrent() + 1;
-            var decor = decorations[min];
+            index = EU.UserData.hero_getCurrent() + 1;
+            decor = decorations[min];
             this.hero = EU.xmlLoader.load_node_from_file( "ini/units/hero/hero" + index + ".xml" );
             this.hero.initSkills();
             this.hero.setPosition( decor.getPosition() );
@@ -738,9 +738,9 @@ EU.GameBoard = cc.Class.extend({
         newTower.setPosition( tower.getPosition() );
         this.units[index] = newTower;
 
-        //TODO: AudioEngine.playEffect( kSoundGameTowerUpgrade );
+        EU.AudioEngine.playEffect( kSoundGameTowerUpgrade );
         EU.GameGSInstance.removeObject( tower );
-        EU.GameGSInstance.addObject( newTower, zorder.tower );
+        EU.GameGSInstance.addObject( newTower );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
 
         if( (level + 1) == maxlevel )
@@ -783,11 +783,11 @@ EU.GameBoard = cc.Class.extend({
     },
     remove: function( unit ){
         unit.stopAllLoopedSounds();
-        var cost = unit.getLifeCost();
+        var cost = unit._lifecost;
         if( cost > 0 )
         {
-            //var sound = EU.xmlLoader.macros.parse( "##sound_gameplayerdamage##" );
-            //TODO: AudioEngine.playEffect( sound, false, 0 );
+            var sound = EU.xmlLoader.macros.parse( "##sound_gameplayerdamage##" );
+            EU.AudioEngine.playEffect( sound, false, 0 );
             EU.ScoreCounter.subMoney( EU.kScoreHealth, cost, false );
             //TODO: EU.Achievements.process( "skip_enemies", 1 );
         }
@@ -864,7 +864,7 @@ EU.GameBoard = cc.Class.extend({
     checkGameFinished: function(){
         var finishGame = false;
         var byHealth = (EU.ScoreCounter.getMoney( EU.kScoreHealth ) <= 0);
-        var isExistCreep = this.isExistCreep( this.units )
+        var isExistCreep = this.isExistCreep( this.units );
         var byEndOfWaves = (isExistCreep == false && this.isFinihedWaves == true);
         finishGame = finishGame || byHealth;
         finishGame = finishGame || byEndOfWaves;
@@ -876,11 +876,10 @@ EU.GameBoard = cc.Class.extend({
     activateTowerPlace: function( place ){
         if( !place ) return;
         if( place.getActive() ) return;
-        var cost = EU.mlTowersInfo.getCostFotDig();
+        var cost = EU.mlTowersInfo.getCostForDig();
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
-        EU.GameGSInstance.createSubMoneyNode( cost, place.getPosition() );
         place.setActive( true );
-        //TODO: AudioEngine.playEffect( kSoundGameTowerPlaceActivate );
+        EU.AudioEngine.playEffect( kSoundGameTowerPlaceActivate );
     },
     getRoutesCount: function(){
         return creepsRoutes.length;
@@ -1025,21 +1024,17 @@ EU.GameBoard = cc.Class.extend({
         if( baseType == EU.UnitType.tower && targetType == EU.UnitType.creep ) return true;
         if( baseType == EU.UnitType.desant && targetType == EU.UnitType.creep ) return true;
         if( baseType == EU.UnitType.hero && targetType == EU.UnitType.creep ) return true;
-        if( baseType == EU.UnitType.other && targetType == EU.UnitType.other ) return true;
-        return false;
+        return ( baseType == EU.UnitType.other && targetType == EU.UnitType.other );
     },
     checkTargetByUnitLayer: function( target, base ){
         var target_layer = target._unitLayer;
         var allow_targets = base._allowTargets;
-        if( allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(-1) != -1 )
-            return true;
-        return false;
+        return allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(-1) != -1;
     },
     checkTargetByRadius: function( target, center, radius ){
         var a = center;
         var b = target.getPosition();
-        var result = EU.checkRadiusByEllipse( a, b, radius );
-        return result;
+        return EU.checkRadiusByEllipse( a, b, radius );
     },
     checkTargetBySector: function( target,  base ){
         var result = true;
