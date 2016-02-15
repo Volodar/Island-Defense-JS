@@ -42,8 +42,8 @@ EU.WaveGenerator = {
     /** @type {Integer} */
     m_currentWaveIndex: null,
 
-    /** @type {EU.TimeCounter} */ m_delayUnits : null,
-    /** @type {EU.TimeCounter} */ m_delayWaves : null,
+    /** @type {EU.Common.TimeCounter} */ m_delayUnits : null,
+    /** @type {EU.Common.TimeCounter} */ m_delayWaves : null,
     /** @type {Boolean} */ m_delayWavesNow : true,
     /** @type {Boolean} */ m_isRunning : true,
 

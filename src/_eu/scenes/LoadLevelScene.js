@@ -194,7 +194,7 @@ EU.LoadLevelScene = cc.Scene.extend(
     onLoadingFinished: function()
     {
         var game = EU.GameGS.createScene();
-        EU.GameGS.getInstance().getGameBoard().loadLevel( this._levelIndex, this._levelMode );
+        EU.GameGSInstance.getGameBoard().loadLevel( this._levelIndex, this._levelMode );
         cc.director.pushScene( game );
         this._popSceneOnEnter = true;
 

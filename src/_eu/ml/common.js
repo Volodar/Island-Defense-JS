@@ -25,8 +25,8 @@ EU.Common = {
         counter:null,
         timer:null,
         ctor: function(){
-            counter = 0;
-            timer = 0;
+            this.counter = 0;
+            this.timer = 0;
         },
         set: function( time ) { this.timer = time; this.reset(); },
         reset: function() { this.counter = this.timer; },

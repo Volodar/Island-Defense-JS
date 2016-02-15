@@ -17,8 +17,6 @@ EU.ImageManager  = {
     frames: {},
     atlases: {},
 
-    onCreate: function(){
-    },
     load: function(path, name){
         var plist = EU.xmlLoader.resourcesRoot + path;
         var framePrefix = name + "::";

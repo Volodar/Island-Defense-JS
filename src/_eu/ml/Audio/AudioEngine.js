@@ -177,3 +177,5 @@ EU.AudioEngine =
     }
 
 };
+
+EU.AudioEngine.onCreate();

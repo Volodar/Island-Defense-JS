@@ -898,7 +898,7 @@ EU.xmlLoader = {
         var result = false;
         EU.assert(node);
         //TODO: EU.Language
-        var language = null;//EU.Language.shared();
+        var language = null;//EU.Language;
 
         var sprite = node instanceof cc.Sprite ? node : null;
         var progress = node instanceof cc.ProgressTimer ? node : null;

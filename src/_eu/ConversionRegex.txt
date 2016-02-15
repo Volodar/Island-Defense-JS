@@ -52,8 +52,6 @@ null
 5. replace property with this.property
 ([^/*//][^\w"\.])_(\w+)
 $1this._$2
-(_
-(this._
 
 7. replace <type>, const, Pointer, & to empty string
 const
@@ -97,6 +95,8 @@ cc.director.getOpenGLView()
 cc.view
  set
  this.set
+ get
+ this.get
 
 function\( *([^, ]+) +(\w+) *\)
 function\( /**@type {$1} */ $2 )

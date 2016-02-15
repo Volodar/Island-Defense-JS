@@ -221,7 +221,7 @@ EU.Unit = cc.Node.extend({
 
         //if( this._type == UniType.tower )
         //{
-        //	//Number rate = mlTowersInfo.shared().rate( getName() );
+        //	//Number rate = mlTowersInfo.rate( getName() );
         //	//_effect.positive.damage *= rate;
         //	//_effect.positive.fireRate *= rate;
         //	//_effect.positive.iceRate *= rate;

@@ -12,6 +12,9 @@
 
 EU.SmartScene = cc.Scene.extend(
 {
+    /** For Test Instance of */
+    __SmartScene : true,
+
     //void shadow_appearance( var z = 1, var opacity = 204 );
     /** @type {cc.Layer} */ _mainlayer : null,
     /** @type {cc.Sprite} */ _shadow : null,
