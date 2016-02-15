@@ -141,8 +141,8 @@ EU.mlEffect = cc.Class.extend({
      */
     load_node : function( node )
     {
-        var p = node.getElementsByTagName( "this.positive" )[0];
-        var n = node.getElementsByTagName( "this.negative" )[0];
+        var p = node.getElementsByTagName( "positive" )[0];
+        var n = node.getElementsByTagName( "negative" )[0];
 
         if( n ) {
             this.negative.velocityMoveRate = EU.asObject(n.getAttribute("velocityMoveRate"), 1.0);

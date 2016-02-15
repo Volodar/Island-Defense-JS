@@ -110,6 +110,7 @@ EU.GameBoard = cc.Class.extend({
         this.leaderboardScore = 0;
         this.desants = {};
         this.skillParams = {};
+        this.killers = [];
 
         this.loadSkillsParams();
         this.checkDefaultBonusesItems();
@@ -526,6 +527,8 @@ EU.GameBoard = cc.Class.extend({
         this.damagers[damager] += damage;
     },
     onKill: function( damager, target ){
+        if( !(damager in this.killers) )
+            this.killers[damager] = [];
         this.killers[damager].push( target );
     },
     //isTowerPlace: function( location ){
@@ -810,7 +813,7 @@ EU.GameBoard = cc.Class.extend({
         }
     },
     preDeath: function( unit ){
-        var cost = unit.getCost();
+        var cost = unit._cost;
         EU.ScoreCounter.addMoney( EU.kScoreLevel, cost, false );
         //TODO: EU.Achievements.process( "collect_gold", cost );
         //TODO: EU.Achievements.process( "kill_enemies", 1 );
@@ -833,7 +836,7 @@ EU.GameBoard = cc.Class.extend({
         unit.capture_targets( null );
         unit.stop();
         unit.die();
-        this.death.insert( unit );
+        this.death.push( unit );
     },
     deathUnit: function( creep ){
         var index = -1;
