@@ -129,6 +129,8 @@ EU.Unit = cc.Node.extend({
     getLevel: function() { return this._level; },
     getDamageBySector: function(){return this._damageBySector;},
     getDamageBySectorAngle: function(){return this._damageBySectorAngle;},
+    getCurrentDamager:function(){return this._currentDamager;},
+    getHealth:function(){return this._health;},
 
     ctor: function(path, xmlFile)
     {
@@ -300,6 +302,10 @@ EU.Unit = cc.Node.extend({
     },
     capture_targets : function( /** Array<EU.Unit> */ targets )
     {
+        if( !targets ){
+            this.capture_target( null );
+            return;
+        }
         EU.assert( targets.length <= this._maxTargets );
         this._targets = targets.slice();
         if( this._targets.length == 0)
@@ -492,7 +498,7 @@ EU.Unit = cc.Node.extend({
 
     on_die : function()
     {
-        this.push_event( this.event_notarget );
+        this.push_event( EU.MachineUnit.Event.event_notarget );
         this.runEvent( "on_die" );
         this.setCurrentHealth( 0 );
     },
