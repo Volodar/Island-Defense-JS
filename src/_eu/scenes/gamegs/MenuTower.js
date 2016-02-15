@@ -92,14 +92,14 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         this.setVisible( true );
         this.hideConfirmButton();
         this.runEvent( "appearance" );
-        EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.onChangeMoney.bind(this) );
+        EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.onChangeMoney, this );
         this.onChangeMoney( EU.ScoreCounter.getMoney( EU.kScoreLevel ) );
 
         this._confirm.setVisible( false );
         this._confirmUn.setVisible( false );
 
         this.scheduleUpdate();
-        showRadius( this._unit.getPosition(), this._unit._radius );
+        EU.showRadius( this._unit.getPosition(), this._unit._radius );
     },
 
     disappearance: function()
@@ -179,7 +179,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
 
         //var rate = EU.mlTowersInfo.rate( this._unit.getName() );
         var radius = EU.mlTowersInfo.radiusInPixels( this._unit.getName(), this._unit._level + 1 );
-        showRadius( this._unit.getPosition( ), radius /** rate*/ );
+        EU.showRadius( this._unit.getPosition( ), radius /** rate*/ );
         this.runEvent( "onclick" );
     },
 
@@ -300,7 +300,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         if( !this._unit )
             return;
         if( radiusTowerIsHiden() )
-            showRadius( this._unit.getPosition(), this._unit._radius );
+            EU.showRadius( this._unit.getPosition(), this._unit._radius );
 
         var pos = this._unit.getPosition();
         var point = EU.GameGSInstance.getMainLayer( ).convertToWorldSpace( pos );

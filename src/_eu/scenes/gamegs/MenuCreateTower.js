@@ -62,13 +62,13 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
             {
                 this._confirmButton = item;
                 this._confirmButton.setVisible( false );
-                item.setCallback( function(p1){return self.confirmSelect.call(self, p1, true)} );
+                this._confirmButton.setCallback(this.confirmSelect.bind(this,true));
             }
             else if( item.getName() == "confirm_un" )
             {
                 this._confirmButtonUn = item;
                 this._confirmButtonUn.setVisible( false );
-                item.setCallback( function(p1){return self.confirmSelect.call(self, p1, false)} );
+                this._confirmButtonUn.setCallback( this.confirmSelect.bind(this,true) );
             }
             else
             {
@@ -140,6 +140,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         {
             this._confirmButton.setPosition( node.getPosition() );
             this._confirmButton.setVisible( true );
+            this._buttonTowers[name].setVisible( false );
         }
         else
         {
@@ -157,7 +158,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
         //var rate = EU.mlTowersInfo.shared( ).rate( name );
         var radius = EU.mlTowersInfo.radiusInPixels( name, 1 );
-        EU.Support.showRadius( this._centerPoint, radius /** rate*/ );
+        EU.showRadius( this._centerPoint, radius /** rate*/ );
     },
 
     confirmSelect: function(  sender, availableButton )
@@ -220,6 +221,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         this.setVisible( true );
         this.hideConfirmButton();
         this.runEvent( "appearance" );
+        this.setEnabled( true );
         this._disabled = false;
         EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.onChangeMoney, this);
         this.changeCost();
@@ -232,6 +234,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         {
             this.hideConfirmButton();
             this.runEvent( "disappearance" );
+            this.setEnabled( false );
             this._disabled = true;
 
             EU.hideRadius();
@@ -263,7 +266,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
     buildDescription: function()
     {
         var name = this._selectedTower;
-        name = EU.WORD( name + "_name" );
+        name = EU.Language.string( name + "_name" );
         var dmg = ( EU.mlTowersInfo.get_dmg( this._selectedTower, 1 ) );
         var rng = ( EU.mlTowersInfo.get_rng( this._selectedTower, 1 ) );
         var spd = ( EU.mlTowersInfo.get_spd( this._selectedTower, 1 ) );

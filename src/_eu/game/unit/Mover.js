@@ -141,7 +141,7 @@ EU.Mover = cc.Class.extend(
         return this._truncatedDirection;
     },
     getRandomAngle: function () {
-        if (this._allowAngles.size() == 0)return 0;
+        if (this._allowAngles.length == 0)return 0;
 
         var index = cc.random0To1() % this._allowAngles.length;
         return this._allowAngles[index];

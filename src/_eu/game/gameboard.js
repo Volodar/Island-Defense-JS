@@ -435,7 +435,7 @@ EU.GameBoard = cc.Class.extend({
         EU.GameGSInstance.updateWaveCounter();
         EU.GameGSInstance.onStartWave( waveInfo );
         var sound = EU.xmlLoader.macros.parse( "##sound_wavestart##" );
-        EU.AudioEngine.playEffect( sound, false, 0 );
+        //EU.AudioEngine.playEffect( sound, false, 0 );
         var index = EU.WaveGenerator.getWaveIndex();
         this.event_startwave( index );
     },
@@ -580,7 +580,7 @@ EU.GameBoard = cc.Class.extend({
         var cost = EU.mlTowersInfo.getCost( name, 1 );
         if( cost > EU.ScoreCounter.getMoney( EU.kScoreLevel ) )
         {
-            EU.AudioEngine.playEffect( kSoundGameTowerBuyCancel );
+            //EU.AudioEngine.playEffect( kSoundGameTowerBuyCancel );
             return null;
         }
     
@@ -590,7 +590,7 @@ EU.GameBoard = cc.Class.extend({
     
         this.addUnit( tower );
     
-        EU.AudioEngine.playEffect( kSoundGameTowerBuy );
+        //EU.AudioEngine.playEffect( kSoundGameTowerBuy );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         EU.GameGSInstance.eraseTowerPlace( place );
         EU.GameGSInstance.onCreateUnit( tower );
@@ -739,7 +739,7 @@ EU.GameBoard = cc.Class.extend({
         newTower.setPosition( tower.getPosition() );
         this.units[index] = newTower;
 
-        EU.AudioEngine.playEffect( kSoundGameTowerUpgrade );
+        //EU.AudioEngine.playEffect( kSoundGameTowerUpgrade );
         EU.GameGSInstance.removeObject( tower );
         EU.GameGSInstance.addObject( newTower );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
@@ -788,7 +788,7 @@ EU.GameBoard = cc.Class.extend({
         if( cost > 0 )
         {
             var sound = EU.xmlLoader.macros.parse( "##sound_gameplayerdamage##" );
-            EU.AudioEngine.playEffect( sound, false, 0 );
+            //EU.AudioEngine.playEffect( sound, false, 0 );
             EU.ScoreCounter.subMoney( EU.kScoreHealth, cost, false );
             //TODO: EU.Achievements.process( "skip_enemies", 1 );
         }
@@ -880,7 +880,7 @@ EU.GameBoard = cc.Class.extend({
         var cost = EU.mlTowersInfo.getCostForDig();
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         place.setActive( true );
-        EU.AudioEngine.playEffect( kSoundGameTowerPlaceActivate );
+        //EU.AudioEngine.playEffect( kSoundGameTowerPlaceActivate );
     },
     getRoutesCount: function(){
         return creepsRoutes.length;
@@ -951,7 +951,7 @@ EU.GameBoard = cc.Class.extend({
             var result = true;
             result = result && this.checkTargetByUnitType( target, base );
             result = result && this.checkTargetByUnitLayer( target, base );
-            result = result && this.checkTargetByRadius( target, base.getPosition(), base.getRadius() );
+            result = result && this.checkTargetByRadius( target, base.getPosition(), base._radius );
             result = result && this.checkTargetBySector( target, base );
             if( result )
             {
@@ -995,9 +995,9 @@ EU.GameBoard = cc.Class.extend({
         result = result && target.current_state().get_name() != EU.MachineUnit.State.state_enter;
         result = result && this.checkTargetByArea( target );
         result = result && this.checkTargetByUnitType( target, base );
-        result = result && this.checkTargetByEU.UnitLayer( target, base );
+        result = result && this.checkTargetByUnitLayer( target, base );
         result = result && base.checkTargetByRadius( target );
-        result = result && this.checkTargetByRadius( target, base.getPosition(), base.getRadius() );
+        result = result && this.checkTargetByRadius( target, base.getPosition(), base._radius );
         //result = result && checkTargetBySector( target, base );
         return result;
     },
@@ -1020,11 +1020,16 @@ EU.GameBoard = cc.Class.extend({
     checkTargetByUnitType: function( target, base ){
         var targetType = target._type;
         var baseType = base._type;
-        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.desant ) return true;
-        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.hero ) return true;
-        if( baseType == EU.UnitType.tower && targetType == EU.UnitType.creep ) return true;
-        if( baseType == EU.UnitType.desant && targetType == EU.UnitType.creep ) return true;
-        if( baseType == EU.UnitType.hero && targetType == EU.UnitType.creep ) return true;
+        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.desant )
+            return true;
+        if( baseType == EU.UnitType.creep && targetType == EU.UnitType.hero )
+            return true;
+        if( baseType == EU.UnitType.tower && targetType == EU.UnitType.creep )
+            return true;
+        if( baseType == EU.UnitType.desant && targetType == EU.UnitType.creep )
+            return true;
+        if( baseType == EU.UnitType.hero && targetType == EU.UnitType.creep )
+            return true;
         return ( baseType == EU.UnitType.other && targetType == EU.UnitType.other );
     },
     checkTargetByUnitLayer: function( target, base ){
