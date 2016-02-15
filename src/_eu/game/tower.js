@@ -290,7 +290,7 @@ EU.mlTowersInfo = {
 
     },
     checkAvailabledTowers : function () {
-        var passed = new EU.UserData.level_getCountPassed();
+        var passed = EU.UserData.level_getCountPassed();
         for (var key in this.m_towersInfo) {
             var iter = this.m_towersInfo[key];
             if ( iter.minlevel <= passed )

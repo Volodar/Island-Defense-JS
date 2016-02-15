@@ -28,17 +28,16 @@ EU.UnitWithFadeEffects = EU.Unit.extend({
 
     duration : 0.5,
     
-    ctor: function(path, xmlFile )
+    ctor: function(path, xmlFile)
     {
-        this._super();
+        this._super(path, xmlFile);
         this._time_ice = 0.0;
         this._time_fire = 0.0;
         this._time_electro = 0.0;
         this._fire = false;
         this._ice = false;
         this._electro = false;
-        if ( EU.Unit.prototype.init_str_str.call(this, path, xmlFile ) ) return false;
-    
+
         this.setCascadeColorEnabled( true );
         return true;
     },

@@ -1099,14 +1099,15 @@ EU.GameGS = EU.LayerExt.extend({
         //this.interface_heroSkill.run();
     },
     createEffect: function (base, target, effect) {
-        var effects = EU.ShootsEffectsCreate(base, target, effect);
-        for (var i = 0; i < effects.length; ++i) {
-            var object = effects[i];
-            var z = object.getLocalZOrder();
-            this.addObject(object, 0);
-            if (z != 0)
-                object.setLocalZOrder(z);
-        }
+        //TODO:EU.ShootsEffectsCreate
+        //var effects = EU.ShootsEffectsCreate(base, target, effect);
+        //for (var i = 0; i < effects.length; ++i) {
+        //    var object = effects[i];
+        //    var z = object.getLocalZOrder();
+        //    this.addObject(object, 0);
+        //    if (z != 0)
+        //        object.setLocalZOrder(z);
+        //}
     },
     createIconForWave: function (route, waveinfo, unitType, iconlist, delay) {
         var start = route[0];

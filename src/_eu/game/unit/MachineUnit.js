@@ -40,7 +40,7 @@ EU.MachineUnit = function() {
     ///** @return void */ this.stop_update = function( dt ) {},
     ///** @return void */ this.die_update = function( dt ) {},
     ///** @return void */ this.enter_update = function( dt ) {},
-    ///** @return void */ this.readyfire_update = function( dt ) {},
+    /** @return void */ this.readyfire_update = function( dt ) {},
 
     
     this.Cocking = function(duration) { this.duration = duration},

@@ -130,7 +130,7 @@ EU.Unit = cc.Node.extend({
     getDamageBySector: function(){return this._damageBySector;},
     getDamageBySectorAngle: function(){return this._damageBySectorAngle;},
 
-    ctor: function()
+    ctor: function(path, xmlFile)
     {
         this.initExt();
         this._params = new EU.ParamCollection();
@@ -175,6 +175,8 @@ EU.Unit = cc.Node.extend({
         this.observerHealth = new EU.Observer();
         this._healthIndicator = new EU.IndicatorNode();
         this.addChild( this._healthIndicator );
+        if ( this.init_str_str.call(this, path, xmlFile ) )
+            return false;
     },
     destroy: function()
     {
@@ -299,9 +301,11 @@ EU.Unit = cc.Node.extend({
     capture_targets : function( /** Array<EU.Unit> */ targets )
     {
         EU.assert( targets.length <= this._maxTargets );
-        this._targets = targets;
-        if( this._targets.length == 0) this.capture_target( null );
-        else this.capture_target( this._targets[0] );
+        this._targets = targets.slice();
+        if( this._targets.length == 0)
+            this.capture_target( null );
+        else
+            this.capture_target( this._targets[0] );
     },
     get_targets : function( /** Array<EU.Unit> */ targets )
     {
@@ -346,14 +350,14 @@ EU.Unit = cc.Node.extend({
 
         if( this._damageBySector )
         {
-            GameGS.getInstance().getGameBoard().applyDamageBySector( this );
+            EU.GameGSInstance.getGameBoard().applyDamageBySector( this );
         }
         else
         {
             if( target )
             {
                 target.applyDamage( this );
-                GameGS.getInstance().createEffect( this, target, this._effectOnShoot );
+                EU.GameGSInstance.createEffect( this, target, this._effectOnShoot );
             }
         }
     },
@@ -370,7 +374,7 @@ EU.Unit = cc.Node.extend({
         if( damage != 0 )
         {
             this.on_damage( damage );
-            GameGS.getInstance().getGameBoard().onDamage( damager, this, damage );
+            EU.GameGSInstance.getGameBoard().onDamage( damager, this, damage );
 
         }
 
@@ -381,7 +385,7 @@ EU.Unit = cc.Node.extend({
 
         if( this._currentHealth <= 0 )
         {
-            GameGS.getInstance().getGameBoard().onKill( damager, this );
+            EU.GameGSInstance.getGameBoard().onKill( damager, this );
         }
     },
 
@@ -396,7 +400,7 @@ EU.Unit = cc.Node.extend({
     },
     on_shoot : function( index )
     {
-        if( !this.__Bullet )
+        if( this.__Bullet )
             return;
 
         this.runEvent( "on_shoot" );
@@ -404,7 +408,7 @@ EU.Unit = cc.Node.extend({
         this.runEvent( "on_shoot" + ( index ) + "_byangle" + ( this._angle ) );
         this.runEvent( "on_shoot_byangle" + ( this._angle ) );
 
-        if( this._bulletXml.length == 0 )
+        if( !this._bulletXml || this._bulletXml.length == 0 )
         {
             for (var i = 0; i < this._targets.length; i++) {
                 var target = this._targets[i];
@@ -421,7 +425,7 @@ EU.Unit = cc.Node.extend({
                 var position = cc.pAdd(this._bulletParams[this._mover._currentAngle].offset , this.getPosition());
                 var bullet = new EU.Bullet( this._bulletXml, this, target, angle, position );
                 bullet.setType( EU.UnitType.tower );
-                GameGS.getInstance().getGameBoard().addUnit( bullet );
+                EU.GameGSInstance.getGameBoard().addUnit( bullet );
             }
         }
     },
@@ -598,7 +602,7 @@ EU.Unit = cc.Node.extend({
     on_die_finish : function()
     {
         this.runEvent( "on_die_finish" );
-        GameGS.getInstance().getGameBoard().deathUnit( this );
+        EU.GameGSInstance.getGameBoard().deathUnit( this );
     },
     move_update : function( dt )
     {
@@ -687,7 +691,7 @@ EU.Unit.prototype.update = function( dt )
         this.applyTimedDamage( dt );
     }
 };
-
+EU.UnitNodeExtloadXmlEntity = EU.Unit.prototype.loadXmlEntity;
 EU.Unit.prototype.loadXmlEntity = function(/**@type {String} */ tag, /** @type {Element} */ xmlnode )
 {
     if( tag == EU.k.MachineUnit )
@@ -718,7 +722,7 @@ EU.Unit.prototype.loadXmlEntity = function(/**@type {String} */ tag, /** @type {
     }
     else
     {
-        return this.loadXmlEntity( tag, xmlnode );
+        return EU.UnitNodeExtloadXmlEntity( tag, xmlnode );
     }
     return true;
 };
