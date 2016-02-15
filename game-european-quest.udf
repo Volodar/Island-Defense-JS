@@ -12,7 +12,7 @@
       <Value ctype="CocosRecentOperation">
         <LastPublishType Value="Resource" />
         <IsLastPublish Value="True" />
-        <LastRunType Value="Mac" />
+        <LastRunType Value="Web" />
       </Value>
     </Item>
     <Item Key="PackageParamsKey">
@@ -26,7 +26,7 @@
         <iOS_Target Value="game-european-quest-mobile" />
         <iOS_BundleID Value="" />
         <Platform Value="Web" />
-        <RunPlatform Value="None" />
+        <RunPlatform Value="Web" />
         <FrameworkVersion Value="cocos2d-x-3.10" />
         <IsDebugKeystore Value="True" />
         <KeystorePassword Value="" />

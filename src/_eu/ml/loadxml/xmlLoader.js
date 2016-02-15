@@ -28,6 +28,7 @@ EU.xmlLoader = {
     /** For Test Instance of */
     __xmlLoader: true,
     resourcesRoot: "res/_origin/",
+    resourcesRootJSON: "res/_origin_json/",
 
     self: this,
     macros: {
