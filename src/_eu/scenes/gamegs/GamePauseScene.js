@@ -50,8 +50,8 @@ EU.GamePauseLayer = cc.Menu.extend(
 
         var desSize = cc.view.getDesignResolutionSize();
         this._super();
-        this.setPosition( Point( desSize / 2 ) );
-        this.setContentSize( Size.ZERO );
+        this.setPosition( cc.p( desSize.width / 2, desSize.height / 2 ) );
+        this.setContentSize( cc.size(0,0) );
         var self = this;
         cc.eventManager.addListener({
             event: cc.EventListener.KEYBOARD,
@@ -90,8 +90,8 @@ EU.GamePauseLayer = cc.Menu.extend(
 
         if( cost )
         {
-            var index = EU.GameGS.getInstance().getGameBoard().getCurrentLevelIndex();
-            var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+            var index = EU.GameGSInstance.getGameBoard().getCurrentLevelIndex();
+            var mode = EU.GameGSInstance.getGameBoard().getGameMode();
             var value = EU.LevelParams.getFuel( index, mode == EU.GameMode.hard );
             cost.setString((value));
         }
@@ -137,7 +137,7 @@ EU.GamePauseLayer = cc.Menu.extend(
     {
         this._super();
         //this.setKeyboardEnabled( true );
-        EU.AudioEngine.playEffect( EU.kSoundGamePauseOn , false);
+        //TODO:EU.AudioEngine.playEffect( EU.kSoundGamePauseOn , false);
 
         if( this._showScores )
         {
@@ -188,10 +188,10 @@ EU.GamePauseLayer = cc.Menu.extend(
 
     cb_restart: function( sender )
     {
-        var index = EU.GameGS.getInstance().getGameBoard( ).getCurrentLevelIndex( );
-        var mode = EU.GameGS.getInstance().getGameBoard().getGameMode();
+        var index = EU.GameGSInstance.getGameBoard( ).getCurrentLevelIndex( );
+        var mode = EU.GameGSInstance.getGameBoard().getGameMode();
         var cost = EU.LevelParams.getFuel( index, EU.GameMode.hard == mode );
-        var fuel = EU.ScoreCounter.getMoney( kScoreFuel );
+        var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
         if( cost <= fuel )
         {
             var delay = cc.delayTime( this.kFadeDuration );
@@ -219,7 +219,7 @@ EU.GamePauseLayer = cc.Menu.extend(
     {
         var delay = cc.delayTime( this.kFadeDuration );
         var func = cc.callFunc( this.exit.bind( this ) );
-        this.runAction( cc.sequence( delay, func, null ) );
+        this.runAction( cc.sequence( delay, func ) );
         this.fadeexit();
 
         if( this._resume ) this._resume.setEnabled( false );
@@ -229,23 +229,24 @@ EU.GamePauseLayer = cc.Menu.extend(
     cb_sound: function( sender, enabled )
     {
         //TODO: soundEnabled
-        EU.AudioEngine.soundEnabled(enabled);
+        //TODO:EU.AudioEngine.soundEnabled(enabled);
         this.checkAudio();
     },
 
     cb_music: function( sender, enabled )
     {
         //TODO: soundEnabled
-        EU.AudioEngine.soundEnabled(enabled);
+        //TODO:EU.AudioEngine.soundEnabled(enabled);
         this.checkAudio();
     },
 
     checkAudio: function()
     {
         //TODO: soundEnabled
-        var s = EU.AudioEngine.isSoundEnabled();
-        //TODO: soundEnabled
-        var m = EU.AudioEngine.isMusicEnabled();
+        //var s = EU.AudioEngine.isSoundEnabled();
+        //var m = EU.AudioEngine.isMusicEnabled();
+        var s = false;
+        var m = false;
         if( this._sound_off )this._sound_off.setVisible( !s );
         if( this._sound_on  )this._sound_on.setVisible( s );
         if( this._music_off )this._music_off.setVisible( !m );
@@ -254,7 +255,7 @@ EU.GamePauseLayer = cc.Menu.extend(
 
     gameresume: function()
     {
-        EU.AudioEngine.resumeAllEffects();
+        //TODO:EU.AudioEngine.resumeAllEffects();
         this.setEnabled( false );
         this.removeFromParent();
     },
@@ -301,7 +302,7 @@ EU.GamePauseLayer = cc.Menu.extend(
     checkFullscreen: function()
     {
         var fullscreen = EU.UserData.get_bool( "fullscreen", true );
-        var item = this.getNodeByPath( this, "fullscreen" );
+        var item = EU.Common.getNodeByPath( this, "fullscreen" );
         if( item )
         {
             var on = item.getParamCollection().get( "on", "" );
