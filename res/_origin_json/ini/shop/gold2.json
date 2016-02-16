@@ -1,0 +1,37 @@
+{
+    "menuitem": {
+        "@name": "gold2",
+        "@template": "ini/shop/item.xml",
+        "children": {
+            "node": [
+                {
+                    "@path": "menu/buy/normal/cost",
+                    "@text": "##shopitem_cost##"
+                },
+                {
+                    "@name": "text",
+                    "@pos": "115x395",
+                    "@text": "##shopitem_caption##"
+                },
+                {
+                    "@image": "images/shop/icon_gold.png",
+                    "@name": "icon_type",
+                    "@pos": "115x395"
+                },
+                {
+                    "@image": "images/shop/icons/gold2.png",
+                    "@name": "icon",
+                    "@pos": "135x240",
+                    "children": {
+                        "node": {
+                            "@image": "images/shop/icons/10_free.png",
+                            "@name": "icon",
+                            "@pos": "160x60",
+                            "@type": "sprite"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,119 @@
+{
+    "tutorial": {
+        "@closebytap": "yes",
+        "@parent": "/gamelayer/interface",
+        "actions": {
+            "action": [
+                {
+                    "@name": "scaling",
+                    "@value": "RepeatForever[EaseInOut[Sequence[DelayTime[0.5],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]],3]]"
+                },
+                {
+                    "@name": "body",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[0.5],FadeTo[0.3,255]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@name": "body",
+                    "@pos": "frame:0.5x0.5",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "-110x00",
+                                "@scale": "0.7x0.7",
+                                "@text": "",
+                                "@textwidth": "420",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "baloon",
+                    "@opacity": "0",
+                    "@pos": "righttop:-155x50",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@name": "bg",
+                                "@pos": "0x-210",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@name": "arrow",
+                                "@pos": "0x-170",
+                                "@scale": "1x-1",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@color": "35352B",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "0x-206",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_openshop#",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "action": {
+                        "@action": "scaling",
+                        "@state": "run",
+                        "@target": "/gamelayer/interface/menu/shop"
+                    },
+                    "runaction": [
+                        {
+                            "@action": "body",
+                            "@target": "baloon"
+                        },
+                        {
+                            "@action": "bodyfadein",
+                            "@target": "baloon"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit",
+                    "action": {
+                        "@action": "scaling",
+                        "@state": "stop",
+                        "@target": "/gamelayer/interface/menu/shop"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "/gamelayer/interface/menu/shop",
+                        "@value": "1x1"
+                    }
+                }
+            ]
+        }
+    }
+}

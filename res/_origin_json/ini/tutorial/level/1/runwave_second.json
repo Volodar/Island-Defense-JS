@@ -1,0 +1,23 @@
+{
+    "tutorial": {
+        "@template": "ini/tutorial/level/1/runwave.xml",
+        "actions": null,
+        "events": {
+            "eventlist": {
+                "@name": "onexit",
+                "setproperty": [
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/pause",
+                        "@value": "yes"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/shop",
+                        "@value": "##PLATFORM_MOBILE##"
+                    }
+                ]
+            }
+        }
+    }
+}

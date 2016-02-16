@@ -1,0 +1,37 @@
+{
+    "tutorial": {
+        "@template": "ini/tutorial/units/template.xml",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/tutorial/tut5_ground.png",
+                    "@path": "body/bgtype"
+                },
+                {
+                    "@path": "body/name",
+                    "@text": "#helocopter_medic_name#"
+                },
+                {
+                    "@path": "body/caption",
+                    "@text": "#helocopter_medic_caption#"
+                },
+                {
+                    "@path": "body/description",
+                    "@text": "#helocopter_medic_desc#"
+                },
+                {
+                    "@animation": "RepeatForever[Animate[0.6,[folder:helocopter_medic::left/,indexes:helicopter_med_go_00.png,01:18]]]",
+                    "@path": "body/unit",
+                    "@pos": "-210x40",
+                    "@scale": "-1x1"
+                },
+                {
+                    "@image": "images/creeps/helicopter_shadow.png",
+                    "@name": "shadow",
+                    "@pos": "-210x00",
+                    "@type": "sprite"
+                }
+            ]
+        }
+    }
+}

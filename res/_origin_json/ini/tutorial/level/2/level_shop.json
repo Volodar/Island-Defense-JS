@@ -1,0 +1,45 @@
+{
+    "tutorial": {
+        "@closebytap": "yes",
+        "@nexttutorial": "level_shoparrow",
+        "@setlevelsscore": "0",
+        "@template": "ini/tutorial/template_window.xml",
+        "children": {
+            "node": {
+                "@name": "body",
+                "children": {
+                    "node": [
+                        {
+                            "@image": "images/tutorial/tut2.png",
+                            "@name": "bg"
+                        },
+                        {
+                            "@center": "0x0.5",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "text",
+                            "@pos": "-110x00",
+                            "@scale": "0.7x0.7",
+                            "@text": "#tuturial_open_shop_from_game#",
+                            "@textwidth": "420",
+                            "@type": "text"
+                        }
+                    ]
+                }
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "setproperty": {
+                        "@property": "shopgift",
+                        "@value": "gift_gear"
+                    }
+                },
+                {
+                    "@name": "onexit"
+                }
+            ]
+        }
+    }
+}

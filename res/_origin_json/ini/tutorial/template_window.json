@@ -1,0 +1,54 @@
+{
+    "tutorial": {
+        "@asblockinglayer": "yes",
+        "@closebytap": "yes",
+        "@pos": "frame:0.5x0.5",
+        "actions": {
+            "action": [
+                {
+                    "@name": "fadein",
+                    "@value": "FadeTo[0.25,255]"
+                },
+                {
+                    "@name": "scale",
+                    "@value": "ScaleTo[0.2,1,1]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@cascadeopacity": "yes",
+                "@name": "body",
+                "@opacity": "0",
+                "@scale": "0.8x0.8",
+                "@type": "node",
+                "children": {
+                    "node": {
+                        "@name": "bg",
+                        "@type": "sprite"
+                    }
+                }
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "runaction": [
+                        {
+                            "@action": "fadein",
+                            "@target": "body"
+                        },
+                        {
+                            "@action": "scale",
+                            "@target": "body"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit"
+                }
+            ]
+        }
+    }
+}

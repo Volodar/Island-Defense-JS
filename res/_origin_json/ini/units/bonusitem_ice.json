@@ -1,0 +1,107 @@
+{
+    "tower": {
+        "@allowmenu": "no",
+        "@allowtargets": "any",
+        "@damagebysector": "yes",
+        "@effect_on_shoot": "type:freezing",
+        "@maxlevel": "1",
+        "@name": "bonusitem_ice",
+        "@radius": "1000",
+        "@sectorangle": "360",
+        "@unitlayer": "any",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_nothing",
+                    "@value": "Sequence[MoveBy[1,0,-550]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@animation": "RepeatForever[Animate[0.5,[folder:bombice::,indexes:ice_bomb_00.png,01:11]]]",
+                "@center": "0.5x0.5",
+                "@name": "skin",
+                "@pos": "0x550",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@velocityRate": "0",
+                "@velocityTime": "6"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_charging",
+                    "playsound": {
+                        "@sound": "##sound_bonusitem_ice##"
+                    },
+                    "runaction": {
+                        "@action": "animate_nothing",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot0",
+                    "runaction": {
+                        "@action": "animate_die",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "ondeselect"
+                }
+            ]
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_death": {
+                    "@duration": "0.0"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "5",
+                    "@delay": "0.1",
+                    "@havetarget": "no"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "death": {
+                    "@stop": "death"
+                },
+                "readyfire": {
+                    "@charge": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                }
+            }
+        },
+        "paramcollection": {
+            "showmenu": "no"
+        }
+    }
+}

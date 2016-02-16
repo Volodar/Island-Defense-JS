@@ -1,0 +1,29 @@
+{
+    "menuitem": {
+        "@name": "gear3",
+        "@template": "ini/shop/item.xml",
+        "children": {
+            "node": [
+                {
+                    "@path": "menu/buy/normal/cost",
+                    "@text": "##shopitem_cost##"
+                },
+                {
+                    "@name": "text",
+                    "@pos": "115x401",
+                    "@text": "##shopitem_caption##"
+                },
+                {
+                    "@image": "images/shop/icon_gear.png",
+                    "@name": "icon_type",
+                    "@pos": "110x395"
+                },
+                {
+                    "@image": "images/shop/icons/gear3.png",
+                    "@name": "icon",
+                    "@pos": "135x240"
+                }
+            ]
+        }
+    }
+}

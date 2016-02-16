@@ -1,0 +1,105 @@
+{
+    "creep": {
+        "@exp": "1",
+        "@health": "40",
+        "@lifecost": "1",
+        "@name": "dron",
+        "@template": "ini/units/templates/creepbase.xml",
+        "@unitlayer": "sky",
+        "@velocity": "120",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_left",
+                    "@value": "RepeatForever[Animate[0.7,[folder:dron::,indexes:dron100.png,01:13]]]"
+                },
+                {
+                    "@name": "animate_up",
+                    "@value": "RepeatForever[Animate[0.7,[folder:dron::,indexes:dron100.png,01:13]]]"
+                },
+                {
+                    "@name": "animate_down",
+                    "@value": "RepeatForever[Animate[0.7,[folder:dron::,indexes:dron100.png,01:13]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.5,[folder:helicopter.death::,indexes:helicopter_death_00.png,01:10]]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "EaseOut[FadeOut[1],2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.0",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.0",
+                    "@name": "death",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@center": "0.5x0.5",
+                    "@image": "images/creeps/helicopter_shadow.png",
+                    "@name": "shadow",
+                    "@type": "sprite"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-18x110",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@armor": "0",
+                "@fireResist": "2"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_rotate180",
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    }
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_pos": "0x30",
+            "@electro_scale": "1",
+            "@electro_size": "big",
+            "@fire_pos": "0x0",
+            "@fire_scale": "3",
+            "@freezing_pos": "0x50",
+            "@freezing_scale": "0.3"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                }
+            }
+        }
+    }
+}

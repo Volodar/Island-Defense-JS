@@ -1,0 +1,146 @@
+{
+    "tower": {
+        "@color_electro": "FFFF80",
+        "@color_fire": "FF8080",
+        "@color_ice": "80FFFF",
+        "@lifecost": "1",
+        "@unittype": "creep",
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "action": {
+                        "@action": "animate_die",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot",
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate180",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate90",
+                    "action": {
+                        "@action": "animate_down",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate270",
+                    "action": {
+                        "@action": "animate_up",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                }
+            ]
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "99999",
+                    "@delay": "1"
+                }
+            },
+            "transitions": {
+                "death": {
+                    "@stop": "stop"
+                },
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "60"
+                }
+            }
+        }
+    }
+}

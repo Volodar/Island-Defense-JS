@@ -1,0 +1,86 @@
+{
+    "root": {
+        "node": [
+            {
+                "@event": "level_star3normal",
+                "@name": "ACHIEVEMENT_1_2",
+                "@value": "1"
+            },
+            {
+                "@event": "level_successfull",
+                "@name": "ACHIEVEMENT_1_3",
+                "@value": "24"
+            },
+            {
+                "@event": "level_star3hard",
+                "@name": "ACHIEVEMENT_1_4",
+                "@value": "1"
+            },
+            {
+                "@event": "level_successfull_hard",
+                "@name": "ACHIEVEMENT_1_5",
+                "@value": "24"
+            },
+            {
+                "@event": "level_3star",
+                "@name": "ACHIEVEMENT_1_6",
+                "@value": "24"
+            },
+            {
+                "@event": "heroes_open",
+                "@name": "ACHIEVEMENT_1_7",
+                "@value": "3"
+            },
+            {
+                "@event": "herolevel_15",
+                "@name": "ACHIEVEMENT_1_8",
+                "@value": "1"
+            },
+            {
+                "@event": "herolevel_15",
+                "@name": "ACHIEVEMENT_1_9",
+                "@value": "3"
+            },
+            {
+                "@event": "lab_buyupgrade",
+                "@name": "ACHIEVEMENT_1_10",
+                "@value": "1"
+            },
+            {
+                "@event": "lab_buyupgrade",
+                "@name": "ACHIEVEMENT_1_11",
+                "@value": "24"
+            },
+            {
+                "@event": "tower_upgrade_minigun5",
+                "@name": "ACHIEVEMENT_1_12",
+                "@value": "1"
+            },
+            {
+                "@event": "tower_upgrade_teslagun5",
+                "@name": "ACHIEVEMENT_1_14",
+                "@value": "1"
+            },
+            {
+                "@event": "tower_upgrade_firegun5",
+                "@name": "ACHIEVEMENT_1_15",
+                "@value": "1"
+            },
+            {
+                "@event": "tower_upgrade_icegun5",
+                "@name": "ACHIEVEMENT_1_13",
+                "@value": "1"
+            },
+            {
+                "@event": "tower_upgrade_roketgun5",
+                "@name": "ACHIEVEMENT_1_16",
+                "@value": "1"
+            },
+            {
+                "@event": "tower_upgrade_laser5",
+                "@name": "ACHIEVEMENT_1_17",
+                "@value": "1"
+            }
+        ]
+    }
+}

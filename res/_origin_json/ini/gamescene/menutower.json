@@ -1,0 +1,399 @@
+{
+    "node": {
+        "@type": "scrollmenu",
+        "actions": {
+            "action": [
+                {
+                    "@name": "appearance",
+                    "@value": "BackOut[ScaleTo[0.3,1,1]]"
+                },
+                {
+                    "@name": "disappearance",
+                    "@value": "BackIn[ScaleTo[0.3,0,0]]"
+                },
+                {
+                    "@name": "fadeout_half",
+                    "@value": "FadeTo[0.3,128]"
+                },
+                {
+                    "@name": "fadein_half",
+                    "@value": "FadeTo[0.3,255]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "FadeOut[0.3]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "FadeIn[0.3]"
+                }
+            ]
+        },
+        "children_nonscissor": {
+            "node": [
+                {
+                    "@image": "gamescene::menutower/menu_upgrade0.png",
+                    "@name": "bg",
+                    "@type": "sprite",
+                    "@z": "-1"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@image": "gamescene::menucreatetower/hint_panel.png",
+                    "@name": "desc",
+                    "@opacity": "0",
+                    "@pos": "125x0",
+                    "@type": "sprite",
+                    "@z": "-1",
+                    "children": {
+                        "node": [
+                            {
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@name": "name",
+                                "@opacity": "0",
+                                "@pos": "123x225",
+                                "@strech": "230x50:min",
+                                "@text": "Anti-aircraft gun",
+                                "@type": "text",
+                                "@z": "2"
+                            },
+                            {
+                                "@center": "0.5x1",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@opacity": "0",
+                                "@pos": "123x200",
+                                "@scale": "0.6x0.6",
+                                "@text": "Anti-aircraft gun",
+                                "@textwidth": "220",
+                                "@type": "text",
+                                "@z": "2"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@name": "dmg",
+                                "@opacity": "0",
+                                "@pos": "48x28",
+                                "@scale": "0.4x0.4",
+                                "@text": "9",
+                                "@type": "text",
+                                "@z": "2"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@name": "spd",
+                                "@opacity": "0",
+                                "@pos": "120x28",
+                                "@scale": "0.4x0.4",
+                                "@text": "9",
+                                "@type": "text",
+                                "@z": "2"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@name": "rng",
+                                "@opacity": "0",
+                                "@pos": "192x28",
+                                "@scale": "0.4x0.4",
+                                "@text": "9",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "appearance",
+                    "runaction": [
+                        {
+                            "@action": "appearance",
+                            "@target": "upgrade"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "upgrade_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "sell"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "lock"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "bg"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc/name"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc/dmg"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc/rng"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc/spd"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "desc/text"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "opacity",
+                            "@target": "bg",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc/name",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc/dmg",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc/rng",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc/spd",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "desc/text",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "upgrade",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "upgrade_un",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "sell",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "lock",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "upgrade/normal",
+                            "@value": "255"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "upgrade_un/normal",
+                            "@value": "255"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "sell/normal",
+                            "@value": "255"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "lock/normal",
+                            "@value": "255"
+                        }
+                    ]
+                },
+                {
+                    "@name": "disappearance",
+                    "runaction": [
+                        {
+                            "@action": "disappearance",
+                            "@target": "upgrade"
+                        },
+                        {
+                            "@action": "disappearance",
+                            "@target": "upgrade_un"
+                        },
+                        {
+                            "@action": "disappearance",
+                            "@target": "sell"
+                        },
+                        {
+                            "@action": "disappearance",
+                            "@target": "lock"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "bg"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc/name"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc/dmg"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc/rng"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc/spd"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "desc/text"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onclick"
+                }
+            ]
+        },
+        "items": {
+            "node": [
+                {
+                    "@imageN": "gamescene::menutower/menu_upgrade1.png",
+                    "@name": "upgrade",
+                    "@pos": "0x95",
+                    "@type": "menuitem",
+                    "@visible": "yes",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menutower/menu_price.png",
+                                "@name": "cost_bg",
+                                "@pos": "41x0",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "cost",
+                                "@pos": "40x2",
+                                "@scale": "0.5x0.5",
+                                "@text": "999",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menutower/menu_upgrade2.png",
+                    "@name": "upgrade_un",
+                    "@pos": "0x95",
+                    "@type": "menuitem",
+                    "@visible": "no",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menutower/menu_price.png",
+                                "@name": "cost_bg",
+                                "@pos": "41x0",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "cost",
+                                "@pos": "40x2",
+                                "@scale": "0.5x0.5",
+                                "@text": "999",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menutower/menu_lock2.png",
+                    "@name": "lock",
+                    "@pos": "0x95",
+                    "@type": "menuitem",
+                    "@z": "9"
+                },
+                {
+                    "@imageN": "gamescene::menutower/menu_sell1.png",
+                    "@name": "sell",
+                    "@pos": "0x-95",
+                    "@type": "menuitem",
+                    "@visible": "yes",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menutower/menu_price.png",
+                                "@name": "cost_bg",
+                                "@pos": "41x0",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "cost",
+                                "@pos": "40x2",
+                                "@scale": "0.5x0.5",
+                                "@text": "999",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menutower/menu_ok2.png",
+                    "@name": "confirm",
+                    "@pos": "0x0",
+                    "@type": "menuitem",
+                    "@z": "9"
+                },
+                {
+                    "@imageN": "gamescene::menutower/menu_ok1.png",
+                    "@name": "confirm_un",
+                    "@pos": "0x0",
+                    "@type": "menuitem",
+                    "@z": "9"
+                }
+            ]
+        }
+    }
+}

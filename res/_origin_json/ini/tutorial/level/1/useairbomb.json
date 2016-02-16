@@ -1,0 +1,36 @@
+{
+    "tutorial": {
+        "@parent": "/gamelayer/interface/menu/bomb",
+        "@pos": "35x140",
+        "@template": "ini/tutorial/template_baloon.xml",
+        "actions": {
+            "action": {
+                "@name": "bodyfadein",
+                "@value": "Sequence[DelayTime[1],FadeTo[0.3,255]]"
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@path": "body/text",
+                    "@pos": "50x4",
+                    "@text": "#tuturial_useairbomb#"
+                },
+                {
+                    "@path": "body/bg",
+                    "@pos": "50x0"
+                }
+            ]
+        },
+        "events": {
+            "eventlist": {
+                "@name": "onenter",
+                "setproperty": {
+                    "@property": "visible",
+                    "@target": "/gamelayer/interface/menu/bomb",
+                    "@value": "yes"
+                }
+            }
+        }
+    }
+}

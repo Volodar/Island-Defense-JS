@@ -1,0 +1,125 @@
+{
+    "tower": {
+        "@allowmenu": "no",
+        "@allowtargets": "earth,sea",
+        "@damagebysector": "yes",
+        "@maxlevel": "1",
+        "@name": "bonusitem_dynamit",
+        "@radius": "35",
+        "@sectorangle": "360",
+        "@unitlayer": "any",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_nothing",
+                    "@value": "RepeatForever[Animate[0.3,[folder:dynamit::,indexes:dynamite_00.png,01:08]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@animation": "           Sequence           [             Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],             Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]           ]           ",
+                    "@center": "0.5x0.5",
+                    "@image": "",
+                    "@name": "skin",
+                    "@type": "sprite"
+                },
+                {
+                    "@name": "menu",
+                    "@pos": "0x70",
+                    "@type": "menu",
+                    "@visible": "no",
+                    "children": {
+                        "node": {
+                            "@callback": "push_event:die",
+                            "@imageN": "gamescene::button_dyn.png",
+                            "@name": "activate",
+                            "@opacity": "128",
+                            "@type": "menuitem"
+                        }
+                    }
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@damage": "10000"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "areadamage": {
+                        "@asunittype": "tower",
+                        "@radius": "100"
+                    },
+                    "runaction": {
+                        "@action": "animate_die",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_charging",
+                    "playsound": {
+                        "@sound": "##sound_bonusitem_dinamyte##"
+                    },
+                    "runaction": {
+                        "@action": "animate_nothing",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "onselect",
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "menu",
+                        "@value": "yes"
+                    }
+                },
+                {
+                    "@name": "ondeselect",
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "menu",
+                        "@value": "no"
+                    }
+                }
+            ]
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_death": {
+                    "@duration": "0.5"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "death"
+                },
+                "death": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@die": "death"
+                }
+            }
+        },
+        "paramcollection": {
+            "showmenu": "no"
+        }
+    }
+}

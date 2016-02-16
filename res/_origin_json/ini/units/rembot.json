@@ -1,0 +1,304 @@
+{
+    "tower": {
+        "@color_electro": "FFFF80",
+        "@color_fire": "FF8080",
+        "@color_ice": "80FFFF",
+        "@exp": "3",
+        "@health": "300",
+        "@lifecost": "1",
+        "@maxlevel": "5",
+        "@name": "rembot",
+        "@unitlayer": "earth",
+        "@unittype": "creep",
+        "@velocity": "30",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animateL",
+                    "@value": "RepeatForever[Animate[0.5,[folder:rembot.run::,indexes:rembot1_run_00.png,01:13]]]"
+                },
+                {
+                    "@name": "animateH",
+                    "@value": "Animate[0.5,[folder:rembot.healing::,indexes:rembot1_hill_00.png,01:13]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "EaseOut[FadeOut[1],2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.6x0.18",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.4",
+                    "@name": "death",
+                    "@opacity": "192",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-18x40",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@armor": "4",
+                "@electroResist": "0.5",
+                "@fireResist": "5"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "action": [
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animate_die",
+                            "@state": "run",
+                            "@target": "death"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "death",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "skin",
+                            "@value": "0"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_healing",
+                    "action": {
+                        "@action": "animateH",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate180",
+                    "action": [
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "run",
+                            "@target": "skin"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "action": [
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "run",
+                            "@target": "skin"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    }
+                },
+                {
+                    "@name": "on_rotate90",
+                    "action": [
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "run",
+                            "@target": "skin"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_rotate270",
+                    "action": [
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "stop",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "animateL",
+                            "@state": "run",
+                            "@target": "skin"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_move",
+                    "setproperty": [
+                        {
+                            "@property": "opacity",
+                            "@target": "skin",
+                            "@value": "255"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "death",
+                            "@value": "no"
+                        }
+                    ]
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_pos": "0x30",
+            "@electro_scale": "1",
+            "@electro_size": "big",
+            "@fire_pos": "0x0",
+            "@fire_scale": "3",
+            "@freezing_pos": "5x-10",
+            "@freezing_scale": "0.35"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "99999",
+                    "@delay": "0.7"
+                }
+            },
+            "transitions": {
+                "death": {
+                    "@stop": "stop"
+                },
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "60"
+                }
+            }
+        },
+        "skills": {
+            "medic": {
+                "@duration": "1",
+                "@effect_description": "type:medic,animation:blue",
+                "@frequence": "3.5",
+                "@health": "30",
+                "@maxtargets": "5",
+                "@radius": "400",
+                "@units": "jeep,tank,helicopter,tank_m,bmp,meh1,meh2,meh3,moto"
+            }
+        }
+    }
+}

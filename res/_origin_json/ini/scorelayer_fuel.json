@@ -1,0 +1,82 @@
+{
+    "scorelayer": {
+        "@name": "scorelayer",
+        "children": {
+            "node": [
+                {
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "@type": "menu",
+                    "children": {
+                        "node": {
+                            "@imageN": "images/map/button_+.png",
+                            "@name": "shop",
+                            "@pos": "halftop:160x-30",
+                            "@sound": "##sound_button##",
+                            "@type": "menuitem"
+                        }
+                    }
+                },
+                {
+                    "@image": "images/map/star.png",
+                    "@name": "iconstar",
+                    "@pos": "halftop:-200x-27",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@name": "valuestar",
+                    "@pos": "halftop:-180x-23",
+                    "@scale": "0.6x0.6",
+                    "@text": "0",
+                    "@type": "text",
+                    "@visible": "no"
+                },
+                {
+                    "@image": "images/map/icon_gold1.png",
+                    "@name": "icongold",
+                    "@pos": "halftop:-30x-30",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@name": "valuegold",
+                    "@pos": "halftop:0x-25",
+                    "@scale": "0.6x0.6",
+                    "@text": "0",
+                    "@type": "text"
+                },
+                {
+                    "@image": "images/map/button_fuel.png",
+                    "@name": "iconfuel",
+                    "@pos": "halftop:-180x-33",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@name": "valuefuel",
+                    "@pos": "halftop:-150x-23",
+                    "@scale": "0.6x0.6",
+                    "@text": "0",
+                    "@type": "text",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@font": "fonts/helveticastoke.fnt",
+                    "@name": "valuetime",
+                    "@pos": "halftop:-200x-65",
+                    "@scale": "0.7x0.6",
+                    "@text": "0",
+                    "@type": "text",
+                    "@visible": "yes"
+                }
+            ]
+        }
+    }
+}

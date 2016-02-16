@@ -1,0 +1,29 @@
+{
+    "tutorial": {
+        "@template": "ini/tutorial/units/template.xml",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/tutorial/tut5_aqua.png",
+                    "@path": "body/bgtype"
+                },
+                {
+                    "@path": "body/name",
+                    "@text": "#ship_name#"
+                },
+                {
+                    "@path": "body/caption",
+                    "@text": "#ship_caption#"
+                },
+                {
+                    "@path": "body/description",
+                    "@text": "#ship_desc#"
+                },
+                {
+                    "@animation": "RepeatForever[Animate[0.3..0.4,[folder:ship.left::,indexes:ship1_00.png,01:10]]]",
+                    "@path": "body/unit"
+                }
+            ]
+        }
+    }
+}

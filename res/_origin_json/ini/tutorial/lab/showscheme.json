@@ -1,0 +1,12 @@
+{
+    "tutorial": {
+        "@nexttutorial": "lab_pressupgrade",
+        "@template": "ini/tutorial/template_window.xml",
+        "children": {
+            "node": {
+                "@image": "images/tutorial/tut_upgrade.png",
+                "@path": "body/bg"
+            }
+        }
+    }
+}

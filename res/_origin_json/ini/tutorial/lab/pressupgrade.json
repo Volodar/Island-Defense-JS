@@ -1,0 +1,119 @@
+{
+    "tutorial": {
+        "@autopos": "/laboratory/minigun",
+        "@parent": "/laboratory",
+        "@pos": "220x-175",
+        "@template": "ini/tutorial/template_baloon.xml",
+        "@z": "999",
+        "actions": {
+            "action": [
+                {
+                    "@name": "body",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[0],FadeTo[0.3,255]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@path": "body/text",
+                    "@text": "#tuturial_lab_upgrade#"
+                },
+                {
+                    "@path": "body/arrow",
+                    "@pos": "-94x0",
+                    "@rotation": "90",
+                    "@scale": "1x1"
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/icegun",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/laser",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/roketgun",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/firegun",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/teslagun",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/menu/close",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/scorelayer/menu/shop",
+                            "@value": "no"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit",
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/icegun",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/laser",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/roketgun",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/firegun",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/teslagun",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/laboratory/menu/close",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/scorelayer/menu/shop",
+                            "@value": "##PLATFORM_MOBILE##"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

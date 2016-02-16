@@ -1,0 +1,31 @@
+{
+    "tutorial": {
+        "@template": "ini/tutorial/units/template.xml",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/tutorial/tut5_ground.png",
+                    "@path": "body/bgtype"
+                },
+                {
+                    "@path": "body/name",
+                    "@text": "#soldier_name#"
+                },
+                {
+                    "@path": "body/caption",
+                    "@text": "#soldier_caption#"
+                },
+                {
+                    "@path": "body/description",
+                    "@pos": "-110x-75",
+                    "@text": "#soldier_desc#"
+                },
+                {
+                    "@animation": "         RepeatForever         [           Sequence           [             ScaleTo[0,-1,1],             Spawn[MoveTo[0.6,-180,40],Animate[0.6,[folder:soldier.left::,indexes:solder1_leftright00.png,01:15]]],             Animate[0.6,[folder:soldier.fire::,indexes:solder1_fire_00.png,01:20]],             ScaleTo[0,1,1],             Spawn[MoveTo[0.6,-240,40],Animate[0.6,[folder:soldier.left::,indexes:solder1_leftright00.png,01:15]]],             Animate[0.6,[folder:soldier.fire::,indexes:solder1_fire_00.png,01:20]]           ]         ]         ",
+                    "@path": "body/unit",
+                    "@scale": "-1x1"
+                }
+            ]
+        }
+    }
+}

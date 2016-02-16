@@ -1,0 +1,201 @@
+{
+    "tutorial": {
+        "@nexttutorial": "lvl0_useairbomb",
+        "@template": "ini/tutorial/units/template.xml",
+        "actions": {
+            "action": [
+                {
+                    "@name": "cloud1_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.0],MoveTo[0,0,-80],MoveTo[1,0,80],               DelayTime[0.5]]]"
+                },
+                {
+                    "@name": "cloud1_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.0],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.5]]]"
+                },
+                {
+                    "@name": "cloud2_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.2],MoveTo[0,-50,-80],MoveTo[1,-50,80],           DelayTime[0.3]]]"
+                },
+                {
+                    "@name": "cloud2_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.2],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.3]]]"
+                },
+                {
+                    "@name": "cloud3_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.5],MoveTo[0,50,-80],MoveTo[1,50,80],             DelayTime[0.0]]]"
+                },
+                {
+                    "@name": "cloud3_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.5],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.0]]]"
+                },
+                {
+                    "@name": "cloud4_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.7],MoveTo[0,0,-80],MoveTo[1,0,80],               DelayTime[0.5]]]"
+                },
+                {
+                    "@name": "cloud4_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.7],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.5]]]"
+                },
+                {
+                    "@name": "cloud5_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.6],MoveTo[0,-50,-80],MoveTo[1,-50,80],           DelayTime[0.3]]]"
+                },
+                {
+                    "@name": "cloud5_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.6],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.3]]]"
+                },
+                {
+                    "@name": "cloud6_move",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.9],MoveTo[0,50,-80],MoveTo[1,50,80],             DelayTime[0.0]]]"
+                },
+                {
+                    "@name": "cloud6_fade",
+                    "@value": "RepeatForever[Sequence[DelayTime[0.9],FadeTo[0.1,255],DelayTime[0.8],FadeTo[0.1,0], DelayTime[0.0]]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@path": "body/name",
+                    "@text": "#airbomb_name#"
+                },
+                {
+                    "@path": "body/caption",
+                    "@text": "#airbomb_caption#"
+                },
+                {
+                    "@path": "body/description",
+                    "@text": "#airbomb_desc#"
+                },
+                {
+                    "@name": "body",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut5_airstrike.png",
+                                "@name": "bgtype"
+                            },
+                            {
+                                "@name": "icon",
+                                "@pos": "-220x30",
+                                "@type": "node",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@image": "images/tutorial/cloud1.png",
+                                            "@name": "cloud1",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@image": "images/tutorial/cloud2.png",
+                                            "@name": "cloud2",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@image": "images/tutorial/cloud1.png",
+                                            "@name": "cloud3",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@image": "images/tutorial/cloud1.png",
+                                            "@name": "cloud4",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@image": "images/tutorial/cloud2.png",
+                                            "@name": "cloud5",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@image": "images/tutorial/cloud1.png",
+                                            "@name": "cloud6",
+                                            "@opacity": "0",
+                                            "@scale": "0.4..0.5x0.4..0.5",
+                                            "@type": "sprite"
+                                        },
+                                        {
+                                            "@animation": "RepeatForever[Animate[0.3,[folder:airbomb::,indexes:bomb/bomb_00.png,01:11]]]",
+                                            "@name": "bomb",
+                                            "@type": "sprite"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "runaction": [
+                        {
+                            "@action": "cloud1_move",
+                            "@target": "body/icon/cloud1"
+                        },
+                        {
+                            "@action": "cloud1_fade",
+                            "@target": "body/icon/cloud1"
+                        },
+                        {
+                            "@action": "cloud2_move",
+                            "@target": "body/icon/cloud2"
+                        },
+                        {
+                            "@action": "cloud2_fade",
+                            "@target": "body/icon/cloud2"
+                        },
+                        {
+                            "@action": "cloud3_move",
+                            "@target": "body/icon/cloud3"
+                        },
+                        {
+                            "@action": "cloud3_fade",
+                            "@target": "body/icon/cloud3"
+                        },
+                        {
+                            "@action": "cloud4_move",
+                            "@target": "body/icon/cloud4"
+                        },
+                        {
+                            "@action": "cloud4_fade",
+                            "@target": "body/icon/cloud4"
+                        },
+                        {
+                            "@action": "cloud5_move",
+                            "@target": "body/icon/cloud5"
+                        },
+                        {
+                            "@action": "cloud5_fade",
+                            "@target": "body/icon/cloud5"
+                        },
+                        {
+                            "@action": "cloud6_move",
+                            "@target": "body/icon/cloud6"
+                        },
+                        {
+                            "@action": "cloud6_fade",
+                            "@target": "body/icon/cloud6"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit"
+                }
+            ]
+        }
+    }
+}

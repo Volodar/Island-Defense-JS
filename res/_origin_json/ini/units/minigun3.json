@@ -1,0 +1,190 @@
+{
+    "tower": {
+        "@allowtargets": "earth,sea",
+        "@effect_on_shoot": "type:bullet",
+        "@name": "minigun",
+        "@radius": "250",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate135",
+                    "@value": "Animate[0.09,[folder:minigun.3::,frames:turret1_3_1stage0001.png,turret1_3_1stage0002.png,turret1_3_1stage0003.png,turret1_3_1stage0004.png,turret1_3_1stage0001.png]]"
+                },
+                {
+                    "@name": "animate315",
+                    "@value": "Animate[0.09,[folder:minigun.3::,frames:turret1_3_3stage0001.png,turret1_3_3stage0002.png,turret1_3_3stage0003.png,turret1_3_3stage0004.png,turret1_3_3stage0001.png]]"
+                },
+                {
+                    "@name": "animate45",
+                    "@value": "Animate[0.09,[folder:minigun.3::,frames:turret1_3_2stage0001.png,turret1_3_2stage0002.png,turret1_3_2stage0003.png,turret1_3_2stage0004.png,turret1_3_2stage0001.png]]"
+                },
+                {
+                    "@name": "animate225",
+                    "@value": "Animate[0.09,[folder:minigun.3::,frames:turret1_3_4stage0001.png,turret1_3_4stage0002.png,turret1_3_4stage0003.png,turret1_3_4stage0004.png,turret1_3_4stage0001.png]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@center": "0.4875x0.35",
+                "@image": "minigun.3::turret1_3_1stage0001.png",
+                "@name": "skin",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@damage": "10"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_cocking"
+                },
+                {
+                    "@name": "on_relaxation"
+                },
+                {
+                    "@name": "on_shoot_byangle45",
+                    "runaction": {
+                        "@action": "animate45",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle135",
+                    "runaction": {
+                        "@action": "animate135",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle225",
+                    "runaction": {
+                        "@action": "animate225",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle315",
+                    "runaction": {
+                        "@action": "animate315",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot0",
+                    "playsound": {
+                        "@sound": "##sound_minigun3##"
+                    }
+                },
+                {
+                    "@name": "on_shoot1"
+                },
+                {
+                    "@name": "on_shoot2"
+                },
+                {
+                    "@name": "on_charging"
+                },
+                {
+                    "@name": "on_waittarget"
+                },
+                {
+                    "@name": "on_waittarget_45",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "minigun.3::turret1_3_1stage0001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_135",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "minigun.3::turret1_3_2stage0001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_225",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "minigun.3::turret1_3_3stage0001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_315",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "minigun.3::turret1_3_4stage0001.png"
+                    }
+                },
+                {
+                    "@name": "on_rotate180"
+                },
+                {
+                    "@name": "on_rotate0"
+                },
+                {
+                    "@name": "on_rotate90"
+                },
+                {
+                    "@name": "on_rotate270"
+                }
+            ]
+        },
+        "machine_unit": {
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "5",
+                    "@delay": "0.1"
+                },
+                "state_waittarget": {
+                    "@duration": "3"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        }
+    }
+}

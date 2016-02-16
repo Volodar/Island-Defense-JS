@@ -1,0 +1,151 @@
+{
+    "tutorial": {
+        "@parent": "/selecthero",
+        "@pos": "frame:0.5x0.5",
+        "@z": "999",
+        "actions": {
+            "action": [
+                {
+                    "@name": "scaling",
+                    "@value": "RepeatForever[EaseInOut[Sequence[DelayTime[0.5],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]],3]]"
+                },
+                {
+                    "@name": "body",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[0.5],FadeTo[0.3,255]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@name": "body",
+                    "@pos": "0x-50",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "-110x00",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_heroroom_seeotherhero#",
+                                "@textwidth": "420",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "baloon",
+                    "@opacity": "0",
+                    "@pos": "0x130",
+                    "@type": "node",
+                    "children": {
+                        "node": {
+                            "@center": "0.5x0",
+                            "@image": "images/tutorial/baloon1_1.png",
+                            "@name": "arrow",
+                            "@pos": "0x50",
+                            "@scale": "1.5x1.5",
+                            "@type": "sprite",
+                            "@z": "1"
+                        }
+                    }
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "baloon1",
+                    "@opacity": "0",
+                    "@pos": "80x130",
+                    "@type": "node",
+                    "children": {
+                        "node": {
+                            "@center": "0.5x0",
+                            "@image": "images/tutorial/baloon1_1.png",
+                            "@name": "arrow",
+                            "@pos": "0x50",
+                            "@scale": "1.5x1.5",
+                            "@type": "sprite",
+                            "@z": "1"
+                        }
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "action": [
+                        {
+                            "@action": "scaling",
+                            "@state": "run",
+                            "@target": "/selecthero/content/menu/hero2"
+                        },
+                        {
+                            "@action": "scaling",
+                            "@state": "run",
+                            "@target": "/selecthero/content/menu/hero3"
+                        }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "body",
+                            "@target": "baloon"
+                        },
+                        {
+                            "@action": "body",
+                            "@target": "baloon1"
+                        },
+                        {
+                            "@action": "bodyfadein",
+                            "@target": "baloon"
+                        },
+                        {
+                            "@action": "bodyfadein",
+                            "@target": "baloon1"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit",
+                    "action": [
+                        {
+                            "@action": "scaling",
+                            "@state": "stop",
+                            "@target": "/selecthero/content/menu/hero2"
+                        },
+                        {
+                            "@action": "scaling",
+                            "@state": "stop",
+                            "@target": "/selecthero/content/menu/hero3"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "scale",
+                            "@target": "/selecthero/content/menu/hero2",
+                            "@value": "1x1"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "/selecthero/content/menu/hero3",
+                            "@value": "1x1"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

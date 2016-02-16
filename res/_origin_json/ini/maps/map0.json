@@ -1,0 +1,909 @@
+{
+    "map": {
+        "hard": {
+            "@exclude": "icegun,roketgun,teslagun,firegun",
+            "@healths": "1",
+            "@star1": "1",
+            "@star2": "1",
+            "@star3": "1",
+            "@startscore": "250",
+            "@wave_cooldown": "5"
+        },
+        "normal": {
+            "@healths": "20",
+            "@star1": "1",
+            "@star2": "10",
+            "@star3": "15",
+            "@startscore": "375",
+            "@wave_cooldown": "10"
+        },
+        "routes": {
+            "route": {
+                "@name": "0",
+                "@type": "earth",
+                "left": {
+                    "point": [
+                        {
+                            "@x": "448",
+                            "@y": "764"
+                        },
+                        {
+                            "@x": "451",
+                            "@y": "360"
+                        },
+                        {
+                            "@x": "449",
+                            "@y": "332"
+                        },
+                        {
+                            "@x": "440",
+                            "@y": "301"
+                        },
+                        {
+                            "@x": "405",
+                            "@y": "284"
+                        },
+                        {
+                            "@x": "367",
+                            "@y": "279"
+                        },
+                        {
+                            "@x": "341",
+                            "@y": "274"
+                        },
+                        {
+                            "@x": "310",
+                            "@y": "264"
+                        },
+                        {
+                            "@x": "291",
+                            "@y": "254"
+                        },
+                        {
+                            "@x": "276",
+                            "@y": "238"
+                        },
+                        {
+                            "@x": "274",
+                            "@y": "224"
+                        },
+                        {
+                            "@x": "264",
+                            "@y": "189"
+                        },
+                        {
+                            "@x": "267",
+                            "@y": "169"
+                        },
+                        {
+                            "@x": "289",
+                            "@y": "153"
+                        },
+                        {
+                            "@x": "314",
+                            "@y": "137"
+                        },
+                        {
+                            "@x": "343",
+                            "@y": "129"
+                        },
+                        {
+                            "@x": "372",
+                            "@y": "130"
+                        },
+                        {
+                            "@x": "405",
+                            "@y": "134"
+                        },
+                        {
+                            "@x": "447",
+                            "@y": "146"
+                        },
+                        {
+                            "@x": "477",
+                            "@y": "157"
+                        },
+                        {
+                            "@x": "499",
+                            "@y": "169"
+                        },
+                        {
+                            "@x": "523",
+                            "@y": "187"
+                        },
+                        {
+                            "@x": "576",
+                            "@y": "227"
+                        },
+                        {
+                            "@x": "595",
+                            "@y": "239"
+                        },
+                        {
+                            "@x": "637",
+                            "@y": "250"
+                        },
+                        {
+                            "@x": "1023",
+                            "@y": "260"
+                        }
+                    ]
+                },
+                "main": {
+                    "point": [
+                        {
+                            "@x": "424",
+                            "@y": "764"
+                        },
+                        {
+                            "@x": "427",
+                            "@y": "361"
+                        },
+                        {
+                            "@x": "425",
+                            "@y": "334"
+                        },
+                        {
+                            "@x": "420",
+                            "@y": "309"
+                        },
+                        {
+                            "@x": "398",
+                            "@y": "296"
+                        },
+                        {
+                            "@x": "364",
+                            "@y": "292"
+                        },
+                        {
+                            "@x": "336",
+                            "@y": "287"
+                        },
+                        {
+                            "@x": "301",
+                            "@y": "276"
+                        },
+                        {
+                            "@x": "278",
+                            "@y": "265"
+                        },
+                        {
+                            "@x": "255",
+                            "@y": "245"
+                        },
+                        {
+                            "@x": "250",
+                            "@y": "228"
+                        },
+                        {
+                            "@x": "240",
+                            "@y": "190"
+                        },
+                        {
+                            "@x": "247",
+                            "@y": "162"
+                        },
+                        {
+                            "@x": "276",
+                            "@y": "143"
+                        },
+                        {
+                            "@x": "305",
+                            "@y": "126"
+                        },
+                        {
+                            "@x": "341",
+                            "@y": "117"
+                        },
+                        {
+                            "@x": "374",
+                            "@y": "118"
+                        },
+                        {
+                            "@x": "410",
+                            "@y": "122"
+                        },
+                        {
+                            "@x": "455",
+                            "@y": "135"
+                        },
+                        {
+                            "@x": "487",
+                            "@y": "146"
+                        },
+                        {
+                            "@x": "512",
+                            "@y": "159"
+                        },
+                        {
+                            "@x": "538",
+                            "@y": "177"
+                        },
+                        {
+                            "@x": "591",
+                            "@y": "217"
+                        },
+                        {
+                            "@x": "606",
+                            "@y": "228"
+                        },
+                        {
+                            "@x": "641",
+                            "@y": "238"
+                        },
+                        {
+                            "@x": "1024",
+                            "@y": "248"
+                        }
+                    ]
+                },
+                "right": {
+                    "point": [
+                        {
+                            "@x": "399",
+                            "@y": "763"
+                        },
+                        {
+                            "@x": "402",
+                            "@y": "361"
+                        },
+                        {
+                            "@x": "400",
+                            "@y": "335"
+                        },
+                        {
+                            "@x": "399",
+                            "@y": "316"
+                        },
+                        {
+                            "@x": "390",
+                            "@y": "307"
+                        },
+                        {
+                            "@x": "360",
+                            "@y": "304"
+                        },
+                        {
+                            "@x": "330",
+                            "@y": "299"
+                        },
+                        {
+                            "@x": "291",
+                            "@y": "287"
+                        },
+                        {
+                            "@x": "264",
+                            "@y": "275"
+                        },
+                        {
+                            "@x": "233",
+                            "@y": "251"
+                        },
+                        {
+                            "@x": "225",
+                            "@y": "231"
+                        },
+                        {
+                            "@x": "215",
+                            "@y": "190"
+                        },
+                        {
+                            "@x": "226",
+                            "@y": "154"
+                        },
+                        {
+                            "@x": "262",
+                            "@y": "132"
+                        },
+                        {
+                            "@x": "295",
+                            "@y": "114"
+                        },
+                        {
+                            "@x": "338",
+                            "@y": "104"
+                        },
+                        {
+                            "@x": "375",
+                            "@y": "105"
+                        },
+                        {
+                            "@x": "414",
+                            "@y": "109"
+                        },
+                        {
+                            "@x": "462",
+                            "@y": "123"
+                        },
+                        {
+                            "@x": "496",
+                            "@y": "134"
+                        },
+                        {
+                            "@x": "524",
+                            "@y": "148"
+                        },
+                        {
+                            "@x": "552",
+                            "@y": "166"
+                        },
+                        {
+                            "@x": "605",
+                            "@y": "206"
+                        },
+                        {
+                            "@x": "616",
+                            "@y": "216"
+                        },
+                        {
+                            "@x": "644",
+                            "@y": "225"
+                        },
+                        {
+                            "@x": "1024",
+                            "@y": "235"
+                        }
+                    ]
+                }
+            }
+        },
+        "towerplaces": {
+            "place": [
+                {
+                    "@active": "yes",
+                    "@x": "533.00",
+                    "@y": "468.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "327.00",
+                    "@y": "466.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "379.00",
+                    "@y": "211.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "173.00",
+                    "@y": "126.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "787.00",
+                    "@y": "333.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "767.00",
+                    "@y": "180.00"
+                }
+            ]
+        },
+        "waves": {
+            "@defaultdelayonewave": "30",
+            "wave": [
+                {
+                    "@count": "5",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "6",
+                    "@defaultdelay": "1",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "7",
+                    "@defaultdelay": "1",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "8",
+                    "@defaultdelay": "1",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "10",
+                    "@defaultdelay": "1",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "3",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "5",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "3",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "4",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "5",
+                            "@healthrate": "0.75",
+                            "@name": "jeep",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                }
+            ]
+        },
+        "waves_hard": {
+            "@defaultdelayonewave": "10",
+            "wave": [
+                {
+                    "@count": "5",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "6",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "7",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "8",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "10",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "5",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "6",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "7",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "8",
+                    "@defaultdelay": "0.5",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                },
+                {
+                    "@count": "20",
+                    "@defaultdelay": "0.6",
+                    "@defaulthealthrate": "0.75",
+                    "@defaultname": "soldier",
+                    "@defaultrouteindex": "0",
+                    "@defaultroutesubtype": "random",
+                    "@defaultscore": "5",
+                    "@routetype": "earth"
+                }
+            ]
+        }
+    }
+}

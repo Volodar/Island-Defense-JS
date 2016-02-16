@@ -1,0 +1,16 @@
+{
+    "items": {
+        "bonusitem_dynamit": {
+            "@cost": "100",
+            "@default": "3"
+        },
+        "bonusitem_ice": {
+            "@cost": "200",
+            "@default": "2"
+        },
+        "bonusitem_laser": {
+            "@cost": "400",
+            "@default": "1"
+        }
+    }
+}

@@ -1,0 +1,8 @@
+{
+    "params": {
+        "param": {
+            "@name": "max_score_for_start_wave",
+            "@value": "30"
+        }
+    }
+}

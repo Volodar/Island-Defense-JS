@@ -1,0 +1,224 @@
+{
+    "maplayer": {
+        "@pos": "0x0",
+        "children": {
+            "node": [
+                {
+                    "@center": "0x0",
+                    "@image": "images/map/Friendly_Map.jpg",
+                    "@name": "map",
+                    "@pos": "0x0",
+                    "@type": "sprite",
+                    "@z": "-1"
+                },
+                {
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "@type": "menu",
+                    "children": {
+                        "node": [
+                            {
+                                "@callback": "heroes",
+                                "@imageN": "images/map/hero_button.png",
+                                "@name": "heroes",
+                                "@pos": "right:-470x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem",
+                                "@visible": "##USE_HEROROOM##"
+                            },
+                            {
+                                "@callback": "back",
+                                "@imageN": "images/map/button_back.png",
+                                "@name": "back",
+                                "@pos": "80x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem"
+                            },
+                            {
+                                "@callback": "laboratory",
+                                "@imageN": "images/map/button_lab.png",
+                                "@name": "lab",
+                                "@pos": "right:-80x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem"
+                            },
+                            {
+                                "@callback": "shop",
+                                "@imageN": "images/map/button_shop.png",
+                                "@name": "shop",
+                                "@pos": "right:-210x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem",
+                                "@visible": "##PLATFORM_MOBILE##"
+                            },
+                            {
+                                "@callback": "itemshop",
+                                "@imageN": "images/map/button_itemshop.png",
+                                "@name": "itemshop",
+                                "@pos": "right:-340x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem"
+                            },
+                            {
+                                "@callback": "paidversion",
+                                "@imageN": "##icon_paid_version##",
+                                "@name": "paid",
+                                "@pos": "right:-470x75",
+                                "@sound": "##sound_button##",
+                                "@type": "menuitem",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@font": "fonts/helveticastoke.fnt",
+                                            "@name": "text1",
+                                            "@pos": "58x145",
+                                            "@scale": "0.7x0.7",
+                                            "@text": "#icon_fullversion_noads#",
+                                            "@type": "text"
+                                        },
+                                        {
+                                            "@font": "fonts/helveticastoke.fnt",
+                                            "@name": "text2",
+                                            "@pos": "58x122",
+                                            "@scale": "0.7x0.7",
+                                            "@text": "#icon_fullversion_heroes#",
+                                            "@type": "text"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "locations": {
+            "location": [
+                {
+                    "@controlA": "266.21x221.01",
+                    "@controlB": "297.22x278.61",
+                    "@pos": "179.37x224.56"
+                },
+                {
+                    "@controlA": "185.83x427.47",
+                    "@controlB": "292.54x511.66",
+                    "@pos": "287.73x327.35"
+                },
+                {
+                    "@controlA": "410.00x600.00",
+                    "@controlB": "410.00x600.00",
+                    "@pos": "410.00x600.00"
+                },
+                {
+                    "@controlA": "525.69x474.81",
+                    "@controlB": "568.22x481.90",
+                    "@pos": "482.28x466.84"
+                },
+                {
+                    "@controlA": "629.24x391.52",
+                    "@controlB": "657.60x399.50",
+                    "@pos": "618.61x475.70"
+                },
+                {
+                    "@controlA": "770.38x403.92",
+                    "@controlB": "793.42x395.06",
+                    "@pos": "712.79x411.01"
+                },
+                {
+                    "@controlA": "880.51x401.65",
+                    "@controlB": "882.28x380.38",
+                    "@pos": "822.91x399.87"
+                },
+                {
+                    "@controlA": "746.34x244.95",
+                    "@controlB": "820.77x193.55",
+                    "@pos": "822.54x303.43"
+                },
+                {
+                    "@controlA": "965.96x251.78",
+                    "@controlB": "1001.40x260.64",
+                    "@pos": "907.48x211.02"
+                },
+                {
+                    "@controlA": "1182.78x349.75",
+                    "@controlB": "1070.25x445.44",
+                    "@pos": "972.79x353.29"
+                },
+                {
+                    "@controlA": "1181.77x507.20",
+                    "@controlB": "1192.40x541.76",
+                    "@pos": "1137.46x539.10"
+                },
+                {
+                    "@controlA": "1285.06x515.94",
+                    "@controlB": "1293.92x512.39",
+                    "@pos": "1246.96x532.77"
+                },
+                {
+                    "@controlA": "1442.65x399.24",
+                    "@controlB": "1253.93x294.68",
+                    "@pos": "1346.07x505.56"
+                },
+                {
+                    "@controlA": "1328.87x200.63",
+                    "@controlB": "1516.71x178.48",
+                    "@pos": "1227.86x210.38"
+                },
+                {
+                    "@controlA": "1584.05x320.26",
+                    "@controlB": "1600.00x400.00",
+                    "@pos": "1480.38x262.66"
+                },
+                {
+                    "@controlA": "1491.15x461.27",
+                    "@controlB": "1505.33x519.75",
+                    "@pos": "1553.18x442.66"
+                },
+                {
+                    "@controlA": "1560.90x569.62",
+                    "@controlB": "1580.39x575.82",
+                    "@pos": "1524.57x580.25"
+                },
+                {
+                    "@controlA": "1652.67x618.48",
+                    "@controlB": "1724.44x601.65",
+                    "@pos": "1614.57x573.29"
+                },
+                {
+                    "@controlA": "1814.82x538.48",
+                    "@controlB": "1719.13x494.18",
+                    "@pos": "1746.59x527.85"
+                },
+                {
+                    "@controlA": "1686.34x427.48",
+                    "@controlB": "1704.06x415.96",
+                    "@pos": "1683.68x445.20"
+                },
+                {
+                    "@controlA": "1745.71x390.89",
+                    "@controlB": "1766.08x391.78",
+                    "@pos": "1740.39x401.52"
+                },
+                {
+                    "@controlA": "1832.54x359.75",
+                    "@controlB": "1848.49x332.28",
+                    "@pos": "1805.07x369.50"
+                },
+                {
+                    "@controlA": "1743.93x233.55",
+                    "@controlB": "1769.63x229.12",
+                    "@pos": "1727.99x293.80"
+                },
+                {
+                    "@controlA": "2000.00x260.00",
+                    "@controlB": "2000.00x260.00",
+                    "@pos": "1879.50x275.06"
+                }
+            ]
+        },
+        "paramcollection": {
+            "pathto_leaderboards": "leaderboard",
+            "pathto_leaderboardsscore": "leaderboard/score"
+        }
+    }
+}

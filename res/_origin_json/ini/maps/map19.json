@@ -1,0 +1,3900 @@
+{
+    "map": {
+        "@healths": "20",
+        "@star1": "1",
+        "@star2": "10",
+        "@star3": "15",
+        "@startscore": "195",
+        "@wave_cooldown": "10",
+        "decorations": {
+            "base_point": {
+                "@action": "",
+                "@x": "984",
+                "@y": "522",
+                "@z": "-522"
+            }
+        },
+        "hard": {
+            "@exclude": "laser",
+            "@healths": "3",
+            "@star1": "1",
+            "@star2": "1",
+            "@star3": "1",
+            "@startscore": "90",
+            "@wave_cooldown": "5"
+        },
+        "routes": {
+            "route": [
+                {
+                    "@name": "0",
+                    "@type": "earth",
+                    "left": {
+                        "point": [
+                            {
+                                "@x": "257",
+                                "@y": "764"
+                            },
+                            {
+                                "@x": "257",
+                                "@y": "626"
+                            },
+                            {
+                                "@x": "255",
+                                "@y": "530"
+                            },
+                            {
+                                "@x": "347",
+                                "@y": "437"
+                            },
+                            {
+                                "@x": "419",
+                                "@y": "334"
+                            },
+                            {
+                                "@x": "450",
+                                "@y": "273"
+                            },
+                            {
+                                "@x": "557",
+                                "@y": "278"
+                            },
+                            {
+                                "@x": "604",
+                                "@y": "292"
+                            },
+                            {
+                                "@x": "619",
+                                "@y": "343"
+                            },
+                            {
+                                "@x": "621",
+                                "@y": "425"
+                            },
+                            {
+                                "@x": "640",
+                                "@y": "501"
+                            },
+                            {
+                                "@x": "701",
+                                "@y": "535"
+                            },
+                            {
+                                "@x": "1024",
+                                "@y": "533"
+                            }
+                        ]
+                    },
+                    "main": {
+                        "point": [
+                            {
+                                "@x": "232",
+                                "@y": "764"
+                            },
+                            {
+                                "@x": "232",
+                                "@y": "626"
+                            },
+                            {
+                                "@x": "232",
+                                "@y": "526"
+                            },
+                            {
+                                "@x": "328",
+                                "@y": "429"
+                            },
+                            {
+                                "@x": "399",
+                                "@y": "328"
+                            },
+                            {
+                                "@x": "438",
+                                "@y": "263"
+                            },
+                            {
+                                "@x": "561",
+                                "@y": "266"
+                            },
+                            {
+                                "@x": "621",
+                                "@y": "283"
+                            },
+                            {
+                                "@x": "644",
+                                "@y": "341"
+                            },
+                            {
+                                "@x": "646",
+                                "@y": "424"
+                            },
+                            {
+                                "@x": "661",
+                                "@y": "494"
+                            },
+                            {
+                                "@x": "708",
+                                "@y": "523"
+                            },
+                            {
+                                "@x": "1024",
+                                "@y": "521"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@x": "207",
+                                "@y": "764"
+                            },
+                            {
+                                "@x": "207",
+                                "@y": "626"
+                            },
+                            {
+                                "@x": "208",
+                                "@y": "521"
+                            },
+                            {
+                                "@x": "308",
+                                "@y": "420"
+                            },
+                            {
+                                "@x": "378",
+                                "@y": "321"
+                            },
+                            {
+                                "@x": "425",
+                                "@y": "252"
+                            },
+                            {
+                                "@x": "564",
+                                "@y": "253"
+                            },
+                            {
+                                "@x": "637",
+                                "@y": "273"
+                            },
+                            {
+                                "@x": "668",
+                                "@y": "338"
+                            },
+                            {
+                                "@x": "670",
+                                "@y": "422"
+                            },
+                            {
+                                "@x": "681",
+                                "@y": "486"
+                            },
+                            {
+                                "@x": "714",
+                                "@y": "510"
+                            },
+                            {
+                                "@x": "1023",
+                                "@y": "508"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@name": "1",
+                    "@type": "earth",
+                    "left": {
+                        "point": [
+                            {
+                                "@x": "1",
+                                "@y": "281"
+                            },
+                            {
+                                "@x": "163",
+                                "@y": "279"
+                            },
+                            {
+                                "@x": "330",
+                                "@y": "278"
+                            },
+                            {
+                                "@x": "520",
+                                "@y": "281"
+                            },
+                            {
+                                "@x": "605",
+                                "@y": "285"
+                            },
+                            {
+                                "@x": "622",
+                                "@y": "369"
+                            },
+                            {
+                                "@x": "629",
+                                "@y": "464"
+                            },
+                            {
+                                "@x": "676",
+                                "@y": "537"
+                            },
+                            {
+                                "@x": "1023",
+                                "@y": "539"
+                            }
+                        ]
+                    },
+                    "main": {
+                        "point": [
+                            {
+                                "@x": "1",
+                                "@y": "269"
+                            },
+                            {
+                                "@x": "162",
+                                "@y": "267"
+                            },
+                            {
+                                "@x": "330",
+                                "@y": "266"
+                            },
+                            {
+                                "@x": "434",
+                                "@y": "266"
+                            },
+                            {
+                                "@x": "521",
+                                "@y": "269"
+                            },
+                            {
+                                "@x": "621",
+                                "@y": "276"
+                            },
+                            {
+                                "@x": "647",
+                                "@y": "367"
+                            },
+                            {
+                                "@x": "653",
+                                "@y": "460"
+                            },
+                            {
+                                "@x": "688",
+                                "@y": "526"
+                            },
+                            {
+                                "@x": "1023",
+                                "@y": "526"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@x": "0",
+                                "@y": "256"
+                            },
+                            {
+                                "@x": "162",
+                                "@y": "254"
+                            },
+                            {
+                                "@x": "330",
+                                "@y": "253"
+                            },
+                            {
+                                "@x": "522",
+                                "@y": "256"
+                            },
+                            {
+                                "@x": "636",
+                                "@y": "266"
+                            },
+                            {
+                                "@x": "671",
+                                "@y": "364"
+                            },
+                            {
+                                "@x": "677",
+                                "@y": "457"
+                            },
+                            {
+                                "@x": "701",
+                                "@y": "516"
+                            },
+                            {
+                                "@x": "1023",
+                                "@y": "514"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@name": "2",
+                    "@type": "sky",
+                    "left": {
+                        "point": [
+                            {
+                                "@x": "-1",
+                                "@y": "276"
+                            },
+                            {
+                                "@x": "352",
+                                "@y": "272"
+                            },
+                            {
+                                "@x": "582",
+                                "@y": "263"
+                            },
+                            {
+                                "@x": "627",
+                                "@y": "435"
+                            },
+                            {
+                                "@x": "659",
+                                "@y": "544"
+                            },
+                            {
+                                "@x": "1017",
+                                "@y": "550"
+                            }
+                        ]
+                    },
+                    "main": {
+                        "point": [
+                            {
+                                "@x": "-1",
+                                "@y": "264"
+                            },
+                            {
+                                "@x": "351",
+                                "@y": "260"
+                            },
+                            {
+                                "@x": "597",
+                                "@y": "253"
+                            },
+                            {
+                                "@x": "652",
+                                "@y": "431"
+                            },
+                            {
+                                "@x": "675",
+                                "@y": "534"
+                            },
+                            {
+                                "@x": "1017",
+                                "@y": "537"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@x": "-2",
+                                "@y": "251"
+                            },
+                            {
+                                "@x": "351",
+                                "@y": "247"
+                            },
+                            {
+                                "@x": "611",
+                                "@y": "243"
+                            },
+                            {
+                                "@x": "676",
+                                "@y": "428"
+                            },
+                            {
+                                "@x": "690",
+                                "@y": "525"
+                            },
+                            {
+                                "@x": "1018",
+                                "@y": "525"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "towerplaces": {
+            "place": [
+                {
+                    "@active": "yes",
+                    "@x": "497.00",
+                    "@y": "352.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "273.00",
+                    "@y": "352.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "741.00",
+                    "@y": "449.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "562.00",
+                    "@y": "428.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "421.00",
+                    "@y": "191.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "744.00",
+                    "@y": "328.00"
+                },
+                {
+                    "@active": "yes",
+                    "@x": "408.00",
+                    "@y": "471.00"
+                }
+            ]
+        },
+        "waves": {
+            "@defaultdelayonewave": "30",
+            "wave": [
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                }
+            ]
+        },
+        "waves_hard": {
+            "@defaultdelayonewave": "10",
+            "wave": [
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                },
+                {
+                    "creep": [
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier2",
+                            "@routeindex": "1",
+                            "@routesubtype": "random",
+                            "@score": "7"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "0.5",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "helocopter_medic",
+                            "@routeindex": "2",
+                            "@routesubtype": "main",
+                            "@score": "10"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "soldier",
+                            "@routeindex": "0",
+                            "@routesubtype": "random",
+                            "@score": "5"
+                        },
+                        {
+                            "@delay": "1",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        },
+                        {
+                            "@delay": "2",
+                            "@healthrate": "0.75",
+                            "@name": "bigman",
+                            "@routeindex": "1",
+                            "@routesubtype": "main",
+                            "@score": "20"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,859 @@
+{
+    "node": {
+        "children": {
+            "node": [
+                {
+                    "@image": "images/maings/title_20481536.jpg",
+                    "@name": "bg",
+                    "@pos": "frame:0.5x0.5",
+                    "@strech": "frame:1x1:max",
+                    "@type": "sprite"
+                },
+                {
+                    "@image": "images/maings/logo.png",
+                    "@name": "logo",
+                    "@pos": "frame:0.5x0.75",
+                    "@scale": "1x1",
+                    "@type": "sprite",
+                    "@visible": "yes",
+                    "@z": "4"
+                }
+            ]
+        },
+        "resources": {
+            "resoucre": [
+                {
+                    "@name": "game",
+                    "atlas": [
+                        {
+                            "@name": "electro",
+                            "@path": "images/effects/electro.plist"
+                        },
+                        {
+                            "@name": "lighting",
+                            "@path": "images/effects/lighting.plist"
+                        },
+                        {
+                            "@name": "splash",
+                            "@path": "images/effects/splash.plist"
+                        },
+                        {
+                            "@name": "fire2",
+                            "@path": "images/effects/fire2.plist"
+                        },
+                        {
+                            "@name": "healing.blue",
+                            "@path": "images/effects/healing.blue.plist"
+                        },
+                        {
+                            "@name": "healing.red",
+                            "@path": "images/effects/healing.red.plist"
+                        },
+                        {
+                            "@name": "maps.animations",
+                            "@path": "images/maps/animations/animations.plist"
+                        },
+                        {
+                            "@name": "maps.animations2",
+                            "@path": "images/maps/animations/animations2.plist"
+                        },
+                        {
+                            "@name": "buttoln_skills",
+                            "@path": "gamescene::buttoln_skills.plist"
+                        },
+                        {
+                            "@name": "dynamit",
+                            "@path": "images/bonusitems/dynamit.plist"
+                        },
+                        {
+                            "@name": "spacestrike",
+                            "@path": "images/bonusitems/spacestrike.plist"
+                        },
+                        {
+                            "@name": "bombice",
+                            "@path": "images/bonusitems/bombice.plist"
+                        },
+                        {
+                            "@name": "fire",
+                            "@path": "images/towers/firegun/fire.plist"
+                        },
+                        {
+                            "@name": "hero_mine",
+                            "@path": "images/hero/hero_mine.plist"
+                        },
+                        {
+                            "@name": "hero_other",
+                            "@path": "images/hero/hero_other.plist"
+                        },
+                        {
+                            "@name": "desant.fire",
+                            "@path": "images/towers/desant.fire.plist"
+                        },
+                        {
+                            "@name": "desant.left",
+                            "@path": "images/towers/desant.left.plist"
+                        },
+                        {
+                            "@name": "desant.down",
+                            "@path": "images/towers/desant.down.plist"
+                        },
+                        {
+                            "@name": "desant.up",
+                            "@path": "images/towers/desant.up.plist"
+                        },
+                        {
+                            "@name": "desant.die",
+                            "@path": "images/towers/desant.die.plist"
+                        },
+                        {
+                            "@name": "desant.nothing1",
+                            "@path": "images/towers/desant.nothing1.plist"
+                        },
+                        {
+                            "@name": "desant.nothing2",
+                            "@path": "images/towers/desant.nothing2.plist"
+                        },
+                        {
+                            "@name": "airbomb",
+                            "@path": "images/towers/airbomb.plist"
+                        },
+                        {
+                            "@name": "death",
+                            "@path": "images/creeps/death.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "hero1",
+                    "atlas": {
+                        "@name": "hero1",
+                        "@path": "images/hero/hero1.plist"
+                    }
+                },
+                {
+                    "@name": "hero2",
+                    "atlas": [
+                        {
+                            "@name": "hero2",
+                            "@path": "images/hero/hero2.plist"
+                        },
+                        {
+                            "@name": "hero2_skills",
+                            "@path": "images/hero/hero2_skils.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "hero3",
+                    "atlas": [
+                        {
+                            "@name": "hero3",
+                            "@path": "images/hero/hero3.plist"
+                        },
+                        {
+                            "@name": "hero3_bot",
+                            "@path": "images/hero/hero3_bot.plist"
+                        },
+                        {
+                            "@name": "hero3_desant1",
+                            "@path": "images/hero/hero3_desant1.plist"
+                        },
+                        {
+                            "@name": "hero3_desant2",
+                            "@path": "images/hero/hero3_desant2.plist"
+                        },
+                        {
+                            "@name": "hero3_desant3",
+                            "@path": "images/hero/hero3_desant3.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "firegun1",
+                    "atlas": [
+                        {
+                            "@name": "firegun.1.1",
+                            "@path": "images/towers/firegun/1.1.plist"
+                        },
+                        {
+                            "@name": "firegun.1.2",
+                            "@path": "images/towers/firegun/1.2.plist"
+                        },
+                        {
+                            "@name": "firegun.1.3",
+                            "@path": "images/towers/firegun/1.3.plist"
+                        },
+                        {
+                            "@name": "firegun.1.4",
+                            "@path": "images/towers/firegun/1.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "firegun2",
+                    "atlas": [
+                        {
+                            "@name": "firegun.2.1",
+                            "@path": "images/towers/firegun/2.1.plist"
+                        },
+                        {
+                            "@name": "firegun.2.2",
+                            "@path": "images/towers/firegun/2.2.plist"
+                        },
+                        {
+                            "@name": "firegun.2.3",
+                            "@path": "images/towers/firegun/2.3.plist"
+                        },
+                        {
+                            "@name": "firegun.2.4",
+                            "@path": "images/towers/firegun/2.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "firegun3",
+                    "atlas": [
+                        {
+                            "@name": "firegun.3.1",
+                            "@path": "images/towers/firegun/3.1.plist"
+                        },
+                        {
+                            "@name": "firegun.3.2",
+                            "@path": "images/towers/firegun/3.2.plist"
+                        },
+                        {
+                            "@name": "firegun.3.3",
+                            "@path": "images/towers/firegun/3.3.plist"
+                        },
+                        {
+                            "@name": "firegun.3.4",
+                            "@path": "images/towers/firegun/3.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "firegun4",
+                    "atlas": [
+                        {
+                            "@name": "firegun.4.1",
+                            "@path": "images/towers/firegun/4.1.plist"
+                        },
+                        {
+                            "@name": "firegun.4.2",
+                            "@path": "images/towers/firegun/4.2.plist"
+                        },
+                        {
+                            "@name": "firegun.4.3",
+                            "@path": "images/towers/firegun/4.3.plist"
+                        },
+                        {
+                            "@name": "firegun.4.4",
+                            "@path": "images/towers/firegun/4.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "firegun5",
+                    "atlas": [
+                        {
+                            "@name": "firegun.5.1",
+                            "@path": "images/towers/firegun/5.1.plist"
+                        },
+                        {
+                            "@name": "firegun.5.2",
+                            "@path": "images/towers/firegun/5.2.plist"
+                        },
+                        {
+                            "@name": "firegun.5.3",
+                            "@path": "images/towers/firegun/5.3.plist"
+                        },
+                        {
+                            "@name": "firegun.5.4",
+                            "@path": "images/towers/firegun/5.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "roketgun1",
+                    "atlas": [
+                        {
+                            "@name": "roketgun.1.1",
+                            "@path": "images/towers/roketgun/1.1.plist"
+                        },
+                        {
+                            "@name": "roketgun.1.2",
+                            "@path": "images/towers/roketgun/1.2.plist"
+                        },
+                        {
+                            "@name": "roketgun.1.3",
+                            "@path": "images/towers/roketgun/1.3.plist"
+                        },
+                        {
+                            "@name": "roketgun.1.4",
+                            "@path": "images/towers/roketgun/1.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "roketgun2",
+                    "atlas": [
+                        {
+                            "@name": "roketgun.2.1",
+                            "@path": "images/towers/roketgun/2.1.plist"
+                        },
+                        {
+                            "@name": "roketgun.2.2",
+                            "@path": "images/towers/roketgun/2.2.plist"
+                        },
+                        {
+                            "@name": "roketgun.2.3",
+                            "@path": "images/towers/roketgun/2.3.plist"
+                        },
+                        {
+                            "@name": "roketgun.2.4",
+                            "@path": "images/towers/roketgun/2.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "roketgun3",
+                    "atlas": [
+                        {
+                            "@name": "roketgun.3.1",
+                            "@path": "images/towers/roketgun/3.1.plist"
+                        },
+                        {
+                            "@name": "roketgun.3.2",
+                            "@path": "images/towers/roketgun/3.2.plist"
+                        },
+                        {
+                            "@name": "roketgun.3.3",
+                            "@path": "images/towers/roketgun/3.3.plist"
+                        },
+                        {
+                            "@name": "roketgun.3.4",
+                            "@path": "images/towers/roketgun/3.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "roketgun4",
+                    "atlas": [
+                        {
+                            "@name": "roketgun.4.1",
+                            "@path": "images/towers/roketgun/4.1.plist"
+                        },
+                        {
+                            "@name": "roketgun.4.2",
+                            "@path": "images/towers/roketgun/4.2.plist"
+                        },
+                        {
+                            "@name": "roketgun.4.3",
+                            "@path": "images/towers/roketgun/4.3.plist"
+                        },
+                        {
+                            "@name": "roketgun.4.4",
+                            "@path": "images/towers/roketgun/4.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "roketgun5",
+                    "atlas": [
+                        {
+                            "@name": "roketgun.5.1",
+                            "@path": "images/towers/roketgun/5.1.plist"
+                        },
+                        {
+                            "@name": "roketgun.5.2",
+                            "@path": "images/towers/roketgun/5.2.plist"
+                        },
+                        {
+                            "@name": "roketgun.5.3",
+                            "@path": "images/towers/roketgun/5.3.plist"
+                        },
+                        {
+                            "@name": "roketgun.5.4",
+                            "@path": "images/towers/roketgun/5.4.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "minigun1",
+                    "atlas": {
+                        "@name": "minigun.1",
+                        "@path": "images/towers/minigun/1.plist"
+                    }
+                },
+                {
+                    "@name": "minigun2",
+                    "atlas": {
+                        "@name": "minigun.2",
+                        "@path": "images/towers/minigun/2.plist"
+                    }
+                },
+                {
+                    "@name": "minigun3",
+                    "atlas": {
+                        "@name": "minigun.3",
+                        "@path": "images/towers/minigun/3.plist"
+                    }
+                },
+                {
+                    "@name": "minigun4",
+                    "atlas": {
+                        "@name": "minigun.4",
+                        "@path": "images/towers/minigun/4.plist"
+                    }
+                },
+                {
+                    "@name": "minigun5",
+                    "atlas": {
+                        "@name": "minigun.5",
+                        "@path": "images/towers/minigun/5.plist"
+                    }
+                },
+                {
+                    "@name": "icegun1",
+                    "atlas": {
+                        "@name": "icegun.1",
+                        "@path": "images/towers/icegun/1.plist"
+                    }
+                },
+                {
+                    "@name": "icegun2",
+                    "atlas": {
+                        "@name": "icegun.2",
+                        "@path": "images/towers/icegun/2.plist"
+                    }
+                },
+                {
+                    "@name": "icegun3",
+                    "atlas": {
+                        "@name": "icegun.3",
+                        "@path": "images/towers/icegun/3.plist"
+                    }
+                },
+                {
+                    "@name": "icegun4",
+                    "atlas": {
+                        "@name": "icegun.4",
+                        "@path": "images/towers/icegun/4.plist"
+                    }
+                },
+                {
+                    "@name": "icegun5",
+                    "atlas": {
+                        "@name": "icegun.5",
+                        "@path": "images/towers/icegun/5.plist"
+                    }
+                },
+                {
+                    "@name": "laser1",
+                    "atlas": {
+                        "@name": "laser.1",
+                        "@path": "images/towers/laser/laser.1.plist"
+                    }
+                },
+                {
+                    "@name": "laser2",
+                    "atlas": {
+                        "@name": "laser.2",
+                        "@path": "images/towers/laser/laser.2.plist"
+                    }
+                },
+                {
+                    "@name": "laser3",
+                    "atlas": {
+                        "@name": "laser.3",
+                        "@path": "images/towers/laser/laser.3.plist"
+                    }
+                },
+                {
+                    "@name": "laser4",
+                    "atlas": {
+                        "@name": "laser.4",
+                        "@path": "images/towers/laser/laser.4.plist"
+                    }
+                },
+                {
+                    "@name": "laser5",
+                    "atlas": {
+                        "@name": "laser.5",
+                        "@path": "images/towers/laser/laser.5.plist"
+                    }
+                },
+                {
+                    "@name": "teslagun1",
+                    "atlas": {
+                        "@name": "teslagun.1",
+                        "@path": "images/towers/teslagun/1.plist"
+                    }
+                },
+                {
+                    "@name": "teslagun2",
+                    "atlas": {
+                        "@name": "teslagun.2",
+                        "@path": "images/towers/teslagun/2.plist"
+                    }
+                },
+                {
+                    "@name": "teslagun3",
+                    "atlas": {
+                        "@name": "teslagun.3",
+                        "@path": "images/towers/teslagun/3.plist"
+                    }
+                },
+                {
+                    "@name": "teslagun4",
+                    "atlas": {
+                        "@name": "teslagun.4",
+                        "@path": "images/towers/teslagun/4.plist"
+                    }
+                },
+                {
+                    "@name": "teslagun5",
+                    "atlas": {
+                        "@name": "teslagun.5",
+                        "@path": "images/towers/teslagun/5.plist"
+                    }
+                },
+                {
+                    "@name": "soldier",
+                    "atlas": [
+                        {
+                            "@name": "soldier.left",
+                            "@path": "images/creeps/soldier.left.plist"
+                        },
+                        {
+                            "@name": "soldier.down",
+                            "@path": "images/creeps/soldier.down.plist"
+                        },
+                        {
+                            "@name": "soldier.die",
+                            "@path": "images/creeps/soldier.die.plist"
+                        },
+                        {
+                            "@name": "soldier.up",
+                            "@path": "images/creeps/soldier.up.plist"
+                        },
+                        {
+                            "@name": "soldier.fire",
+                            "@path": "images/creeps/soldier.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "flyingfortress",
+                    "atlas": [
+                        {
+                            "@name": "airship",
+                            "@path": "images/creeps/airship.plist"
+                        },
+                        {
+                            "@name": "soldier.left",
+                            "@path": "images/creeps/soldier.left.plist"
+                        },
+                        {
+                            "@name": "soldier.down",
+                            "@path": "images/creeps/soldier.down.plist"
+                        },
+                        {
+                            "@name": "soldier.die",
+                            "@path": "images/creeps/soldier.die.plist"
+                        },
+                        {
+                            "@name": "soldier.up",
+                            "@path": "images/creeps/soldier.up.plist"
+                        },
+                        {
+                            "@name": "soldier.fire",
+                            "@path": "images/creeps/soldier.fire.plist"
+                        },
+                        {
+                            "@name": "soldier2.left",
+                            "@path": "images/creeps/soldier2.left.plist"
+                        },
+                        {
+                            "@name": "soldier2.down",
+                            "@path": "images/creeps/soldier2.down.plist"
+                        },
+                        {
+                            "@name": "soldier2.die",
+                            "@path": "images/creeps/soldier2.die.plist"
+                        },
+                        {
+                            "@name": "soldier2.up",
+                            "@path": "images/creeps/soldier2.up.plist"
+                        },
+                        {
+                            "@name": "soldier2.fire",
+                            "@path": "images/creeps/soldier2.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "jeep",
+                    "atlas": [
+                        {
+                            "@name": "jeep.left",
+                            "@path": "images/creeps/jeep.left.plist"
+                        },
+                        {
+                            "@name": "jeep.down",
+                            "@path": "images/creeps/jeep.down.plist"
+                        },
+                        {
+                            "@name": "jeep.up",
+                            "@path": "images/creeps/jeep.up.plist"
+                        },
+                        {
+                            "@name": "jeep.fire",
+                            "@path": "images/creeps/jeep.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "tank",
+                    "atlas": [
+                        {
+                            "@name": "tank.left",
+                            "@path": "images/creeps/tank.left.plist"
+                        },
+                        {
+                            "@name": "tank.down",
+                            "@path": "images/creeps/tank.down.plist"
+                        },
+                        {
+                            "@name": "tank.up",
+                            "@path": "images/creeps/tank.up.plist"
+                        },
+                        {
+                            "@name": "tank.fire",
+                            "@path": "images/creeps/tank.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "soldier2",
+                    "atlas": [
+                        {
+                            "@name": "soldier2.left",
+                            "@path": "images/creeps/soldier2.left.plist"
+                        },
+                        {
+                            "@name": "soldier2.down",
+                            "@path": "images/creeps/soldier2.down.plist"
+                        },
+                        {
+                            "@name": "soldier2.die",
+                            "@path": "images/creeps/soldier2.die.plist"
+                        },
+                        {
+                            "@name": "soldier2.up",
+                            "@path": "images/creeps/soldier2.up.plist"
+                        },
+                        {
+                            "@name": "soldier2.fire",
+                            "@path": "images/creeps/soldier2.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "soldier_medic",
+                    "atlas": [
+                        {
+                            "@name": "medic.left",
+                            "@path": "images/creeps/medic.left.plist"
+                        },
+                        {
+                            "@name": "medic.down",
+                            "@path": "images/creeps/medic.down.plist"
+                        },
+                        {
+                            "@name": "medic.die",
+                            "@path": "images/creeps/medic.die.plist"
+                        },
+                        {
+                            "@name": "medic.up",
+                            "@path": "images/creeps/medic.up.plist"
+                        },
+                        {
+                            "@name": "medic.fire",
+                            "@path": "images/creeps/medic.fire.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "helicopter",
+                    "atlas": [
+                        {
+                            "@name": "helicopter.death",
+                            "@path": "images/creeps/helicopter.death.plist"
+                        },
+                        {
+                            "@name": "helicopter2.left",
+                            "@path": "images/creeps/helicopter2.left.plist"
+                        },
+                        {
+                            "@name": "helicopter2.down",
+                            "@path": "images/creeps/helicopter2.down.plist"
+                        },
+                        {
+                            "@name": "helicopter2.up",
+                            "@path": "images/creeps/helicopter2.up.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "helicopter2",
+                    "atlas": [
+                        {
+                            "@name": "helicopter.death",
+                            "@path": "images/creeps/helicopter.death.plist"
+                        },
+                        {
+                            "@name": "helicopter2.left",
+                            "@path": "images/creeps/helicopter2.left.plist"
+                        },
+                        {
+                            "@name": "helicopter2.down",
+                            "@path": "images/creeps/helicopter2.down.plist"
+                        },
+                        {
+                            "@name": "helicopter2.up",
+                            "@path": "images/creeps/helicopter2.up.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "ship",
+                    "atlas": {
+                        "@name": "ship.left",
+                        "@path": "images/creeps/ship.left.plist"
+                    }
+                },
+                {
+                    "@name": "rembot",
+                    "atlas": [
+                        {
+                            "@name": "rembot.healing",
+                            "@path": "images/creeps/rembot.healing.plist"
+                        },
+                        {
+                            "@name": "rembot.run",
+                            "@path": "images/creeps/rembot.run.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "cyberman1",
+                    "atlas": [
+                        {
+                            "@name": "cyberman1",
+                            "@path": "images/creeps/cyberman1.plist"
+                        },
+                        {
+                            "@name": "cyberman2",
+                            "@path": "images/creeps/cyberman2.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "flamethrower",
+                    "atlas": {
+                        "@name": "flamethrower",
+                        "@path": "images/creeps/flamethrower.plist"
+                    }
+                },
+                {
+                    "@name": "tank_m",
+                    "atlas": {
+                        "@name": "tank_m",
+                        "@path": "images/creeps/tank_m.plist"
+                    }
+                },
+                {
+                    "@name": "bigman",
+                    "atlas": {
+                        "@name": "bigman",
+                        "@path": "images/creeps/bigman.plist"
+                    }
+                },
+                {
+                    "@name": "helocopter_medic",
+                    "atlas": {
+                        "@name": "helocopter_medic",
+                        "@path": "images/creeps/helocopter_medic.plist"
+                    }
+                },
+                {
+                    "@name": "moto",
+                    "atlas": {
+                        "@name": "moto",
+                        "@path": "images/creeps/moto.plist"
+                    }
+                },
+                {
+                    "@name": "dron",
+                    "atlas": [
+                        {
+                            "@name": "helicopter.death",
+                            "@path": "images/creeps/helicopter.death.plist"
+                        },
+                        {
+                            "@name": "dron",
+                            "@path": "images/creeps/dron.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "meh1",
+                    "atlas": [
+                        {
+                            "@name": "meh1",
+                            "@path": "images/creeps/meh1.plist"
+                        },
+                        {
+                            "@name": "meh2",
+                            "@path": "images/creeps/meh2.plist"
+                        },
+                        {
+                            "@name": "meh3",
+                            "@path": "images/creeps/meh3.plist"
+                        }
+                    ]
+                },
+                {
+                    "@name": "bmp",
+                    "atlas": [
+                        {
+                            "@name": "bmp",
+                            "@path": "images/creeps/bmp.plist"
+                        },
+                        {
+                            "@name": "soldier.left",
+                            "@path": "images/creeps/soldier.left.plist"
+                        },
+                        {
+                            "@name": "soldier.down",
+                            "@path": "images/creeps/soldier.down.plist"
+                        },
+                        {
+                            "@name": "soldier.die",
+                            "@path": "images/creeps/soldier.die.plist"
+                        },
+                        {
+                            "@name": "soldier.up",
+                            "@path": "images/creeps/soldier.up.plist"
+                        },
+                        {
+                            "@name": "soldier.fire",
+                            "@path": "images/creeps/soldier.fire.plist"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

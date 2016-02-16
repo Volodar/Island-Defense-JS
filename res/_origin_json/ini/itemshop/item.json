@@ -1,0 +1,125 @@
+{
+    "menuitem": {
+        "@imageN": "images/laboratory/ui_panel1.png",
+        "@name": "unnamed",
+        "@scale_effect": "no",
+        "@sound": "##sound_button##",
+        "@type": "menuitem",
+        "children": {
+            "node": {
+                "@name": "conteiner",
+                "@pos": "140x229",
+                "@type": "node",
+                "children": {
+                    "node": [
+                        {
+                            "@color": "000000",
+                            "@font": "fonts/whitefont1.fnt",
+                            "@name": "name",
+                            "@pos": "0x130",
+                            "@scale": "0.8x0.8",
+                            "@text": "Tower name",
+                            "@type": "text"
+                        },
+                        {
+                            "@name": "menu_info",
+                            "@pos": "0x0",
+                            "@type": "menu",
+                            "@z": "9",
+                            "children": {
+                                "node": {
+                                    "@imageN": "images/laboratory/icon_i.png",
+                                    "@name": "info",
+                                    "@pos": "90x190",
+                                    "@sound": "##sound_button##",
+                                    "@type": "menuitem"
+                                }
+                            }
+                        },
+                        {
+                            "@name": "main",
+                            "@pos": "0x0",
+                            "@type": "node",
+                            "children": {
+                                "node": [
+                                    {
+                                        "@name": "menu",
+                                        "@pos": "0x0",
+                                        "@type": "menu",
+                                        "@z": "9",
+                                        "children": {
+                                            "node": {
+                                                "@imageN": "images/laboratory/button_upgrade.png",
+                                                "@name": "buy",
+                                                "@pos": "0x-175",
+                                                "@sound": "##sound_button##",
+                                                "@type": "menuitem",
+                                                "@visible": "yes",
+                                                "children": {
+                                                    "node": {
+                                                        "@name": "normal",
+                                                        "children": {
+                                                            "node": [
+                                                                {
+                                                                    "@font": "fonts/mdefensefont.fnt",
+                                                                    "@name": "text",
+                                                                    "@pos": "95x46",
+                                                                    "@scale": "0.6x0.6",
+                                                                    "@text": "#itemshop_buy#",
+                                                                    "@type": "text"
+                                                                },
+                                                                {
+                                                                    "@center": "0x0.5",
+                                                                    "@font": "fonts/mdefensefont.fnt",
+                                                                    "@name": "cost",
+                                                                    "@pos": "85x18",
+                                                                    "@scale": "0.4x0.4",
+                                                                    "@text": "0",
+                                                                    "@type": "text"
+                                                                },
+                                                                {
+                                                                    "@image": "images/laboratory/icon_coin.png",
+                                                                    "@name": "icon",
+                                                                    "@pos": "70x16",
+                                                                    "@type": "sprite"
+                                                                }
+                                                            ]
+                                                        }
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "@name": "icon",
+                                        "@pos": "0x-10",
+                                        "@type": "sprite"
+                                    }
+                                ]
+                            }
+                        },
+                        {
+                            "@name": "info",
+                            "@pos": "0x0",
+                            "@type": "node",
+                            "@visible": "no",
+                            "children": {
+                                "node": {
+                                    "@center": "0.5x1",
+                                    "@font": "fonts/helveticastoke.fnt",
+                                    "@name": "text",
+                                    "@pos": "0x0",
+                                    "@scale": "0.8x0.8",
+                                    "@text": "Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc ",
+                                    "@textalign": "center",
+                                    "@textwidth": "300",
+                                    "@type": "text"
+                                }
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

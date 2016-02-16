@@ -1,0 +1,29 @@
+{
+    "node": {
+        "@name": "promomenu",
+        "@pos": "righttop:-64x-64",
+        "@type": "menu",
+        "children": {
+            "node": [
+                {
+                    "@callback": "open",
+                    "@imageN": "heroroom::hero1/hero1_1.png",
+                    "@name": "open",
+                    "@pos": "0x0",
+                    "@type": "menuitem",
+                    "children": null
+                },
+                {
+                    "@center": "0.5x0.5",
+                    "@color": "FFFFFF",
+                    "@font": "fonts/helvetica.fnt",
+                    "@name": "timer",
+                    "@pos": "0x-50",
+                    "@scale": "0.5x0.5",
+                    "@text": "00:00",
+                    "@type": "text"
+                }
+            ]
+        }
+    }
+}

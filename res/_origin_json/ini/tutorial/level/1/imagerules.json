@@ -1,0 +1,145 @@
+{
+    "tutorial": {
+        "@nexttutorial": "lvl0_imagebuildings",
+        "@template": "ini/tutorial/template_window.xml",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/tutorial/window1_tut1.png",
+                    "@path": "body/bg"
+                },
+                {
+                    "@name": "ballon1",
+                    "@pos": "-128x120",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@name": "arrow",
+                                "@pos": "60x-40",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@color": "35352B",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "0x4",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_rules_destroyenemy#",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@name": "ballon2",
+                    "@pos": "-102x-110",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@name": "arrow",
+                                "@pos": "60x40",
+                                "@rotation": "180",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@color": "35352B",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "0x4",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_rules_buildtower#",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@name": "ballon3",
+                    "@pos": "104x120",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@name": "arrow",
+                                "@pos": "60x-40",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@color": "35352B",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "0x4",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_rules_protectbase#",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": {
+                "@name": "onenter",
+                "setproperty": [
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/boxmenu",
+                        "@value": "no"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/waveicon/icon",
+                        "@value": "no"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/pause",
+                        "@value": "no"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/shop",
+                        "@value": "no"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/desant",
+                        "@value": "no"
+                    },
+                    {
+                        "@property": "visible",
+                        "@target": "/gamelayer/interface/menu/bomb",
+                        "@value": "no"
+                    }
+                ]
+            }
+        }
+    }
+}

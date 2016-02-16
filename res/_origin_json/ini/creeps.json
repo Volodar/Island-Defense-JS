@@ -1,0 +1,531 @@
+{
+    "creeps": {
+        "creep": [
+            {
+                "@directory": "infantry/",
+                "@name": "infantrysecond",
+                "effects": {
+                    "positive": {
+                        "@damage": "0.33",
+                        "@isCanStoppedMove": "true"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "meat"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "10"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "25"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "march.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "marine/",
+                "@name": "marine",
+                "effects": {
+                    "positive": {
+                        "@damage": "0.33",
+                        "@isCanStoppedMove": "true"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "meat"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "12"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "25"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "march.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "maroon_beret/",
+                "@name": "beret",
+                "effects": {
+                    "positive": {
+                        "@damage": "0.33",
+                        "@isCanStoppedMove": "true"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "meat"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "35"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "15"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "25"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "march.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "car0/",
+                "@name": "car0",
+                "effects": {
+                    "positive": {
+                        "@armor": "3"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "car0.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "car1/",
+                "@name": "car1",
+                "effects": {
+                    "positive": {
+                        "@armor": "3"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "armor",
+                        "@value": "5"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "car1.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "car2/",
+                "@name": "car2",
+                "effects": {
+                    "positive": {
+                        "@armor": "3"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "55"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "armor",
+                        "@value": "5"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "car2.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "tank/",
+                "@name": "tank",
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "fireResist",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "tank0.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "tank/",
+                "@name": "tank0",
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "fireResist",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "tank0.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "tank2/",
+                "@name": "tank1",
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "fireResist",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "tank0.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "tank3/",
+                "@name": "tank2",
+                "effects": {
+                    "positive": {
+                        "@armor": "15",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "normal"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "50"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "fireResist",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "tank1.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "rotorplane0/",
+                "@name": "rotorplane0",
+                "effects": {
+                    "positive": {
+                        "@armor": "10"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "fly"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "rotorplane0.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "rotorplane1/",
+                "@name": "rotorplane1",
+                "effects": {
+                    "positive": {
+                        "@armor": "10"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "fly"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "rotorplane1.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "rotorplane2/",
+                "@name": "rotorplane2",
+                "effects": {
+                    "positive": {
+                        "@armor": "10"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "fly"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "100"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "20"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "30"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "rotorplane2.wav"
+                    }
+                ]
+            },
+            {
+                "@directory": "plane/",
+                "@name": "plane",
+                "effects": {
+                    "positive": {
+                        "@armor": "15"
+                    }
+                },
+                "param": [
+                    {
+                        "@name": "bodytype",
+                        "@value": "equipment"
+                    },
+                    {
+                        "@name": "unitlayer",
+                        "@value": "fly"
+                    },
+                    {
+                        "@name": "velocitymove",
+                        "@value": "120"
+                    },
+                    {
+                        "@name": "health",
+                        "@value": "15"
+                    },
+                    {
+                        "@name": "bodyradius",
+                        "@value": "40"
+                    },
+                    {
+                        "@name": "soundmove",
+                        "@value": "rotorplane0.wav"
+                    }
+                ]
+            }
+        ]
+    }
+}

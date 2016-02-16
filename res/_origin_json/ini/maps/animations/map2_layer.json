@@ -1,0 +1,8 @@
+{
+    "node": {
+        "@center": "0x1",
+        "@image": "images/maps/map2_layer.png",
+        "@type": "sprite",
+        "@z": "1000"
+    }
+}

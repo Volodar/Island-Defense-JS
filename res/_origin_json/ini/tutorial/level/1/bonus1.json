@@ -1,0 +1,116 @@
+{
+    "tutorial": {
+        "@nexttutorial": "",
+        "@parent": "/gamelayer",
+        "@pos": "0x0",
+        "@z": "999",
+        "actions": {
+            "action": [
+                {
+                    "@name": "movex",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"
+                },
+                {
+                    "@name": "movey",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[0.5],FadeTo[0.3,255]]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "Spawn[FadeTo[0.2,255],ScaleTo[0.3,1,1]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "body",
+                    "@opacity": "0",
+                    "@pos": "frame:0.5x0.5",
+                    "@scale": "0.7x0.7",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@name": "body",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@center": "0x0.5",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "-110x00",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_bonus_desc1#",
+                                "@textwidth": "400",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "ballon",
+                    "@opacity": "0",
+                    "@pos": "right:-110x150",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@name": "arrow",
+                                "@pos": "60x-40",
+                                "@type": "sprite",
+                                "@z": "1"
+                            },
+                            {
+                                "@color": "35352B",
+                                "@font": "fonts/helvetica.fnt",
+                                "@name": "text",
+                                "@pos": "0x4",
+                                "@scale": "0.7x0.7",
+                                "@text": "#tuturial_bonus_ballon1#",
+                                "@type": "text",
+                                "@z": "2"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": {
+                "@name": "onenter",
+                "runaction": [
+                    {
+                        "@action": "movey",
+                        "@target": "ballon"
+                    },
+                    {
+                        "@action": "bodyfadein",
+                        "@target": "ballon"
+                    },
+                    {
+                        "@action": "fadein",
+                        "@target": "body"
+                    }
+                ],
+                "setproperty": {
+                    "@property": "visible",
+                    "@target": "/gamelayer/boxmenu",
+                    "@value": "yes"
+                }
+            }
+        }
+    }
+}

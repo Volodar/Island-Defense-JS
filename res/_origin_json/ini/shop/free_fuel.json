@@ -1,0 +1,33 @@
+{
+    "menuitem": {
+        "@name": "gold1",
+        "@template": "ini/shop/item.xml",
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.5",
+                    "@path": "menu/buy/normal/text",
+                    "@pos": "108x40",
+                    "@scale": "0.6x0.6",
+                    "@text": "#shop_getfree#",
+                    "@textalign": "center"
+                },
+                {
+                    "@name": "text",
+                    "@pos": "115x395",
+                    "@text": "10"
+                },
+                {
+                    "@image": "images/shop/icon_fuel.png",
+                    "@name": "icon_type",
+                    "@pos": "115x395"
+                },
+                {
+                    "@image": "images/shop/icons/free_fuel.png",
+                    "@name": "icon",
+                    "@pos": "135x240"
+                }
+            ]
+        }
+    }
+}

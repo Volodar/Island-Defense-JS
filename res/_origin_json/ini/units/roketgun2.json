@@ -1,0 +1,201 @@
+{
+    "tower": {
+        "@allowtargets": "sky,sea",
+        "@effect_on_shoot": "bullet",
+        "@maxlevel": "5",
+        "@name": "roketgun",
+        "@radius": "270",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate135",
+                    "@value": "Animate[0.5,[folder:roketgun.2.1::,frames:turret2_2_1stage0014.png,turret2_2_1stage0001.png,turret2_2_1stage0002.png,turret2_2_1stage0003.png,turret2_2_1stage0004.png,turret2_2_1stage0005.png,turret2_2_1stage0006.png,turret2_2_1stage0007.png,turret2_2_1stage0008.png,turret2_2_1stage0009.png,turret2_2_1stage0010.png,turret2_2_1stage0011.png,turret2_2_1stage0012.png,turret2_2_1stage0013.png,turret2_2_1stage0014.png,turret2_2_1stage0001.png]]"
+                },
+                {
+                    "@name": "animate315",
+                    "@value": "Animate[0.5,[folder:roketgun.2.3::,frames:turret2_2_3stage0014.png,turret2_2_3stage0001.png,turret2_2_3stage0002.png,turret2_2_3stage0003.png,turret2_2_3stage0004.png,turret2_2_3stage0005.png,turret2_2_3stage0006.png,turret2_2_3stage0007.png,turret2_2_3stage0008.png,turret2_2_3stage0009.png,turret2_2_3stage0010.png,turret2_2_3stage0011.png,turret2_2_3stage0012.png,turret2_2_3stage0013.png,turret2_2_3stage0014.png,turret2_2_3stage0001.png]]"
+                },
+                {
+                    "@name": "animate45",
+                    "@value": "Animate[0.5,[folder:roketgun.2.2::,frames:turret2_2_2stage0014.png,turret2_2_2stage0001.png,turret2_2_2stage0002.png,turret2_2_2stage0003.png,turret2_2_2stage0004.png,turret2_2_2stage0005.png,turret2_2_2stage0006.png,turret2_2_2stage0007.png,turret2_2_2stage0008.png,turret2_2_2stage0009.png,turret2_2_2stage0010.png,turret2_2_2stage0011.png,turret2_2_2stage0012.png,turret2_2_2stage0013.png,turret2_2_2stage0014.png,turret2_2_2stage0001.png]]"
+                },
+                {
+                    "@name": "animate225",
+                    "@value": "Animate[0.5,[folder:roketgun.2.4::,frames:turret2_2_4stage0014.png,turret2_2_4stage0001.png,turret2_2_4stage0002.png,turret2_2_4stage0003.png,turret2_2_4stage0004.png,turret2_2_4stage0005.png,turret2_2_4stage0006.png,turret2_2_4stage0007.png,turret2_2_4stage0008.png,turret2_2_4stage0009.png,turret2_2_4stage0010.png,turret2_2_4stage0011.png,turret2_2_4stage0012.png,turret2_2_4stage0013.png,turret2_2_4stage0014.png,turret2_2_4stage0001.png]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@center": "0.5x0.3",
+                "@image": "roketgun.2.1::turret2_2_1stage0016.png",
+                "@name": "skin",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@damage": "6"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_waittarget_45",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "roketgun.2.1::turret2_2_1stage0016.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_135",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "roketgun.2.2::turret2_2_2stage0016.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_225",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "roketgun.2.3::turret2_2_3stage0016.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_315",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "roketgun.2.4::turret2_2_4stage0016.png"
+                    }
+                },
+                {
+                    "@name": "on_cocking"
+                },
+                {
+                    "@name": "on_relaxation"
+                },
+                {
+                    "@name": "on_shoot_byangle45",
+                    "runaction": {
+                        "@action": "animate45",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle135",
+                    "runaction": {
+                        "@action": "animate135",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle225",
+                    "runaction": {
+                        "@action": "animate225",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle315",
+                    "runaction": {
+                        "@action": "animate315",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot",
+                    "playsound": {
+                        "@sound": "##sound_rocket##"
+                    }
+                },
+                {
+                    "@name": "on_shoot1"
+                },
+                {
+                    "@name": "on_shoot2"
+                },
+                {
+                    "@name": "on_charging"
+                },
+                {
+                    "@name": "on_waittarget"
+                },
+                {
+                    "@name": "on_rotate180"
+                },
+                {
+                    "@name": "on_rotate0"
+                },
+                {
+                    "@name": "on_rotate90"
+                },
+                {
+                    "@name": "on_rotate270"
+                }
+            ]
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "machine_unit": {
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "5",
+                    "@delay": "0.1"
+                },
+                "state_waittarget": {
+                    "@duration": "3"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        }
+    }
+}

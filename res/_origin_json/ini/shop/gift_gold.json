@@ -1,0 +1,34 @@
+{
+    "menuitem": {
+        "@name": "gift_gold",
+        "@template": "ini/shop/item.xml",
+        "children": {
+            "node": [
+                {
+                    "@path": "menu/buy/normal/cost",
+                    "@visible": "no"
+                },
+                {
+                    "@path": "menu/buy/normal/text",
+                    "@pos": "108x45",
+                    "@text": "#shop_freegold#"
+                },
+                {
+                    "@name": "text",
+                    "@pos": "115x395",
+                    "@text": "##shopitem_caption##"
+                },
+                {
+                    "@image": "images/shop/icon_gold.png",
+                    "@name": "icon_type",
+                    "@pos": "120x395"
+                },
+                {
+                    "@image": "images/shop/icons/gold1.png",
+                    "@name": "icon",
+                    "@pos": "135x240"
+                }
+            ]
+        }
+    }
+}

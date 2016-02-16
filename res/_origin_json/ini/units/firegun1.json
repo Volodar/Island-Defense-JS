@@ -1,0 +1,279 @@
+{
+    "tower": {
+        "@allowtargets": "earth",
+        "@damagebysector": "yes",
+        "@effect_on_shoot": "type:fire",
+        "@maxlevel": "5",
+        "@name": "firegun",
+        "@radius": "200",
+        "@sectorangle": "45",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate135",
+                    "@value": "Animate[1,[folder:firegun.1.1::,frames:turret4_1_10001.png,turret4_1_10002.png,turret4_1_10003.png,turret4_1_10004.png,turret4_1_10005.png,turret4_1_10006.png,turret4_1_10007.png,turret4_1_10008.png,turret4_1_10009.png,turret4_1_10010.png,turret4_1_10011.png,turret4_1_10012.png,turret4_1_10013.png,turret4_1_10014.png,turret4_1_10015.png,turret4_1_10016.png,turret4_1_10017.png,turret4_1_10018.png,turret4_1_10019.png,turret4_1_10020.png,turret4_1_10021.png,turret4_1_10022.png,turret4_1_10023.png,turret4_1_10024.png,turret4_1_10025.png,turret4_1_10026.png,turret4_1_10027.png,turret4_1_10028.png,turret4_1_10029.png,turret4_1_10030.png,turret4_1_10001.png]]"
+                },
+                {
+                    "@name": "animate315",
+                    "@value": "Animate[1,[folder:firegun.1.3::,frames:turret4_1_30001.png,turret4_1_30002.png,turret4_1_30003.png,turret4_1_30004.png,turret4_1_30005.png,turret4_1_30006.png,turret4_1_30007.png,turret4_1_30008.png,turret4_1_30009.png,turret4_1_30010.png,turret4_1_30011.png,turret4_1_30012.png,turret4_1_30013.png,turret4_1_30014.png,turret4_1_30015.png,turret4_1_30016.png,turret4_1_30017.png,turret4_1_30018.png,turret4_1_30019.png,turret4_1_30020.png,turret4_1_30021.png,turret4_1_30022.png,turret4_1_30023.png,turret4_1_30024.png,turret4_1_30025.png,turret4_1_30026.png,turret4_1_30027.png,turret4_1_30028.png,turret4_1_30029.png,turret4_1_30030.png,turret4_1_30001.png]]"
+                },
+                {
+                    "@name": "animate45",
+                    "@value": "Animate[1,[folder:firegun.1.2::,frames:turret4_1_20001.png,turret4_1_20002.png,turret4_1_20003.png,turret4_1_20004.png,turret4_1_20005.png,turret4_1_20006.png,turret4_1_20007.png,turret4_1_20008.png,turret4_1_20009.png,turret4_1_20010.png,turret4_1_20011.png,turret4_1_20012.png,turret4_1_20013.png,turret4_1_20014.png,turret4_1_20015.png,turret4_1_20016.png,turret4_1_20017.png,turret4_1_20018.png,turret4_1_20019.png,turret4_1_20020.png,turret4_1_20021.png,turret4_1_20022.png,turret4_1_20023.png,turret4_1_20024.png,turret4_1_20025.png,turret4_1_20026.png,turret4_1_20027.png,turret4_1_20028.png,turret4_1_20029.png,turret4_1_20030.png,turret4_1_20001.png]]"
+                },
+                {
+                    "@name": "animate225",
+                    "@value": "Animate[1,[folder:firegun.1.4::,frames:turret4_1_40001.png,turret4_1_40002.png,turret4_1_40003.png,turret4_1_40004.png,turret4_1_40005.png,turret4_1_40006.png,turret4_1_40007.png,turret4_1_40008.png,turret4_1_40009.png,turret4_1_40010.png,turret4_1_40011.png,turret4_1_40012.png,turret4_1_40013.png,turret4_1_40014.png,turret4_1_40015.png,turret4_1_40016.png,turret4_1_40017.png,turret4_1_40018.png,turret4_1_40019.png,turret4_1_40020.png,turret4_1_40021.png,turret4_1_40022.png,turret4_1_40023.png,turret4_1_40024.png,turret4_1_40025.png,turret4_1_40026.png,turret4_1_40027.png,turret4_1_40028.png,turret4_1_40029.png,turret4_1_40030.png,turret4_1_40001.png]]"
+                },
+                {
+                    "@name": "fire",
+                    "@value": "Animate[1.16,[folder:fire::,frames:fire_0001.png,fire_0002.png,fire_0003.png,fire_0004.png,fire_0005.png,fire_0006.png,fire_0007.png,fire_0008.png,fire_0009.png,fire_0010.png,fire_0011.png,fire_0012.png,fire_0013.png,fire_0014.png,fire_0015.png,fire_0016.png,fire_0017.png,fire_0018.png,fire_0019.png,fire_0020.png,fire_0021.png,fire_0022.png,fire_0023.png,fire_0024.png,fire_0025.png,fire_0026.png,fire_0027.png,fire_0028.png,fire_0029.png,fire_0030.png,fire_0031.png,fire_0032.png,fire_0033.png,fire_0034.png,fire_0035.png]]"
+                },
+                {
+                    "@name": "fire_fade",
+                    "@value": "Sequence[FadeTo[0.1,204],DelayTime[1],FadeTo[0.06,0]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.4",
+                    "@image": "firegun.1.1::turret4_1_10001.png",
+                    "@name": "skin",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0.0x0.5",
+                    "@globalzorder": "1",
+                    "@name": "fire",
+                    "@opacity": "0",
+                    "@type": "sprite"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@fireRate": "16",
+                "@fireTime": "2"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_shoot0",
+                    "playsound": {
+                        "@sound": "##sound_firegun1##"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_45",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "firegun.1.1::turret4_1_10001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_135",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "firegun.1.2::turret4_1_20001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_225",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "firegun.1.3::turret4_1_30001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_315",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "firegun.1.4::turret4_1_40001.png"
+                    }
+                },
+                {
+                    "@name": "on_shoot0_byangle45",
+                    "runaction": [
+                        {
+                            "@action": "animate45",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "fire",
+                            "@target": "fire"
+                        },
+                        {
+                            "@action": "fire_fade",
+                            "@target": "fire"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "rotation",
+                            "@target": "fire",
+                            "@value": "45"
+                        },
+                        {
+                            "@property": "pos",
+                            "@target": "fire",
+                            "@value": "20x0"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_shoot0_byangle135",
+                    "runaction": [
+                        {
+                            "@action": "animate135",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "fire",
+                            "@target": "fire"
+                        },
+                        {
+                            "@action": "fire_fade",
+                            "@target": "fire"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "rotation",
+                            "@target": "fire",
+                            "@value": "135"
+                        },
+                        {
+                            "@property": "pos",
+                            "@target": "fire",
+                            "@value": "-20x0"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_shoot0_byangle225",
+                    "runaction": [
+                        {
+                            "@action": "animate225",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "fire",
+                            "@target": "fire"
+                        },
+                        {
+                            "@action": "fire_fade",
+                            "@target": "fire"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "rotation",
+                            "@target": "fire",
+                            "@value": "225"
+                        },
+                        {
+                            "@property": "pos",
+                            "@target": "fire",
+                            "@value": "-30x30"
+                        }
+                    ]
+                },
+                {
+                    "@name": "on_shoot0_byangle315",
+                    "runaction": [
+                        {
+                            "@action": "animate315",
+                            "@target": "skin"
+                        },
+                        {
+                            "@action": "fire",
+                            "@target": "fire"
+                        },
+                        {
+                            "@action": "fire_fade",
+                            "@target": "fire"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "rotation",
+                            "@target": "fire",
+                            "@value": "315"
+                        },
+                        {
+                            "@property": "pos",
+                            "@target": "fire",
+                            "@value": "30x30"
+                        }
+                    ]
+                }
+            ]
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "machine_unit": {
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "1",
+                    "@delay": "1"
+                },
+                "state_waittarget": {
+                    "@duration": "4"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        }
+    }
+}

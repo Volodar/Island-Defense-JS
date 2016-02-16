@@ -1,0 +1,215 @@
+{
+    "tower": {
+        "@additionalzorder": "-1",
+        "@color_electro": "FFFF80",
+        "@color_fire": "FF8080",
+        "@color_ice": "80FFFF",
+        "@exp": "2",
+        "@health": "150",
+        "@lifecost": "1",
+        "@maxlevel": "5",
+        "@name": "soldier2",
+        "@radius": "150",
+        "@unitlayer": "earth",
+        "@unittype": "creep",
+        "@velocity": "50",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animateL",
+                    "@value": "RepeatForever[Animate[0.5,[folder:soldier2.left::,frames:             solder2_left0001.png,             solder2_left0002.png,             solder2_left0003.png,             solder2_left0004.png,             solder2_left0005.png,             solder2_left0006.png,             solder2_left0007.png,             solder2_left0008.png,             solder2_left0009.png,             solder2_left0010.png,             solder2_left0011.png,             solder2_left0012.png,             solder2_left0013.png,             solder2_left0014.png,             solder2_left0015.png             ]]]"
+                },
+                {
+                    "@name": "animateD",
+                    "@value": "RepeatForever[Animate[0.5,[folder:soldier2.up::,frames:             solder2_front0001.png,             solder2_front0002.png,             solder2_front0003.png,             solder2_front0004.png,             solder2_front0005.png,             solder2_front0006.png,             solder2_front0007.png,             solder2_front0008.png,             solder2_front0009.png,             solder2_front0010.png,             solder2_front0011.png,             solder2_front0012.png,             solder2_front0013.png,             solder2_front0014.png,             solder2_front0015.png             ]]]"
+                },
+                {
+                    "@name": "animateU",
+                    "@value": "RepeatForever[Animate[0.5,[folder:soldier2.down::,frames:             solder2_back0001.png,             solder2_back0002.png,             solder2_back0003.png,             solder2_back0004.png,             solder2_back0005.png,             solder2_back0006.png,             solder2_back0007.png,             solder2_back0008.png,             solder2_back0009.png,             solder2_back0010.png,             solder2_back0011.png,             solder2_back0012.png,             solder2_back0013.png,             solder2_back0014.png,             solder2_back0015.png             ]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.7,[folder:soldier2.die::,frames:             solder2_death0001.png,             solder2_death0002.png,             solder2_death0003.png,             solder2_death0004.png,             solder2_death0005.png,             solder2_death0006.png,             solder2_death0007.png,             solder2_death0008.png,             solder2_death0009.png,             solder2_death0010.png,             solder2_death0011.png,             solder2_death0012.png,             solder2_death0013.png,             solder2_death0014.png,             solder2_death0015.png,             solder2_death0016.png,             solder2_death0017.png,             solder2_death0018.png,             solder2_death0019.png             ]]"
+                },
+                {
+                    "@name": "animate_fire",
+                    "@value": "Animate[0.7,[folder:soldier2.fire::,frames:             solder2_fire_0001.png,             solder2_fire_0002.png,             solder2_fire_0003.png,             solder2_fire_0004.png,             solder2_fire_0005.png,             solder2_fire_0006.png,             solder2_fire_0007.png,             solder2_fire_0008.png,             solder2_fire_0009.png,             solder2_fire_0010.png,             solder2_fire_0011.png,             solder2_fire_0012.png,             solder2_fire_0013.png,             solder2_fire_0014.png,             solder2_fire_0015.png,             solder2_fire_0016.png,             solder2_fire_0017.png,             solder2_fire_0018.png,             solder2_fire_0019.png,             solder2_fire_0020.png             ]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.2",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-18x31",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@armor": "4",
+                "@damage": "2",
+                "@electroResist": "9.5",
+                "@iceResist": "5"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "action": {
+                        "@action": "animate_die",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "playsound": {
+                        "@sound": "##sound_soldier_death2##"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot",
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "playsound": {
+                        "@sound": "##sound_soldier_shoot##"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate180",
+                    "action": {
+                        "@action": "animateL",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "action": {
+                        "@action": "animateL",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate90",
+                    "action": {
+                        "@action": "animateD",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate270",
+                    "action": {
+                        "@action": "animateU",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_pos": "0x15",
+            "@electro_scale": "1",
+            "@electro_size": "small",
+            "@fire_pos": "0x0",
+            "@fire_scale": "1.5",
+            "@freezing_scale": "0.2"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "99999",
+                    "@delay": "1"
+                }
+            },
+            "transitions": {
+                "death": {
+                    "@stop": "stop"
+                },
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "60"
+                }
+            }
+        }
+    }
+}

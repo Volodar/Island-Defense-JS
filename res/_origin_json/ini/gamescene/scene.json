@@ -1,0 +1,84 @@
+{
+    "gamescene": {
+        "actions": {
+            "action": [
+                {
+                    "@name": "button_up",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,100]]]"
+                },
+                {
+                    "@name": "button_down",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,-100]]]"
+                },
+                {
+                    "@name": "button_right",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,130,0]]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@name": "interface",
+                    "children": {
+                        "node": {
+                            "@name": "menu",
+                            "children": {
+                                "node": [
+                                    {
+                                        "@name": "pause",
+                                        "@pos": "righttop:-75x50"
+                                    },
+                                    {
+                                        "@name": "shop",
+                                        "@pos": "righttop:-155x50",
+                                        "@visible": "##PLATFORM_MOBILE##"
+                                    }
+                                ]
+                            }
+                        }
+                    }
+                },
+                {
+                    "@name": "boxmenu",
+                    "@pos": "right:-50x-50"
+                }
+            ]
+        },
+        "events": {
+            "eventlist": {
+                "@name": "oncreate",
+                "runaction": [
+                    {
+                        "@action": "button_up",
+                        "@target": "interface/menu/desant"
+                    },
+                    {
+                        "@action": "button_up",
+                        "@target": "interface/menu/bomb"
+                    },
+                    {
+                        "@action": "button_up",
+                        "@target": "interface/menu/heroskill"
+                    },
+                    {
+                        "@action": "button_up",
+                        "@target": "boxmenu"
+                    },
+                    {
+                        "@action": "button_right",
+                        "@target": "interface/menu/hero"
+                    },
+                    {
+                        "@action": "button_down",
+                        "@target": "interface/menu/pause"
+                    },
+                    {
+                        "@action": "button_down",
+                        "@target": "interface/menu/shop"
+                    }
+                ]
+            }
+        }
+    }
+}

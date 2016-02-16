@@ -1,0 +1,15 @@
+<root>
+	<languages default="en" forced="en">
+		<language en="lang/en.xml"/>
+		<language ru="lang/ru.xml"/>
+		<language pl="lang/pl.xml"/>
+		<language de="lang/de.xml"/>
+	    <language cz="lang/cz.xml"/>
+	    <language es="lang/es.xml"/>
+	    <language fr="lang/fr.xml"/>
+	   	<language it="lang/it.xml"/>
+	   	<language pt="lang/pt.xml"/>
+	   	<language nl="lang/nl.xml"/>
+	    <language enpc="lang/enpc.xml"/>
+	</languages>
+</root>

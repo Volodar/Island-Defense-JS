@@ -1,0 +1,6 @@
+{
+    "node": {
+        "@animation": "       RepeatForever[       Animate[       0.7       ,[folder:maps.animations::,       frames:       water/water1/water1_0001.png,       water/water1/water1_0002.png,       water/water1/water1_0003.png,       water/water1/water1_0004.png,       water/water1/water1_0005.png,       water/water1/water1_0006.png,       water/water1/water1_0007.png,       water/water1/water1_0008.png,       water/water1/water1_0009.png,       water/water1/water1_0010.png,       water/water1/water1_0011.png,       water/water1/water1_0012.png,       water/water1/water1_0013.png,       water/water1/water1_0014.png,       water/water1/water1_0015.png,       ]]]",
+        "@type": "sprite"
+    }
+}

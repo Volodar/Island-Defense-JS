@@ -1,0 +1,137 @@
+{
+    "scorelayer": {
+        "@name": "scorelayer",
+        "actions": {
+            "action": [
+                {
+                    "@name": "fadein",
+                    "@value": "Spawn[ScaleTo[0.2,1,1],FadeIn[0.2]]"
+                },
+                {
+                    "@name": "fadein2",
+                    "@value": "Sequence[DelayTime[1],Spawn[ScaleTo[0.2,1,1],FadeIn[0.2]]]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "Spawn[ScaleTo[0.2,0.7,0.7],FadeTo[0.2,0]]"
+                },
+                {
+                    "@name": "remove",
+                    "@value": "Sequence[DelayTime[0.2],RemoveSelf[]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "rate",
+                    "@opacity": "0",
+                    "@pos": "frame:0.5x0.5",
+                    "@scale": "0.7x0.7",
+                    "@type": "node",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/rateme/rate1.png",
+                                "@name": "bg",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@name": "menu",
+                                "@pos": "0x0",
+                                "@type": "menu",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@callback": "rateme",
+                                            "@imageN": "images/rateme/ratebutt.png",
+                                            "@name": "rate",
+                                            "@pos": "0x-200",
+                                            "@sound": "##sound_button##",
+                                            "@type": "menuitem"
+                                        },
+                                        {
+                                            "@callback": "close",
+                                            "@imageN": "images/rateme/button_x.png",
+                                            "@name": "clse",
+                                            "@pos": "140x200",
+                                            "@sound": "##sound_button##",
+                                            "@type": "menuitem"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "award",
+                    "@opacity": "0",
+                    "@pos": "frame:0.5x0.5",
+                    "@scale": "0.0x0.0",
+                    "@type": "node",
+                    "children": {
+                        "node": {
+                            "@name": "menu",
+                            "@pos": "0x0",
+                            "@type": "menu",
+                            "children": {
+                                "node": {
+                                    "@callback": "close",
+                                    "@imageN": "images/rateme/rate2.png",
+                                    "@name": "rate",
+                                    "@pos": "0x0",
+                                    "@sound": "##sound_button##",
+                                    "@type": "menuitem"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "runaction": {
+                        "@action": "fadein",
+                        "@target": "rate"
+                    }
+                },
+                {
+                    "@name": "showaward",
+                    "runaction": [
+                        {
+                            "@action": "fadein2",
+                            "@target": "award"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "rate"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit",
+                    "runaction": [
+                        {
+                            "@action": "fadeout",
+                            "@target": "award"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@target": "rate"
+                        },
+                        {
+                            "@action": "remove",
+                            "@target": "."
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

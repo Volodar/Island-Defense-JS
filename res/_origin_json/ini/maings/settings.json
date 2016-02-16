@@ -1,0 +1,91 @@
+{
+    "menu": {
+        "@name": "pause",
+        "children": {
+            "node": [
+                {
+                    "@image": "gamescene::pause/pause_window.png",
+                    "@name": "bg",
+                    "@type": "sprite",
+                    "@z": "-1"
+                },
+                {
+                    "@font": "fonts/mdefensefont.fnt",
+                    "@name": "caption",
+                    "@pos": "0x180",
+                    "@scale": "0.8x0.8",
+                    "@text": "#settings#",
+                    "@type": "text"
+                },
+                {
+                    "@callback": "resume",
+                    "@imageN": "gamescene::pause/button_x.png",
+                    "@name": "resume",
+                    "@pos": "225x177",
+                    "@sound": "##sound_button##",
+                    "@type": "menuitem"
+                },
+                {
+                    "@callback": "music_on",
+                    "@imageN": "gamescene::pause/button_music.png",
+                    "@name": "music_on",
+                    "@pos": "-55x40",
+                    "@sound": "##sound_button##",
+                    "@type": "menuitem",
+                    "@visible": "no"
+                },
+                {
+                    "@callback": "sound_on",
+                    "@imageN": "gamescene::pause/button_sound1.png",
+                    "@name": "sound_on",
+                    "@pos": "55x40",
+                    "@sound": "##sound_button##",
+                    "@type": "menuitem",
+                    "@visible": "no"
+                },
+                {
+                    "@callback": "music_off",
+                    "@imageN": "gamescene::pause/button_music2.png",
+                    "@name": "music_off",
+                    "@pos": "-55x40",
+                    "@sound": "##sound_button##",
+                    "@type": "menuitem"
+                },
+                {
+                    "@callback": "sound_off",
+                    "@imageN": "gamescene::pause/button_sound2.png",
+                    "@name": "sound_off",
+                    "@pos": "55x40",
+                    "@sound": "##sound_button##",
+                    "@type": "menuitem"
+                },
+                {
+                    "@callback": "fullscreen",
+                    "@imageN": "images/maings/checkbutton_off.png",
+                    "@name": "fullscreen",
+                    "@pos": "-75x-100",
+                    "@type": "menuitem",
+                    "children": {
+                        "node": {
+                            "@center": "0x0.5",
+                            "@font": "fonts/mdefensefont.fnt",
+                            "@name": "text",
+                            "@pos": "80x30",
+                            "@scale": "0.5x0.5",
+                            "@text": "#fullscreen#",
+                            "@type": "text"
+                        }
+                    },
+                    "paramcollection": {
+                        "off": {
+                            "@value": "images/maings/checkbutton_off.png"
+                        },
+                        "on": {
+                            "@value": "images/maings/checkbutton_on.png"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

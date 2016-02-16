@@ -1,0 +1,78 @@
+{
+    "creep": {
+        "@exp": "2",
+        "@health": "60",
+        "@lifecost": "1",
+        "@name": "moto",
+        "@radius": "100",
+        "@template": "ini/units/templates/creepbattle.xml",
+        "@unitlayer": "earth",
+        "@velocity": "210",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_left",
+                    "@value": "RepeatForever[Animate[0.3,[folder:moto::,indexes:moto_go_00.png,01:06]]]"
+                },
+                {
+                    "@name": "animate_up",
+                    "@value": "RepeatForever[Animate[0.3,[folder:moto::,indexes:moto_back_00.png,01:06]]]"
+                },
+                {
+                    "@name": "animate_down",
+                    "@value": "RepeatForever[Animate[0.3,[folder:moto::,indexes:moto_front_00.png,01:06]]]"
+                },
+                {
+                    "@name": "animate_fire",
+                    "@value": "Animate[0.3,[folder:moto::,indexes:moto_fire_00.png,01:06]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "EaseOut[FadeOut[1],2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.4",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.4",
+                    "@name": "death",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-18x50",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@armor": "5",
+                "@damage": "4",
+                "@fireResist": "10"
+            }
+        },
+        "events": null,
+        "extraproperties": {
+            "@electro_pos": "0x30",
+            "@electro_scale": "1",
+            "@electro_size": "big",
+            "@fire_pos": "0x0",
+            "@fire_scale": "3",
+            "@freezing_pos": "0x-15",
+            "@freezing_scale": "0.28"
+        }
+    }
+}

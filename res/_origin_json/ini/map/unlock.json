@@ -1,0 +1,175 @@
+{
+    "node": {
+        "@cascadeopacity": "yes",
+        "@name": "choose",
+        "@pos": "frame:0.5x0.5",
+        "@type": "layerext",
+        "actions": {
+            "action": [
+                {
+                    "@name": "appearance",
+                    "@value": "Sequence[MoveBy[0.0,0,-700],BackOut[MoveBy[0.5,0,700]]]"
+                },
+                {
+                    "@name": "disappearance",
+                    "@value": "Sequence[BackIn[MoveBy[0.3,0,-700]],RemoveSelf[]]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "FadeIn[0.5]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "FadeIn[0.2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@image": "##unlock_image##",
+                    "@name": "bg",
+                    "@type": "sprite"
+                },
+                {
+                    "@image": "unlock::win_for_text.png",
+                    "@name": "bg_text",
+                    "@pos": "140x180",
+                    "@scale": "1.2x1.2",
+                    "@type": "sprite"
+                },
+                {
+                    "@color": "34342A",
+                    "@font": "fonts/helvetica.fnt",
+                    "@name": "caption",
+                    "@pos": "156x180",
+                    "@scale": "0.5x0.5",
+                    "@text": "##unlock_text##",
+                    "@textalign": "center",
+                    "@textwidth": "500",
+                    "@type": "text"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@image": "unlock::progress1.png",
+                    "@name": "progress_bg",
+                    "@pos": "-130x-145",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0x0.5",
+                    "@image": "unlock::progress2.png",
+                    "@name": "progress_frame",
+                    "@pos": "-107x-145",
+                    "@type": "sprite"
+                },
+                {
+                    "@font": "fonts/helveticastoke.fnt",
+                    "@name": "progress_text",
+                    "@pos": "0x-141",
+                    "@scale": "0.6x0.6",
+                    "@text": "0",
+                    "@type": "text"
+                },
+                {
+                    "@image": "unlock::star_for_progress.png",
+                    "@name": "star",
+                    "@pos": "100x-138",
+                    "@type": "sprite"
+                },
+                {
+                    "@cascadeopacity": "yes",
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "@type": "menu",
+                    "children": {
+                        "node": [
+                            {
+                                "@callback": "unlock",
+                                "@font": "fonts/whitefont1.fnt",
+                                "@imageN": "unlock::button2.png",
+                                "@name": "unlock",
+                                "@pos": "0x-220",
+                                "@text": "0",
+                                "@type": "menuitem",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@center": "0x0.5",
+                                            "@path": "normal/text",
+                                            "@pos": "85x18",
+                                            "@scale": "0.4x0.4"
+                                        },
+                                        {
+                                            "@center": "1x0.5",
+                                            "@image": "unlock::star_for_button2.png",
+                                            "@name": "star",
+                                            "@pos": "85x18",
+                                            "@type": "sprite"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "@font": "fonts/whitefont1.fnt",
+                                "@imageN": "unlock::button3.png",
+                                "@name": "unlock_gray",
+                                "@pos": "0x-220",
+                                "@text": "0",
+                                "@type": "menuitem",
+                                "@visible": "no",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@center": "0x0.5",
+                                            "@path": "normal/text",
+                                            "@pos": "85x18",
+                                            "@scale": "0.4x0.4"
+                                        },
+                                        {
+                                            "@center": "1x0.5",
+                                            "@image": "unlock::star_for_button2.png",
+                                            "@name": "star",
+                                            "@pos": "85x18",
+                                            "@type": "sprite"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "runaction": [
+                        {
+                            "@action": "appearance"
+                        },
+                        {
+                            "@action": "fadein"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@value": "0"
+                    }
+                },
+                {
+                    "@name": "onexit",
+                    "runaction": [
+                        {
+                            "@action": "disappearance"
+                        },
+                        {
+                            "@action": "fadeout"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

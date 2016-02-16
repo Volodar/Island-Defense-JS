@@ -1,0 +1,148 @@
+{
+    "unit": {
+        "@color_electro": "FFFF80",
+        "@color_fire": "FF8080",
+        "@color_ice": "80FFFF",
+        "@exp": "4",
+        "@health": "430",
+        "@lifecost": "1",
+        "@name": "flyingfortress",
+        "@radius": "150",
+        "@template": "ini/units/templates/creepbase.xml",
+        "@unitlayer": "sky",
+        "@velocity": "30",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_left",
+                    "@value": "RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"
+                },
+                {
+                    "@name": "animate_up",
+                    "@value": "RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"
+                },
+                {
+                    "@name": "animate_down",
+                    "@value": "RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[1.0,[folder:death::,indexes:Death_stage00.png,01:25]]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "EaseOut[FadeOut[1],2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.2",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.4",
+                    "@name": "death",
+                    "@opacity": "192",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@center": "0.5x0.5",
+                    "@image": "airship::shadow.png",
+                    "@name": "shadow",
+                    "@type": "sprite"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-18x65",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@armor": "2",
+                "@damage": "8",
+                "@fireResist": "5",
+                "@iceResist": "4"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_rotate180",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": [
+                        {
+                            "@property": "scale",
+                            "@target": "skin",
+                            "@value": "1x1"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "shadow",
+                            "@value": "1x1"
+                        }
+                    ],
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": [
+                        {
+                            "@property": "scale",
+                            "@target": "skin",
+                            "@value": "-1x1"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "shadow",
+                            "@value": "-1x1"
+                        }
+                    ],
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_pos": "0x30",
+            "@electro_scale": "1",
+            "@electro_size": "big",
+            "@fire_pos": "0x-5",
+            "@fire_scale": "3",
+            "@freezing_pos": "0x20",
+            "@freezing_scale": "0.8"
+        },
+        "skills": {
+            "runeventsbytime": {
+                "@count": "1",
+                "@frequence": "6",
+                "@stopduration": "2",
+                "@stopunit": "yes",
+                "eventlist": {
+                    "createunit": {
+                        "@radius": "20",
+                        "@units": "soldier,soldier,soldier2"
+                    }
+                }
+            }
+        }
+    }
+}

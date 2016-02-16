@@ -1,0 +1,81 @@
+{
+    "tutorial": {
+        "@closebytap": "no",
+        "@nexttutorial": "map_rungame",
+        "@template": "ini/tutorial/template_window.xml",
+        "children": {
+            "node": {
+                "@name": "body",
+                "children": {
+                    "node": [
+                        {
+                            "@image": "images/tutorial/tut2.png",
+                            "@name": "bg"
+                        },
+                        {
+                            "@center": "0x0.5",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "text",
+                            "@pos": "-110x00",
+                            "@scale": "0.7x0.7",
+                            "@text": "#tuturial_is_use#",
+                            "@textwidth": "420",
+                            "@type": "text"
+                        },
+                        {
+                            "@name": "menu",
+                            "@pos": "0x0",
+                            "@type": "menu",
+                            "children": {
+                                "node": [
+                                    {
+                                        "@callback": "confirm_tutorial_yes",
+                                        "@imageN": "images/tutorial/yes.png",
+                                        "@name": "yes",
+                                        "@pos": "10x-88",
+                                        "@sound": "##sound_button##",
+                                        "@type": "menuitem",
+                                        "children": {
+                                            "node": {
+                                                "@center": "0.5x0.5",
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@name": "yes_text",
+                                                "@pos": "70x40",
+                                                "@scale": "0.7x0.7",
+                                                "@text": "#tutorial_yes#",
+                                                "@type": "text",
+                                                "@visible": "yes",
+                                                "@z": "2"
+                                            }
+                                        }
+                                    },
+                                    {
+                                        "@callback": "confirm_tutorial_no",
+                                        "@imageN": "images/tutorial/no.png",
+                                        "@name": "no",
+                                        "@pos": "220x-90",
+                                        "@sound": "##sound_button##",
+                                        "@type": "menuitem",
+                                        "children": {
+                                            "node": {
+                                                "@center": "0.5x0.5",
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@name": "no_text",
+                                                "@pos": "114x44",
+                                                "@scale": "0.7x0.7",
+                                                "@text": "#tutorial_nothanks#",
+                                                "@type": "text",
+                                                "@visible": "yes",
+                                                "@z": "2"
+                                            }
+                                        }
+                                    }
+                                ]
+                            }
+                        }
+                    ]
+                }
+            }
+        }
+    }
+}

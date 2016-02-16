@@ -1,0 +1,508 @@
+{
+    "unit": {
+        "@allowtargets": "earth",
+        "@handradius": "150",
+        "@handradiussector": "90",
+        "@health": "30",
+        "@maxlevel": "1",
+        "@maxtargets": "1",
+        "@name": "hero3",
+        "@radius": "150",
+        "@regeneration": "100",
+        "@skill": "hero3_bot",
+        "@type": "hero",
+        "@unitlayer": "earth",
+        "@unittype": "hero",
+        "@velocity": "150",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_fire",
+                    "@value": "Animate[0.4,[folder:hero3::,indexes:hero3_fire_00.png,01:20]]"
+                },
+                {
+                    "@name": "animate_left",
+                    "@value": "RepeatForever[Animate[0.5,[folder:hero3::,indexes:hero3_run_00.png,01:16]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.01,[folder:hero_other::,frames:hero1_headstone_.png]]"
+                },
+                {
+                    "@name": "animate_nothing",
+                    "@value": "RepeatForever[Animate[1.0,[folder:hero3::,indexes:hero3_stay_00.png,01:16]]]"
+                },
+                {
+                    "@name": "animate_selected",
+                    "@value": "RepeatForever[Animate[1.0,[folder:hero_other::,indexes:hero1_aura00.png,01:20]]]"
+                },
+                {
+                    "@name": "shield_animate",
+                    "@value": "RepeatForever[Animate[0.5,[folder:hero3::shield/,indexes:hero3_shield_00.png,01:10]]]"
+                },
+                {
+                    "@name": "rage_animate",
+                    "@value": "RepeatForever[Animate[0.5,[folder:hero3::rage/,indexes:rage_00.png,01:09]]]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "FadeIn[0.2]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "FadeOut[0.2]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@center": "0.5x0.5",
+                    "@name": "selection",
+                    "@pos": "1x21",
+                    "@type": "sprite",
+                    "@visible": "yes",
+                    "@z": "-1"
+                },
+                {
+                    "@center": "0.5x0.19",
+                    "@name": "skin",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.19",
+                    "@name": "shield",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@center": "0.5x0.19",
+                    "@name": "rage",
+                    "@pos": "0x60",
+                    "@type": "sprite",
+                    "@visible": "yes"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@pos": "-16x55",
+                    "@z": "1"
+                }
+            ]
+        },
+        "effects": {
+            "positive": {
+                "@damage": "20"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "action": {
+                        "@action": "animate_die",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate180",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle180",
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "playsound": {
+                        "@sound": "##sound_desant_shoot##"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle0",
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "playsound": {
+                        "@sound": "##sound_desant_shoot##"
+                    },
+                    "setproperty": {
+                        "@property": "scale",
+                        "@target": "skin",
+                        "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_stop",
+                    "action": {
+                        "@action": "animate_nothing",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "onselect",
+                    "action": {
+                        "@action": "animate_selected",
+                        "@state": "run",
+                        "@target": "selection"
+                    },
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "selection",
+                        "@value": "yes"
+                    },
+                    "stopallaction": {
+                        "@target": "selection"
+                    }
+                },
+                {
+                    "@name": "ondeselect",
+                    "action": {
+                        "@action": "animate_selected",
+                        "@state": "stop",
+                        "@target": "selection"
+                    },
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "selection",
+                        "@value": "no"
+                    }
+                },
+                {
+                    "@name": "skill_activated_shield",
+                    "action": [
+                        {
+                            "@action": "shield_animate",
+                            "@state": "run",
+                            "@target": "shield"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@state": "run",
+                            "@target": "shield"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@target": "shield",
+                        "@value": "0"
+                    }
+                },
+                {
+                    "@name": "skill_deactivated_shield",
+                    "action": [
+                        {
+                            "@action": "shield_animate",
+                            "@state": "stop",
+                            "@target": "shield"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@state": "run",
+                            "@target": "shield"
+                        }
+                    ]
+                },
+                {
+                    "@name": "skill_activated_rage",
+                    "action": [
+                        {
+                            "@action": "rage_animate",
+                            "@state": "run",
+                            "@target": "rage"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@state": "run",
+                            "@target": "rage"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@target": "rage",
+                        "@value": "0"
+                    }
+                },
+                {
+                    "@name": "skill_deactivated_rage",
+                    "action": [
+                        {
+                            "@action": "rage_animate",
+                            "@state": "stop",
+                            "@target": "rage"
+                        },
+                        {
+                            "@action": "fadeout",
+                            "@state": "run",
+                            "@target": "rage"
+                        }
+                    ]
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_pos": "0x15",
+            "@electro_scale": "1",
+            "@electro_size": "small",
+            "@fire_pos": "0x0",
+            "@fire_scale": "1"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_charging": {
+                    "@duration": "0.05"
+                },
+                "state_death": {
+                    "@duration": "20"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "1",
+                    "@delay": "0.5"
+                }
+            },
+            "transitions": {
+                "charging": [
+                    {
+                        "@ready": "readyfire"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "death": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@live": "stop"
+                    }
+                ],
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@charge": "charging"
+                    },
+                    {
+                        "@notarget": "stop"
+                    },
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180"
+                },
+                "thresold": {
+                    "@value": "90"
+                }
+            }
+        },
+        "skills": {
+            "rateparameter": [
+                {
+                    "@parameter": "health",
+                    "@rate": "1.15",
+                    "@unitskill": "0",
+                    "@unitskilllevel": "1"
+                },
+                {
+                    "@parameter": "health",
+                    "@rate": "1.30",
+                    "@unitskill": "0",
+                    "@unitskilllevel": "2"
+                },
+                {
+                    "@parameter": "health",
+                    "@rate": "1.50",
+                    "@unitskill": "0",
+                    "@unitskilllevel": "3"
+                }
+            ],
+            "runeventsbytime": [
+                {
+                    "@count": "999999",
+                    "@frequence": "5",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "1",
+                    "eventlist": {
+                        "createunit": {
+                            "@lifetime": "4",
+                            "@radius": "10",
+                            "@units": "hero3_desant1,hero3_desant1",
+                            "@unittype": "desant"
+                        }
+                    }
+                },
+                {
+                    "@count": "999999",
+                    "@frequence": "40",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "2",
+                    "eventlist": {
+                        "createunit": {
+                            "@lifetime": "20",
+                            "@radius": "10",
+                            "@units": "hero3_desant2,hero3_desant2",
+                            "@unittype": "desant"
+                        }
+                    }
+                },
+                {
+                    "@count": "999999",
+                    "@frequence": "40",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "3",
+                    "eventlist": {
+                        "createunit": {
+                            "@lifetime": "20",
+                            "@radius": "10",
+                            "@units": "hero3_desant3,hero3_desant3",
+                            "@unittype": "desant"
+                        }
+                    }
+                }
+            ],
+            "skillcounter": [
+                {
+                    "@damage": "15",
+                    "@damageactive": "10",
+                    "@skilltype": "shield",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "1"
+                },
+                {
+                    "@damage": "15",
+                    "@damageactive": "10",
+                    "@skilltype": "shield",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "2"
+                },
+                {
+                    "@damage": "15",
+                    "@damageactive": "10",
+                    "@skilltype": "shield",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "1",
+                    "@unitskilllevel": "3"
+                },
+                {
+                    "@damage": "10",
+                    "@skilltype": "rage",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "1"
+                },
+                {
+                    "@damage": "10",
+                    "@skilltype": "rage",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "2"
+                },
+                {
+                    "@damage": "10",
+                    "@skilltype": "rage",
+                    "@skillvalue": "2",
+                    "@timeactive": "5",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "3"
+                }
+            ]
+        }
+    }
+}

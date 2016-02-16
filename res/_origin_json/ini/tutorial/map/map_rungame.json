@@ -1,0 +1,50 @@
+{
+    "tutorial": {
+        "@autopos": "/maplayer/map/locations/flag0",
+        "@parent": "/maplayer/map",
+        "@pos": "12x140",
+        "@template": "ini/tutorial/template_baloon.xml",
+        "@z": "999",
+        "actions": null,
+        "children": {
+            "node": {
+                "@path": "body/text",
+                "@text": "#tuturial_map_tap_here#"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "onenter",
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "/maplayer/menu",
+                            "@value": "no"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/scorelayer/menu/shop",
+                            "@value": "no"
+                        }
+                    ]
+                },
+                {
+                    "@name": "onexit",
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "/maplayer/menu",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "visible",
+                            "@target": "/scorelayer/menu/shop",
+                            "@value": "yes"
+                        }
+                    ]
+                }
+            ]
+        }
+    }
+}

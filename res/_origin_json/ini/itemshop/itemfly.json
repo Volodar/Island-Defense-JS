@@ -1,0 +1,10 @@
+{
+    "node": {
+        "@animation": "Sequence[Spawn[EaseOut[MoveTo[0.5,##centerx##,##centery##],5],EaseOut[ScaleTo[0.5,2,2],5],EaseOut[FadeIn[0.5],5]],DelayTime[0],Spawn[EaseIn[MoveTo[0.8,##right##,0],5],EaseIn[ScaleTo[0.8,0,0],5],EaseIn[FadeOut[0.8],5]],RemoveSelf[]]",
+        "@image": "images/itemshop/##item##.png",
+        "@name": "fly",
+        "@opacity": "0",
+        "@pos": "##position##",
+        "@type": "sprite"
+    }
+}

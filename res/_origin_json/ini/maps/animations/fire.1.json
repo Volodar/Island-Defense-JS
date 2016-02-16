@@ -1,0 +1,7 @@
+{
+    "node": {
+        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..0],           Animate[0.5..1,[folder:maps.animations2::,           frames:           fire_0001.png,           fire_0002.png,           fire_0003.png,           fire_0004.png,           fire_0005.png,           fire_0006.png,           fire_0007.png,           fire_0008.png,           fire_0009.png,           fire_0010.png,           fire_0011.png,           fire_0012.png,           fire_0013.png,           fire_0014.png]]         ]       ]",
+        "@image": "maps.animations2::fire_0001.png",
+        "@type": "sprite"
+    }
+}

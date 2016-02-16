@@ -1,0 +1,61 @@
+{
+    "menuitem": {
+        "@center": "0.27x0.18",
+        "@imageN": "images/map/button_flag_lock.png",
+        "@type": "menuitem",
+        "actions": {
+            "action": [
+                {
+                    "@name": "star_scale",
+                    "@value": "Sequence[DelayTime[##flag_delay_appearance##],DelayTime[1.2],BackOut[ScaleTo[0.3,1,1]]]"
+                },
+                {
+                    "@name": "flag_move",
+                    "@value": "             Sequence[               DelayTime[##flag_delay_appearance##],               MoveBy[0,0,400],               BounceOut[MoveBy[1,0,-400]]             ]"
+                },
+                {
+                    "@name": "flag_scale",
+                    "@value": "Sequence[DelayTime[##flag_delay_appearance##],BackOut[ScaleTo[0.3,1,1]]]"
+                },
+                {
+                    "@name": "flag_fadein",
+                    "@value": "Sequence[DelayTime[##flag_delay_appearance##],FadeIn[0.3]]"
+                },
+                {
+                    "@name": "flag_tint",
+                    "@value": "Sequence[DelayTime[##flag_delay_appearance##],TintTo[0.3,255,255,255]]"
+                }
+            ]
+        },
+        "children": null,
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "star0"
+                },
+                {
+                    "@name": "star0_show",
+                    "playsound": {
+                        "@predelay": "##flag_delay_appearance##",
+                        "@sound": "##sound_mapflagnew##"
+                    },
+                    "runaction": [
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_move",
+                            "@target": "normal"
+                        }
+                    ],
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@target": "normal",
+                        "@value": "0"
+                    }
+                }
+            ]
+        }
+    }
+}

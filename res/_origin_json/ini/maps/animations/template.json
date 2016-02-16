@@ -1,0 +1,6 @@
+{
+    "node": {
+        "@animation": "       RepeatForever[       Animate[       0.2..0.3       ,[folder:maps.animations::,       frames:       ]]]",
+        "@type": "sprite"
+    }
+}

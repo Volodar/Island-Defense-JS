@@ -1,0 +1,194 @@
+{
+    "sounds": {
+        "param": [
+            {
+                "@name": "music_mainmenu",
+                "@value": "##music_dir##main_menu_and_wave##music_ext##"
+            },
+            {
+                "@name": "music_map",
+                "@value": "##music_dir##map##music_ext##"
+            },
+            {
+                "@name": "music_gamepeace",
+                "@value": "##music_dir##first_turrets##music_ext##"
+            },
+            {
+                "@name": "music_gamebattle",
+                "@value": "##music_dir##main_menu_and_wave##music_ext##"
+            },
+            {
+                "@name": "music_victory",
+                "@value": "##music_dir##victory##music_ext##"
+            },
+            {
+                "@name": "music_defeat",
+                "@value": "##music_dir##failture##music_ext##"
+            },
+            {
+                "@name": "sound_button",
+                "@value": "##sound_dir##Button##sound_ext##"
+            },
+            {
+                "@name": "sound_wavestart",
+                "@value": "##sound_dir##New_Wave##sound_ext##"
+            },
+            {
+                "@name": "sound_waveicon",
+                "@value": "##sound_dir##Ind_Wave##sound_ext##"
+            },
+            {
+                "@name": "sound_gameplayerdamage",
+                "@value": "##sound_dir##PlayerDamage_01##sound_ext##"
+            },
+            {
+                "@name": "sound_mapflagnew",
+                "@value": "##sound_dir##Flag##sound_ext##"
+            },
+            {
+                "@name": "sound_mapflagstar1",
+                "@value": "##sound_dir##Stars_01##sound_ext##"
+            },
+            {
+                "@name": "sound_mapflagstar2",
+                "@value": "##sound_dir##Stars_02##sound_ext##"
+            },
+            {
+                "@name": "sound_mapflagstar3",
+                "@value": "##sound_dir##Stars_03##sound_ext##"
+            },
+            {
+                "@name": "sound_minigun1",
+                "@value": "##sound_dir##Minigun##sound_ext##"
+            },
+            {
+                "@name": "sound_minigun2",
+                "@value": "##sound_dir##Minigun_lvl2##sound_ext##"
+            },
+            {
+                "@name": "sound_minigun3",
+                "@value": "##sound_dir##Minigun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_minigun4",
+                "@value": "##sound_dir##Minigun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_minigun5",
+                "@value": "##sound_dir##Minigun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_firegun1",
+                "@value": "##sound_dir##Firegun##sound_ext##"
+            },
+            {
+                "@name": "sound_firegun2",
+                "@value": "##sound_dir##Firegun##sound_ext##"
+            },
+            {
+                "@name": "sound_firegun3",
+                "@value": "##sound_dir##Firegun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_firegun4",
+                "@value": "##sound_dir##Firegun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_firegun5",
+                "@value": "##sound_dir##Firegun_lvl3##sound_ext##"
+            },
+            {
+                "@name": "sound_icegun",
+                "@value": "##sound_dir##Icegun##sound_ext##"
+            },
+            {
+                "@name": "sound_tesla1",
+                "@value": "##sound_dir##Teslagun##sound_ext##"
+            },
+            {
+                "@name": "sound_tesla2",
+                "@value": "##sound_dir##Teslagun##sound_ext##"
+            },
+            {
+                "@name": "sound_tesla3",
+                "@value": "##sound_dir##Teslagun##sound_ext##"
+            },
+            {
+                "@name": "sound_tesla4",
+                "@value": "##sound_dir##Teslagun_lvl4##sound_ext##"
+            },
+            {
+                "@name": "sound_tesla5",
+                "@value": "##sound_dir##Teslagun_lvl4##sound_ext##"
+            },
+            {
+                "@name": "sound_sniper",
+                "@value": "##sound_dir##Sniper##sound_ext##"
+            },
+            {
+                "@name": "sound_rocket",
+                "@value": "##sound_dir##Rocketgun_launch##sound_ext##"
+            },
+            {
+                "@name": "sound_soldier_death1",
+                "@value": "##sound_dir##DeathSold_01##sound_ext##"
+            },
+            {
+                "@name": "sound_soldier_death2",
+                "@value": "##sound_dir##DeathSold_02##sound_ext##"
+            },
+            {
+                "@name": "sound_soldier_death3",
+                "@value": "##sound_dir##DeathSold_03##sound_ext##"
+            },
+            {
+                "@name": "sound_jeep_death",
+                "@value": "##sound_dir##Explosion##sound_ext##"
+            },
+            {
+                "@name": "sound_tank_death",
+                "@value": "##sound_dir##Explosion##sound_ext##"
+            },
+            {
+                "@name": "sound_helicopter_death",
+                "@value": "##sound_dir##Explosion##sound_ext##"
+            },
+            {
+                "@name": "sound_helicopter_move",
+                "@value": "##sound_dir##Helicopter##sound_ext##"
+            },
+            {
+                "@name": "sound_soldier_shoot",
+                "@value": "##sound_dir##Minigun##sound_ext##"
+            },
+            {
+                "@name": "sound_jeep_shoot",
+                "@value": "##sound_dir##Minigun##sound_ext##"
+            },
+            {
+                "@name": "sound_tank_shoot",
+                "@value": ""
+            },
+            {
+                "@name": "sound_desant_shoot",
+                "@value": "##sound_dir##Minigun##sound_ext##"
+            },
+            {
+                "@name": "sound_airbomb_exposion",
+                "@value": "##sound_dir##Explosion##sound_ext##"
+            },
+            {
+                "@name": "sound_bonusitem_dinamyte",
+                "@value": "##sound_dir##dinamyte##sound_ext##"
+            },
+            {
+                "@name": "sound_bonusitem_laser",
+                "@value": "##sound_dir##laser##sound_ext##"
+            },
+            {
+                "@name": "sound_bonusitem_ice",
+                "@value": "##sound_dir##freeze_bomb##sound_ext##"
+            }
+        ]
+    }
+}

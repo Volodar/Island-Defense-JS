@@ -1,0 +1,109 @@
+{
+    "leaderboards": {
+        "ids": {
+            "global": {
+                "@id": "CgkItfHx-q8EEAIQGQ"
+            },
+            "levels": {
+                "level": [
+                    {
+                        "@id": "CgkItfHx-q8EEAIQAQ",
+                        "@index": "0"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQAg",
+                        "@index": "1"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQAw",
+                        "@index": "2"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQBA",
+                        "@index": "3"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQBQ",
+                        "@index": "4"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQBg",
+                        "@index": "5"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQCA",
+                        "@index": "6"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQCA",
+                        "@index": "7"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQCQ",
+                        "@index": "8"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQCg",
+                        "@index": "9"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQCw",
+                        "@index": "10"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQDA",
+                        "@index": "11"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQDQ",
+                        "@index": "12"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQDg",
+                        "@index": "13"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQDw",
+                        "@index": "14"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQEA",
+                        "@index": "15"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQEQ",
+                        "@index": "16"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQEg",
+                        "@index": "17"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQEw",
+                        "@index": "18"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQFA",
+                        "@index": "19"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQFQ",
+                        "@index": "20"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQFg",
+                        "@index": "21"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQFw",
+                        "@index": "22"
+                    },
+                    {
+                        "@id": "CgkItfHx-q8EEAIQGA",
+                        "@index": "23"
+                    }
+                ]
+            }
+        }
+    }
+}

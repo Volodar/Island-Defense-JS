@@ -1,0 +1,302 @@
+<plist version="1.0">
+	<dict>
+    <key>languageid</key>   <string>cz</string>
+	
+	<key>window_title</key>   <string>Obrana ostrova</string>
+    <key>main_title1</key>   <string>Ostrov</string>
+    <key>main_title2</key>   <string>Obrana</string>
+
+    <key>pause</key>   <string>Zastavit</string>
+    <key>quit</key>   <string>Ukončit</string>
+    <key>restart</key>   <string>Začít znovu</string>
+    <key>continue</key>   <string>Pokračovat</string>
+    <key>play</key>   <string>Spustit hru</string>
+    <key>more</key>   <string>Více</string>
+    <key>rateme</key>   <string>Ohodnoť nás!</string>
+    <key>rateme_text</key>   <string>Ohodnoť nyní</string>
+    <key>gift_congratulations</key>   <string>Gratulace!</string>
+    <key>gift_text</key>   <string>Obdrželi jste dárek.</string>
+    
+    <key>victory</key>   <string>Vítězství</string>
+    <key>defeat</key>   <string>Porážka</string>
+    
+
+    <key>main_shop_caption</key>   <string>Obchod</string>
+    <key>shop_buy</key>   <string>Koupit</string>
+    <key>shop_getfree</key>   <string>
+Watch ads
+to refill.
+    </string>
+    <key>shop_refuel</key>   <string>Natankovat</string>
+    <key>shop_freegold</key>   <string>Zdarma</string>
+    <key>shop_freegear</key>   <string>Zdarma</string>
+    
+    <key>main_itemshop_caption</key>   <string>Obchod</string>
+    <key>itemshop_buy</key>   <string>Koupit</string>
+    
+    <key>main_laboratory_caption</key>   <string>Laboratoř</string>
+    <key>laboratory_tower_attack</key>   <string>ATK:</string>
+    <key>laboratory_tower_range</key>   <string>RNG:</string>
+    <key>laboratory_tower_speed</key>   <string>OHODNOTIT:</string>
+    <key>laboratory_tower_level</key>   <string>Úroveň </string>
+    <key>laboratory_tower_upgrade</key>   <string>Vylepšit</string>
+    
+    <key>gamechoose_level</key>   <string>Úroveň </string>
+    <key>gamechoose_normal</key>   <string>Normální</string>
+    <key>gamechoose_hard</key>   <string>Obtížný</string>
+    <key>gamechoose_reward</key>   <string>Odměna:</string>
+    <key>gamechoose_waves</key>   <string>Vlny:</string>
+    <key>gamechoose_lives</key>   <string>Životy:</string>
+    <key>gamechoose_start</key>   <string>Bojovat</string>
+    <key>gamechoose_hardmode_locked</key>   <string>Možnost zpřístupnění po ukončení normální.</string>
+
+
+    <key>minigun_name</key>   <string>Kulomet</string>
+    <key>icegun_name</key>   <string>Ledový bunkr</string>
+    <key>firegun_name</key>   <string>Ohnivé komando</string>
+    <key>roketgun_name</key>   <string>Raketomet</string>
+    <key>teslagun_name</key>   <string>Tesla mechanik</string>
+    <key>laser_name</key>   <string>Odstřelovač</string>
+    
+    <key>minigun_desc</key>   <string>Zaútočí na podzemní jednotky</string>
+    <key>icegun_desc</key>   <string>Zpomaluje nepřátele</string>
+    <key>firegun_desc</key>   <string>Zaútočí na jednotlivé nepřátele najednou. Efektivní proti pěchotě.</string>
+    <key>roketgun_desc</key>   <string>Zaútočí na létající a námořní předměty</string>
+    <key>teslagun_desc</key>   <string>Zaútočí na několika jednotek najednou Effektivní proti vozidlům.</string>
+    <key>laser_desc</key>   <string>Zaútoči na jednu jednotku</string>
+
+    <key>desant_name</key>   <string>Komando</string>
+    <key>desant_caption</key>   <string>Jmenuje se Chuck. Dokáže porazit celé komando.</string>
+    <key>desant_desc</key>   <string>
+* Efektivní proti lidem
+* Rychlé nabíjení
+    </string>
+    
+    <key>airbomb_name</key>   <string>Vzduchová bomba</string>
+    <key>airbomb_caption</key>   <string>Železné ptáci mají pro diktátora dárek.</string>
+    <key>airbomb_desc</key>   <string>
+* Efektivní proti vícenásobným jednotkám
+* Pomalé nabíjení
+    </string>
+    
+    <key>soldier_name</key>   <string>Voják</string>
+    <key>soldier_caption</key>   <string>On nikomu neuškodí.</string>
+    <key>soldier_desc</key>   <string>
+* Rychlá rychlost
+* Chábé zdraví
+    </string>
+    <key>soldier2_name</key>   <string>Tězký voják</string>
+    <key>soldier2_caption</key>   <string>Silný, ale bojí se ohně</string>
+    <key>soldier2_desc</key>   <string>
+* Vyborné zdraví
+* Nízká rychlost
+    </string>
+    <key>jeep_name</key>   <string>Džíp</string>
+    <key>jeep_caption</key>   <string>Věnujte pozornost jednotce a buďte rychlí.</string>
+    <key>jeep_desc</key>   <string>
+* Imunní proti ohnivému komandu
+* Rychlá rychlost
+* Chabé zdraví
+    </string>
+    <key>tank_name</key>   <string>Tank</string>
+    <key>tank_caption</key>   <string>Diktátor myslí, že nemáme odpověď. Ale my ji máme.</string>
+    <key>tank_desc</key>   <string>
+* Imunní proti ohnivému komandu
+* Nízká rychlost
+* Výborné zdraví
+    </string>
+    <key>helicopter_name</key>   <string>Helikoptéra</string>
+    <key>helicopter_caption</key>   <string>Je složité zaútočit, ale my máme řešení.</string>
+    <key>helicopter_desc</key>   <string>
+* Raketomet ho dokáže zničit.
+* Průměrné zdravý
+* Průměrná rychlost
+    </string>
+    
+    <key>ship_name</key>   <string>Loď</string>
+    <key>ship_caption</key>   <string>Wow! Diktátor má lodě!</string>
+    <key>ship_desc</key>   <string>
+* Průměrné zdraví
+* Průměrná rychlost
+* Raketomet ho dokáže porazit.
+    </string>
+    
+    <key>tank_m_name</key>   <string>Tank mastodont</string>
+    <key>tank_m_caption</key>   <string>Velké chlapy – velké problémy.</string>
+    <key>tank_m_desc</key>   <string>
+* Pomalu
+* Výborné zdraví
+    </string>
+    
+    <key>helocopter_medic_name</key>   <string>Zdravotnická helikoptéra</string>
+    <key>helocopter_medic_caption</key>   <string>Diktátorovi se líbí vůně nápalmu při snídaně.</string>
+    <key>helocopter_medic_desc</key>   <string>
+* Léčí pěchotu
+    </string>
+    
+    <key>flamethrower_name</key>   <string>Plamenomet</string>
+    <key>flamethrower_caption</key>   <string>Absolvoval školu pyromanů s vyznamenáním.</string>
+    <key>flamethrower_desc</key>   <string>
+* Imunní proti ohni
+    </string>
+
+    <key>bigman_name</key>   <string>Velký chlap</string>
+    <key>bigman_caption</key>   <string>Obrovský plamenomet</string>
+    <key>bigman_desc</key>   <string>
+* Výborné zdraví
+* Ohromné poškození
+    </string>
+
+    <key>dron_name</key>   <string>Bezpilotní letadlo</string>
+    <key>dron_caption</key>   <string>Malá smrtonosná hračka</string>
+    <key>dron_desc</key>   <string>
+* Chabé zdraví
+* Rychle
+    </string>
+
+    <key>flyingfortress_name</key>   <string>Létací pevnost</string>
+    <key>flyingfortress_caption</key>   <string>Naštvaný a arogantní, je to faktor, který by člověk měl brát vážně.</string>
+    <key>flyingfortress_desc</key>   <string>
+* Vysoké zdraví
+* Vysadí pěchotu
+    </string>
+
+    <key>cyberman1_name</key>   <string>Cyborg</string>
+    <key>cyberman1_caption</key>   <string>Skutečný cyborg, jako ve filmech</string>
+    <key>cyberman1_desc</key>   <string>
+* Dvě zdraví
+* Imunní proti ledu
+    </string>
+
+    <key>moto_name</key>   <string>Tříkolka</string>
+    <key>moto_caption</key>   <string>Vítr ve Vašim obličeji</string>
+    <key>moto_desc</key>   <string>
+* Velmi rychle
+* Chabé zdraví
+    </string>
+
+    <key>medic_name</key>   <string>Vojenský lékař</string>
+    <key>medic_caption</key>   <string>Řeší jiné problémy</string>
+    <key>medic_desc</key>   <string>
+* Ošetřuje pěchotu
+    </string>
+
+    <key>rembot_name</key>   <string>Spraví vnější kostru</string>
+    <key>rembot_caption</key>   <string>V minulosti pracoval jako nakládač.</string>
+    <key>rembot_desc</key>   <string>
+* Opravuje vozidla
+    </string>
+    
+    <key>meh1_name</key>   <string>Bojová vnější kostra</string>
+    <key>meh1_caption</key>   <string>Wow! Obrovský robot!</string>
+    <key>meh1_desc</key>   <string>
+* Vícenásobné životy
+    </string>
+    
+    <key>bmp_name</key>   <string>Pěchotní bojový prostředek</string>
+    <key>bmp_caption</key>   <string>Uvnitř vždy bývá dobré společenství.</string>
+    <key>bmp_desc</key>   <string>
+* Pustí po smrti vojáky
+    </string>
+
+    <key>map_unlock1</key>   <string>
+Pane! Nasbírejte hvězdy, abyste mohl opravit loď a pokračovat v dobrodružství!
+    </string>
+    <key>map_unlock3</key>   <string>
+Diktátor vyhodil do povětří most! Nasbírejte hvězdy, abyste se dostal na druhou stranu!
+    </string>
+    <key>map_unlock2</key>   <string>
+Připraven navštívit nádherný ostrov!
+Nasbírejte hvězdy a helikoptéra Vás tam odveze!
+    </string>
+    
+    <key>bonusitem_dynamit_name</key> <string>Dynamit</string>
+    <key>bonusitem_dynamit_desc</key> <string>Dokáže nepřátelům způsobit ohromné poškození</string>
+    <key>bonusitem_ice_name</key> <string>Ledová bomba</string>
+    <key>bonusitem_ice_desc</key> <string>Zmrazí všechny nepřátele</string>
+    <key>bonusitem_laser_name</key> <string>Laser</string>
+    <key>bonusitem_laser_desc</key> <string>Zničí všechny nepřátele</string>
+
+
+
+    <key>tutorial_yes</key>   <string>OK</string>
+    <key>tutorial_nothanks</key>   <string>Nechci, děkuji.</string>
+    <key>tutorial_newenemy</key>   <string>Nový nepřítel!</string>
+    <key>tuturial_map_tap_here</key> <string>Zde klepnout</string>
+    <key>tuturial_is_use</key> <string>Pane! Váš cíl je chránit naše ostrovy před armádou diktátora. Potřebujete pomoct?</string>
+    <key>tuturial_useairbomb</key> <string>Nová schopnost</string>
+    <key>tuturial_usedesant</key> <string>Nová schopnost</string>
+    <key>tuturial_buildtower</key> <string>Postavit zde.</string>
+    <key>tuturial_rules_destroyenemy</key> <string>Zničit!</string>
+    <key>tuturial_rules_buildtower</key> <string>Postavit</string>
+    <key>tuturial_rules_protectbase</key> <string>Ochránit!</string>
+    <key>tuturial_building_tapflag</key> <string>Klepnout na vlajku</string>
+    <key>tuturial_building_choosetower</key> <string>Zvolit</string>
+    <key>tuturial_building_towerready</key> <string>Připraveno!</string>
+    <key>tuturial_dig</key> <string>Vrtat zde.</string>
+    <key>tuturial_startwave</key> <string>Spustit</string>
+    <key>tuturial_lab_open</key> <string>Vylepši věže v laboratoře!</string>
+    <key>tuturial_lab_open_onlose</key> <string>Nemůžu tomu uvěřit! Jděte do laboratoře a vylepšete střeleckou věž.</string>
+    <key>tuturial_lab_upgrade</key> <string>Vylepšit</string>
+    <key>tuturial_lab_confirm</key> <string>Potvrdit</string>
+    <key>tuturial_open_shop_from_game</key> <string>Vaše zdroje jsou téměř vyčerpány. Není žádný problém! Navštivte náš obchod.</string>
+    <key>tuturial_openshop</key> <string>Otevřít obchod.</string>
+    <key>tuturial_openlab</key> <string>Otevřít laboratoř.</string>
+    <key>tuturial_shop_getgift</key> <string>Obdržet dárek.</string>
+    <key>tuturial_open_shop_haventgold</key> <string> Vaše zdroje jsou téměř vyčerpány. Není žádný problém! Navštivte náš obchod. </string>
+    <key>tuturial_open_shop_haventfuel</key> <string>Vaše palivo je téměř vyčerpané. Není žádný problém! Navštivte náš obchod.</string>
+    <key>tuturial_open_shop_haventgear_build</key> <string> Vaše zdroje jsou téměř vyčerpány. Není žádný problém! Navštivte náš obchod.</string>
+    <key>tuturial_open_shop_haventgear_upgrade</key> <string>Vaše zdroje jsou téměř vyčerpány. Není žádný problém! Navštivte náš obchod. </string>
+    <key>tuturial_open_shop_haventgear_dig</key> <string>Vaše zdroje jsou téměř vyčerpány. Není žádný problém! Navštivte náš obchod. </string>
+    
+    <key>tuturial_shop_open_gift</key> <string> Potřebujete pomoct, abyste porazil diktátora. Mám pro Vás dárek. </string>
+    
+    <key>tuturial_hero1</key> <string>Silný hrdina se přidává k Vaší armádě!</string>
+    <key>tuturial_hero1_icon</key> <string>Hrdina</string>
+    <key>tuturial_hero1_skill</key> <string>Nová síla</string>
+   
+   <key>tuturial_bonus_desc1</key> <string>Máte malý dárek. Podívejte se na něj!</string>
+    <key>tuturial_bonus_desc2</key> <string>Zvolit dynamit.</string>
+    <key>tuturial_bonus_ballon1</key> <string>Otevřít bednu.</string>
+    <key>tuturial_bonus_ballon2</key> <string>Zvolit</string>
+    <key>tuturial_bonus_ballon3</key> <string>Hodit</string>
+   
+    <key>tap_to_close</key> <string>Pro pokračování klepněte.</string>
+    
+    <key>heroskill_hero1_skill1_name</key> <string>Víc zdraví</string>
+    <key>heroskill_hero1_skill2_name</key> <string>Víc brnění </string>
+    <key>heroskill_hero1_skill3_name</key> <string>Chodící bomba </string>
+    <key>heroskill_hero1_skill4_name</key> <string>Víc poškození </string>
+    <key>heroskill_hero1_skill5_name</key> <string>Pozemní mína (GUI dovednost) </string>
+                                                    
+    <key>heroskill_hero2_skill1_name</key> <string>Rána odstřelovače </string>
+    <key>heroskill_hero2_skill2_name</key> <string>Víc zdraví </string>
+    <key>heroskill_hero2_skill3_name</key> <string>Víc brnění </string>
+    <key>heroskill_hero2_skill4_name</key> <string>Víc poškození </string>
+    <key>heroskill_hero2_skill5_name</key> <string>SWAT (GUI skill) </string>
+                                                    
+    <key>heroskill_hero3_skill1_name</key> <string>Desant </string>
+    <key>heroskill_hero3_skill2_name</key> <string>Ochranné zařízení </string>
+    <key>heroskill_hero3_skill3_name</key> <string>Zuřivost </string>
+    <key>heroskill_hero3_skill4_name</key> <string>Víc zdraví </string>
+    <key>heroskill_hero3_skill5_name</key> <string>Robot (GUI dovednost) </string>
+    
+    <key>heroskill_hero1_skill1_desc</key> <string>Podrobnější popis zdraví</string>
+    <key>heroskill_hero1_skill2_desc</key> <string>Podrobnější popis brnění </string>
+    <key>heroskill_hero1_skill3_desc</key> <string>Popis chodící bomby</string>
+    <key>heroskill_hero1_skill4_desc</key> <string>Podrobnější popis poškození</string>
+    <key>heroskill_hero1_skill5_desc</key> <string>Popis pozemní míny (GUI dovednost)</string>
+                                                    
+    <key>heroskill_hero2_skill1_desc</key> <string>Popis rány odstřelovače</string>
+    <key>heroskill_hero2_skill2_desc</key> <string>Podrobnější popis zdraví</string>
+    <key>heroskill_hero2_skill3_desc</key> <string>Podrobnější popis brnění</string>
+    <key>heroskill_hero2_skill4_desc</key> <string>Podrobnější popis škody </string>
+    <key>heroskill_hero2_skill5_desc</key> <string>Popis SWAT (GUI dovednost)</string>
+                                                    
+    <key>heroskill_hero3_skill1_desc</key> <string>Popis Desant</string>
+    <key>heroskill_hero3_skill2_desc</key> <string>Popis ochranného zařízení</string>
+    <key>heroskill_hero3_skill3_desc</key> <string>Popis zuřivosti </string>
+    <key>heroskill_hero3_skill4_desc</key> <string>Podrobnější popis zdraví</string>
+    <key>heroskill_hero3_skill5_desc</key> <string>Popis Robot (GUI dovednost)</string>
+  </dict>
+</plist>

@@ -1,0 +1,45 @@
+{
+    "node": {
+        "@name": "laboratory",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/laboratory/1136.png",
+                    "@name": "bg",
+                    "@pos": "0x-35",
+                    "@type": "sprite"
+                },
+                {
+                    "@image": "images/laboratory/window_lab_header.png",
+                    "@name": "caption",
+                    "@pos": "0x233",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0.5x0.5",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@name": "text",
+                    "@pos": "0x240",
+                    "@scale": "0.7x0.7",
+                    "@text": "#main_laboratory_caption#",
+                    "@type": "text"
+                },
+                {
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "@type": "menu",
+                    "@z": "9",
+                    "children": {
+                        "node": {
+                            "@imageN": "images/laboratory/button_x.png",
+                            "@name": "close",
+                            "@pos": "475x228",
+                            "@sound": "##sound_button##",
+                            "@type": "menuitem"
+                        }
+                    }
+                }
+            ]
+        }
+    }
+}

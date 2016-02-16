@@ -1,0 +1,87 @@
+{
+    "tutorial": {
+        "@template": "ini/tutorial/template_window.xml",
+        "actions": {
+            "action": {
+                "@name": "puls",
+                "@value": "RepeatForever[Sequence[DelayTime[0.5],ScaleTo[0.5,0.85,0.85],ScaleTo[0.5,0.8,0.8]]]"
+            }
+        },
+        "children": {
+            "node": {
+                "@name": "body",
+                "children": {
+                    "node": [
+                        {
+                            "@image": "images/tutorial/tut5_win.png",
+                            "@name": "bg",
+                            "@z": "-2"
+                        },
+                        {
+                            "@image": "",
+                            "@name": "bgtype",
+                            "@pos": "-215x32",
+                            "@type": "sprite",
+                            "@z": "-1"
+                        },
+                        {
+                            "@center": "0.0x1",
+                            "@color": "E4BB7F",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "name",
+                            "@pos": "-110x127",
+                            "@scale": "1x1",
+                            "@text": "soldier",
+                            "@type": "text"
+                        },
+                        {
+                            "@center": "0.0x1",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "caption",
+                            "@pos": "-110x77",
+                            "@scale": "0.7x0.7",
+                            "@text": "",
+                            "@textwidth": "400",
+                            "@type": "text"
+                        },
+                        {
+                            "@center": "0.0x0",
+                            "@color": "E4BB7F",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "description",
+                            "@pos": "-110x-105",
+                            "@scale": "0.6x0.6",
+                            "@text": "",
+                            "@textwidth": "400",
+                            "@type": "text"
+                        },
+                        {
+                            "@center": "0.5x1",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "info_tap",
+                            "@pos": "0x-105",
+                            "@scale": "0.8x0.8",
+                            "@text": "#tap_to_close#",
+                            "@type": "text"
+                        },
+                        {
+                            "@name": "unit",
+                            "@pos": "-210x40",
+                            "@type": "sprite"
+                        }
+                    ]
+                }
+            }
+        },
+        "events": {
+            "eventlist": {
+                "@name": "onenter",
+                "action": {
+                    "@action": "puls",
+                    "@state": "run",
+                    "@target": "body/info_tap"
+                }
+            }
+        }
+    }
+}

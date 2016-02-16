@@ -1,0 +1,80 @@
+{
+    "tutorial": {
+        "@closebytap": "yes",
+        "@nexttutorial": "",
+        "@parent": "/gamelayer/mainlayer/objects/soldier",
+        "@pos": "0x0",
+        "@z": "999",
+        "actions": {
+            "action": [
+                {
+                    "@name": "movex",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,-10,0],MoveBy[0.5,10,0]],3]]"
+                },
+                {
+                    "@name": "movey",
+                    "@value": "RepeatForever[EaseInOut[Sequence[MoveBy[0.5,0,-10],MoveBy[0.5,0,10]],3]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[0.5],FadeTo[0.3,255]]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "Spawn[FadeTo[0.2,255],ScaleTo[0.3,1,1]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@cascadeopacity": "yes",
+                "@name": "ballon",
+                "@opacity": "0",
+                "@pos": "180x-50",
+                "@type": "node",
+                "children": {
+                    "node": [
+                        {
+                            "@image": "images/tutorial/baloon1.png",
+                            "@name": "bg",
+                            "@type": "sprite"
+                        },
+                        {
+                            "@image": "images/tutorial/baloon1_1.png",
+                            "@name": "arrow",
+                            "@pos": "-94x0",
+                            "@rotation": "90",
+                            "@type": "sprite",
+                            "@z": "1"
+                        },
+                        {
+                            "@color": "35352B",
+                            "@font": "fonts/helvetica.fnt",
+                            "@name": "text",
+                            "@pos": "0x4",
+                            "@scale": "0.7x0.7",
+                            "@text": "#tuturial_bonus_ballon3#",
+                            "@type": "text",
+                            "@z": "2"
+                        }
+                    ]
+                }
+            }
+        },
+        "events": {
+            "eventlist": {
+                "@name": "onenter",
+                "runaction": [
+                    {
+                        "@action": "movex",
+                        "@target": "ballon"
+                    },
+                    {
+                        "@action": "bodyfadein",
+                        "@target": "ballon"
+                    }
+                ]
+            }
+        }
+    }
+}

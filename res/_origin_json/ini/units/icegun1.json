@@ -1,0 +1,98 @@
+{
+    "tower": {
+        "@allowtargets": "earth",
+        "@effect_on_shoot": "type:ice",
+        "@maxlevel": "5",
+        "@maxtargets": "4",
+        "@name": "icegun",
+        "@radius": "180",
+        "@unittype": "tower",
+        "actions": {
+            "action": {
+                "@name": "animate",
+                "@value": "Animate[0.85,[folder:icegun.1::,frames:turret6_10001.png,turret6_10002.png,turret6_10003.png,turret6_10004.png,turret6_10005.png,turret6_10006.png,turret6_10007.png,turret6_10008.png,turret6_10009.png,turret6_10010.png,turret6_10011.png,turret6_10012.png,turret6_10013.png,turret6_10014.png,turret6_10015.png,turret6_10016.png,turret6_10017.png,turret6_10018.png,turret6_10019.png,turret6_10020.png,turret6_10021.png,turret6_10022.png,turret6_10023.png,turret6_10024.png,turret6_10025.png,turret6_10001.png]]"
+            }
+        },
+        "children": {
+            "node": {
+                "@center": "0.5x0.3",
+                "@image": "icegun.1::turret6_10001.png",
+                "@name": "skin",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@iceRate": "10",
+                "@iceTime": "4",
+                "@velocityRate": "0.7",
+                "@velocityTime": "3"
+            }
+        },
+        "events": {
+            "eventlist": {
+                "@name": "on_shoot",
+                "playsound": {
+                    "@sound": "##sound_icegun##"
+                },
+                "runaction": {
+                    "@action": "animate",
+                    "@target": "skin"
+                }
+            }
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "machine_unit": {
+            "params": {
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "5",
+                    "@delay": "1"
+                },
+                "state_waittarget": {
+                    "@duration": "999999"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "waittarget": {
+                    "@seetarget": "readyfire"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0"
+                },
+                "thresold": {
+                    "@value": "0"
+                }
+            }
+        }
+    }
+}

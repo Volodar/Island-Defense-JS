@@ -1,0 +1,63 @@
+{
+    "properties": {
+        "item": [
+            {
+                "@name": "fuel1",
+                "@price": "USD: 1",
+                "@value": "250"
+            },
+            {
+                "@name": "gold1",
+                "@price": "USD: 1",
+                "@value": "1540"
+            },
+            {
+                "@name": "gold2",
+                "@price": "USD: 2",
+                "@value": "3390"
+            },
+            {
+                "@name": "gold3",
+                "@price": "USD: 3",
+                "@value": "5550"
+            },
+            {
+                "@name": "gold4",
+                "@price": "USD: 4",
+                "@value": "8010"
+            },
+            {
+                "@name": "gold5",
+                "@price": "USD: 5",
+                "@value": "10780"
+            },
+            {
+                "@name": "gear1",
+                "@price": "USD: 1",
+                "@value": "300"
+            },
+            {
+                "@name": "gear2",
+                "@price": "USD: 2",
+                "@value": "600"
+            },
+            {
+                "@name": "gear3",
+                "@price": "USD: 3",
+                "@value": "1200"
+            },
+            {
+                "@inapp": "no",
+                "@name": "gift_gear",
+                "@price": "FREE",
+                "@value": "300"
+            },
+            {
+                "@inapp": "no",
+                "@name": "gift_gold",
+                "@price": "FREE",
+                "@value": "100"
+            }
+        ]
+    }
+}

@@ -1,0 +1,58 @@
+{
+    "airplane": {
+        "@allowtargets": "earth",
+        "@radius": "60",
+        "@template": "ini/units/airplane.xml",
+        "events": {
+            "eventlist": {
+                "@name": "run",
+                "action": [
+                    {
+                        "@action": "1_place",
+                        "@state": "run",
+                        "@target": "1_place"
+                    },
+                    {
+                        "@action": "1_explosion",
+                        "@state": "run",
+                        "@target": "1_explosion"
+                    },
+                    {
+                        "@action": "2_place",
+                        "@state": "run",
+                        "@target": "2_place"
+                    },
+                    {
+                        "@action": "2_explosion",
+                        "@state": "run",
+                        "@target": "2_explosion"
+                    },
+                    {
+                        "@action": "3_place",
+                        "@state": "run",
+                        "@target": "3_place"
+                    },
+                    {
+                        "@action": "3_explosion",
+                        "@state": "run",
+                        "@target": "3_explosion"
+                    }
+                ],
+                "playsound": [
+                    {
+                        "@predelay": "2.0",
+                        "@sound": "##sound_airbomb_exposion##"
+                    },
+                    {
+                        "@predelay": "2.1",
+                        "@sound": "##sound_airbomb_exposion##"
+                    },
+                    {
+                        "@predelay": "2.2",
+                        "@sound": "##sound_airbomb_exposion##"
+                    }
+                ]
+            }
+        }
+    }
+}

@@ -1,0 +1,36 @@
+{
+    "menuitem": {
+        "@name": "gold1",
+        "@template": "ini/shop/item.xml",
+        "children": {
+            "node": [
+                {
+                    "@path": "menu/buy/normal/cost",
+                    "@pos": "108x40",
+                    "@text": "#shop_offerwall#",
+                    "@textalign": "center"
+                },
+                {
+                    "@path": "menu/buy/normal/text",
+                    "@text": "",
+                    "@visible": "no"
+                },
+                {
+                    "@name": "text",
+                    "@pos": "115x395",
+                    "@text": "FREE!!!"
+                },
+                {
+                    "@image": "images/shop/icon_gold.png",
+                    "@name": "icon_type",
+                    "@pos": "115x395"
+                },
+                {
+                    "@image": "images/shop/icons/gold1.png",
+                    "@name": "icon",
+                    "@pos": "135x240"
+                }
+            ]
+        }
+    }
+}

@@ -1,0 +1,88 @@
+{
+    "tower": {
+        "@allowmenu": "no",
+        "@allowtargets": "earth",
+        "@damagebysector": "yes",
+        "@maxlevel": "1",
+        "@name": "landmine",
+        "@radius": "45",
+        "@sectorangle": "360",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_nothing",
+                    "@value": "Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@animation": "           RepeatForever           [             Sequence             [               Animate[0.6..1.0,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]],               DelayTime[2..5]             ]           ]",
+                "@center": "0.5x0.37",
+                "@name": "skin",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@damage": "10"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_die",
+                    "areadamage": {
+                        "@asunittype": "tower",
+                        "@radius": "100"
+                    },
+                    "runaction": {
+                        "@action": "animate_die",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_stop",
+                    "action": {
+                        "@action": "animate_nothing",
+                        "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    }
+                }
+            ]
+        },
+        "machine_unit": {
+            "@start_state": "sleep",
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                }
+            },
+            "transitions": {
+                "death": {
+                    "@stop": "stop"
+                },
+                "sleep": {
+                    "@seetarget": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                }
+            }
+        },
+        "paramcollection": {
+            "showmenu": "no"
+        }
+    }
+}

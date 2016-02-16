@@ -1,0 +1,171 @@
+{
+    "tower": {
+        "@allowtargets": "earth,sea",
+        "@effect_on_shoot": "type:laser,position0:27x30,position1:-27x30,position2:-21x55,position3:21x55",
+        "@maxlevel": "5",
+        "@name": "laser",
+        "@radius": "320",
+        "@unittype": "tower",
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate135",
+                    "@value": "Animate[0.3,[folder:laser.2::,frames:turret5_2_10001.png,turret5_2_10002.png,turret5_2_10003.png,turret5_2_10004.png,turret5_2_10005.png,turret5_2_10006.png,turret5_2_10007.png,turret5_2_10008.png,turret5_2_10001.png]]"
+                },
+                {
+                    "@name": "animate315",
+                    "@value": "Animate[0.3,[folder:laser.2::,frames:turret5_2_30001.png,turret5_2_30002.png,turret5_2_30003.png,turret5_2_30004.png,turret5_2_30005.png,turret5_2_30006.png,turret5_2_30007.png,turret5_2_30008.png,turret5_2_30001.png]]"
+                },
+                {
+                    "@name": "animate45",
+                    "@value": "Animate[0.3,[folder:laser.2::,frames:turret5_2_20001.png,turret5_2_20002.png,turret5_2_20003.png,turret5_2_20004.png,turret5_2_20005.png,turret5_2_20006.png,turret5_2_20007.png,turret5_2_20008.png,turret5_2_20001.png]]"
+                },
+                {
+                    "@name": "animate225",
+                    "@value": "Animate[0.3,[folder:laser.2::,frames:turret5_2_40001.png,turret5_2_40002.png,turret5_2_40003.png,turret5_2_40004.png,turret5_2_40005.png,turret5_2_40006.png,turret5_2_40007.png,turret5_2_40008.png,turret5_2_40001.png]]"
+                }
+            ]
+        },
+        "children": {
+            "node": {
+                "@center": "0.5x0.34",
+                "@image": "laser.2::turret5_2_10001.png",
+                "@name": "skin",
+                "@type": "sprite"
+            }
+        },
+        "effects": {
+            "positive": {
+                "@damage": "320"
+            }
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "on_shoot",
+                    "playsound": {
+                        "@sound": "##sound_sniper##"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_45",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "laser.2::turret5_2_10001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_135",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "laser.2::turret5_2_20001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_225",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "laser.2::turret5_2_30001.png"
+                    }
+                },
+                {
+                    "@name": "on_waittarget_315",
+                    "setproperty": {
+                        "@property": "image",
+                        "@target": "skin",
+                        "@value": "laser.2::turret5_2_40001.png"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle45",
+                    "runaction": {
+                        "@action": "animate45",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle135",
+                    "runaction": {
+                        "@action": "animate135",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle225",
+                    "runaction": {
+                        "@action": "animate225",
+                        "@target": "skin"
+                    }
+                },
+                {
+                    "@name": "on_shoot_byangle315",
+                    "runaction": {
+                        "@action": "animate315",
+                        "@target": "skin"
+                    }
+                }
+            ]
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "machine_unit": {
+            "params": {
+                "state_charging": {
+                    "@duration": "5"
+                },
+                "state_readyfire": {
+                    "@charge_volume": "1",
+                    "@delay": "8"
+                },
+                "state_waittarget": {
+                    "@duration": "3.5"
+                }
+            },
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        }
+    }
+}

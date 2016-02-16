@@ -1,0 +1,257 @@
+{
+    "menuitem": {
+        "@center": "0.5x0.15",
+        "@imageN": "images/map/##flag_image##.png",
+        "@type": "menuitem",
+        "actions": {
+            "action": [
+                {
+                    "@name": "star_scale",
+                    "@value": "Sequence[DelayTime[2],BackOut[ScaleTo[0.3,1,1]]]"
+                },
+                {
+                    "@name": "flag_scale",
+                    "@value": "Sequence[DelayTime[1],BackOut[ScaleTo[0.3,1,1]]]"
+                },
+                {
+                    "@name": "flag_fadein",
+                    "@value": "Sequence[DelayTime[1],FadeIn[0.3]]"
+                },
+                {
+                    "@name": "flag_tint",
+                    "@value": "Sequence[DelayTime[1],TintTo[0.3,255,255,255]]"
+                }
+            ]
+        },
+        "children": {
+            "node": [
+                {
+                    "@image": "images/map/star1.png",
+                    "@name": "star1",
+                    "@pos": "28x75",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@image": "images/map/star2.png",
+                    "@name": "star2",
+                    "@pos": "28x75",
+                    "@type": "sprite",
+                    "@visible": "no"
+                },
+                {
+                    "@image": "images/map/star3.png",
+                    "@name": "star3",
+                    "@pos": "28x75",
+                    "@type": "sprite",
+                    "@visible": "no"
+                }
+            ]
+        },
+        "events": {
+            "eventlist": [
+                {
+                    "@name": "star1_show",
+                    "playsound": [
+                        {
+                            "@predelay": "1",
+                            "@sound": "##sound_mapflagnew##"
+                        },
+                        {
+                            "@predelay": "2",
+                            "@sound": "##sound_mapflagstar1##"
+                        }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "star_scale",
+                            "@target": "star1"
+                        },
+                        {
+                            "@action": "star_scale",
+                            "@target": "fuel"
+                        },
+                        {
+                            "@action": "flag_scale"
+                        },
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_tint",
+                            "@target": "normal"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "star1",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "star1",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "fuel",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "normal",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "color",
+                            "@target": "normal",
+                            "@value": "FF0000"
+                        }
+                    ]
+                },
+                {
+                    "@name": "star2_show",
+                    "playsound": [
+                        {
+                            "@predelay": "1",
+                            "@sound": "##sound_mapflagnew##"
+                        },
+                        {
+                            "@predelay": "2",
+                            "@sound": "##sound_mapflagstar2##"
+                        }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "star_scale",
+                            "@target": "star2"
+                        },
+                        {
+                            "@action": "flag_scale"
+                        },
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_tint",
+                            "@target": "normal"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "star2",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "star2",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "normal",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "color",
+                            "@target": "normal",
+                            "@value": "FF0000"
+                        }
+                    ]
+                },
+                {
+                    "@name": "star3_show",
+                    "playsound": [
+                        {
+                            "@predelay": "1",
+                            "@sound": "##sound_mapflagnew##"
+                        },
+                        {
+                            "@predelay": "2",
+                            "@sound": "##sound_mapflagstar3##"
+                        }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "star_scale",
+                            "@target": "star3"
+                        },
+                        {
+                            "@action": "flag_scale"
+                        },
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_tint",
+                            "@target": "normal"
+                        }
+                    ],
+                    "setproperty": [
+                        {
+                            "@property": "visible",
+                            "@target": "star3",
+                            "@value": "yes"
+                        },
+                        {
+                            "@property": "scale",
+                            "@target": "star3",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "normal",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "color",
+                            "@target": "normal",
+                            "@value": "FF0000"
+                        }
+                    ]
+                },
+                {
+                    "@name": "star1",
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "star1",
+                        "@value": "yes"
+                    }
+                },
+                {
+                    "@name": "star2",
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "star2",
+                        "@value": "yes"
+                    }
+                },
+                {
+                    "@name": "star3",
+                    "setproperty": {
+                        "@property": "visible",
+                        "@target": "star3",
+                        "@value": "yes"
+                    }
+                }
+            ]
+        }
+    }
+}
