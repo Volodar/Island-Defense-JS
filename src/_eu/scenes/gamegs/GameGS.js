@@ -138,6 +138,15 @@ EU.GameGS = EU.LayerExt.extend({
         this.mainlayer.setAnchorPoint(cc.p(0,0));
 
         this.setName("gamelayer");
+        var self = this;
+        cc.eventManager.addListener({
+            event: cc.EventListener.KEYBOARD,
+            onKeyReleased: function( keyCode, event )
+            {
+                self.onKeyReleased(keyCode, event);
+            }
+        }, this);
+        
         EU.GameGSInstance = this;
     },
     getGameBoard: function () {
@@ -344,18 +353,18 @@ EU.GameGS = EU.LayerExt.extend({
     //        addChild( menu );
     //        Point pos( 25, 100 );
     //        float Y( 45 );
-    //        item( menu, "R 1", EventKeyboard.KeyCode.KEY_1, pos ); pos.y += Y;
-    //        item( menu, "R 2", EventKeyboard.KeyCode.KEY_2, pos ); pos.y += Y;
-    //        item( menu, "R 3", EventKeyboard.KeyCode.KEY_3, pos ); pos.y += Y;
-    //        item( menu, "R 4", EventKeyboard.KeyCode.KEY_4, pos ); pos.y += Y;
-    //        item( menu, "R 5", EventKeyboard.KeyCode.KEY_5, pos ); pos.y += Y;
-    //        item( menu, "R 6", EventKeyboard.KeyCode.KEY_6, pos ); pos.y += Y;
-    //        item( menu, "R 7", EventKeyboard.KeyCode.KEY_7, pos ); pos.y += Y;
-    //        item( menu, "R 8", EventKeyboard.KeyCode.KEY_8, pos ); pos.y += Y;
-    //        item( menu, "R 9", EventKeyboard.KeyCode.KEY_9, pos ); pos.y += Y;
-    //        item( menu, "R 0", EventKeyboard.KeyCode.KEY_0, pos ); pos.y += Y;
-    //        item( menu, "R 99", EventKeyboard.KeyCode.KEY_F9, pos ); pos.y += Y;
-    //        item( menu, "WIN", EventKeyboard.KeyCode.KEY_F1, pos ); pos.y += Y;
+    //        item( menu, "R 1", cc.KEY.KEY_1, pos ); pos.y += Y;
+    //        item( menu, "R 2", cc.KEY.KEY_2, pos ); pos.y += Y;
+    //        item( menu, "R 3", cc.KEY.KEY_3, pos ); pos.y += Y;
+    //        item( menu, "R 4", cc.KEY.KEY_4, pos ); pos.y += Y;
+    //        item( menu, "R 5", cc.KEY.KEY_5, pos ); pos.y += Y;
+    //        item( menu, "R 6", cc.KEY.KEY_6, pos ); pos.y += Y;
+    //        item( menu, "R 7", cc.KEY.KEY_7, pos ); pos.y += Y;
+    //        item( menu, "R 8", cc.KEY.KEY_8, pos ); pos.y += Y;
+    //        item( menu, "R 9", cc.KEY.KEY_9, pos ); pos.y += Y;
+    //        item( menu, "R 0", cc.KEY.KEY_0, pos ); pos.y += Y;
+    //        item( menu, "R 99", cc.KEY.KEY_F9, pos ); pos.y += Y;
+    //        item( menu, "WIN", cc.KEY.KEY_F1, pos ); pos.y += Y;
     //    }
     //},
 
@@ -782,26 +791,24 @@ EU.GameGS = EU.LayerExt.extend({
     onTouchHeroCanceled: function (touch, event) {
         event.getCurrentTarget().setTouchNormal();
     },
-    //TODO: onKeyReleased( EventKeyboard.KeyCode keyCode, Event* event )
-    //{
-    //    if( keyCode == EventKeyboard.KeyCode.KEY_BACK )
-    //        menuPause( null );
-    //    if( isTestDevice() && isTestModeActive() )
-    //    {
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_0 )  cc.director.setTimeRate( 0 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_1 )  cc.director.setTimeRate( 1 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_2 )  cc.director.setTimeRate( 2 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_3 )  cc.director.setTimeRate( 3 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 )  cc.director.setTimeRate( 4 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_5 )  cc.director.setTimeRate( 5 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_6 )  cc.director.setTimeRate( 6 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_7 )  cc.director.setTimeRate( 7 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_8 )  cc.director.setTimeRate( 8 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_9 )  cc.director.setTimeRate( 9 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F9 ) cc.director.setTimeRate( 99 );
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_F1 ) this.board.onFinishGame();
-    //    }
-    //},
+    onKeyReleased:function( keyCode, event )
+    {
+        if( keyCode == cc.KEY.back || keyCode == cc.KEY.escape )
+            this.menuPause( null );
+        if( true || (isTestDevice() && isTestModeActive()) )
+        {
+            if( keyCode >= 48 && keyCode<=57 ) {
+                var scale = keyCode-48;
+                cc.director.getScheduler().setTimeScale( scale );
+            }
+            if( keyCode == cc.KEY.f2 ) {
+                EU.ScoreCounter.setMoney( EU.kScoreHealth, 0, false );
+                this.board.onFinishGame();
+            }
+            if( keyCode == cc.KEY.f1 )
+                this.board.onFinishGame();
+        }
+    },
     onClickByObject: function (unit) {
         if (unit._type == EU.UnitType.tower) {
             var showMenu = EU.Common.strToBool(unit.getParamCollection().get("showmenu", "yes"));
