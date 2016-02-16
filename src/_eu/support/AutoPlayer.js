@@ -149,7 +149,7 @@ EU.AutoPlayer = cc.Class.extend(
                 {
                     var towers = [];
                     EU.mlTowersInfo.fetch( towers );
-                    var index = cc.rand() % towers.length;
+                    var index = Math.round(cc.rand()) % towers.length;
                     while( index-- )
                         towers.shift();
                     this._currentTowerForBuild = towers[0];
@@ -168,7 +168,7 @@ EU.AutoPlayer = cc.Class.extend(
                 var decorations = EU.GameGSInstance.getDecorations( "base_point" );
                 if( decorations.length > 0 )
                 {
-                    var decor = decorations[cc.rand() % decorations.length];
+                    var decor = decorations[Math.round(cc.rand()) % decorations.length];
                     var index = 0 ;
                     for (var i = 0; i < places.length; i++) {
                         var place = places[i];
@@ -184,7 +184,7 @@ EU.AutoPlayer = cc.Class.extend(
                 }
                 else
                 {
-                   var index = cc.rand() % places.length;
+                   var index = Math.round(cc.rand()) % places.length;
                     place = places[index];
                 }
 
@@ -201,7 +201,7 @@ EU.AutoPlayer = cc.Class.extend(
         }
         else if( this._towers.length > 0 )
         {
-            var towerForUpgrade = this._towers[cc.rand() % this._towers.length];
+            var towerForUpgrade = this._towers[Math.round(cc.rand()) % this._towers.length];
 
            var level = towerForUpgrade._level;
            var cost = EU.mlTowersInfo.getCost( towerForUpgrade.getName(), level + 1 );

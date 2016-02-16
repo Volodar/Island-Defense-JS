@@ -583,7 +583,7 @@ EU.GameBoard = cc.Class.extend({
         var cost = EU.mlTowersInfo.getCost( name, 1 );
         if( cost > EU.ScoreCounter.getMoney( EU.kScoreLevel ) )
         {
-            //EU.AudioEngine.playEffect( kSoundGameTowerBuyCancel );
+            EU.AudioEngine.playEffect( EU.kSoundGameTowerBuyCancel );
             return null;
         }
     
@@ -593,7 +593,7 @@ EU.GameBoard = cc.Class.extend({
     
         this.addUnit( tower );
     
-        //EU.AudioEngine.playEffect( kSoundGameTowerBuy );
+        EU.AudioEngine.playEffect( EU.kSoundGameTowerBuy );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         EU.GameGSInstance.eraseTowerPlace( place );
         EU.GameGSInstance.onCreateUnit( tower );
@@ -607,7 +607,7 @@ EU.GameBoard = cc.Class.extend({
         var xmlfile = name + ".xml";
         var unit = null;
         var dummy = 0;
-        if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
+        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
             unit = UnitDesant.create( "ini/units", xmlfile );
         if( unit )
         {
@@ -623,9 +623,9 @@ EU.GameBoard = cc.Class.extend({
         var dist_water = 9999;
         var dist_earth = 9999;
     
-        if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
+        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
             name = "airplane_water.xml";
-        else if( EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        else if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
             name = "airplane_earth.xml";
     
         if( name == "airplane_water.xml" && dist_earth < dist_water )
@@ -644,7 +644,7 @@ EU.GameBoard = cc.Class.extend({
     },
     createLandMine: function( position, count ){
         var dist_earth = 9999;
-        if( !EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
             return null;
     
         var result = null;
@@ -662,7 +662,7 @@ EU.GameBoard = cc.Class.extend({
     createBonusItem: function( position, name ){
         var dist = 9999;
         var layer = EU.mlUnitInfo.info( name ).layer;
-        if( !EU.checkPointOnRoute( position, this.skillParams.distanceToRoute, layer, dist ) )
+        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer, dist ) )
             return null;
 
         var item = Unit.create( "ini/units", name + ".xml" );
@@ -680,7 +680,7 @@ EU.GameBoard = cc.Class.extend({
         {
             var decor = decorations[i];
             var dist = 9999;
-            EU.checkPointOnRoute( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
+            EU.checkPointOnRoute_1( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
             if( dist < dist_min )
             {
                 min = index;
@@ -742,7 +742,7 @@ EU.GameBoard = cc.Class.extend({
         newTower.setPosition( tower.getPosition() );
         this.units[index] = newTower;
 
-        //EU.AudioEngine.playEffect( kSoundGameTowerUpgrade );
+        EU.AudioEngine.playEffect( EU.kSoundGameTowerUpgrade );
         EU.GameGSInstance.removeObject( tower );
         EU.GameGSInstance.addObject( newTower );
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
@@ -883,7 +883,7 @@ EU.GameBoard = cc.Class.extend({
         var cost = EU.mlTowersInfo.getCostForDig();
         EU.ScoreCounter.subMoney( EU.kScoreLevel, cost, false );
         place.setActive( true );
-        //EU.AudioEngine.playEffect( kSoundGameTowerPlaceActivate );
+        EU.AudioEngine.playEffect( EU.kSoundGameTowerPlaceActivate );
     },
     getRoutesCount: function(){
         return creepsRoutes.length;
@@ -927,7 +927,7 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<this.creepsRoutes.length; ++i)
         {
             var route = this.creepsRoutes[i];
-            var check = EU.checkPointOnRoute( position, route, distance, distance );
+            var check = EU.checkPointOnRoute_2( position, route, distance, distance );
             if( check )
             {
                 result = route;
@@ -951,6 +951,7 @@ EU.GameBoard = cc.Class.extend({
         EU.assert( base );
         for( var i=0; i<this.units.length; ++i )
         {
+            var target = this.units[i];
             var result = true;
             result = result && this.checkTargetByUnitType( target, base );
             result = result && this.checkTargetByUnitLayer( target, base );
@@ -959,7 +960,7 @@ EU.GameBoard = cc.Class.extend({
             if( result )
             {
                 target.applyDamage( base );
-                EU.GameGSInstance.createEffect( base, target, base.getEffectOnShoot() );
+                EU.GameGSInstance.createEffect( base, target, base._effectOnShoot );
             }
         }
     },
@@ -1087,7 +1088,7 @@ EU.GameBoard = cc.Class.extend({
         //p["event"] = "TurretAtPlace";
         //p["tower"] = unit.getName();
         //p["level"] = intToStr( unit.getLevel() );
-        //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
+        //p["mode"] = this.gameMode == EU.GameMode.hard?"hard" : "normal";
         //TODO: flurry.logEvent( p );
 
     },
@@ -1096,7 +1097,7 @@ EU.GameBoard = cc.Class.extend({
         //p["event"] = "TurretUpgrade";
         //p["tower"] = unit.getName();
         //p["level"] = intToStr( unit.getLevel() );
-        //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
+        //p["mode"] = this.gameMode == EU.GameMode.hard?"hard" : "normal";
         //TODO: flurry.logEvent( p );
     },
     event_towerSell: function( unit ){
@@ -1104,7 +1105,7 @@ EU.GameBoard = cc.Class.extend({
         //p["event"] = "TurretSell";
         //p["tower"] = unit.getName();
         //p["level"] = intToStr( unit.getLevel() );
-        //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
+        //p["mode"] = this.gameMode == EU.GameMode.hard?"hard" : "normal";
         //TODO: flurry.logEvent( p );
     },
     event_levelFinished: function(){
@@ -1115,7 +1116,7 @@ EU.GameBoard = cc.Class.extend({
         //    p["event"] = "LevelFailed";
         //
         //p["level"] = intToStr( this.levelIndex );
-        //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
+        //p["mode"] = this.gameMode == EU.GameMode.hard?"hard" : "normal";
         //p["stars"] = intToStr( this.statisticsParams.stars );
         //p["health"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreHealth ) );
         //p["gear"] = intToStr( EU.ScoreCounter.getMoney( EU.kScoreLevel ) );
@@ -1125,7 +1126,7 @@ EU.GameBoard = cc.Class.extend({
         //ParamCollection p;
         //p["event"] = "WaveStart";
         //p["level"] = intToStr( this.levelIndex );
-        //p["mode"] = this.gameMode == GameMode.hard?"hard" : "normal";
+        //p["mode"] = this.gameMode == EU.GameMode.hard?"hard" : "normal";
         //p["waveindex"] = intToStr( index );
         //TODO: flurry.logEvent( p );
     },

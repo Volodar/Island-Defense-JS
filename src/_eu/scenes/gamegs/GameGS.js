@@ -100,6 +100,7 @@ EU.GameGS = EU.LayerExt.extend({
     //},
 
     ctor: function () {
+        cc.director.getScheduler().setTimeScale( 10 );
         this._super();
         this.board = new EU.GameBoard();
         this.enabled = true;
@@ -360,7 +361,7 @@ EU.GameGS = EU.LayerExt.extend({
 
     clear: function () {
         //TODO: Achievements.setCallbackOnAchievementObtained( null );
-        //TODO: EU.ShootsEffectsClear();
+        EU.ShootsEffects.ShootsEffectsClear();
 
         if (this.bg)
             this.bg.removeFromParent();
@@ -1033,12 +1034,12 @@ EU.GameGS = EU.LayerExt.extend({
     openStatisticWindow: function (params) {
         EU.assert(this.getChildByName("win") == null);
 
-        this.unschedule(schedule_selector(update));
+        this.unschedule(this.update);
 
         var win = params.livecurrent > 0;
         var level = this.board.getCurrentLevelIndex();
         var stars = params.stars;
-        var award = EU.LevelParams.getAwardGold(level, stars, this.board.getGameMode() == GameMode.hard);
+        var award = EU.LevelParams.getAwardGold(level, stars, this.board.getGameMode() == EU.GameMode.hard);
 
         var window = new EU.VictoryMenu(win, award, stars);
         this.addChild(window, 99999);
@@ -1054,7 +1055,7 @@ EU.GameGS = EU.LayerExt.extend({
             this.runAction(action);
         }
 
-        var music = win ? kMusicVictory : kMusicDefeat;
+        var music = win ? EU.kMusicVictory : EU.kMusicDefeat;
         //EU.AudioEngine.stopMusic();
         //EU.AudioEngine.playEffect( music );
 
@@ -1086,10 +1087,10 @@ EU.GameGS = EU.LayerExt.extend({
         }
         //createAction
         this.mainlayer.setPosition(start);
-        var preDelay = new cc.DelayTime(0.5);
-        var move2 = new cc.EaseInOut(new cc.MoveTo(0.5, finish), 2);
-        var call = new cc.CallFunc(this.endOfFlyCameraAboveMap, this);
-        this.mainlayer.runAction(new cc.Sequence(preDelay, move2, call));
+        var preDelay = cc.delayTime(0.5);
+        var move2 = (cc.moveTo(0.5, finish)).easing(cc.easeInOut(2));
+        var call = cc.callFunc(this.endOfFlyCameraAboveMap, this);
+        this.mainlayer.runAction(cc.sequence(preDelay, move2, call));
     },
     endOfFlyCameraAboveMap:function(){
         this.setTouchNormal();
@@ -1099,15 +1100,14 @@ EU.GameGS = EU.LayerExt.extend({
         //this.interface_heroSkill.run();
     },
     createEffect: function (base, target, effect) {
-        //TODO:EU.ShootsEffectsCreate
-        //var effects = EU.ShootsEffectsCreate(base, target, effect);
-        //for (var i = 0; i < effects.length; ++i) {
-        //    var object = effects[i];
-        //    var z = object.getLocalZOrder();
-        //    this.addObject(object, 0);
-        //    if (z != 0)
-        //        object.setLocalZOrder(z);
-        //}
+        var effects = EU.ShootsEffects.ShootsEffectsCreate(base, target, effect);
+        for (var i = 0; i < effects.length; ++i) {
+            var object = effects[i];
+            var z = object.getLocalZOrder();
+            this.addObject(object, 0);
+            if (z != 0)
+                object.setLocalZOrder(z);
+        }
     },
     createIconForWave: function (route, waveinfo, unitType, iconlist, delay) {
         var start = route[0];
@@ -1153,7 +1153,7 @@ EU.GameGS = EU.LayerExt.extend({
 
         EU.WaveGenerator.resume();
         this.removeIconsForWave();
-        //EU.AudioEngine.playMusic( kMusicGameBattle );
+        EU.AudioEngine.playMusic( EU.kMusicGameBattle );
 
         var event = "level" + this.board.getCurrentLevelIndex() + "_startwave";
         EU.TutorialManager.dispatch(event);

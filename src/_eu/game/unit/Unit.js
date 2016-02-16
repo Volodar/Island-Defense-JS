@@ -13,12 +13,6 @@
 //Define namespace
 var EU = EU || {};
 
-//
-EU.BodyType = cc.Class.extend();
-EU.BodyType.Equipment = cc.Class.extend();
-EU.UnitLayer = cc.Class.extend();
-EU.UnitLayer.earth = cc.Class.extend();
-
 EU.Unit = cc.Node.extend({
 
     /** For Test Instance of */
@@ -225,7 +219,7 @@ EU.Unit = cc.Node.extend({
 
         //if( this._type == UniType.tower )
         //{
-        //	//Number rate = mlTowersInfo.rate( getName() );
+        //	//Number rate = EU.mlTowersInfo.rate( getName() );
         //	//_effect.positive.damage *= rate;
         //	//_effect.positive.fireRate *= rate;
         //	//_effect.positive.iceRate *= rate;

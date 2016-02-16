@@ -18,13 +18,13 @@ EU.Animation = {
     createAnimation: function( a, b, c, d, e) {
         "use strict";
         if ( e !== undefined ) {
-            this.createAnimation_n(a,b,c,d,e)
+            return this.createAnimation_n(a,b,c,d,e)
         }
         else if ( d !== undefined ) {
-            this.createAnimation_i(a,b,c,d)
+            return this.createAnimation_i(a,b,c,d)
         }
         else if ( b !== undefined ) {
-            this.createAnimation_t(a,b)
+            return this.createAnimation_t(a,b)
         }
     },
 

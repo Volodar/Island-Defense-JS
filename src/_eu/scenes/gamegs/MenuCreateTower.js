@@ -62,13 +62,13 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
             {
                 this._confirmButton = item;
                 this._confirmButton.setVisible( false );
-                this._confirmButton.setCallback(this.confirmSelect.bind(this,true));
+                this._confirmButton.setCallback(this.confirmSelect.bind(this,true), this);
             }
             else if( item.getName() == "confirm_un" )
             {
                 this._confirmButtonUn = item;
                 this._confirmButtonUn.setVisible( false );
-                this._confirmButtonUn.setCallback( this.confirmSelect.bind(this,true) );
+                this._confirmButtonUn.setCallback( this.confirmSelect.bind(this,true), this);
             }
             else
             {
@@ -76,7 +76,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                 if( name.indexOf( "_un" ) < 0 )
                 {
                     this._buttonTowers[name] = item;
-                    item.setCallback( function(p1){return self.onActivate.call(self, p1, true)} );
+                    item.setCallback( function(p1){return self.onActivate.call(self, p1, true)}, this);
                 }
                 else
                 {
@@ -84,7 +84,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                     name = name.slice( 0, -3);
 
                     this._buttonTowersUn[name] = item;
-                    item.setCallback( function(p1){return self.onActivate.call(self, p1, false)} );
+                    item.setCallback( function(p1){return self.onActivate.call(self, p1, false)}, this);
                 }
                 var level = EU.UserData.tower_getUpgradeLevel( name );
                 if( level == 0 )

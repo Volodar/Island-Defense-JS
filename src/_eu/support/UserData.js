@@ -133,11 +133,11 @@ EU.UserData = {
         {
             return "test string.";
 
-            var size = cc.rand() % this.MagicSquareSize;
+            var size = Math.round(cc.rand()) % this.MagicSquareSize;
             var result;
             for( var i = 0; i < size; ++i )
             {
-                result +=  (cc.rand() % 128 + 32);
+                result +=  (Math.round(cc.rand()) % 128 + 32);
             }
             EU.assert( result.length == size );
             return result;
