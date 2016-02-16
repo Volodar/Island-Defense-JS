@@ -28,17 +28,17 @@ EU.ShootsEffectsBullet = cc.Sprite.extend(
         this._super();
 
         /**@type Array<String> */var textures = [];
-        textures.push( "splash.splash1_0001.png" );
-        textures.push( "splash.splash1_0002.png" );
-        textures.push( "splash.splash1_0003.png" );
-        textures.push( "splash.splash1_0004.png" );
-        textures.push( "splash.splash1_0005.png" );
-        textures.push( "splash.splash1_0006.png" );
-        textures.push( "splash.splash1_0007.png" );
-        textures.push( "splash.splash1_0008.png" );
-        textures.push( "splash.splash1_0009.png" );
-        textures.push( "splash.splash1_0010.png" );
-        textures.push( "splash.splash1_0011.png" );
+        textures.push( "splash::splash1_0001.png" );
+        textures.push( "splash::splash1_0002.png" );
+        textures.push( "splash::splash1_0003.png" );
+        textures.push( "splash::splash1_0004.png" );
+        textures.push( "splash::splash1_0005.png" );
+        textures.push( "splash::splash1_0006.png" );
+        textures.push( "splash::splash1_0007.png" );
+        textures.push( "splash::splash1_0008.png" );
+        textures.push( "splash::splash1_0009.png" );
+        textures.push( "splash::splash1_0010.png" );
+        textures.push( "splash::splash1_0011.png" );
 
         var x = cc.randomMinus1To1() * 25;
         var y = cc.randomMinus1To1() * 12;
@@ -91,12 +91,12 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
         if( animatepath.length == 0 )
         {
             /**@type Array<String> */var textures = [];
-            textures.push( "lighting.lighting0001.png" );
-            textures.push( "lighting.lighting0002.png" );
-            textures.push( "lighting.lighting0003.png" );
-            textures.push( "lighting.lighting0004.png" );
-            textures.push( "lighting.lighting0005.png" );
-            textures.push( "lighting.lighting0006.png" );
+            textures.push( "lighting::lighting0001.png" );
+            textures.push( "lighting::lighting0002.png" );
+            textures.push( "lighting::lighting0003.png" );
+            textures.push( "lighting::lighting0004.png" );
+            textures.push( "lighting::lighting0005.png" );
+            textures.push( "lighting::lighting0006.png" );
             EU.xmlLoader.setProperty( this, EU.xmlKey.Image.int, textures[0]);
             var animation = EU.Animation.createAnimation( textures, 0.1 );
             action =  cc.animate( animation );
@@ -110,7 +110,7 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
             action = loaded;
         }
         if( action )
-            this.runAction(  new cc.RepeatForever( action  ) );
+            this.runAction(  cc.repeatForever( action  ) );
 
         var part = this._target.getParamCollection().get( "head", "" );
         var rand = this._target.getParamCollection().get( "random_bullet", "" );
@@ -171,7 +171,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         if (idx !== -1) {
             this.s_units.splice(idx, 1);
         }
-        cc.Sprite.onExit.call(this);
+        cc.Sprite.prototype.onExit.call(this);
     },
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
@@ -212,10 +212,10 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         var frame = (size == EU.ShootsEffects.Size.Big) ? "tank" : "man";
 
         /**@type Array<String> */var textures = [];
-        textures.push( "electro.electro_" + frame + "_0001.png" );
-        textures.push( "electro.electro_" + frame + "_0002.png" );
-        textures.push( "electro.electro_" + frame + "_0003.png" );
-        textures.push( "electro.electro_" + frame + "_0004.png" );
+        textures.push( "electro::electro_" + frame + "_0001.png" );
+        textures.push( "electro::electro_" + frame + "_0002.png" );
+        textures.push( "electro::electro_" + frame + "_0003.png" );
+        textures.push( "electro::electro_" + frame + "_0004.png" );
 
         var pframe = EU.ImageManager.getSpriteFrame( textures[0] );
         EU.assert( pframe );
@@ -226,7 +226,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
 
         var animation = EU.Animation.createAnimation( textures, 0.1 );
         var animate =  cc.animate( animation );
-        this.runAction(  new cc.RepeatForever( animate ) );
+        this.runAction(  cc.repeatForever( animate ) );
 
     },
 
@@ -276,7 +276,7 @@ EU.ShootsEffectsFire = EU.ShootsEffectsElectro.extend(
         if (idx !== -1) {
             this.s_units.splice(idx, 1);
         }
-        cc.Sprite.onExit.call(this);
+        cc.Sprite.prototype.onExit.call(this);
     },
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
@@ -304,16 +304,16 @@ EU.ShootsEffectsFire = EU.ShootsEffectsElectro.extend(
     initWithAnimation: function( /**@type {Size} */ size )
     {
         /**@type Array<String> */var textures = [];
-        textures.push( "fire2.fire2_0001.png" );
-        textures.push( "fire2.fire2_0002.png" );
-        textures.push( "fire2.fire2_0003.png" );
-        textures.push( "fire2.fire2_0004.png" );
-        textures.push( "fire2.fire2_0005.png" );
-        textures.push( "fire2.fire2_0006.png" );
-        textures.push( "fire2.fire2_0007.png" );
-        textures.push( "fire2.fire2_0008.png" );
-        textures.push( "fire2.fire2_0009.png" );
-        textures.push( "fire2.fire2_0010.png" );
+        textures.push( "fire2::fire2_0001.png" );
+        textures.push( "fire2::fire2_0002.png" );
+        textures.push( "fire2::fire2_0003.png" );
+        textures.push( "fire2::fire2_0004.png" );
+        textures.push( "fire2::fire2_0005.png" );
+        textures.push( "fire2::fire2_0006.png" );
+        textures.push( "fire2::fire2_0007.png" );
+        textures.push( "fire2::fire2_0008.png" );
+        textures.push( "fire2::fire2_0009.png" );
+        textures.push( "fire2::fire2_0010.png" );
 
         var pframe = EU.ImageManager.getSpriteFrame( textures[0] );
         EU.assert( pframe );
@@ -324,7 +324,7 @@ EU.ShootsEffectsFire = EU.ShootsEffectsElectro.extend(
 
         var animation = EU.Animation.createAnimation( textures, 0.5 );
         var animate =  cc.animate( animation );
-        this.runAction(  new cc.RepeatForever( animate ) );
+        this.runAction(  cc.repeatForever( animate ) );
     },
 
     checkClean: function()
@@ -360,7 +360,7 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
         --EU.ShootsEffects.ShootsEffectsFreezingCount;
         if( this.getTarget() && this.getTarget().getChildByName( "skin" ) )
             this.getTarget().getChildByName( "skin" ).setVisible( true );
-        cc.Sprite.onExit.call(this);
+        cc.Sprite.prototype.onExit.call(this);
 
     },
 
@@ -423,25 +423,26 @@ EU.ShootsEffectsIce = cc.Sprite.extend(
     onExit: function()
     {
         --EU.ShootsEffects.ShootsEffectsIceCount;
-        cc.Sprite.onExit.call(this);
+        cc.Sprite.prototype.onExit.call(this);
     },
 
     ctor: function( /**@type {var} */ position, /**@type {var} */ duration )
     {
+        this._super();
         this._duration = 0;
         this._elapsed = 0;
-        ++EU.ShootsEffects.ShootsEffectsIceCount;
 
-        this._super();
+        ++EU.ShootsEffects.ShootsEffectsIceCount;
+        var index = Math.round(cc.rand()) % 3 + 1;
+        var texture = "images/effects/ice" + ( index ) + ".png";
+        //EU.xmlLoader.setProperty( this, EU.xmlKey.Image.int, "ice" + ( index ));
+        this.setSpriteFrame(EU.ImageManager.sprite(texture).getSpriteFrame());
+        //this._super(EU.ImageManager.sprite(texture));
 
         this._duration = duration;
 
         var fadein =  cc.fadeTo( 0.2, 200 );
 
-       var index = cc.rand() % 3 + 1;
-        var texture = "images/effects/ice" + ( index ) + ".png";
-
-        EU.xmlLoader.setProperty( this, EU.xmlKey.Image.int, texture);
         this.setLocalZOrder( -9999 );
         this.setPosition( position );
         this.setOpacity( 0 );
@@ -485,7 +486,7 @@ EU.ShootsEffectsIce = cc.Sprite.extend(
                     var iceUnit = iceUnits[i];
                     if( iceUnit == this )
                     {
-                        iceUnits.splice(j, 1);
+                        iceUnits.splice(i, 1);
                         br = true;
                         break;
                     }
@@ -515,14 +516,14 @@ EU.ShootsEffectsIce.computePoints = function( /**@type {var} */ basePosition, /*
         if( count < 2 ) continue;
 
         var pointsOnRadius = [];
-        EU.Common.computePointsByRadius( pointsOnRadius, r, count, cc.random0To1() * (360 / count) );
+        pointsOnRadius = EU.Common.computePointsByRadius( pointsOnRadius, r, count, cc.random0To1() * (360 / count) );
 
         for (var i = 0; i < pointsOnRadius.length; i++) {
             var point = pointsOnRadius[i];
             var dummy = 0;
             point = cc.pAdd(basePosition, cc.p( point.x, point.y / 2 ));
-            if( EU.checkPointOnRoute( point, maxDistanceToRoad, UnitLayer.sea,  dummy ) ||
-                EU.checkPointOnRoute( point, maxDistanceToRoad, UnitLayer.earth,  dummy ) )
+            if( EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.sea,  dummy ) ||
+                EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.earth,  dummy ) )
             {
                 points.push( point );
             }
@@ -540,7 +541,7 @@ EU.ShootsEffectsIce2 = cc.Sprite.extend(
     onExit: function()
     {
         --EU.ShootsEffects.ShootsEffectsIce2Count;
-        cc.Sprite.onExit.call(this);
+        cc.Sprite.prototype.onExit.call(this);
     },
 
     ctor: function( /**@type {var} */ position, /**@type {var} */ duration )
@@ -548,7 +549,8 @@ EU.ShootsEffectsIce2 = cc.Sprite.extend(
         ++EU.ShootsEffects.ShootsEffectsIce2Count;
 
         //this.initWithFile( "images/effects/ice_texture.png" );
-        this._super( "images/effects/ice_texture.png" );
+        this._super(EU.ImageManager.sprite("images/effects/ice_texture.png"));
+
 
         this.setScaleY( 1 / EU.k.IsometricValue );
 
@@ -559,7 +561,7 @@ EU.ShootsEffectsIce2 = cc.Sprite.extend(
         var delay =  cc.delayTime( ddelay );
         var fade =  cc.fadeTo( dfade, 0 );
         var remove =  cc.callFunc(   this.removeFromParent.bind( this ) );
-        var action =  cc.sequence( fadein, delay, fade, remove, null );
+        var action =  cc.sequence( fadein, delay, fade, remove );
 
         this.setOpacity( 0 );
         this.setPosition( position );
@@ -671,7 +673,7 @@ EU.ShootsEffects = {
         Small: 2
     }),
 
-    ShootsEffectsCreate: function( /**@type {EU.Unit} */ base, /**@type {EU.Unit} */ target )
+    ShootsEffectsCreate: function( /**@type {EU.Unit} */ base, /**@type {EU.Unit} */ target, description )
     {
         var result = [];
     
@@ -695,7 +697,7 @@ EU.ShootsEffects = {
                 default: index = 0;
             }
     
-            var pos = EU.Common.strToPoint( params["position" + index ] );
+            var pos = EU.Common.strToPoint( params.get("position" + index ) );
             var width = EU.Common.strToFloat( params.get( "width", "1" ) );
             var color = EU.Common.strToColor3B( params.get( "color", "FF0000" ) );
     
@@ -706,9 +708,9 @@ EU.ShootsEffects = {
             var offset;
             var param = "offset" + base.getMover()._currentAngle ;
             if( params.indexOf(param) >= 0)
-                offset = EU.Common.strToPoint( params[param] );
+                offset = EU.Common.strToPoint( params.get(param) );
             else
-                offset = EU.Common.strToPoint( params["offset"] );
+                offset = EU.Common.strToPoint( params.get("offset") );
     
             var animatepath = params.get("animatepath");
             var effect = new EU.ShootsEffectsLighting( base, target, offset, animatepath );

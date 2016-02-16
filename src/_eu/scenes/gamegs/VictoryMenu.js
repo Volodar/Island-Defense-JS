@@ -48,9 +48,9 @@ EU.VictoryMenu = cc.Node.extend(
         }
         if( cost )
         {
-            var index = EU.GameGSInstance().getGameBoard().getCurrentLevelIndex( );
-            var mode = EU.GameGSInstance().getGameBoard().getGameMode();
-            var value = EU.LevelParams.shared().getFuel( index, GameMode.hard == mode );
+            var index = EU.GameGSInstance.getGameBoard().getCurrentLevelIndex( );
+            var mode = EU.GameGSInstance.getGameBoard().getGameMode();
+            var value = EU.LevelParams.getFuel( index, EU.GameMode.hard == mode );
             cost.setString( value );
         }
 
@@ -58,11 +58,12 @@ EU.VictoryMenu = cc.Node.extend(
         if( starnode ) starnode.setVisible( true );
 
         var label = this.getChildByPath_str( "score/value" );
-        if( label instanceof cc.Text)
+        if( label instanceof cc.LabelTTF)
         {
             label.setString( "0" );
-            var action = new EU.ActionText( 1, scores );
-            label.runAction( action );
+            //var action = new cc.ActionText( 1, scores );
+            label.setString(scores);
+            //label.runAction( action );
         }
 
         var dessize = cc.view.getDesignResolutionSize();
@@ -97,10 +98,10 @@ EU.VictoryMenu = cc.Node.extend(
     },
 
     cb_restart: function() {
-        var index = EU.GameGS.getInstance( ).getGameBoard( ).getCurrentLevelIndex( );
-        var mode = EU.GameGSInstance().getGameBoard().getGameMode();
-        var cost = EU.LevelParams.shared().getFuel( index, GameMode.hard == mode );
-        var fuel = EU.ScoreCounter.shared().getMoney( EU.kScoreFuel );
+        var index = EU.GameGSInstance.getGameBoard( ).getCurrentLevelIndex( );
+        var mode = EU.GameGSInstance.getGameBoard().getGameMode();
+        var cost = EU.LevelParams.getFuel( index, EU.GameMode.hard == mode );
+        var fuel = EU.ScoreCounter.getMoney( EU.kScoreFuel );
         if( cost <= fuel )
         {
             this.restart();
@@ -120,7 +121,7 @@ EU.VictoryMenu = cc.Node.extend(
     },
     cb_close: function()
     {
-        close();
+        this.close();
     },
     restart: function()
     {
@@ -132,7 +133,7 @@ EU.VictoryMenu = cc.Node.extend(
         }
     
         this.removeFromParent( );
-        GameGS.restartLevel( );
+        EU.GameGS.restartLevel( );
     },
     close: function()
     {

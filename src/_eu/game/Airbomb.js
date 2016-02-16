@@ -70,11 +70,11 @@ EU.Airbomb = EU.Unit.extend(
         var pos = this.getPosition();
         var z = this.getLocalZOrder();
         this.setPosition( position );
-        var board = GameGS.getInstance().getGameBoard();
+        var board = EU.GameGSInstance.getGameBoard();
         board.applyDamageBySector( this );
         this.setPosition( pos );
         this.setLocalZOrder( z );
-        GameGS.getInstance().shake();
+        EU.GameGSInstance.shake();
     },
 
     die: function()

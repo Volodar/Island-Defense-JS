@@ -187,7 +187,7 @@ EU.checkRadiusByEllipse = function( a, b, radius )
 //        return ActionText.create( getDuration( ), _endValue, _floatTruncation );
 //}
 
-EU.checkPointOnRoute = function( point, maxDistanceToRoad, allowLayer, outdistance )
+EU.checkPointOnRoute_1 = function( point, maxDistanceToRoad, allowLayer, outdistance )
 {
     EU.assert( EU.GameGSInstance );
     var board = EU.GameGSInstance.getGameBoard();
@@ -195,13 +195,13 @@ EU.checkPointOnRoute = function( point, maxDistanceToRoad, allowLayer, outdistan
     for( var i=0; i<routes.length; ++i )
     {
         var route = routes[i];
-        if( (route.type == allowLayer || allowLayer == EU.UnitLayer.any) && EU.checkPointOnRoute( point, route, maxDistanceToRoad, outdistance ) )
+        if( (route.type == allowLayer || allowLayer == EU.UnitLayer.any) && EU.checkPointOnRoute_2( point, route, maxDistanceToRoad, outdistance ) )
             return true;
     }
     return false;
 };
 
-EU.checkPointOnRoute = function( point, route, maxDistanceToRoad, outdistance )
+EU.checkPointOnRoute_2 = function( point, route, maxDistanceToRoad, outdistance )
 {
     var index_min = -1;
     var distance_min = 9999999;
