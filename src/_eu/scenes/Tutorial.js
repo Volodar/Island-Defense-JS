@@ -44,6 +44,8 @@ EU.Tutorial = cc.Layer.extend(
 
     ctor: function( /**@type {String} */ pathToXml )
     {
+        this._super();
+        this._nextTutorial = "";
         this.initExt();
         this.load_str( pathToXml );
 
@@ -56,82 +58,6 @@ EU.Tutorial = cc.Layer.extend(
         return true;
     },
 
-    setProperty: function( /**@type {Integer} */ intproperty, /**@type {String} */ value )
-    {
-        var node = null;
-        switch( intproperty )
-        {
-            case EU.xmlKey.Pos.int:
-                this.setPosition( this.getPosition() + EU.Common.strToPoint( value ) );
-                break;
-            case EU.kAutoPosition:
-                node = this.getNodeByPath( cc.director.getRunningScene(), value );
-                if( node ) this.setPosition( cc.pAdd(this.getPosition() ,node.getPosition()) );
-                break;
-            case EU.kParent:
-                EU.assert( this.getParent() == null );
-                node = this.getNodeByPath( cc.director.getRunningScene(), value );
-                if( node ) node.addChild( this );
-                break;
-            case EU.kAsBlockingLayer:
-                if( EU.Common.strToBool( value ) )
-                {
-                    var scene = cc.director.getRunningScene();
-                    var smartscene = scene;
-                    if (!smartscene.__SmartScene) smartscene = null;
-                    smartscene.pushLayer( this, true );
-                }
-                break;
-            case EU.kCloseByTap:
-                if( EU.Common.strToBool( value ) )
-                {
-                    var listener = cc.EventListener.create({
-                        event: cc.EventListener.TOUCH_ALL_AT_ONCE,
-                        onTouchBegan: this.touchesBegan.bind( this ),
-                        onTouchesEnded: this.touchesEnded.bind( this )
-                    });
-                    cc.eventManager.addListener(listener, this);
-                }
-                else
-                {
-                    cc.eventManager.removeListeners(this);
-                }
-                break;
-            case EU.kNextTutorial:
-                this._nextTutorial = value;
-                break;
-            case EU.kShopGift:
-                EU.UserData.write( EU.k.user.ShopGift, value );
-                break;
-            case EU.kSetLevelScore:
-                EU.ScoreCounter.setMoney( EU.kScoreLevel, EU.Common.strToInt( value ), false );
-                break;
-            case EU.kSelectHero:
-                EU.UserData.hero_setCurrent( EU.Common.strToInt( value ) );
-                break;
-            case EU.kResetHeroSkills:
-            {
-                var heroname = "hero" + ( EU.Common.strToInt( value ) + 1 );
-                var skills = [];
-                //TODO: EU.HeroExp.setSkills( heroname, skills );
-                break;
-            }
-            case EU.kHerominlevel:
-            {
-                //TODO:
-                //var current = EU.UserData.hero_getCurrent();
-                //var heroname = "hero" + ( current + 1 );
-                //var exp = EU.HeroExp.getEXP( heroname );
-                //var expmin = EU.HeroExp.getHeroLevelExtValue( EU.Common.strToInt( value ) ) + 1;
-                //exp = Math.max( exp, expmin );
-                //EU.HeroExp.setEXP( heroname, exp );
-                break;
-            }
-            default:
-                return this.setProperty( intproperty, value );
-        }
-        return true;
-    },
 
     enter: function()
     {
@@ -148,17 +74,7 @@ EU.Tutorial = cc.Layer.extend(
         return this._nextTutorial;
     },
 
-    get_callback_by_description: function( /**@type {String} */ name )
-    {
-        var self = this;
-        if( name == "confirm_tutorial_yes" )
-            return function(a) { self.cb_confirmTutorial.bind(self, a, true ) };
-        if( name == "confirm_tutorial_no" )
-            return function(a) { self.cb_confirmTutorial.bind(self, a, false ) };
-        return null;
-    },
-
-    cb_confirmTutorial: function( ref, use )
+    cb_confirmTutorial: function( use )
     {
         EU.UserData.write( EU.k.UseTitorial, use );
         EU.TutorialManager.close( this );
@@ -177,6 +93,91 @@ EU.Tutorial = cc.Layer.extend(
 });
 
 EU.NodeExt.call(EU.Tutorial.prototype);
+EU.Tutorial.prototype.setProperty_int = function( /**@type {Integer} */ intproperty, /**@type {String} */ value ) {
+    var node = null;
+    switch( intproperty )
+    {
+        case EU.xmlKey.Pos.int:
+            this.setPosition( cc.pAdd(this.getPosition(), EU.Common.strToPoint( value ) ) );
+            break;
+        case EU.kAutoPosition:
+            node = EU.Common.getNodeByPath( cc.director.getRunningScene(), value );
+            if( node ) this.setPosition( cc.pAdd(this.getPosition() ,node.getPosition()) );
+            break;
+        case EU.kParent:
+            EU.assert( this.getParent() == null );
+            node = EU.Common.getNodeByPath( cc.director.getRunningScene(), value );
+            if( node ) node.addChild( this );
+            break;
+        case EU.kAsBlockingLayer:
+            if( EU.Common.strToBool( value ) )
+            {
+                var scene = cc.director.getRunningScene();
+                var smartscene = scene;
+                if (!smartscene.__SmartScene) smartscene = null;
+                smartscene.pushLayer( this, true );
+            }
+            break;
+        case EU.kCloseByTap:
+            if( EU.Common.strToBool( value ) )
+            {
+                var listener = cc.EventListener.create({
+                    event: cc.EventListener.TOUCH_ALL_AT_ONCE,
+                    onTouchBegan: this.touchesBegan.bind( this ),
+                    onTouchesEnded: this.touchesEnded.bind( this )
+                });
+                cc.eventManager.addListener(listener, this);
+            }
+            else
+            {
+                cc.eventManager.removeListeners(this);
+            }
+            break;
+        case EU.kNextTutorial:
+            this._nextTutorial = value;
+            break;
+        case EU.kShopGift:
+            EU.UserData.write( EU.k.user.ShopGift, value );
+            break;
+        case EU.kSetLevelScore:
+            EU.ScoreCounter.setMoney( EU.kScoreLevel, EU.Common.strToInt( value ), false );
+            break;
+        case EU.kSelectHero:
+            EU.UserData.hero_setCurrent( EU.Common.strToInt( value ) );
+            break;
+        case EU.kResetHeroSkills:
+        {
+            var heroname = "hero" + ( EU.Common.strToInt( value ) + 1 );
+            var skills = [];
+            //TODO: EU.HeroExp.setSkills( heroname, skills );
+            break;
+        }
+        case EU.kHerominlevel:
+        {
+            //TODO:
+            //var current = EU.UserData.hero_getCurrent();
+            //var heroname = "hero" + ( current + 1 );
+            //var exp = EU.HeroExp.getEXP( heroname );
+            //var expmin = EU.HeroExp.getHeroLevelExtValue( EU.Common.strToInt( value ) ) + 1;
+            //exp = Math.max( exp, expmin );
+            //EU.HeroExp.setEXP( heroname, exp );
+            break;
+        }
+        default:
+            return false;
+    }
+    return true;
+};
+EU.Tutorial.prototype.get_callback_by_description = function( /**@type {String} */ name ) {
+    var self = this;
+    if( name == "confirm_tutorial_yes" )
+        return this.cb_confirmTutorial.bind( this, true );
+    if( name == "confirm_tutorial_no" )
+        return this.cb_confirmTutorial.bind( this, false );
+    return null;
+};
+
+
 
 /******************************************************************************/
 //MARK: TutorialManager
@@ -233,9 +234,6 @@ EU.TutorialManager = {
 
     dispatch: function( eventname,  params )
     {
-        //TODO: remove returns here
-        return;
-        
         var result = false;
 
         if( this._current && this._current.isRunning() == false )
@@ -309,11 +307,11 @@ EU.TutorialManager = {
 
             var next = this._current.next();
             this._current = null;
-
-            if( next.length > 0 )
+            var result = cc.isString(next) && next.length > 0;
+            if( result )
                 this.open( next );
 
-            return next.length > 0;
+            return result;
         }
         else
         {

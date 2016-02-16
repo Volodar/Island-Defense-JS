@@ -8,7 +8,7 @@
     <!--run on level 0-->
     <lvl0_imagerules filename="ini/tutorial/level/1/imagerules.xml"/>
     <lvl0_imagebuildings filename="ini/tutorial/level/1/imagebuildings.xml"/>
-    <lvl0_hero filename="ini/tutorial/level/1/hero.xml" count="2"/>
+    <!--<lvl0_hero filename="ini/tutorial/level/1/hero.xml" count="2"/>-->
     <lvl0_build_tower filename="ini/tutorial/level/1/build_tower.xml"/>
     <lvl0_runwave filename="ini/tutorial/level/1/runwave.xml"/>
     <lvl0_runwave_second filename="ini/tutorial/level/1/runwave_second.xml"/>
