@@ -1,4 +1,4 @@
-<tutorial parent="/gamelayer/interface/waveicon" pos="0x-100" z="999" template="ini/tutorial/template_baloon.xml">
+<tutorial parent="/gamelayer/interface/waveicon/icon" pos="35x-60" z="999" template="ini/tutorial/template_baloon.xml">
 	<children>
     <node path="body/text" text="#tuturial_startwave#"/>
     <node path="body/arrow" scale="1x-1" pos="0x40"/>

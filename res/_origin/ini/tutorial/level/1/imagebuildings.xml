@@ -1,4 +1,4 @@
-<tutorial template="ini/tutorial/template_window.xml" nexttutorial="lvl0_hero">
+<tutorial template="ini/tutorial/template_window.xml" nexttutorial="lvl0_build_tower">
 	<children>
     <node path="body/bg" image="images/tutorial/tut1.png" />
     
