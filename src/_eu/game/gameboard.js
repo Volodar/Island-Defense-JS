@@ -1051,7 +1051,7 @@ EU.GameBoard = cc.Class.extend({
         if( base.getDamageBySector() )
         {
             var direction = base.getDirection();
-            var radius = EU.Common.getDirectionByVector( target.getPosition() - base.getPosition() );
+            var radius = EU.Common.getDirectionByVector( cc.pSub(target.getPosition(), base.getPosition()) );
             var sector = base.getDamageBySectorAngle();
             while( direction < 0 ) direction += 360;
             while( radius < 0 ) radius += 360;
