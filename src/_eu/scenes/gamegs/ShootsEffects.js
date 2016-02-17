@@ -138,8 +138,8 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
             this.removeFromParent();
             return;
         }
-        var a = this._base.getPosition() + this._baseOffset;
-        var b = this._target.getPosition() + this._targetOffset;
+        var a = cc.pAdd(this._base.getPosition(), this._baseOffset);
+        var b = cc.pAdd(this._target.getPosition(), this._targetOffset);
         var r = cc.pSub(b, a);
 
         var angle = EU.Common.getDirectionByVector( r );
@@ -176,35 +176,29 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
     {
+        this._super();
         this._target = null ;
         this._position = cc.p(0,0);
         ++EU.ShootsEffects.ShootsEffectsElectroCount;
         var idx = this.s_units.indexOf(target);
         if (idx >= 0) return null;
 
-        var result = this.init( target, position, size, scale );
-        if (result) this.s_units.insert( target );
-        else return null;
-    },
-
-    init: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
-    {
-        if( target == null) return false;
-        this._super();
+        this.s_units.push( target );
+        if( target == null)
+            return false;
 
         this._target = target;
         this._position = position;
         this.setPosition( cc.pAdd(this._target.getPosition(), this._position ));
 
-        if( this.checkClean() ) return false;
+        if( this.checkClean() )
+            return false;
 
         this.initWithAnimation( size );
 
         this.setLocalZOrder( 9999 );
         this.setScale( scale );
         this.scheduleUpdate();
-
-        return true;
     },
 
     initWithAnimation: function( /**@type {Size} */ size )
@@ -281,24 +275,15 @@ EU.ShootsEffectsFire = EU.ShootsEffectsElectro.extend(
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
     {
+        this._super();
         ++EU.ShootsEffects.ShootsEffectsFireCount;
 
         var idx = this.s_units.indexOf(target);
         if (idx >= 0) return null;
 
-        var result = this.init( target, position, size, scale );
-        if (result) this.s_units.insert( target );
+        this.setAnchorPoint( cc.p(0.5, 0)  );
+        this.s_units.push( target );
 
-    },
-
-    init: function( /**@type {EU.Unit} */ target, /**@type {var} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
-    {
-        if( EU.ShootsEffectsElectro.init.call(this, target, position, size, scale ) == false )
-            return false;
-        var ANCHOR_MIDDLE_BOTTOM = c.p(0.5, 0);
-        this.setAnchorPoint( ANCHOR_MIDDLE_BOTTOM  );
-
-        return true;
     },
 
     initWithAnimation: function( /**@type {Size} */ size )
@@ -366,10 +351,11 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {var} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
     {
+        this._super();
         ++EU.ShootsEffects.ShootsEffectsFreezingCount;
 
         var result = this.init( target, position, size, scale );
-        if (result) this.s_units.insert( target );
+        if (result) this.s_units.push( target );
 
     },
 
@@ -590,7 +576,7 @@ EU.ShootsEffectLaser = cc.Sprite.extend(
         var angle = EU.Common.getDirectionByVector( cc.pSub(b, a) );
 
         var sprite = EU.ImageManager.sprite( "images/square.png" );
-        sprite.setScale( b.getDistance( a ), 2 * width );
+        sprite.setScale( cc.pDistance(b, a), 2 * width );
         sprite.setRotation( angle );
         sprite.setPosition( a );
         sprite.setAnchorPoint( cc.p( 0, 0.5 ) );
@@ -707,7 +693,7 @@ EU.ShootsEffects = {
         {
             var offset;
             var param = "offset" + base.getMover()._currentAngle ;
-            if( params.indexOf(param) >= 0)
+            if( params.isExist(param) )
                 offset = EU.Common.strToPoint( params.get(param) );
             else
                 offset = EU.Common.strToPoint( params.get("offset") );

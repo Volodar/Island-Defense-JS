@@ -76,7 +76,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                 if( name.indexOf( "_un" ) < 0 )
                 {
                     this._buttonTowers[name] = item;
-                    item.setCallback( function(p1){return self.onActivate.call(self, p1, true)}, this);
+                    this._buttonTowers[name].setCallback( this.onActivate.bind(this, item, true), this );
                 }
                 else
                 {
@@ -84,7 +84,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
                     name = name.slice( 0, -3);
 
                     this._buttonTowersUn[name] = item;
-                    item.setCallback( function(p1){return self.onActivate.call(self, p1, false)}, this);
+                    this._buttonTowersUn[name].setCallback( this.onActivate.bind(this, item, false), this );
                 }
                 var level = EU.UserData.tower_getUpgradeLevel( name );
                 if( level == 0 )

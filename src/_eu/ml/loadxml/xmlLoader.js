@@ -322,10 +322,19 @@ EU.xmlLoader = {
         var remove_spaces = function (desc) {
             //return desc.trim();
             var result = desc;
-            result = result.replace('\t', '');
-            result = result.replace('\n', '');
-            result = result.replace(' ', '');
+            var removeChar = function( char ){
+                while(true){
+                    var i = result.indexOf(char);
+                    if( i != -1 )
+                        result = result.substr(0, i) + result.substr(i+char.length);
+                    else
+                        break;
+                }
+            };
             result = result.trim();
+            removeChar('\t');
+            removeChar('\n');
+            removeChar(' ');
             return result;
         };
         /**

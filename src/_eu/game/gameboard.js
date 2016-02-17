@@ -308,7 +308,7 @@ EU.GameBoard = cc.Class.extend({
             EU.assert( index != -1 );
             if( index != -1 )
             {
-                this.units.splice( i, 1 );
+                this.units.splice( index, 1 );
                 this.remove( removed[i] );
             }
         }
@@ -829,7 +829,7 @@ EU.GameBoard = cc.Class.extend({
         {
             if( desant == unit )
             {
-                this.desants[desant] = undefined;
+                delete this.desants[desant];
                 break;
             }
         }
@@ -839,13 +839,7 @@ EU.GameBoard = cc.Class.extend({
         this.death.push( unit );
     },
     deathUnit: function( creep ){
-        var index = -1;
-        for( var i=0; i<this.death.length; ++i ){
-            if( this.death[i] == creep ){
-                index = i;
-                break;
-            }
-        }
+        var index = this.death.indexOf(creep);
         if( index != -1 )
         {
             var damager = creep.getCurrentDamager();
@@ -856,7 +850,7 @@ EU.GameBoard = cc.Class.extend({
             creep.stopAllLoopedSounds();
             EU.GameGSInstance.removeObject( creep );
             creep.removeFromParent();
-            this.death.splice( i, 1 );
+            this.death.splice( index, 1 );
         }
     },
     checkWaveFinished: function(){
@@ -973,11 +967,11 @@ EU.GameBoard = cc.Class.extend({
             tower.get_targets( targets );
             for( var j = 0; j < targets.length; )
             {
-                assert( targets[i] );
-                if( this.checkAvailableTarget( targets[i], tower ) )
+                assert( targets[j] );
+                if( this.checkAvailableTarget( targets[j], tower ) )
                     ++j;
                 else
-                    targets.splice( i, 1 );
+                    targets.splice( j, 1 );
             }
             for( j = 0; j < this.units.length && targets.length < max; ++j )
             {
