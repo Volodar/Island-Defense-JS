@@ -53,17 +53,17 @@
 
   <events>
     <eventlist name="appearance">
-      <setproperty property="opacity" value="0" target="bg"/>
-      <setproperty property="opacity" value="0" target="desc"/>
-      <setproperty property="opacity" value="0" target="desc/name"/>
-      <setproperty property="opacity" value="0" target="desc/dmg"/>
-      <setproperty property="opacity" value="0" target="desc/rng"/>
-      <setproperty property="opacity" value="0" target="desc/spd"/>
-      <setproperty property="opacity" value="0" target="desc/text"/>
-      <setproperty property="scale" value="0" target="upgrade"/>
-      <setproperty property="scale" value="0" target="upgrade_un"/>
-      <setproperty property="scale" value="0" target="sell"/>
-      <setproperty property="scale" value="0" target="lock"/>
+      <setproperty property="opacity" value="0x0" target="bg"/>
+      <setproperty property="opacity" value="0x0" target="desc"/>
+      <setproperty property="opacity" value="0x0" target="desc/name"/>
+      <setproperty property="opacity" value="0x0" target="desc/dmg"/>
+      <setproperty property="opacity" value="0x0" target="desc/rng"/>
+      <setproperty property="opacity" value="0x0" target="desc/spd"/>
+      <setproperty property="opacity" value="0x0" target="desc/text"/>
+      <setproperty property="scale" value="0x0" target="upgrade"/>
+      <setproperty property="scale" value="0x0" target="upgrade_un"/>
+      <setproperty property="scale" value="0x0" target="sell"/>
+      <setproperty property="scale" value="0x0" target="lock"/>
       
       <setproperty property="opacity" value="255" target="upgrade/normal"/>
       <setproperty property="opacity" value="255" target="upgrade_un/normal"/>

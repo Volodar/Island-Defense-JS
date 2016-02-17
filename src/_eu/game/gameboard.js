@@ -768,7 +768,7 @@ EU.GameBoard = cc.Class.extend({
         if( index != -1 )
         {
             var costSell = EU.mlTowersInfo.getSellCost( tower.getName(), tower.getLevel() );
-            this.units.erase( i );
+            this.units.splice( i,1 );
             var def = new EU.TowerPlaceDef;
             def.position = tower.getPosition();
             def.isActive = true;

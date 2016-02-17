@@ -125,6 +125,11 @@ EU.Unit = cc.Node.extend({
     getDamageBySectorAngle: function(){return this._damageBySectorAngle;},
     getCurrentDamager:function(){return this._currentDamager;},
     getHealth:function(){return this._health;},
+    getMaxLevel:function(){return this._maxLevel;},
+    getMaxLevelForLevel:function(){return this._maxLevelForLevel;},
+    setLevel:function(level){this._level = level;},
+    setMaxLevel:function(level){this._maxLevel = level;},
+    setMaxLevelForLevel:function(level){this._maxLevelForLevel = level;},
 
     ctor: function(path, xmlFile)
     {
