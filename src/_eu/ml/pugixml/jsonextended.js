@@ -113,8 +113,15 @@ var jsonextended = function(json, nodeName){
      */
     self.getElementsByTagName = function (tagName) {
        var allChildren = self.data[tagName];
-       var jsonExtendedChildren = new jsonextended(allChildren, tagName);
 
+       var jsonExtendedChildren = [];
+       if (!Array.isArray(allChildren)){
+           jsonExtendedChildren.push(new jsonextended(allChildren, tagName));
+       } else {
+           for (var i=0; i<allChildren.length; i++){
+               jsonExtendedChildren.push(new jsonextended(allChildren[i], tagName));
+           }
+       }
        return jsonExtendedChildren;
     };
 };
