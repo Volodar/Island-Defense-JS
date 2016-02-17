@@ -68,55 +68,56 @@ EU.pugixml = {
     },
     readJSON: function(jsonFile, cb, target){
 
-        //var xmlDoc;
-        //var xmlhttp;
-        //var fullPath = xmlFile.indexOf( EU.xmlLoader.resourcesRootJSON ) == 0 ?
-        //                jsonFile :
-        //                EU.xmlLoader.resourcesRootJSON + xmlFile;
-        //cc.log(fullPath);
-        ////if (typeof window.DOMParser != "undefined")
-        ////{
-        //    xmlhttp = cc.loader.loadJson(fullPath);
-        //
-        //    if (cb && target) {
-        //        xmlhttp.open("GET", fullPath, true);
-        //    } else {
-        //        xmlhttp.open("GET", fullPath, false);
-        //    }
-        //
-        //    if (xmlhttp.overrideMimeType) {
-        //        xmlhttp.overrideMimeType('text/xml');
-        //    }
-        //    var direction = cc.p(0, 0);
-        //    var rect = cc.rect(0, 0, 0, 0);
-        //
-        //    xmlhttp.onreadystatechange = function () {
-        //        //Whatever
-        //
-        //        //cc.log(xmlhttp.statusText);
-        //
-        //        if (xmlhttp.readyState == 4) {
-        //            var response = xmlhttp.response;
-        //            if ((xmlhttp.status >= 200 && xmlhttp.status <= 226)
-        //                || xmlhttp.status === 304 || xmlhttp.status === 302) {
-        //
-        //                xmlDoc = xmlhttp.responseXML;
-        //                if (cb && target) cb.call(target, xmlDoc);
-        //
-        //            } else {
-        //                //request error
-        //            }
-        //        }
-        //
-        //    };
-        //    xmlhttp.send();
-        ////}
+        var xmlDoc;
+        var xmlhttp;
+        var fullPath = jsonFile.indexOf( EU.xmlLoader.resourcesRootJSON ) == 0 ?
+                        jsonFile :
+                        EU.xmlLoader.resourcesRootJSON + jsonFile;
+        cc.log(fullPath);
+        //if (typeof window.DOMParser != "undefined")
+        //{
+            xmlhttp = cc.loader.getXMLHttpRequest(fullPath);
+
+            if (cb && target) {
+                xmlhttp.open("GET", fullPath, true);
+            } else {
+                xmlhttp.open("GET", fullPath, false);
+            }
+
+            if (xmlhttp.overrideMimeType) {
+                xmlhttp.overrideMimeType('application/json');
+            }
+            var direction = cc.p(0, 0);
+            var rect = cc.rect(0, 0, 0, 0);
+
+            xmlhttp.onreadystatechange = function () {
+                //Whatever
+
+                //cc.log(xmlhttp.statusText);
+
+                if (xmlhttp.readyState == 4) {
+                    var response = xmlhttp.response;
+                    if ((xmlhttp.status >= 200 && xmlhttp.status <= 226)
+                        || xmlhttp.status === 304 || xmlhttp.status === 302) {
+
+                        //parse the Json string
+                        xmlDoc = new jsonextended(JSON.parse(xmlhttp.responseText));
+                        //if (cb && target) cb.call(target, xmlDoc);
+
+                    } else {
+                        //request error
+                    }
+                }
+
+            };
+            xmlhttp.send();
+        //}
         ////else {
         ////    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
         ////    xmlDoc.async = "false";
         ////    xmlDoc.load(fullPath);
         ////}
-        //return xmlDoc;
+        return xmlDoc;
     }
 };
 
