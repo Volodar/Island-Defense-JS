@@ -561,13 +561,13 @@ EU.GameGS = EU.LayerExt.extend({
 
         var decoration = new EU.Decoration();
         EU.xmlLoader.load_node_xml_node(decoration, root, false);
-        decoration.setName(xmlnode.name());
+        decoration.setName(xmlnode.tagName);
         decoration.setPosition(x, y);
         decoration.setStartPosition(cc.p(x, y));
         //decoration.setLocalZOrder( z == 0 ? -y : z );
         decoration.setActionDescription(actiondesc);
 
-        if (actiondesc.size() > 0) {
+        if (actiondesc.length > 0) {
             var action = EU.xmlLoader.load_action_str(actiondesc);
             decoration.setAction(action);
         }

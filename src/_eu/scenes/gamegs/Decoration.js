@@ -18,6 +18,7 @@ EU.Decoration = cc.Sprite.extend({
     actionDescription : null,
     startPosition : null,
     ctor: function (node, touch) {
+        this._super();
         this.action = null;
         this.actionDescription = "";
         this.startPosition = cc.p(0,0);
