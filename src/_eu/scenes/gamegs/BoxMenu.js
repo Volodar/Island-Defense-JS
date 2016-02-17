@@ -59,10 +59,10 @@ EU.BoxMenu = cc.Menu.extend(
         this.add_state(this.state.state_open, this.callback_open.bind( this)).set_string_name("open");
         this.add_state(this.state.state_wait, this.callback_wait.bind( this)).set_string_name("wait");
 
-        this.add_event( this.event.event_close );
-        this.add_event( this.event.event_open );
-        this.add_event( this.event.event_wait );
-        this.add_event( this.event.event_cancel );
+        this.add_event( this.event.event_open).set_string_name("open");
+        this.add_event( this.event.event_close ).set_string_name("close");
+        this.add_event( this.event.event_wait ).set_string_name("wait");
+        this.add_event( this.event.event_cancel ).set_string_name("cancel");
 
         this.state_tag( this.state.state_close ).add_transition( this.event.event_open, this.state.state_open );
         this.state_tag( this.state.state_open ).add_transition( this.event.event_close, this.state.state_close );

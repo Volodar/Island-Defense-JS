@@ -317,17 +317,18 @@ EU.GameBoard = cc.Class.extend({
         this.checkGameFinished();
     },
     updateSkills: function( dt ){
-        for( var unit in this.desants )
+        for( var id in this.desants )
         {
-            this.desants[unit] -= dt;
-            if( this.desants[unit] <= 0 )
+            var unit = this.desants[id].unit;
+            this.desants[id].timer -= dt;
+            if( this.desants[id].timer <= 0 )
             {
-                var index = this.units.indexOf( desant );
+                var index = this.units.indexOf( unit );
                 EU.assert( index != -1 );
                 if( index != -1 )
                     this.units.splice( index, 1 );
                 this.remove( unit );
-                this.desants[unit] = undefined;
+                delete this.desants[id];
             }
         }
     },
@@ -608,13 +609,15 @@ EU.GameBoard = cc.Class.extend({
         var unit = null;
         var dummy = 0;
         if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
-            unit = UnitDesant.create( "ini/units", xmlfile );
+            unit = new EU.UnitDesant( "ini/units", xmlfile );
         if( unit )
         {
             unit.setBasePosition( position );
             unit.setPosition( position );
             this.addUnit( unit );
-            this.desants[unit] = lifetime;
+            this.desants[unit.__instanceId] = {};
+            this.desants[unit.__instanceId].unit = unit;
+            this.desants[unit.__instanceId].timer = lifetime;
         }
         return unit;
     },
@@ -635,7 +638,7 @@ EU.GameBoard = cc.Class.extend({
     
         if( name.empty() == false )
         {
-            var bomb = EU.Airbomb.create( "ini/units", name, position );
+            var bomb = new EU.Airbomb( "ini/units", name, position );
             EU.GameGSInstance.addObject( bomb, 9999 );
             return bomb;
         }
@@ -651,7 +654,7 @@ EU.GameBoard = cc.Class.extend({
         for (var i = 0; i < count; ++i)
         {
             var pos = EU.Common.getRandPointInPlace( position, EU.mlUnitInfo.info("landmine").radius / 2 );
-            var mine = new EU.LandMine.create( "ini/units", "landmine.xml" );
+            var mine = new EU.LandMine( "ini/units", "landmine.xml" );
             mine.setPosition( pos );
             this.addUnit( mine );
             result = mine;
@@ -665,7 +668,7 @@ EU.GameBoard = cc.Class.extend({
         if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer, dist ) )
             return null;
 
-        var item = Unit.create( "ini/units", name + ".xml" );
+        var item = new EU.Unit( "ini/units", name + ".xml" );
         item.setPosition( position );
         this.addUnit( item );
 
@@ -825,11 +828,12 @@ EU.GameBoard = cc.Class.extend({
             if( this.units[i].get_target() == unit )
                 this.units[i].capture_target( null );
         }
-        for( var desant in this.desants )
+        for( var id in this.desants )
         {
+            var desant = this.desants[id].unit;
             if( desant == unit )
             {
-                delete this.desants[desant];
+                delete this.desants[id];
                 break;
             }
         }

@@ -24,7 +24,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
 
 
     ctor: function( /**@type {String} */ back, /**@type {String} */ forward, /**@type {Number} */ duration,
-                    /**@type {Function} */ callback, /**@type {string} */ resourceCancel )
+                    /**@type {Function} */ callback, /**@type {Class} */ target, /**@type {string} */ resourceCancel )
     {
 
         this._timer = null;
@@ -37,7 +37,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
 
         var CB = callback ? callback : this._callback;
         this._super();
-        this.initWithNormalImage( forward, "", back, e, e, CB );
+        this.initWithNormalImage( forward, "", back, e, e, CB, target );
 
         if( forward.length > 0 )
         {
@@ -51,15 +51,15 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
             this._timer.setMidpoint( cc.p( 0.5, 0 ) );
             this._timer.setBarChangeRate( cc.p( 0, 1 ) );
             this._timer.setAnchorPoint( cc.p(0,0) );
-            this._timer.setPercentage( 0 );
+            this._timer.setPercentage( 100 );
             this.getDisabledImage().addChild( this._timer, 1 );
             this.getDisabledImage().setOpacity( 128 );
             this._duration = duration;
 
             var timer = new cc.ProgressFromTo( this._duration, 0, 100 );
-            var disabler = cc.callFunc(this.setEnabled.bind(this, false ), this);
-            var enabler = cc.callFunc( this.setEnabled.bind(this, true ), this);
-            var call = cc.callFunc( this.onFull, this );
+            var disabler = cc.callFunc(this.setEnabled.bind(this, false ));
+            var enabler = cc.callFunc( this.setEnabled.bind(this, true ));
+            var call = cc.callFunc( this.onFull.bind(this) );
             this._action = cc.sequence( disabler, timer, enabler, call );
         }
 
@@ -68,7 +68,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
             this._cancelImageResource = resourceCancel;
         }
 
-        if (this._cancelImageResource.length > 0 && this.getNormalImage())
+        if ( EU.xmlLoader.stringIsEmpty(this._cancelImageResource) == false && this.getNormalImage())
         {
             if (this._cancelImage)
                 this._cancelImage.removeFromParent();
