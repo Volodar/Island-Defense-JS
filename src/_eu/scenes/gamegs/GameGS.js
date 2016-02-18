@@ -20,7 +20,7 @@ EU.TouchInfo = cc.Class.extend({
     id: null,
     ctor: function (node, touch) {
         this.nodeBegin = node;
-        this.id = touch.getID();
+        this.id = touch.__instanceId;
     },
 });
 
@@ -591,12 +591,13 @@ EU.GameGS = EU.LayerExt.extend({
             }
             if (node) {
                 var ti = new EU.TouchInfo(node, touch);
-                self.touches[touch.getID()] = ti;
+                ti.startLocation = touch.getLocation();
+                self.touches[touch.__instanceId] = ti;
             }
             self.scrollInfo.node = self.mainlayer;
             self.scrollInfo.nodeposBegan = self.mainlayer.getPosition();
             self.scrollInfo.touchBegan = touch.getLocation();
-            self.scrollInfo.touchID = touch.getID();
+            self.scrollInfo.touchID = touch.__instanceId;
         }
     },
 
@@ -608,7 +609,7 @@ EU.GameGS = EU.LayerExt.extend({
         //#if PC != 1
         for (var i = 0; i < touches.length; ++i) {
             var touch = touches[i];
-            if (self.scrollInfo.touchID == touch.getID()) {
+            if (self.scrollInfo.touchID == touch.__instanceId) {
                 if (self.scrollInfo.node) {
                     var location = touch.getLocation();
                     var shift = EU.Common.pointDiff(location, self.scrollInfo.touchBegan);
@@ -630,7 +631,7 @@ EU.GameGS = EU.LayerExt.extend({
             return;
         for (var i = 0; i < touches.length; ++i) {
             var touch = touches[i];
-            if (self.scrollInfo.touchID == touch.getID()) {
+            if (self.scrollInfo.touchID == touch.__instanceId) {
                 if (self.scrollInfo.node) {
                     self.scrollInfo.node = null;
                     self.scrollInfo.touchID = -1;
@@ -638,12 +639,12 @@ EU.GameGS = EU.LayerExt.extend({
             }
 
             var touchEnd = touch;
-            var touchBegin = self.touches[touchEnd.getID()];
+            var touchBegin = self.touches[touchEnd.__instanceId];
             var location = self.mainlayer.convertToNodeSpace(touchEnd.getLocation());
-            var startLocation = self.mainlayer.convertToNodeSpace(touchEnd.getStartLocation());
+            var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan);
 
             var node = self.getObjectInLocation(location);
-            //if (EU.Common.pointDistance(location, startLocation) < 50) {
+            if ( cc.pDistance(location, startLocation) < 50) {
                 var indexTowerPlace = self.getTowerPlaceIndex(location);
                 if (indexTowerPlace != -1 && touchBegin.nodeBegin == self.towerPlaces[indexTowerPlace]) {
                     self.isIntteruptHeroMoving = true;
@@ -659,7 +660,7 @@ EU.GameGS = EU.LayerExt.extend({
                 }
                 self.menuDig.disappearance();
                 self.markTowerPlaceOnLocation(location);
-            //}
+            }
             if (node == null) {
                 self.selectedUnit = null;
             }

@@ -13,8 +13,6 @@
 //Define namespace
 var EU = EU || {};
 
-EU.mlCreep = {};
-
 EU.mlTowersInfo = {
 
     /** For Test Instance of */
