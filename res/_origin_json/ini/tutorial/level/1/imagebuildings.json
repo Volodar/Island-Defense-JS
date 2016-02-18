@@ -1,6 +1,6 @@
 {
     "tutorial": {
-        "@nexttutorial": "lvl0_hero",
+        "@nexttutorial": "lvl0_build_tower",
         "@template": "ini/tutorial/template_window.xml",
         "children": {
             "node": [

@@ -301,10 +301,6 @@
             "lvl0_desant_description": {
                 "@filename": "ini/tutorial/units/desant.xml"
             },
-            "lvl0_hero": {
-                "@count": "2",
-                "@filename": "ini/tutorial/level/1/hero.xml"
-            },
             "lvl0_imagebuildings": {
                 "@filename": "ini/tutorial/level/1/imagebuildings.xml"
             },

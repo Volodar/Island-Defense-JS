@@ -102,6 +102,7 @@
                 {
                     "@name": "1_explosion",
                     "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##",
+                    "@scale": "2x2",
                     "@type": "sprite"
                 },
                 {
@@ -132,6 +133,7 @@
                 {
                     "@name": "2_explosion",
                     "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##",
+                    "@scale": "2x2",
                     "@type": "sprite"
                 },
                 {
@@ -162,6 +164,7 @@
                 {
                     "@name": "3_explosion",
                     "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##",
+                    "@scale": "2x2",
                     "@type": "sprite"
                 },
                 {

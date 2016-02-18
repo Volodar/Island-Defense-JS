@@ -31,7 +31,7 @@
                 },
                 {
                     "@name": "animate_die",
-                    "@value": "Animate[0.7,[folder:desant.die::,frames:             desant_2_die_0001.png,             desant_2_die_0002.png,             desant_2_die_0003.png,             desant_2_die_0004.png,             desant_2_die_0005.png,             desant_2_die_0006.png,             desant_2_die_0007.png,             desant_2_die_0008.png,             desant_2_die_0009.png,             desant_2_die_0010.png,             desant_2_die_0011.png,             desant_2_die_0012.png,             desant_2_die_0013.png,             desant_2_die_0014.png,             desant_2_die_0015.png,             desant_2_die_0016.png,             desant_2_die_0017.png,             desant_2_die_0018.png,             desant_2_die_0019.png,             ]]"
+                    "@value": "Animate[0.7,[folder:desant.die::,frames:             desant_2_die_0001.png,             desant_2_die_0002.png,             desant_2_die_0003.png,             desant_2_die_0004.png,             desant_2_die_0005.png,             desant_2_die_0006.png,             desant_2_die_0007.png,             desant_2_die_0008.png,             desant_2_die_0009.png,             desant_2_die_0010.png,             desant_2_die_0011.png,             desant_2_die_0012.png,             desant_2_die_0013.png,             desant_2_die_0014.png,             desant_2_die_0015.png,             desant_2_die_0016.png,             desant_2_die_0017.png,             desant_2_die_0018.png,             desant_2_die_0019.png             ]]"
                 },
                 {
                     "@name": "animate_nothing",

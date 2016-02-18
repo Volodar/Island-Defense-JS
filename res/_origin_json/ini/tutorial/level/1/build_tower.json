@@ -1,6 +1,6 @@
 {
     "tutorial": {
-        "@parent": "/gamelayer/mainlayer/",
+        "@parent": "/gamelayer/mainlayer/objects",
         "@pos": "530x550",
         "@template": "ini/tutorial/template_baloon.xml",
         "@z": "999",

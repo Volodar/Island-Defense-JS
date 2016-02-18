@@ -161,57 +161,57 @@
                         {
                             "@property": "opacity",
                             "@target": "bg",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc/name",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc/dmg",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc/rng",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc/spd",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",
                             "@target": "desc/text",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "scale",
                             "@target": "upgrade",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "scale",
                             "@target": "upgrade_un",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "scale",
                             "@target": "sell",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "scale",
                             "@target": "lock",
-                            "@value": "0"
+                            "@value": "0x0"
                         },
                         {
                             "@property": "opacity",

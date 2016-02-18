@@ -1,10 +1,10 @@
 {
     "params": {
         "airplane_colldown": {
-            "@value": "70"
+            "@value": "1"
         },
         "desant_colldown": {
-            "@value": "17"
+            "@value": "1"
         },
         "desant_lifetime": {
             "@value": "16"

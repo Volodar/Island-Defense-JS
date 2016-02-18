@@ -33,6 +33,14 @@
                                         "@name": "shop",
                                         "@pos": "righttop:-155x50",
                                         "@visible": "##PLATFORM_MOBILE##"
+                                    },
+                                    {
+                                        "@name": "desant",
+                                        "@pos": "75x-50"
+                                    },
+                                    {
+                                        "@name": "bomb",
+                                        "@pos": "155x-50"
                                     }
                                 ]
                             }

@@ -1,7 +1,7 @@
 {
     "tutorial": {
-        "@parent": "/gamelayer/interface/waveicon",
-        "@pos": "0x-100",
+        "@parent": "/gamelayer/interface/waveicon/icon",
+        "@pos": "35x-60",
         "@template": "ini/tutorial/template_baloon.xml",
         "@z": "999",
         "actions": {
