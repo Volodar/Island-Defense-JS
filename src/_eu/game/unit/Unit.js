@@ -162,6 +162,7 @@ EU.Unit = cc.Node.extend({
         this._damageBySectorAngle =  0  ;
         this._unitLayer =  EU.UnitLayer.earth  ;
         this._allowTargets =  [];
+        this._allowTargets.push(EU.UnitLayer.any);
         this._skills =  [];
         this._maxTargets =  1  ;
         this._type = null ;
@@ -794,6 +795,7 @@ EU.Unit.prototype.setProperty_str = function(/**@type {String} */ name,/**@type 
     {
         /** {Array<String>} */ var targets = [];
         targets = value.split(',');
+        this._allowTargets =  [];
         for (var i = 0; i < targets.length; i++) {
             var target = targets[i];
             this._allowTargets.push( EU.strToUnitLayer( target ) );

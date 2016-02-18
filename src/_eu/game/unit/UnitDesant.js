@@ -50,14 +50,14 @@ EU.UnitDesant = EU.Unit.extend(
             var release = false;
             release = release || target._moveFinished;
             release = release || target.getCurrentHealth() <= 0;
-            release = release || targets.indexOf(target) < 0;
+            release = release || !targets || targets.indexOf(target) == -1;
             if( release )
                 this._targets.splice( i , 1);
             else
                 ++i;
         }
 
-        if( this._targets.length < this._maxTargets )
+        if( targets && this._targets.length < this._maxTargets )
         {
             for (i = 0; i < targets.length; i++) {
                 target = targets[i];
@@ -102,20 +102,20 @@ EU.UnitDesant = EU.Unit.extend(
         }
     },
 
-    setProperty: function( stringproperty, value )
+    setProperty_str: function( stringproperty, value )
     {
         if( stringproperty == "handradius" )
             this._handRadius = parseFloat( value );
         else if( stringproperty == "handradiussector" )
             this._handRadiusSector = parseFloat( value );
         else
-            return this.setProperty( stringproperty, value );
+            return EU.Unit.prototype.setProperty_str.call(this, stringproperty, value );
         return true;
     },
 
     on_die: function()
     {
-        this.on_die();
+        EU.Unit.prototype.on_die.call(this);
         for (var i = 0; i < this._targets.length; i++ ) {
             var target = this._targets[i];
             target.capture_targets([]);

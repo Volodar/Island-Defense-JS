@@ -623,12 +623,14 @@ EU.GameBoard = cc.Class.extend({
     },
     createBomb: function( position ){
         var name = "";
-        var dist_water = 9999;
-        var dist_earth = 9999;
-    
-        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
+
+        var ch1 = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea );
+        var ch2 = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth );
+        var dist_water = ch1.distance;
+        var dist_earth = ch2.distance;
+        if( ch1.result )
             name = "airplane_water.xml";
-        else if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        else if( ch2.result )
             name = "airplane_earth.xml";
     
         if( name == "airplane_water.xml" && dist_earth < dist_water )
@@ -636,7 +638,7 @@ EU.GameBoard = cc.Class.extend({
         if( name == "airplane_earth.xml" && dist_water < dist_earth )
             name = "airplane_water.xml";
     
-        if( name.empty() == false )
+        if( name.length > 0 )
         {
             var bomb = new EU.Airbomb( "ini/units", name, position );
             EU.GameGSInstance.addObject( bomb, 9999 );
@@ -646,8 +648,8 @@ EU.GameBoard = cc.Class.extend({
         return null;
     },
     createLandMine: function( position, count ){
-        var dist_earth = 9999;
-        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        var r = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth );
+        if( !r.result )
             return null;
     
         var result = null;
@@ -663,9 +665,8 @@ EU.GameBoard = cc.Class.extend({
         return result;
     },
     createBonusItem: function( position, name ){
-        var dist = 9999;
         var layer = EU.mlUnitInfo.info( name ).layer;
-        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer, dist ) )
+        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer ) )
             return null;
 
         var item = new EU.Unit( "ini/units", name + ".xml" );
@@ -682,12 +683,11 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<decorations.length; ++i )
         {
             var decor = decorations[i];
-            var dist = 9999;
-            EU.checkPointOnRoute_1( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
-            if( dist < dist_min )
+            var r = EU.checkPointOnRoute_1( decor.getPosition(), dist_min, EU.UnitLayer.earth );
+            if(r.distance < dist_min )
             {
                 min = index;
-                dist_min = dist;
+                dist_min = r.distance;
             }
             ++index;
         }
@@ -1037,7 +1037,7 @@ EU.GameBoard = cc.Class.extend({
     checkTargetByUnitLayer: function( target, base ){
         var target_layer = target._unitLayer;
         var allow_targets = base._allowTargets;
-        return allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(-1) != -1;
+        return allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(EU.UnitLayer.any) != -1;
     },
     checkTargetByRadius: function( target, center, radius ){
         var a = center;

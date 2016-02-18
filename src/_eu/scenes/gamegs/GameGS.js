@@ -1016,26 +1016,26 @@ EU.GameGS = EU.LayerExt.extend({
         this.boughtScoresForSession += count;
     },
     shake: function (value) {
-        var x = 2.0 * value;
-        var t = 0.05 * value;
-
-        var action = new cc.Sequence(
-            new cc.MoveBy(t, cc.p(0, +1 * x)),
-            new cc.MoveBy(t, cc.p(0, -2 * x)),
-            new cc.MoveBy(t, cc.p(0, +1 * x)),
-            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
-            new cc.MoveBy(t, cc.p(x, 0)),
-            new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
-            new cc.MoveBy(t, cc.p(0, 2 * x)),
-            new cc.MoveBy(t, cc.p(0, -4 * x)),
-            new cc.MoveBy(t, cc.p(0, 2 * x)),
-            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
-            new cc.MoveBy(t, cc.p(1.5 * x, 0)),
-            new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
-            new cc.MoveBy(t, cc.p(0, -2 * x)),
-            new cc.MoveBy(t, cc.p(0, 4 * x)),
-            new cc.MoveBy(t, cc.p(0, -2 * x)));
-        this.runAction(action);
+        //var x = 2.0 * value;
+        //var t = 0.05 * value;
+        //
+        //var action = new cc.Sequence(
+        //    new cc.MoveBy(t, cc.p(0, +1 * x)),
+        //    new cc.MoveBy(t, cc.p(0, -2 * x)),
+        //    new cc.MoveBy(t, cc.p(0, +1 * x)),
+        //    new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+        //    new cc.MoveBy(t, cc.p(x, 0)),
+        //    new cc.MoveBy(t, cc.p(-0.5 * x, 0)),
+        //    new cc.MoveBy(t, cc.p(0, 2 * x)),
+        //    new cc.MoveBy(t, cc.p(0, -4 * x)),
+        //    new cc.MoveBy(t, cc.p(0, 2 * x)),
+        //    new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+        //    new cc.MoveBy(t, cc.p(1.5 * x, 0)),
+        //    new cc.MoveBy(t, cc.p(-0.75 * x, 0)),
+        //    new cc.MoveBy(t, cc.p(0, -2 * x)),
+        //    new cc.MoveBy(t, cc.p(0, 4 * x)),
+        //    new cc.MoveBy(t, cc.p(0, -2 * x)));
+        //this.runAction(action);
     },
 
     openStatisticWindow: function (params) {
