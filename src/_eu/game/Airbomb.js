@@ -79,7 +79,7 @@ EU.Airbomb = EU.Unit.extend(
 
     die: function()
     {
-        this.removeFromParent();
+        this.removeFromParent(true);
     }
 
 

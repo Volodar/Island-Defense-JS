@@ -864,7 +864,7 @@ EU.GameBoard = cc.Class.extend({
             this.leaderboardScore += scores;
             creep.stopAllLoopedSounds();
             EU.GameGSInstance.removeObject( creep );
-            creep.removeFromParent();
+            creep.removeFromParent(true);
             this.death.splice( i, 1 );
         }
     },

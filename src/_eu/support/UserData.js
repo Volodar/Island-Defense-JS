@@ -43,6 +43,11 @@ EU.UserData = {
     write: function( key, value )
     {
         var ls = cc.sys.localStorage;
+
+        /** Preven jsb fault */
+        if (value == null || value === undefined) value = "";
+        key = key || "";
+
         ls.setItem(EU.UserData._PREFIX + key, value);
     },
 

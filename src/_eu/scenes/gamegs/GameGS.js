@@ -96,7 +96,7 @@ EU.GameGS = EU.LayerExt.extend({
     //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
     //
     //    if( this.scoreNode )
-    //        this.scoreNode.removeFromParent();
+    //        this.scoreNode.removeFromParent(true);
     //},
 
     ctor: function () {
@@ -364,7 +364,7 @@ EU.GameGS = EU.LayerExt.extend({
         EU.ShootsEffects.ShootsEffectsClear();
 
         if (this.bg)
-            this.bg.removeFromParent();
+            this.bg.removeFromParent(true);
         this.bg = null;
         this.objects.removeAllChildren();
         this.objects = null;
@@ -888,7 +888,7 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(new cc.Sequence(
                 new cc.ScaleTo(duration, 1),
-                new cc.CallFunc(sprite.removeFromParent, sprite))
+                new cc.CallFunc(sprite.removeFromParent.bind(sprite, true), sprite))
             );
             sprite.runAction(new cc.FadeTo(duration, 128));
         }
@@ -902,7 +902,7 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(new cc.Sequence(
                 new cc.EaseBounceOut(new cc.ScaleTo(duration, 1)),
-                new cc.CallFunc(sprite.removeFromParent, sprite))
+                new cc.CallFunc(sprite.removeFromParent.bind(sprite, true), sprite))
             );
             sprite.runAction(new cc.FadeTo(duration, 128));
         }
@@ -1136,7 +1136,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
     removeIconsForWave: function () {
         for (var i = 0; i < this.waveIcons.length; ++i) {
-            this.waveIcons[i].removeFromParent();
+            this.waveIcons[i].removeFromParent(true);
         }
         this.waveIcons.length = 0;
     },
@@ -1296,7 +1296,7 @@ EU.GameGS = EU.LayerExt.extend({
     removeObject: function (object) {
         if (this.objects && object){
             this.objects.removeChild(object);
-            object.removeFromParent();
+            object.removeFromParent(true);
         }
     },
     update: function (dt) {

@@ -396,7 +396,7 @@ EU.ScrollMenu = cc.Layer.extend(
     {
         for (var i = 0; i < this._items.length; i++) {
             var item = this._items[i];
-            item.removeFromParent();
+            item.removeFromParent(true);
         }
         this._items = [];
     },

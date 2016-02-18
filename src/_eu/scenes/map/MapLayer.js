@@ -164,7 +164,8 @@ EU.MapLayer = cc.Layer.extend({
         cc.Layer.prototype.onEnter.call(this);
 
         var locListener = this.touchListener;
-        if (!locListener._isRegistered())
+        //TODO: recode, for now disable _isRegistered because of jsb
+        // if (!locListener._isRegistered())
             cc.eventManager.addListener(locListener, this);
 
         this.scheduleUpdate();
@@ -494,7 +495,7 @@ EU.MapLayer = cc.Layer.extend({
             this.updateLocations = true;
             this.runLevel(this.selectedLevelIndex, mode);
             if (choose)
-                choose.removeFromParent();
+                choose.removeFromParent(true);
             this.showLaboratoryOnEnter = true;
         }
     },
@@ -571,7 +572,7 @@ EU.MapLayer = cc.Layer.extend({
     activateLocations: function () {
         for (var i = 0; i < this.curveMarkers; ++i) {
             var node = this.curveMarkers
-            node.removeFromParent();
+            node.removeFromParent(true);
         }
         this.curveMarkers.length = 0;
 
@@ -789,7 +790,7 @@ EU.MapLayer = cc.Layer.extend({
         }
 
         function buildCloseMenu(layer) {
-            var item = cc.MenuItemSprite.create(EU.ImageManager.sprite("images/square.png"), EU.ImageManager.sprite("images/square.png"), layer.removeFromParent, layer);
+            var item = cc.MenuItemSprite.create(EU.ImageManager.sprite("images/square.png"), EU.ImageManager.sprite("images/square.png"), layer.removeFromParent.bind(layer, true), layer);
             item.getNormalImage().setOpacity(1);
             item.getSelectedImage().setOpacity(1);
             item.setScale(9999);
@@ -962,7 +963,7 @@ EU.MapLayer = cc.Layer.extend({
     //    }
     //    else if( menu && BuyHeroMenu.isShow() == false )
     //    {
-    //        menu.removeFromParent();
+    //        menu.removeFromParent(true);
     //    }
     //}
     //

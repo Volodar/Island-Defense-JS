@@ -1082,7 +1082,8 @@ EU.xmlLoader = {
                 case EU.xmlKey.Text.int:
                     var loc = EU.Language.string(value);
                     if (label instanceof cc.LabelBMFont)
-                        label.setString(loc, true);
+                        /** 1 argument only - for jsb compatibility*/
+                        label.setString(loc);
                     else if (menuitem.__MenuItemImageWithText)
                         menuitem.setText(loc);
                     break;

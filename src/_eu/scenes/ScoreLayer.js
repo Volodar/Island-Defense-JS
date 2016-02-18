@@ -101,6 +101,8 @@ EU.ScoreLayer = cc.Scene.extend({
         var ss;
         if( min != 0 ) ss = ss + min + "m ";
         if( sec != 0 ) ss = ss + sec + "s";
+        /** Preven jsb fault */
+        ss = ss || "";
         this._time.setString( ss );
     },
 
