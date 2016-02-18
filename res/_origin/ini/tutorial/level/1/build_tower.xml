@@ -1,4 +1,4 @@
-<tutorial parent="/gamelayer/mainlayer/" pos="530x550" z="999" template="ini/tutorial/template_baloon.xml">
+<tutorial parent="/gamelayer/mainlayer/objects" pos="530x550" z="999" template="ini/tutorial/template_baloon.xml">
 	<children>
     <node path="body/text" text="#tuturial_buildtower#"/>
   </children>

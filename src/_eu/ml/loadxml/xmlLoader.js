@@ -931,8 +931,8 @@ EU.xmlLoader = {
         var texture = null;
 
         /** @type {EU.NodeExt} nodeext */
-        if (nodeext != null && nodeext.setPropertyInt != undefined)
-            result = nodeext.setPropertyInt(property, value);
+        if (nodeext != null && nodeext.setProperty_int != undefined)
+            result = nodeext.setProperty_int(property, value);
 
         if (result == false) {
             //TODO: EU.Common

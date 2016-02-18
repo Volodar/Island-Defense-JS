@@ -57,9 +57,9 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
             this._duration = duration;
 
             var timer = new cc.ProgressFromTo( this._duration, 0, 100 );
-            var disabler = cc.callFunc(this.setEnabled.bind(this, false ));
-            var enabler = cc.callFunc( this.setEnabled.bind(this, true ) );
-            var call = cc.callFunc( this.onFull.bind(this) );
+            var disabler = cc.callFunc(this.setEnabled.bind(this, false ), this);
+            var enabler = cc.callFunc( this.setEnabled.bind(this, true ), this);
+            var call = cc.callFunc( this.onFull, this );
             this._action = cc.sequence( disabler, timer, enabler, call );
         }
 

@@ -246,7 +246,7 @@ EU.MapLayer = cc.Layer.extend({
                 var run = function (mapLayer) {
                     var maxlevel = true;
                     var towers = []
-                    mlTowersInfo.fetch(towers);
+                    EU.mlTowersInfo.fetch(towers);
                     for (var tower in towers)
                         maxlevel = maxlevel && EU.UserData.tower_getUpgradeLevel(tower) == 5;
                     if (!maxlevel) {
@@ -943,7 +943,7 @@ EU.MapLayer = cc.Layer.extend({
     //        if( keyCode == EventKeyboard.KeyCode.KEY_1 ) { var player = AutoPlayer.create( true, true, 1, false ); player.retain(); }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_2 ) { var player = AutoPlayer.create( true, false, 3, false ); player.retain(); }
     //        if( keyCode == EventKeyboard.KeyCode.KEY_3 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); }
-    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); player.setGameMode( GameMode.hard ); }
+    //        if( keyCode == EventKeyboard.KeyCode.KEY_4 ) { var player = AutoPlayer.create( false, false, 99, true ); player.retain(); player.setGameMode( EU.GameMode.hard ); }
     //    }
     //}
     //

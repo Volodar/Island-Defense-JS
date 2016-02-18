@@ -63,5 +63,5 @@ EU.xmlKey = {
     Disabled: {name: "disabled", int: 44},
 
     //declare other properties as UserProperties + int constant
-    UserProperties: {name: "", int: 43},
+    UserProperties: {name: "", int: 100},
 };

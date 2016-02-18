@@ -299,7 +299,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     {
         if( !this._unit )
             return;
-        if( radiusTowerIsHiden() )
+        if( EU.radiusTowerIsHiden() )
             EU.showRadius( this._unit.getPosition(), this._unit._radius );
 
         var pos = this._unit.getPosition();

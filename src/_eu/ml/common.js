@@ -289,18 +289,19 @@ EU.Common = {
         var P1 = segmentA;
         var P2 = segmentB;
 
-        var p01 = P0 - P1;
-        var p21 = P2 - P1;
+        var p01 = cc.pSub(P0 ,P1);
+        var p21 = cc.pSub(P2 ,P1);
 
-        var T = p21.dot(p01) / (p21.x * p21.x + p21.y * p21.y );
+        var T = cc.pDot(p21, p01)/ (p21.x * p21.x + p21.y * p21.y );
+        //var T = p21.dot(p01) / (p21.x * p21.x + p21.y * p21.y );
 
         if (T < 0 || T > 1) {
             var res = 1E+37;
             return res;
         }
 
-        var P = P1 + p21 * T;
-        return pointDistance(P, point);
+        var P = cc.pAdd(P1, cc.pMult(p21 , T));
+        return this.pointDistance(P, point);
     },
     /**
      *
@@ -360,11 +361,14 @@ EU.Common = {
     computePointsByRadius: function (out, radius, countPoints, startAngleInDegree) {
         var delta = Math.PI * 2.0 / countPoints;
         var startAngleInRadian = startAngleInDegree * Math.PI / 180;
+        out = out || [];
         for (var i = 0; i < countPoints; ++i) {
             var angle = startAngleInRadian + delta * i;
+            out[i] = cc.p(0,0);
             out[i].x = radius * Math.cos(angle);
             out[i].y = radius * Math.sin(angle);
         }
+        return out;
     },
     /**
      *
@@ -402,6 +406,7 @@ EU.Common = {
      * @returns {*}
      */
     getNodeByPath: function (root, path_names) {
+        cc.log( "getNodeByPath: [" +  (root ? root.getName() : "null") + "],[" + path_names + "]" );
         if (!path_names || path_names.length == 0)
             return root;
         var names = [];

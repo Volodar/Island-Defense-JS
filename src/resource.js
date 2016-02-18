@@ -13,6 +13,9 @@ var res = {
     itemshop_bg : "images/itemshop/1136.png",
     itemshop_item : "images/laboratory/ui_panel1.png",
     lab_bg : "images/laboratory/1136.png",
+    ice1 : "images/effects/ice1.png",
+    ice2 : "images/effects/ice2.png",
+    ice3 : "images/effects/ice3.png",
 
     atlas00: "images/map/choose.plist",
 	atlas00_1: "images/gamescene.plist",
