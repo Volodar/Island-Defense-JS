@@ -386,7 +386,7 @@ EU.LevelParams = {
             EU.UserData.write(EU.k.LevelStars + index, all);
         }
         //EU.UserData.save();
-        cc.loader.load()
+        //cc.loader.load()
     }
 };
 
