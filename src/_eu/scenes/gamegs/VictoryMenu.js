@@ -129,10 +129,10 @@ EU.VictoryMenu = cc.Node.extend(
         var scores = scene.getChildByName("scoreslayer");
         if(scores)
         {
-            scores.removeFromParent();
+            scores.removeFromParent(true);
         }
     
-        this.removeFromParent( );
+        this.removeFromParent(true);
         EU.GameGS.restartLevel( );
     },
     close: function()
@@ -141,7 +141,7 @@ EU.VictoryMenu = cc.Node.extend(
         var scores = scene.getChildByName("scoreslayer");
         if(scores)
         {
-            scores.removeFromParent();
+            scores.removeFromParent(true);
         }
     
         cc.director.popScene();

@@ -55,8 +55,12 @@ EU.EventAction = EU.EventBase.extend({
         if( this.state == "run" ){
             var clone = action.clone();
             var tag = action.__instanceId;
-            target.runAction(clone);
+
+            /** Preven jsb fault */
+            tag = tag || 1;
+
             clone.setTag(tag);
+            target.runAction(clone);
         }
         else if( this.state == "stop" ){
             tag = action.__instanceId;
@@ -167,7 +171,7 @@ EU.EventPlaySound = EU.EventBase.extend({
         }
         else {
             var key = "EventPlaySound.play" + this.__instanceId;
-            if( cc.director.getScheduler().isScheduled(key, this) == false )
+            //if( cc.director.getScheduler().isScheduled(key, this) == false )
                 cc.director.getScheduler().schedule( this.play, this, this.preDelay, false, 0, false, key );
         }
     },
@@ -186,9 +190,9 @@ EU.EventPlaySound = EU.EventBase.extend({
             this.soundId = EU.AudioEngine.playEffect(this.sound, this.looped);
         if( this.looped ){
             var key = "EventPlaySound.stop" + this.__instanceId;
-            if( cc.director.getScheduler().isScheduled(key, target) == false ){
+            //if( cc.director.getScheduler().isScheduled(key, target) == false )
                 cc.director.getScheduler().schedule( this.stop, this, this.duration, false, 0, false, key );
-            }
+            
         }
     },
     stop: function(){

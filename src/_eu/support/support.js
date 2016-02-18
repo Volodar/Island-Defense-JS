@@ -125,7 +125,7 @@ EU.showRadius= function( position, radius )
 
 
     if( EU.SpriteForRadius.getParent( ) )
-        EU.SpriteForRadius.removeFromParent();
+        EU.SpriteForRadius.removeFromParent(true);
     EU.GameGSInstance.addObject( EU.SpriteForRadius );
 };
 

@@ -64,7 +64,9 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @returns {boolean}
      */
     initWithNormalImage: function( normalImage, selectedImage, disabledImage, fontBMP, text, callback, target ){
-        this.initWithCallback( callback, target );
+        callback = callback || function(){};
+        /** 1 argument only - for jsb compatibility*/
+        this.initWithCallback( callback.bind(target));
         //EU.NodeExt.init();
         this.setCascadeColorEnabled(true);
         this.setCascadeOpacityEnabled(true);
@@ -82,6 +84,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      */
     setCallback: function( callback, target ) {
         //var base = std::bind( &on_click, this, std::placeholders::_1 );
+        callback = callback || function(){};
         cc.MenuItem.prototype.setCallback.call( this, callback, target );
         //_onClick = callback;
     },
@@ -91,12 +94,18 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @param {string} file
      */
     listenTexture: function( file ){
+        /** @type cc.Texture2D */
         var texture = EU.ImageManager.getTextureForKey(file);
         if( texture ) {
-            if (texture.isLoaded())
+            //TODO: recode - there is no isLoaded in jsb
+            if (texture.isLoaded == undefined) {
                 this.locateImages(texture);
-            else
-                texture.addEventListener("load", this.locateImages, this, texture);
+            } else {
+                if (texture.isLoaded())
+                    this.locateImages(texture);
+                else
+                    texture.addEventListener("load", this.locateImages, this, texture);
+            }
         }
     },
     /**
@@ -237,15 +246,16 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     },
     /**
      * locate all images by center of button
-     * @param {cc.Texture} texture
+     * @param {cc.Texture2D} texture
      */
     locateImages: function( texture ) {
         if( !this.getNormalImage() )
             return;
 
-        if( texture == undefined || texture.isLoaded() == false )
+        //TODO: recode - there is no isLoaded in jsb
+        if( texture == undefined || (texture.isLoaded && texture.isLoaded() == false) )
             return;
-        texture.removeEventListener("load", this );
+        if (texture.isLoaded) texture.removeEventListener("load", this );
 
         var center = cc.p( this.getNormalImage().getContentSize().width / 2, this.getNormalImage().getContentSize().height / 2 );
 
