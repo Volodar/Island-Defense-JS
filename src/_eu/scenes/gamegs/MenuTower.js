@@ -66,10 +66,10 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         this._lock = this.getItemByName( "lock" );
 
         var self = this;
-        this._upgrade.setCallback( function(a) { return self.activateUpgrade.bind(self, a, true) } );
-        this._upgradeUn.setCallback( function(a) { return self.activateUpgrade.bind(self, a, false) } );
-        this._sell.setCallback( function(a) { return self.activateSell.bind(self, a, false) } );
-        this._lock.setCallback( this.lockClick.bind(this));
+        this._upgrade.setCallback( this.activateUpgrade.bind(this, true), this );
+        this._upgradeUn.setCallback( this.activateUpgrade.bind(this, false), this );
+        this._sell.setCallback( this.activateSell.bind(this, false), this );
+        this._lock.setCallback( this.lockClick, this);
 
         this._desc.node = this.getChildByName( "desc" );
         if( this._desc.node )
@@ -162,12 +162,12 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         if( this._desc.text )this._desc.text.setString( txt );
     },
 
-    activateUpgrade: function( sender, availebledButton )
+    activateUpgrade: function( availebledButton, sender )
     {
         this.buildDescription( this._unit._level + 1 );
         var self = this;
-        this._confirm.setCallback( function(a) { return self.confirmUpgrade.bind(self, a, true) });
-        this._confirmUn.setCallback( function(a) { return self.confirmUpgrade.bind(self, a, false) });
+        this._confirm.setCallback( this.confirmUpgrade.bind(this, true) );
+        this._confirmUn.setCallback( this.confirmUpgrade.bind(this, false) );
 
         this._confirm.setVisible( true );
         this._confirm.setPosition( this._upgrade.getPosition() );
@@ -181,9 +181,10 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         var radius = EU.mlTowersInfo.radiusInPixels( this._unit.getName(), this._unit._level + 1 );
         EU.showRadius( this._unit.getPosition( ), radius /** rate*/ );
         this.runEvent( "onclick" );
+        sender.setVisible(false);
     },
 
-    confirmUpgrade: function( sender, availebledButton )
+    confirmUpgrade: function( availebledButton, sender )
     {
         EU.assert( this._confirmCurrent );
         EU.assert( this._unit );
@@ -202,10 +203,10 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         }
     },
 
-    activateSell: function( sender, availebledButton )
+    activateSell: function( availebledButton, sender )
     {
         var self = this;
-        this._confirm.setCallback( function(a) { return self.confirmSell.bind(self, a, true) });
+        this._confirm.setCallback( this.confirmSell.bind(this, true) );
 
         this._confirmUn.setVisible( false );
         this._confirm.setVisible( true );
@@ -214,10 +215,11 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         this._waitSellConfirm = true;
         this._waitUpgradeConfirm = false;
 
-        this.hideRadius();
+        EU.hideRadius();
+        sender.setVisible(false);
     },
 
-    confirmSell: function( sender, availebledButton )
+    confirmSell: function( availebledButton, sender )
     {
         EU.assert( this._unit );
         EU.GameGSInstance.getGameBoard().removeTower( this._unit );

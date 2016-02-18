@@ -1,7 +1,7 @@
 <params>
-	<desant_colldown value="17"/>
+	<desant_colldown value="1"/>
 	<desant_lifetime value="16"/>
-	<airplane_colldown value="70"/>
+	<airplane_colldown value="1"/>
   <distance_to_road value="80"/>
 
   <landmine_colldown value="20"/>

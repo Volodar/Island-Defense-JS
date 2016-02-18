@@ -148,7 +148,7 @@
             desant_2_die_0016.png,
             desant_2_die_0017.png,
             desant_2_die_0018.png,
-            desant_2_die_0019.png,
+            desant_2_die_0019.png
             ]]"/>
     <action name="animate_nothing" value="
             RepeatForever

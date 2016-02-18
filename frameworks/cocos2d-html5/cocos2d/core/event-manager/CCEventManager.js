@@ -521,6 +521,10 @@ cc.eventManager = /** @lends cc.eventManager# */{
     },
 
     _associateNodeAndEventListener: function (node, listener) {
+        if( node == null )
+        {
+            cc.log("");
+        }
         var listeners = this._nodeListenersMap[node.__instanceId];
         if (!listeners) {
             listeners = [];

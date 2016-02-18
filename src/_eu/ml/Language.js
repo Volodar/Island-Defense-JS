@@ -52,8 +52,8 @@ EU.Language  = {
     {
         if( !(language in this.packs) )
         {
-            //set( "en" );
-            this.current = this.packs["en"];
+            set("en");
+            //this.current = this.packs["en"];
         }
         else
         {
@@ -68,7 +68,7 @@ EU.Language  = {
 
         }, this);
         var lang = root.getElementsByTagName("languages")[0];
-        for (var i = 0; i < 1 /**lang.children.length*/ ; ++i) {
+        for (var i = 0; i < lang.children.length; ++i) {
             var node = lang.children[i];
             var id = node.attributes[0].name;
             var path = node.attributes[0].value;
@@ -101,12 +101,13 @@ EU.Language  = {
         EU.pugixml.readXml( from , function(error, data) {
             doc = data;
         }, this, true);
-        var root = doc.firstElementChild.firstElementChild;
+        var root = doc.firstElementChild;
         var pack = {};
-        for( var i=0; i<root.children.length; i+=2 )
+        var allLangKeys = root.children;
+        for (var i = 0; i < allLangKeys.length; i++)
         {
-            var key = root.children[i].textContent;
-            var value = root.children[i+1].textContent;
+            var key = allLangKeys[i].tagName;
+            var value = allLangKeys[i].textContent;
             pack[key] = value;
         }
         return pack;
