@@ -166,7 +166,7 @@ EU.mlTowersInfo = {
         var doc;
         EU.pugixml.readXml( "ini/towers.xml", function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
 
@@ -220,7 +220,7 @@ EU.mlTowersInfo = {
                     var doc2 = null;
                     EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml", function(error, data) {
                         doc2 = data;
-                    }, this, true);
+                    }, this);
                     var root2 = doc2.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = parseInt(EU.asObject(root2.getAttribute( "maxlevel" ), 0));
 
@@ -229,7 +229,7 @@ EU.mlTowersInfo = {
                         docTemplate  = null;
                         EU.pugixml.readXml(root2.getAttribute( "template" ), function(error, data) {
                             docTemplate = data;
-                        }, this, true);
+                        }, this);
                     }
 
                     var xmlEffects = root2.getElementsByTagName( "effects" )[0];
@@ -345,7 +345,7 @@ EU.mlUnitInfo = {
         var doc = null;
         EU.pugixml.readXml( "ini/units/" + name + ".xml", function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
 
         while( root.getAttribute( "template" ) )
@@ -353,7 +353,7 @@ EU.mlUnitInfo = {
             var doc = null;
             EU.pugixml.readXml( root.getAttribute( "template" ), function(error, data) {
                 doc = data;
-            }, this, true);
+            }, this);
             root.removeAttribute( "template" );
 
             var temp = doc.firstElementChild;

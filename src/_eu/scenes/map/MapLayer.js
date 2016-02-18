@@ -790,7 +790,8 @@ EU.MapLayer = cc.Layer.extend({
         }
 
         function buildCloseMenu(layer) {
-            var item = cc.MenuItemSprite.create(EU.ImageManager.sprite("images/square.png"), EU.ImageManager.sprite("images/square.png"), layer.removeFromParent.bind(layer, true), layer);
+            var item = cc.MenuItemSprite.create(EU.ImageManager.sprite("images/square.png"),
+                EU.ImageManager.sprite("images/square.png"), layer.removeFromParent.bind(layer, true), layer);
             item.getNormalImage().setOpacity(1);
             item.getSelectedImage().setOpacity(1);
             item.setScale(9999);

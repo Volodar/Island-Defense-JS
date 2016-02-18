@@ -95,7 +95,7 @@ EU.ScoreByTime = {
         var doc = null;
         EU.pugixml.readXml( "ini/fuel.xml", function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
         if( !root )
             return;

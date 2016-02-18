@@ -125,7 +125,7 @@ EU.LoadLevelScene = cc.Scene.extend(
         var doc = null;
         EU.pugixml.readXml(pathToFile, function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
 
         var xmlTagWaves = (this._levelMode == EU.GameMode.normal ? EU.k.LevelWaves : EU.k.LevelWavesHard);

@@ -113,7 +113,7 @@ EU.GameBoard = cc.Class.extend({
         var doc = null;
         EU.pugixml.readXml( "ini/skills.xml", function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
 
         this.skillParams.cooldownDesant = parseFloat(root.getElementsByTagName( "desant_colldown" )[0].getAttribute( "value" ));
@@ -167,7 +167,7 @@ EU.GameBoard = cc.Class.extend({
             var doc = null;
             EU.pugixml.readXml( "ini/bonusitems.xml" , function(error, data) {
                 doc = data;
-            }, this, true);
+            }, this);
             var root = doc.firstElementChild;
 
             EU.UserData.bonusitem_add( 3, parseInt(root.getElementsByTagName( "bonusitem_dynamit" )[0].getAttribute( "default" )) );
@@ -184,7 +184,7 @@ EU.GameBoard = cc.Class.extend({
         var doc = null;
         EU.pugixml.readXml( pathToFile, function(error, data) {
             doc = data;
-        }, this , true);
+        }, this);
         var root = doc.firstElementChild;
         if( !root )
             cc.log( "cannot parce file" );

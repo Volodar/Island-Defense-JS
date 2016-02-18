@@ -171,6 +171,7 @@ EU.EventPlaySound = EU.EventBase.extend({
         }
         else {
             var key = "EventPlaySound.play" + this.__instanceId;
+            // TODO: jsb doesn't have isScheduled
             //if( cc.director.getScheduler().isScheduled(key, this) == false )
                 cc.director.getScheduler().schedule( this.play, this, this.preDelay, false, 0, false, key );
         }
@@ -190,7 +191,8 @@ EU.EventPlaySound = EU.EventBase.extend({
             this.soundId = EU.AudioEngine.playEffect(this.sound, this.looped);
         if( this.looped ){
             var key = "EventPlaySound.stop" + this.__instanceId;
-            //if( cc.director.getScheduler().isScheduled(key, target) == false )
+            // TODO: jsb doesn't have isScheduled
+            // if( cc.director.getScheduler().isScheduled(key, target) == false )
                 cc.director.getScheduler().schedule( this.stop, this, this.duration, false, 0, false, key );
             
         }

@@ -84,6 +84,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      */
     setCallback: function( callback, target ) {
         //var base = std::bind( &on_click, this, std::placeholders::_1 );
+        // empty function for jsb
         callback = callback || function(){};
         cc.MenuItem.prototype.setCallback.call( this, callback, target );
         //_onClick = callback;
@@ -97,7 +98,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         /** @type cc.Texture2D */
         var texture = EU.ImageManager.getTextureForKey(file);
         if( texture ) {
-            //TODO: recode - there is no isLoaded in jsb
+            //TODO: recode - there is no isLoaded and addEventListener in jsb
             if (texture.isLoaded == undefined) {
                 this.locateImages(texture);
             } else {
@@ -252,7 +253,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( !this.getNormalImage() )
             return;
 
-        //TODO: recode - there is no isLoaded in jsb
+        //TODO: recode - there is no isLoaded nor removeEventListener in jsb
         if( texture == undefined || (texture.isLoaded && texture.isLoaded() == false) )
             return;
         if (texture.isLoaded) texture.removeEventListener("load", this );

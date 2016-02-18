@@ -559,7 +559,7 @@ EU.GameGS = EU.LayerExt.extend({
         var doc = null;
         EU.pugixml.readXml(pathToXml, function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
 
         var decoration = new EU.Decoration();
@@ -894,9 +894,9 @@ EU.GameGS = EU.LayerExt.extend({
             sprite.setPosition(touchlocation);
             sprite.setScale(0);
             var duration = 0.5;
-            sprite.runAction(new cc.Sequence(
-                new cc.ScaleTo(duration, 1),
-                new cc.CallFunc(sprite.removeFromParent.bind(sprite, true), sprite))
+            sprite.runAction(cc.sequence(
+                cc.scaleTo(duration, 1),
+                cc.callFunc(sprite.removeFromParent.bind(sprite, true), sprite))
             );
             sprite.runAction(new cc.FadeTo(duration, 128));
         }
@@ -908,9 +908,9 @@ EU.GameGS = EU.LayerExt.extend({
             sprite.setPosition(touchlocation);
             sprite.setScale(0);
             var duration = 0.5;
-            sprite.runAction(new cc.Sequence(
-                new cc.EaseBounceOut(new cc.ScaleTo(duration, 1)),
-                new cc.CallFunc(sprite.removeFromParent.bind(sprite, true), sprite))
+            sprite.runAction(cc.sequence(
+                (cc.scaleTo(duration, 1)).easing(cc.easeBounceOut()),
+                cc.callFunc(sprite.removeFromParent.bind(sprite, true), sprite))
             );
             sprite.runAction(new cc.FadeTo(duration, 128));
         }

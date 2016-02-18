@@ -122,7 +122,7 @@ EU.xmlLoader = {
         var xmlnode = null;
         EU.pugixml.readXml(path, function(error, data) {
             xmlnode = data;
-        }, this, true);
+        }, this);
         var root = xmlnode.firstElementChild;
         return this.load_node_from_xml_node(root);
     },
@@ -179,7 +179,7 @@ EU.xmlLoader = {
         var xmlnode = null;
         EU.pugixml.readXml(path, function(error, data) {
             xmlnode = data;
-        }, this, true);
+        }, this);
         var root = xmlnode.firstElementChild;
         this.load_node_xml_node(node, root, false);
     },
@@ -785,7 +785,7 @@ EU.xmlLoader = {
         var doc = null;
         EU.pugixml.readXml(path, function(error, data) {
             doc = data;
-        }, this, true);
+        }, this);
         var root = doc.firstElementChild;
         for (var i = 0; i < root.children.length; i++) {
             var xmlchild = root.children[i];

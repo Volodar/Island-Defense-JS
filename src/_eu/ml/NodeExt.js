@@ -57,7 +57,7 @@ EU.NodeExt = function(){
         var xmlnode = null;
         EU.pugixml.readXml( file, function(error, data) {
             xmlnode = data;
-        }, this, true);
+        }, this);
         var root = xmlnode.firstElementChild;
         if( this.load_xmlnode2 )
             this.load_xmlnode2( root );
