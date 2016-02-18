@@ -24,7 +24,7 @@ EU.HelloWorldLayer = cc.Layer.extend({
         this.addChild(node);
 
         /*
-        var xmlnode = new EU.pugixml.readXml("res/tests.xml");
+        var xmlnode = EU.pugixml.readXml("res/tests.xml");
         var root = xmlnode.firstElementChild;
         var name = root.getAttribute( "name" );
         var type = root.getAttribute( "type" );

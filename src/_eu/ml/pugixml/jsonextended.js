@@ -66,7 +66,7 @@ var jsonextended = function(json, nodeName){
     /**
      * get first child element
      */
-     Object.defineProperty(self, "firstChildElement", {
+     Object.defineProperty(self, "firstElementChild", {
         get: function() {
             var childKeys = Object.keys(self.data).filter(function(item){
                 return item[0] != '@';

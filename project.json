@@ -13,6 +13,7 @@
 
     "jsList" : [
         "src/resource.js",
+        "src/_eu/ml/pugixml/jsonextended.js",
         "src/_eu/CCS.js",
         "src/_eu/consts.js",
         "src/_eu/configuration.js",

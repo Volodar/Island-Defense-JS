@@ -1,0 +1,43 @@
+{
+    "root": {
+        "languages": {
+            "@default": "en",
+            "@forced": "en",
+            "language": [
+                {
+                    "@en": "lang/en.xml"
+                },
+                {
+                    "@ru": "lang/ru.xml"
+                },
+                {
+                    "@pl": "lang/pl.xml"
+                },
+                {
+                    "@de": "lang/de.xml"
+                },
+                {
+                    "@cz": "lang/cz.xml"
+                },
+                {
+                    "@es": "lang/es.xml"
+                },
+                {
+                    "@fr": "lang/fr.xml"
+                },
+                {
+                    "@it": "lang/it.xml"
+                },
+                {
+                    "@pt": "lang/pt.xml"
+                },
+                {
+                    "@nl": "lang/nl.xml"
+                },
+                {
+                    "@enpc": "lang/enpc.xml"
+                }
+            ]
+        }
+    }
+}

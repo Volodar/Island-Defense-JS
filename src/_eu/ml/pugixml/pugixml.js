@@ -16,57 +16,62 @@ EU.pugixml = {
      * @returns xmlDocument
      */
     readXml: function(xmlFile, cb, target){
-        var xmlDoc;
-        var xmlhttp;
-        var fullPath = xmlFile.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
-            xmlFile :
-            EU.xmlLoader.resourcesRoot + xmlFile;
-        cc.log(fullPath);
-        //if (typeof window.DOMParser != "undefined")
-        //{
-            xmlhttp = cc.loader.getXMLHttpRequest();
-
-            if (cb && target) {
-                xmlhttp.open("GET", fullPath, true);
-            } else {
-                xmlhttp.open("GET", fullPath, false);
-            }
-
-            if (xmlhttp.overrideMimeType) {
-                xmlhttp.overrideMimeType('text/xml');
-            }
-            var direction = cc.p(0, 0);
-            var rect = cc.rect(0, 0, 0, 0);
-
-            xmlhttp.onreadystatechange = function () {
-                //Whatever
-                
-                //cc.log(xmlhttp.statusText);
-                
-                if (xmlhttp.readyState == 4) {
-                    var response = xmlhttp.response;
-                    if ((xmlhttp.status >= 200 && xmlhttp.status <= 226)
-                        || xmlhttp.status === 304 || xmlhttp.status === 302) {
-
-                        xmlDoc = xmlhttp.responseXML;
-                        if (cb && target) cb.call(target, xmlDoc);
-
-                    } else {
-                        //request error
-                    }
-                }
-                
-            };
-            xmlhttp.send();
-        //}
-        //else {
-        //    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-        //    xmlDoc.async = "false";
-        //    xmlDoc.load(fullPath);
-        //}
-        return xmlDoc;
+        //var xmlDoc;
+        //var xmlhttp;
+        //var fullPath = xmlFile.indexOf( EU.xmlLoader.resourcesRoot ) == 0 ?
+        //    xmlFile :
+        //    EU.xmlLoader.resourcesRoot + xmlFile;
+        //cc.log(fullPath);
+        ////if (typeof window.DOMParser != "undefined")
+        ////{
+        //    xmlhttp = cc.loader.getXMLHttpRequest();
+        //
+        //    if (cb && target) {
+        //        xmlhttp.open("GET", fullPath, true);
+        //    } else {
+        //        xmlhttp.open("GET", fullPath, false);
+        //    }
+        //
+        //    if (xmlhttp.overrideMimeType) {
+        //        xmlhttp.overrideMimeType('text/xml');
+        //    }
+        //    var direction = cc.p(0, 0);
+        //    var rect = cc.rect(0, 0, 0, 0);
+        //
+        //    xmlhttp.onreadystatechange = function () {
+        //        //Whatever
+        //
+        //        //cc.log(xmlhttp.statusText);
+        //
+        //        if (xmlhttp.readyState == 4) {
+        //            var response = xmlhttp.response;
+        //            if ((xmlhttp.status >= 200 && xmlhttp.status <= 226)
+        //                || xmlhttp.status === 304 || xmlhttp.status === 302) {
+        //
+        //                xmlDoc = xmlhttp.responseXML;
+        //                if (cb && target) cb.call(target, xmlDoc);
+        //
+        //            } else {
+        //                //request error
+        //            }
+        //        }
+        //
+        //    };
+        //    xmlhttp.send();
+        ////}
+        ////else {
+        ////    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+        ////    xmlDoc.async = "false";
+        ////    xmlDoc.load(fullPath);
+        ////}
+        //return xmlDoc;
+        return EU.pugixml.readJSON(xmlFile, cb, target);
     },
     readJSON: function(jsonFile, cb, target){
+        /** check if the file path is .xml, then replace it with .json */
+        if (jsonFile.substr(jsonFile.lastIndexOf('.') + 1) == 'xml'){
+            jsonFile = jsonFile.replace(".xml", ".json");
+        }
 
         var xmlDoc;
         var xmlhttp;
@@ -76,41 +81,9 @@ EU.pugixml = {
         cc.log(fullPath);
         //if (typeof window.DOMParser != "undefined")
         //{
-            xmlhttp = cc.loader.getXMLHttpRequest(fullPath);
+        cc.loader.loadJson(fullPath, cb, target);
+        //cc.loader.loadJson(fullPath, function(err, data) {cb.bind(target, err, new jsonextended(data))}, target);
 
-            if (cb && target) {
-                xmlhttp.open("GET", fullPath, true);
-            } else {
-                xmlhttp.open("GET", fullPath, false);
-            }
-
-            if (xmlhttp.overrideMimeType) {
-                xmlhttp.overrideMimeType('application/json');
-            }
-            var direction = cc.p(0, 0);
-            var rect = cc.rect(0, 0, 0, 0);
-
-            xmlhttp.onreadystatechange = function () {
-                //Whatever
-
-                //cc.log(xmlhttp.statusText);
-
-                if (xmlhttp.readyState == 4) {
-                    var response = xmlhttp.response;
-                    if ((xmlhttp.status >= 200 && xmlhttp.status <= 226)
-                        || xmlhttp.status === 304 || xmlhttp.status === 302) {
-
-                        //parse the Json string
-                        xmlDoc = new jsonextended(JSON.parse(xmlhttp.responseText));
-                        //if (cb && target) cb.call(target, xmlDoc);
-
-                    } else {
-                        //request error
-                    }
-                }
-
-            };
-            xmlhttp.send();
         //}
         ////else {
         ////    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
