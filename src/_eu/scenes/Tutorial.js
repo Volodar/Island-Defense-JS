@@ -378,7 +378,8 @@ EU.TutorialManager = {
 
     load: function()
     {
-        /**@type {Element} */ var doc = null;
+        /**@type {Element} */
+        var doc = null;
         EU.pugixml.readXml("ini/tutorial/tutorials.xml", function(error, data) {
             doc = data;
         }, this, true);
