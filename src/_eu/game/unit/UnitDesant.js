@@ -32,6 +32,7 @@ EU.UnitDesant = EU.Unit.extend(
         this._targets = [];
         this._basePosition = cc.p(0,0) ;
         this._super(path, xmlFile);
+        this.runEvent("on_stop");
     },
 
     checkTargetByRadius: function(   target )

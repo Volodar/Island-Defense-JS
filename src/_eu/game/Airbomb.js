@@ -35,8 +35,8 @@ EU.Airbomb = EU.Unit.extend(
             var dy = cc.randomMinus1To1() * 50;
             var pos = cc.pAdd(position, cc.p( dx, dy ));
             positions.push( pos );
-            EU.xmlLoader.macros.set( "airplane_bomb_posx" +  i+1 , ( pos.x ) );
-            EU.xmlLoader.macros.set( "airplane_bomb_posy" +  i+1 , ( pos.y ) );
+            EU.xmlLoader.macros.set( "airplane_bomb_posx" +  (i+1) , ( pos.x ) );
+            EU.xmlLoader.macros.set( "airplane_bomb_posy" +  (i+1) , ( pos.y ) );
         }
 
         this._super(path, xmlFile );
@@ -71,7 +71,7 @@ EU.Airbomb = EU.Unit.extend(
         var board = EU.GameGSInstance.getGameBoard();
         board.applyDamageBySector( this );
         this.setPosition( pos );
-        1this.setLocalZOrder( z );
+        this.setLocalZOrder( z - 9999 );
         EU.GameGSInstance.shake();
     },
 

@@ -12,19 +12,19 @@
 
     <node type="sprite" name="1_bomb" pos="10000x10000" center="0.5x0"/>
     <node type="sprite" name="1_shadow" pos="10000x10000" center="0.5x1"/>
-    <node type="sprite" name="1_explosion" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##"/>
+    <node type="sprite" name="1_explosion" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##" scale="2x2"/>
     <node type="sprite" name="1_explosion_water" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##"/>
     <node type="sprite" name="1_place" pos="##airplane_bomb_posx1##x##airplane_bomb_posy1##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
     
     <node type="sprite" name="2_bomb" pos="10000x10000" center="0.5x0"/>
     <node type="sprite" name="2_shadow" pos="10000x10000" center="0.5x1"/>
-    <node type="sprite" name="2_explosion" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##"/>
+    <node type="sprite" name="2_explosion" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##" scale="2x2"/>
     <node type="sprite" name="2_explosion_water" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##"/>
     <node type="sprite" name="2_place" pos="##airplane_bomb_posx2##x##airplane_bomb_posy2##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
     
     <node type="sprite" name="3_bomb" pos="10000x10000" center="0.5x0"/>
     <node type="sprite" name="3_shadow" pos="10000x10000" center="0.5x1"/>
-    <node type="sprite" name="3_explosion" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##"/>
+    <node type="sprite" name="3_explosion" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##" scale="2x2"/>
     <node type="sprite" name="3_explosion_water" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##"/>
     <node type="sprite" name="3_place" pos="##airplane_bomb_posx3##x##airplane_bomb_posy3##" opacity="0" image="airbomb::texture1.png" globalzorder="-1"/>
   </children>
