@@ -89,10 +89,12 @@ var jsonextended = function(json, isDocRoot){
 
     /**
      @param {string} name
-     @return {string}
      */
     self.getAttribute =  function(name){
-        return self.data["@"+name];
+        if (self.hasAttribute(name)) {
+            return self.data["@" + name];
+        } else
+            return null;
     };
 
     /**
@@ -110,7 +112,9 @@ var jsonextended = function(json, isDocRoot){
     self.removeAttribute = function(name) {
         //using delete operator is significantly slower
         //http://stackoverflow.com/questions/208105/how-do-i-remove-a-property-from-a-javascript-object
-        self.data["@"+name] = null;
+        if (self.hasAttribute(name)) {
+            self.data["@" + name] = null;
+        }
     };
 
     /**
@@ -118,7 +122,7 @@ var jsonextended = function(json, isDocRoot){
      @return {boolean}
      */
     self.hasAttribute = function (name) {
-        if (self.data["@"+name] == null)
+        if (typeof self.data == 'undefined' || self.data["@" + name] == null)
             return false;
         else
             return true;
@@ -132,7 +136,7 @@ var jsonextended = function(json, isDocRoot){
        var allChildren = self.data[tagName];
 
        var jsonExtendedChildren = [];
-       if (allChildren != null) {
+        if (typeof allChildren != 'undefined' && allChildren != null) {
            if (!Array.isArray(allChildren)) {
                jsonExtendedChildren.push(self.buildElement(allChildren, tagName));
            } else {
@@ -152,6 +156,8 @@ var jsonextended = function(json, isDocRoot){
      * @returns {jsonextended}
      */
     self.buildElement = function (data, tagName){
+        if (typeof data == 'undefined') return null;
+
         var element = {};
         element[tagName] = data;
         return new jsonextended(element);
