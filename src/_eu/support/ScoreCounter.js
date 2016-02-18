@@ -92,7 +92,10 @@ EU.ScoreByTime = {
     init: function() {
         EU.ScoreCounter.observer( EU.kScoreTime ).add( this.__instanceId, this.changeTime, this );
         EU.ScoreCounter.observer( EU.kScoreFuel ).add( this.__instanceId, this.changeFuel, this );
-        var doc = EU.pugixml.readXml( "ini/fuel.xml");
+        var doc = null;
+        EU.pugixml.readXml( "ini/fuel.xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
         if( !root )
             return;
@@ -221,7 +224,10 @@ EU.LevelParams = {
     },
     loadRealParams: function()
     {
-        var doc = EU.pugixml.readXml( "ini/realgold.xml");
+        var doc = null;
+        EU.pugixml.readXml( "ini/realgold.xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
         if( !root )return;
         root = root.getElementsByTagName("default");
@@ -233,7 +239,10 @@ EU.LevelParams = {
 
     loadLevelParams: function()
     {
-        var doc = EU.pugixml.readXml( "ini/levels.xml");
+        var doc = null;
+        EU.pugixml.readXml( "ini/levels.xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
 
         var i = 0;
@@ -272,7 +281,10 @@ EU.LevelParams = {
         while( ++i );
     },
     parseLevel: function(index) {
-        var doc = EU.pugixml.readXml(EU.kDirectoryToMaps + index + ".xml");
+        var doc = null;
+        EU.pugixml.readXml(EU.kDirectoryToMaps + index + ".xml", function(error, data) {
+            doc = data;
+        }, this, true);
         if( !doc )
             return;
         var root = doc.firstElementChild;

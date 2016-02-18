@@ -81,8 +81,8 @@ EU.pugixml = {
         cc.log(fullPath);
         //if (typeof window.DOMParser != "undefined")
         //{
-        cc.loader.loadJson(fullPath, cb, target);
-        //cc.loader.loadJson(fullPath, function(err, data) {cb.bind(target, err, new jsonextended(data))}, target);
+        //cc.loader.loadJson(fullPath, cb, target);
+        cc.loader.loadJson(fullPath, function(err, data) {cb.call(target, err, new jsonextended(data, true))}, true);
 
         //}
         ////else {

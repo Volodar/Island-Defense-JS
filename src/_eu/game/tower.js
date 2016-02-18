@@ -165,7 +165,10 @@ EU.mlTowersInfo = {
         return 0;
     },
     load : function () {
-        var doc = new EU.pugixml.readXml( "ini/towers.xml");
+        var doc;
+        EU.pugixml.readXml( "ini/towers.xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
         this._digcost = EU.asObject(root.getAttribute( "digcost" ), 0);
 
@@ -216,12 +219,20 @@ EU.mlTowersInfo = {
                 for ( i = 1; i <= maxlevel; ++i )
                 {
                     var docTemplate;
-                    var doc2 = new EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml");
+                    var doc2 = null;
+                    EU.pugixml.readXml( "ini/units/" + name +  i  + ".xml", function(error, data) {
+                        doc2 = data;
+                    }, this, true);
                     var root2 = doc2.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = parseInt(EU.asObject(root2.getAttribute( "maxlevel" ), 0));
 
-                    if ( root.getAttribute( "template" ) )
-                        docTemplate  = new EU.pugixml.readXml(root2.getAttribute( "template" ));
+                    if ( root.getAttribute( "template" ) ) {
+
+                        docTemplate  = null;
+                        EU.pugixml.readXml(root2.getAttribute( "template" ), function(error, data) {
+                            docTemplate = data;
+                        }, this, true);
+                    }
 
                     var xmlEffects = root2.getElementsByTagName( "effects" )[0];
                     var xmlMachine = root2.getElementsByTagName( "machine_unit" )[0];
@@ -302,7 +313,7 @@ EU.mlTowersInfo = {
         }
     },
     getCostForDig: function(){ return this._digcost; }
-    
+
 };
 
 (function() {
@@ -328,19 +339,25 @@ EU.mlUnitInfo = {
             this.fetch( name );
         if ( this._info[name] )
             return this._info[name];
-    
+
         return new this.Info();
     },
     fetch: function( name )
     {
-        var doc = new EU.pugixml.readXml( "ini/units/" + name + ".xml");
+        var doc = null;
+        EU.pugixml.readXml( "ini/units/" + name + ".xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
 
         while( root.getAttribute( "template" ) )
         {
-            var doc = new EU.pugixml.readXml( root.getAttribute( "template" ));
+            var doc = null;
+            EU.pugixml.readXml( root.getAttribute( "template" ), function(error, data) {
+                doc = data;
+            }, this, true);
             root.removeAttribute( "template" );
-    
+
             var temp = doc.firstElementChild;
             for (var i=0; i<temp.attributes.length; i++)
             {
@@ -350,12 +367,12 @@ EU.mlUnitInfo = {
                 if ( !attrRoot ) root.setAttribute( tag, attr.value );
             }
         }
-    
+
         var info = new this.Info();
         info.layer = EU.strToUnitLayer( root.getAttribute( "unitlayer" ) );
         info.type = EU.strToUnitType( root.getAttribute( "unittype" ) );
         info.radius = EU.asObject(root.getAttribute( "radius" ));
-    
+
         this._info[name] = info ;
     }
 

@@ -103,7 +103,10 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
         }
         else
         {
-            /**@type {Element} */var doc = EU.pugixml.readXml(animatepath);
+            /**@type {Element} */var doc = null;
+            EU.pugixml.readXml(animatepath, function(error, data) {
+                doc = data;
+            }, this, true);
             var node = doc.firstElementChild.firstElementChild;
             var loaded = EU.xmlLoader.load_action_str( node );
             if (! (loaded instanceof cc.ActionInterval)) loaded = null;

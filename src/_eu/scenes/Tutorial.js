@@ -380,7 +380,10 @@ EU.TutorialManager = {
 
     load: function()
     {
-        /**@type {Element} */ var doc = EU.pugixml.readXml("ini/tutorial/tutorials.xml");
+        /**@type {Element} */ var doc = null;
+        EU.pugixml.readXml("ini/tutorial/tutorials.xml", function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
         var xmllist = root.getElementsByTagName( "list" )[0];
         var xmlevents = root.getElementsByTagName( "events" )[0];

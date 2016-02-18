@@ -821,22 +821,28 @@ cc.loader = (function () {
          * @param {string} url
          * @param {function} [cb] arguments are : err, json
          */
-        loadJson: function (url, cb) {
-            this.loadTxt(url, function (err, txt) {
-                if (err) {
-                    cb(err);
-                }
-                else {
-                    try {
-                        var result = JSON.parse(txt);
+        loadJson: function (url, cb, isSync) {
+            isSync = isSync || false;
+            if (isSync) {
+                cb(null, JSON.parse(this._loadTxtSync(url)));
+            } else {
+
+                this.loadTxt(url, function (err, txt) {
+                    if (err) {
+                        cb(err);
                     }
-                    catch (e) {
-                        throw new Error("parse json [" + url + "] failed : " + e);
-                        return;
+                    else {
+                        try {
+                            var result = JSON.parse(txt);
+                        }
+                        catch (e) {
+                            throw new Error("parse json [" + url + "] failed : " + e);
+                            return;
+                        }
+                        cb(null, result);
                     }
-                    cb(null, result);
-                }
-            });
+                });
+            }
         },
 
         _checkIsImageURL: function (url) {

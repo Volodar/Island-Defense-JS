@@ -27,7 +27,7 @@ EU.xmlLoader = {
 
     /** For Test Instance of */
     __xmlLoader: true,
-    resourcesRoot: "res/_origin/",
+    resourcesRoot: "res/_origin_json/",
     resourcesRootJSON: "res/_origin_json/",
 
     self: this,
@@ -119,7 +119,10 @@ EU.xmlLoader = {
      * @param {String} path
      */
     load_node_from_file: function (path) {
-        var xmlnode = new EU.pugixml.readXml(path);
+        var xmlnode = null;
+        EU.pugixml.readXml(path, function(error, data) {
+            xmlnode = data;
+        }, this, true);
         var root = xmlnode.firstElementChild;
         return this.load_node_from_xml_node(root);
     },
@@ -173,7 +176,10 @@ EU.xmlLoader = {
      * @param path
      */
     load_node_n_str: function (node, path) {
-        var xmlnode = new EU.pugixml.readXml(path);
+        var xmlnode = null;
+        EU.pugixml.readXml(path, function(error, data) {
+            xmlnode = data;
+        }, this, true);
         var root = xmlnode.firstElementChild;
         this.load_node_xml_node(node, root, false);
     },
@@ -767,7 +773,10 @@ EU.xmlLoader = {
      */
     load_paramcollection_n_path: function (params, path) {
         EU.assert(params);
-        var doc = new EU.pugixml.readXml(path);
+        var doc = null;
+        EU.pugixml.readXml(path, function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
         for (var i = 0; i < root.children.length; i++) {
             var xmlchild = root.children[i];

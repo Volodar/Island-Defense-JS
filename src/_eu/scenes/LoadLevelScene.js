@@ -122,7 +122,10 @@ EU.LoadLevelScene = cc.Scene.extend(
     {
         var pathToFile = EU.kDirectoryToMaps + ( this._levelIndex ) + ".xml";
 
-        var doc = new EU.pugixml.readXml(pathToFile);
+        var doc = null;
+        EU.pugixml.readXml(pathToFile, function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild;
 
         var xmlTagWaves = (this._levelMode == EU.GameMode.normal ? EU.k.LevelWaves : EU.k.LevelWavesHard);

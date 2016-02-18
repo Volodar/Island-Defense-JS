@@ -20,7 +20,7 @@ EU.HelloWorldLayer = cc.Layer.extend({
         pc.tolog();
 
         var node = new cc.Node();
-        EU.xmlLoader.load_node_n_str(node, "res/_origin/ini/maings/mainlayer.xml");
+        EU.xmlLoader.load_node_n_str(node, "res/_origin_json/ini/maings/mainlayer.xml");
         this.addChild(node);
 
         /*

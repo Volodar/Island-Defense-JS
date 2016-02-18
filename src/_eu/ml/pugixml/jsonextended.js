@@ -1,11 +1,11 @@
 //Define namespace
 var EU = EU || {};
 
-var jsonextended = function(json, nodeName){
+var jsonextended = function(json, isDocRoot){
     var self = this;
-    //todo: self should be improved to automatically check for whether it's single level json or not
-    self.nodeName = (nodeName == null) ? Object.keys(json)[0] : nodeName;
-    self.data = (nodeName == null) ? json[self.nodeName] : json;
+    isDocRoot = isDocRoot || false;
+    self.nodeName = isDocRoot ? 'doc' : Object.keys(json)[0];
+    self.data = isDocRoot ? json : json[self.nodeName];
 
     /**
      * DOM-element-like function
@@ -33,7 +33,7 @@ var jsonextended = function(json, nodeName){
                     if (keys[i][0] == '@') {     //attribute starts with @
 
                         var attributeMap = {};
-                        attributeMap.name = keys[i];
+                        attributeMap.name = keys[i].substr(1);
                         attributeMap.value = self.data[keys[i]];
                         attributesArray.push(attributeMap);
                     }
@@ -53,9 +53,7 @@ var jsonextended = function(json, nodeName){
 
             for (var i=0; i<keys.length; i++) {
                 if (keys[i][0] != '@') {     //attribute starts with @
-
-                    var child = new jsonextended(self.data[keys[i]], keys[i]);
-                    childrenArray.push(child);
+                    childrenArray = childrenArray.concat(self.getElementsByTagName(keys[i]));
                 }
             }
             return childrenArray;
@@ -73,11 +71,21 @@ var jsonextended = function(json, nodeName){
             });
 
             if (childKeys.length > 0){
-                return new jsonextended(self.data[childKeys[0]], childKeys[0]);
+                return self.buildElement(self.data[childKeys[0]], childKeys[0]);
             } else return null;
         },
         set: undefined
      });
+
+    /**
+     * get text content
+     */
+    Object.defineProperty(self, "textContent", {
+        get: function() {
+            return self.data;
+        },
+        set: undefined
+    });
 
     /**
      @param {string} name
@@ -85,6 +93,15 @@ var jsonextended = function(json, nodeName){
      */
     self.getAttribute =  function(name){
         return self.data["@"+name];
+    };
+
+    /**
+     * set attribute
+     * @param className
+     * @param value
+     */
+    self.setAttribute = function(className, value){
+        self.data["@"+className] = value;
     };
 
     /**
@@ -115,13 +132,28 @@ var jsonextended = function(json, nodeName){
        var allChildren = self.data[tagName];
 
        var jsonExtendedChildren = [];
-       if (!Array.isArray(allChildren)){
-           jsonExtendedChildren.push(new jsonextended(allChildren, tagName));
-       } else {
-           for (var i=0; i<allChildren.length; i++){
-               jsonExtendedChildren.push(new jsonextended(allChildren[i], tagName));
+       if (allChildren != null) {
+           if (!Array.isArray(allChildren)) {
+               jsonExtendedChildren.push(self.buildElement(allChildren, tagName));
+           } else {
+               for (var i = 0; i < allChildren.length; i++) {
+                   jsonExtendedChildren.push(self.buildElement(allChildren[i], tagName));
+               }
            }
        }
        return jsonExtendedChildren;
     };
+
+
+    /**
+     * build a xml-like object
+     * @param data
+     * @param tagName
+     * @returns {jsonextended}
+     */
+    self.buildElement = function (data, tagName){
+        var element = {};
+        element[tagName] = data;
+        return new jsonextended(element);
+    }
 };

@@ -546,7 +546,10 @@ EU.GameGS = EU.LayerExt.extend({
         //float z = xmlnode.getAttribute( "z" ).as_float();
 
         var pathToXml = "ini/maps/animations/" + name + ".xml";
-        var doc = EU.pugixml.readXml(pathToXml);
+        var doc = null;
+        EU.pugixml.readXml(pathToXml, function(error, data) {
+            doc = new jsonextended(data);
+        }, this, true);
         var root = doc.firstElementChild;
 
         var decoration = new EU.Decoration();

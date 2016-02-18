@@ -52,7 +52,8 @@ EU.Language  = {
     {
         if( !(language in this.packs) )
         {
-            set( "en" );
+            //set( "en" );
+            this.current = this.packs["en"];
         }
         else
         {
@@ -61,19 +62,20 @@ EU.Language  = {
     },
     load: function()
     {
-        var cb = function(doc) {
-            var root = doc.firstElementChild;
-            var lang = root.getElementsByTagName("languages")[0];
-            for (var i = 0; i < lang.children.length; ++i) {
-                var node = lang.children[i];
-                var id = node.attributes[0].name;
-                var path = node.attributes[0].value;
-                this.packs[id] = this.loadPack(path);
-                cc.log("language added: [" + id + "] [" + path + "]");
-            }
-            this.set("en");
-        };
-        EU.pugixml.readXml( "lang/lang.xml", cb, this);
+        var root = null;
+        EU.pugixml.readXml( "lang/lang.xml", function(err, doc) {
+             root = doc.firstElementChild;
+
+        }, this);
+        var lang = root.getElementsByTagName("languages")[0];
+        for (var i = 0; i < 1 /**lang.children.length*/ ; ++i) {
+            var node = lang.children[i];
+            var id = node.attributes[0].name;
+            var path = node.attributes[0].value;
+            this.packs[id] = this.loadPack(path);
+            cc.log("language added: [" + id + "] [" + path + "]");
+        }
+        this.set("en");
 
         //TODO: get system language
         //var def = lang.getAttribute("default");
@@ -95,7 +97,10 @@ EU.Language  = {
     },
     loadPack: function(from)
     {
-        var doc = new EU.pugixml.readXml( from );
+        var doc = null;
+        EU.pugixml.readXml( from , function(error, data) {
+            doc = data;
+        }, this, true);
         var root = doc.firstElementChild.firstElementChild;
         var pack = {};
         for( var i=0; i<root.children.length; i+=2 )

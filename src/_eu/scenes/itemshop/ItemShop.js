@@ -255,7 +255,10 @@ EU.ItemShop = EU.ScrollMenu.extend({
     },
     getCost: function( itemname )
     {
-        var xmlnode = EU.pugixml.readXml( "ini/bonusitems.xml" );
+        var xmlnode = null;
+        EU.pugixml.readXml( "ini/bonusitems.xml", function(error, data) {
+            xmlnode = new jsonextended(data);
+        }, this , true);
         var root = xmlnode.firstElementChild;
         var itemXml = root.getElementsByTagName(itemname)[0];
         var cost = 0;

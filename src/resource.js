@@ -207,6 +207,6 @@ var res = {
 
 var g_resources = [];
 for (var i in res) {
-    var resRoot = "res/_origin/";
+    var resRoot = "res/_origin_json/";
     g_resources.push( resRoot + res[i]);
 }
