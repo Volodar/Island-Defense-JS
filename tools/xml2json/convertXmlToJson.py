@@ -13,7 +13,7 @@ from os import listdir, remove
 from os.path import isfile, join, splitext, isdir
 
 removeOldXmlFile = True;
-sourceDir = '../../res/_origin_json/lang' ;     #where the source xml files are stored
+sourceDir = '../../res/_origin_json/ini' ;     #where the source xml files are stored
 numFileConverted = 0;
 
 #global option to convert xml to json: pretty indentation
