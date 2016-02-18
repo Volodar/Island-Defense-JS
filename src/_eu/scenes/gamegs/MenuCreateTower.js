@@ -144,7 +144,7 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
         }
         else
         {
-            name.splice(name.length - 3);
+            name = name.substring(0, name.length - 3);
             this._confirmButtonUn.setName( name );
             this._confirmButtonUn.setPosition( node.getPosition() );
             this._confirmButtonUn.setVisible( true );

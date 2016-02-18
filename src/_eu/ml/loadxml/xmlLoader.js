@@ -1046,7 +1046,7 @@ EU.xmlLoader = {
                     break;
                 case EU.xmlKey.AlignCols.int:
                     EU.assert(scrollmenu.__ScrollMenu);
-                    scrollmenu.setAlignedColums(EU.Common.strToInt(value));
+                    scrollmenu.setAlignedColumns(EU.Common.strToInt(value));
                     break;
                 //for MenuItemImageWithText:
                 case EU.xmlKey.ImageNormal.int:
