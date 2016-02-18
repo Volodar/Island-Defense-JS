@@ -72,15 +72,13 @@ EU.NodeExt = function(){
     };
     this.runEvent= function( eventname )
     {
-        var iter = this._events[eventname];
-        if( iter )
-            iter.execute( this );
+        if( eventname in this._events )
+            this._events[eventname].execute( this );
     };
     this.getAction= function( name )
     {
-        var iter = this._actions[name];
-        if( iter != null )
-            return iter;
+        if( name in this._actions )
+            return this._actions[name];
         return null;
     };
     this.setProperty_int= function( intproperty, value )

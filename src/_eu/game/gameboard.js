@@ -13,13 +13,6 @@
 //Define namespace
 var EU = EU || {};
 
-EU.GameMode =
-{
-    normal : 1,
-    hard : 2,
-    _default : 1
-};
-
 EU.FinishLevelParams = cc.Class.extend({
     crystalscount : 0,
     scores : 0,
@@ -317,7 +310,7 @@ EU.GameBoard = cc.Class.extend({
             EU.assert( index != -1 );
             if( index != -1 )
             {
-                this.units.splice( i, 1 );
+                this.units.splice( index, 1 );
                 this.remove( removed[i] );
             }
         }
@@ -326,17 +319,18 @@ EU.GameBoard = cc.Class.extend({
         this.checkGameFinished();
     },
     updateSkills: function( dt ){
-        for( var unit in this.desants )
+        for( var id in this.desants )
         {
-            this.desants[unit] -= dt;
-            if( this.desants[unit] <= 0 )
+            var unit = this.desants[id].unit;
+            this.desants[id].timer -= dt;
+            if( this.desants[id].timer <= 0 )
             {
-                var index = this.units.indexOf( desant );
+                var index = this.units.indexOf( unit );
                 EU.assert( index != -1 );
                 if( index != -1 )
                     this.units.splice( index, 1 );
                 this.remove( unit );
-                this.desants[unit] = undefined;
+                delete this.desants[id];
             }
         }
     },
@@ -617,24 +611,28 @@ EU.GameBoard = cc.Class.extend({
         var unit = null;
         var dummy = 0;
         if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
-            unit = UnitDesant.create( "ini/units", xmlfile );
+            unit = new EU.UnitDesant( "ini/units", xmlfile );
         if( unit )
         {
             unit.setBasePosition( position );
             unit.setPosition( position );
             this.addUnit( unit );
-            this.desants[unit] = lifetime;
+            this.desants[unit.__instanceId] = {};
+            this.desants[unit.__instanceId].unit = unit;
+            this.desants[unit.__instanceId].timer = lifetime;
         }
         return unit;
     },
     createBomb: function( position ){
         var name = "";
-        var dist_water = 9999;
-        var dist_earth = 9999;
-    
-        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea, dist_water ) )
+
+        var ch1 = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.sea );
+        var ch2 = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth );
+        var dist_water = ch1.distance;
+        var dist_earth = ch2.distance;
+        if( ch1.result )
             name = "airplane_water.xml";
-        else if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        else if( ch2.result )
             name = "airplane_earth.xml";
     
         if( name == "airplane_water.xml" && dist_earth < dist_water )
@@ -642,9 +640,9 @@ EU.GameBoard = cc.Class.extend({
         if( name == "airplane_earth.xml" && dist_water < dist_earth )
             name = "airplane_water.xml";
     
-        if( name.empty() == false )
+        if( name.length > 0 )
         {
-            var bomb = EU.Airbomb.create( "ini/units", name, position );
+            var bomb = new EU.Airbomb( "ini/units", name, position );
             EU.GameGSInstance.addObject( bomb, 9999 );
             return bomb;
         }
@@ -652,15 +650,15 @@ EU.GameBoard = cc.Class.extend({
         return null;
     },
     createLandMine: function( position, count ){
-        var dist_earth = 9999;
-        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dist_earth ) )
+        var r = EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth );
+        if( !r.result )
             return null;
     
         var result = null;
         for (var i = 0; i < count; ++i)
         {
             var pos = EU.Common.getRandPointInPlace( position, EU.mlUnitInfo.info("landmine").radius / 2 );
-            var mine = new EU.LandMine.create( "ini/units", "landmine.xml" );
+            var mine = new EU.LandMine( "ini/units", "landmine.xml" );
             mine.setPosition( pos );
             this.addUnit( mine );
             result = mine;
@@ -669,12 +667,11 @@ EU.GameBoard = cc.Class.extend({
         return result;
     },
     createBonusItem: function( position, name ){
-        var dist = 9999;
         var layer = EU.mlUnitInfo.info( name ).layer;
-        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer, dist ) )
+        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer ) )
             return null;
 
-        var item = Unit.create( "ini/units", name + ".xml" );
+        var item = new EU.Unit( "ini/units", name + ".xml" );
         item.setPosition( position );
         this.addUnit( item );
 
@@ -688,12 +685,11 @@ EU.GameBoard = cc.Class.extend({
         for( var i=0; i<decorations.length; ++i )
         {
             var decor = decorations[i];
-            var dist = 9999;
-            EU.checkPointOnRoute_1( decor.getPosition(), dist_min, EU.UnitLayer.earth, dist );
-            if( dist < dist_min )
+            var r = EU.checkPointOnRoute_1( decor.getPosition(), dist_min, EU.UnitLayer.earth );
+            if(r.distance < dist_min )
             {
                 min = index;
-                dist_min = dist;
+                dist_min = r.distance;
             }
             ++index;
         }
@@ -777,7 +773,7 @@ EU.GameBoard = cc.Class.extend({
         if( index != -1 )
         {
             var costSell = EU.mlTowersInfo.getSellCost( tower.getName(), tower.getLevel() );
-            this.units.erase( i );
+            this.units.splice( i,1 );
             var def = new EU.TowerPlaceDef;
             def.position = tower.getPosition();
             def.isActive = true;
@@ -834,11 +830,12 @@ EU.GameBoard = cc.Class.extend({
             if( this.units[i].get_target() == unit )
                 this.units[i].capture_target( null );
         }
-        for( var desant in this.desants )
+        for( var id in this.desants )
         {
+            var desant = this.desants[id].unit;
             if( desant == unit )
             {
-                this.desants[desant] = undefined;
+                delete this.desants[id];
                 break;
             }
         }
@@ -848,13 +845,7 @@ EU.GameBoard = cc.Class.extend({
         this.death.push( unit );
     },
     deathUnit: function( creep ){
-        var index = -1;
-        for( var i=0; i<this.death.length; ++i ){
-            if( this.death[i] == creep ){
-                index = i;
-                break;
-            }
-        }
+        var index = this.death.indexOf(creep);
         if( index != -1 )
         {
             var damager = creep.getCurrentDamager();
@@ -865,7 +856,7 @@ EU.GameBoard = cc.Class.extend({
             creep.stopAllLoopedSounds();
             EU.GameGSInstance.removeObject( creep );
             creep.removeFromParent();
-            this.death.splice( i, 1 );
+            this.death.splice( index, 1 );
         }
     },
     checkWaveFinished: function(){
@@ -982,11 +973,11 @@ EU.GameBoard = cc.Class.extend({
             tower.get_targets( targets );
             for( var j = 0; j < targets.length; )
             {
-                assert( targets[i] );
-                if( this.checkAvailableTarget( targets[i], tower ) )
+                assert( targets[j] );
+                if( this.checkAvailableTarget( targets[j], tower ) )
                     ++j;
                 else
-                    targets.splice( i, 1 );
+                    targets.splice( j, 1 );
             }
             for( j = 0; j < this.units.length && targets.length < max; ++j )
             {
@@ -1048,7 +1039,7 @@ EU.GameBoard = cc.Class.extend({
     checkTargetByUnitLayer: function( target, base ){
         var target_layer = target._unitLayer;
         var allow_targets = base._allowTargets;
-        return allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(-1) != -1;
+        return allow_targets.indexOf(target_layer) != -1 || allow_targets.indexOf(EU.UnitLayer.any) != -1;
     },
     checkTargetByRadius: function( target, center, radius ){
         var a = center;
@@ -1060,7 +1051,7 @@ EU.GameBoard = cc.Class.extend({
         if( base.getDamageBySector() )
         {
             var direction = base.getDirection();
-            var radius = EU.Common.getDirectionByVector( target.getPosition() - base.getPosition() );
+            var radius = EU.Common.getDirectionByVector( cc.pSub(target.getPosition(), base.getPosition()) );
             var sector = base.getDamageBySectorAngle();
             while( direction < 0 ) direction += 360;
             while( radius < 0 ) radius += 360;

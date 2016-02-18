@@ -13,7 +13,14 @@
 //Define namespace
 var EU = EU || {};
 
-/**Type:Array<cc.p> */EU.Route = [];
+EU.GameMode = {
+    normal : 1,
+    hard : 2,
+    _default : 1
+};
+
+/**Type:Array<cc.p> */
+EU.Route = [];
 
 EU.UnitLayer = {
     earth : 0,
@@ -187,22 +194,27 @@ EU.checkRadiusByEllipse = function( a, b, radius )
 //        return ActionText.create( getDuration( ), _endValue, _floatTruncation );
 //}
 
-EU.checkPointOnRoute_1 = function( point, maxDistanceToRoad, allowLayer, outdistance )
+EU.checkPointOnRoute_1 = function( point, maxDistanceToRoad, allowLayer )
 {
+    var result = {};
+    result.result = false;
+    result.distance = 99999;
     EU.assert( EU.GameGSInstance );
     var board = EU.GameGSInstance.getGameBoard();
     var routes = board.getCreepsRoutes();
     for( var i=0; i<routes.length; ++i )
     {
         var route = routes[i];
-        if( (route.type == allowLayer || allowLayer == EU.UnitLayer.any) && EU.checkPointOnRoute_2( point, route, maxDistanceToRoad, outdistance ) )
-            return true;
+        var r  = EU.checkPointOnRoute_2( point, route, maxDistanceToRoad );
+        if( (route.type == allowLayer || allowLayer == EU.UnitLayer.any) && r.result )
+            result = r;
     }
-    return false;
+    return result;
 };
 
-EU.checkPointOnRoute_2 = function( point, route, maxDistanceToRoad, outdistance )
+EU.checkPointOnRoute_2 = function( point, route, maxDistanceToRoad )
 {
+    var result = {};
     var index_min = -1;
     var distance_min = 9999999;
 
@@ -218,8 +230,9 @@ EU.checkPointOnRoute_2 = function( point, route, maxDistanceToRoad, outdistance 
             index_min = i;
         }
     }
-    outdistance = distance_min;
-    return distance_min < maxDistanceToRoad;
+    result.distance = distance_min;
+    result.result = distance_min < maxDistanceToRoad;
+    return result;
 };
 
 EU.getElapsedTimeFromPreviosLaunch = function( timeId )

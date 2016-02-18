@@ -312,7 +312,7 @@ EU.LevelParams = {
         {
             if( forhard == false )
             {
-                return iter.normal.stars.size();
+                return iter.normal.stars.length;
             }
             else
             {
@@ -386,6 +386,7 @@ EU.LevelParams = {
             EU.UserData.write(EU.k.LevelStars + index, all);
         }
         //EU.UserData.save();
+        cc.loader.load()
     }
 };
 

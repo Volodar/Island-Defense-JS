@@ -13,8 +13,6 @@
 //Define namespace
 var EU = EU || {};
 
-EU.mlCreep = {};
-
 EU.mlTowersInfo = {
 
     /** For Test Instance of */
@@ -57,7 +55,7 @@ EU.mlTowersInfo = {
             {
                 var a = self.m_towersInfo[l];
                 var b = self.m_towersInfo[r];
-                return a.order < b.order;
+                return b.order < a.order;
             }
         );
         return towers;

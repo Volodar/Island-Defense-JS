@@ -16,18 +16,23 @@ var EU = EU || {};
 
 EU.UnitDesant = EU.Unit.extend(
 {
-    /** @type {Number} */ _handRadius : 60 ,
-    /** @type {Number} */ _handRadiusSector : 30,
+    /** @type {Number} */ _handRadius : null ,
+    /** @type {Number} */ _handRadiusSector : null,
     /** @type {Array<EU.Unit>} */ _targets : null,
     /** @type {cc.p} */ _basePosition : null,
     //CC_SYNTHESIZE_PASS_BY_REF( Point, _basePosition, BasePosition );
 
-    ctor: function(    path,    xmlFile )
-    {
-        this._targets = [];
-        this._basePosition =  cc.p(0,0) ;
+    setBasePosition:function(point){ this._basePosition = point; },
+    getBasePosition:function(){ return this._basePosition; },
 
-        return this.init_str_str( path, xmlFile );
+    ctor: function( path, xmlFile )
+    {
+        this._handRadius = 60;
+        this._handRadiusSector = 30;
+        this._targets = [];
+        this._basePosition = cc.p(0,0) ;
+        this._super(path, xmlFile);
+        this.runEvent("on_stop");
     },
 
     checkTargetByRadius: function(   target )
@@ -35,7 +40,7 @@ EU.UnitDesant = EU.Unit.extend(
         EU.assert( target );
         var a = this._basePosition;
         var b = target.getPosition( );
-        var byradius = EU.Support.checkRadiusByEllipse( a, b, this.getRadius( ) );
+        var byradius = EU.checkRadiusByEllipse( a, b, this._radius );
         return byradius;
     },
 
@@ -46,25 +51,25 @@ EU.UnitDesant = EU.Unit.extend(
             var release = false;
             release = release || target._moveFinished;
             release = release || target.getCurrentHealth() <= 0;
-            release = release || targets.indexOf(target) < 0;
+            release = release || !targets || targets.indexOf(target) == -1;
             if( release )
                 this._targets.splice( i , 1);
             else
                 ++i;
         }
 
-        if( this._targets.length < this._maxTargets )
+        if( targets && this._targets.length < this._maxTargets )
         {
-            for (var i = 0; i < targets.length; i++) {
-                var target = targets[i];
+            for (i = 0; i < targets.length; i++) {
+                target = targets[i];
                 if( this._targets.indexOf(target) < 0 )
                 {
                     this._targets.push( target );
                 }
             }
         }
-        for (var i = 0; i < this._targets.length; i++ ) {
-            var target = this._targets[i];
+        for (i = 0; i < this._targets.length; i++ ) {
+            target = this._targets[i];
             target.stop();
         }
 
@@ -72,8 +77,7 @@ EU.UnitDesant = EU.Unit.extend(
         {
             if( this.current_state( ).get_name( ) != EU.MachineUnit.State.state_move && this.isNearestTarget() == false )
             {
-                var route;
-                this.buildRouteToTarget( route );
+                var route = this.buildRouteToTarget();
                 this.getMover().setRoute( route );
                 this.move();
             }
@@ -81,18 +85,17 @@ EU.UnitDesant = EU.Unit.extend(
             {
                 var t = [];
                 t.push( this._targets[0] );
-                this.capture_targets( t );
+                EU.Unit.prototype.capture_targets.call( this, t );
             }
         }
         else
         {
-            this.capture_targets( this._targets );
+            EU.Unit.prototype.capture_targets.call( this, this._targets );
             if( this.isNearestBase() == false )
             {
                 if( this.current_state().get_name() != EU.MachineUnit.State.state_move )
                 {
-                    var route;
-                    this.buildRouteToBase( route );
+                    route = this.buildRouteToBase();
                     this.getMover().setRoute( route );
                     this.move();
                 }
@@ -100,20 +103,20 @@ EU.UnitDesant = EU.Unit.extend(
         }
     },
 
-    setProperty: function(    stringproperty,    value )
+    setProperty_str: function( stringproperty, value )
     {
         if( stringproperty == "handradius" )
             this._handRadius = parseFloat( value );
         else if( stringproperty == "handradiussector" )
             this._handRadiusSector = parseFloat( value );
         else
-            return this.setProperty( stringproperty, value );
+            return EU.Unit.prototype.setProperty_str.call(this, stringproperty, value );
         return true;
     },
 
     on_die: function()
     {
-        this.on_die();
+        EU.Unit.prototype.on_die.call(this);
         for (var i = 0; i < this._targets.length; i++ ) {
             var target = this._targets[i];
             target.capture_targets([]);
@@ -127,16 +130,18 @@ EU.UnitDesant = EU.Unit.extend(
     //		this.on_mover( position, direction );
     //}
 
-    buildRouteToBase: function(  route )
+    buildRouteToBase: function()
     {
-        route.resize( 2 );
+        var route = [];
         route[0] = this.getPosition();
         route[1] = this._basePosition;
+        return route;
     },
 
-    buildRouteToTarget: function(  route )
+    buildRouteToTarget: function()
     {
-        var target = this._targets.empty() ? null : this._targets[0];
+        var route = [];
+        var target = this._targets.length == 0 ? null : this._targets[0];
         if( !target )
             return;
 
@@ -149,9 +154,9 @@ EU.UnitDesant = EU.Unit.extend(
         var b = target.getPosition( );
         cc.pAddIn(b, add);
 
-        route.splice(2);
         route[0] = a;
         route[1] = b;
+        return route;
     },
 
     isNearestTarget: function()
@@ -170,8 +175,8 @@ EU.UnitDesant = EU.Unit.extend(
             while( angle < 0 ) angle += 360;
 
             var r = false;
-            r = r || (angle <= 0 + this._handRadiusSector || angle >= 360 - this._handRadiusSector);
-            r = r || (angle <= 180 + this._handRadiusSector || angle >= 180 - this._handRadiusSector);
+            r = r || (angle <= this._handRadiusSector || angle >= (360 - this._handRadiusSector));
+            r = r || (angle <= (180 + this._handRadiusSector) || angle >= (180 - this._handRadiusSector));
             result = result && r;
         }
 

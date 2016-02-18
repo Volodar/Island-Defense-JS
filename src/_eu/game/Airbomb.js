@@ -24,8 +24,6 @@ EU.Airbomb = EU.Unit.extend(
 
     ctor: function(  path,  xmlFile,   position )
     {
-        //if ( !NodeExt.init.call(this) ) return;
-
         this._targetPoint = cc.p(0,0);
         this._targetPoint = position;
 
@@ -37,11 +35,11 @@ EU.Airbomb = EU.Unit.extend(
             var dy = cc.randomMinus1To1() * 50;
             var pos = cc.pAdd(position, cc.p( dx, dy ));
             positions.push( pos );
-            EU.xmlLoader.macros.set( "airplane_bomb_posx" +  i+1 , ( pos.x ) );
-            EU.xmlLoader.macros.set( "airplane_bomb_posy" +  i+1 , ( pos.y ) );
+            EU.xmlLoader.macros.set( "airplane_bomb_posx" +  (i+1) , ( pos.x ) );
+            EU.xmlLoader.macros.set( "airplane_bomb_posy" +  (i+1) , ( pos.y ) );
         }
 
-        this.init_str_str.call(this, path, xmlFile );
+        this._super(path, xmlFile );
 
         for( var i = 0; i < count; ++i )
         {
@@ -52,7 +50,7 @@ EU.Airbomb = EU.Unit.extend(
             var actionBomb = /**FiniteTimeAction*/ (this.getAction(  (i + 1) + "_bomb_move" ));
             var expl = actionBomb.getDuration();
             var self = this;
-            var exp = cc.sequence( cc.delayTime( expl ), cc.callFunc( this.explosion.bind(this, this.pos)));
+            var exp = cc.sequence( cc.delayTime( expl ), cc.callFunc( this.explosion.bind(this, pos)));
             this.runAction( exp );
         }
 
@@ -73,7 +71,7 @@ EU.Airbomb = EU.Unit.extend(
         var board = EU.GameGSInstance.getGameBoard();
         board.applyDamageBySector( this );
         this.setPosition( pos );
-        this.setLocalZOrder( z );
+        this.setLocalZOrder( z - 9999 );
         EU.GameGSInstance.shake();
     },
 
