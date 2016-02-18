@@ -13,13 +13,6 @@
 //Define namespace
 var EU = EU || {};
 
-EU.GameMode =
-{
-    normal : 1,
-    hard : 2,
-    _default : 1
-};
-
 EU.FinishLevelParams = cc.Class.extend({
     crystalscount : 0,
     scores : 0,

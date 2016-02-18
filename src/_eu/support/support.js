@@ -13,7 +13,14 @@
 //Define namespace
 var EU = EU || {};
 
-/**Type:Array<cc.p> */EU.Route = [];
+EU.GameMode = {
+    normal : 1,
+    hard : 2,
+    _default : 1
+};
+
+/**Type:Array<cc.p> */
+EU.Route = [];
 
 EU.UnitLayer = {
     earth : 0,
