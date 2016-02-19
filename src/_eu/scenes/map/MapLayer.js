@@ -94,6 +94,7 @@ EU.MapLayer = cc.Layer.extend({
             onTouchesEnded: this.scrollEnded,
             onTouchesCancelled: this.scrollCancelled
         });
+        cc.eventManager.addListener(this.touchListener, this);
 
 
         //createDevMenu();
@@ -162,11 +163,6 @@ EU.MapLayer = cc.Layer.extend({
      */
     onEnter: function () {
         cc.Layer.prototype.onEnter.call(this);
-
-        var locListener = this.touchListener;
-        //TODO: recode, for now disable _isRegistered because of jsb
-        // if (!locListener._isRegistered())
-            cc.eventManager.addListener(locListener, this);
 
         this.scheduleUpdate();
         EU.MouseHoverScroll.enable();
