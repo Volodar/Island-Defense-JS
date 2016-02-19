@@ -1,24 +1,89 @@
 {
     "tower": {
-        "@color_electro": "FFFF80",
-        "@color_fire": "FF8080",
-        "@color_ice": "80FFFF",
         "@lifecost": "1",
-        "@unitlayer": "earth",
+        "@color_ice": "80FFFF",
         "@unittype": "creep",
+        "@color_electro": "FFFF80",
+        "@unitlayer": "earth",
         "@velocity": "50",
+        "@color_fire": "FF8080",
+        "extraproperties": {
+            "@freezing_scale": "0.2",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@electro_size": "small",
+            "@fire_scale": "1",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "transitions": {
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@delay": "1",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "60"
+                }
+            }
+        },
         "children": {
             "node": [
                 {
-                    "@center": "0.5x0.25",
-                    "@name": "skin",
+                    "@visible": "yes",
                     "@type": "sprite",
-                    "@visible": "yes"
+                    "@name": "skin",
+                    "@center": "0.5x0.25"
                 },
                 {
+                    "@z": "1",
                     "@name": "health_indicator",
-                    "@pos": "-18x31",
-                    "@z": "1"
+                    "@pos": "-18x31"
                 }
             ]
         },
@@ -54,22 +119,11 @@
                 },
                 {
                     "@name": "on_rotate180",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
-                    "action": {
-                        "@action": "animateL",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
-                    }
-                },
-                {
-                    "@name": "on_rotate0",
+                    },
                     "stopallaction": {
                         "@target": "skin"
                     },
@@ -77,11 +131,22 @@
                         "@action": "animateL",
                         "@state": "run",
                         "@target": "skin"
-                    },
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animateL",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
@@ -107,71 +172,6 @@
                     }
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1",
-            "@freezing_scale": "0.2"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "1"
-                }
-            },
-            "transitions": {
-                "death": {
-                    "@stop": "stop"
-                },
-                "move": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "readyfire": [
-                    {
-                        "@charge": "readyfire"
-                    },
-                    {
-                        "@notarget": "move"
-                    }
-                ],
-                "stop": [
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@die": "death"
-                    },
-                    {
-                        "@seetarget": "readyfire"
-                    },
-                    {
-                        "@notarget": "move"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180,90,270"
-                },
-                "thresold": {
-                    "@value": "60"
-                }
-            }
         }
     }
 }

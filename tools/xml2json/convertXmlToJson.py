@@ -12,8 +12,9 @@ import optparse
 from os import listdir, remove
 from os.path import isfile, join, splitext, isdir
 
-removeOldXmlFile = True;
-sourceDir = '../../res/_origin_json/ini' ;     #where the source xml files are stored
+removeOldXmlFile = False;
+sourceDir = '../../res/_origin/ini' ;     #where the source xml files are stored
+destinationDir = '../../res/_origin_json/ini'
 numFileConverted = 0;
 
 #global option to convert xml to json: pretty indentation
@@ -30,7 +31,7 @@ def convertXmlFileToJsonFile(filePath):
 
     #print(jsonString)
     #open corresponding json file and write jsonString to it
-    jsonFile = open(filePath.replace('.xml', '.json'), 'w');
+    jsonFile = open(filePath.replace(sourceDir, destinationDir).replace('.xml', '.json'), 'w');
 
     jsonFile.write(jsonString);
     jsonFile.close();
@@ -59,4 +60,5 @@ def convertAllXmlFilesInDir(dir):
 
 if __name__ == '__main__':
     convertAllXmlFilesInDir(sourceDir);
+    #convertXmlFileToJsonFile(sourceDir+"/units/desant.xml")
     print ("Number of XML files converted: " + str(numFileConverted));
