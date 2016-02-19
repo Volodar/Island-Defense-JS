@@ -145,7 +145,7 @@ EU.Bullet = EU.Unit.extend({
                     pos = newParent.convertToNodeSpace( pos );
                     this.setPosition( pos );
                     this.retain();
-                    this.removeFromParent(true);
+                    this.removeFromParentAndCleanup(true);
                     newParent.addChild( this, -10 );
                     release();
                 }

@@ -39,7 +39,7 @@ EU.GamePauseLayer = cc.Menu.extend(
         get_callback_by_description: function( name )
         {
             if( name == "yes" ) return cc.director.end.bind(this);
-            if( name == "no" ) return this.removeFromParent.bind(this, true);
+            if( name == "no" ) return this.removeFromParentAndCleanup.bind(this, true);
             return null;
         }
     }),
@@ -257,13 +257,13 @@ EU.GamePauseLayer = cc.Menu.extend(
     {
         //TODO:EU.AudioEngine.resumeAllEffects();
         this.setEnabled( false );
-        this.removeFromParent(true);
+        this.removeFromParentAndCleanup(true);
     },
 
     restart: function()
     {
         this.setEnabled( false );
-        this.removeFromParent(true);
+        this.removeFromParentAndCleanup(true);
         EU.GameGS.restartLevel();
     },
 
@@ -271,7 +271,7 @@ EU.GamePauseLayer = cc.Menu.extend(
     {
         this.setEnabled( false );
         cc.director.popScene();
-        this.removeFromParent(true);
+        this.removeFromParentAndCleanup(true);
     },
 
     shop_did_closed: function()
@@ -285,7 +285,7 @@ EU.GamePauseLayer = cc.Menu.extend(
         var scores = scene.getChildByName("scorelayer");
         if(scores)
         {
-            scores.removeFromParent(true);
+            scores.removeFromParentAndCleanup(true);
         }
 
         this.runAction( cc.scaleTo( this.kFadeDuration, this._scaleFactor * 1.2 ) );

@@ -303,7 +303,7 @@ EU.TutorialManager = {
             EU.UserData.write( "tutorial" + this._current.getName(), value + 1 );
 
             this._current.exit();
-            this._current.removeFromParent(true);
+            this._current.removeFromParentAndCleanup(true);
 
             var next = this._current.next();
             this._current = null;
@@ -317,7 +317,7 @@ EU.TutorialManager = {
         {
             EU.assert( tutorial );
             tutorial.exit();
-            tutorial.removeFromParent(true);
+            tutorial.removeFromParentAndCleanup(true);
             return true;
         }
     },
