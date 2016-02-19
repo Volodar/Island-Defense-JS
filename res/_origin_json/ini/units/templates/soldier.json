@@ -32,28 +32,31 @@
                 },
                 {
                     "@name": "on_die",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_die",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_shoot",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_fire",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate180",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateL",
                         "@state": "run",
@@ -63,13 +66,13 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
-                    },
-                    "stopallaction": {
-                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate0",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateL",
                         "@state": "run",
@@ -79,30 +82,27 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "-1x1"
-                    },
-                    "stopallaction": {
-                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate90",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateD",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate270",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateU",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 }
