@@ -30,6 +30,7 @@ EU.Bullet = EU.Unit.extend({
     },
     onExit: function( )
     {
+        this._super();
     },
     ctor: function( path, base, target, startAngle, startPosition )
     {
@@ -145,7 +146,7 @@ EU.Bullet = EU.Unit.extend({
                     pos = newParent.convertToNodeSpace( pos );
                     this.setPosition( pos );
                     this.retain();
-                    this.removeFromParentAndCleanup(true);
+                    EU.removeFromParent(this, true);
                     newParent.addChild( this, -10 );
                     release();
                 }

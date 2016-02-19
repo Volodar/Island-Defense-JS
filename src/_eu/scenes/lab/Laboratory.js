@@ -431,7 +431,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
         this.fadeexit();
         this.runAction( cc.sequence(
             cc.delayTime( 0.5 ),
-            cc.callFunc( this.removeFromParentAndCleanup, this )) );
+            cc.callFunc( EU.removeFromParent.bind(this, this, true), this )) );
     },
     fadeexit: function()
     {

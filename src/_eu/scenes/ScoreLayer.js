@@ -41,11 +41,11 @@ EU.ScoreLayer = cc.Scene.extend({
     },
     onExit: function()
     {
-        this._super();
         EU.ScoreCounter.observer( EU.kScoreTime ).remove( this.__instanceId );
         EU.ScoreCounter.observer( EU.kScoreFuel ).remove( this.__instanceId );
         EU.ScoreCounter.observer( EU.kScoreCrystals ).remove( this.__instanceId );
         EU.ScoreCounter.observer( EU.kScoreStars ).remove( this.__instanceId );
+        this._super();
     },
 
     init: function()

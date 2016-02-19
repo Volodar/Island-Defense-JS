@@ -704,7 +704,7 @@ EU.xmlLoader = {
 
         //action instant
         else if (type == this.k.ActionRemoveSelf) {
-            return cc.removeSelf();
+            return cc.removeSelf(true);
         }
         else if (type == this.k.ActionShow) {
             return cc.show();
@@ -1027,7 +1027,7 @@ EU.xmlLoader = {
                     if (sprite) {
                         //TODO: EU.ImageManager
                         var frame = EU.ImageManager.getSpriteFrame(value);
-                        if (frame)
+                        if (frame && frame instanceof cc.SpriteFrame)
                             sprite.setSpriteFrame(frame);
                         else
                             sprite.setTexture(EU.xmlLoader.resourcesRoot + value);

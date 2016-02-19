@@ -106,6 +106,7 @@ EU.WaveIcon = cc.Menu.extend({
 
         var rad = worldpoint - point;
         var angle = EU.Common.getDirectionByVector( rad );
+        angle = angle || 0;
         this._arrow.setRotation( angle );
         /*this._icon.*/this.setPosition( point );
 

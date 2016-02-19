@@ -370,13 +370,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      *
      */
     onEnter: function() {
-        cc.Node.prototype.onEnter.call(this);
+        //cc.Node.prototype.onEnter.call(this);
+        this._super();
     },
     /**
      *
      */
     onExit: function() {
-        cc.Node.prototype.onExit.call(this);
+        //cc.Node.prototype.onExit.call(this);
+        this._super();
     },
     /**
      * set sound on click

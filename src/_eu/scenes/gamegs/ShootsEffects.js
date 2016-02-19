@@ -49,7 +49,7 @@ EU.ShootsEffectsBullet = cc.Sprite.extend(
 
         var animation = EU.Animation.createAnimation( textures, 0.5 );
         var animate =  cc.animate( animation );
-        var remover =  cc.callFunc(   this.removeFromParentAndCleanup.bind( this, true ) );
+        var remover =  cc.callFunc(   EU.removeFromParent.bind(this, this, true ) );
         this.runAction(  cc.sequence( animate, remover ) );
 
         return true;
@@ -138,7 +138,7 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
         this._timer -= dt;
         if( this._timer <= 0 || this._target.getParent() == null || this._target.getCurrentHealth() <= 0 )
         {
-            this.removeFromParentAndCleanup(true);
+            EU.removeFromParent(this, true);
             return;
         }
         var a = cc.pAdd(this._base.getPosition(), this._baseOffset);
@@ -174,7 +174,8 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         if (idx !== -1) {
             this.s_units.splice(idx, 1);
         }
-        cc.Sprite.prototype.onExit.call(this);
+        this._super();
+        //cc.Sprite.prototype.onExit.call(this);
     },
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {cc.Point} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
@@ -237,7 +238,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         var clean = this.checkClean();
         if( clean )
         {
-            this.removeFromParentAndCleanup(true);
+            EU.removeFromParent(this, true);
         }
         else
         {
@@ -488,8 +489,8 @@ EU.ShootsEffectsIce = cc.Sprite.extend(
                 if( br )break;
             }
         }
-        this.removeFromParentAndCleanup(true);
-    },
+        EU.removeFromParent(this, true);
+    }
 });
 
 EU.ShootsEffectsIce.computePoints = function( /**@type {var} */ basePosition, /**@type {std.vector} */ points,
@@ -549,7 +550,7 @@ EU.ShootsEffectsIce2 = cc.Sprite.extend(
         var fadein =  cc.fadeTo( dfade, 128 );
         var delay =  cc.delayTime( ddelay );
         var fade =  cc.fadeTo( dfade, 0 );
-        var remove =  cc.callFunc(   this.removeFromParentAndCleanup.bind( this, true ) );
+        var remove =  cc.callFunc(   EU.removeFromParent.bind( this, this, true ) );
         var action =  cc.sequence( fadein, delay, fade, remove );
 
         this.setOpacity( 0 );
@@ -589,7 +590,7 @@ EU.ShootsEffectLaser = cc.Sprite.extend(
         sprite.runAction(  cc.sequence(  cc.fadeTo( 0.1, 192 ),  cc.fadeTo( 0.1, 64 ) ) );
 
         var delay =  cc.delayTime( 0.2 );
-        var remover =  cc.callFunc( this.removeFromParentAndCleanup.bind(this, true));
+        var remover =  cc.callFunc( EU.removeFromParent.bind(this, this, true));
         var action =  cc.sequence( delay, remover);
         this.runAction( action );
 

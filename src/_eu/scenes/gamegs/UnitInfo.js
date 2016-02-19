@@ -47,7 +47,7 @@ EU.UnitInfo = cc.Menu.extend(
     {
         var info = EU.Tutorial.create( this._unitName );
         info.enter();
-        this.removeFromParentAndCleanup(true);
+        EU.removeFromParent(this, true);
     }
 
 });

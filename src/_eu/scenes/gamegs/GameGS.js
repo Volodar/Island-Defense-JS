@@ -96,7 +96,7 @@ EU.GameGS = EU.LayerExt.extend({
     //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
     //
     //    if( this.scoreNode )
-    //        this.scoreNode.removeFromParentAndCleanup(true);
+    //        EU.removeFromParent(this.scoreNode, true);
     //},
 
     ctor: function () {
@@ -373,7 +373,7 @@ EU.GameGS = EU.LayerExt.extend({
         EU.ShootsEffects.ShootsEffectsClear();
 
         if (this.bg)
-            this.bg.removeFromParentAndCleanup(true);
+            EU.removeFromParent(this.bg, true);
         this.bg = null;
         this.objects.removeAllChildren();
         this.objects = null;
@@ -464,7 +464,6 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onExit: function () {
-        this._super();
         //TODO: setKeyboardEnabled( false );
         //TODO: MouseHoverScroll.disable();
         //TODO: AdMob.show();
@@ -478,6 +477,7 @@ EU.GameGS = EU.LayerExt.extend({
                 }
             }
         }
+        this._super();
     },
     //TODO: setProperty_str: function( stringproperty, value )
     //{
@@ -896,7 +896,7 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(cc.sequence(
                 cc.scaleTo(duration, 1),
-                cc.callFunc(sprite.removeFromParentAndCleanup.bind(sprite, true), sprite))
+                cc.callFunc(EU.removeFromParent.bind(sprite, sprite, true), sprite))
             );
             sprite.runAction(cc.fadeTo(duration, 128));
         }
@@ -910,7 +910,7 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(cc.sequence(
                 (cc.scaleTo(duration, 1)).easing(cc.easeBounceOut()),
-                cc.callFunc(sprite.removeFromParentAndCleanup.bind(sprite, true), sprite))
+                cc.callFunc(EU.removeFromParent.bind(sprite, sprite, true), sprite))
             );
             sprite.runAction(cc.fadeTo(duration, 128));
         }
@@ -1144,7 +1144,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
     removeIconsForWave: function () {
         for (var i = 0; i < this.waveIcons.length; ++i) {
-            this.waveIcons[i].removeFromParentAndCleanup(true);
+            EU.removeFromParent(this.waveIcons[i], true);
         }
         this.waveIcons.length = 0;
     },
@@ -1303,7 +1303,7 @@ EU.GameGS = EU.LayerExt.extend({
     removeObject: function (object) {
         if (this.objects && object){
             this.objects.removeChild(object);
-            object.removeFromParentAndCleanup(true);
+            EU.removeFromParent(object, true);
         }
     },
     update: function (dt) {

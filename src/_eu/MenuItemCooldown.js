@@ -71,7 +71,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
         if ( EU.xmlLoader.stringIsEmpty(this._cancelImageResource) == false && this.getNormalImage())
         {
             if (this._cancelImage)
-                this._cancelImage.removeFromParentAndCleanup(true);
+                EU.removeFromParent(this._cancelImage, true);
 
             this._cancelImage = EU.ImageManager.sprite( this._cancelImageResource );
             this.addChild( this._cancelImage );
@@ -172,7 +172,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
 
         var animation = EU.Animation.createAnimation( frames, 0.5 );
         var animate = cc.animate( animation );
-        var remover = cc.callFunc( sprite.removeFromParentAndCleanup.bind(sprite, true) );
+        var remover = cc.callFunc( EU.removeFromParent.bind(sprite, sprite, true) );
         var action = cc.sequence( animate, remover );
 
         sprite.runAction( action );

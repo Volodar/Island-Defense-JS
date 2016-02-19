@@ -165,8 +165,8 @@ EU.Common = {
             return cc.p(0, 0) + add;
         }
         else {
-            size.width = EU.Common.strToFloat(value.substr(0, k));
-            size.height = EU.Common.strToFloat(value.substr(k + 1));
+            size.width = EU.Common.strToFloat(value.substr(0, k)) || 0;
+            size.height = EU.Common.strToFloat(value.substr(k + 1)) || 0;
         }
         return size;
     },

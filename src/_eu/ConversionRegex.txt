@@ -22,7 +22,7 @@ this.
 var
 
 
- (addChild|removeChild|runAction|scheduleUpdate|removeFromParentAndCleanup|runEvent|unscheduleUpdate|hideConfirmButton)
+ (addChild|removeChild|runAction|scheduleUpdate|removeFromParent|runEvent|unscheduleUpdate|hideConfirmButton)
  this.$1
 
  push_back

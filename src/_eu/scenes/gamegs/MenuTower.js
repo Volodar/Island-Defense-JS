@@ -44,6 +44,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     onExit: function()
     {
         EU.ScoreCounter.observer( EU.kScoreLevel ).remove( this.__instanceId );
+        this._super();
     },
 
     ctor: function()

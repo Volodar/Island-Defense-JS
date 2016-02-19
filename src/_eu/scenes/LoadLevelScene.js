@@ -48,9 +48,9 @@ EU.LoadLevelScene = cc.Scene.extend(
 
     onExit: function()
     {
-        this._super();
         EU.ImageManager.unloadReservedPlists();
         this.LoadLevelSceneInst = null;
+        this._super();
     },
 
     getInstance: function()

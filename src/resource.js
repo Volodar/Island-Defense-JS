@@ -43,7 +43,7 @@ var res = {
     atlas22: "images/towers/desant.nothing2.plist",
     atlas23: "images/towers/airbomb.plist",
     atlas24: "images/creeps/death.plist",
-
+    atlas25: "images/creeps/airship.plist",
     atlas26: "images/towers/firegun/1.1.plist",
     atlas27: "images/towers/firegun/1.2.plist",
     atlas28: "images/towers/firegun/1.3.plist",
