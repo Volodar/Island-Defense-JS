@@ -227,7 +227,7 @@ EU.ItemShop = EU.ScrollMenu.extend({
             var scores = scene.getChildByName( "scorelayer" );
             if( scores )
             {
-                scores.removeFromParent(true);
+                scores.removeFromParentAndCleanup(true);
             }
         }
         var dessize = cc.view.getDesignResolutionSize();

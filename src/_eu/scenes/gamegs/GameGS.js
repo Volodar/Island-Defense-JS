@@ -96,7 +96,7 @@ EU.GameGS = EU.LayerExt.extend({
     //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( _ID );
     //
     //    if( this.scoreNode )
-    //        this.scoreNode.removeFromParent(true);
+    //        this.scoreNode.removeFromParentAndCleanup(true);
     //},
 
     ctor: function () {
@@ -373,7 +373,7 @@ EU.GameGS = EU.LayerExt.extend({
         EU.ShootsEffects.ShootsEffectsClear();
 
         if (this.bg)
-            this.bg.removeFromParent(true);
+            this.bg.removeFromParentAndCleanup(true);
         this.bg = null;
         this.objects.removeAllChildren();
         this.objects = null;
@@ -896,9 +896,9 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(cc.sequence(
                 cc.scaleTo(duration, 1),
-                cc.callFunc(sprite.removeFromParent.bind(sprite, true), sprite))
+                cc.callFunc(sprite.removeFromParentAndCleanup.bind(sprite, true), sprite))
             );
-            sprite.runAction(new cc.FadeTo(duration, 128));
+            sprite.runAction(cc.fadeTo(duration, 128));
         }
     },
     onForbiddenTouch: function (touchlocation) {
@@ -910,9 +910,9 @@ EU.GameGS = EU.LayerExt.extend({
             var duration = 0.5;
             sprite.runAction(cc.sequence(
                 (cc.scaleTo(duration, 1)).easing(cc.easeBounceOut()),
-                cc.callFunc(sprite.removeFromParent.bind(sprite, true), sprite))
+                cc.callFunc(sprite.removeFromParentAndCleanup.bind(sprite, true), sprite))
             );
-            sprite.runAction(new cc.FadeTo(duration, 128));
+            sprite.runAction(cc.fadeTo(duration, 128));
         }
     },
     onCreateUnit: function (unit) {
@@ -993,9 +993,9 @@ EU.GameGS = EU.LayerExt.extend({
         }
     },
     onFinishGame: function (params) {
-        var call = new cc.CallFunc(this.openStatisticWindow.bind(this, params));
-        var delay = new cc.DelayTime(1);
-        this.runAction(new cc.Sequence(delay, call));
+        var call = cc.callFunc(this.openStatisticWindow.bind(this, params));
+        var delay = cc.delayTime(1);
+        this.runAction(cc.sequence(delay, call));
 
         var success = params.livecurrent > 0;
         this.menuCreateTower.disappearance();
@@ -1060,9 +1060,9 @@ EU.GameGS = EU.LayerExt.extend({
             var showAd = function () {
                 //TODO: AdsPlugin.showInterstitialBanner();
             };
-            var delay = new cc.DelayTime(1);
-            var call = cc.CallFunc(showAd);
-            var action = new cc.Sequence(delay, call);
+            var delay = cc.delayTime(1);
+            var call = cc.callFunc(showAd);
+            var action = cc.sequence(delay, call);
             this.runAction(action);
         }
 
@@ -1144,7 +1144,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
     removeIconsForWave: function () {
         for (var i = 0; i < this.waveIcons.length; ++i) {
-            this.waveIcons[i].removeFromParent(true);
+            this.waveIcons[i].removeFromParentAndCleanup(true);
         }
         this.waveIcons.length = 0;
     },
@@ -1303,7 +1303,7 @@ EU.GameGS = EU.LayerExt.extend({
     removeObject: function (object) {
         if (this.objects && object){
             this.objects.removeChild(object);
-            object.removeFromParent(true);
+            object.removeFromParentAndCleanup(true);
         }
     },
     update: function (dt) {

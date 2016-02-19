@@ -49,7 +49,7 @@ EU.ShootsEffectsBullet = cc.Sprite.extend(
 
         var animation = EU.Animation.createAnimation( textures, 0.5 );
         var animate =  cc.animate( animation );
-        var remover =  cc.callFunc(   this.removeFromParent.bind( this, true ) );
+        var remover =  cc.callFunc(   this.removeFromParentAndCleanup.bind( this, true ) );
         this.runAction(  cc.sequence( animate, remover ) );
 
         return true;
@@ -138,7 +138,7 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
         this._timer -= dt;
         if( this._timer <= 0 || this._target.getParent() == null || this._target.getCurrentHealth() <= 0 )
         {
-            this.removeFromParent(true);
+            this.removeFromParentAndCleanup(true);
             return;
         }
         var a = cc.pAdd(this._base.getPosition(), this._baseOffset);
@@ -237,7 +237,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         var clean = this.checkClean();
         if( clean )
         {
-            this.removeFromParent(true);
+            this.removeFromParentAndCleanup(true);
         }
         else
         {
@@ -488,7 +488,7 @@ EU.ShootsEffectsIce = cc.Sprite.extend(
                 if( br )break;
             }
         }
-        this.removeFromParent(true);
+        this.removeFromParentAndCleanup(true);
     },
 });
 
@@ -549,7 +549,7 @@ EU.ShootsEffectsIce2 = cc.Sprite.extend(
         var fadein =  cc.fadeTo( dfade, 128 );
         var delay =  cc.delayTime( ddelay );
         var fade =  cc.fadeTo( dfade, 0 );
-        var remove =  cc.callFunc(   this.removeFromParent.bind( this, true ) );
+        var remove =  cc.callFunc(   this.removeFromParentAndCleanup.bind( this, true ) );
         var action =  cc.sequence( fadein, delay, fade, remove );
 
         this.setOpacity( 0 );
@@ -589,7 +589,7 @@ EU.ShootsEffectLaser = cc.Sprite.extend(
         sprite.runAction(  cc.sequence(  cc.fadeTo( 0.1, 192 ),  cc.fadeTo( 0.1, 64 ) ) );
 
         var delay =  cc.delayTime( 0.2 );
-        var remover =  cc.callFunc( this.removeFromParent.bind(this, true));
+        var remover =  cc.callFunc( this.removeFromParentAndCleanup.bind(this, true));
         var action =  cc.sequence( delay, remover);
         this.runAction( action );
 

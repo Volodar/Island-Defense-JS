@@ -20,6 +20,17 @@ EU.ImageManager  = {
     load: function(path, name){
         var plist = EU.xmlLoader.resourcesRoot + path;
         var framePrefix = name + "::";
+
+        //cc.loader.loadAliases(plist, function(err, data) {
+        //    "use strict";
+        //    for( var key in data ) {
+        //        var frame = data[key];
+        //        var fullname = framePrefix + key;
+        //        this.frames[fullname] = frame;
+        //        delete data[key];
+        //    }
+        //});
+
         cc.spriteFrameCache.addSpriteFrames(plist);
         for( var key in cc.spriteFrameCache._spriteFrames ) {
             var frame = cc.spriteFrameCache._spriteFrames[key];
