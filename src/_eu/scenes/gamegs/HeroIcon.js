@@ -85,7 +85,7 @@ EU.HeroIcon = EU.MenuItemImageWithText.extend({
             this._hero.runEvent( mode ? "onselect" : "ondeselect" );
         }
 
-        var image = mode ? _selectedHero : _unselectedHero;
+        var image = mode ? this._selectedHero : this._unselectedHero;
         EU.xmlLoader.setProperty_int( this.getNormalImage(), EU.xmlKey.Image.int, image );
     }
 });
