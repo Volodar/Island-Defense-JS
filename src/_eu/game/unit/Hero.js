@@ -16,9 +16,9 @@ var EU = EU || {};
 EU.HeroExp = {
     /** Type{std.vector<var>}*/ _heroLevels: [],
     /** Type{std.vector<var>}*/ _levelAwards: [],
-    /** Type{std.vector<unsigned>}*/ _levelCosts: [],
-    /** Type{std.map<var, unsigned >}*/ _levelsForUnclockHeroes: {},
-    /** Type{std.map<var, std.vector<unsigned> >}*/ _skills: {},
+    /** Type{std.vector<var>}*/ _levelCosts: [],
+    /** Type{std.map<var, var >}*/ _levelsForUnclockHeroes: {},
+    /** Type{std.map<var, std.vector<var> >}*/ _skills: {},
     /** Type{std.map<var, inapp.SkuDetails >}*/ _heroInappDetails: {},
 
     onCreate: function () {
@@ -33,15 +33,15 @@ EU.HeroExp = {
         for (var i = 0; i < xmlexp.children.length; i++) {
             var child = xmlexp.children[i];
             var exp = parseFloat(child.getAttribute("exp"));
-            this._heroLevels.push.slice(-1)[0](exp);
+            this._heroLevels.push(exp);
         }
         for (i = 0; i < xmllevels.children.length; i++) {
             exp = parseFloat(xmllevels.children[i].getAttribute("exp"));
-            this._levelAwards.push.slice(-1)[0](exp);
+            this._levelAwards.push(exp);
         }
         for (i = 0; i < xmlcosts.children.length; i++) {
             exp = parseFloat(xmlcosts.children[i].getAttribute("exp"));
-            this._levelCosts.push.slice(-1)[0](exp);
+            this._levelCosts.push(exp);
         }
         for (i = 0; i < xmlHeroCosts.children.length; i++) {
             var name = xmlHeroCosts.children[i].getAttribute("name")();
@@ -56,7 +56,7 @@ EU.HeroExp = {
                 //TODO: get inapp info
                 //_heroInappDetails[name].result = inapp::Result::Fail;
                 //
-                //auto callback = [this, name]( inapp::SkuDetails details )
+                //var callback = [this, name]( inapp::SkuDetails details )
                 //{
                 //    if( details.result == inapp::Result::Ok )
                 //    {
@@ -202,3 +202,289 @@ EU.HeroExp = {
     }
 };
 
+EU.Hero = EU.UnitDesant.extend({
+    __Hero : true,
+    /** @type {var} */ _dieTimer : null,
+    /** @type {var} */ _regeneration : null,
+    /** @type {String}*/ _skill : null,
+    event_live : 100,
+
+    getSkill:function(){return this._skill;},
+
+    ctor: function( path, xmlFile ){
+        this._dieTimer = 0;
+        this._regeneration = 0;
+        this._skill = "";
+        this.add_event(  EU.Hero.event_live ).set_string_name( "live" );
+        this._super( path, xmlFile );
+    },
+//
+//Hero.~Hero()
+//{}
+//
+    die_update:function( dt )
+    {
+        this._dieTimer += dt;
+        var dlife = (this._defaultHealth * this.getRate()) / EU.MachineUnit._death.duration;
+        var health = dlife * this._dieTimer + this.getCurrentHealth();
+    
+        this.observerHealth.unlock();
+        this.setCurrentHealth( health );
+        this.observerHealth.lock();
+        this.setCurrentHealth(0);
+    },
+    initSkills: function()
+    {
+        var skills = this.getSkills();
+        for( var i=0; i<skills.length; ++i )
+        {
+            var skill = skills[i];
+            var checkUnitSkill = skill.getNeedUnitSkill().length > 0;
+            if( checkUnitSkill == false )
+                continue;
+            var type = EU.Common.strToInt( skill.getNeedUnitSkill() );
+            var level = skill.getNeedUnitSkillLevel();
+
+            var heroSkills = EU.HeroExp.skills( this.getName() );
+            if( heroSkills[type] != level )
+                this.removeSkill( skill );
+        }
+
+        skills = this.getSkills();
+        for( i=0; i<skills.length; ++i )
+        {
+            skill = skills[i];
+            if( skill instanceof EU.UnitSkillRateParameter )
+            {
+                var paramSkill = skill;
+                var param = paramSkill.getParameter();
+                var rate = paramSkill.getRate();
+
+                if( param == "health" )
+                {
+                    this.setProperty_str( param, (getHealth() * rate) );
+                }
+                else if( param == "armor" )
+                {
+                    var effect = this.getEffect();
+                    effect.positive.armor *= rate;
+                }
+                else if( param == "damage" )
+                {
+                    effect = this.getEffect();
+                    effect.positive.damage *= rate;
+                    effect.positive.electroRate *= rate;
+                    effect.positive.fireRate *= rate;
+                    effect.positive.iceRate *= rate;
+                }
+            }
+        }
+    },
+    moveTo: function( position )
+    {
+        var myRoute = [];
+        if( myRoute.length == 0 ) myRoute = this.findOneRoute( position );
+        if( myRoute.length == 0 ) myRoute = this.findTwoRoute( position );
+
+        if( myRoute.length > 0 )
+        {
+            this.finalizateRoute( position, myRoute );
+            this.setBasePosition( position );
+            this.getMover().setRoute( myRoute );
+            this.move();
+        }
+
+        return myRoute.length > 0;
+    },
+    checkRoute: function( tripleroute, A, B )
+    {
+        var route = [];
+        var maxDistToRoute = 50;
+        var checkSelf = EU.checkPointOnRoute_2( A, tripleroute, maxDistToRoute * 2 );
+        var checkTarget = checkPointOnRoute_2( B, tripleroute, maxDistToRoute );
+        if( checkSelf.result && checkTarget.result )
+        {
+            var i0 = -1;
+            var i1 = -1;
+            var min_0 = 9999;
+            var min_1 = 9999;
+            var  r = tripleroute.main;
+            for( i = 0; i < r.length; ++i )
+            {
+                var d0 = cc.pDistance(A, r[i] );
+                var d1 = cc.pDistance(B, r[i] );
+                if( d0 < min_0 )
+                {
+                    min_0 = d0;
+                    i0 = i;
+                }
+                if( d1 < min_1 )
+                {
+                    min_1 = d1;
+                    i1 = i;
+                }
+            }
+            EU.assert( i0 != -1 );
+            EU.assert( i1 != -1 );
+            var step = i1 > i0 ? 1 : -1;
+            for( var i = i0; i != i1; i += step )
+            {
+                route.push( r[i] );
+            }
+            if( i0 == i1 )
+            {
+                route.push( r[i0] );
+            }
+        }
+        return route;
+    },
+    findOneRoute: function( position )
+    {
+        var route = [];
+        var routes = EU.GameGSInstance.getGameBoard().getCreepsRoutes();
+
+        for( var i=0; i<routes.length; ++i)
+        {
+            var route2 = routes[i];
+            route2 = this.checkRoute( route, this.getPosition(), position );
+            if( route2.length > 0 )
+                break;
+        }
+        return route;
+    },
+    findTwoRoute: function( position )
+    {
+        var route = [];
+        var atroutes = EU.GameGSInstance.getGameBoard().getCreepsRoutes();
+        var troutes = [];
+
+        var temp = [];
+        for( var i = 0; i < atroutes.length; ++i )
+        {
+            temp.length = 0;
+            temp = this.checkRoute( atroutes[i], this.getPosition(), atroutes[i].main[0] );
+            if( temp.length > 0 )
+                troutes.push( atroutes[i] );
+        }
+        for( i = 0; i < atroutes.length; ++i )
+        {
+            temp.length = 0;
+            temp = this.checkRoute( atroutes[i], position, atroutes[i].main[0] );
+            if( temp.length > 0 )
+                troutes.push( atroutes[i] );
+        }
+        if( troutes.length == 0 )
+            return;
+
+        var routes = [];
+        for( i = 0; i < troutes.length; ++i )
+        {
+            for( var j = 0; j < troutes[i].main.length; ++j )
+            {
+                var point = troutes[i].main[j];
+                temp.length = 0;
+                temp = this.checkRoute( troutes[i], this.getPosition(), point );
+                size = temp.length;
+                if( size == 0 )
+                    continue;
+                temp.push( point );
+                routes.push( temp );
+            }
+        }
+
+        for( i = 0; i < routes.length; )
+        {
+            var path = false;
+            for( j = 0; j < troutes.length; ++j )
+            {
+                var troute = troutes[j];
+                temp.length = 0;
+                temp = this.checkRoute( troute, routes[i].slice(-1)[0], position );
+                var size = temp.length;
+                if( size != 0 )
+                {
+                    routes[i].insert( routes[i].end(), temp.begin(), temp.end() );
+                    path = true;
+                }
+            }
+            if( path == false )
+            {
+                routes.splice( i, 1 );
+            }
+            else
+            {
+                ++i;
+            }
+        }
+
+        routes.sort(
+            function(  l,  r )
+            {
+                var Len = function (route){
+                    var l = 0;
+                    for( var i = 1; i < route.length; ++i )
+                    {
+                        l += cc.pDistanceSQ( route[i - 1], route[i] );
+                    }
+                    return l;
+                };
+                return Len( l ) < Len( r );
+            }
+        );
+
+        if( routes.length > 0 )
+        {
+            route = routes[0]();
+        }
+        return route;
+    },
+    finalizateRoute: function( position, route )
+    {
+        route.push( position );
+        while( route.length >= 2 )
+        {
+            var r1 = cc.pSub(route[0], this.getPosition());
+            var r2 = cc.pSub(route[1], route[0]);
+            var angle = EU.Common.getAngle( r1, r2 );
+            if( Math.abs( angle ) > 90 )
+            {
+                route.splice( 0, 1 );
+            }
+            else
+            {
+                break;
+            }
+        }
+        route.splice( 0, 0, this.getPosition() );
+    },
+    setProperty_str: function( stringproperty, value )
+    {
+        if( stringproperty == "regeneration" )
+            this._regeneration = EU.Common.strToFloat( value );
+        else if( stringproperty == "skill" )
+            this._skill = value;
+        else
+            return EU.UnitDesant.prototype.setProperty_str( stringproperty, value );
+
+        return true;
+    },
+    on_die:function()
+    {
+        this._super();
+        this.observerHealth.lock();
+        this._dieTimer = 0;
+    },
+    on_die_finish: function()
+    {
+        this.runEvent( "on_die_finish" );
+        this.setCurrentHealth( this._defaultHealth * this.getRate() );
+        this.push_event( this.event_live );
+        this.observerHealth.unlock();
+    },
+    stop_update: function( dt )
+    {
+        var health = this.getCurrentHealth();
+        health = Math.min( this._defaultHealth * this.getRate(), health + this._regeneration * dt );
+        this.setCurrentHealth( health );
+    }
+});

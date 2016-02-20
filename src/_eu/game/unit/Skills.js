@@ -25,6 +25,10 @@ EU.UnitSkill = cc.Class.extend(
     /** @type {std.string} */ _needUnitSkill : null,
     /** @type {int} */ _needUnitSkillLevel : 0,
 
+    getNeedUnitSkill: function(){return this._needUnitSkill; },
+    getNeedUnitSkillLevel: function(){return this._needUnitSkillLevel; },
+
+
     /******************************************************************************/
     //MARK: UnitSkill
     /******************************************************************************/

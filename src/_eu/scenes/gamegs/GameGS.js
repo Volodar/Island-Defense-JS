@@ -543,7 +543,7 @@ EU.GameGS = EU.LayerExt.extend({
             var object = this.objects.children[i];
             if (object.getName() == name) {
                 if (object.__Decoration)
-                    result.push(decor);
+                    result.push(object);
             }
         }
         return result;

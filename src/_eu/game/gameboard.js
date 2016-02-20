@@ -697,7 +697,7 @@ EU.GameBoard = cc.Class.extend({
         {
             index = EU.UserData.hero_getCurrent() + 1;
             decor = decorations[min];
-            this.hero = EU.xmlLoader.load_node_from_file( "ini/units/hero/hero" + index + ".xml" );
+            this.hero = EU.xmlLoader.load_node_from_file( "ini/units/hero/hero" + index + ".json" );
             this.hero.initSkills();
             this.hero.setPosition( decor.getPosition() );
             this.hero.moveTo( decor.getPosition() );

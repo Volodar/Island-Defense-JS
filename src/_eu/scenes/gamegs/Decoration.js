@@ -14,6 +14,7 @@
 var EU = EU || {};
 
 EU.Decoration = cc.Sprite.extend({
+    __Decoration : true,
     action : null,
     actionDescription : null,
     startPosition : null,
