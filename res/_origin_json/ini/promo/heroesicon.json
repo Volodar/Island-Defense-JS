@@ -1,27 +1,27 @@
 {
     "node": {
+        "@type": "menu",
         "@name": "promomenu",
         "@pos": "righttop:-64x-64",
-        "@type": "menu",
         "children": {
             "node": [
                 {
-                    "@callback": "open",
-                    "@imageN": "heroroom::hero1/hero1_1.png",
-                    "@name": "open",
                     "@pos": "0x0",
+                    "@callback": "open",
                     "@type": "menuitem",
+                    "@name": "open",
+                    "@imageN": "heroroom::hero1/hero1_1.png",
                     "children": null
                 },
                 {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/helvetica.fnt",
-                    "@name": "timer",
-                    "@pos": "0x-50",
                     "@scale": "0.5x0.5",
+                    "@name": "timer",
+                    "@color": "FFFFFF",
                     "@text": "00:00",
-                    "@type": "text"
+                    "@pos": "0x-50",
+                    "@font": "fonts/helvetica.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
                 }
             ]
         }

@@ -2,243 +2,243 @@
     "levels": {
         "level_1": {
             "@excludetext": "",
-            "@fuel": "10",
+            "@starshard": "3",
+            "@starhard": "80",
             "@fuelhard": "10",
             "@star1": "20",
-            "@star2": "30",
             "@star3": "50",
-            "@starhard": "80",
-            "@starshard": "3"
-        },
-        "level_10": {
-            "@excludetext": "",
-            "@fuel": "19",
-            "@fuelhard": "19",
-            "@star1": "110",
-            "@star2": "120",
-            "@star3": "190",
-            "@starhard": "220",
-            "@starshard": "3"
-        },
-        "level_11": {
-            "@excludetext": "",
-            "@fuel": "20",
-            "@fuelhard": "20",
-            "@star1": "120",
-            "@star2": "130",
-            "@star3": "210",
-            "@starhard": "240",
-            "@starshard": "3"
-        },
-        "level_12": {
-            "@excludetext": "",
-            "@fuel": "21",
-            "@fuelhard": "21",
-            "@star1": "130",
-            "@star2": "140",
-            "@star3": "230",
-            "@starhard": "260",
-            "@starshard": "3"
-        },
-        "level_13": {
-            "@excludetext": "",
-            "@fuel": "22",
-            "@fuelhard": "22",
-            "@star1": "140",
-            "@star2": "150",
-            "@star3": "250",
-            "@starhard": "280",
-            "@starshard": "3"
-        },
-        "level_14": {
-            "@excludetext": "",
-            "@fuel": "23",
-            "@fuelhard": "23",
-            "@star1": "150",
-            "@star2": "160",
-            "@star3": "270",
-            "@starhard": "300",
-            "@starshard": "3"
-        },
-        "level_15": {
-            "@excludetext": "",
-            "@fuel": "24",
-            "@fuelhard": "24",
-            "@star1": "160",
-            "@star2": "170",
-            "@star3": "290",
-            "@starhard": "320",
-            "@starshard": "3"
-        },
-        "level_16": {
-            "@excludetext": "",
-            "@fuel": "25",
-            "@fuelhard": "25",
-            "@star1": "170",
-            "@star2": "180",
-            "@star3": "310",
-            "@starhard": "340",
-            "@starshard": "3"
-        },
-        "level_17": {
-            "@excludetext": "",
-            "@fuel": "26",
-            "@fuelhard": "26",
-            "@star1": "180",
-            "@star2": "190",
-            "@star3": "330",
-            "@starhard": "360",
-            "@starshard": "3"
-        },
-        "level_18": {
-            "@excludetext": "",
-            "@fuel": "27",
-            "@fuelhard": "27",
-            "@star1": "190",
-            "@star2": "200",
-            "@star3": "350",
-            "@starhard": "380",
-            "@starshard": "3"
-        },
-        "level_19": {
-            "@excludetext": "",
-            "@fuel": "28",
-            "@fuelhard": "28",
-            "@star1": "200",
-            "@star2": "210",
-            "@star3": "370",
-            "@starhard": "400",
-            "@starshard": "3"
+            "@star2": "30",
+            "@fuel": "10"
         },
         "level_2": {
             "@excludetext": "",
-            "@fuel": "12",
+            "@starshard": "3",
+            "@starhard": "90",
             "@fuelhard": "12",
             "@star1": "30",
-            "@star2": "40",
             "@star3": "60",
-            "@starhard": "90",
-            "@starshard": "3"
-        },
-        "level_20": {
-            "@excludetext": "",
-            "@fuel": "29",
-            "@fuelhard": "29",
-            "@star1": "210",
-            "@star2": "220",
-            "@star3": "390",
-            "@starhard": "420",
-            "@starshard": "3"
-        },
-        "level_21": {
-            "@excludetext": "",
-            "@fuel": "30",
-            "@fuelhard": "30",
-            "@star1": "220",
-            "@star2": "230",
-            "@star3": "410",
-            "@starhard": "440",
-            "@starshard": "3"
-        },
-        "level_22": {
-            "@excludetext": "",
-            "@fuel": "31",
-            "@fuelhard": "31",
-            "@star1": "230",
-            "@star2": "240",
-            "@star3": "430",
-            "@starhard": "460",
-            "@starshard": "3"
-        },
-        "level_23": {
-            "@excludetext": "",
-            "@fuel": "32",
-            "@fuelhard": "32",
-            "@star1": "240",
-            "@star2": "250",
-            "@star3": "450",
-            "@starhard": "480",
-            "@starshard": "3"
-        },
-        "level_24": {
-            "@excludetext": "",
-            "@fuel": "33",
-            "@fuelhard": "33",
-            "@star1": "250",
-            "@star2": "260",
-            "@star3": "470",
-            "@starhard": "500",
-            "@starshard": "3"
+            "@star2": "40",
+            "@fuel": "12"
         },
         "level_3": {
             "@excludetext": "",
-            "@fuel": "14",
+            "@starshard": "3",
+            "@starhard": "100",
             "@fuelhard": "14",
             "@star1": "40",
-            "@star2": "50",
             "@star3": "70",
-            "@starhard": "100",
-            "@starshard": "3"
+            "@star2": "50",
+            "@fuel": "14"
         },
         "level_4": {
             "@excludetext": "",
-            "@fuel": "14",
+            "@starshard": "3",
+            "@starhard": "110",
             "@fuelhard": "14",
             "@star1": "50",
-            "@star2": "60",
             "@star3": "70",
-            "@starhard": "110",
-            "@starshard": "3"
+            "@star2": "60",
+            "@fuel": "14"
         },
         "level_5": {
             "@excludetext": "",
-            "@fuel": "15",
+            "@starshard": "3",
+            "@starhard": "130",
             "@fuelhard": "15",
             "@star1": "60",
-            "@star2": "70",
             "@star3": "80",
-            "@starhard": "130",
-            "@starshard": "3"
+            "@star2": "70",
+            "@fuel": "15"
         },
         "level_6": {
             "@excludetext": "",
-            "@fuel": "15",
+            "@starshard": "3",
+            "@starhard": "150",
             "@fuelhard": "15",
             "@star1": "70",
-            "@star2": "80",
             "@star3": "120",
-            "@starhard": "150",
-            "@starshard": "3"
+            "@star2": "80",
+            "@fuel": "15"
         },
         "level_7": {
             "@excludetext": "",
-            "@fuel": "16",
+            "@starshard": "3",
+            "@starhard": "160",
             "@fuelhard": "16",
             "@star1": "80",
-            "@star2": "90",
             "@star3": "130",
-            "@starhard": "160",
-            "@starshard": "3"
+            "@star2": "90",
+            "@fuel": "16"
         },
         "level_8": {
             "@excludetext": "",
-            "@fuel": "17",
+            "@starshard": "3",
+            "@starhard": "180",
             "@fuelhard": "17",
             "@star1": "90",
-            "@star2": "100",
             "@star3": "150",
-            "@starhard": "180",
-            "@starshard": "3"
+            "@star2": "100",
+            "@fuel": "17"
         },
         "level_9": {
             "@excludetext": "",
-            "@fuel": "18",
+            "@starshard": "3",
+            "@starhard": "200",
             "@fuelhard": "18",
             "@star1": "100",
-            "@star2": "110",
             "@star3": "170",
-            "@starhard": "200",
-            "@starshard": "3"
+            "@star2": "110",
+            "@fuel": "18"
+        },
+        "level_10": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "220",
+            "@fuelhard": "19",
+            "@star1": "110",
+            "@star3": "190",
+            "@star2": "120",
+            "@fuel": "19"
+        },
+        "level_11": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "240",
+            "@fuelhard": "20",
+            "@star1": "120",
+            "@star3": "210",
+            "@star2": "130",
+            "@fuel": "20"
+        },
+        "level_12": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "260",
+            "@fuelhard": "21",
+            "@star1": "130",
+            "@star3": "230",
+            "@star2": "140",
+            "@fuel": "21"
+        },
+        "level_13": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "280",
+            "@fuelhard": "22",
+            "@star1": "140",
+            "@star3": "250",
+            "@star2": "150",
+            "@fuel": "22"
+        },
+        "level_14": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "300",
+            "@fuelhard": "23",
+            "@star1": "150",
+            "@star3": "270",
+            "@star2": "160",
+            "@fuel": "23"
+        },
+        "level_15": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "320",
+            "@fuelhard": "24",
+            "@star1": "160",
+            "@star3": "290",
+            "@star2": "170",
+            "@fuel": "24"
+        },
+        "level_16": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "340",
+            "@fuelhard": "25",
+            "@star1": "170",
+            "@star3": "310",
+            "@star2": "180",
+            "@fuel": "25"
+        },
+        "level_17": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "360",
+            "@fuelhard": "26",
+            "@star1": "180",
+            "@star3": "330",
+            "@star2": "190",
+            "@fuel": "26"
+        },
+        "level_18": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "380",
+            "@fuelhard": "27",
+            "@star1": "190",
+            "@star3": "350",
+            "@star2": "200",
+            "@fuel": "27"
+        },
+        "level_19": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "400",
+            "@fuelhard": "28",
+            "@star1": "200",
+            "@star3": "370",
+            "@star2": "210",
+            "@fuel": "28"
+        },
+        "level_20": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "420",
+            "@fuelhard": "29",
+            "@star1": "210",
+            "@star3": "390",
+            "@star2": "220",
+            "@fuel": "29"
+        },
+        "level_21": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "440",
+            "@fuelhard": "30",
+            "@star1": "220",
+            "@star3": "410",
+            "@star2": "230",
+            "@fuel": "30"
+        },
+        "level_22": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "460",
+            "@fuelhard": "31",
+            "@star1": "230",
+            "@star3": "430",
+            "@star2": "240",
+            "@fuel": "31"
+        },
+        "level_23": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "480",
+            "@fuelhard": "32",
+            "@star1": "240",
+            "@star3": "450",
+            "@star2": "250",
+            "@fuel": "32"
+        },
+        "level_24": {
+            "@excludetext": "",
+            "@starshard": "3",
+            "@starhard": "500",
+            "@fuelhard": "33",
+            "@star1": "250",
+            "@star3": "470",
+            "@star2": "260",
+            "@fuel": "33"
         }
     }
 }

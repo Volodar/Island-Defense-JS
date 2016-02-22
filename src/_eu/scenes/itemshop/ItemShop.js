@@ -223,16 +223,16 @@ EU.ItemShop = EU.ScrollMenu.extend({
     {
         if( this.removeScoreLayer )
         {
-            var scene = Director.getInstance().getRunningScene();
+            var scene = cc.director.getRunningScene();
             var scores = scene.getChildByName( "scorelayer" );
             if( scores )
             {
-                scores.removeFromParent(true);
+                EU.removeFromParent(scores, true);
             }
         }
         var dessize = cc.view.getDesignResolutionSize();
         var action = cc.moveTo( 0.5, cc.p(this.zeroPosition.x, this.zeroPosition.y-dessize.height )).easing(cc.easeBackIn());
-        this.runAction( cc.sequence( action, cc.removeSelf() ) );
+        this.runAction( cc.sequence( action, cc.callFunc(EU.removeFromParent.bind(this, this, true))) );
         EU.AudioEngine.playEffect( EU.kSoundShopHide );
     },
     fadeenter: function()

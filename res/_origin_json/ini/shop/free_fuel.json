@@ -5,17 +5,17 @@
         "children": {
             "node": [
                 {
-                    "@center": "0.5x0.5",
-                    "@path": "menu/buy/normal/text",
-                    "@pos": "108x40",
                     "@scale": "0.6x0.6",
+                    "@center": "0.5x0.5",
                     "@text": "#shop_getfree#",
+                    "@pos": "108x40",
+                    "@path": "menu/buy/normal/text",
                     "@textalign": "center"
                 },
                 {
+                    "@text": "10",
                     "@name": "text",
-                    "@pos": "115x395",
-                    "@text": "10"
+                    "@pos": "115x395"
                 },
                 {
                     "@image": "images/shop/icon_fuel.png",

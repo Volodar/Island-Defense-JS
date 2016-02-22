@@ -29,21 +29,13 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     /** @type {MenuItem} */ _lock : null,
     /** @type {Boolean} */ _waitSellConfirm : null,
     /** @type {Boolean} */ _waitUpgradeConfirm : null,
-    _desc : function() {
-        "use strict";
 
-        /**Node*/ this.node = null;
-         /**Label*/ this.name = null;
-         /**Label*/ this.text = null;
-         /**Label*/ this.dmg = null;
-         /**Label*/ this.rng = null;
-         /**Label*/ this.spd = null;
-    },
 
 
     onExit: function()
     {
         EU.ScoreCounter.observer( EU.kScoreLevel ).remove( this.__instanceId );
+        this._super();
     },
 
     ctor: function()
@@ -53,6 +45,15 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         this._disabled = false;
 
         this._super();
+
+        this._desc = {
+            /**cc.Node*/ node: new cc.Node(),
+            /**cc.LabelTTF*/ name: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ text: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ dmg: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ rng: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ spd: new cc.LabelTTF()
+        };
 
         this.initExt();
 
@@ -149,7 +150,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     {
         var name = this._unit.getName();
         var localization = EU.Language.string( name + "_name" );
-        var level = Math.min( this._level, this._unit._maxLevel );
+        var level = Math.min(_level, this._unit._maxLevel);
 
         var dmg = ( EU.mlTowersInfo.get_dmg( name, level ) );
         var rng = ( EU.mlTowersInfo.get_rng( name, level ) );

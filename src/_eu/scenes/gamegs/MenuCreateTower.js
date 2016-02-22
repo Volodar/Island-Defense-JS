@@ -31,8 +31,8 @@ EU.MenuCreateTower = EU.ScrollMenu.extend(
 
     onExit: function()
     {
-        this._super();
         EU.ScoreCounter.observer( EU.kScoreLevel ).remove( this.__instanceId );
+        this._super();
     },
     ctor: function()
     {

@@ -224,7 +224,7 @@ EU.mlTowersInfo = {
                     var root2 = doc2.firstElementChild;
                     if ( maxlevel == 1 ) maxlevel = parseInt(EU.asObject(root2.getAttribute( "maxlevel" ), 0));
 
-                    if ( root.getAttribute( "template" ) ) {
+                    if (root2.getAttribute("template")) {
 
                         docTemplate  = null;
                         EU.pugixml.readXml(root2.getAttribute( "template" ), function(error, data) {
@@ -263,10 +263,10 @@ EU.mlTowersInfo = {
                     var fps = volume * speed;
                     damage *= fps;
 
-                    //cc.log( "%s:%d fps = %f", name, i, fps );
-                    //cc.log( "%s:%d damage = %f", name, i, damage );
-                    //cc.log( "%s:%d radius = %f", name, i, radius );
-                    //cc.log( "%s:%d speed = %f", name, i, speed );
+                    cc.log("%s:%d fps = %f", name, i, fps);
+                    cc.log("%s:%d damage = %f", name, i, damage);
+                    cc.log("%s:%d radius = %f", name, i, radius);
+                    cc.log("%s:%d speed = %f", name, i, speed);
 
                     EU.assert ( damage > 0 );
                     EU.assert ( radius > 0 );

@@ -1,8 +1,17 @@
 {
     "menuitem": {
-        "@center": "0.27x0.18",
-        "@imageN": "images/map/##flag_image##.png",
         "@type": "menuitem",
+        "@imageN": "images/map/##flag_image##.png",
+        "@center": "0.27x0.18",
+        "children": {
+            "node": {
+                "@visible": "yes",
+                "@image": "images/map/star0.png",
+                "@type": "sprite",
+                "@name": "star0",
+                "@pos": "26x73"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -27,15 +36,6 @@
                 }
             ]
         },
-        "children": {
-            "node": {
-                "@image": "images/map/star0.png",
-                "@name": "star0",
-                "@pos": "26x73",
-                "@type": "sprite",
-                "@visible": "yes"
-            }
-        },
         "events": {
             "eventlist": [
                 {
@@ -43,24 +43,6 @@
                 },
                 {
                     "@name": "star0_show",
-                    "playsound": {
-                        "@predelay": "##flag_delay_appearance##",
-                        "@sound": "##sound_mapflagnew##"
-                    },
-                    "runaction": [
-                        {
-                            "@action": "star_scale",
-                            "@target": "star0"
-                        },
-                        {
-                            "@action": "flag_fadein",
-                            "@target": "normal"
-                        },
-                        {
-                            "@action": "flag_move",
-                            "@target": "normal"
-                        }
-                    ],
                     "setproperty": [
                         {
                             "@property": "visible",
@@ -77,7 +59,25 @@
                             "@target": "normal",
                             "@value": "0"
                         }
-                    ]
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "star_scale",
+                            "@target": "star0"
+                        },
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_move",
+                            "@target": "normal"
+                        }
+                    ],
+                    "playsound": {
+                        "@sound": "##sound_mapflagnew##",
+                        "@predelay": "##flag_delay_appearance##"
+                    }
                 }
             ]
         }

@@ -2,6 +2,115 @@
     "airplane": {
         "@sectorangle": "360",
         "@unittype": "tower",
+        "effects": {
+            "positive": {
+                "@damage": "180"
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@opacity": "255",
+                    "@image": "airbomb::plane.png",
+                    "@type": "sprite",
+                    "@name": "airplane",
+                    "@pos": "-100x500"
+                },
+                {
+                    "@center": "0.5x0",
+                    "@type": "sprite",
+                    "@name": "1_bomb",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@center": "0.5x1",
+                    "@type": "sprite",
+                    "@name": "1_shadow",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@scale": "2x2",
+                    "@type": "sprite",
+                    "@name": "1_explosion",
+                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##"
+                },
+                {
+                    "@type": "sprite",
+                    "@name": "1_explosion_water",
+                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##"
+                },
+                {
+                    "@opacity": "0",
+                    "@name": "1_place",
+                    "@image": "airbomb::texture1.png",
+                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##",
+                    "@globalzorder": "-1",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0.5x0",
+                    "@type": "sprite",
+                    "@name": "2_bomb",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@center": "0.5x1",
+                    "@type": "sprite",
+                    "@name": "2_shadow",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@scale": "2x2",
+                    "@type": "sprite",
+                    "@name": "2_explosion",
+                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##"
+                },
+                {
+                    "@type": "sprite",
+                    "@name": "2_explosion_water",
+                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##"
+                },
+                {
+                    "@opacity": "0",
+                    "@name": "2_place",
+                    "@image": "airbomb::texture1.png",
+                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##",
+                    "@globalzorder": "-1",
+                    "@type": "sprite"
+                },
+                {
+                    "@center": "0.5x0",
+                    "@type": "sprite",
+                    "@name": "3_bomb",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@center": "0.5x1",
+                    "@type": "sprite",
+                    "@name": "3_shadow",
+                    "@pos": "10000x10000"
+                },
+                {
+                    "@scale": "2x2",
+                    "@type": "sprite",
+                    "@name": "3_explosion",
+                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##"
+                },
+                {
+                    "@type": "sprite",
+                    "@name": "3_explosion_water",
+                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##"
+                },
+                {
+                    "@opacity": "0",
+                    "@name": "3_place",
+                    "@image": "airbomb::texture1.png",
+                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##",
+                    "@globalzorder": "-1",
+                    "@type": "sprite"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -77,115 +186,6 @@
                     "@value": "MoveTo[2,1224,500]"
                 }
             ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@image": "airbomb::plane.png",
-                    "@name": "airplane",
-                    "@opacity": "255",
-                    "@pos": "-100x500",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x0",
-                    "@name": "1_bomb",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x1",
-                    "@name": "1_shadow",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "1_explosion",
-                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##",
-                    "@scale": "2x2",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "1_explosion_water",
-                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##",
-                    "@type": "sprite"
-                },
-                {
-                    "@globalzorder": "-1",
-                    "@image": "airbomb::texture1.png",
-                    "@name": "1_place",
-                    "@opacity": "0",
-                    "@pos": "##airplane_bomb_posx1##x##airplane_bomb_posy1##",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x0",
-                    "@name": "2_bomb",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x1",
-                    "@name": "2_shadow",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "2_explosion",
-                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##",
-                    "@scale": "2x2",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "2_explosion_water",
-                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##",
-                    "@type": "sprite"
-                },
-                {
-                    "@globalzorder": "-1",
-                    "@image": "airbomb::texture1.png",
-                    "@name": "2_place",
-                    "@opacity": "0",
-                    "@pos": "##airplane_bomb_posx2##x##airplane_bomb_posy2##",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x0",
-                    "@name": "3_bomb",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x1",
-                    "@name": "3_shadow",
-                    "@pos": "10000x10000",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "3_explosion",
-                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##",
-                    "@scale": "2x2",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "3_explosion_water",
-                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##",
-                    "@type": "sprite"
-                },
-                {
-                    "@globalzorder": "-1",
-                    "@image": "airbomb::texture1.png",
-                    "@name": "3_place",
-                    "@opacity": "0",
-                    "@pos": "##airplane_bomb_posx3##x##airplane_bomb_posy3##",
-                    "@type": "sprite"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@damage": "180"
-            }
         },
         "events": {
             "eventlist": {

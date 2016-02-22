@@ -4,77 +4,77 @@
         "children": {
             "node": [
                 {
+                    "@type": "menu",
                     "@name": "menu",
                     "@pos": "0x0",
-                    "@type": "menu",
                     "children": {
                         "node": {
-                            "@imageN": "images/map/button_+.png",
-                            "@name": "shop",
                             "@pos": "halftop:160x-30",
                             "@sound": "##sound_button##",
-                            "@type": "menuitem"
+                            "@type": "menuitem",
+                            "@name": "shop",
+                            "@imageN": "images/map/button_+.png"
                         }
                     }
                 },
                 {
+                    "@visible": "no",
                     "@image": "images/map/star.png",
-                    "@name": "iconstar",
-                    "@pos": "halftop:-200x-27",
                     "@type": "sprite",
-                    "@visible": "no"
+                    "@name": "iconstar",
+                    "@pos": "halftop:-200x-27"
                 },
                 {
-                    "@center": "0x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "valuestar",
-                    "@pos": "halftop:-180x-23",
                     "@scale": "0.6x0.6",
+                    "@name": "valuestar",
                     "@text": "0",
+                    "@pos": "halftop:-180x-23",
+                    "@visible": "no",
+                    "@font": "fonts/mdefensefont2.fnt",
                     "@type": "text",
-                    "@visible": "no"
+                    "@center": "0x0.5"
                 },
                 {
                     "@image": "images/map/icon_gold1.png",
-                    "@name": "icongold",
-                    "@pos": "halftop:-30x-30",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "valuegold",
-                    "@pos": "halftop:0x-25",
-                    "@scale": "0.6x0.6",
-                    "@text": "0",
-                    "@type": "text"
-                },
-                {
-                    "@image": "images/map/button_fuel.png",
-                    "@name": "iconfuel",
-                    "@pos": "halftop:-180x-33",
                     "@type": "sprite",
-                    "@visible": "yes"
+                    "@name": "icongold",
+                    "@pos": "halftop:-30x-30"
                 },
                 {
-                    "@center": "0x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "valuefuel",
-                    "@pos": "halftop:-150x-23",
                     "@scale": "0.6x0.6",
+                    "@name": "valuegold",
                     "@text": "0",
+                    "@pos": "halftop:0x-25",
+                    "@font": "fonts/mdefensefont2.fnt",
                     "@type": "text",
-                    "@visible": "yes"
+                    "@center": "0x0.5"
                 },
                 {
-                    "@center": "0x0.5",
-                    "@font": "fonts/helveticastoke.fnt",
-                    "@name": "valuetime",
-                    "@pos": "halftop:-200x-65",
-                    "@scale": "0.7x0.6",
+                    "@visible": "yes",
+                    "@image": "images/map/button_fuel.png",
+                    "@type": "sprite",
+                    "@name": "iconfuel",
+                    "@pos": "halftop:-180x-33"
+                },
+                {
+                    "@scale": "0.6x0.6",
+                    "@name": "valuefuel",
                     "@text": "0",
+                    "@pos": "halftop:-150x-23",
+                    "@visible": "yes",
+                    "@font": "fonts/mdefensefont2.fnt",
                     "@type": "text",
-                    "@visible": "yes"
+                    "@center": "0x0.5"
+                },
+                {
+                    "@scale": "0.7x0.6",
+                    "@name": "valuetime",
+                    "@text": "0",
+                    "@pos": "halftop:-200x-65",
+                    "@visible": "yes",
+                    "@font": "fonts/helveticastoke.fnt",
+                    "@type": "text",
+                    "@center": "0x0.5"
                 }
             ]
         }

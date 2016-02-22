@@ -122,7 +122,7 @@ var jsonextended = function(json, isDocRoot){
      @return {boolean}
      */
     self.hasAttribute = function (name) {
-        if (typeof self.data == 'undefined' || self.data["@" + name] == null)
+        if (typeof self.data["@" + name] == 'undefined' || self.data["@" + name] == null)
             return false;
         else
             return true;

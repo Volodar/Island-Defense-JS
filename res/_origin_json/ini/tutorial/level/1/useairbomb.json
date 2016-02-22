@@ -1,14 +1,8 @@
 {
     "tutorial": {
         "@parent": "/gamelayer/interface/menu/bomb",
-        "@pos": "35x140",
         "@template": "ini/tutorial/template_baloon.xml",
-        "actions": {
-            "action": {
-                "@name": "bodyfadein",
-                "@value": "Sequence[DelayTime[1],FadeTo[0.3,255]]"
-            }
-        },
+        "@pos": "35x140",
         "children": {
             "node": [
                 {
@@ -21,6 +15,12 @@
                     "@pos": "50x0"
                 }
             ]
+        },
+        "actions": {
+            "action": {
+                "@name": "bodyfadein",
+                "@value": "Sequence[DelayTime[1],FadeTo[0.3,255]]"
+            }
         },
         "events": {
             "eventlist": {

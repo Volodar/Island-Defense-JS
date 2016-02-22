@@ -125,7 +125,8 @@ EU.showRadius= function( position, radius )
 
 
     if( EU.SpriteForRadius.getParent( ) )
-        EU.SpriteForRadius.removeFromParent(true);
+        EU.removeFromParent(EU.SpriteForRadius, true);
+
     EU.GameGSInstance.addObject( EU.SpriteForRadius );
 };
 
@@ -405,3 +406,20 @@ EU.MouseHoverScroll = {
 (function(){
     EU.MouseHoverScroll.init();
 })();
+
+/**
+ * This function remove cc.Node.removeFromParent which return a wrong number of arguments in JSB
+ * [cc.Node.removeFromParent returns js_cocos2dx_Node_removeFromParentAndCleanup : wrong number of arguments]
+ * @param cleanup
+ * @param self
+ * Usage EU.removeFromParent(layer, true);
+ * Usage EU.removeFromParent(layer);
+ * Usage EU.removeFromParent.bind(layer, layer, true);
+ */
+EU.removeFromParent = function (self, cleanup) {
+    if (self.getParent()) {
+        if (cleanup === undefined)
+            cleanup = true;
+        self.getParent().removeChild(self, cleanup);
+    }
+};

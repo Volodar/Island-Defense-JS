@@ -102,7 +102,7 @@ EU.SmartScene = cc.Scene.extend(
             var self = this;
             layer.onExit = function() {
                 self.on_layerClosed.call(self, layer);
-                //this._super();
+                cc.Layer.prototype.onExit.call(layer);
             };
             this.addChild( layer, z );
 

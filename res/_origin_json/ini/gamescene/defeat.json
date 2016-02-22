@@ -1,9 +1,135 @@
 {
     "node": {
+        "@size": "320x640",
+        "@scale": "1x1",
         "@name": "win",
         "@pos": "frame:0.5x0.7",
-        "@scale": "1x1",
-        "@size": "320x640",
+        "children": {
+            "node": [
+                {
+                    "@opacity": "0",
+                    "@name": "shadow",
+                    "@color": "000000",
+                    "@strech": "frame:3x3:xy",
+                    "@image": "images/square.png",
+                    "@pos": "frame:0.0x-0.2",
+                    "@z": "-99",
+                    "@type": "sprite"
+                },
+                {
+                    "@image": "gamescene::defeat/defeat2.png",
+                    "@z": "-1",
+                    "@type": "sprite",
+                    "@name": "top",
+                    "@pos": "0x500"
+                },
+                {
+                    "@opacity": "192",
+                    "@scale": "0x0",
+                    "@name": "defeat",
+                    "@image": "gamescene::defeat/defeat1.png",
+                    "@pos": "0x1000",
+                    "@z": "1",
+                    "@type": "sprite",
+                    "children": {
+                        "node": {
+                            "@scale": "0.9x0.9",
+                            "@name": "defeat_text",
+                            "@text": "#defeat#",
+                            "@z": "2",
+                            "@pos": "180x70",
+                            "@visible": "yes",
+                            "@font": "fonts/mdefensefont2.fnt",
+                            "@type": "text",
+                            "@center": "0.5x0.5"
+                        }
+                    }
+                },
+                {
+                    "@type": "menu",
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@opacity": "0",
+                                "@sound": "##sound_button##",
+                                "@name": "close",
+                                "@pos": "0x-190",
+                                "@type": "menuitem",
+                                "@imageN": "gamescene::defeat/defeat_quit.png",
+                                "children": {
+                                    "node": {
+                                        "@name": "normal",
+                                        "children": {
+                                            "node": {
+                                                "@scale": "0.7x0.7",
+                                                "@name": "quit_text",
+                                                "@text": "#quit#",
+                                                "@z": "2",
+                                                "@pos": "90x50",
+                                                "@visible": "yes",
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@type": "text",
+                                                "@center": "0.5x0.5"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "@opacity": "0",
+                                "@sound": "##sound_button##",
+                                "@name": "restart",
+                                "@pos": "0x-290",
+                                "@type": "menuitem",
+                                "@imageN": "gamescene::defeat/defeat_quit.png",
+                                "children": {
+                                    "node": {
+                                        "@name": "normal",
+                                        "children": {
+                                            "node": [
+                                                {
+                                                    "@scale": "0.7x0.7",
+                                                    "@name": "restart_text",
+                                                    "@text": "#restart#",
+                                                    "@z": "2",
+                                                    "@pos": "90x50",
+                                                    "@visible": "yes",
+                                                    "@font": "fonts/mdefensefont2.fnt",
+                                                    "@type": "text",
+                                                    "@center": "0.5x0.5"
+                                                },
+                                                {
+                                                    "@scale": "0.6x0.6",
+                                                    "@name": "icon",
+                                                    "@image": "choose::button_fuel.png",
+                                                    "@pos": "64x26",
+                                                    "@visible": "no",
+                                                    "@type": "sprite",
+                                                    "@center": "0x0.5"
+                                                },
+                                                {
+                                                    "@scale": "0.45x0.45",
+                                                    "@name": "cost",
+                                                    "@text": "0",
+                                                    "@z": "2",
+                                                    "@pos": "86x30",
+                                                    "@visible": "no",
+                                                    "@font": "fonts/mdefensefont2.fnt",
+                                                    "@type": "text",
+                                                    "@center": "0x0.5"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -29,132 +155,6 @@
                 {
                     "@name": "menuitem2",
                     "@value": "Sequence[DelayTime[0.6],FadeTo[0.4,255]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@color": "000000",
-                    "@image": "images/square.png",
-                    "@name": "shadow",
-                    "@opacity": "0",
-                    "@pos": "frame:0.0x-0.2",
-                    "@strech": "frame:3x3:xy",
-                    "@type": "sprite",
-                    "@z": "-99"
-                },
-                {
-                    "@image": "gamescene::defeat/defeat2.png",
-                    "@name": "top",
-                    "@pos": "0x500",
-                    "@type": "sprite",
-                    "@z": "-1"
-                },
-                {
-                    "@image": "gamescene::defeat/defeat1.png",
-                    "@name": "defeat",
-                    "@opacity": "192",
-                    "@pos": "0x1000",
-                    "@scale": "0x0",
-                    "@type": "sprite",
-                    "@z": "1",
-                    "children": {
-                        "node": {
-                            "@center": "0.5x0.5",
-                            "@font": "fonts/mdefensefont2.fnt",
-                            "@name": "defeat_text",
-                            "@pos": "180x70",
-                            "@scale": "0.9x0.9",
-                            "@text": "#defeat#",
-                            "@type": "text",
-                            "@visible": "yes",
-                            "@z": "2"
-                        }
-                    }
-                },
-                {
-                    "@name": "menu",
-                    "@pos": "0x0",
-                    "@type": "menu",
-                    "children": {
-                        "node": [
-                            {
-                                "@imageN": "gamescene::defeat/defeat_quit.png",
-                                "@name": "close",
-                                "@opacity": "0",
-                                "@pos": "0x-190",
-                                "@sound": "##sound_button##",
-                                "@type": "menuitem",
-                                "children": {
-                                    "node": {
-                                        "@name": "normal",
-                                        "children": {
-                                            "node": {
-                                                "@center": "0.5x0.5",
-                                                "@font": "fonts/mdefensefont2.fnt",
-                                                "@name": "quit_text",
-                                                "@pos": "90x50",
-                                                "@scale": "0.7x0.7",
-                                                "@text": "#quit#",
-                                                "@type": "text",
-                                                "@visible": "yes",
-                                                "@z": "2"
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "@imageN": "gamescene::defeat/defeat_quit.png",
-                                "@name": "restart",
-                                "@opacity": "0",
-                                "@pos": "0x-290",
-                                "@sound": "##sound_button##",
-                                "@type": "menuitem",
-                                "children": {
-                                    "node": {
-                                        "@name": "normal",
-                                        "children": {
-                                            "node": [
-                                                {
-                                                    "@center": "0.5x0.5",
-                                                    "@font": "fonts/mdefensefont2.fnt",
-                                                    "@name": "restart_text",
-                                                    "@pos": "90x50",
-                                                    "@scale": "0.7x0.7",
-                                                    "@text": "#restart#",
-                                                    "@type": "text",
-                                                    "@visible": "yes",
-                                                    "@z": "2"
-                                                },
-                                                {
-                                                    "@center": "0x0.5",
-                                                    "@image": "choose::button_fuel.png",
-                                                    "@name": "icon",
-                                                    "@pos": "64x26",
-                                                    "@scale": "0.6x0.6",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
-                                                },
-                                                {
-                                                    "@center": "0x0.5",
-                                                    "@font": "fonts/mdefensefont2.fnt",
-                                                    "@name": "cost",
-                                                    "@pos": "86x30",
-                                                    "@scale": "0.45x0.45",
-                                                    "@text": "0",
-                                                    "@type": "text",
-                                                    "@visible": "no",
-                                                    "@z": "2"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
                 }
             ]
         },

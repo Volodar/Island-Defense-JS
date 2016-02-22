@@ -47,6 +47,8 @@ EU.UserData = {
         /** Preven jsb fault */
         if (value == null || value === undefined) value = "";
         key = key || "";
+        value = value + "";
+        key = key + "";
 
         ls.setItem(EU.UserData._PREFIX + key, value);
     },

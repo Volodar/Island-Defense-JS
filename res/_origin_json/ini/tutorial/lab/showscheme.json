@@ -4,8 +4,8 @@
         "@template": "ini/tutorial/template_window.xml",
         "children": {
             "node": {
-                "@image": "images/tutorial/tut_upgrade.png",
-                "@path": "body/bg"
+                "@path": "body/bg",
+                "@image": "images/tutorial/tut_upgrade.png"
             }
         }
     }

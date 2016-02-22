@@ -1,63 +1,133 @@
 {
     "tower": {
-        "@allowtargets": "earth",
-        "@handradius": "100",
+        "@name": "desant",
         "@handradiussector": "180",
+        "@handradius": "100",
+        "@unittype": "desant",
+        "@allowtargets": "earth",
+        "@radius": "150",
+        "@maxtargets": "3",
+        "@velocity": "100",
+        "@unitlayer": "earth",
         "@health": "50",
         "@maxlevel": "1",
-        "@maxtargets": "3",
-        "@name": "desant",
-        "@radius": "150",
-        "@unitlayer": "earth",
-        "@unittype": "desant",
-        "@velocity": "100",
-        "actions": {
-            "action": [
-                {
-                    "@name": "animate_fire",
-                    "@value": "Animate[0.5,[folder:desant.fire::,indexes:desant_2_fire_00.png,01:15]]"
-                },
-                {
-                    "@name": "animate_left",
-                    "@value": "RepeatForever[Animate[0.5,[folder:desant.left::,indexes:desant_2_left_00.png,01:15]]]"
-                },
-                {
-                    "@name": "animate_up",
-                    "@value": "RepeatForever[Animate[0.5,[folder:desant.up::,indexes:desant_2_back_00.png,01:15]]]"
-                },
-                {
-                    "@name": "animate_down",
-                    "@value": "RepeatForever[Animate[0.5,[folder:desant.down::,indexes:desant_2_front_00.png,01:15]]]"
-                },
-                {
-                    "@name": "animate_die",
-                    "@value": "Animate[0.7,[folder:desant.die::,indexes:desant_2_die_00.png,01:19]]"
-                },
-                {
-                    "@name": "animate_nothing",
-                    "@value": "RepeatForever[Sequence[Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],Animate[2.5,[folder:desant.nothing2::,indexes:desant_2_tupit2_00.png,01:75]],Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],Animate[2.5,[folder:desant.nothing2::,indexes:desant_2_tupit2_00.png,01:75]]]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.25",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x31",
-                    "@z": "1"
-                }
-            ]
-        },
         "effects": {
             "positive": {
                 "@damage": "30"
             }
+        },
+        "extraproperties": {
+            "@electro_size": "small",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@fire_scale": "1.5",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "transitions": {
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@notarget": "stop"
+                    },
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@delay": "2",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "75"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.25"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x31"
+                }
+            ]
+        },
+        "actions": {
+            "action": [
+                {
+                    "@name": "animate_fire",
+                    "@value": "Animate[0.5,[folder:desant.fire::,indexes:             desant_2_fire_0001.png,             desant_2_fire_0002.png,             desant_2_fire_0003.png,             desant_2_fire_0004.png,             desant_2_fire_0005.png,             desant_2_fire_0006.png,             desant_2_fire_0007.png,             desant_2_fire_0008.png,             desant_2_fire_0009.png,             desant_2_fire_0010.png,             desant_2_fire_0011.png,             desant_2_fire_0012.png,             desant_2_fire_0013.png,             desant_2_fire_0014.png,             desant_2_fire_0015.png             ]]"
+                },
+                {
+                    "@name": "animate_left",
+                    "@value": "RepeatForever[Animate[0.5,[folder:desant.left::,indexes:             desant_2_left_0001.png,             desant_2_left_0002.png,             desant_2_left_0003.png,             desant_2_left_0004.png,             desant_2_left_0005.png,             desant_2_left_0006.png,             desant_2_left_0007.png,             desant_2_left_0008.png,             desant_2_left_0009.png,             desant_2_left_0010.png,             desant_2_left_0011.png,             desant_2_left_0012.png,             desant_2_left_0013.png,             desant_2_left_0014.png,             desant_2_left_0015.png             ]]]"
+                },
+                {
+                    "@name": "animate_up",
+                    "@value": "RepeatForever[Animate[0.5,[folder:desant.up::,indexes:             desant_2_back_0001.png,             desant_2_back_0002.png,             desant_2_back_0003.png,             desant_2_back_0004.png,             desant_2_back_0005.png,             desant_2_back_0006.png,             desant_2_back_0007.png,             desant_2_back_0008.png,             desant_2_back_0009.png,             desant_2_back_0010.png,             desant_2_back_0011.png,             desant_2_back_0012.png,             desant_2_back_0013.png,             desant_2_back_0014.png,             desant_2_back_0015.png             ]]]"
+                },
+                {
+                    "@name": "animate_down",
+                    "@value": "RepeatForever[Animate[0.5,[folder:desant.down::,indexes:             desant_2_front_0001.png,             desant_2_front_0002.png,             desant_2_front_0003.png,             desant_2_front_0004.png,             desant_2_front_0005.png,             desant_2_front_0006.png,             desant_2_front_0007.png,             desant_2_front_0008.png,             desant_2_front_0009.png,             desant_2_front_0010.png,             desant_2_front_0011.png,             desant_2_front_0012.png,             desant_2_front_0013.png,             desant_2_front_0014.png,             desant_2_front_0015.png             ]]]"
+                },
+                {
+                    "@name": "animate_die",
+                    "@value": "Animate[0.7,[folder:desant.die::,indexes:             desant_2_die_0001.png,             desant_2_die_0002.png,             desant_2_die_0003.png,             desant_2_die_0004.png,             desant_2_die_0005.png,             desant_2_die_0006.png,             desant_2_die_0007.png,             desant_2_die_0008.png,             desant_2_die_0009.png,             desant_2_die_0010.png,             desant_2_die_0011.png,             desant_2_die_0012.png,             desant_2_die_0013.png,             desant_2_die_0014.png,             desant_2_die_0015.png,             desant_2_die_0016.png,             desant_2_die_0017.png,             desant_2_die_0018.png,             desant_2_die_0019.png             ]]"
+                },
+                {
+                    "@name": "animate_nothing",
+                    "@value": "             RepeatForever             [               Sequence               [                 Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],                 Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],                 Animate[2.5,[folder:desant.nothing2::,indexes:desant_2_tupit2_00.png,01:75]],                 Animate[2.5,[folder:desant.nothing1::,indexes:desant_2_tupit1_00.png,01:75]],                 Animate[2.5,[folder:desant.nothing2::,indexes:desant_2_tupit2_00.png,01:75]]               ]             ]             "
+                }
+            ]
         },
         "events": {
             "eventlist": [
@@ -74,22 +144,11 @@
                 },
                 {
                     "@name": "on_rotate180",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
-                    "action": {
-                        "@action": "animate_left",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
-                    }
-                },
-                {
-                    "@name": "on_rotate0",
+                    },
                     "stopallaction": {
                         "@target": "skin"
                     },
@@ -97,11 +156,22 @@
                         "@action": "animate_left",
                         "@state": "run",
                         "@target": "skin"
-                    },
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
@@ -144,14 +214,6 @@
                 },
                 {
                     "@name": "on_shoot",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
-                    "action": {
-                        "@action": "animate_fire",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "playsound": {
                         "@sound": "##sound_desant_shoot##"
                     },
@@ -159,6 +221,14 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
@@ -173,76 +243,6 @@
                     }
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1.5"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "2"
-                }
-            },
-            "transitions": {
-                "death": {
-                    "@stop": "stop"
-                },
-                "move": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "readyfire": [
-                    {
-                        "@notarget": "stop"
-                    },
-                    {
-                        "@charge": "readyfire"
-                    },
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "stop": [
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@die": "death"
-                    },
-                    {
-                        "@seetarget": "readyfire"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180,90,270"
-                },
-                "thresold": {
-                    "@value": "75"
-                }
-            }
         }
     }
 }

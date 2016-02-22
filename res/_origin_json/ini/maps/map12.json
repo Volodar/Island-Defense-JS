@@ -1,655 +1,18 @@
 {
     "map": {
         "@healths": "20",
-        "@star1": "1",
-        "@star2": "10",
-        "@star3": "15",
-        "@startscore": "420",
         "@wave_cooldown": "10",
-        "decorations": {
-            "base_point": [
-                {
-                    "@action": "",
-                    "@x": "979",
-                    "@y": "164",
-                    "@z": "1"
-                },
-                {
-                    "@action": "",
-                    "@x": "985",
-                    "@y": "373",
-                    "@z": "1"
-                }
-            ]
-        },
+        "@star3": "15",
+        "@star2": "10",
+        "@startscore": "420",
+        "@star1": "1",
         "hard": {
             "@healths": "7",
-            "@star1": "1",
-            "@star2": "1",
+            "@wave_cooldown": "5",
             "@star3": "1",
+            "@star2": "1",
             "@startscore": "320",
-            "@wave_cooldown": "5"
-        },
-        "routes": {
-            "route": [
-                {
-                    "@name": "0",
-                    "@type": "earth",
-                    "left": {
-                        "point": [
-                            {
-                                "@x": "406",
-                                "@y": "771"
-                            },
-                            {
-                                "@x": "430",
-                                "@y": "719"
-                            },
-                            {
-                                "@x": "449",
-                                "@y": "683"
-                            },
-                            {
-                                "@x": "471",
-                                "@y": "661"
-                            },
-                            {
-                                "@x": "591",
-                                "@y": "658"
-                            },
-                            {
-                                "@x": "704",
-                                "@y": "659"
-                            },
-                            {
-                                "@x": "779",
-                                "@y": "660"
-                            },
-                            {
-                                "@x": "820",
-                                "@y": "635"
-                            },
-                            {
-                                "@x": "825",
-                                "@y": "535"
-                            },
-                            {
-                                "@x": "828",
-                                "@y": "455"
-                            },
-                            {
-                                "@x": "833",
-                                "@y": "395"
-                            },
-                            {
-                                "@x": "870",
-                                "@y": "383"
-                            },
-                            {
-                                "@x": "1024",
-                                "@y": "378"
-                            }
-                        ]
-                    },
-                    "main": {
-                        "point": [
-                            {
-                                "@x": "384",
-                                "@y": "765"
-                            },
-                            {
-                                "@x": "408",
-                                "@y": "713"
-                            },
-                            {
-                                "@x": "430",
-                                "@y": "674"
-                            },
-                            {
-                                "@x": "462",
-                                "@y": "649"
-                            },
-                            {
-                                "@x": "591",
-                                "@y": "646"
-                            },
-                            {
-                                "@x": "705",
-                                "@y": "647"
-                            },
-                            {
-                                "@x": "772",
-                                "@y": "649"
-                            },
-                            {
-                                "@x": "798",
-                                "@y": "630"
-                            },
-                            {
-                                "@x": "801",
-                                "@y": "535"
-                            },
-                            {
-                                "@x": "804",
-                                "@y": "454"
-                            },
-                            {
-                                "@x": "815",
-                                "@y": "387"
-                            },
-                            {
-                                "@x": "866",
-                                "@y": "371"
-                            },
-                            {
-                                "@x": "1024",
-                                "@y": "366"
-                            }
-                        ]
-                    },
-                    "right": {
-                        "point": [
-                            {
-                                "@x": "361",
-                                "@y": "760"
-                            },
-                            {
-                                "@x": "386",
-                                "@y": "707"
-                            },
-                            {
-                                "@x": "412",
-                                "@y": "666"
-                            },
-                            {
-                                "@x": "454",
-                                "@y": "638"
-                            },
-                            {
-                                "@x": "590",
-                                "@y": "633"
-                            },
-                            {
-                                "@x": "705",
-                                "@y": "634"
-                            },
-                            {
-                                "@x": "764",
-                                "@y": "637"
-                            },
-                            {
-                                "@x": "775",
-                                "@y": "624"
-                            },
-                            {
-                                "@x": "776",
-                                "@y": "534"
-                            },
-                            {
-                                "@x": "779",
-                                "@y": "452"
-                            },
-                            {
-                                "@x": "796",
-                                "@y": "378"
-                            },
-                            {
-                                "@x": "861",
-                                "@y": "358"
-                            },
-                            {
-                                "@x": "1023",
-                                "@y": "353"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "1",
-                    "@type": "earth",
-                    "left": {
-                        "point": [
-                            {
-                                "@x": "1",
-                                "@y": "654"
-                            },
-                            {
-                                "@x": "810",
-                                "@y": "648"
-                            },
-                            {
-                                "@x": "822",
-                                "@y": "504"
-                            },
-                            {
-                                "@x": "825",
-                                "@y": "390"
-                            },
-                            {
-                                "@x": "831",
-                                "@y": "373"
-                            },
-                            {
-                                "@x": "1022",
-                                "@y": "373"
-                            }
-                        ]
-                    },
-                    "main": {
-                        "point": [
-                            {
-                                "@x": "1",
-                                "@y": "642"
-                            },
-                            {
-                                "@x": "317",
-                                "@y": "643"
-                            },
-                            {
-                                "@x": "461",
-                                "@y": "642"
-                            },
-                            {
-                                "@x": "793",
-                                "@y": "640"
-                            },
-                            {
-                                "@x": "798",
-                                "@y": "504"
-                            },
-                            {
-                                "@x": "802",
-                                "@y": "386"
-                            },
-                            {
-                                "@x": "821",
-                                "@y": "362"
-                            },
-                            {
-                                "@x": "1022",
-                                "@y": "361"
-                            }
-                        ]
-                    },
-                    "right": {
-                        "point": [
-                            {
-                                "@x": "1",
-                                "@y": "629"
-                            },
-                            {
-                                "@x": "775",
-                                "@y": "631"
-                            },
-                            {
-                                "@x": "773",
-                                "@y": "503"
-                            },
-                            {
-                                "@x": "778",
-                                "@y": "381"
-                            },
-                            {
-                                "@x": "810",
-                                "@y": "350"
-                            },
-                            {
-                                "@x": "1021",
-                                "@y": "348"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "2",
-                    "@type": "sea",
-                    "left": {
-                        "point": [
-                            {
-                                "@x": "-2",
-                                "@y": "431"
-                            },
-                            {
-                                "@x": "167",
-                                "@y": "427"
-                            },
-                            {
-                                "@x": "317",
-                                "@y": "425"
-                            },
-                            {
-                                "@x": "455",
-                                "@y": "379"
-                            },
-                            {
-                                "@x": "644",
-                                "@y": "291"
-                            },
-                            {
-                                "@x": "673",
-                                "@y": "270"
-                            },
-                            {
-                                "@x": "807",
-                                "@y": "191"
-                            },
-                            {
-                                "@x": "924",
-                                "@y": "163"
-                            },
-                            {
-                                "@x": "1020",
-                                "@y": "167"
-                            }
-                        ]
-                    },
-                    "main": {
-                        "point": [
-                            {
-                                "@x": "-2",
-                                "@y": "418"
-                            },
-                            {
-                                "@x": "166",
-                                "@y": "414"
-                            },
-                            {
-                                "@x": "313",
-                                "@y": "412"
-                            },
-                            {
-                                "@x": "446",
-                                "@y": "368"
-                            },
-                            {
-                                "@x": "632",
-                                "@y": "281"
-                            },
-                            {
-                                "@x": "660",
-                                "@y": "260"
-                            },
-                            {
-                                "@x": "798",
-                                "@y": "180"
-                            },
-                            {
-                                "@x": "922",
-                                "@y": "151"
-                            },
-                            {
-                                "@x": "1021",
-                                "@y": "155"
-                            }
-                        ]
-                    },
-                    "right": {
-                        "point": [
-                            {
-                                "@x": "-3",
-                                "@y": "406"
-                            },
-                            {
-                                "@x": "166",
-                                "@y": "402"
-                            },
-                            {
-                                "@x": "309",
-                                "@y": "400"
-                            },
-                            {
-                                "@x": "437",
-                                "@y": "356"
-                            },
-                            {
-                                "@x": "619",
-                                "@y": "270"
-                            },
-                            {
-                                "@x": "646",
-                                "@y": "249"
-                            },
-                            {
-                                "@x": "789",
-                                "@y": "168"
-                            },
-                            {
-                                "@x": "920",
-                                "@y": "138"
-                            },
-                            {
-                                "@x": "1022",
-                                "@y": "142"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "3",
-                    "@type": "sky",
-                    "left": {
-                        "point": [
-                            {
-                                "@x": "2",
-                                "@y": "648"
-                            },
-                            {
-                                "@x": "355",
-                                "@y": "644"
-                            },
-                            {
-                                "@x": "727",
-                                "@y": "640"
-                            },
-                            {
-                                "@x": "815",
-                                "@y": "597"
-                            },
-                            {
-                                "@x": "824",
-                                "@y": "385"
-                            },
-                            {
-                                "@x": "1027",
-                                "@y": "374"
-                            }
-                        ]
-                    },
-                    "main": {
-                        "point": [
-                            {
-                                "@x": "2",
-                                "@y": "635"
-                            },
-                            {
-                                "@x": "355",
-                                "@y": "631"
-                            },
-                            {
-                                "@x": "721",
-                                "@y": "628"
-                            },
-                            {
-                                "@x": "794",
-                                "@y": "590"
-                            },
-                            {
-                                "@x": "806",
-                                "@y": "377"
-                            },
-                            {
-                                "@x": "1025",
-                                "@y": "362"
-                            }
-                        ]
-                    },
-                    "right": {
-                        "point": [
-                            {
-                                "@x": "1",
-                                "@y": "623"
-                            },
-                            {
-                                "@x": "355",
-                                "@y": "619"
-                            },
-                            {
-                                "@x": "715",
-                                "@y": "616"
-                            },
-                            {
-                                "@x": "773",
-                                "@y": "583"
-                            },
-                            {
-                                "@x": "789",
-                                "@y": "368"
-                            },
-                            {
-                                "@x": "1024",
-                                "@y": "349"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "4",
-                    "@type": "sky",
-                    "left": {
-                        "point": [
-                            {
-                                "@x": "3",
-                                "@y": "415"
-                            },
-                            {
-                                "@x": "340",
-                                "@y": "399"
-                            },
-                            {
-                                "@x": "582",
-                                "@y": "346"
-                            },
-                            {
-                                "@x": "733",
-                                "@y": "253"
-                            },
-                            {
-                                "@x": "917",
-                                "@y": "167"
-                            },
-                            {
-                                "@x": "1022",
-                                "@y": "164"
-                            }
-                        ]
-                    },
-                    "main": {
-                        "point": [
-                            {
-                                "@x": "2",
-                                "@y": "402"
-                            },
-                            {
-                                "@x": "337",
-                                "@y": "386"
-                            },
-                            {
-                                "@x": "573",
-                                "@y": "335"
-                            },
-                            {
-                                "@x": "721",
-                                "@y": "242"
-                            },
-                            {
-                                "@x": "911",
-                                "@y": "155"
-                            },
-                            {
-                                "@x": "1021",
-                                "@y": "152"
-                            }
-                        ]
-                    },
-                    "right": {
-                        "point": [
-                            {
-                                "@x": "0",
-                                "@y": "390"
-                            },
-                            {
-                                "@x": "334",
-                                "@y": "374"
-                            },
-                            {
-                                "@x": "563",
-                                "@y": "323"
-                            },
-                            {
-                                "@x": "710",
-                                "@y": "231"
-                            },
-                            {
-                                "@x": "905",
-                                "@y": "143"
-                            },
-                            {
-                                "@x": "1021",
-                                "@y": "139"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
-        "towerplaces": {
-            "place": [
-                {
-                    "@active": "yes",
-                    "@x": "810.00",
-                    "@y": "304.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "179.00",
-                    "@y": "578.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "207.00",
-                    "@y": "339.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "433.00",
-                    "@y": "289.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "596.00",
-                    "@y": "209.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "358.00",
-                    "@y": "573.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "688.00",
-                    "@y": "440.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "512.00",
-                    "@y": "574.00"
-                },
-                {
-                    "@active": "yes",
-                    "@x": "691.00",
-                    "@y": "571.00"
-                }
-            ]
+            "@star1": "1"
         },
         "waves": {
             "@defaultdelayonewave": "30",
@@ -657,744 +20,744 @@
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
                             "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "soldier_medic",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "5"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
-                            "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
-                            "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
                             "@delay": "1",
+                            "@score": "5",
                             "@healthrate": "0.75",
-                            "@name": "soldier_medic",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "5"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "soldier_medic",
+                            "@delay": "1",
+                            "@score": "5",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
                             "@delay": "0.3",
+                            "@score": "20",
                             "@healthrate": "0.75",
-                            "@name": "bigman",
+                            "@routesubtype": "main"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 }
@@ -1406,746 +769,1383 @@
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
+                            "@routeindex": "1",
+                            "@name": "soldier2",
                             "@delay": "0.3",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
                             "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
                             "@delay": "1.5",
+                            "@score": "7",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "random"
                         },
                         {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
                             "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
                             "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
+                            "@name": "ship",
+                            "@delay": "2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "soldier_medic",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "5"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
-                            "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
-                            "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
                             "@delay": "1",
+                            "@score": "5",
                             "@healthrate": "0.75",
-                            "@name": "soldier_medic",
+                            "@routesubtype": "random"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "5"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "soldier_medic",
+                            "@delay": "1",
+                            "@score": "5",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
                 },
                 {
                     "creep": [
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "1",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "0.3",
-                            "@healthrate": "0.75",
+                            "@routeindex": "1",
                             "@name": "bigman",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "1.2",
-                            "@healthrate": "0.75",
-                            "@name": "ship",
-                            "@routeindex": "3",
-                            "@routesubtype": "main",
-                            "@score": "10"
-                        },
-                        {
-                            "@delay": "2",
-                            "@healthrate": "0.75",
-                            "@name": "flamethrower",
-                            "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "15"
-                        },
-                        {
                             "@delay": "0.3",
+                            "@score": "20",
                             "@healthrate": "0.75",
-                            "@name": "bigman",
+                            "@routesubtype": "main"
+                        },
+                        {
                             "@routeindex": "1",
-                            "@routesubtype": "main",
-                            "@score": "20"
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
-                            "@healthrate": "0.75",
-                            "@name": "soldier2",
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
-                            "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@routesubtype": "main"
                         },
                         {
-                            "@delay": "1.5",
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
                             "@healthrate": "0.75",
-                            "@name": "soldier2",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "3",
+                            "@name": "ship",
+                            "@delay": "1.2",
+                            "@score": "10",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "flamethrower",
+                            "@delay": "2",
+                            "@score": "15",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
+                            "@routeindex": "1",
+                            "@name": "bigman",
+                            "@delay": "0.3",
+                            "@score": "20",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "main"
+                        },
+                        {
                             "@routeindex": "0",
-                            "@routesubtype": "random",
-                            "@score": "7"
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
+                        },
+                        {
+                            "@routeindex": "0",
+                            "@name": "soldier2",
+                            "@delay": "1.5",
+                            "@score": "7",
+                            "@healthrate": "0.75",
+                            "@routesubtype": "random"
                         }
                     ]
+                }
+            ]
+        },
+        "routes": {
+            "route": [
+                {
+                    "@type": "earth",
+                    "@name": "0",
+                    "main": {
+                        "point": [
+                            {
+                                "@y": "765",
+                                "@x": "384"
+                            },
+                            {
+                                "@y": "713",
+                                "@x": "408"
+                            },
+                            {
+                                "@y": "674",
+                                "@x": "430"
+                            },
+                            {
+                                "@y": "649",
+                                "@x": "462"
+                            },
+                            {
+                                "@y": "646",
+                                "@x": "591"
+                            },
+                            {
+                                "@y": "647",
+                                "@x": "705"
+                            },
+                            {
+                                "@y": "649",
+                                "@x": "772"
+                            },
+                            {
+                                "@y": "630",
+                                "@x": "798"
+                            },
+                            {
+                                "@y": "535",
+                                "@x": "801"
+                            },
+                            {
+                                "@y": "454",
+                                "@x": "804"
+                            },
+                            {
+                                "@y": "387",
+                                "@x": "815"
+                            },
+                            {
+                                "@y": "371",
+                                "@x": "866"
+                            },
+                            {
+                                "@y": "366",
+                                "@x": "1024"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "point": [
+                            {
+                                "@y": "771",
+                                "@x": "406"
+                            },
+                            {
+                                "@y": "719",
+                                "@x": "430"
+                            },
+                            {
+                                "@y": "683",
+                                "@x": "449"
+                            },
+                            {
+                                "@y": "661",
+                                "@x": "471"
+                            },
+                            {
+                                "@y": "658",
+                                "@x": "591"
+                            },
+                            {
+                                "@y": "659",
+                                "@x": "704"
+                            },
+                            {
+                                "@y": "660",
+                                "@x": "779"
+                            },
+                            {
+                                "@y": "635",
+                                "@x": "820"
+                            },
+                            {
+                                "@y": "535",
+                                "@x": "825"
+                            },
+                            {
+                                "@y": "455",
+                                "@x": "828"
+                            },
+                            {
+                                "@y": "395",
+                                "@x": "833"
+                            },
+                            {
+                                "@y": "383",
+                                "@x": "870"
+                            },
+                            {
+                                "@y": "378",
+                                "@x": "1024"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@y": "760",
+                                "@x": "361"
+                            },
+                            {
+                                "@y": "707",
+                                "@x": "386"
+                            },
+                            {
+                                "@y": "666",
+                                "@x": "412"
+                            },
+                            {
+                                "@y": "638",
+                                "@x": "454"
+                            },
+                            {
+                                "@y": "633",
+                                "@x": "590"
+                            },
+                            {
+                                "@y": "634",
+                                "@x": "705"
+                            },
+                            {
+                                "@y": "637",
+                                "@x": "764"
+                            },
+                            {
+                                "@y": "624",
+                                "@x": "775"
+                            },
+                            {
+                                "@y": "534",
+                                "@x": "776"
+                            },
+                            {
+                                "@y": "452",
+                                "@x": "779"
+                            },
+                            {
+                                "@y": "378",
+                                "@x": "796"
+                            },
+                            {
+                                "@y": "358",
+                                "@x": "861"
+                            },
+                            {
+                                "@y": "353",
+                                "@x": "1023"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "earth",
+                    "@name": "1",
+                    "main": {
+                        "point": [
+                            {
+                                "@y": "642",
+                                "@x": "1"
+                            },
+                            {
+                                "@y": "643",
+                                "@x": "317"
+                            },
+                            {
+                                "@y": "642",
+                                "@x": "461"
+                            },
+                            {
+                                "@y": "640",
+                                "@x": "793"
+                            },
+                            {
+                                "@y": "504",
+                                "@x": "798"
+                            },
+                            {
+                                "@y": "386",
+                                "@x": "802"
+                            },
+                            {
+                                "@y": "362",
+                                "@x": "821"
+                            },
+                            {
+                                "@y": "361",
+                                "@x": "1022"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "point": [
+                            {
+                                "@y": "654",
+                                "@x": "1"
+                            },
+                            {
+                                "@y": "648",
+                                "@x": "810"
+                            },
+                            {
+                                "@y": "504",
+                                "@x": "822"
+                            },
+                            {
+                                "@y": "390",
+                                "@x": "825"
+                            },
+                            {
+                                "@y": "373",
+                                "@x": "831"
+                            },
+                            {
+                                "@y": "373",
+                                "@x": "1022"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@y": "629",
+                                "@x": "1"
+                            },
+                            {
+                                "@y": "631",
+                                "@x": "775"
+                            },
+                            {
+                                "@y": "503",
+                                "@x": "773"
+                            },
+                            {
+                                "@y": "381",
+                                "@x": "778"
+                            },
+                            {
+                                "@y": "350",
+                                "@x": "810"
+                            },
+                            {
+                                "@y": "348",
+                                "@x": "1021"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "sea",
+                    "@name": "2",
+                    "main": {
+                        "point": [
+                            {
+                                "@y": "418",
+                                "@x": "-2"
+                            },
+                            {
+                                "@y": "414",
+                                "@x": "166"
+                            },
+                            {
+                                "@y": "412",
+                                "@x": "313"
+                            },
+                            {
+                                "@y": "368",
+                                "@x": "446"
+                            },
+                            {
+                                "@y": "281",
+                                "@x": "632"
+                            },
+                            {
+                                "@y": "260",
+                                "@x": "660"
+                            },
+                            {
+                                "@y": "180",
+                                "@x": "798"
+                            },
+                            {
+                                "@y": "151",
+                                "@x": "922"
+                            },
+                            {
+                                "@y": "155",
+                                "@x": "1021"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "point": [
+                            {
+                                "@y": "431",
+                                "@x": "-2"
+                            },
+                            {
+                                "@y": "427",
+                                "@x": "167"
+                            },
+                            {
+                                "@y": "425",
+                                "@x": "317"
+                            },
+                            {
+                                "@y": "379",
+                                "@x": "455"
+                            },
+                            {
+                                "@y": "291",
+                                "@x": "644"
+                            },
+                            {
+                                "@y": "270",
+                                "@x": "673"
+                            },
+                            {
+                                "@y": "191",
+                                "@x": "807"
+                            },
+                            {
+                                "@y": "163",
+                                "@x": "924"
+                            },
+                            {
+                                "@y": "167",
+                                "@x": "1020"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@y": "406",
+                                "@x": "-3"
+                            },
+                            {
+                                "@y": "402",
+                                "@x": "166"
+                            },
+                            {
+                                "@y": "400",
+                                "@x": "309"
+                            },
+                            {
+                                "@y": "356",
+                                "@x": "437"
+                            },
+                            {
+                                "@y": "270",
+                                "@x": "619"
+                            },
+                            {
+                                "@y": "249",
+                                "@x": "646"
+                            },
+                            {
+                                "@y": "168",
+                                "@x": "789"
+                            },
+                            {
+                                "@y": "138",
+                                "@x": "920"
+                            },
+                            {
+                                "@y": "142",
+                                "@x": "1022"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "sky",
+                    "@name": "3",
+                    "main": {
+                        "point": [
+                            {
+                                "@y": "635",
+                                "@x": "2"
+                            },
+                            {
+                                "@y": "631",
+                                "@x": "355"
+                            },
+                            {
+                                "@y": "628",
+                                "@x": "721"
+                            },
+                            {
+                                "@y": "590",
+                                "@x": "794"
+                            },
+                            {
+                                "@y": "377",
+                                "@x": "806"
+                            },
+                            {
+                                "@y": "362",
+                                "@x": "1025"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "point": [
+                            {
+                                "@y": "648",
+                                "@x": "2"
+                            },
+                            {
+                                "@y": "644",
+                                "@x": "355"
+                            },
+                            {
+                                "@y": "640",
+                                "@x": "727"
+                            },
+                            {
+                                "@y": "597",
+                                "@x": "815"
+                            },
+                            {
+                                "@y": "385",
+                                "@x": "824"
+                            },
+                            {
+                                "@y": "374",
+                                "@x": "1027"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@y": "623",
+                                "@x": "1"
+                            },
+                            {
+                                "@y": "619",
+                                "@x": "355"
+                            },
+                            {
+                                "@y": "616",
+                                "@x": "715"
+                            },
+                            {
+                                "@y": "583",
+                                "@x": "773"
+                            },
+                            {
+                                "@y": "368",
+                                "@x": "789"
+                            },
+                            {
+                                "@y": "349",
+                                "@x": "1024"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "sky",
+                    "@name": "4",
+                    "main": {
+                        "point": [
+                            {
+                                "@y": "402",
+                                "@x": "2"
+                            },
+                            {
+                                "@y": "386",
+                                "@x": "337"
+                            },
+                            {
+                                "@y": "335",
+                                "@x": "573"
+                            },
+                            {
+                                "@y": "242",
+                                "@x": "721"
+                            },
+                            {
+                                "@y": "155",
+                                "@x": "911"
+                            },
+                            {
+                                "@y": "152",
+                                "@x": "1021"
+                            }
+                        ]
+                    },
+                    "left": {
+                        "point": [
+                            {
+                                "@y": "415",
+                                "@x": "3"
+                            },
+                            {
+                                "@y": "399",
+                                "@x": "340"
+                            },
+                            {
+                                "@y": "346",
+                                "@x": "582"
+                            },
+                            {
+                                "@y": "253",
+                                "@x": "733"
+                            },
+                            {
+                                "@y": "167",
+                                "@x": "917"
+                            },
+                            {
+                                "@y": "164",
+                                "@x": "1022"
+                            }
+                        ]
+                    },
+                    "right": {
+                        "point": [
+                            {
+                                "@y": "390",
+                                "@x": "0"
+                            },
+                            {
+                                "@y": "374",
+                                "@x": "334"
+                            },
+                            {
+                                "@y": "323",
+                                "@x": "563"
+                            },
+                            {
+                                "@y": "231",
+                                "@x": "710"
+                            },
+                            {
+                                "@y": "143",
+                                "@x": "905"
+                            },
+                            {
+                                "@y": "139",
+                                "@x": "1021"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "decorations": {
+            "base_point": [
+                {
+                    "@y": "164",
+                    "@x": "979",
+                    "@z": "1",
+                    "@action": ""
+                },
+                {
+                    "@y": "373",
+                    "@x": "985",
+                    "@z": "1",
+                    "@action": ""
+                }
+            ]
+        },
+        "towerplaces": {
+            "place": [
+                {
+                    "@y": "304.00",
+                    "@x": "810.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "578.00",
+                    "@x": "179.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "339.00",
+                    "@x": "207.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "289.00",
+                    "@x": "433.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "209.00",
+                    "@x": "596.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "573.00",
+                    "@x": "358.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "440.00",
+                    "@x": "688.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "574.00",
+                    "@x": "512.00",
+                    "@active": "yes"
+                },
+                {
+                    "@y": "571.00",
+                    "@x": "691.00",
+                    "@active": "yes"
                 }
             ]
         }

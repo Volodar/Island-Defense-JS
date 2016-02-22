@@ -458,7 +458,7 @@
 			dependencies = (
 			);
 			name = "game-european-quest-desktop";
-			productName = game-european-quest;
+			productName = "game-european-quest";
 			productReference = 509D4AAA17EBB24E00697056 /* game-european-quest-desktop.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -476,7 +476,7 @@
 			dependencies = (
 			);
 			name = "game-european-quest-mobile";
-			productName = game-european-quest;
+			productName = "game-european-quest";
 			productReference = A922753D1517C094001B78AA /* game-european-quest-mobile.app */;
 			productType = "com.apple.product-type.application";
 		};
@@ -645,10 +645,7 @@
 					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/simulator/libsimulator/lib/protobuf-lite",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/mac",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/mac";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
@@ -678,10 +675,7 @@
 					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/tools/simulator/libsimulator/lib/protobuf-lite",
 				);
 				INFOPLIST_FILE = mac/Info.plist;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/mac",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/mac";
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_LDFLAGS = "";
 				SDKROOT = macosx;
@@ -702,6 +696,8 @@
 					USE_FILE32API,
 					COCOS2D_JAVASCRIPT,
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
+					"CC_ENABLE_SCRIPT_BINDING=1",
+					"CC_ENABLE_GC_FOR_NATIVE_OBJECTS=1",
 				);
 				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
@@ -726,6 +722,8 @@
 					USE_FILE32API,
 					COCOS2D_JAVASCRIPT,
 					CC_ENABLE_CHIPMUNK_INTEGRATION,
+					"CC_ENABLE_SCRIPT_BINDING=1",
+					"CC_ENABLE_GC_FOR_NATIVE_OBJECTS=1",
 				);
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
@@ -761,10 +759,7 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios";
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -795,10 +790,7 @@
 				);
 				INFOPLIST_FILE = ios/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 6.0;
-				LIBRARY_SEARCH_PATHS = (
-					"",
-					"/Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios",
-				);
+				LIBRARY_SEARCH_PATHS = " /Applications/Cocos/Cocos2d-x/cocos2d-x-3.10/prebuilt/ios";
 				OTHER_LDFLAGS = "";
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";

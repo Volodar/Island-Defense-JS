@@ -1,12 +1,19 @@
 {
     "tower": {
-        "@additionalzorder": "-1",
         "@exp": "1",
-        "@health": "100",
         "@name": "soldier",
+        "@additionalzorder": "-1",
+        "@health": "100",
         "@radius": "150",
         "@template": "ini/units/templates/soldier.xml",
         "@velocity": "60",
+        "effects": {
+            "positive": {
+                "@damage": "1.5",
+                "@iceResist": "7",
+                "@electroResist": "5"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -30,13 +37,6 @@
                     "@value": "Animate[0.7,[folder:soldier.fire::,indexes:solder1_fire_00.png,01:20]]"
                 }
             ]
-        },
-        "effects": {
-            "positive": {
-                "@damage": "1.5",
-                "@electroResist": "5",
-                "@iceResist": "7"
-            }
         },
         "events": {
             "eventlist": [

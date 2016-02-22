@@ -1,19 +1,257 @@
 {
     "unit": {
-        "@allowtargets": "earth",
-        "@handradius": "150",
-        "@handradiussector": "90",
-        "@health": "30",
-        "@maxlevel": "1",
-        "@maxtargets": "1",
         "@name": "hero2",
-        "@radius": "150",
-        "@regeneration": "100",
-        "@skill": "swat",
         "@type": "hero2",
-        "@unitlayer": "earth",
+        "@handradiussector": "90",
+        "@regeneration": "100",
+        "@handradius": "150",
         "@unittype": "hero",
+        "@health": "30",
+        "@radius": "150",
+        "@maxtargets": "1",
+        "@allowtargets": "earth",
+        "@unitlayer": "earth",
         "@velocity": "150",
+        "@skill": "swat",
+        "@maxlevel": "1",
+        "effects": {
+            "positive": {
+                "@armor": "1",
+                "@damage": "20"
+            }
+        },
+        "skills": {
+            "rateparameter": [
+                {
+                    "@unitskill": "0",
+                    "@rate": "1.15",
+                    "@unitskilllevel": "1",
+                    "@parameter": "health"
+                },
+                {
+                    "@unitskill": "0",
+                    "@rate": "1.30",
+                    "@unitskilllevel": "2",
+                    "@parameter": "health"
+                },
+                {
+                    "@unitskill": "0",
+                    "@rate": "1.50",
+                    "@unitskilllevel": "3",
+                    "@parameter": "health"
+                },
+                {
+                    "@unitskill": "1",
+                    "@rate": "1.15",
+                    "@unitskilllevel": "1",
+                    "@parameter": "damage"
+                },
+                {
+                    "@unitskill": "1",
+                    "@rate": "1.30",
+                    "@unitskilllevel": "2",
+                    "@parameter": "damage"
+                },
+                {
+                    "@unitskill": "1",
+                    "@rate": "1.50",
+                    "@unitskilllevel": "3",
+                    "@parameter": "damage"
+                },
+                {
+                    "@unitskill": "2",
+                    "@rate": "2",
+                    "@unitskilllevel": "1",
+                    "@parameter": "armor"
+                },
+                {
+                    "@unitskill": "2",
+                    "@rate": "4",
+                    "@unitskilllevel": "2",
+                    "@parameter": "armor"
+                },
+                {
+                    "@unitskill": "2",
+                    "@rate": "8",
+                    "@unitskilllevel": "3",
+                    "@parameter": "armor"
+                }
+            ],
+            "sniper": [
+                {
+                    "@prepare": "1",
+                    "@colling": "0",
+                    "@delay": "5",
+                    "@unitskilllevel": "1",
+                    "@unitskill": "3",
+                    "@radius": "200",
+                    "aim": {
+                        "@type": "sprite",
+                        "@name": "aim"
+                    },
+                    "aim_action": {
+                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
+                    },
+                    "effects": {
+                        "positive": {
+                            "@damage": "100"
+                        }
+                    }
+                },
+                {
+                    "@prepare": "1",
+                    "@colling": "0",
+                    "@delay": "5",
+                    "@unitskilllevel": "2",
+                    "@unitskill": "3",
+                    "@radius": "200",
+                    "aim": {
+                        "@type": "sprite",
+                        "@name": "aim"
+                    },
+                    "aim_action": {
+                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
+                    },
+                    "effects": {
+                        "positive": {
+                            "@damage": "200"
+                        }
+                    }
+                },
+                {
+                    "@prepare": "1",
+                    "@colling": "0",
+                    "@delay": "5",
+                    "@unitskilllevel": "3",
+                    "@unitskill": "3",
+                    "@radius": "200",
+                    "aim": {
+                        "@type": "sprite",
+                        "@name": "aim"
+                    },
+                    "aim_action": {
+                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
+                    },
+                    "effects": {
+                        "positive": {
+                            "@damage": "300"
+                        }
+                    }
+                }
+            ]
+        },
+        "extraproperties": {
+            "@electro_size": "small",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@fire_scale": "1",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "transitions": {
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    }
+                ],
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@charge": "charging"
+                    },
+                    {
+                        "@notarget": "stop"
+                    },
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "charging": [
+                    {
+                        "@ready": "readyfire"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "death": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@live": "stop"
+                    }
+                ]
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "20"
+                },
+                "state_charging": {
+                    "@duration": "0.0"
+                },
+                "state_readyfire": {
+                    "@delay": "0.5",
+                    "@charge_volume": "1"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180"
+                },
+                "thresold": {
+                    "@value": "90"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@name": "selection",
+                    "@pos": "1x21",
+                    "@visible": "yes",
+                    "@z": "-1",
+                    "@type": "sprite",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.19"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-16x55"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -50,55 +288,21 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.5",
-                    "@name": "selection",
-                    "@pos": "1x21",
-                    "@type": "sprite",
-                    "@visible": "yes",
-                    "@z": "-1"
-                },
-                {
-                    "@center": "0.5x0.19",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-16x55",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "1",
-                "@damage": "20"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_die",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate180",
-                    "action": {
-                        "@action": "animate_left",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -106,21 +310,26 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
-                    }
-                },
-                {
-                    "@name": "on_rotate0",
+                    },
                     "action": {
                         "@action": "animate_left",
                         "@state": "run",
                         "@target": "skin"
-                    },
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "-1x1"
                     },
                     "stopallaction": {
+                        "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
                         "@target": "skin"
                     }
                 },
@@ -142,11 +351,6 @@
                 },
                 {
                     "@name": "on_shoot",
-                    "action": {
-                        "@action": "animate_fire",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "playsound": {
                         "@sound": "##sound_desant_shoot##"
                     },
@@ -157,21 +361,29 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_stop",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_nothing",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "onselect",
+                    "stopallaction": {
+                        "@target": "selection"
+                    },
                     "action": {
                         "@action": "animate_selected",
                         "@state": "run",
@@ -181,9 +393,6 @@
                         "@property": "visible",
                         "@target": "selection",
                         "@value": "yes"
-                    },
-                    "stopallaction": {
-                        "@target": "selection"
                     }
                 },
                 {
@@ -197,215 +406,6 @@
                         "@property": "visible",
                         "@target": "selection",
                         "@value": "no"
-                    }
-                }
-            ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_charging": {
-                    "@duration": "0.0"
-                },
-                "state_death": {
-                    "@duration": "20"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "1",
-                    "@delay": "0.5"
-                }
-            },
-            "transitions": {
-                "charging": [
-                    {
-                        "@ready": "readyfire"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "death": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@live": "stop"
-                    }
-                ],
-                "move": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "readyfire": [
-                    {
-                        "@charge": "charging"
-                    },
-                    {
-                        "@notarget": "stop"
-                    },
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "sleep": {
-                    "@seetarget": "readyfire"
-                },
-                "stop": [
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@die": "death"
-                    },
-                    {
-                        "@seetarget": "readyfire"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180"
-                },
-                "thresold": {
-                    "@value": "90"
-                }
-            }
-        },
-        "skills": {
-            "rateparameter": [
-                {
-                    "@parameter": "health",
-                    "@rate": "1.15",
-                    "@unitskill": "0",
-                    "@unitskilllevel": "1"
-                },
-                {
-                    "@parameter": "health",
-                    "@rate": "1.30",
-                    "@unitskill": "0",
-                    "@unitskilllevel": "2"
-                },
-                {
-                    "@parameter": "health",
-                    "@rate": "1.50",
-                    "@unitskill": "0",
-                    "@unitskilllevel": "3"
-                },
-                {
-                    "@parameter": "damage",
-                    "@rate": "1.15",
-                    "@unitskill": "1",
-                    "@unitskilllevel": "1"
-                },
-                {
-                    "@parameter": "damage",
-                    "@rate": "1.30",
-                    "@unitskill": "1",
-                    "@unitskilllevel": "2"
-                },
-                {
-                    "@parameter": "damage",
-                    "@rate": "1.50",
-                    "@unitskill": "1",
-                    "@unitskilllevel": "3"
-                },
-                {
-                    "@parameter": "armor",
-                    "@rate": "2",
-                    "@unitskill": "2",
-                    "@unitskilllevel": "1"
-                },
-                {
-                    "@parameter": "armor",
-                    "@rate": "4",
-                    "@unitskill": "2",
-                    "@unitskilllevel": "2"
-                },
-                {
-                    "@parameter": "armor",
-                    "@rate": "8",
-                    "@unitskill": "2",
-                    "@unitskilllevel": "3"
-                }
-            ],
-            "sniper": [
-                {
-                    "@colling": "0",
-                    "@delay": "5",
-                    "@prepare": "1",
-                    "@radius": "200",
-                    "@unitskill": "3",
-                    "@unitskilllevel": "1",
-                    "aim": {
-                        "@name": "aim",
-                        "@type": "sprite"
-                    },
-                    "aim_action": {
-                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
-                    },
-                    "effects": {
-                        "positive": {
-                            "@damage": "100"
-                        }
-                    }
-                },
-                {
-                    "@colling": "0",
-                    "@delay": "5",
-                    "@prepare": "1",
-                    "@radius": "200",
-                    "@unitskill": "3",
-                    "@unitskilllevel": "2",
-                    "aim": {
-                        "@name": "aim",
-                        "@type": "sprite"
-                    },
-                    "aim_action": {
-                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
-                    },
-                    "effects": {
-                        "positive": {
-                            "@damage": "200"
-                        }
-                    }
-                },
-                {
-                    "@colling": "0",
-                    "@delay": "5",
-                    "@prepare": "1",
-                    "@radius": "200",
-                    "@unitskill": "3",
-                    "@unitskilllevel": "3",
-                    "aim": {
-                        "@name": "aim",
-                        "@type": "sprite"
-                    },
-                    "aim_action": {
-                        "@value": "RepeatForever[Animate[0.5,[folder:hero2::baf2/,indexes:hero2_baf200.png,10:20]]]"
-                    },
-                    "effects": {
-                        "positive": {
-                            "@damage": "300"
-                        }
                     }
                 }
             ]

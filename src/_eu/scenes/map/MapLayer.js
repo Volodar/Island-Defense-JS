@@ -276,9 +276,10 @@ EU.MapLayer = cc.Layer.extend({
      *
      */
     onExit: function () {
-        cc.Layer.prototype.onExit.call(this);
         this.unscheduleUpdate();
         EU.MouseHoverScroll.disable();
+        this._super();
+        //cc.Layer.prototype.onExit.call(this);
     },
     /**
      *
@@ -491,7 +492,7 @@ EU.MapLayer = cc.Layer.extend({
             this.updateLocations = true;
             this.runLevel(this.selectedLevelIndex, mode);
             if (choose)
-                choose.removeFromParent(true);
+                EU.removeFromParent(choose, true);
             this.showLaboratoryOnEnter = true;
         }
     },
@@ -568,7 +569,7 @@ EU.MapLayer = cc.Layer.extend({
     activateLocations: function () {
         for (var i = 0; i < this.curveMarkers; ++i) {
             var node = this.curveMarkers
-            node.removeFromParent(true);
+            EU.removeFromParent(node, true);
         }
         this.curveMarkers.length = 0;
 
@@ -787,7 +788,7 @@ EU.MapLayer = cc.Layer.extend({
 
         function buildCloseMenu(layer) {
             var item = cc.MenuItemSprite.create(EU.ImageManager.sprite("images/square.png"),
-                EU.ImageManager.sprite("images/square.png"), layer.removeFromParent.bind(layer, true), layer);
+                EU.ImageManager.sprite("images/square.png"), EU.removeFromParent.bind(layer,layer, true), layer);
             item.getNormalImage().setOpacity(1);
             item.getSelectedImage().setOpacity(1);
             item.setScale(9999);
@@ -960,7 +961,7 @@ EU.MapLayer = cc.Layer.extend({
     //    }
     //    else if( menu && BuyHeroMenu.isShow() == false )
     //    {
-    //        menu.removeFromParent(true);
+    //        EU.removeFromParent(menu, true);
     //    }
     //}
     //

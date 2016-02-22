@@ -2,6 +2,68 @@
     "tutorial": {
         "@closebytap": "yes",
         "@parent": "/gamelayer/interface",
+        "children": {
+            "node": [
+                {
+                    "@type": "node",
+                    "@name": "body",
+                    "@pos": "frame:0.5x0.5",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@type": "sprite",
+                                "@name": "bg"
+                            },
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@text": "",
+                                "@textwidth": "420",
+                                "@pos": "-110x00",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@opacity": "0",
+                    "@pos": "righttop:-155x50",
+                    "@type": "node",
+                    "@name": "baloon",
+                    "@cascadeopacity": "yes",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@type": "sprite",
+                                "@name": "bg",
+                                "@pos": "0x-210"
+                            },
+                            {
+                                "@scale": "1x-1",
+                                "@name": "arrow",
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@pos": "0x-170",
+                                "@z": "1",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@color": "35352B",
+                                "@text": "#tuturial_openshop#",
+                                "@pos": "0x-206",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -18,77 +80,10 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@name": "body",
-                    "@pos": "frame:0.5x0.5",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/tutorial/tut2.png",
-                                "@name": "bg",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "-110x00",
-                                "@scale": "0.7x0.7",
-                                "@text": "",
-                                "@textwidth": "420",
-                                "@type": "text"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@cascadeopacity": "yes",
-                    "@name": "baloon",
-                    "@opacity": "0",
-                    "@pos": "righttop:-155x50",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/tutorial/baloon1.png",
-                                "@name": "bg",
-                                "@pos": "0x-210",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@image": "images/tutorial/baloon1_1.png",
-                                "@name": "arrow",
-                                "@pos": "0x-170",
-                                "@scale": "1x-1",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@color": "35352B",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "0x-206",
-                                "@scale": "0.7x0.7",
-                                "@text": "#tuturial_openshop#",
-                                "@type": "text"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "onenter",
-                    "action": {
-                        "@action": "scaling",
-                        "@state": "run",
-                        "@target": "/gamelayer/interface/menu/shop"
-                    },
                     "runaction": [
                         {
                             "@action": "body",
@@ -98,7 +93,12 @@
                             "@action": "bodyfadein",
                             "@target": "baloon"
                         }
-                    ]
+                    ],
+                    "action": {
+                        "@action": "scaling",
+                        "@state": "run",
+                        "@target": "/gamelayer/interface/menu/shop"
+                    }
                 },
                 {
                     "@name": "onexit",

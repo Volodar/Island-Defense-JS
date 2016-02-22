@@ -1,13 +1,45 @@
 {
     "tower": {
+        "@name": "landmine",
+        "@sectorangle": "360",
+        "@unittype": "tower",
         "@allowmenu": "no",
+        "@radius": "45",
         "@allowtargets": "earth",
         "@damagebysector": "yes",
         "@maxlevel": "1",
-        "@name": "landmine",
-        "@radius": "45",
-        "@sectorangle": "360",
-        "@unittype": "tower",
+        "effects": {
+            "positive": {
+                "@damage": "10"
+            }
+        },
+        "machine_unit": {
+            "@start_state": "sleep",
+            "transitions": {
+                "sleep": {
+                    "@seetarget": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                },
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                }
+            }
+        },
+        "children": {
+            "node": {
+                "@animation": "           RepeatForever           [             Sequence             [               Animate[0.6..1.0,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]],               DelayTime[2..5]             ]           ]",
+                "@type": "sprite",
+                "@name": "skin",
+                "@center": "0.5x0.37"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -20,66 +52,34 @@
                 }
             ]
         },
-        "children": {
-            "node": {
-                "@animation": "           RepeatForever           [             Sequence             [               Animate[0.6..1.0,[folder:hero_mine::mine/,indexes:hero1_mine_00.png,01:09]],               DelayTime[2..5]             ]           ]",
-                "@center": "0.5x0.37",
-                "@name": "skin",
-                "@type": "sprite"
-            }
-        },
-        "effects": {
-            "positive": {
-                "@damage": "10"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die",
-                    "areadamage": {
-                        "@asunittype": "tower",
-                        "@radius": "100"
+                    "stopallaction": {
+                        "@target": "skin"
                     },
                     "runaction": {
                         "@action": "animate_die",
                         "@target": "skin"
                     },
-                    "stopallaction": {
-                        "@target": "skin"
+                    "areadamage": {
+                        "@asunittype": "tower",
+                        "@radius": "100"
                     }
                 },
                 {
                     "@name": "on_stop",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_nothing",
                         "@state": "run",
                         "@target": "skin"
-                    },
-                    "stopallaction": {
-                        "@target": "skin"
                     }
                 }
             ]
-        },
-        "machine_unit": {
-            "@start_state": "sleep",
-            "params": {
-                "state_death": {
-                    "@duration": "0.5"
-                }
-            },
-            "transitions": {
-                "death": {
-                    "@stop": "stop"
-                },
-                "sleep": {
-                    "@seetarget": "death"
-                },
-                "stop": {
-                    "@die": "death"
-                }
-            }
         },
         "paramcollection": {
             "showmenu": "no"

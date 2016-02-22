@@ -1,10 +1,50 @@
 {
     "tower": {
+        "@velocity": "35",
+        "@radius": "150",
         "@health": "200",
         "@name": "meh2",
-        "@radius": "150",
         "@template": "ini/units/templates/creepbase.xml",
-        "@velocity": "35",
+        "effects": {
+            "positive": {
+                "@armor": "5",
+                "@fireResist": "8",
+                "@damage": "1.5",
+                "@iceResist": "7"
+            }
+        },
+        "extraproperties": {
+            "@freezing_scale": "0.65",
+            "@freezing_pos": "0x-25",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@electro_size": "small",
+            "@fire_scale": "1.5",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.25"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x100"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -25,36 +65,13 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.25",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x100",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "5",
-                "@damage": "1.5",
-                "@fireResist": "8",
-                "@iceResist": "7"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die_finish",
                     "createunit": {
-                        "@radius": "0",
-                        "@units": "meh3"
+                        "@units": "meh3",
+                        "@radius": "0"
                     }
                 },
                 {
@@ -77,23 +94,6 @@
                     }
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1.5",
-            "@freezing_pos": "0x-25",
-            "@freezing_scale": "0.65"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "0.5"
-                }
-            }
         }
     }
 }

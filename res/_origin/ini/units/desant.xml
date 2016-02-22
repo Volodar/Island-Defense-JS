@@ -61,7 +61,7 @@
   </children>
 
   <actions>
-    <action name="animate_fire" value="Animate[0.5,[folder:desant.fire::,frames:
+    <action name="animate_fire" value="Animate[0.5,[folder:desant.fire::,indexes:
             desant_2_fire_0001.png,
             desant_2_fire_0002.png,
             desant_2_fire_0003.png,
@@ -78,7 +78,7 @@
             desant_2_fire_0014.png,
             desant_2_fire_0015.png
             ]]"/>
-    <action name="animate_left" value="RepeatForever[Animate[0.5,[folder:desant.left::,frames:
+    <action name="animate_left" value="RepeatForever[Animate[0.5,[folder:desant.left::,indexes:
             desant_2_left_0001.png,
             desant_2_left_0002.png,
             desant_2_left_0003.png,
@@ -95,7 +95,7 @@
             desant_2_left_0014.png,
             desant_2_left_0015.png
             ]]]"/>
-    <action name="animate_up" value="RepeatForever[Animate[0.5,[folder:desant.up::,frames:
+    <action name="animate_up" value="RepeatForever[Animate[0.5,[folder:desant.up::,indexes:
             desant_2_back_0001.png,
             desant_2_back_0002.png,
             desant_2_back_0003.png,
@@ -112,7 +112,7 @@
             desant_2_back_0014.png,
             desant_2_back_0015.png
             ]]]"/>
-    <action name="animate_down" value="RepeatForever[Animate[0.5,[folder:desant.down::,frames:
+    <action name="animate_down" value="RepeatForever[Animate[0.5,[folder:desant.down::,indexes:
             desant_2_front_0001.png,
             desant_2_front_0002.png,
             desant_2_front_0003.png,
@@ -129,7 +129,7 @@
             desant_2_front_0014.png,
             desant_2_front_0015.png
             ]]]"/>
-    <action name="animate_die" value="Animate[0.7,[folder:desant.die::,frames:
+    <action name="animate_die" value="Animate[0.7,[folder:desant.die::,indexes:
             desant_2_die_0001.png,
             desant_2_die_0002.png,
             desant_2_die_0003.png,

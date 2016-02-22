@@ -1,6 +1,480 @@
 {
     "node": {
         "@type": "scrollmenu",
+        "children_nonscissor": {
+            "node": [
+                {
+                    "@image": "gamescene::menucreatetower/menu_mainpanel1.png",
+                    "@z": "-1",
+                    "@type": "sprite",
+                    "@name": "bg"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "laser_preview",
+                    "@image": "laser.1::turret5_1_10001.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.34"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "firegun_preview",
+                    "@image": "firegun.1.1::turret4_1_10001.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.4"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "icegun_preview",
+                    "@image": "icegun.1::turret6_10001.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.3"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "minigun_preview",
+                    "@image": "minigun.1::turret1_1_1stage0001.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.34"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "roketgun_preview",
+                    "@image": "roketgun.1.1::turret2_1_1stage0014.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.3"
+                },
+                {
+                    "@opacity": "128",
+                    "@name": "teslagun_preview",
+                    "@image": "teslagun.1::turret3_10001.png",
+                    "@visible": "no",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@center": "0.5x0.3"
+                },
+                {
+                    "@opacity": "0",
+                    "@name": "desc",
+                    "@image": "gamescene::menucreatetower/hint_panel.png",
+                    "@pos": "170x0",
+                    "@z": "-1",
+                    "@type": "sprite",
+                    "@center": "0x0.5",
+                    "children": {
+                        "node": [
+                            {
+                                "@opacity": "0",
+                                "@z": "2",
+                                "@name": "name",
+                                "@text": "Anti-aircraft gun",
+                                "@pos": "123x225",
+                                "@strech": "230x50:min",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text"
+                            },
+                            {
+                                "@opacity": "0",
+                                "@z": "2",
+                                "@name": "text",
+                                "@text": "Anti-aircraft gun",
+                                "@textwidth": "220",
+                                "@pos": "123x200",
+                                "@scale": "0.6x0.6",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text",
+                                "@center": "0.5x1"
+                            },
+                            {
+                                "@opacity": "0",
+                                "@z": "2",
+                                "@name": "dmg",
+                                "@text": "9",
+                                "@pos": "48x28",
+                                "@scale": "0.4x0.4",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            },
+                            {
+                                "@opacity": "0",
+                                "@z": "2",
+                                "@name": "spd",
+                                "@text": "9",
+                                "@pos": "120x28",
+                                "@scale": "0.4x0.4",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            },
+                            {
+                                "@opacity": "0",
+                                "@z": "2",
+                                "@name": "rng",
+                                "@text": "9",
+                                "@pos": "192x28",
+                                "@scale": "0.4x0.4",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
+        "items": {
+            "node": [
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_laser1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "laser",
+                    "@pos": "-120x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_laser2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "laser_un",
+                    "@pos": "-120x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_firegun1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "firegun",
+                    "@pos": "-60x-73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_firegun2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "firegun_un",
+                    "@pos": "-60x-73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_icegun1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "icegun",
+                    "@pos": "120x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_icegun2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "icegun_un",
+                    "@pos": "120x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_minigun1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "minigun",
+                    "@pos": "-60x73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x-0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_minigun2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "minigun_un",
+                    "@pos": "-60x73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x-0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_roketgun1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "roketgun",
+                    "@pos": "60x73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_roketgun2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "roketgun_un",
+                    "@pos": "60x73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_teslagun1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "teslagun",
+                    "@pos": "60x-73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_teslagun2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "teslagun_un",
+                    "@pos": "60x-73",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menucreatetower/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x0"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_ok2.png",
+                    "@z": "9",
+                    "@type": "menuitem",
+                    "@name": "confirm",
+                    "@pos": "0x0"
+                },
+                {
+                    "@imageN": "gamescene::menucreatetower/menu_ok1.png",
+                    "@z": "9",
+                    "@type": "menuitem",
+                    "@name": "confirm_un",
+                    "@pos": "0x0"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -29,196 +503,10 @@
                 }
             ]
         },
-        "children_nonscissor": {
-            "node": [
-                {
-                    "@image": "gamescene::menucreatetower/menu_mainpanel1.png",
-                    "@name": "bg",
-                    "@type": "sprite",
-                    "@z": "-1"
-                },
-                {
-                    "@center": "0.5x0.34",
-                    "@image": "laser.1::turret5_1_10001.png",
-                    "@name": "laser_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0.5x0.4",
-                    "@image": "firegun.1.1::turret4_1_10001.png",
-                    "@name": "firegun_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0.5x0.3",
-                    "@image": "icegun.1::turret6_10001.png",
-                    "@name": "icegun_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0.5x0.34",
-                    "@image": "minigun.1::turret1_1_1stage0001.png",
-                    "@name": "minigun_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0.5x0.3",
-                    "@image": "roketgun.1.1::turret2_1_1stage0014.png",
-                    "@name": "roketgun_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0.5x0.3",
-                    "@image": "teslagun.1::turret3_10001.png",
-                    "@name": "teslagun_preview",
-                    "@opacity": "128",
-                    "@type": "sprite",
-                    "@visible": "no",
-                    "@z": "-2"
-                },
-                {
-                    "@center": "0x0.5",
-                    "@image": "gamescene::menucreatetower/hint_panel.png",
-                    "@name": "desc",
-                    "@opacity": "0",
-                    "@pos": "170x0",
-                    "@type": "sprite",
-                    "@z": "-1",
-                    "children": {
-                        "node": [
-                            {
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@name": "name",
-                                "@opacity": "0",
-                                "@pos": "123x225",
-                                "@strech": "230x50:min",
-                                "@text": "Anti-aircraft gun",
-                                "@type": "text",
-                                "@z": "2"
-                            },
-                            {
-                                "@center": "0.5x1",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@opacity": "0",
-                                "@pos": "123x200",
-                                "@scale": "0.6x0.6",
-                                "@text": "Anti-aircraft gun",
-                                "@textwidth": "220",
-                                "@type": "text",
-                                "@z": "2"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@name": "dmg",
-                                "@opacity": "0",
-                                "@pos": "48x28",
-                                "@scale": "0.4x0.4",
-                                "@text": "9",
-                                "@type": "text",
-                                "@z": "2"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@name": "spd",
-                                "@opacity": "0",
-                                "@pos": "120x28",
-                                "@scale": "0.4x0.4",
-                                "@text": "9",
-                                "@type": "text",
-                                "@z": "2"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@name": "rng",
-                                "@opacity": "0",
-                                "@pos": "192x28",
-                                "@scale": "0.4x0.4",
-                                "@text": "9",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "appearance",
-                    "runaction": [
-                        {
-                            "@action": "appearance",
-                            "@target": "laser"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "laser_un"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "firegun"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "firegun_un"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "icegun"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "icegun_un"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "minigun"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "minigun_un"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "roketgun"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "roketgun_un"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "teslagun"
-                        },
-                        {
-                            "@action": "appearance",
-                            "@target": "teslagun_un"
-                        },
-                        {
-                            "@action": "fadein",
-                            "@target": "bg"
-                        }
-                    ],
                     "setproperty": [
                         {
                             "@property": "opacity",
@@ -344,6 +632,60 @@
                             "@property": "opacity",
                             "@target": "teslagun_un/normal",
                             "@value": "255"
+                        }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "appearance",
+                            "@target": "laser"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "laser_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "firegun"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "firegun_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "icegun"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "icegun_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "minigun"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "minigun_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "roketgun"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "roketgun_un"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "teslagun"
+                        },
+                        {
+                            "@action": "appearance",
+                            "@target": "teslagun_un"
+                        },
+                        {
+                            "@action": "fadein",
+                            "@target": "bg"
                         }
                     ]
                 },
@@ -835,348 +1177,6 @@
                             "@value": "no"
                         }
                     ]
-                }
-            ]
-        },
-        "items": {
-            "node": [
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_laser1.png",
-                    "@name": "laser",
-                    "@pos": "-120x0",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_laser2.png",
-                    "@name": "laser_un",
-                    "@pos": "-120x0",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_firegun1.png",
-                    "@name": "firegun",
-                    "@pos": "-60x-73",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_firegun2.png",
-                    "@name": "firegun_un",
-                    "@pos": "-60x-73",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_icegun1.png",
-                    "@name": "icegun",
-                    "@pos": "120x0",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_icegun2.png",
-                    "@name": "icegun_un",
-                    "@pos": "120x0",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_minigun1.png",
-                    "@name": "minigun",
-                    "@pos": "-60x73",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x-0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_minigun2.png",
-                    "@name": "minigun_un",
-                    "@pos": "-60x73",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x-0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_roketgun1.png",
-                    "@name": "roketgun",
-                    "@pos": "60x73",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_roketgun2.png",
-                    "@name": "roketgun_un",
-                    "@pos": "60x73",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_teslagun1.png",
-                    "@name": "teslagun",
-                    "@pos": "60x-73",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_teslagun2.png",
-                    "@name": "teslagun_un",
-                    "@pos": "60x-73",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menucreatetower/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_ok2.png",
-                    "@name": "confirm",
-                    "@pos": "0x0",
-                    "@type": "menuitem",
-                    "@z": "9"
-                },
-                {
-                    "@imageN": "gamescene::menucreatetower/menu_ok1.png",
-                    "@name": "confirm_un",
-                    "@pos": "0x0",
-                    "@type": "menuitem",
-                    "@z": "9"
                 }
             ]
         }
