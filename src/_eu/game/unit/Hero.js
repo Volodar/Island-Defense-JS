@@ -26,6 +26,7 @@ EU.HeroExp = {
         EU.pugixml.readXml("ini/herolevels.json", function (error, data) {
             root = data;
         }, this);
+        root = root.getElementsByTagName("params")[0];
         var xmlexp = root.getElementsByTagName("exp")[0];
         var xmllevels = root.getElementsByTagName("levels")[0];
         var xmlcosts = root.getElementsByTagName("upgradecost")[0];
@@ -44,15 +45,15 @@ EU.HeroExp = {
             this._levelCosts.push(exp);
         }
         for (i = 0; i < xmlHeroCosts.children.length; i++) {
-            var name = xmlHeroCosts.children[i].getAttribute("name")();
-            var productid = xmlHeroCosts.children[i].getAttribute("productid")();
+            var name = xmlHeroCosts.children[i].getAttribute("name");
+            var productid = xmlHeroCosts.children[i].getAttribute("productid");
             var levelforunlock = parseInt(xmlHeroCosts.children[i].getAttribute("availabledafterlevel"));
 
             exp = parseFloat(xmlHeroCosts.children[i].getAttribute("exp"));
             exp = Math.max(this.getEXP(name), exp);
             this.setEXP(name, exp);
 
-            if (productid.length > 0) {
+            if (productid && productid.length > 0) {
                 //TODO: get inapp info
                 //_heroInappDetails[name].result = inapp::Result::Fail;
                 //
@@ -81,9 +82,10 @@ EU.HeroExp = {
         this._skills["hero2"] = [];
         this._skills["hero3"] = [];
         for (var hero in this._skills) {
-            for (i = 0; i < this.skills[hero].length; ++i) {
+            this._skills[hero] = [];
+            for (i = 0; i < 5; ++i) {
                 var key = EU.k.HeroSkillPoints + hero + i;
-                this.skills[hero][i] = EU.UserData.get_int(key, this.skills[hero][i]);
+                this._skills[hero][i] = EU.UserData.get_int(key, 0);
             }
         }
 
@@ -215,6 +217,7 @@ EU.Hero = EU.UnitDesant.extend({
         this._dieTimer = 0;
         this._regeneration = 0;
         this._skill = "";
+        this.initMachine();
         this.add_event(  EU.Hero.event_live ).set_string_name( "live" );
         this._super( path, xmlFile );
     },
@@ -262,7 +265,7 @@ EU.Hero = EU.UnitDesant.extend({
 
                 if( param == "health" )
                 {
-                    this.setProperty_str( param, (getHealth() * rate) );
+                    this.setProperty_str( param, (this.getHealth() * rate) );
                 }
                 else if( param == "armor" )
                 {
@@ -301,7 +304,7 @@ EU.Hero = EU.UnitDesant.extend({
         var route = [];
         var maxDistToRoute = 50;
         var checkSelf = EU.checkPointOnRoute_2( A, tripleroute, maxDistToRoute * 2 );
-        var checkTarget = checkPointOnRoute_2( B, tripleroute, maxDistToRoute );
+        var checkTarget = EU.checkPointOnRoute_2( B, tripleroute, maxDistToRoute );
         if( checkSelf.result && checkTarget.result )
         {
             var i0 = -1;
@@ -345,9 +348,8 @@ EU.Hero = EU.UnitDesant.extend({
 
         for( var i=0; i<routes.length; ++i)
         {
-            var route2 = routes[i];
-            route2 = this.checkRoute( route, this.getPosition(), position );
-            if( route2.length > 0 )
+            var route = this.checkRoute( routes[i], this.getPosition(), position );
+            if( route.length > 0 )
                 break;
         }
         return route;
@@ -464,7 +466,8 @@ EU.Hero = EU.UnitDesant.extend({
         else if( stringproperty == "skill" )
             this._skill = value;
         else
-            return EU.UnitDesant.prototype.setProperty_str( stringproperty, value );
+            return this._super(stringproperty, value);
+            //return EU.UnitDesant.prototype.setProperty_str( stringproperty, value );
 
         return true;
     },

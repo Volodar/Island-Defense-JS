@@ -85,9 +85,6 @@
             "eventlist": [
                 {
                     "@name": "on_die",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
                     "action": {
                         "@action": "animate_die",
                         "@state": "run",
@@ -97,13 +94,13 @@
                         "@property": "z",
                         "@target": ".",
                         "@value": "-9999"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate180",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
                     "action": {
                         "@action": "animate_left",
                         "@state": "run",
@@ -113,13 +110,13 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate0",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
                     "action": {
                         "@action": "animate_left",
                         "@state": "run",
@@ -129,6 +126,9 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "-1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
                     }
                 },
                 {
@@ -149,9 +149,6 @@
                 },
                 {
                     "@name": "on_shoot",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
                     "action": {
                         "@action": "animate_fire",
                         "@state": "run",
@@ -164,24 +161,24 @@
                         "@property": "scale",
                         "@target": "skin",
                         "@value": "1x1"
+                    },
+                    "stopallaction": {
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_stop",
-                    "stopallaction": {
-                        "@target": "skin"
-                    },
                     "action": {
                         "@action": "animate_nothing",
                         "@state": "run",
+                        "@target": "skin"
+                    },
+                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "onselect",
-                    "stopallaction": {
-                        "@target": "selection"
-                    },
                     "action": {
                         "@action": "animate_selected",
                         "@state": "run",
@@ -191,6 +188,9 @@
                         "@property": "visible",
                         "@target": "selection",
                         "@value": "yes"
+                    },
+                    "stopallaction": {
+                        "@target": "selection"
                     }
                 },
                 {
@@ -352,6 +352,56 @@
                     "@rate": "8",
                     "@unitskill": "2",
                     "@unitskilllevel": "3"
+                }
+            ],
+            "runeventsbytime": [
+                {
+                    "@count": "999999",
+                    "@frequence": "30",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "1",
+                    "eventlist": {
+                        "createunit_reverseroute": {
+                            "@lifetime": "2000",
+                            "@radius": "10",
+                            "@units": "hero1_walkbomb1",
+                            "@unittype": "creep"
+                        }
+                    }
+                },
+                {
+                    "@count": "999999",
+                    "@frequence": "25",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "2",
+                    "eventlist": {
+                        "createunit_reverseroute": {
+                            "@lifetime": "2000",
+                            "@radius": "10",
+                            "@units": "hero1_walkbomb2",
+                            "@unittype": "creep"
+                        }
+                    }
+                },
+                {
+                    "@count": "999999",
+                    "@frequence": "25",
+                    "@stopduration": "2",
+                    "@stopunit": "yes",
+                    "@unitskill": "3",
+                    "@unitskilllevel": "3",
+                    "eventlist": {
+                        "createunit_reverseroute": {
+                            "@lifetime": "2000",
+                            "@radius": "10",
+                            "@units": "hero1_walkbomb3",
+                            "@unittype": "creep"
+                        }
+                    }
                 }
             ]
         }

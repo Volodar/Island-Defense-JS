@@ -36,7 +36,7 @@ EU.HeroIcon = EU.MenuItemImageWithText.extend({
         this.setImageNormal( normal );
         this.setImageDisabled( disabled );
 
-        var progress = Node.create();
+        var progress = new cc.Node();
         var image = EU.ImageManager.sprite( timer );
         this._timer = new cc.ProgressTimer( image );
 
@@ -61,13 +61,13 @@ EU.HeroIcon = EU.MenuItemImageWithText.extend({
         EU.assert( !this._hero );
         EU.assert( hero );
         this._hero = hero;
-        this._hero.observerHealth.add( __instanceId, this.dispatchHealth.bind(this) );
+        this._hero.observerHealth.add( this.__instanceId, this.dispatchHealth, this );
     },
     dispatchHealth:function(current, health){
         var percent = current / health * 100;
         this._timer.setPercentage( percent );
     
-        var enabled = this._hero.current_state().get_name() != Hero.State.state_death;
+        var enabled = this._hero.current_state().get_name() != EU.MachineUnit.State.state_death;
         var opacity = enabled ? 255 : 128;
         this.setEnabled( enabled );
         this.getNormalImage().setOpacity( opacity );

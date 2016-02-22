@@ -225,9 +225,12 @@ EU.Machine = function(){
     this.__Machine = true;
 
     this.initMachine = function(){
-        this._states = [];
-        this._fsmEvents = [];
-        this._eventsQueue = []
+        if( !this._states )
+            this._states = [];
+        if( !this._fsmEvents )
+            this._fsmEvents = [];
+        if( !this._eventsQueue )
+            this._eventsQueue = []
     };
     this.add_state = function( nameState, onActivate )
     {

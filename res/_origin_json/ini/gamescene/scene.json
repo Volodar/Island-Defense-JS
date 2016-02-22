@@ -41,6 +41,14 @@
                                     {
                                         "@name": "bomb",
                                         "@pos": "155x-50"
+                                    },
+                                    {
+                                        "@name": "heroskill",
+                                        "@pos": "235x50"
+                                    },
+                                    {
+                                        "@name": "hero",
+                                        "@pos": "top:-50x-160"
                                     }
                                 ]
                             }
