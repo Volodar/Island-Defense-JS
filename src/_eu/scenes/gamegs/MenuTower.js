@@ -29,16 +29,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     /** @type {MenuItem} */ _lock : null,
     /** @type {Boolean} */ _waitSellConfirm : null,
     /** @type {Boolean} */ _waitUpgradeConfirm : null,
-    _desc : function() {
-        "use strict";
 
-        /**Node*/ this.node = null;
-         /**Label*/ this.name = null;
-         /**Label*/ this.text = null;
-         /**Label*/ this.dmg = null;
-         /**Label*/ this.rng = null;
-         /**Label*/ this.spd = null;
-    },
 
 
     onExit: function()
@@ -54,6 +45,15 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
         this._disabled = false;
 
         this._super();
+
+        this._desc = {
+            /**cc.Node*/ node: new cc.Node(),
+            /**cc.LabelTTF*/ name: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ text: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ dmg: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ rng: new cc.LabelTTF(),
+            /**cc.LabelTTF*/ spd: new cc.LabelTTF()
+        };
 
         this.initExt();
 
