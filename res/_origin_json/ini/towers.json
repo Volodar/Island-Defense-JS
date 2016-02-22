@@ -4,20 +4,20 @@
         "tower": [
             {
                 "@name": "minigun",
+                "costlab": {
+                    "@value": "5,130,260,610,1100"
+                },
                 "cost": {
                     "@value": "100,140,210,280,350"
                 },
-                "costlab": {
-                    "@value": "5,130,260,610,1100"
+                "sell": {
+                    "@value": "0.8"
                 },
                 "desc": {
                     "@value": "minigun_desc"
                 },
                 "minlevel": {
                     "@value": "0"
-                },
-                "sell": {
-                    "@value": "0.8"
                 }
             },
             {
@@ -28,14 +28,14 @@
                 "costlab": {
                     "@value": "5,140,270,510,1150"
                 },
-                "desc": {
-                    "@value": "icegun_desc"
+                "sell": {
+                    "@value": "0.8"
                 },
                 "minlevel": {
                     "@value": "0"
                 },
-                "sell": {
-                    "@value": "0.8"
+                "desc": {
+                    "@value": "icegun_desc"
                 }
             },
             {
@@ -46,14 +46,14 @@
                 "costlab": {
                     "@value": "5,150,300,700,1200"
                 },
+                "sell": {
+                    "@value": "0.8"
+                },
                 "desc": {
                     "@value": "firegun_desc"
                 },
                 "minlevel": {
                     "@value": "0"
-                },
-                "sell": {
-                    "@value": "0.8"
                 }
             },
             {
@@ -64,14 +64,14 @@
                 "costlab": {
                     "@value": "5,180,440,630,1000"
                 },
+                "sell": {
+                    "@value": "0.8"
+                },
                 "desc": {
                     "@value": "roketgun_desc"
                 },
                 "minlevel": {
                     "@value": "0"
-                },
-                "sell": {
-                    "@value": "0.8"
                 }
             },
             {
@@ -82,14 +82,14 @@
                 "costlab": {
                     "@value": "5,160,320,730,1200"
                 },
+                "sell": {
+                    "@value": "0.8"
+                },
                 "desc": {
                     "@value": "teslagun_desc"
                 },
                 "minlevel": {
                     "@value": "0"
-                },
-                "sell": {
-                    "@value": "0.8"
                 }
             },
             {
@@ -100,14 +100,14 @@
                 "costlab": {
                     "@value": "5,170,510,780,1300"
                 },
-                "desc": {
-                    "@value": "laser_desc"
+                "sell": {
+                    "@value": "0.8"
                 },
                 "minlevel": {
                     "@value": "0"
                 },
-                "sell": {
-                    "@value": "0.8"
+                "desc": {
+                    "@value": "laser_desc"
                 }
             }
         ]

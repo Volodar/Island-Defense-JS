@@ -5,94 +5,94 @@
             "node": [
                 {
                     "@image": "gamescene::pause/pause_window.png",
-                    "@name": "bg",
+                    "@z": "-1",
                     "@type": "sprite",
-                    "@z": "-1"
+                    "@name": "bg"
                 },
                 {
-                    "@font": "fonts/mdefensefont.fnt",
-                    "@name": "caption",
-                    "@pos": "0x180",
                     "@scale": "1.0x1.0",
+                    "@name": "caption",
                     "@text": "#pause#",
+                    "@pos": "0x180",
+                    "@font": "fonts/mdefensefont.fnt",
                     "@type": "text"
                 },
                 {
-                    "@callback": "quit",
-                    "@imageN": "gamescene::pause/button_quit.png",
+                    "@sound": "##sound_button##",
                     "@name": "quit",
                     "@pos": "0x-175",
-                    "@sound": "##sound_button##",
+                    "@callback": "quit",
                     "@type": "menuitem",
+                    "@imageN": "gamescene::pause/button_quit.png",
                     "children": {
                         "node": {
                             "@name": "normal",
                             "children": {
                                 "node": {
-                                    "@center": "0.5x0.5",
-                                    "@font": "fonts/mdefensefont2.fnt",
-                                    "@name": "restart_text",
-                                    "@pos": "94x56",
                                     "@scale": "0.7x0.7",
+                                    "@name": "restart_text",
                                     "@text": "#quit#",
-                                    "@type": "text",
+                                    "@z": "2",
+                                    "@pos": "94x56",
                                     "@visible": "yes",
-                                    "@z": "2"
+                                    "@font": "fonts/mdefensefont2.fnt",
+                                    "@type": "text",
+                                    "@center": "0.5x0.5"
                                 }
                             }
                         }
                     }
                 },
                 {
-                    "@callback": "resume",
-                    "@imageN": "gamescene::pause/button_x.png",
+                    "@sound": "##sound_button##",
                     "@name": "resume",
                     "@pos": "225x177",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem"
+                    "@callback": "resume",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::pause/button_x.png"
                 },
                 {
-                    "@callback": "restart",
-                    "@imageN": "gamescene::pause/button_restart.png",
+                    "@sound": "##sound_button##",
                     "@name": "restart",
                     "@pos": "0.5x-75",
-                    "@sound": "##sound_button##",
+                    "@callback": "restart",
                     "@type": "menuitem",
+                    "@imageN": "gamescene::pause/button_restart.png",
                     "children": {
                         "node": {
                             "@name": "normal",
                             "children": {
                                 "node": [
                                     {
-                                        "@center": "0.5x0.5",
-                                        "@font": "fonts/mdefensefont2.fnt",
-                                        "@name": "restart_text",
-                                        "@pos": "90x50",
                                         "@scale": "0.7x0.7",
+                                        "@name": "restart_text",
                                         "@text": "#restart#",
-                                        "@type": "text",
+                                        "@z": "2",
+                                        "@pos": "90x50",
                                         "@visible": "yes",
-                                        "@z": "2"
-                                    },
-                                    {
-                                        "@center": "0x0.5",
-                                        "@image": "choose::button_fuel.png",
-                                        "@name": "icon",
-                                        "@pos": "64x26",
-                                        "@scale": "0.6x0.6",
-                                        "@type": "sprite",
-                                        "@visible": "no"
-                                    },
-                                    {
-                                        "@center": "0x0.5",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@name": "cost",
-                                        "@pos": "86x30",
-                                        "@scale": "0.45x0.45",
-                                        "@text": "0",
                                         "@type": "text",
+                                        "@center": "0.5x0.5"
+                                    },
+                                    {
+                                        "@scale": "0.6x0.6",
+                                        "@name": "icon",
+                                        "@image": "choose::button_fuel.png",
+                                        "@pos": "64x26",
                                         "@visible": "no",
-                                        "@z": "2"
+                                        "@type": "sprite",
+                                        "@center": "0x0.5"
+                                    },
+                                    {
+                                        "@scale": "0.45x0.45",
+                                        "@name": "cost",
+                                        "@text": "0",
+                                        "@z": "2",
+                                        "@pos": "86x30",
+                                        "@visible": "no",
+                                        "@font": "fonts/mdefensefont2.fnt",
+                                        "@type": "text",
+                                        "@center": "0x0.5"
                                     }
                                 ]
                             }
@@ -100,38 +100,38 @@
                     }
                 },
                 {
-                    "@callback": "music_on",
-                    "@imageN": "gamescene::pause/button_music.png",
+                    "@sound": "##sound_button##",
                     "@name": "music_on",
+                    "@callback": "music_on",
                     "@pos": "-55x40",
-                    "@sound": "##sound_button##",
+                    "@visible": "no",
                     "@type": "menuitem",
-                    "@visible": "no"
+                    "@imageN": "gamescene::pause/button_music.png"
                 },
                 {
-                    "@callback": "sound_on",
-                    "@imageN": "gamescene::pause/button_sound1.png",
+                    "@sound": "##sound_button##",
                     "@name": "sound_on",
+                    "@callback": "sound_on",
                     "@pos": "55x40",
-                    "@sound": "##sound_button##",
+                    "@visible": "no",
                     "@type": "menuitem",
-                    "@visible": "no"
+                    "@imageN": "gamescene::pause/button_sound1.png"
                 },
                 {
-                    "@callback": "music_off",
-                    "@imageN": "gamescene::pause/button_music2.png",
+                    "@sound": "##sound_button##",
                     "@name": "music_off",
                     "@pos": "-55x40",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem"
+                    "@callback": "music_off",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::pause/button_music2.png"
                 },
                 {
-                    "@callback": "sound_off",
-                    "@imageN": "gamescene::pause/button_sound2.png",
+                    "@sound": "##sound_button##",
                     "@name": "sound_off",
                     "@pos": "55x40",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem"
+                    "@callback": "sound_off",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::pause/button_sound2.png"
                 }
             ]
         }

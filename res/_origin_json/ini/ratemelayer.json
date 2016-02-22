@@ -1,6 +1,77 @@
 {
     "scorelayer": {
         "@name": "scorelayer",
+        "children": {
+            "node": [
+                {
+                    "@opacity": "0",
+                    "@scale": "0.7x0.7",
+                    "@name": "rate",
+                    "@pos": "frame:0.5x0.5",
+                    "@type": "node",
+                    "@cascadeopacity": "yes",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/rateme/rate1.png",
+                                "@type": "sprite",
+                                "@name": "bg"
+                            },
+                            {
+                                "@type": "menu",
+                                "@name": "menu",
+                                "@pos": "0x0",
+                                "children": {
+                                    "node": [
+                                        {
+                                            "@sound": "##sound_button##",
+                                            "@name": "rate",
+                                            "@pos": "0x-200",
+                                            "@callback": "rateme",
+                                            "@type": "menuitem",
+                                            "@imageN": "images/rateme/ratebutt.png"
+                                        },
+                                        {
+                                            "@sound": "##sound_button##",
+                                            "@name": "clse",
+                                            "@pos": "140x200",
+                                            "@callback": "close",
+                                            "@type": "menuitem",
+                                            "@imageN": "images/rateme/button_x.png"
+                                        }
+                                    ]
+                                }
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@opacity": "0",
+                    "@scale": "0.0x0.0",
+                    "@name": "award",
+                    "@pos": "frame:0.5x0.5",
+                    "@type": "node",
+                    "@cascadeopacity": "yes",
+                    "children": {
+                        "node": {
+                            "@type": "menu",
+                            "@name": "menu",
+                            "@pos": "0x0",
+                            "children": {
+                                "node": {
+                                    "@sound": "##sound_button##",
+                                    "@name": "rate",
+                                    "@pos": "0x0",
+                                    "@callback": "close",
+                                    "@type": "menuitem",
+                                    "@imageN": "images/rateme/rate2.png"
+                                }
+                            }
+                        }
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -18,77 +89,6 @@
                 {
                     "@name": "remove",
                     "@value": "Sequence[DelayTime[0.2],RemoveSelf[]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@cascadeopacity": "yes",
-                    "@name": "rate",
-                    "@opacity": "0",
-                    "@pos": "frame:0.5x0.5",
-                    "@scale": "0.7x0.7",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/rateme/rate1.png",
-                                "@name": "bg",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@name": "menu",
-                                "@pos": "0x0",
-                                "@type": "menu",
-                                "children": {
-                                    "node": [
-                                        {
-                                            "@callback": "rateme",
-                                            "@imageN": "images/rateme/ratebutt.png",
-                                            "@name": "rate",
-                                            "@pos": "0x-200",
-                                            "@sound": "##sound_button##",
-                                            "@type": "menuitem"
-                                        },
-                                        {
-                                            "@callback": "close",
-                                            "@imageN": "images/rateme/button_x.png",
-                                            "@name": "clse",
-                                            "@pos": "140x200",
-                                            "@sound": "##sound_button##",
-                                            "@type": "menuitem"
-                                        }
-                                    ]
-                                }
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@cascadeopacity": "yes",
-                    "@name": "award",
-                    "@opacity": "0",
-                    "@pos": "frame:0.5x0.5",
-                    "@scale": "0.0x0.0",
-                    "@type": "node",
-                    "children": {
-                        "node": {
-                            "@name": "menu",
-                            "@pos": "0x0",
-                            "@type": "menu",
-                            "children": {
-                                "node": {
-                                    "@callback": "close",
-                                    "@imageN": "images/rateme/rate2.png",
-                                    "@name": "rate",
-                                    "@pos": "0x0",
-                                    "@sound": "##sound_button##",
-                                    "@type": "menuitem"
-                                }
-                            }
-                        }
-                    }
                 }
             ]
         },

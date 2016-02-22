@@ -1,21 +1,5 @@
 {
     "gamescene": {
-        "actions": {
-            "action": [
-                {
-                    "@name": "button_up",
-                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,100]]]"
-                },
-                {
-                    "@name": "button_down",
-                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,-100]]]"
-                },
-                {
-                    "@name": "button_right",
-                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,130,0]]]"
-                }
-            ]
-        },
         "children": {
             "node": [
                 {
@@ -30,9 +14,9 @@
                                         "@pos": "righttop:-75x50"
                                     },
                                     {
+                                        "@visible": "##PLATFORM_MOBILE##",
                                         "@name": "shop",
-                                        "@pos": "righttop:-155x50",
-                                        "@visible": "##PLATFORM_MOBILE##"
+                                        "@pos": "righttop:-155x50"
                                     },
                                     {
                                         "@name": "desant",
@@ -50,6 +34,22 @@
                 {
                     "@name": "boxmenu",
                     "@pos": "right:-50x-50"
+                }
+            ]
+        },
+        "actions": {
+            "action": [
+                {
+                    "@name": "button_up",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,100]]]"
+                },
+                {
+                    "@name": "button_down",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,0,-100]]]"
+                },
+                {
+                    "@name": "button_right",
+                    "@value": "Sequence[DelayTime[1],BackOut[MoveBy[0.5,130,0]]]"
                 }
             ]
         },

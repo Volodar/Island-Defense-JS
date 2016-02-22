@@ -1,29 +1,29 @@
 {
     "node": {
-        "@animation": "       Spawn       [         Sequence         [           EaseInOut[MoveBy[1.5,0,50],1],           RemoveSelf[]         ],         Sequence         [           FadeIn[0.25],           DelayTime[1],           FadeOut[0.25]         ]       ]       ",
-        "@cascadecolor": "yes",
-        "@cascadeopacity": "yes",
         "@name": "score",
         "@pos": "##position##",
+        "@animation": "       Spawn       [         Sequence         [           EaseInOut[MoveBy[1.5,0,50],1],           RemoveSelf[]         ],         Sequence         [           FadeIn[0.25],           DelayTime[1],           FadeOut[0.25]         ]       ]       ",
+        "@cascadecolor": "yes",
         "@type": "node",
+        "@cascadeopacity": "yes",
         "children": {
             "node": [
                 {
-                    "@animation": "         RepeatForever         [           Animate           [             0.5..0.6,             [               folder:,               frames:               gamescene::icon_gold1.png,             ]           ]         ]",
                     "@center": "0x0.5",
                     "@image": "gamescene::icon_gold1.png",
-                    "@name": "icon",
                     "@pos": "0x0",
-                    "@type": "sprite"
+                    "@animation": "         RepeatForever         [           Animate           [             0.5..0.6,             [               folder:,               frames:               gamescene::icon_gold1.png,             ]           ]         ]",
+                    "@type": "sprite",
+                    "@name": "icon"
                 },
                 {
-                    "@center": "1x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "text",
-                    "@pos": "0x6",
                     "@scale": "0.5x0.5",
+                    "@center": "1x0.5",
                     "@text": "##scores##",
-                    "@type": "text"
+                    "@pos": "0x6",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@name": "text"
                 }
             ]
         }

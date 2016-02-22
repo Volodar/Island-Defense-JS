@@ -9,9 +9,9 @@
                     "@text": "##shopitem_cost##"
                 },
                 {
+                    "@text": "##shopitem_caption##",
                     "@name": "text",
-                    "@pos": "115x395",
-                    "@text": "##shopitem_caption##"
+                    "@pos": "115x395"
                 },
                 {
                     "@image": "images/shop/icon_fuel.png",
@@ -25,9 +25,9 @@
                     "children": {
                         "node": {
                             "@image": "images/shop/icons/400_.png",
+                            "@type": "sprite",
                             "@name": "icon",
-                            "@pos": "180x60",
-                            "@type": "sprite"
+                            "@pos": "180x60"
                         }
                     }
                 }

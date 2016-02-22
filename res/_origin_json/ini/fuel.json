@@ -1,10 +1,10 @@
 {
     "params": {
-        "delay": {
-            "@value": "180"
-        },
         "max": {
             "@value": "50"
+        },
+        "delay": {
+            "@value": "180"
         }
     }
 }

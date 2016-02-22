@@ -4,8 +4,8 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut5_ground.png",
-                    "@path": "body/bgtype"
+                    "@path": "body/bgtype",
+                    "@image": "images/tutorial/tut5_ground.png"
                 },
                 {
                     "@path": "body/name",
@@ -20,16 +20,16 @@
                     "@text": "#dron_desc#"
                 },
                 {
-                    "@animation": "RepeatForever[Animate[0.7,[folder:dron::,indexes:dron100.png,01:13]]]",
                     "@path": "body/unit",
-                    "@pos": "-210x40",
-                    "@scale": "1x1"
+                    "@animation": "RepeatForever[Animate[0.7,[folder:dron::,indexes:dron100.png,01:13]]]",
+                    "@scale": "1x1",
+                    "@pos": "-210x40"
                 },
                 {
                     "@image": "images/creeps/helicopter_shadow.png",
+                    "@type": "sprite",
                     "@name": "shadow",
-                    "@pos": "-210x00",
-                    "@type": "sprite"
+                    "@pos": "-210x00"
                 }
             ]
         }

@@ -1,209 +1,209 @@
 {
     "menuitem": {
-        "@imageN": "images/laboratory/ui_panel1.png",
-        "@name": "unnamed",
-        "@scale_effect": "no",
         "@sound": "##sound_button##",
+        "@scale_effect": "no",
         "@type": "menuitem",
+        "@name": "unnamed",
+        "@imageN": "images/laboratory/ui_panel1.png",
         "children": {
             "node": {
+                "@type": "node",
                 "@name": "conteiner",
                 "@pos": "140x229",
-                "@type": "node",
                 "children": {
                     "node": [
                         {
-                            "@color": "000000",
-                            "@font": "fonts/whitefont1.fnt",
-                            "@name": "name",
-                            "@pos": "0x-10",
                             "@scale": "0.55x0.55",
+                            "@name": "name",
+                            "@color": "000000",
                             "@text": "Tower name",
+                            "@pos": "0x-10",
+                            "@font": "fonts/whitefont1.fnt",
                             "@type": "text"
                         },
                         {
-                            "@name": "icon",
-                            "@pos": "0x90",
-                            "@type": "sprite"
-                        },
-                        {
-                            "@name": "icon2",
-                            "@pos": "-90x190",
-                            "@type": "sprite"
-                        },
-                        {
-                            "@image": "images/laboratory/lock_icon.png",
-                            "@name": "icon_locked",
-                            "@pos": "0x-110",
                             "@type": "sprite",
-                            "@visible": "no"
+                            "@name": "icon",
+                            "@pos": "0x90"
                         },
                         {
+                            "@type": "sprite",
+                            "@name": "icon2",
+                            "@pos": "-90x190"
+                        },
+                        {
+                            "@visible": "no",
+                            "@image": "images/laboratory/lock_icon.png",
+                            "@type": "sprite",
+                            "@name": "icon_locked",
+                            "@pos": "0x-110"
+                        },
+                        {
+                            "@z": "9",
+                            "@type": "menu",
                             "@name": "menu_info",
                             "@pos": "0x0",
-                            "@type": "menu",
-                            "@z": "9",
                             "children": {
                                 "node": {
-                                    "@imageN": "images/laboratory/icon_i.png",
-                                    "@name": "info",
                                     "@pos": "90x190",
                                     "@sound": "##sound_button##",
-                                    "@type": "menuitem"
+                                    "@type": "menuitem",
+                                    "@name": "info",
+                                    "@imageN": "images/laboratory/icon_i.png"
                                 }
                             }
                         },
                         {
                             "@cascadeopacity": "yes",
+                            "@type": "node",
                             "@name": "main",
                             "@pos": "0x0",
-                            "@type": "node",
                             "children": {
                                 "node": [
                                     {
+                                        "@scale": "0.6x0.6",
                                         "@center": "0x0.5",
                                         "@color": "000000",
-                                        "@font": "fonts/helvetica.fnt",
-                                        "@name": "dmg",
-                                        "@pos": "-95x-90",
-                                        "@scale": "0.6x0.6",
                                         "@text": "ATK:",
-                                        "@type": "text"
+                                        "@pos": "-95x-90",
+                                        "@font": "fonts/helvetica.fnt",
+                                        "@type": "text",
+                                        "@name": "dmg"
                                     },
                                     {
+                                        "@scale": "0.6x0.6",
                                         "@center": "0x0.5",
                                         "@color": "000000",
-                                        "@font": "fonts/helvetica.fnt",
-                                        "@name": "rng",
-                                        "@pos": "30x-90",
-                                        "@scale": "0.6x0.6",
                                         "@text": "RNG:",
-                                        "@type": "text"
+                                        "@pos": "30x-90",
+                                        "@font": "fonts/helvetica.fnt",
+                                        "@type": "text",
+                                        "@name": "rng"
                                     },
                                     {
+                                        "@scale": "0.6x0.6",
                                         "@center": "0x0.5",
                                         "@color": "000000",
-                                        "@font": "fonts/helvetica.fnt",
-                                        "@name": "spd",
-                                        "@pos": "-40x-122",
-                                        "@scale": "0.6x0.6",
                                         "@text": "RATE:",
-                                        "@type": "text"
+                                        "@pos": "-40x-122",
+                                        "@font": "fonts/helvetica.fnt",
+                                        "@type": "text",
+                                        "@name": "spd"
                                     },
                                     {
                                         "@image": "images/laboratory/icon_atk.png",
+                                        "@type": "sprite",
                                         "@name": "icondmg",
-                                        "@pos": "-112x-90",
-                                        "@type": "sprite"
+                                        "@pos": "-112x-90"
                                     },
                                     {
                                         "@image": "images/laboratory/icon_rng.png",
+                                        "@type": "sprite",
                                         "@name": "iconrng",
-                                        "@pos": "12x-92",
-                                        "@type": "sprite"
+                                        "@pos": "12x-92"
                                     },
                                     {
                                         "@image": "images/laboratory/icon_rate.png",
+                                        "@type": "sprite",
                                         "@name": "iconspd",
-                                        "@pos": "-55x-125",
-                                        "@type": "sprite"
+                                        "@pos": "-55x-125"
                                     },
                                     {
                                         "@cascadeopacity": "yes",
+                                        "@type": "node",
                                         "@name": "indicator",
                                         "@pos": "0x-53",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_1.png",
-                                                    "@name": "bg",
-                                                    "@type": "sprite"
+                                                    "@type": "sprite",
+                                                    "@name": "bg"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_3.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "-72x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "-72x0"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_2.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "-37x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "-37x0"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_2.png",
+                                                    "@type": "sprite",
                                                     "@name": "3",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_2.png",
+                                                    "@type": "sprite",
                                                     "@name": "4",
-                                                    "@pos": "37x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "37x0"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/prorressbar_level_3.png",
-                                                    "@name": "5",
-                                                    "@pos": "72x0",
                                                     "@scale": "-1x1",
-                                                    "@type": "sprite"
+                                                    "@type": "sprite",
+                                                    "@name": "5",
+                                                    "@pos": "72x0"
                                                 },
                                                 {
-                                                    "@color": "FFFFFF",
-                                                    "@font": "fonts/helvetica.fnt",
-                                                    "@name": "caption",
-                                                    "@pos": "0x2",
                                                     "@scale": "0.7x0.7",
+                                                    "@name": "caption",
+                                                    "@color": "FFFFFF",
                                                     "@text": "",
+                                                    "@pos": "0x2",
+                                                    "@font": "fonts/helvetica.fnt",
                                                     "@type": "text"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@z": "9",
+                                        "@type": "menu",
                                         "@name": "menu",
                                         "@pos": "0x0",
-                                        "@type": "menu",
-                                        "@z": "9",
                                         "children": {
                                             "node": {
-                                                "@imageN": "images/laboratory/button_upgrade.png",
+                                                "@sound": "##sound_button##",
                                                 "@name": "buy",
                                                 "@pos": "0x-175",
-                                                "@sound": "##sound_button##",
-                                                "@type": "menuitem",
                                                 "@visible": "yes",
+                                                "@type": "menuitem",
+                                                "@imageN": "images/laboratory/button_upgrade.png",
                                                 "children": {
                                                     "node": {
-                                                        "@cascadeopacity": "yes",
                                                         "@name": "normal",
+                                                        "@cascadeopacity": "yes",
                                                         "children": {
                                                             "node": [
                                                                 {
-                                                                    "@font": "fonts/mdefensefont.fnt",
-                                                                    "@name": "text",
-                                                                    "@pos": "95x42",
                                                                     "@scale": "0.6x0.6",
+                                                                    "@name": "text",
                                                                     "@text": "#laboratory_tower_upgrade#",
+                                                                    "@pos": "95x42",
+                                                                    "@font": "fonts/mdefensefont.fnt",
                                                                     "@type": "text"
                                                                 },
                                                                 {
-                                                                    "@center": "0x0.5",
-                                                                    "@font": "fonts/mdefensefont.fnt",
-                                                                    "@name": "cost",
-                                                                    "@pos": "100x16",
                                                                     "@scale": "0.4x0.4",
+                                                                    "@name": "cost",
                                                                     "@text": "999",
-                                                                    "@type": "text"
+                                                                    "@pos": "100x16",
+                                                                    "@font": "fonts/mdefensefont.fnt",
+                                                                    "@type": "text",
+                                                                    "@center": "0x0.5"
                                                                 },
                                                                 {
                                                                     "@image": "images/laboratory/icon_coin.png",
+                                                                    "@type": "sprite",
                                                                     "@name": "icon",
-                                                                    "@pos": "85x14",
-                                                                    "@type": "sprite"
+                                                                    "@pos": "85x14"
                                                                 }
                                                             ]
                                                         }
@@ -213,58 +213,58 @@
                                         }
                                     },
                                     {
-                                        "@cascadeopacity": "yes",
                                         "@name": "menu_confirm",
                                         "@pos": "0x0",
-                                        "@type": "node",
                                         "@visible": "no",
                                         "@z": "9",
+                                        "@type": "node",
+                                        "@cascadeopacity": "yes",
                                         "children": {
                                             "node": [
                                                 {
-                                                    "@font": "fonts/mdefensefont.fnt",
-                                                    "@name": "text",
-                                                    "@pos": "0x-162",
                                                     "@scale": "0.6x0.6",
+                                                    "@name": "text",
                                                     "@text": "#laboratory_tower_upgrade#",
+                                                    "@pos": "0x-162",
+                                                    "@font": "fonts/mdefensefont.fnt",
                                                     "@type": "text"
                                                 },
                                                 {
-                                                    "@center": "0x0.5",
-                                                    "@font": "fonts/mdefensefont.fnt",
-                                                    "@name": "cost",
-                                                    "@pos": "5x-189",
                                                     "@scale": "0.4x0.4",
+                                                    "@name": "cost",
                                                     "@text": "999",
-                                                    "@type": "text"
+                                                    "@pos": "5x-189",
+                                                    "@font": "fonts/mdefensefont.fnt",
+                                                    "@type": "text",
+                                                    "@center": "0x0.5"
                                                 },
                                                 {
                                                     "@image": "images/laboratory/icon_coin.png",
+                                                    "@type": "sprite",
                                                     "@name": "icon",
-                                                    "@pos": "-10x-191",
-                                                    "@type": "sprite"
+                                                    "@pos": "-10x-191"
                                                 },
                                                 {
-                                                    "@name": "menu",
-                                                    "@pos": "0x0",
-                                                    "@type": "menu",
                                                     "@visible": "yes",
                                                     "@z": "9",
+                                                    "@type": "menu",
+                                                    "@name": "menu",
+                                                    "@pos": "0x0",
                                                     "children": {
                                                         "node": [
                                                             {
-                                                                "@imageN": "images/laboratory/icon_ok.png",
-                                                                "@name": "confirm",
                                                                 "@pos": "-95x-175",
                                                                 "@sound": "##sound_button##",
-                                                                "@type": "menuitem"
+                                                                "@type": "menuitem",
+                                                                "@name": "confirm",
+                                                                "@imageN": "images/laboratory/icon_ok.png"
                                                             },
                                                             {
-                                                                "@imageN": "images/laboratory/icon_no.png",
-                                                                "@name": "cancel",
                                                                 "@pos": "95x-175",
                                                                 "@sound": "##sound_button##",
-                                                                "@type": "menuitem"
+                                                                "@type": "menuitem",
+                                                                "@name": "cancel",
+                                                                "@imageN": "images/laboratory/icon_no.png"
                                                             }
                                                         ]
                                                     }
@@ -276,22 +276,22 @@
                             }
                         },
                         {
+                            "@visible": "no",
+                            "@type": "node",
                             "@name": "info",
                             "@pos": "0x0",
-                            "@type": "node",
-                            "@visible": "no",
                             "children": {
                                 "node": {
-                                    "@center": "0.5x1",
-                                    "@color": "000000",
-                                    "@font": "fonts/helvetica.fnt",
-                                    "@name": "text",
-                                    "@pos": "0x-35",
                                     "@scale": "0.6x0.6",
+                                    "@name": "text",
+                                    "@color": "000000",
                                     "@text": "Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc Tower desc ",
-                                    "@textalign": "center",
                                     "@textwidth": "250",
-                                    "@type": "text"
+                                    "@pos": "0x-35",
+                                    "@font": "fonts/helvetica.fnt",
+                                    "@type": "text",
+                                    "@textalign": "center",
+                                    "@center": "0.5x1"
                                 }
                             }
                         }

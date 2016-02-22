@@ -1,16 +1,116 @@
 {
     "tower": {
-        "@allowtargets": "earth",
-        "@handradius": "100",
+        "@name": "swat",
         "@handradiussector": "180",
+        "@handradius": "100",
+        "@unittype": "desant",
+        "@allowtargets": "earth",
+        "@radius": "150",
+        "@maxtargets": "1",
+        "@velocity": "100",
+        "@unitlayer": "earth",
         "@health": "50",
         "@maxlevel": "1",
-        "@maxtargets": "1",
-        "@name": "swat",
-        "@radius": "150",
-        "@unitlayer": "earth",
-        "@unittype": "desant",
-        "@velocity": "100",
+        "effects": {
+            "positive": {
+                "@damage": "2"
+            }
+        },
+        "extraproperties": {
+            "@electro_size": "small",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@fire_scale": "1.5",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "enter",
+            "transitions": {
+                "enter": {
+                    "@stop": "stop"
+                },
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@notarget": "stop"
+                    },
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_enter": {
+                    "@duration": "0.5"
+                },
+                "state_cocking": {
+                    "@duration": "0.5"
+                },
+                "state_readyfire": {
+                    "@delay": "0.2",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "75"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@animation": "Animate[0.5,[folder:hero2_skills::desant/hero2_desant_enter,indexes:00.png,01:12]]",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.25"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x31"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -43,47 +143,21 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@animation": "Animate[0.5,[folder:hero2_skills::desant/hero2_desant_enter,indexes:00.png,01:12]]",
-                    "@center": "0.5x0.25",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x31",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@damage": "2"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_die",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate180",
-                    "action": {
-                        "@action": "animate_left",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -91,15 +165,15 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
-                    }
-                },
-                {
-                    "@name": "on_rotate0",
+                    },
                     "action": {
                         "@action": "animate_left",
                         "@state": "run",
                         "@target": "skin"
-                    },
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -107,27 +181,32 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_left",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate90",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_down",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate270",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_up",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
@@ -149,11 +228,6 @@
                 },
                 {
                     "@name": "on_shoot",
-                    "action": {
-                        "@action": "animate_fire",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -161,99 +235,25 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_stop",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_nothing",
                         "@state": "run",
                         "@target": "skin"
-                    },
-                    "stopallaction": {
-                        "@target": "skin"
                     }
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1.5"
-        },
-        "machine_unit": {
-            "@start_state": "enter",
-            "params": {
-                "state_cocking": {
-                    "@duration": "0.5"
-                },
-                "state_death": {
-                    "@duration": "1"
-                },
-                "state_enter": {
-                    "@duration": "0.5"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "0.2"
-                }
-            },
-            "transitions": {
-                "death": {
-                    "@stop": "stop"
-                },
-                "enter": {
-                    "@stop": "stop"
-                },
-                "move": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "readyfire": [
-                    {
-                        "@notarget": "stop"
-                    },
-                    {
-                        "@charge": "readyfire"
-                    },
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "stop": [
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@die": "death"
-                    },
-                    {
-                        "@seetarget": "readyfire"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180,90,270"
-                },
-                "thresold": {
-                    "@value": "75"
-                }
-            }
         }
     }
 }

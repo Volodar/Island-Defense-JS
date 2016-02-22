@@ -1,11 +1,62 @@
 {
     "tower": {
-        "@health": "650",
-        "@lifecost": "2",
         "@name": "bigman",
+        "@lifecost": "2",
+        "@health": "650",
         "@radius": "150",
         "@template": "ini/units/templates/creepbattle.xml",
         "@velocity": "40",
+        "effects": {
+            "positive": {
+                "@armor": "2",
+                "@damage": "4"
+            }
+        },
+        "extraproperties": {
+            "@freezing_scale": "0.35",
+            "@electro_scale": "1",
+            "@electro_pos": "0x30",
+            "@electro_size": "big",
+            "@fire_scale": "2",
+            "@fire_pos": "0x5"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                },
+                "state_readyfire": {
+                    "@delay": "0.5",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "90"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.25"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x66"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -30,27 +81,6 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.25",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x66",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "2",
-                "@damage": "4"
-            }
-        },
         "events": {
             "eventlist": [
                 {
@@ -60,36 +90,6 @@
                     "@name": "on_shoot"
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x30",
-            "@electro_scale": "1",
-            "@electro_size": "big",
-            "@fire_pos": "0x5",
-            "@fire_scale": "2",
-            "@freezing_scale": "0.35"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "0.5"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "0.5"
-                }
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180,90,270"
-                },
-                "thresold": {
-                    "@value": "90"
-                }
-            }
         }
     }
 }

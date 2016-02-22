@@ -1,53 +1,36 @@
 {
     "node": {
+        "@visible": "no",
         "@cascadeopacity": "yes",
+        "@type": "layerext",
         "@name": "choose",
         "@pos": "frame:0.5x0.5",
-        "@type": "layerext",
-        "@visible": "no",
-        "actions": {
-            "action": [
-                {
-                    "@name": "appearance",
-                    "@value": "Sequence[MoveBy[0.0,0,-300],Show[],BackOut[MoveBy[0.5,0,300]]]"
-                },
-                {
-                    "@name": "disappearance",
-                    "@value": "Sequence[BackIn[MoveBy[0.3,0,-300]],RemoveSelf[]]"
-                },
-                {
-                    "@name": "fadein",
-                    "@value": "FadeIn[0.5]"
-                },
-                {
-                    "@name": "fadeout",
-                    "@value": "FadeIn[0.2]"
-                }
-            ]
+        "paramcollection": {
+            "pathto_leaderboards": "leaderboard"
         },
         "children": {
             "node": [
                 {
                     "@name": "normal",
-                    "@pos": "-300x0",
                     "@template": "ini/map/choose_item.xml",
+                    "@pos": "-300x0",
                     "children": {
                         "node": [
                             {
-                                "@image": "choose::win_normal_diff.png",
-                                "@path": "bg"
+                                "@path": "bg",
+                                "@image": "choose::win_normal_diff.png"
                             },
                             {
                                 "@path": "caption_text",
                                 "@text": "#gamechoose_normal#"
                             },
                             {
-                                "@callback": "pushgame_normalmode",
-                                "@path": "menu/game"
+                                "@path": "menu/game",
+                                "@callback": "pushgame_normalmode"
                             },
                             {
-                                "@callback": "pushgame_normalmode",
-                                "@path": "menu/game_withfuel"
+                                "@path": "menu/game_withfuel",
+                                "@callback": "pushgame_normalmode"
                             },
                             {
                                 "@path": "menu/game_withfuel/normal/text",
@@ -82,25 +65,25 @@
                 },
                 {
                     "@name": "hard",
-                    "@pos": "300x0",
                     "@template": "ini/map/choose_item.xml",
+                    "@pos": "300x0",
                     "children": {
                         "node": [
                             {
-                                "@image": "choose::win_hard_diff.png",
-                                "@path": "bg"
+                                "@path": "bg",
+                                "@image": "choose::win_hard_diff.png"
                             },
                             {
                                 "@path": "caption_text",
                                 "@text": "#gamechoose_hard#"
                             },
                             {
-                                "@callback": "pushgame_hardmode",
-                                "@path": "menu/game"
+                                "@path": "menu/game",
+                                "@callback": "pushgame_hardmode"
                             },
                             {
-                                "@callback": "pushgame_hardmode",
-                                "@path": "menu/game_withfuel"
+                                "@path": "menu/game_withfuel",
+                                "@callback": "pushgame_hardmode"
                             },
                             {
                                 "@path": "menu/game_withfuel/normal/text",
@@ -131,15 +114,15 @@
                 },
                 {
                     "@color": "808080",
-                    "@name": "hard_lock",
-                    "@pos": "300x0",
-                    "@template": "ini/map/choose_item.xml",
                     "@visible": "no",
+                    "@name": "hard_lock",
+                    "@template": "ini/map/choose_item.xml",
+                    "@pos": "300x0",
                     "children": {
                         "node": [
                             {
-                                "@image": "choose::win_hard_diff.png",
-                                "@path": "bg"
+                                "@path": "bg",
+                                "@image": "choose::win_hard_diff.png"
                             },
                             {
                                 "@color": "808080",
@@ -147,28 +130,28 @@
                                 "@text": "#gamechoose_hard#"
                             },
                             {
-                                "@name": "dummy",
                                 "@type": "node",
+                                "@name": "dummy",
                                 "children": {
                                     "node": [
                                         {
-                                            "@image": "choose::lock2.png",
                                             "@path": "lock",
-                                            "@pos": "0x38",
+                                            "@image": "choose::lock2.png",
                                             "@scale": "1.2x1.2",
-                                            "@type": "sprite"
+                                            "@type": "sprite",
+                                            "@pos": "0x38"
                                         },
                                         {
-                                            "@center": "0.5x0.5",
-                                            "@color": "74C4DF",
-                                            "@font": "fonts/helvetica.fnt",
-                                            "@name": "text",
-                                            "@pos": "0x-125",
                                             "@scale": "0.6x0.6",
+                                            "@name": "text",
+                                            "@color": "74C4DF",
                                             "@text": "#gamechoose_hardmode_locked#",
-                                            "@textalign": "center",
                                             "@textwidth": "350",
-                                            "@type": "text"
+                                            "@pos": "0x-125",
+                                            "@font": "fonts/helvetica.fnt",
+                                            "@type": "text",
+                                            "@textalign": "center",
+                                            "@center": "0.5x0.5"
                                         }
                                     ]
                                 }
@@ -202,43 +185,43 @@
                 },
                 {
                     "@cascadeopacity": "yes",
+                    "@type": "node",
                     "@name": "preview",
                     "@pos": "0x0",
-                    "@type": "node",
                     "children": {
                         "node": [
                             {
                                 "@image": "choose::win_for_level2.png",
+                                "@type": "sprite",
                                 "@name": "frame",
-                                "@pos": "0x40",
-                                "@type": "sprite"
+                                "@pos": "0x40"
                             },
                             {
-                                "@font": "fonts/titlefont.fnt",
-                                "@name": "caption",
-                                "@pos": "0x175",
                                 "@scale": "0.6x0.6",
-                                "@strech": "230x60:min",
+                                "@name": "caption",
                                 "@text": "##preview_caption##",
+                                "@pos": "0x175",
+                                "@strech": "230x60:min",
+                                "@font": "fonts/titlefont.fnt",
                                 "@type": "text"
                             }
                         ]
                     }
                 },
                 {
+                    "@type": "menu",
                     "@name": "leaderboard",
                     "@pos": "0x-100",
-                    "@type": "menu",
                     "children": {
                         "node": {
+                            "@sound": "##sound_button##",
+                            "@name": "open",
+                            "@text": "#leaderboard#",
+                            "@pos": "0x-70",
                             "@callback": "leaderboard_level",
                             "@font": "fonts/mdefensefont.fnt",
-                            "@imageN": "images/map/leaderboard.png",
-                            "@name": "open",
-                            "@pos": "0x-70",
-                            "@sound": "##sound_button##",
-                            "@text": "#leaderboard#",
                             "@type": "menuitem",
+                            "@imageN": "images/map/leaderboard.png",
                             "children": {
                                 "node": {
                                     "@path": "normal/text",
@@ -251,10 +234,34 @@
                 }
             ]
         },
+        "actions": {
+            "action": [
+                {
+                    "@name": "appearance",
+                    "@value": "Sequence[MoveBy[0.0,0,-300],Show[],BackOut[MoveBy[0.5,0,300]]]"
+                },
+                {
+                    "@name": "disappearance",
+                    "@value": "Sequence[BackIn[MoveBy[0.3,0,-300]],RemoveSelf[]]"
+                },
+                {
+                    "@name": "fadein",
+                    "@value": "FadeIn[0.5]"
+                },
+                {
+                    "@name": "fadeout",
+                    "@value": "FadeIn[0.2]"
+                }
+            ]
+        },
         "events": {
             "eventlist": [
                 {
                     "@name": "onenter",
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@value": "0"
+                    },
                     "runaction": [
                         {
                             "@action": "appearance"
@@ -262,11 +269,7 @@
                         {
                             "@action": "fadein"
                         }
-                    ],
-                    "setproperty": {
-                        "@property": "opacity",
-                        "@value": "0"
-                    }
+                    ]
                 },
                 {
                     "@name": "onexit",
@@ -280,9 +283,6 @@
                     ]
                 }
             ]
-        },
-        "paramcollection": {
-            "pathto_leaderboards": "leaderboard"
         }
     }
 }

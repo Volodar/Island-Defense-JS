@@ -1,12 +1,92 @@
 {
     "tower": {
-        "@allowtargets": "earth",
-        "@damagebysector": "yes",
-        "@effect_on_shoot": "type:fire",
         "@name": "firegun",
-        "@radius": "220",
         "@sectorangle": "45",
         "@unittype": "tower",
+        "@allowtargets": "earth",
+        "@radius": "220",
+        "@damagebysector": "yes",
+        "@effect_on_shoot": "type:fire",
+        "effects": {
+            "positive": {
+                "@fireRate": "18",
+                "@fireTime": "2"
+            }
+        },
+        "machine_unit": {
+            "transitions": {
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            },
+            "params": {
+                "state_readyfire": {
+                    "@delay": "1.1",
+                    "@charge_volume": "5"
+                },
+                "state_waittarget": {
+                    "@duration": "4"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                }
+            }
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@image": "firegun.3.1::turret4_3_10001.png",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.4"
+                },
+                {
+                    "@opacity": "0",
+                    "@type": "sprite",
+                    "@name": "fire",
+                    "@center": "0.0x0.5"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -34,28 +114,6 @@
                     "@value": "Sequence[FadeTo[0.1,204],DelayTime[1],FadeTo[0.06,0]]"
                 }
             ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.4",
-                    "@image": "firegun.3.1::turret4_3_10001.png",
-                    "@name": "skin",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.0x0.5",
-                    "@name": "fire",
-                    "@opacity": "0",
-                    "@type": "sprite"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@fireRate": "18",
-                "@fireTime": "2"
-            }
         },
         "events": {
             "eventlist": [
@@ -220,64 +278,6 @@
                     ]
                 }
             ]
-        },
-        "machine_move": {
-            "transitions": {
-                "move": {
-                    "@stop": "stop"
-                },
-                "stop": {
-                    "@move": "move"
-                }
-            }
-        },
-        "machine_unit": {
-            "params": {
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "1.1"
-                },
-                "state_waittarget": {
-                    "@duration": "4"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "readyfire": [
-                    {
-                        "@notarget": "waittarget"
-                    },
-                    {
-                        "@charge": "charging"
-                    }
-                ],
-                "sleep": {
-                    "@seetarget": "readyfire"
-                },
-                "waittarget": [
-                    {
-                        "@seetarget": "readyfire"
-                    },
-                    {
-                        "@relax": "waittarget"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "45,135,225,315"
-                },
-                "thresold": {
-                    "@value": "45"
-                }
-            }
         }
     }
 }

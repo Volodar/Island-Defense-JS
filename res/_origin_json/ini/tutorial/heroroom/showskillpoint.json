@@ -1,10 +1,56 @@
 {
     "tutorial": {
         "@closebytap": "yes",
-        "@nexttutorial": "hero_selectskill",
-        "@parent": "/selecthero",
-        "@pos": "frame:0.5x0.5",
         "@z": "999",
+        "@pos": "frame:0.5x0.5",
+        "@parent": "/selecthero",
+        "@nexttutorial": "hero_selectskill",
+        "children": {
+            "node": [
+                {
+                    "@type": "node",
+                    "@name": "body",
+                    "@pos": "0x-150",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@type": "sprite",
+                                "@name": "bg"
+                            },
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@text": "#tuturial_heroroom_showskillpoints#",
+                                "@textwidth": "420",
+                                "@pos": "-110x00",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@opacity": "0",
+                    "@pos": "135x0",
+                    "@type": "node",
+                    "@name": "baloon",
+                    "@cascadeopacity": "yes",
+                    "children": {
+                        "node": {
+                            "@scale": "1.5x1.5",
+                            "@name": "arrow",
+                            "@image": "images/tutorial/baloon1_1.png",
+                            "@pos": "0x60",
+                            "@z": "1",
+                            "@type": "sprite",
+                            "@center": "0.5x0"
+                        }
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -18,52 +64,6 @@
                 {
                     "@name": "bodyfadein",
                     "@value": "Sequence[DelayTime[0.5],FadeTo[0.3,255]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@name": "body",
-                    "@pos": "0x-150",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/tutorial/tut2.png",
-                                "@name": "bg",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "-110x00",
-                                "@scale": "0.7x0.7",
-                                "@text": "#tuturial_heroroom_showskillpoints#",
-                                "@textwidth": "420",
-                                "@type": "text"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@cascadeopacity": "yes",
-                    "@name": "baloon",
-                    "@opacity": "0",
-                    "@pos": "135x0",
-                    "@type": "node",
-                    "children": {
-                        "node": {
-                            "@center": "0.5x0",
-                            "@image": "images/tutorial/baloon1_1.png",
-                            "@name": "arrow",
-                            "@pos": "0x60",
-                            "@scale": "1.5x1.5",
-                            "@type": "sprite",
-                            "@z": "1"
-                        }
-                    }
                 }
             ]
         },

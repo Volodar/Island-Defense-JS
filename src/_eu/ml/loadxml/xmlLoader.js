@@ -128,7 +128,7 @@ EU.xmlLoader = {
     },
     /**
      * load a node from a xmlnode
-     * @param {Element} xmlnode
+     * @param {jsonextended} xmlnode
      */
     load_node_from_xml_node: function (xmlnode) {
         if (xmlnode == null)
@@ -188,24 +188,26 @@ EU.xmlLoader = {
      * @param {EU.Node} node
      * @param {Element} xmlnode
      */
-    load_node_xml_node: function (node, xmlnode, ignodeTemplate) {
+    load_node_xml_node: function (node, xmlnode, ignoredTemplate) {
         if (node == null)
             return;
         //const std::string& type = xmlnode.getAttribute( ksType.c_str() ).as_string();
         var template_ = xmlnode.getAttribute(EU.xmlKey.Template.name);
-        if (ignodeTemplate == false && this.stringIsEmpty(template_) == false) {
+        if (ignoredTemplate == false && this.stringIsEmpty(template_) == false) {
             this.load_node_n_str(node, EU.xmlLoader.resourcesRoot + template_);
         }
 
-        for (var i = 0; i < xmlnode.attributes.length; i++) {
-            var attr = xmlnode.attributes[i];
+        var allAttributes = xmlnode.attributes;
+        for (var i = 0; i < allAttributes.length; i++) {
+            var attr = allAttributes[i];
             var name = attr.name;
             var value = attr.value;
             EU.xmlLoader.setProperty(node, name, value);
         }
 
-        for (var i = 0; i < xmlnode.children.length; i++) {
-            var xmlentity = xmlnode.children[i];
+        var allChildren = xmlnode.children;
+        for (var i = 0; i < allChildren.length; i++) {
+            var xmlentity = allChildren[i];
 
             var tag = xmlentity.tagName;
             if (tag == "children")
@@ -298,11 +300,13 @@ EU.xmlLoader = {
         /**
          * Template: FOR_EACHXML_BYTAG
          */
-        for (var i = 0; i < xmlnode.children.length; i++) {
-            var xmlchild = xmlnode.children[i];
+        var allChildren = xmlnode.children;
+        for (var i = 0; i < allChildren.length; i++) {
+            var xmlchild = allChildren[i];
             if (xmlchild.tagName == "node") {
-                var child = this.getorbuild_node(node, xmlchild);
-                EU.assert(child, "empty child");
+                var child = null;
+                child = this.getorbuild_node(node, xmlchild);
+                //EU.assert(child, "empty child");
                 if (child == null)
                     continue;
                 this.load_node_xml_node(child, xmlchild, false);
@@ -1178,7 +1182,7 @@ EU.xmlLoader = {
                     break;
                 default:
                     result = false;
-                    //cc.log( "property with name [" + property + "] not dispathed node by name[" + node.getName() + "]" );
+                    cc.log("property with name [" + property + "] not dispathed node by name[" + node.getName() + "]");
                     break;
             }
         }

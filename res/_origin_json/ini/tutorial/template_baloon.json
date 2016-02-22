@@ -1,5 +1,38 @@
 {
     "tutorial": {
+        "children": {
+            "node": {
+                "@opacity": "0",
+                "@type": "node",
+                "@name": "body",
+                "@cascadeopacity": "yes",
+                "children": {
+                    "node": [
+                        {
+                            "@image": "images/tutorial/baloon1.png",
+                            "@type": "sprite",
+                            "@name": "bg"
+                        },
+                        {
+                            "@image": "images/tutorial/baloon1_1.png",
+                            "@z": "1",
+                            "@type": "sprite",
+                            "@name": "arrow",
+                            "@pos": "0x-40"
+                        },
+                        {
+                            "@scale": "0.7x0.7",
+                            "@name": "text",
+                            "@color": "35352B",
+                            "@text": "",
+                            "@pos": "0x4",
+                            "@font": "fonts/helvetica.fnt",
+                            "@type": "text"
+                        }
+                    ]
+                }
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -11,39 +44,6 @@
                     "@value": "Sequence[DelayTime[2.5],FadeTo[0.3,255]]"
                 }
             ]
-        },
-        "children": {
-            "node": {
-                "@cascadeopacity": "yes",
-                "@name": "body",
-                "@opacity": "0",
-                "@type": "node",
-                "children": {
-                    "node": [
-                        {
-                            "@image": "images/tutorial/baloon1.png",
-                            "@name": "bg",
-                            "@type": "sprite"
-                        },
-                        {
-                            "@image": "images/tutorial/baloon1_1.png",
-                            "@name": "arrow",
-                            "@pos": "0x-40",
-                            "@type": "sprite",
-                            "@z": "1"
-                        },
-                        {
-                            "@color": "35352B",
-                            "@font": "fonts/helvetica.fnt",
-                            "@name": "text",
-                            "@pos": "0x4",
-                            "@scale": "0.7x0.7",
-                            "@text": "",
-                            "@type": "text"
-                        }
-                    ]
-                }
-            }
         },
         "events": {
             "eventlist": [

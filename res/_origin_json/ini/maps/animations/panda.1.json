@@ -1,7 +1,7 @@
 {
     "node": {
-        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..1],           Animate[0.5..1,[folder:maps.animations2::,           frames:           panda_0001.png,           panda_0002.png,           panda_0003.png,           panda_0004.png,           panda_0005.png,           panda_0006.png,           panda_0007.png,           panda_0008.png,           panda_0009.png,           panda_0010.png,           panda_0011.png,           panda_0012.png,           panda_0013.png,           panda_0014.png,           panda_0015.png,           panda_0016.png,           panda_0017.png,           panda_0018.png,           panda_0019.png,           panda_0020.png,           panda_0021.png,           panda_0022.png,           panda_0023.png,           panda_0024.png]]         ]       ]",
         "@image": "maps.animations2::panda_0001.png",
+        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..1],           Animate[0.5..1,[folder:maps.animations2::,           frames:           panda_0001.png,           panda_0002.png,           panda_0003.png,           panda_0004.png,           panda_0005.png,           panda_0006.png,           panda_0007.png,           panda_0008.png,           panda_0009.png,           panda_0010.png,           panda_0011.png,           panda_0012.png,           panda_0013.png,           panda_0014.png,           panda_0015.png,           panda_0016.png,           panda_0017.png,           panda_0018.png,           panda_0019.png,           panda_0020.png,           panda_0021.png,           panda_0022.png,           panda_0023.png,           panda_0024.png]]         ]       ]",
         "@type": "sprite"
     }
 }

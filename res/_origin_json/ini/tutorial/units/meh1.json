@@ -4,8 +4,8 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut5_ground.png",
-                    "@path": "body/bgtype"
+                    "@path": "body/bgtype",
+                    "@image": "images/tutorial/tut5_ground.png"
                 },
                 {
                     "@path": "body/name",
@@ -20,9 +20,9 @@
                     "@text": "#meh1_desc#"
                 },
                 {
+                    "@path": "body/unit",
                     "@animation": "RepeatForever[Animate[0.5,[folder:meh1::,indexes:meh_go1_00.png,01:16]]]",
-                    "@center": "0.5x0.4",
-                    "@path": "body/unit"
+                    "@center": "0.5x0.4"
                 }
             ]
         }

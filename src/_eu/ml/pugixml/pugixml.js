@@ -79,17 +79,10 @@ EU.pugixml = {
                         jsonFile :
                         EU.xmlLoader.resourcesRootJSON + jsonFile;
         cc.log(fullPath);
-        //if (typeof window.DOMParser != "undefined")
-        //{
-        //cc.loader.loadJson(fullPath, cb, target);
+
+        //load the actual json file and cast the retrieve javascript object to jsonextended class
         cc.loader.loadJson(fullPath, function(err, data) {cb.call(target, err, new jsonextended(data, true))}, true);
 
-        //}
-        ////else {
-        ////    xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
-        ////    xmlDoc.async = "false";
-        ////    xmlDoc.load(fullPath);
-        ////}
         return xmlDoc;
     }
 };

@@ -1,14 +1,58 @@
 {
     "tower": {
-        "@damagebysector": "yes",
-        "@effect_on_shoot": "type:fire",
         "@exp": "2",
-        "@health": "280",
         "@name": "flamethrower",
-        "@radius": "150",
         "@sectorangle": "360",
+        "@health": "280",
+        "@radius": "150",
         "@template": "ini/units/templates/creepbattle.xml",
+        "@damagebysector": "yes",
         "@velocity": "45",
+        "@effect_on_shoot": "type:fire",
+        "extraproperties": {
+            "@freezing_scale": "0.3",
+            "@electro_scale": "1",
+            "@electro_pos": "0x30",
+            "@electro_size": "big",
+            "@fire_scale": "2.5",
+            "@fire_pos": "0x-5"
+        },
+        "effects": {
+            "positive": {
+                "@fireResist": "10",
+                "@armor": "3",
+                "@fireRate": "10",
+                "@lectroResist": "2",
+                "@fireTime": "2"
+            }
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "1.0"
+                },
+                "state_readyfire": {
+                    "@delay": "0.5",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.08"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x50"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -33,30 +77,6 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.08",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x50",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "3",
-                "@fireRate": "10",
-                "@fireResist": "10",
-                "@fireTime": "2",
-                "@lectroResist": "2"
-            }
-        },
         "events": {
             "eventlist": [
                 {
@@ -70,26 +90,6 @@
                     "@name": "on_shoot"
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x30",
-            "@electro_scale": "1",
-            "@electro_size": "big",
-            "@fire_pos": "0x-5",
-            "@fire_scale": "2.5",
-            "@freezing_scale": "0.3"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "1.0"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "0.5"
-                }
-            }
         }
     }
 }

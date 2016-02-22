@@ -1,10 +1,71 @@
 {
     "tower": {
-        "@allowtargets": "earth,sea",
-        "@effect_on_shoot": "type:bullet",
-        "@name": "minigun",
-        "@radius": "220",
         "@unittype": "tower",
+        "@allowtargets": "earth,sea",
+        "@radius": "220",
+        "@name": "minigun",
+        "@effect_on_shoot": "type:bullet",
+        "effects": {
+            "positive": {
+                "@damage": "9"
+            }
+        },
+        "machine_unit": {
+            "transitions": {
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            },
+            "params": {
+                "state_readyfire": {
+                    "@delay": "0.1",
+                    "@charge_volume": "5"
+                },
+                "state_waittarget": {
+                    "@duration": "3"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        },
+        "children": {
+            "node": {
+                "@image": "minigun.2::turret1_2_1stage0001.png",
+                "@type": "sprite",
+                "@name": "skin",
+                "@center": "0.4875x0.3875"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -24,19 +85,6 @@
                     "@value": "Animate[0.09,[folder:minigun.2::,frames:turret1_2_4stage0001.png,turret1_2_4stage0002.png,turret1_2_4stage0003.png,turret1_2_4stage0004.png,turret1_2_4stage0005.png,turret1_2_4stage0001.png]]"
                 }
             ]
-        },
-        "children": {
-            "node": {
-                "@center": "0.4875x0.3875",
-                "@image": "minigun.2::turret1_2_1stage0001.png",
-                "@name": "skin",
-                "@type": "sprite"
-            }
-        },
-        "effects": {
-            "positive": {
-                "@damage": "9"
-            }
         },
         "events": {
             "eventlist": [
@@ -137,54 +185,6 @@
                     "@name": "on_rotate270"
                 }
             ]
-        },
-        "machine_unit": {
-            "params": {
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "0.1"
-                },
-                "state_waittarget": {
-                    "@duration": "3"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "readyfire": [
-                    {
-                        "@notarget": "waittarget"
-                    },
-                    {
-                        "@charge": "charging"
-                    }
-                ],
-                "sleep": {
-                    "@seetarget": "readyfire"
-                },
-                "waittarget": [
-                    {
-                        "@seetarget": "readyfire"
-                    },
-                    {
-                        "@relax": "waittarget"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "45,135,225,315"
-                },
-                "thresold": {
-                    "@value": "45"
-                }
-            }
         }
     }
 }

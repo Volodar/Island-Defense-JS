@@ -1,6 +1,114 @@
 {
     "node": {
         "@name": "boxmenu",
+        "paramcollection": {
+            "autoclose": {
+                "@value": "yes"
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@sound": "##sound_button##",
+                    "@name": "box_close",
+                    "@pos": "0x0",
+                    "@callback": "open",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::box_close.png"
+                },
+                {
+                    "@sound": "##sound_button##",
+                    "@name": "box_open",
+                    "@visible": "no",
+                    "@pos": "0x0",
+                    "@callback": "close",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::box_open.png"
+                },
+                {
+                    "@sound": "##sound_button##",
+                    "@name": "item1",
+                    "@visible": "no",
+                    "@pos": "0x0",
+                    "@imageD": "gamescene::item1_d.png",
+                    "@callback": "item1",
+                    "@z": "-1",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::item1.png",
+                    "children": {
+                        "node": {
+                            "@scale": "0.5x0.5",
+                            "@name": "count",
+                            "@text": "0",
+                            "@pos": "50x18",
+                            "@font": "fonts/helveticastoke.fnt",
+                            "@type": "text"
+                        }
+                    }
+                },
+                {
+                    "@sound": "##sound_button##",
+                    "@name": "item2",
+                    "@visible": "no",
+                    "@pos": "0x0",
+                    "@imageD": "gamescene::item2_d.png",
+                    "@callback": "item2",
+                    "@z": "-1",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::item2.png",
+                    "children": {
+                        "node": {
+                            "@scale": "0.5x0.5",
+                            "@name": "count",
+                            "@text": "0",
+                            "@pos": "50x18",
+                            "@font": "fonts/helveticastoke.fnt",
+                            "@type": "text"
+                        }
+                    }
+                },
+                {
+                    "@sound": "##sound_button##",
+                    "@name": "item3",
+                    "@visible": "no",
+                    "@pos": "0x0",
+                    "@imageD": "gamescene::item3_d.png",
+                    "@callback": "item3",
+                    "@z": "-1",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::item3.png",
+                    "children": {
+                        "node": {
+                            "@scale": "0.5x0.5",
+                            "@name": "count",
+                            "@text": "0",
+                            "@pos": "50x18",
+                            "@font": "fonts/helveticastoke.fnt",
+                            "@type": "text"
+                        }
+                    }
+                },
+                {
+                    "@sound": "##sound_button##",
+                    "@scale": "0.65x0.65",
+                    "@name": "itemshop",
+                    "@visible": "no",
+                    "@pos": "0x0",
+                    "@callback": "itemshop",
+                    "@z": "-1",
+                    "@type": "menuitem",
+                    "@imageN": "gamescene::button_itemshop.png"
+                },
+                {
+                    "@scale": "0x1",
+                    "@name": "bgitems",
+                    "@image": "gamescene::box_bg.png",
+                    "@z": "-2",
+                    "@type": "menuitem",
+                    "@center": "1x0.5"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -42,109 +150,6 @@
                 {
                     "@name": "item4_out",
                     "@value": "Sequence[BackIn[MoveTo[0.2,0,0]],Hide[]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@callback": "open",
-                    "@imageN": "gamescene::box_close.png",
-                    "@name": "box_close",
-                    "@pos": "0x0",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem"
-                },
-                {
-                    "@callback": "close",
-                    "@imageN": "gamescene::box_open.png",
-                    "@name": "box_open",
-                    "@pos": "0x0",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem",
-                    "@visible": "no"
-                },
-                {
-                    "@callback": "item1",
-                    "@imageD": "gamescene::item1_d.png",
-                    "@imageN": "gamescene::item1.png",
-                    "@name": "item1",
-                    "@pos": "0x0",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "-1",
-                    "children": {
-                        "node": {
-                            "@font": "fonts/helveticastoke.fnt",
-                            "@name": "count",
-                            "@pos": "50x18",
-                            "@scale": "0.5x0.5",
-                            "@text": "0",
-                            "@type": "text"
-                        }
-                    }
-                },
-                {
-                    "@callback": "item2",
-                    "@imageD": "gamescene::item2_d.png",
-                    "@imageN": "gamescene::item2.png",
-                    "@name": "item2",
-                    "@pos": "0x0",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "-1",
-                    "children": {
-                        "node": {
-                            "@font": "fonts/helveticastoke.fnt",
-                            "@name": "count",
-                            "@pos": "50x18",
-                            "@scale": "0.5x0.5",
-                            "@text": "0",
-                            "@type": "text"
-                        }
-                    }
-                },
-                {
-                    "@callback": "item3",
-                    "@imageD": "gamescene::item3_d.png",
-                    "@imageN": "gamescene::item3.png",
-                    "@name": "item3",
-                    "@pos": "0x0",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "-1",
-                    "children": {
-                        "node": {
-                            "@font": "fonts/helveticastoke.fnt",
-                            "@name": "count",
-                            "@pos": "50x18",
-                            "@scale": "0.5x0.5",
-                            "@text": "0",
-                            "@type": "text"
-                        }
-                    }
-                },
-                {
-                    "@callback": "itemshop",
-                    "@imageN": "gamescene::button_itemshop.png",
-                    "@name": "itemshop",
-                    "@pos": "0x0",
-                    "@scale": "0.65x0.65",
-                    "@sound": "##sound_button##",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "-1"
-                },
-                {
-                    "@center": "1x0.5",
-                    "@image": "gamescene::box_bg.png",
-                    "@name": "bgitems",
-                    "@scale": "0x1",
-                    "@type": "menuitem",
-                    "@z": "-2"
                 }
             ]
         },
@@ -284,11 +289,6 @@
                     ]
                 }
             ]
-        },
-        "paramcollection": {
-            "autoclose": {
-                "@value": "yes"
-            }
         }
     }
 }

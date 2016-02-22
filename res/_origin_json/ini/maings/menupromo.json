@@ -3,12 +3,12 @@
         "@type": "menu",
         "children": {
             "node": {
-                "@animation": "               RepeatForever               [               Spawn               [                 Sequence[EaseOut[MoveBy[0.3,0,30],2],BounceOut[MoveBy[1,0,-30]]],                 Sequence[EaseInOut[RotateTo[0.6,10],2],EaseOut[RotateTo[0.2,-5],2],EaseInOut[RotateTo[0.1,0],2]]               ]               ]               ",
-                "@callback": "link:kidsvszombies",
-                "@imageN": "images/maings/kids.png",
                 "@name": "1",
                 "@pos": "150x70",
-                "@type": "menuitem"
+                "@callback": "link:kidsvszombies",
+                "@animation": "               RepeatForever               [               Spawn               [                 Sequence[EaseOut[MoveBy[0.3,0,30],2],BounceOut[MoveBy[1,0,-30]]],                 Sequence[EaseInOut[RotateTo[0.6,10],2],EaseOut[RotateTo[0.2,-5],2],EaseInOut[RotateTo[0.1,0],2]]               ]               ]               ",
+                "@type": "menuitem",
+                "@imageN": "images/maings/kids.png"
             }
         }
     }

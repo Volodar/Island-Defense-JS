@@ -2,20 +2,8 @@
     "tutorial": {
         "@nexttutorial": "lvl0_desant_arrow",
         "@parent": "/gamelayer/interface/menu/desant",
-        "@pos": "35x140",
         "@template": "ini/tutorial/template_baloon.xml",
-        "actions": {
-            "action": [
-                {
-                    "@name": "up",
-                    "@value": "BackOut[MoveTo[1,75,50]]"
-                },
-                {
-                    "@name": "bodyfadein",
-                    "@value": "Sequence[DelayTime[1],FadeTo[0.3,255]]"
-                }
-            ]
-        },
+        "@pos": "35x140",
         "children": {
             "node": [
                 {
@@ -26,6 +14,18 @@
                 {
                     "@path": "body/bg",
                     "@pos": "50x0"
+                }
+            ]
+        },
+        "actions": {
+            "action": [
+                {
+                    "@name": "up",
+                    "@value": "BackOut[MoveTo[1,75,50]]"
+                },
+                {
+                    "@name": "bodyfadein",
+                    "@value": "Sequence[DelayTime[1],FadeTo[0.3,255]]"
                 }
             ]
         },

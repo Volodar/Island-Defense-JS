@@ -1,188 +1,176 @@
 {
     "layer": {
-        "@name": "selecthero",
         "@type": "selecthero",
-        "actions": {
-            "action": [
-                {
-                    "@name": "appearance",
-                    "@value": "BackOut[MoveTo[0.4,0,0]]"
-                },
-                {
-                    "@name": "disappearance",
-                    "@value": "Sequence[BackIn[MoveTo[0.4,0,-500]],RemoveSelf[]]"
-                }
-            ]
-        },
+        "@name": "selecthero",
         "children": {
             "node": {
+                "@type": "node",
                 "@name": "content",
                 "@pos": "frame:0.5x0",
-                "@type": "node",
                 "children": {
                     "node": [
                         {
                             "@image": "images/heroroom/heroroom1.png",
+                            "@type": "sprite",
                             "@name": "1136",
-                            "@pos": "0x384",
-                            "@type": "sprite"
+                            "@pos": "0x384"
                         },
                         {
-                            "@center": "0.5x0.5",
-                            "@color": "FFFFFF",
-                            "@font": "fonts/mdefensefont2.fnt",
+                            "@scale": "1x1",
                             "@name": "caption",
-                            "@pos": "0x710",
-                            "@scale": "1x1",
+                            "@color": "FFFFFF",
                             "@text": "#hero_room#",
-                            "@type": "text"
+                            "@pos": "0x710",
+                            "@font": "fonts/mdefensefont2.fnt",
+                            "@type": "text",
+                            "@center": "0.5x0.5"
                         },
                         {
+                            "@type": "sprite",
                             "@name": "skin",
-                            "@pos": "-330x340",
-                            "@type": "sprite"
+                            "@pos": "-330x340"
                         },
                         {
+                            "@scale": "1x1",
                             "@center": "0.5x0.5",
                             "@color": "FFFFFF",
-                            "@font": "fonts/mdefensefont2.fnt",
-                            "@name": "heroname",
-                            "@pos": "-330x230",
-                            "@scale": "1x1",
                             "@text": "1",
-                            "@type": "text"
+                            "@pos": "-330x230",
+                            "@font": "fonts/mdefensefont2.fnt",
+                            "@type": "text",
+                            "@name": "heroname"
                         },
                         {
                             "@image": "heroroom::progress_level_back.png",
+                            "@type": "sprite",
                             "@name": "level_timer_bg",
-                            "@pos": "-330x150",
-                            "@type": "sprite"
+                            "@pos": "-330x150"
                         },
                         {
-                            "@barchangerate": "1x0",
-                            "@image": "heroroom::progress_level.png",
-                            "@midpoint": "0x0.5",
                             "@name": "level_timer",
                             "@percent": "50",
+                            "@image": "heroroom::progress_level.png",
+                            "@midpoint": "0x0.5",
                             "@pos": "-330x150",
                             "@progresstype": "bar",
+                            "@barchangerate": "1x0",
                             "@type": "progresstimer"
                         },
                         {
-                            "@center": "0.5x0.5",
-                            "@color": "FFFFFF",
-                            "@font": "fonts/helveticastoke.fnt",
-                            "@name": "level",
-                            "@pos": "-330x153",
                             "@scale": "0.55x0.55",
+                            "@name": "level",
+                            "@color": "FFFFFF",
                             "@text": "0",
-                            "@type": "text"
+                            "@pos": "-330x153",
+                            "@font": "fonts/helveticastoke.fnt",
+                            "@type": "text",
+                            "@center": "0.5x0.5"
                         },
                         {
-                            "@center": "0x0.5",
-                            "@color": "FFFFFF",
-                            "@font": "fonts/helvetica.fnt",
-                            "@name": "points",
-                            "@pos": "160x465",
                             "@scale": "1x1",
-                            "@text": "1",
-                            "@type": "text"
-                        },
-                        {
-                            "@center": "0.5x0.5",
+                            "@name": "points",
                             "@color": "FFFFFF",
-                            "@font": "fonts/helvetica.fnt",
-                            "@name": "levelnumbertext",
-                            "@pos": "-330x95",
-                            "@scale": "0.6x0.6",
                             "@text": "1",
-                            "@textalign": "center",
-                            "@textwidth": "270",
-                            "@type": "text"
+                            "@pos": "160x465",
+                            "@font": "fonts/helvetica.fnt",
+                            "@type": "text",
+                            "@center": "0x0.5"
                         },
                         {
+                            "@scale": "0.6x0.6",
+                            "@name": "levelnumbertext",
+                            "@color": "FFFFFF",
+                            "@text": "1",
+                            "@textwidth": "270",
+                            "@pos": "-330x95",
+                            "@font": "fonts/helvetica.fnt",
+                            "@type": "text",
+                            "@textalign": "center",
+                            "@center": "0.5x0.5"
+                        },
+                        {
+                            "@type": "menu",
                             "@name": "menu",
                             "@pos": "0x0",
-                            "@type": "menu",
                             "children": {
                                 "node": [
                                     {
-                                        "@callback": "hero1",
-                                        "@imageD": "heroroom::hero1/hero1_2.png",
-                                        "@imageN": "heroroom::hero1/hero1_1.png",
                                         "@name": "hero1",
                                         "@pos": "-100x588",
-                                        "@type": "menuitem"
+                                        "@imageD": "heroroom::hero1/hero1_2.png",
+                                        "@callback": "hero1",
+                                        "@type": "menuitem",
+                                        "@imageN": "heroroom::hero1/hero1_1.png"
                                     },
                                     {
-                                        "@callback": "hero2",
-                                        "@imageD": "heroroom::hero2/hero2_2.png",
-                                        "@imageN": "heroroom::hero2/hero2_1.png",
                                         "@name": "hero2",
                                         "@pos": "0x588",
-                                        "@type": "menuitem"
+                                        "@imageD": "heroroom::hero2/hero2_2.png",
+                                        "@callback": "hero2",
+                                        "@type": "menuitem",
+                                        "@imageN": "heroroom::hero2/hero2_1.png"
                                     },
                                     {
-                                        "@callback": "hero3",
-                                        "@imageD": "heroroom::hero3/hero3_2.png",
-                                        "@imageN": "heroroom::hero3/hero3_1.png",
                                         "@name": "hero3",
                                         "@pos": "+100x588",
-                                        "@type": "menuitem"
+                                        "@imageD": "heroroom::hero3/hero3_2.png",
+                                        "@callback": "hero3",
+                                        "@type": "menuitem",
+                                        "@imageN": "heroroom::hero3/hero3_1.png"
                                     },
                                     {
-                                        "@callback": "skill1",
-                                        "@imageD": "heroroom::hero1/i12.png",
-                                        "@imageN": "heroroom::hero1/i11.png",
                                         "@name": "skill0",
+                                        "@visible": "yes",
                                         "@pos": "-78x300",
+                                        "@imageD": "heroroom::hero1/i12.png",
+                                        "@callback": "skill1",
                                         "@type": "menuitem",
-                                        "@visible": "yes"
+                                        "@imageN": "heroroom::hero1/i11.png"
                                     },
                                     {
-                                        "@callback": "skill2",
-                                        "@imageD": "heroroom::hero1/i22.png",
-                                        "@imageN": "heroroom::hero1/i21.png",
                                         "@name": "skill1",
+                                        "@visible": "yes",
                                         "@pos": "041x300",
+                                        "@imageD": "heroroom::hero1/i22.png",
+                                        "@callback": "skill2",
                                         "@type": "menuitem",
-                                        "@visible": "yes"
+                                        "@imageN": "heroroom::hero1/i21.png"
                                     },
                                     {
-                                        "@callback": "skill3",
-                                        "@imageD": "heroroom::hero1/i32.png",
-                                        "@imageN": "heroroom::hero1/i31.png",
                                         "@name": "skill2",
+                                        "@visible": "yes",
                                         "@pos": "164x300",
+                                        "@imageD": "heroroom::hero1/i32.png",
+                                        "@callback": "skill3",
                                         "@type": "menuitem",
-                                        "@visible": "yes"
+                                        "@imageN": "heroroom::hero1/i31.png"
                                     },
                                     {
-                                        "@callback": "skill4",
-                                        "@imageD": "heroroom::hero1/i42.png",
-                                        "@imageN": "heroroom::hero1/i41.png",
                                         "@name": "skill3",
+                                        "@visible": "yes",
                                         "@pos": "288x300",
+                                        "@imageD": "heroroom::hero1/i42.png",
+                                        "@callback": "skill4",
                                         "@type": "menuitem",
-                                        "@visible": "yes"
+                                        "@imageN": "heroroom::hero1/i41.png"
                                     },
                                     {
-                                        "@callback": "skill5",
-                                        "@imageD": "heroroom::hero1/i52.png",
-                                        "@imageN": "heroroom::hero1/i51.png",
                                         "@name": "skill4",
+                                        "@visible": "yes",
                                         "@pos": "408x300",
+                                        "@imageD": "heroroom::hero1/i52.png",
+                                        "@callback": "skill5",
                                         "@type": "menuitem",
-                                        "@visible": "yes"
+                                        "@imageN": "heroroom::hero1/i51.png"
                                     },
                                     {
+                                        "@name": "reset",
+                                        "@text": "#hero_reset#",
+                                        "@pos": "405x090",
                                         "@callback": "reset",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@imageN": "heroroom::but_reset.png",
-                                        "@name": "reset",
-                                        "@pos": "405x090",
-                                        "@text": "#hero_reset#",
                                         "@type": "menuitem",
+                                        "@imageN": "heroroom::but_reset.png",
                                         "children": {
                                             "node": {
                                                 "@path": "normal/text",
@@ -192,14 +180,14 @@
                                         }
                                     },
                                     {
+                                        "@name": "train",
+                                        "@text": "#hero_train#",
+                                        "@pos": "220x090",
+                                        "@imageD": "heroroom::but_train2.png",
                                         "@callback": "train",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@imageD": "heroroom::but_train2.png",
-                                        "@imageN": "heroroom::but_train.png",
-                                        "@name": "train",
-                                        "@pos": "220x090",
-                                        "@text": "#hero_train#",
                                         "@type": "menuitem",
+                                        "@imageN": "heroroom::but_train.png",
                                         "children": {
                                             "node": [
                                                 {
@@ -217,14 +205,14 @@
                                         }
                                     },
                                     {
+                                        "@name": "select",
+                                        "@text": "#hero_select#",
+                                        "@pos": "-330x95",
+                                        "@imageD": "heroroom::but_select2.png",
                                         "@callback": "select",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@imageD": "heroroom::but_select2.png",
-                                        "@imageN": "heroroom::but_select.png",
-                                        "@name": "select",
-                                        "@pos": "-330x95",
-                                        "@text": "#hero_select#",
                                         "@type": "menuitem",
+                                        "@imageN": "heroroom::but_select.png",
                                         "children": {
                                             "node": {
                                                 "@path": "normal/text",
@@ -234,38 +222,38 @@
                                         }
                                     },
                                     {
-                                        "@callback": "buyhero",
-                                        "@imageN": "heroroom::but_select.png",
-                                        "@name": "buyhero",
                                         "@pos": "-330x115",
+                                        "@callback": "buyhero",
                                         "@type": "menuitem",
+                                        "@name": "buyhero",
+                                        "@imageN": "heroroom::but_select.png",
                                         "children": {
                                             "node": {
                                                 "@name": "normal",
                                                 "children": {
                                                     "node": {
-                                                        "@center": "0.5x0.5",
-                                                        "@color": "FFFFFF",
-                                                        "@font": "fonts/mdefensefont2.fnt",
-                                                        "@name": "cost",
-                                                        "@pos": "80x30",
                                                         "@scale": "0.5x0.5",
-                                                        "@strech": "140x50:min",
+                                                        "@name": "cost",
+                                                        "@color": "FFFFFF",
                                                         "@text": "USD:999.00",
-                                                        "@type": "text"
+                                                        "@pos": "80x30",
+                                                        "@strech": "140x50:min",
+                                                        "@font": "fonts/mdefensefont2.fnt",
+                                                        "@type": "text",
+                                                        "@center": "0.5x0.5"
                                                     }
                                                 }
                                             }
                                         }
                                     },
                                     {
+                                        "@name": "restore",
+                                        "@text": "restore",
+                                        "@pos": "-330x60",
                                         "@callback": "restore",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@imageN": "heroroom::but_select.png",
-                                        "@name": "restore",
-                                        "@pos": "-330x60",
-                                        "@text": "restore",
                                         "@type": "menuitem",
+                                        "@imageN": "heroroom::but_select.png",
                                         "children": {
                                             "node": {
                                                 "@path": "normal/text",
@@ -275,40 +263,40 @@
                                         }
                                     },
                                     {
+                                        "@name": "buylevel",
+                                        "@text": "#hero_levelup#",
+                                        "@pos": "-330x95",
                                         "@callback": "buylevel",
                                         "@font": "fonts/mdefensefont2.fnt",
-                                        "@imageN": "heroroom::but_lvlup.png",
-                                        "@name": "buylevel",
-                                        "@pos": "-330x95",
-                                        "@text": "#hero_levelup#",
                                         "@type": "menuitem",
+                                        "@imageN": "heroroom::but_lvlup.png",
                                         "children": {
                                             "node": {
                                                 "@name": "normal",
                                                 "children": {
                                                     "node": [
                                                         {
+                                                            "@strech": "150x35:min",
                                                             "@name": "text",
-                                                            "@pos": "75x52",
-                                                            "@strech": "150x35:min"
+                                                            "@pos": "75x52"
                                                         },
                                                         {
-                                                            "@center": "0x0.5",
-                                                            "@color": "FFFFFF",
-                                                            "@font": "fonts/mdefensefont2.fnt",
-                                                            "@name": "cost",
-                                                            "@pos": "65x20",
                                                             "@scale": "0.5x0.5",
+                                                            "@name": "cost",
+                                                            "@color": "FFFFFF",
                                                             "@text": "999",
-                                                            "@type": "text"
+                                                            "@pos": "65x20",
+                                                            "@font": "fonts/mdefensefont2.fnt",
+                                                            "@type": "text",
+                                                            "@center": "0x0.5"
                                                         },
                                                         {
+                                                            "@scale": "0.75x0.75",
                                                             "@center": "1x0.5",
                                                             "@image": "heroroom::icon_gold.png",
-                                                            "@name": "gold",
                                                             "@pos": "65x17",
-                                                            "@scale": "0.75x0.75",
-                                                            "@type": "sprite"
+                                                            "@type": "sprite",
+                                                            "@name": "gold"
                                                         }
                                                     ]
                                                 }
@@ -319,141 +307,141 @@
                             }
                         },
                         {
-                            "@name": "skills_back",
                             "@type": "node",
+                            "@name": "skills_back",
                             "children": {
                                 "node": [
                                     {
+                                        "@type": "node",
                                         "@name": "0",
                                         "@pos": "-78x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "0",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "0x-50",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "1",
                                         "@pos": "041x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "0",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "0x-50",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "2",
                                         "@pos": "164x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "0",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "0x-50",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "3",
                                         "@pos": "288x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "0",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "0x-50",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "4",
                                         "@pos": "408x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "0",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
                                                     "@image": "heroroom::skill_progress_back.png",
+                                                    "@type": "sprite",
                                                     "@name": "2",
-                                                    "@pos": "0x-50",
-                                                    "@type": "sprite"
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
@@ -462,216 +450,216 @@
                             }
                         },
                         {
-                            "@name": "skills",
-                            "@type": "node",
                             "@visible": "yes",
+                            "@type": "node",
+                            "@name": "skills",
                             "children": {
                                 "node": [
                                     {
+                                        "@scale": "0.6x0.6",
                                         "@center": "0.0x1",
                                         "@color": "9DCFE0",
-                                        "@font": "fonts/helvetica.fnt",
-                                        "@name": "name",
-                                        "@pos": "-30x222",
-                                        "@scale": "0.6x0.6",
                                         "@text": "Name name name name",
+                                        "@pos": "-30x222",
+                                        "@font": "fonts/helvetica.fnt",
+                                        "@type": "text",
                                         "@textalign": "left",
-                                        "@type": "text"
+                                        "@name": "name"
                                     },
                                     {
+                                        "@scale": "0.5x0.5",
                                         "@center": "0.0x1",
                                         "@color": "769BA8",
-                                        "@font": "fonts/helvetica.fnt",
-                                        "@name": "desc",
-                                        "@pos": "-30x200",
-                                        "@scale": "0.5x0.5",
                                         "@text": "d e s c desc desc d e s c d e s c desc desc desc desc desc desc desc desc desc desc desc ",
-                                        "@textalign": "left",
                                         "@textwidth": "950",
-                                        "@type": "text"
+                                        "@pos": "-30x200",
+                                        "@font": "fonts/helvetica.fnt",
+                                        "@type": "text",
+                                        "@textalign": "left",
+                                        "@name": "desc"
                                     },
                                     {
                                         "@image": "heroroom::hero1/i12.png",
+                                        "@type": "sprite",
                                         "@name": "icon",
-                                        "@pos": "-83x195",
-                                        "@type": "sprite"
+                                        "@pos": "-83x195"
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "skill0",
                                         "@pos": "-78x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::j1.png",
+                                                    "@type": "sprite",
                                                     "@name": "level",
-                                                    "@pos": "30x-130",
-                                                    "@type": "sprite"
+                                                    "@pos": "30x-130"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree2",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
-                                                    "@name": "degree0",
-                                                    "@pos": "0x-50",
                                                     "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@name": "degree0",
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "skill1",
                                         "@pos": "041x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::j1.png",
+                                                    "@type": "sprite",
                                                     "@name": "level",
-                                                    "@pos": "30x-130",
-                                                    "@type": "sprite"
+                                                    "@pos": "30x-130"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree2",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
-                                                    "@name": "degree0",
-                                                    "@pos": "0x-50",
                                                     "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@name": "degree0",
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "skill2",
                                         "@pos": "164x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::j1.png",
+                                                    "@type": "sprite",
                                                     "@name": "level",
-                                                    "@pos": "30x-130",
-                                                    "@type": "sprite"
+                                                    "@pos": "30x-130"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree2",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
-                                                    "@name": "degree0",
-                                                    "@pos": "0x-50",
                                                     "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@name": "degree0",
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "skill3",
                                         "@pos": "288x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::j1.png",
+                                                    "@type": "sprite",
                                                     "@name": "level",
-                                                    "@pos": "30x-130",
-                                                    "@type": "sprite"
+                                                    "@pos": "30x-130"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree2",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
-                                                    "@name": "degree0",
-                                                    "@pos": "0x-50",
                                                     "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@name": "degree0",
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
                                     },
                                     {
+                                        "@type": "node",
                                         "@name": "skill4",
                                         "@pos": "408x400",
-                                        "@type": "node",
                                         "children": {
                                             "node": [
                                                 {
                                                     "@image": "heroroom::j1.png",
+                                                    "@type": "sprite",
                                                     "@name": "level",
-                                                    "@pos": "30x-130",
-                                                    "@type": "sprite"
+                                                    "@pos": "30x-130"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree2",
-                                                    "@pos": "0x0",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x0"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
+                                                    "@type": "sprite",
                                                     "@name": "degree1",
-                                                    "@pos": "0x-25",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@pos": "0x-25"
                                                 },
                                                 {
+                                                    "@visible": "no",
                                                     "@image": "heroroom::skill_progress_0.png",
-                                                    "@name": "degree0",
-                                                    "@pos": "0x-50",
                                                     "@type": "sprite",
-                                                    "@visible": "no"
+                                                    "@name": "degree0",
+                                                    "@pos": "0x-50"
                                                 }
                                             ]
                                         }
@@ -680,16 +668,16 @@
                             }
                         },
                         {
+                            "@type": "menu",
                             "@name": "menu_close",
                             "@pos": "frame:-0.5x0",
-                            "@type": "menu",
                             "children": {
                                 "node": {
-                                    "@callback": "close",
-                                    "@imageN": "heroroom::button_x.png",
-                                    "@name": "close",
                                     "@pos": "right:-40x703",
-                                    "@type": "menuitem"
+                                    "@callback": "close",
+                                    "@type": "menuitem",
+                                    "@name": "close",
+                                    "@imageN": "heroroom::button_x.png"
                                 }
                             }
                         }
@@ -697,16 +685,28 @@
                 }
             }
         },
+        "actions": {
+            "action": [
+                {
+                    "@name": "appearance",
+                    "@value": "BackOut[MoveTo[0.4,0,0]]"
+                },
+                {
+                    "@name": "disappearance",
+                    "@value": "Sequence[BackIn[MoveTo[0.4,0,-500]],RemoveSelf[]]"
+                }
+            ]
+        },
         "events": {
             "eventlist": [
                 {
                     "@name": "onenter",
-                    "runaction": {
-                        "@action": "appearance"
-                    },
                     "setproperty": {
                         "@property": "pos",
                         "@value": "0x-500"
+                    },
+                    "runaction": {
+                        "@action": "appearance"
                     }
                 },
                 {

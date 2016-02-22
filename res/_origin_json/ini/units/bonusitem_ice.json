@@ -1,15 +1,60 @@
 {
     "tower": {
-        "@allowmenu": "no",
-        "@allowtargets": "any",
-        "@damagebysector": "yes",
-        "@effect_on_shoot": "type:freezing",
-        "@maxlevel": "1",
         "@name": "bonusitem_ice",
-        "@radius": "1000",
         "@sectorangle": "360",
-        "@unitlayer": "any",
+        "@damagebysector": "yes",
         "@unittype": "tower",
+        "@allowmenu": "no",
+        "@radius": "1000",
+        "@allowtargets": "any",
+        "@unitlayer": "any",
+        "@maxlevel": "1",
+        "@effect_on_shoot": "type:freezing",
+        "effects": {
+            "positive": {
+                "@velocityTime": "6",
+                "@velocityRate": "0"
+            }
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": {
+                    "@charge": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                },
+                "death": {
+                    "@stop": "death"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "0.0"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@delay": "0.1",
+                    "@charge_volume": "5",
+                    "@havetarget": "no"
+                }
+            }
+        },
+        "children": {
+            "node": {
+                "@pos": "0x550",
+                "@animation": "RepeatForever[Animate[0.5,[folder:bombice::,indexes:ice_bomb_00.png,01:11]]]",
+                "@type": "sprite",
+                "@name": "skin",
+                "@center": "0.5x0.5"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -21,21 +66,6 @@
                     "@value": "Animate[0.5,[folder:hero_mine::mine/,indexes:hero1_diesmoke_00.png,01:12]]"
                 }
             ]
-        },
-        "children": {
-            "node": {
-                "@animation": "RepeatForever[Animate[0.5,[folder:bombice::,indexes:ice_bomb_00.png,01:11]]]",
-                "@center": "0.5x0.5",
-                "@name": "skin",
-                "@pos": "0x550",
-                "@type": "sprite"
-            }
-        },
-        "effects": {
-            "positive": {
-                "@velocityRate": "0",
-                "@velocityTime": "6"
-            }
         },
         "events": {
             "eventlist": [
@@ -57,11 +87,11 @@
                 },
                 {
                     "@name": "on_shoot0",
-                    "runaction": {
-                        "@action": "animate_die",
+                    "stopallaction": {
                         "@target": "skin"
                     },
-                    "stopallaction": {
+                    "runaction": {
+                        "@action": "animate_die",
                         "@target": "skin"
                     }
                 },
@@ -69,36 +99,6 @@
                     "@name": "ondeselect"
                 }
             ]
-        },
-        "machine_unit": {
-            "@start_state": "charging",
-            "params": {
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_death": {
-                    "@duration": "0.0"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "0.1",
-                    "@havetarget": "no"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "death": {
-                    "@stop": "death"
-                },
-                "readyfire": {
-                    "@charge": "death"
-                },
-                "stop": {
-                    "@die": "death"
-                }
-            }
         },
         "paramcollection": {
             "showmenu": "no"

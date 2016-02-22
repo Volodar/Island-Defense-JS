@@ -1,17 +1,17 @@
 {
     "tutorial": {
         "@autopos": "/maplayer/map/locations/flag0",
-        "@parent": "/maplayer/map",
-        "@pos": "12x140",
-        "@template": "ini/tutorial/template_baloon.xml",
         "@z": "999",
-        "actions": null,
+        "@pos": "12x140",
+        "@parent": "/maplayer/map",
+        "@template": "ini/tutorial/template_baloon.xml",
         "children": {
             "node": {
                 "@path": "body/text",
                 "@text": "#tuturial_map_tap_here#"
             }
         },
+        "actions": null,
         "events": {
             "eventlist": [
                 {

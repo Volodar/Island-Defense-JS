@@ -1,8 +1,23 @@
 {
     "tutorial": {
-        "@asblockinglayer": "yes",
         "@closebytap": "yes",
         "@pos": "frame:0.5x0.5",
+        "@asblockinglayer": "yes",
+        "children": {
+            "node": {
+                "@opacity": "0",
+                "@scale": "0.8x0.8",
+                "@type": "node",
+                "@name": "body",
+                "@cascadeopacity": "yes",
+                "children": {
+                    "node": {
+                        "@type": "sprite",
+                        "@name": "bg"
+                    }
+                }
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -14,21 +29,6 @@
                     "@value": "ScaleTo[0.2,1,1]"
                 }
             ]
-        },
-        "children": {
-            "node": {
-                "@cascadeopacity": "yes",
-                "@name": "body",
-                "@opacity": "0",
-                "@scale": "0.8x0.8",
-                "@type": "node",
-                "children": {
-                    "node": {
-                        "@name": "bg",
-                        "@type": "sprite"
-                    }
-                }
-            }
         },
         "events": {
             "eventlist": [
