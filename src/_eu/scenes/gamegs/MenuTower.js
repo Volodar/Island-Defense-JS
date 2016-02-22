@@ -150,7 +150,7 @@ EU.MenuTower = EU.ScrollMenu.extend( // public NodeExt
     {
         var name = this._unit.getName();
         var localization = EU.Language.string( name + "_name" );
-        var level = Math.min( this._level, this._unit._maxLevel );
+        var level = Math.min(_level, this._unit._maxLevel);
 
         var dmg = ( EU.mlTowersInfo.get_dmg( name, level ) );
         var rng = ( EU.mlTowersInfo.get_rng( name, level ) );
