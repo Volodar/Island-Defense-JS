@@ -371,19 +371,22 @@ EU.GameGS = EU.LayerExt.extend({
     clear: function () {
         //TODO: Achievements.setCallbackOnAchievementObtained( null );
         EU.ShootsEffects.ShootsEffectsClear();
+        this.board.clear();
 
         if (this.bg)
             EU.removeFromParent(this.bg, true);
+        if(this.scoreNode){
+            this.scoreNode.clear();
+            EU.removeFromParent( this.scoreNode, true );
+        }
         this.bg = null;
         this.objects.removeAllChildren();
         this.objects = null;
-        this.fragments.clear();
         this.menuTower.setUnit(null);
         this.menuTower.disappearance();
 
         this.menuFastModeEnabled(false);
         this.unscheduleUpdate();
-        true.removeAllChildrenWithCleanup(true);
     },
     startGame: function () {
         //EU.AudioEngine.playEffect( EU.kSoundGameStart );
@@ -796,7 +799,7 @@ EU.GameGS = EU.LayerExt.extend({
             //m_interfaceMenu.hero->showCancel( false );
             //setTouchNormal();
         }
-    1},
+    },
     onTouchHeroCanceled: function (touch, event) {
         event.getCurrentTarget().setTouchNormal();
     },
@@ -1343,6 +1346,8 @@ EU.GameGS.restartLevel = function () {
     EU.assert(game);
     var levelindex = game.board.getCurrentLevelIndex();
     var gamemode = game.board.getGameMode();
+
+    game.clear();
 
     var scene = EU.Common.getSceneOfNode(game);
     scene.resetMainLayer(null);

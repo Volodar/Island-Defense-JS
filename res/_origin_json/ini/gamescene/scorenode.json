@@ -1,0 +1,87 @@
+{
+    "node": {
+        "@name": "scorenode",
+        "children": {
+            "node": [
+                {
+                    "@type": "node",
+                    "@name": "gears",
+                    "@pos": "190x-25",
+                    "children": {
+                        "node": [
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "value",
+                                "@text": "99",
+                                "@z": "1",
+                                "@pos": "0x5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0.0x0.5"
+                            },
+                            {
+                                "@image": "gamescene::icon_gold1.png",
+                                "@z": "-1",
+                                "@type": "sprite",
+                                "@name": "gear",
+                                "@center": "1x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "node",
+                    "@name": "lifes",
+                    "@pos": "85x-25",
+                    "children": {
+                        "node": [
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "value",
+                                "@text": "99",
+                                "@z": "1",
+                                "@pos": "0x5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0.0x0.5"
+                            },
+                            {
+                                "@image": "gamescene::icon_lifes.png",
+                                "@z": "-1",
+                                "@type": "sprite",
+                                "@name": "gear",
+                                "@center": "1x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "node",
+                    "@name": "waves",
+                    "@pos": "85x-70",
+                    "children": {
+                        "node": [
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "value",
+                                "@text": "99",
+                                "@z": "1",
+                                "@pos": "0x5",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0.0x0.5"
+                            },
+                            {
+                                "@image": "gamescene::icon_wave1.png",
+                                "@z": "-1",
+                                "@type": "sprite",
+                                "@name": "gear",
+                                "@center": "1x0.5"
+                            }
+                        ]
+                    }
+                }
+            ]
+        }
+    }
+}

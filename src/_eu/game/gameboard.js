@@ -335,8 +335,6 @@ EU.GameBoard = cc.Class.extend({
         }
     },
     clear: function(){
-        var desSize = cc.view.getDesignResolutionSize();
-
         EU.WaveGenerator.clear();
         this.units.length = 0;
         this.creepsRoutes.length = 0;

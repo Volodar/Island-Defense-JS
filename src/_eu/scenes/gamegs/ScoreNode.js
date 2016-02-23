@@ -23,50 +23,26 @@ EU.ScoreNode = cc.Node.extend({
     ctor: function(){
         this._super();
         this.scores = {};
-        this.healths = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
-        this.golds = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
-        this.waves = new cc.LabelBMFont( EU.xmlLoader.resourcesRoot + EU.kFontStroke, "" );
-        
-        this.addChild( this.healths, 1 );
-        this.addChild( this.golds, 1 );
-        this.addChild( this.waves, 1 );
-        
-        this.healths.setAnchorPoint( cc.p( 0, 0.5 ) );
-        this.golds.setAnchorPoint( cc.p( 0, 0.5 ) );
-        this.waves.setAnchorPoint( cc.p( 0, 0.5 ) );
-        
-        this.healths.setPosition( cc.p( 85, -25 ) );
-        this.golds.setPosition( cc.p( 190, -25 ) );
-        this.waves.setPosition( cc.p( 85, -70 ) );
-        
-        this.healths.setScale( 0.5 );
-        this.golds.setScale( 0.5 );
-        this.waves.setScale( 0.5 );
-        
-        this.healthsIcon = EU.ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_lifes.png" );
-        this.healthsIcon.setPosition( 62, -30 );
-        this.addChild( this.healthsIcon );
-        var icon = EU.ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_gold1.png" );
-        icon.setPosition( 162, -30 );
-        this.addChild( icon );
-        icon = EU.ImageManager.sprite( EU.k.resourceGameSceneFolder + "icon_wave1.png" );
-        icon.setPosition( 62, -75 );
-        this.addChild( icon );
-        
         EU.ScoreCounter.observer( EU.kScoreLevel ).add( this.__instanceId, this.on_change_money, this );
         EU.ScoreCounter.observer( EU.kScoreHealth ).add( this.__instanceId, this.on_change_lifes, this );
+
+        this.load_str( "ini/gamescene/scorenode.xml" );
+
+        this.healths = EU.Common.getNodeByPath(this, "lifes/value");
+        this.golds = EU.Common.getNodeByPath(this, "gears/value");
+        this.waves = EU.Common.getNodeByPath(this, "waves/value");
     },
-    //ScoresNode.~ScoresNode()
-    //{
-    //    EU.ScoreCounter.observer( EU.kScoreLevel ).remove( __instanceId );
-    //    EU.ScoreCounter.observer( EU.kScoreHealth ).remove( __instanceId );
-    //}
+    clear: function(){
+        EU.ScoreCounter.observer( EU.kScoreLevel ).remove( this.__instanceId );
+        EU.ScoreCounter.observer( EU.kScoreHealth ).remove( this.__instanceId );
+    },
     updateWaves: function()
     {
         var wave = EU.WaveGenerator.getWaveIndex();
         var count = EU.WaveGenerator.getWavesCount();
         var text = wave + "/" + count;
-        this.waves.setString( text );
+        if( this.waves )
+            this.waves.setString( text );
     },
     on_change_money: function( score )
     {
@@ -76,13 +52,15 @@ EU.ScoreNode = cc.Node.extend({
         {
             curr = Math.max( 0, curr );
             this.scores[EU.kScoreLevel] = curr;
-            this.golds.setString( curr );
+            if( this.golds )
+                this.golds.setString( curr );
         }
     },
     on_change_lifes: function( score )
     {
         var health = Math.max( 0, EU.ScoreCounter.getMoney( EU.kScoreHealth ) );
-        this.healths.setString( health );
+        if(this.healths)
+            this.healths.setString( health );
         //TODO: show damage by player in score area
         //auto run = []( Node*node )
         //{
@@ -100,6 +78,7 @@ EU.ScoreNode = cc.Node.extend({
         //
         //run( this.healths );
         //run( this.healthsIcon );
-    },
-
+    }
 });
+
+EU.NodeExt.call(EU.ScoreNode.prototype);
