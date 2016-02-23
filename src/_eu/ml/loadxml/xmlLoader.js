@@ -907,7 +907,8 @@ EU.xmlLoader = {
             /** @type {EU.NodeExt} nodeext */
             var nodeext = node;
             if (nodeext.__NodeExt && nodeext.setProperty_str != undefined)
-                nodeext.setProperty_str(property, value);
+                if( false == nodeext.setProperty_str(property, value) )
+                    cc.log("property [" + property + "] not dispathed by node[" + node.getName() + "]");
         }
     },
     /**
@@ -1180,9 +1181,10 @@ EU.xmlLoader = {
                     menuitem = node;
                     menuitem.setEnabled(true);
                     break;
+                case EU.xmlKey.Path.int:
+                    break;
                 default:
                     result = false;
-                    cc.log("property with name [" + property + "] not dispathed node by name[" + node.getName() + "]");
                     break;
             }
         }
