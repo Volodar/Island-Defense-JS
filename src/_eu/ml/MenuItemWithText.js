@@ -180,6 +180,8 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * build all text nodes for every image (normal, selected, disabled)
      */
     buildText: function() {
+        if( !this._font || !this._text )
+            return;
         if( this._font.length == 0 || this._text.length == 0 )
             return;
         var allocate = function( label, parent, menuitem )
