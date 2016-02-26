@@ -150,6 +150,9 @@ EU.Unit = cc.Node.extend({
     setMaxLevelForLevel: function (level) {
         this._maxLevelForLevel = level;
     },
+    getType: function() {
+        return this._type;
+    },
 
     ctor: function (path, xmlFile) {
         this.initExt();

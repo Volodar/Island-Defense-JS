@@ -1,2 +1,11 @@
 .idea/
 .settings/
+assets/
+bin/
+obj/
+gen/
+bin/
+gdb.setup
+gdbserver
+*.so
+*.apk

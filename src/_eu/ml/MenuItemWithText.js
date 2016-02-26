@@ -119,11 +119,11 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageNormal == file )
             return;
         this._imageNormal = file;
-        var children = this._normalImage ? this._normalImage.children : [];
+        var children = this.getNormalImage() ? this.getNormalImage().children : [];
         var image = EU.ImageManager.sprite( this._imageNormal );
         this.setNormalImage( image );
-        this._normalImage.setName( kNameImageNormal );
-        this._normalImage._children = children;
+        this.getNormalImage().setName( kNameImageNormal );
+        this.getNormalImage()._children = children;
         this.listenTexture(file);
     },
     /**
@@ -134,11 +134,11 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageSelected == file )
             return;
         this._imageSelected = file;
-        var children = this._selectedImage ? this._selectedImage.children : [];
+        var children = this.getSelectedImage() ? this.getSelectedImage().children : [];
         var image = EU.ImageManager.sprite( this._imageSelected );
         this.setSelectedImage( image );
-        this._selectedImage.setName( kNameImageSelected );
-        this._selectedImage._children = children;
+        this.getSelectedImage().setName( kNameImageSelected );
+        this.getSelectedImage()._children = children;
         this.listenTexture(file);
     },
     /**
@@ -149,11 +149,11 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageDisabled == file )
             return;
         this._imageDisabled = file;
-        var children = this._disabledImage ? this._disabledImage.children : [];
+        var children = this.getDisabledImage() ? this.getDisabledImage().children : [];
         var image = EU.ImageManager.sprite( this._imageDisabled );
         this.setDisabledImage( image );
-        this._disabledImage.setName( kNameImageDisabled );
-        this._disabledImage._children = children;
+        this.getDisabledImage().setName( kNameImageDisabled );
+        this.getDisabledImage()._children = children;
         this.listenTexture(file);
     },
     /**
