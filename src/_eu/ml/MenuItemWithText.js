@@ -24,21 +24,22 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
     __MenuItemImageWithText : true,
 
     _useScaleEffectOnSelected: null,
-    _imageNormal: null,
-    _imageSelected: null,
-    _imageDisabled: null,
-    _font: null,
-    _text: null,
-    _font2: null,
-    _text2: null,
-    _sound: null,
+    /* Initialize strings so that JSB doesn't fail if variable is not set*/
+    _imageNormal: "",
+    _imageSelected: "",
+    _imageDisabled: "",
+    _font: "",
+    _text: "",
+    _font2: "",
+    _text2: "",
+    _sound: "",
     _onClick: null,
-    _labelNormal: null,
-    _labelSelected: null,
-    _labelDisabled: null,
-    _labelNormal2: null,
-    _labelSelected2: null,
-    _labelDisabled2: null,
+    _labelNormal: "",
+    _labelSelected: "",
+    _labelDisabled: "",
+    _labelNormal2: "",
+    _labelSelected2: "",
+    _labelDisabled2: "",
 
     ctor: function(){
         this._useScaleEffectOnSelected = true;
@@ -61,7 +62,7 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
      * @param {string} disabledImage
      * @param {string} fontBMP
      * @param {string} text
-     * @param callback
+     * @param {Function} callback
      * @param target
      * @returns {boolean}
      */
@@ -119,12 +120,18 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageNormal == file )
             return;
         this._imageNormal = file;
-        var children = this._normalImage ? this._normalImage.children : [];
+        var children = this.getNormalImage() ? this.getNormalImage().getChildren() : [];
         var image = EU.ImageManager.sprite( this._imageNormal );
-        this.setNormalImage( image );
-        this._normalImage.setName( kNameImageNormal );
-        this._normalImage._children = children;
-        this.listenTexture(file);
+        if (image) {
+            this.setNormalImage( image );
+            this.getNormalImage().setName( kNameImageNormal );
+            for (var i = 0; i < children.length; i++) {
+                var child = children[i];
+                this.getNormalImage().addChild(child, child.getLocalZOrder());
+            }
+            //this.getNormalImage()._children = children;
+            this.listenTexture(file);
+        }
     },
     /**
      * set image for selected image
@@ -134,11 +141,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageSelected == file )
             return;
         this._imageSelected = file;
-        var children = this._selectedImage ? this._selectedImage.children : [];
+        var children = this.getSelectedImage() ? this.getSelectedImage().getChildren() : [];
         var image = EU.ImageManager.sprite( this._imageSelected );
         this.setSelectedImage( image );
-        this._selectedImage.setName( kNameImageSelected );
-        this._selectedImage._children = children;
+        this.getSelectedImage().setName( kNameImageSelected );
+        for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            this.getSelectedImage().addChild(child, child.getLocalZOrder());
+        }
+        //this.getSelectedImage()._children = children;
         this.listenTexture(file);
     },
     /**
@@ -149,11 +160,15 @@ EU.MenuItemImageWithText = cc.MenuItemImage.extend({
         if( this._imageDisabled == file )
             return;
         this._imageDisabled = file;
-        var children = this._disabledImage ? this._disabledImage.children : [];
+        var children = this.getDisabledImage() ? this.getDisabledImage().getChildren() : [];
         var image = EU.ImageManager.sprite( this._imageDisabled );
         this.setDisabledImage( image );
-        this._disabledImage.setName( kNameImageDisabled );
-        this._disabledImage._children = children;
+        this.getDisabledImage().setName( kNameImageDisabled );
+        for (var i = 0; i < children.length; i++) {
+            var child = children[i];
+            this.getDisabledImage().addChild(child, child.getLocalZOrder());
+        }
+        //this.getDisabledImage()._children = children;
         this.listenTexture(file);
     },
     /**

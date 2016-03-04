@@ -18,7 +18,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
     /** @type {cc.ProgressTimer} */ _timer : null,
     /** @type {cc.FiniteTimeAction} */ _action : null,
     /** @type {Number} */ _duration : 0,
-    /** @type {Sprite} */ _cancelImage : null,
+    /** @type {cc.Sprite} */ _cancelImage : null,
     /** @type {string} */ _cancelImageResource : null,
     /** @type {string} */ _animationFrame : null,
 
@@ -32,11 +32,16 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
         this._duration = 0;
         this._cancelImage = null;
         this._cancelImageResource = resourceCancel;
-
+        this._super();
+        this._init(back, forward, duration, callback, target, resourceCancel);
+    },
+    _init: function(/**@type {String} */ back, /**@type {String} */ forward, /**@type {Number} */ duration,
+                    /**@type {Function} */ callback, /**@type {Class} */ target, /**@type {string} */ resourceCancel )
+    {
         var e = "";
 
-        var CB = callback ? callback : this._callback;
-        this._super();
+        var CB = callback ? callback : this._callback; // TODO: Incompabtility this._callback is private variable in JSB
+
         this.initWithNormalImage( forward, "", back, e, e, CB, target );
 
         if( forward.length > 0 )
@@ -90,9 +95,7 @@ EU.MenuItemCooldown = EU.MenuItemImageWithText.extend(
             //_cancelImage.runAction( action );
         }
 
-        return true;
     },
-
     run: function( )
     {
         this.showCancel( false );
