@@ -80,8 +80,8 @@ cc.game.onStart = function(){
         if( EU.k.useLeaderboards );
             //PlayServises.init();
     
-        var setSoundEnabled = function( mode ){ EU.UserData.write( "sound_enabled", mode ? true : false ); };
-        var setMusicEnabled = function( mode ){ EU.UserData.write( "music_enabled", mode ? true : false ); };
+        var setSoundEnabled = function( mode ){ EU.UserData.write( "sound_enabled", mode ? "true" : "false" ); };
+        var setMusicEnabled = function( mode ){ EU.UserData.write( "music_enabled", mode ? "true" : "false" ); };
         var isSoundEnabled = function(){ return EU.UserData.get_bool( "sound_enabled", true ); };
         var isMusicEnabled = function(){ return EU.UserData.get_bool( "music_enabled", true ); };
         EU.AudioEngine.callback_setSoundEnabled( setSoundEnabled );

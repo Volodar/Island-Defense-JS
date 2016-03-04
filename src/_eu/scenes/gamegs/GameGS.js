@@ -1075,8 +1075,8 @@ EU.GameGS = EU.LayerExt.extend({
         }
 
         var music = win ? EU.kMusicVictory : EU.kMusicDefeat;
-        //EU.AudioEngine.stopMusic();
-        //EU.AudioEngine.playEffect( music );
+        EU.AudioEngine.stopMusic();
+        EU.AudioEngine.playEffect( music );
 
     },
     flyCameraAboveMap: function (wave) {
@@ -1271,7 +1271,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
 
     menuPause: function () {
-        //EU.AudioEngine.pauseAllEffects( );
+        EU.AudioEngine.pauseAllEffects( );
         var scene = EU.Common.getSceneOfNode(this);
         var pause = new EU.GamePauseLayer("ini/gamescene/pause.xml");
         scene.pushLayer(pause, true);

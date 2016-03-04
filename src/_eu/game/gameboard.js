@@ -173,7 +173,7 @@ EU.GameBoard = cc.Class.extend({
             EU.UserData.bonusitem_add( 3, parseInt(root.getElementsByTagName( "bonusitem_dynamit" )[0].getAttribute( "default" )) );
             EU.UserData.bonusitem_add( 2, parseInt(root.getElementsByTagName( "bonusitem_ice" )[0].getAttribute( "default" )) );
             EU.UserData.bonusitem_add( 1, parseInt(root.getElementsByTagName( "bonusitem_laser" )[0].getAttribute( "default" )) );
-            EU.UserData.write( id, false );
+            EU.UserData.write( id, "false" );
         }
     },
     loadLevel: function( index, gamemode ){
