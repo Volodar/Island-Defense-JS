@@ -1,65 +1,65 @@
 {
     "menuitem": {
-        "@imageN": "images/shop/ui_panel1.png",
-        "@name": "unnamed",
-        "@scale_effect": "no",
         "@sound": "##sound_button##",
+        "@scale_effect": "no",
         "@type": "menuitem",
+        "@name": "unnamed",
+        "@imageN": "images/shop/ui_panel1.png",
         "children": {
             "node": [
                 {
-                    "@center": "0x0.5",
-                    "@color": "000000",
-                    "@font": "fonts/whitefont1.fnt",
-                    "@name": "text",
-                    "@pos": "135x384",
                     "@scale": "0.85x0.85",
+                    "@name": "text",
+                    "@color": "000000",
                     "@text": "...",
-                    "@type": "text"
-                },
-                {
-                    "@center": "1x0.5",
-                    "@name": "icon_type",
                     "@pos": "135x384",
+                    "@font": "fonts/whitefont1.fnt",
+                    "@type": "text",
+                    "@center": "0x0.5"
+                },
+                {
                     "@scale": "1.5x1.5",
-                    "@type": "sprite"
+                    "@center": "1x0.5",
+                    "@type": "sprite",
+                    "@name": "icon_type",
+                    "@pos": "135x384"
                 },
                 {
+                    "@type": "sprite",
                     "@name": "icon",
-                    "@pos": "135x229",
-                    "@type": "sprite"
+                    "@pos": "135x229"
                 },
                 {
+                    "@z": "9",
+                    "@type": "menu",
                     "@name": "menu",
                     "@pos": "135x229",
-                    "@type": "menu",
-                    "@z": "9",
                     "children": {
                         "node": {
-                            "@imageN": "images/shop/button_window_shop.png",
-                            "@name": "buy",
                             "@pos": "0x-155",
                             "@sound": "##sound_button##",
                             "@type": "menuitem",
+                            "@name": "buy",
+                            "@imageN": "images/shop/button_window_shop.png",
                             "children": {
                                 "node": {
                                     "@name": "normal",
                                     "children": {
                                         "node": [
                                             {
-                                                "@font": "fonts/mdefensefont.fnt",
-                                                "@name": "text",
-                                                "@pos": "108x58",
                                                 "@scale": "0.9x0.85",
+                                                "@name": "text",
                                                 "@text": "#shop_buy#",
+                                                "@pos": "108x58",
+                                                "@font": "fonts/mdefensefont.fnt",
                                                 "@type": "text"
                                             },
                                             {
-                                                "@font": "fonts/mdefensefont.fnt",
-                                                "@name": "cost",
-                                                "@pos": "108x22",
                                                 "@scale": "0.6x0.55",
+                                                "@name": "cost",
                                                 "@text": "...",
+                                                "@pos": "108x22",
+                                                "@font": "fonts/mdefensefont.fnt",
                                                 "@type": "text"
                                             }
                                         ]

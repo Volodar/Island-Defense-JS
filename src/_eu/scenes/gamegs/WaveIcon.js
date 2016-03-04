@@ -96,7 +96,7 @@ EU.WaveIcon = cc.Menu.extend({
     {
         var dessize = cc.view.getDesignResolutionSize();
         var worldpoint = EU.GameGSInstance.getMainLayer().convertToWorldSpace( this._wavestart );
-        var point = worldpoint;
+        var point = cc.p(worldpoint.x, worldpoint.y);
         var borderx = 150.0;
         var bordery = 120.0;
         point.x = Math.max( borderx, point.x );
@@ -104,7 +104,7 @@ EU.WaveIcon = cc.Menu.extend({
         point.y = Math.max( bordery, point.y );
         point.y = Math.min( dessize.height - bordery, point.y );
 
-        var rad = worldpoint - point;
+        var rad = cc.pSub(worldpoint, point);
         var angle = EU.Common.getDirectionByVector( rad );
         angle = angle || 0;
         this._arrow.setRotation( angle );

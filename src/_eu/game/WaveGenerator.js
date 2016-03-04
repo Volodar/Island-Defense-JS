@@ -32,7 +32,7 @@ EU.WaveGenerator = {
     /**
      * @return {number}
      */
-    getWavesCount: function() {return this.m_waveIndex;},
+    getWavesCount: function() {return this.m_wavesCount;},
 
     /** @type {Array< EU.WaveInfo >} */
     m_waves: [],

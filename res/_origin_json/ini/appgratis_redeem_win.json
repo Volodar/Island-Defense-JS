@@ -1,73 +1,73 @@
 {
     "node": {
+        "@type": "node",
         "@name": "win",
         "@pos": "frame:0.5x0.5",
-        "@type": "node",
         "children": {
             "node": [
                 {
                     "@image": "images/msgwin.png",
-                    "@name": "bg",
-                    "@type": "sprite"
+                    "@type": "sprite",
+                    "@name": "bg"
                 },
                 {
-                    "@center": "0x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "text1",
-                    "@pos": "-110x40",
                     "@scale": "0.5x0.5",
+                    "@name": "text1",
                     "@text": "Congrats, you've unlocked:",
                     "@textwidth": "900",
-                    "@type": "text"
+                    "@pos": "-110x40",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0x0.5"
                 },
                 {
-                    "@center": "0x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "text3",
-                    "@pos": "-110x-40",
                     "@scale": "0.5x0.5",
+                    "@name": "text3",
                     "@text": "Thanks to AppGratis!",
                     "@textwidth": "900",
-                    "@type": "text"
+                    "@pos": "-110x-40",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0x0.5"
                 },
                 {
+                    "@type": "node",
                     "@name": "gold",
                     "@pos": "-70x00",
-                    "@type": "node",
                     "children": {
                         "node": [
                             {
-                                "@center": "1x0.5",
-                                "@image": "images/map/icon_gold1.png",
-                                "@name": "bg",
                                 "@pos": "0x-2",
-                                "@type": "sprite"
+                                "@image": "images/map/icon_gold1.png",
+                                "@type": "sprite",
+                                "@name": "bg",
+                                "@center": "1x0.5"
                             },
                             {
-                                "@center": "0x0.5",
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@name": "text1",
-                                "@pos": "0x0",
                                 "@scale": "0.5x0.5",
+                                "@name": "text1",
                                 "@text": "10000",
                                 "@textwidth": "900",
-                                "@type": "text"
+                                "@pos": "0x0",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
                             }
                         ]
                     }
                 },
                 {
+                    "@type": "menu",
                     "@name": "menu",
                     "@pos": "0x0",
-                    "@type": "menu",
                     "children": {
                         "node": {
-                            "@callback": "close_redeem_win",
-                            "@imageN": "images/butok.png",
+                            "@sound": "##sound_button##",
                             "@name": "shop",
                             "@pos": "285x-100",
-                            "@sound": "##sound_button##",
-                            "@type": "menuitem"
+                            "@callback": "close_redeem_win",
+                            "@type": "menuitem",
+                            "@imageN": "images/butok.png"
                         }
                     }
                 }

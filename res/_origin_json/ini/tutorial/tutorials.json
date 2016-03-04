@@ -1,59 +1,298 @@
 {
     "tutorials": {
+        "list": {
+            "firstask": {
+                "@filename": "ini/tutorial/map/firstask.xml"
+            },
+            "map_rungame": {
+                "@filename": "ini/tutorial/map/map_rungame.xml"
+            },
+            "map_onchoose": {
+                "@filename": "ini/tutorial/map/map_onchoose.xml"
+            },
+            "lvl0_imagerules": {
+                "@filename": "ini/tutorial/level/1/imagerules.xml"
+            },
+            "lvl0_imagebuildings": {
+                "@filename": "ini/tutorial/level/1/imagebuildings.xml"
+            },
+            "lvl0_build_tower": {
+                "@filename": "ini/tutorial/level/1/build_tower.xml"
+            },
+            "lvl0_runwave": {
+                "@filename": "ini/tutorial/level/1/runwave.xml"
+            },
+            "lvl0_runwave_second": {
+                "@filename": "ini/tutorial/level/1/runwave_second.xml"
+            },
+            "lvl0_usedesant": {
+                "@filename": "ini/tutorial/level/1/usedesant.xml"
+            },
+            "lvl0_desant_arrow": {
+                "@filename": "ini/tutorial/level/1/usedesantarrow.xml"
+            },
+            "lvl0_useairbomb": {
+                "@filename": "ini/tutorial/level/1/useairbomb.xml"
+            },
+            "lvl0_desant_description": {
+                "@filename": "ini/tutorial/units/desant.xml"
+            },
+            "lvl0_airbomb_description": {
+                "@filename": "ini/tutorial/units/airbomb.xml"
+            },
+            "lvl0_bonus1": {
+                "@filename": "ini/tutorial/level/1/bonus1.xml"
+            },
+            "lvl0_bonus2": {
+                "@filename": "ini/tutorial/level/1/bonus2.xml"
+            },
+            "lvl0_bonus3": {
+                "@filename": "ini/tutorial/level/1/bonus3.xml"
+            },
+            "level_shop": {
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/2/level_shop.xml"
+            },
+            "level_shoparrow": {
+                "@forced": "yes",
+                "@after": "level_shop",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/2/level_shoparrow.xml"
+            },
+            "level_getgift": {
+                "@forced": "yes",
+                "@after": "level_shoparrow",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/2/level_getgift.xml"
+            },
+            "level_dig": {
+                "@count": "1",
+                "@after": "level_shoparrow",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/2/level_dig.xml"
+            },
+            "level_haventgears_buildtower": {
+                "@count": "1",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/level_haventgears_buildtower.xml"
+            },
+            "level_haventgears_dig": {
+                "@count": "1",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/level_haventgears_dig.xml"
+            },
+            "level_haventgears_upgradetower": {
+                "@count": "1",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/level/level_haventgears_upgradetower.xml"
+            },
+            "lab_openlab": {
+                "@count": "1",
+                "@forced": "yes",
+                "@filename": "ini/tutorial/lab/openlab.xml"
+            },
+            "lab_openlab_onlose": {
+                "@count": "20",
+                "@forced": "yes",
+                "@filename": "ini/tutorial/lab/openlab_onlose.xml"
+            },
+            "lab_pressupgrade": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "lab_openlab",
+                "@filename": "ini/tutorial/lab/pressupgrade.xml"
+            },
+            "lab_pressconfirm": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "lab_pressupgrade",
+                "@filename": "ini/tutorial/lab/pressconfirm.xml"
+            },
+            "map_shop": {
+                "@count": "2",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/shop/shop_from_lab.xml"
+            },
+            "map_shop_fuel": {
+                "@count": "2",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/shop/shop_from_map.xml"
+            },
+            "map_shop_open": {
+                "@count": "1",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/shop/shop_open.xml"
+            },
+            "map_shop_getgift": {
+                "@count": "1",
+                "@forced": "yes",
+                "@dispatch": "##PLATFORM_MOBILE##",
+                "@filename": "ini/tutorial/shop/shop_getgift.xml"
+            },
+            "hero_open": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "lab_openlab",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/open.xml"
+            },
+            "hero_showlevel": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "hero_open",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/showlevel.xml"
+            },
+            "hero_showskillpoint": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "hero_showlevel",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/showskillpoint.xml"
+            },
+            "hero_selectskill": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "hero_showskillpoint",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/selectskill.xml"
+            },
+            "hero_presstrain": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "hero_selectskill",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/presstrain.xml"
+            },
+            "hero_seeotherhero": {
+                "@count": "1",
+                "@forced": "yes",
+                "@after": "hero_presstrain",
+                "@dispatch": "##USE_HEROROOM##",
+                "@filename": "ini/tutorial/heroroom/seeotherhero.xml"
+            }
+        },
         "events": {
-            "close": {
-                "boxmenu_did_open": {
-                    "@value": "lvl0_bonus1"
+            "run": {
+                "map_onenter": {
+                    "@value": "firstask"
                 },
-                "boxmenu_item_did_created": {
-                    "@value": "lvl0_bonus3"
+                "map_onchoose": {
+                    "@value": "map_onchoose"
                 },
-                "boxmenu_item_did_selected": {
-                    "@value": "lvl0_bonus2"
+                "map_afterwin": {
+                    "@value": "lab_openlab"
                 },
-                "clickskillbutton": {
-                    "@value": "lvl0_usedesant"
+                "map_afterwin_force": {
+                    "@value": "map_shop_open"
                 },
-                "hero_herochanged": {
-                    "@value": "hero_seeotherhero"
-                },
-                "hero_skillselect": {
-                    "@value": "hero_selectskill"
-                },
-                "hero_skilltrain": {
-                    "@value": "hero_presstrain"
-                },
-                "lab_clickconfirm": {
-                    "@value": "lab_pressconfirm"
+                "map_losenumber2": {
+                    "@value": "lab_openlab_onlose"
                 },
                 "lab_clickupgrade": {
-                    "@value": "lab_pressupgrade"
+                    "@value": "lab_pressconfirm"
+                },
+                "level0_enter": {
+                    "@value": "lvl0_imagerules"
+                },
+                "level0_buildtower": {
+                    "@value": "lvl0_runwave"
+                },
+                "level0_waveicon": {
+                    "@value": "lvl0_runwave_second"
+                },
+                "level0_startwave1": {
+                    "@value": "lvl0_usedesant"
+                },
+                "level0_startwave3": {
+                    "@value": "lvl0_usedesant"
+                },
+                "level0_startwave4": {
+                    "@value": "lvl0_bonus1"
+                },
+                "level0_startwave5": {
+                    "@value": "lvl0_bonus1"
+                },
+                "level0_startwave6": {
+                    "@value": "lvl0_airbomb_description"
+                },
+                "level0_startwave7": {
+                    "@value": "lvl0_airbomb_description"
+                },
+                "boxmenu_did_open": {
+                    "@value": "lvl0_bonus2"
+                },
+                "boxmenu_item_did_selected": {
+                    "@value": "lvl0_bonus3"
+                },
+                "level1_enter": {
+                    "@value": "level_shop"
+                },
+                "level_openshop": {
+                    "@value": "level_getgift"
+                },
+                "level3_enter": {
+                    "@value": "lvl0_hero"
+                },
+                "level_haventgear_upgrade": {
+                    "@value": "level_haventgears_upgradetower"
+                },
+                "level_haventgear_build": {
+                    "@value": "level_haventgears_buildtower"
+                },
+                "level_haventgear_dig": {
+                    "@value": "level_haventgears_dig"
+                },
+                "lab_haventgold": {
+                    "@value": "map_shop"
+                },
+                "map_haventfuel": {
+                    "@value": "map_shop_fuel"
+                },
+                "map_showheroroom": {
+                    "@value": "hero_open"
+                },
+                "heroroom_open": {
+                    "@value": "hero_showlevel"
+                }
+            },
+            "close": {
+                "map_onchoose": {
+                    "@value": "map_rungame"
+                },
+                "map_rungame": {
+                    "@value": "map_onchoose"
                 },
                 "level0_selectplace": {
                     "@value": "lvl0_build_tower"
                 },
-                "level0_startwave": {
-                    "@value": "lvl0_runwave"
-                },
                 "level1_selectplace": {
                     "@value": "level_dig"
                 },
-                "level_openshop": [
-                    {
-                        "@value": "level_shoparrow"
-                    },
-                    {
-                        "@value": "level_haventgears_upgradetower"
-                    },
-                    {
-                        "@value": "level_haventgears_buildtower"
-                    },
-                    {
-                        "@value": "level_haventgears_dig"
-                    }
-                ],
-                "map_onchoose": {
-                    "@value": "map_rungame"
+                "level0_startwave": {
+                    "@value": "lvl0_runwave"
+                },
+                "clickskillbutton": {
+                    "@value": "lvl0_usedesant"
+                },
+                "usedesant": {
+                    "@value": "lvl0_desant_arrow"
+                },
+                "useairbomb": {
+                    "@value": "lvl0_useairbomb"
+                },
+                "lab_clickupgrade": {
+                    "@value": "lab_pressupgrade"
+                },
+                "lab_clickconfirm": {
+                    "@value": "lab_pressconfirm"
                 },
                 "map_openlab": [
                     {
@@ -74,280 +313,41 @@
                         "@value": "map_shop_open"
                     }
                 ],
-                "map_rungame": {
-                    "@value": "map_onchoose"
+                "boxmenu_did_open": {
+                    "@value": "lvl0_bonus1"
                 },
+                "boxmenu_item_did_selected": {
+                    "@value": "lvl0_bonus2"
+                },
+                "boxmenu_item_did_created": {
+                    "@value": "lvl0_bonus3"
+                },
+                "level_openshop": [
+                    {
+                        "@value": "level_shoparrow"
+                    },
+                    {
+                        "@value": "level_haventgears_upgradetower"
+                    },
+                    {
+                        "@value": "level_haventgears_buildtower"
+                    },
+                    {
+                        "@value": "level_haventgears_dig"
+                    }
+                ],
                 "shop_getgift": {
                     "@value": "map_shop_getgift"
                 },
-                "useairbomb": {
-                    "@value": "lvl0_useairbomb"
+                "hero_skillselect": {
+                    "@value": "hero_selectskill"
                 },
-                "usedesant": {
-                    "@value": "lvl0_desant_arrow"
+                "hero_skilltrain": {
+                    "@value": "hero_presstrain"
+                },
+                "hero_herochanged": {
+                    "@value": "hero_seeotherhero"
                 }
-            },
-            "run": {
-                "boxmenu_did_open": {
-                    "@value": "lvl0_bonus2"
-                },
-                "boxmenu_item_did_selected": {
-                    "@value": "lvl0_bonus3"
-                },
-                "heroroom_open": {
-                    "@value": "hero_showlevel"
-                },
-                "lab_clickupgrade": {
-                    "@value": "lab_pressconfirm"
-                },
-                "lab_haventgold": {
-                    "@value": "map_shop"
-                },
-                "level0_buildtower": {
-                    "@value": "lvl0_runwave"
-                },
-                "level0_enter": {
-                    "@value": "lvl0_imagerules"
-                },
-                "level0_startwave1": {
-                    "@value": "lvl0_usedesant"
-                },
-                "level0_startwave3": {
-                    "@value": "lvl0_usedesant"
-                },
-                "level0_startwave4": {
-                    "@value": "lvl0_bonus1"
-                },
-                "level0_startwave5": {
-                    "@value": "lvl0_bonus1"
-                },
-                "level0_startwave6": {
-                    "@value": "lvl0_airbomb_description"
-                },
-                "level0_startwave7": {
-                    "@value": "lvl0_airbomb_description"
-                },
-                "level0_waveicon": {
-                    "@value": "lvl0_runwave_second"
-                },
-                "level1_enter": {
-                    "@value": "level_shop"
-                },
-                "level3_enter": {
-                    "@value": "lvl0_hero"
-                },
-                "level_haventgear_build": {
-                    "@value": "level_haventgears_buildtower"
-                },
-                "level_haventgear_dig": {
-                    "@value": "level_haventgears_dig"
-                },
-                "level_haventgear_upgrade": {
-                    "@value": "level_haventgears_upgradetower"
-                },
-                "level_openshop": {
-                    "@value": "level_getgift"
-                },
-                "map_afterwin": {
-                    "@value": "lab_openlab"
-                },
-                "map_afterwin_force": {
-                    "@value": "map_shop_open"
-                },
-                "map_haventfuel": {
-                    "@value": "map_shop_fuel"
-                },
-                "map_losenumber2": {
-                    "@value": "lab_openlab_onlose"
-                },
-                "map_onchoose": {
-                    "@value": "map_onchoose"
-                },
-                "map_onenter": {
-                    "@value": "firstask"
-                },
-                "map_showheroroom": {
-                    "@value": "hero_open"
-                }
-            }
-        },
-        "list": {
-            "firstask": {
-                "@filename": "ini/tutorial/map/firstask.xml"
-            },
-            "hero_open": {
-                "@after": "lab_openlab",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/open.xml",
-                "@forced": "yes"
-            },
-            "hero_presstrain": {
-                "@after": "hero_selectskill",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/presstrain.xml",
-                "@forced": "yes"
-            },
-            "hero_seeotherhero": {
-                "@after": "hero_presstrain",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/seeotherhero.xml",
-                "@forced": "yes"
-            },
-            "hero_selectskill": {
-                "@after": "hero_showskillpoint",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/selectskill.xml",
-                "@forced": "yes"
-            },
-            "hero_showlevel": {
-                "@after": "hero_open",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/showlevel.xml",
-                "@forced": "yes"
-            },
-            "hero_showskillpoint": {
-                "@after": "hero_showlevel",
-                "@count": "1",
-                "@dispatch": "##USE_HEROROOM##",
-                "@filename": "ini/tutorial/heroroom/showskillpoint.xml",
-                "@forced": "yes"
-            },
-            "lab_openlab": {
-                "@count": "1",
-                "@filename": "ini/tutorial/lab/openlab.xml",
-                "@forced": "yes"
-            },
-            "lab_openlab_onlose": {
-                "@count": "20",
-                "@filename": "ini/tutorial/lab/openlab_onlose.xml",
-                "@forced": "yes"
-            },
-            "lab_pressconfirm": {
-                "@after": "lab_pressupgrade",
-                "@count": "1",
-                "@filename": "ini/tutorial/lab/pressconfirm.xml",
-                "@forced": "yes"
-            },
-            "lab_pressupgrade": {
-                "@after": "lab_openlab",
-                "@count": "1",
-                "@filename": "ini/tutorial/lab/pressupgrade.xml",
-                "@forced": "yes"
-            },
-            "level_dig": {
-                "@after": "level_shoparrow",
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/2/level_dig.xml"
-            },
-            "level_getgift": {
-                "@after": "level_shoparrow",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/2/level_getgift.xml",
-                "@forced": "yes"
-            },
-            "level_haventgears_buildtower": {
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/level_haventgears_buildtower.xml",
-                "@forced": "yes"
-            },
-            "level_haventgears_dig": {
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/level_haventgears_dig.xml",
-                "@forced": "yes"
-            },
-            "level_haventgears_upgradetower": {
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/level_haventgears_upgradetower.xml",
-                "@forced": "yes"
-            },
-            "level_shop": {
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/2/level_shop.xml",
-                "@forced": "yes"
-            },
-            "level_shoparrow": {
-                "@after": "level_shop",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/level/2/level_shoparrow.xml",
-                "@forced": "yes"
-            },
-            "lvl0_airbomb_description": {
-                "@filename": "ini/tutorial/units/airbomb.xml"
-            },
-            "lvl0_bonus1": {
-                "@filename": "ini/tutorial/level/1/bonus1.xml"
-            },
-            "lvl0_bonus2": {
-                "@filename": "ini/tutorial/level/1/bonus2.xml"
-            },
-            "lvl0_bonus3": {
-                "@filename": "ini/tutorial/level/1/bonus3.xml"
-            },
-            "lvl0_build_tower": {
-                "@filename": "ini/tutorial/level/1/build_tower.xml"
-            },
-            "lvl0_desant_arrow": {
-                "@filename": "ini/tutorial/level/1/usedesantarrow.xml"
-            },
-            "lvl0_desant_description": {
-                "@filename": "ini/tutorial/units/desant.xml"
-            },
-            "lvl0_imagebuildings": {
-                "@filename": "ini/tutorial/level/1/imagebuildings.xml"
-            },
-            "lvl0_imagerules": {
-                "@filename": "ini/tutorial/level/1/imagerules.xml"
-            },
-            "lvl0_runwave": {
-                "@filename": "ini/tutorial/level/1/runwave.xml"
-            },
-            "lvl0_runwave_second": {
-                "@filename": "ini/tutorial/level/1/runwave_second.xml"
-            },
-            "lvl0_useairbomb": {
-                "@filename": "ini/tutorial/level/1/useairbomb.xml"
-            },
-            "lvl0_usedesant": {
-                "@filename": "ini/tutorial/level/1/usedesant.xml"
-            },
-            "map_onchoose": {
-                "@filename": "ini/tutorial/map/map_onchoose.xml"
-            },
-            "map_rungame": {
-                "@filename": "ini/tutorial/map/map_rungame.xml"
-            },
-            "map_shop": {
-                "@count": "2",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/shop/shop_from_lab.xml",
-                "@forced": "yes"
-            },
-            "map_shop_fuel": {
-                "@count": "2",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/shop/shop_from_map.xml",
-                "@forced": "yes"
-            },
-            "map_shop_getgift": {
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/shop/shop_getgift.xml",
-                "@forced": "yes"
-            },
-            "map_shop_open": {
-                "@count": "1",
-                "@dispatch": "##PLATFORM_MOBILE##",
-                "@filename": "ini/tutorial/shop/shop_open.xml",
-                "@forced": "yes"
             }
         }
     }

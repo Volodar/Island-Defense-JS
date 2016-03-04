@@ -1,17 +1,17 @@
 {
     "node": {
-        "@cascadecolor": "yes",
-        "@cascadeopacity": "yes",
-        "@name": "score",
         "@pos": "100x100",
+        "@cascadecolor": "yes",
         "@type": "node",
+        "@name": "score",
+        "@cascadeopacity": "yes",
         "children": {
             "node": {
-                "@center": "0x0.5",
                 "@image": "gamescene::##resource##",
+                "@center": "0x0.5",
+                "@type": "sprite",
                 "@name": "icon",
-                "@pos": "0x0",
-                "@type": "sprite"
+                "@pos": "0x0"
             }
         }
     }

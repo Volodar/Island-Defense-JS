@@ -1,9 +1,71 @@
 {
     "tutorial": {
         "@closebytap": "yes",
+        "@z": "999",
         "@nexttutorial": "lab_showscheme",
         "@parent": "/maplayer",
-        "@z": "999",
+        "children": {
+            "node": [
+                {
+                    "@type": "node",
+                    "@name": "body",
+                    "@pos": "frame:0.5x0.5",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/tut2.png",
+                                "@type": "sprite",
+                                "@name": "bg"
+                            },
+                            {
+                                "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@text": "#tuturial_lab_open_onlose#",
+                                "@textwidth": "420",
+                                "@pos": "-110x00",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@opacity": "0",
+                    "@pos": "right:-80x75",
+                    "@type": "node",
+                    "@name": "baloon",
+                    "@cascadeopacity": "yes",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "images/tutorial/baloon1.png",
+                                "@scale": "0.9x1",
+                                "@type": "sprite",
+                                "@name": "bg",
+                                "@pos": "0x110"
+                            },
+                            {
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "arrow",
+                                "@pos": "0x70"
+                            },
+                            {
+                                "@scale": "0.65x0.7",
+                                "@name": "text",
+                                "@color": "35352B",
+                                "@text": "#tuturial_openlab#",
+                                "@pos": "0x114",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -20,77 +82,10 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@name": "body",
-                    "@pos": "frame:0.5x0.5",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/tutorial/tut2.png",
-                                "@name": "bg",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "-110x00",
-                                "@scale": "0.7x0.7",
-                                "@text": "#tuturial_lab_open_onlose#",
-                                "@textwidth": "420",
-                                "@type": "text"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@cascadeopacity": "yes",
-                    "@name": "baloon",
-                    "@opacity": "0",
-                    "@pos": "right:-80x75",
-                    "@type": "node",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "images/tutorial/baloon1.png",
-                                "@name": "bg",
-                                "@pos": "0x110",
-                                "@scale": "0.9x1",
-                                "@type": "sprite"
-                            },
-                            {
-                                "@image": "images/tutorial/baloon1_1.png",
-                                "@name": "arrow",
-                                "@pos": "0x70",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@color": "35352B",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "0x114",
-                                "@scale": "0.65x0.7",
-                                "@text": "#tuturial_openlab#",
-                                "@type": "text"
-                            }
-                        ]
-                    }
-                }
-            ]
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "onenter",
-                    "action": {
-                        "@action": "scaling",
-                        "@state": "run",
-                        "@target": "/maplayer/menu/lab"
-                    },
                     "runaction": [
                         {
                             "@action": "body",
@@ -100,7 +95,12 @@
                             "@action": "bodyfadein",
                             "@target": "baloon"
                         }
-                    ]
+                    ],
+                    "action": {
+                        "@action": "scaling",
+                        "@state": "run",
+                        "@target": "/maplayer/menu/lab"
+                    }
                 },
                 {
                     "@name": "onexit",

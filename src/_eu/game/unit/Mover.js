@@ -68,6 +68,8 @@ EU.Mover = cc.Class.extend(
                 else
                     break;
             }
+            if( direction.x == 0 && direction.y == 0)
+                direction = cc.p(1,0);
             cc.pNormalizeIn(direction);
         }
         var isometric = (1 + Math.abs(direction.x)) / 2;
@@ -88,6 +90,8 @@ EU.Mover = cc.Class.extend(
         else {
             var direction = this._route.length > 1 ? cc.pSub(this._route[1], this._route[0])
                 : cc.p(1, 0);
+            if( direction.x == 0 && direction.y == 0)
+                direction = cc.p(1,0);
             cc.pNormalizeIn(direction);
             this.setDirection(direction);
             this.setLocation(this._route[0]);

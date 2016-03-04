@@ -24,8 +24,6 @@ EU.TouchInfo = cc.Class.extend({
     },
 });
 
-EU.HeroIcon = cc.Node.extend({});
-
 EU.Skill = {
     desant : 0,
     bomb : 1,
@@ -82,6 +80,8 @@ EU.GameGS = EU.LayerExt.extend({
     /** @type{cc.EventListener} */ touchListenerHero: null,
     /** @type{cc.EventListener} */ touchListenerHeroSkill: null,
 
+    setEnabled: function( mode ){this.enabled = mode;},
+    getMainLayer: function(){return this.mainlayer; },
 
     //TODO: ~GameGS()
     //{
@@ -244,8 +244,8 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, this, kPathButtonDesantCancel);
         this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, this, kPathButtonBombCancel);
         this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
-        //TODO:this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5);
-        //TODO:this.interface_hero.setEnabled(true);
+        this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5, this);
+        this.interface_hero.setEnabled(true);
         this.interface_desant.setAnimationOnFull("airstike_animation1");
         this.interface_bomb.setAnimationOnFull("airstike_animation2");
 
@@ -253,12 +253,12 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_pause.setName("pause");
         this.interface_desant.setName("desant");
         this.interface_bomb.setName("bomb");
-        //TODO:this.interface_heroSkill.setName("heroskill");
-        //TODO:this.interface_hero.setName("hero");
+        this.interface_heroSkill.setName("heroskill");
+        this.interface_hero.setName("hero");
 
         this.interface_desant.setSound("##sound_button##");
         this.interface_bomb.setSound("##sound_button##");
-        //TODO:this.interface_heroSkill.setSound("##sound_button##");
+        this.interface_heroSkill.setSound("##sound_button##");
 
         this.interface_menu = new cc.Menu();
         this.interface_menu.setName("menu");
@@ -266,11 +266,11 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_menu.addChild(this.interface_pause);
         this.interface_menu.addChild(this.interface_desant);
         this.interface_menu.addChild(this.interface_bomb);
-        //TODO:this.interface_menu.addChild(this.interface_heroSkill);
-        //TODO:this.interface_menu.addChild(this.interface_hero);
+        this.interface_menu.addChild(this.interface_heroSkill);
+        this.interface_menu.addChild(this.interface_hero);
         this.interface_menu.setEnabled(false);
 
-        //TODO:this.interface_hero.setVisible(false);
+        this.interface_hero.setVisible(false);
 
         this.interface_menu.setPosition(cc.p(0,0));
         this.interface.addChild(this.interface_menu, 99);
@@ -371,19 +371,22 @@ EU.GameGS = EU.LayerExt.extend({
     clear: function () {
         //TODO: Achievements.setCallbackOnAchievementObtained( null );
         EU.ShootsEffects.ShootsEffectsClear();
+        this.board.clear();
 
         if (this.bg)
             EU.removeFromParent(this.bg, true);
+        if(this.scoreNode){
+            this.scoreNode.clear();
+            EU.removeFromParent( this.scoreNode, true );
+        }
         this.bg = null;
         this.objects.removeAllChildren();
         this.objects = null;
-        this.fragments.clear();
         this.menuTower.setUnit(null);
         this.menuTower.disappearance();
 
         this.menuFastModeEnabled(false);
         this.unscheduleUpdate();
-        true.removeAllChildrenWithCleanup(true);
     },
     startGame: function () {
         //EU.AudioEngine.playEffect( EU.kSoundGameStart );
@@ -543,7 +546,7 @@ EU.GameGS = EU.LayerExt.extend({
             var object = this.objects.children[i];
             if (object.getName() == name) {
                 if (object.__Decoration)
-                    result.push(decor);
+                    result.push(object);
             }
         }
         return result;
@@ -787,10 +790,15 @@ EU.GameGS = EU.LayerExt.extend({
             return;
 
         var location = touch.getLocation();
-        if (EU.Common.pointDistance(location, touch.getStartLocation()) > 100)
-            return;
+        //if (EU.Common.pointDistance(location, touch.getStartLocation()) > 100)
+        //    return;
 
-        //location = self.mainlayer.convertToNodeSpace(location);
+        location = self.mainlayer.convertToNodeSpace(location);
+        if( self.board.getHero().moveTo( location ) )
+        {
+            //m_interfaceMenu.hero->showCancel( false );
+            //setTouchNormal();
+        }
     },
     onTouchHeroCanceled: function (touch, event) {
         event.getCurrentTarget().setTouchNormal();
@@ -835,7 +843,7 @@ EU.GameGS = EU.LayerExt.extend({
                 this.setTouchNormal();
         }
         else if (unit._type == EU.UnitType.hero) {
-            if (unit.current_state().get_name() != EU.Unit.State.state_death)
+            if (unit.current_state().get_name() != EU.MachineUnit.State.state_death)
                 this.setTouchHero();
         }
     },
@@ -1210,7 +1218,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.selectedSkill = null;
         this.interface_bomb.showCancel(false);
         this.interface_desant.showCancel(false);
-        //TODO:this.interface_heroSkill.showCancel(false);
+        this.interface_heroSkill.showCancel(false);
     },
 
     setTouchDisabled: function () {
@@ -1232,7 +1240,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.skillModeActive = false;
         this.resetSkillButtons();
 
-        //TODO:this.interface_hero.showCancel(false);
+        this.interface_hero.showCancel(false);
     },
     setTouchSkill: function (skill) {
         this.setTouchDisabled();
@@ -1329,8 +1337,6 @@ EU.GameGS = EU.LayerExt.extend({
         }
         return result;
     },
-    setEnabled: function( mode ){this.enabled = mode;},
-    getMainLayer: function(){return this.mainlayer; }
 });
 
 EU.GameGSInstance = null;
@@ -1340,6 +1346,8 @@ EU.GameGS.restartLevel = function () {
     EU.assert(game);
     var levelindex = game.board.getCurrentLevelIndex();
     var gamemode = game.board.getGameMode();
+
+    game.clear();
 
     var scene = EU.Common.getSceneOfNode(game);
     scene.resetMainLayer(null);

@@ -335,8 +335,6 @@ EU.GameBoard = cc.Class.extend({
         }
     },
     clear: function(){
-        var desSize = cc.view.getDesignResolutionSize();
-
         EU.WaveGenerator.clear();
         this.units.length = 0;
         this.creepsRoutes.length = 0;
@@ -697,7 +695,7 @@ EU.GameBoard = cc.Class.extend({
         {
             index = EU.UserData.hero_getCurrent() + 1;
             decor = decorations[min];
-            this.hero = EU.xmlLoader.load_node_from_file( "ini/units/hero/hero" + index + ".xml" );
+            this.hero = new EU.Hero("ini/units/hero", "hero" + index + ".xml");
             this.hero.initSkills();
             this.hero.setPosition( decor.getPosition() );
             this.hero.moveTo( decor.getPosition() );

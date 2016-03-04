@@ -1,40 +1,47 @@
 {
     "tower": {
-        "@allowtargets": "earth",
-        "@effect_on_shoot": "type:lighting,offset:2x48",
-        "@maxtargets": "2",
         "@name": "teslagun",
-        "@radius": "210",
         "@unittype": "tower",
-        "actions": {
-            "action": {
-                "@name": "animate",
-                "@value": "Animate[0.5,[folder:teslagun.2::,frames:turret3_20001.png,turret3_20002.png,turret3_20003.png,turret3_20004.png,turret3_20005.png,turret3_20006.png,turret3_20007.png,turret3_20008.png,turret3_20009.png,turret3_20010.png,turret3_20011.png,turret3_20012.png,turret3_20013.png,turret3_20014.png,turret3_20015.png,turret3_20016.png,turret3_20017.png,turret3_20018.png,turret3_20019.png,turret3_20020.png,turret3_20001.png]]"
-            }
-        },
-        "children": {
-            "node": {
-                "@center": "0.5x0.3",
-                "@image": "teslagun.2::turret3_20001.png",
-                "@name": "skin",
-                "@type": "sprite"
-            }
-        },
+        "@allowtargets": "earth",
+        "@radius": "210",
+        "@maxtargets": "2",
+        "@effect_on_shoot": "type:lighting,offset:2x48",
         "effects": {
             "positive": {
                 "@electroRate": "34",
                 "@electroTime": "0.6"
             }
         },
-        "events": {
-            "eventlist": {
-                "@name": "on_shoot",
-                "playsound": {
-                    "@sound": "##sound_tesla2##"
+        "machine_unit": {
+            "transitions": {
+                "sleep": {
+                    "@seetarget": "readyfire"
                 },
-                "runaction": {
-                    "@action": "animate",
-                    "@target": "skin"
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "waittarget": {
+                    "@seetarget": "readyfire"
+                }
+            },
+            "params": {
+                "state_readyfire": {
+                    "@delay": "1",
+                    "@charge_volume": "5"
+                },
+                "state_waittarget": {
+                    "@duration": "999999"
+                },
+                "state_charging": {
+                    "@duration": "1"
                 }
             }
         },
@@ -48,39 +55,6 @@
                 }
             }
         },
-        "machine_unit": {
-            "params": {
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "1"
-                },
-                "state_waittarget": {
-                    "@duration": "999999"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "readyfire": [
-                    {
-                        "@notarget": "waittarget"
-                    },
-                    {
-                        "@charge": "charging"
-                    }
-                ],
-                "sleep": {
-                    "@seetarget": "readyfire"
-                },
-                "waittarget": {
-                    "@seetarget": "readyfire"
-                }
-            }
-        },
         "mover": {
             "params": {
                 "allowangles": {
@@ -88,6 +62,32 @@
                 },
                 "thresold": {
                     "@value": "0"
+                }
+            }
+        },
+        "children": {
+            "node": {
+                "@image": "teslagun.2::turret3_20001.png",
+                "@type": "sprite",
+                "@name": "skin",
+                "@center": "0.5x0.3"
+            }
+        },
+        "actions": {
+            "action": {
+                "@name": "animate",
+                "@value": "Animate[0.5,[folder:teslagun.2::,frames:turret3_20001.png,turret3_20002.png,turret3_20003.png,turret3_20004.png,turret3_20005.png,turret3_20006.png,turret3_20007.png,turret3_20008.png,turret3_20009.png,turret3_20010.png,turret3_20011.png,turret3_20012.png,turret3_20013.png,turret3_20014.png,turret3_20015.png,turret3_20016.png,turret3_20017.png,turret3_20018.png,turret3_20019.png,turret3_20020.png,turret3_20001.png]]"
+            }
+        },
+        "events": {
+            "eventlist": {
+                "@name": "on_shoot",
+                "playsound": {
+                    "@sound": "##sound_tesla2##"
+                },
+                "runaction": {
+                    "@action": "animate",
+                    "@target": "skin"
                 }
             }
         }

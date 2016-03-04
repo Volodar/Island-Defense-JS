@@ -45,6 +45,11 @@ EU.Factory  = {
         //if( type == "scenestack" ) return EU.EventScene.create();
         //if( type == "statistic_accumulate" ) return EU.EventStatisticAccumulate.create();
 
-        cc.log("cannot create object  by type: " + type);
-    },
-}
+        var result = null;
+        if( this.add_build != undefined ){
+            result = this.add_build(type);
+        }
+        if( !result )
+            cc.log("cannot create object  by type: " + type);
+    }
+};

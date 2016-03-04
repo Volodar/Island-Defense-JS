@@ -1,9 +1,264 @@
 {
     "node": {
+        "@size": "320x640",
+        "@scale": "1x1",
         "@name": "win",
         "@pos": "frame:0.5x0.8",
-        "@scale": "1x1",
-        "@size": "320x640",
+        "children": {
+            "node": [
+                {
+                    "@opacity": "0",
+                    "@name": "shadow",
+                    "@color": "000000",
+                    "@strech": "frame:3x3:xy",
+                    "@image": "images/square.png",
+                    "@pos": "frame:0.0x-0.3",
+                    "@z": "-99",
+                    "@type": "sprite"
+                },
+                {
+                    "@image": "gamescene::victory/victory_1.png",
+                    "@z": "-1",
+                    "@type": "sprite",
+                    "@name": "top",
+                    "@pos": "0x500"
+                },
+                {
+                    "@image": "gamescene::victory/victory_3.png",
+                    "@z": "-2",
+                    "@type": "sprite",
+                    "@name": "bg_star",
+                    "@pos": "0x500"
+                },
+                {
+                    "@opacity": "192",
+                    "@scale": "0x0",
+                    "@name": "victory",
+                    "@image": "gamescene::victory/victory_2.png",
+                    "@pos": "0x1000",
+                    "@z": "1",
+                    "@type": "sprite",
+                    "children": {
+                        "node": {
+                            "@scale": "1.1x1.1",
+                            "@name": "victory_text",
+                            "@text": "#victory#",
+                            "@z": "2",
+                            "@pos": "180x70",
+                            "@visible": "yes",
+                            "@font": "fonts/mdefensefont2.fnt",
+                            "@type": "text",
+                            "@center": "0.5x0.5"
+                        }
+                    }
+                },
+                {
+                    "@scale": "1.0x1.0",
+                    "@name": "caption",
+                    "@text": "#victory#",
+                    "@pos": "0x180",
+                    "@font": "fonts/mdefensefont.fnt",
+                    "@type": "text"
+                },
+                {
+                    "@visible": "yes",
+                    "@z": "-3",
+                    "@type": "node",
+                    "@name": "score",
+                    "@pos": "0x500",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::victory/victory_4.png",
+                                "@z": "-1",
+                                "@type": "sprite",
+                                "@name": "bg_score",
+                                "@pos": ""
+                            },
+                            {
+                                "@name": "icon",
+                                "@image": "gamescene::victory/victory_coin.png",
+                                "@pos": "-10x-50",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@center": "1x0.5"
+                            },
+                            {
+                                "@z": "1",
+                                "@name": "value",
+                                "@text": "",
+                                "@pos": "-13x-42",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text",
+                                "@center": "0x0.5"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@visible": "",
+                    "@z": "9",
+                    "@type": "node",
+                    "@name": "star1",
+                    "@pos": "0x-145",
+                    "children": {
+                        "node": {
+                            "@scale": "0x0",
+                            "@name": "1",
+                            "@image": "gamescene::victory/victory_star.png",
+                            "@pos": "0x1500",
+                            "@z": "1",
+                            "@type": "sprite"
+                        }
+                    }
+                },
+                {
+                    "@visible": "",
+                    "@z": "9",
+                    "@type": "node",
+                    "@name": "star2",
+                    "@pos": "0x-145",
+                    "children": {
+                        "node": [
+                            {
+                                "@scale": "0",
+                                "@name": "1",
+                                "@image": "gamescene::victory/victory_star.png",
+                                "@pos": "-1500x0000",
+                                "@z": "1",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@scale": "0",
+                                "@name": "2",
+                                "@image": "gamescene::victory/victory_star.png",
+                                "@pos": "1500x0000",
+                                "@z": "1",
+                                "@type": "sprite"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@visible": "",
+                    "@z": "9",
+                    "@type": "node",
+                    "@name": "star3",
+                    "@pos": "0x-145",
+                    "children": {
+                        "node": [
+                            {
+                                "@scale": "0",
+                                "@name": "2",
+                                "@image": "gamescene::victory/victory_star.png",
+                                "@pos": "-1500x0000",
+                                "@z": "1",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@scale": "0x0",
+                                "@name": "1",
+                                "@image": "gamescene::victory/victory_star.png",
+                                "@pos": "0x1500",
+                                "@z": "1",
+                                "@type": "sprite"
+                            },
+                            {
+                                "@scale": "0x0",
+                                "@name": "3",
+                                "@image": "gamescene::victory/victory_star.png",
+                                "@pos": "1500x0000",
+                                "@z": "1",
+                                "@type": "sprite"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@type": "menu",
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@opacity": "0",
+                                "@name": "close",
+                                "@pos": "0x-340",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "menuitem",
+                                "@imageN": "gamescene::victory/victory_cont.png",
+                                "children": {
+                                    "node": {
+                                        "@name": "normal",
+                                        "children": {
+                                            "node": {
+                                                "@scale": "0.7x0.7",
+                                                "@name": "continue_text",
+                                                "@text": "#continue#",
+                                                "@z": "2",
+                                                "@pos": "110x60",
+                                                "@visible": "yes",
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@type": "text",
+                                                "@center": "0.5x0.5"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "@opacity": "0",
+                                "@sound": "##sound_button##",
+                                "@name": "restart",
+                                "@pos": "0x-450",
+                                "@type": "menuitem",
+                                "@imageN": "gamescene::victory/victory_restart.png",
+                                "children": {
+                                    "node": {
+                                        "@name": "normal",
+                                        "children": {
+                                            "node": [
+                                                {
+                                                    "@scale": "0.7x0.7",
+                                                    "@name": "restart_text",
+                                                    "@text": "#restart#",
+                                                    "@z": "2",
+                                                    "@pos": "90x50",
+                                                    "@visible": "yes",
+                                                    "@font": "fonts/mdefensefont2.fnt",
+                                                    "@type": "text",
+                                                    "@center": "0.5x0.5"
+                                                },
+                                                {
+                                                    "@scale": "0.6x0.6",
+                                                    "@name": "icon",
+                                                    "@image": "choose::button_fuel.png",
+                                                    "@pos": "64x26",
+                                                    "@visible": "no",
+                                                    "@type": "sprite",
+                                                    "@center": "0x0.5"
+                                                },
+                                                {
+                                                    "@scale": "0.45x0.45",
+                                                    "@name": "cost",
+                                                    "@text": "0",
+                                                    "@z": "2",
+                                                    "@pos": "86x30",
+                                                    "@visible": "no",
+                                                    "@font": "fonts/mdefensefont2.fnt",
+                                                    "@type": "text",
+                                                    "@center": "0x0.5"
+                                                }
+                                            ]
+                                        }
+                                    }
+                                }
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -89,261 +344,6 @@
                 {
                     "@name": "menuitem2",
                     "@value": "Sequence[DelayTime[1.6],FadeTo[0.4,255]]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@color": "000000",
-                    "@image": "images/square.png",
-                    "@name": "shadow",
-                    "@opacity": "0",
-                    "@pos": "frame:0.0x-0.3",
-                    "@strech": "frame:3x3:xy",
-                    "@type": "sprite",
-                    "@z": "-99"
-                },
-                {
-                    "@image": "gamescene::victory/victory_1.png",
-                    "@name": "top",
-                    "@pos": "0x500",
-                    "@type": "sprite",
-                    "@z": "-1"
-                },
-                {
-                    "@image": "gamescene::victory/victory_3.png",
-                    "@name": "bg_star",
-                    "@pos": "0x500",
-                    "@type": "sprite",
-                    "@z": "-2"
-                },
-                {
-                    "@image": "gamescene::victory/victory_2.png",
-                    "@name": "victory",
-                    "@opacity": "192",
-                    "@pos": "0x1000",
-                    "@scale": "0x0",
-                    "@type": "sprite",
-                    "@z": "1",
-                    "children": {
-                        "node": {
-                            "@center": "0.5x0.5",
-                            "@font": "fonts/mdefensefont2.fnt",
-                            "@name": "victory_text",
-                            "@pos": "180x70",
-                            "@scale": "1.1x1.1",
-                            "@text": "#victory#",
-                            "@type": "text",
-                            "@visible": "yes",
-                            "@z": "2"
-                        }
-                    }
-                },
-                {
-                    "@font": "fonts/mdefensefont.fnt",
-                    "@name": "caption",
-                    "@pos": "0x180",
-                    "@scale": "1.0x1.0",
-                    "@text": "#victory#",
-                    "@type": "text"
-                },
-                {
-                    "@name": "score",
-                    "@pos": "0x500",
-                    "@type": "node",
-                    "@visible": "yes",
-                    "@z": "-3",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::victory/victory_4.png",
-                                "@name": "bg_score",
-                                "@pos": "",
-                                "@type": "sprite",
-                                "@z": "-1"
-                            },
-                            {
-                                "@center": "1x0.5",
-                                "@image": "gamescene::victory/victory_coin.png",
-                                "@name": "icon",
-                                "@pos": "-10x-50",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@center": "0x0.5",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "value",
-                                "@pos": "-13x-42",
-                                "@text": "",
-                                "@type": "text",
-                                "@z": "1"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "star1",
-                    "@pos": "0x-145",
-                    "@type": "node",
-                    "@visible": "",
-                    "@z": "9",
-                    "children": {
-                        "node": {
-                            "@image": "gamescene::victory/victory_star.png",
-                            "@name": "1",
-                            "@pos": "0x1500",
-                            "@scale": "0x0",
-                            "@type": "sprite",
-                            "@z": "1"
-                        }
-                    }
-                },
-                {
-                    "@name": "star2",
-                    "@pos": "0x-145",
-                    "@type": "node",
-                    "@visible": "",
-                    "@z": "9",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::victory/victory_star.png",
-                                "@name": "1",
-                                "@pos": "-1500x0000",
-                                "@scale": "0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@image": "gamescene::victory/victory_star.png",
-                                "@name": "2",
-                                "@pos": "1500x0000",
-                                "@scale": "0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "star3",
-                    "@pos": "0x-145",
-                    "@type": "node",
-                    "@visible": "",
-                    "@z": "9",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::victory/victory_star.png",
-                                "@name": "2",
-                                "@pos": "-1500x0000",
-                                "@scale": "0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@image": "gamescene::victory/victory_star.png",
-                                "@name": "1",
-                                "@pos": "0x1500",
-                                "@scale": "0x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@image": "gamescene::victory/victory_star.png",
-                                "@name": "3",
-                                "@pos": "1500x0000",
-                                "@scale": "0x0",
-                                "@type": "sprite",
-                                "@z": "1"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@name": "menu",
-                    "@pos": "0x0",
-                    "@type": "menu",
-                    "children": {
-                        "node": [
-                            {
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@imageN": "gamescene::victory/victory_cont.png",
-                                "@name": "close",
-                                "@opacity": "0",
-                                "@pos": "0x-340",
-                                "@type": "menuitem",
-                                "children": {
-                                    "node": {
-                                        "@name": "normal",
-                                        "children": {
-                                            "node": {
-                                                "@center": "0.5x0.5",
-                                                "@font": "fonts/mdefensefont2.fnt",
-                                                "@name": "continue_text",
-                                                "@pos": "110x60",
-                                                "@scale": "0.7x0.7",
-                                                "@text": "#continue#",
-                                                "@type": "text",
-                                                "@visible": "yes",
-                                                "@z": "2"
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "@imageN": "gamescene::victory/victory_restart.png",
-                                "@name": "restart",
-                                "@opacity": "0",
-                                "@pos": "0x-450",
-                                "@sound": "##sound_button##",
-                                "@type": "menuitem",
-                                "children": {
-                                    "node": {
-                                        "@name": "normal",
-                                        "children": {
-                                            "node": [
-                                                {
-                                                    "@center": "0.5x0.5",
-                                                    "@font": "fonts/mdefensefont2.fnt",
-                                                    "@name": "restart_text",
-                                                    "@pos": "90x50",
-                                                    "@scale": "0.7x0.7",
-                                                    "@text": "#restart#",
-                                                    "@type": "text",
-                                                    "@visible": "yes",
-                                                    "@z": "2"
-                                                },
-                                                {
-                                                    "@center": "0x0.5",
-                                                    "@image": "choose::button_fuel.png",
-                                                    "@name": "icon",
-                                                    "@pos": "64x26",
-                                                    "@scale": "0.6x0.6",
-                                                    "@type": "sprite",
-                                                    "@visible": "no"
-                                                },
-                                                {
-                                                    "@center": "0x0.5",
-                                                    "@font": "fonts/mdefensefont2.fnt",
-                                                    "@name": "cost",
-                                                    "@pos": "86x30",
-                                                    "@scale": "0.45x0.45",
-                                                    "@text": "0",
-                                                    "@type": "text",
-                                                    "@visible": "no",
-                                                    "@z": "2"
-                                                }
-                                            ]
-                                        }
-                                    }
-                                }
-                            }
-                        ]
-                    }
                 }
             ]
         },

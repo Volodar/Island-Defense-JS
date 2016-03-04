@@ -1,16 +1,119 @@
 {
     "tower": {
-        "@color_electro": "FFFF80",
-        "@color_fire": "FF8080",
-        "@color_ice": "80FFFF",
-        "@exp": "2",
-        "@health": "85",
-        "@lifecost": "1",
-        "@name": "jeep",
         "@radius": "150",
-        "@unitlayer": "earth",
+        "@name": "jeep",
+        "@lifecost": "1",
+        "@color_ice": "80FFFF",
         "@unittype": "creep",
+        "@health": "85",
+        "@exp": "2",
+        "@color_electro": "FFFF80",
+        "@unitlayer": "earth",
         "@velocity": "120",
+        "@color_fire": "FF8080",
+        "effects": {
+            "positive": {
+                "@armor": "6",
+                "@fireResist": "9",
+                "@damage": "8",
+                "@iceResist": "2"
+            }
+        },
+        "extraproperties": {
+            "@freezing_scale": "0.35",
+            "@freezing_pos": "0x-5",
+            "@electro_scale": "1",
+            "@electro_pos": "0x30",
+            "@electro_size": "big",
+            "@fire_scale": "3",
+            "@fire_pos": "0x-5"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "transitions": {
+                "move": [
+                    {
+                        "@stop": "stop"
+                    },
+                    {
+                        "@die": "death"
+                    }
+                ],
+                "stop": [
+                    {
+                        "@move": "move"
+                    },
+                    {
+                        "@die": "death"
+                    },
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "readyfire": [
+                    {
+                        "@charge": "readyfire"
+                    },
+                    {
+                        "@notarget": "move"
+                    }
+                ],
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@delay": "1",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "0,180,90,270"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.38"
+                },
+                {
+                    "@visible": "yes",
+                    "@image": "jeep.left::,frames:jeep_leftright0001.png",
+                    "@type": "sprite",
+                    "@name": "skin2",
+                    "@center": "0.5x0.38"
+                },
+                {
+                    "@opacity": "192",
+                    "@visible": "no",
+                    "@type": "sprite",
+                    "@name": "death",
+                    "@center": "0.5x0.4"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x65"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -39,80 +142,38 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.38",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@center": "0.5x0.38",
-                    "@image": "jeep.left::,frames:jeep_leftright0001.png",
-                    "@name": "skin2",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@center": "0.5x0.4",
-                    "@name": "death",
-                    "@opacity": "192",
-                    "@type": "sprite",
-                    "@visible": "no"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x65",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "6",
-                "@damage": "8",
-                "@fireResist": "9",
-                "@iceResist": "2"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die",
-                    "action": {
-                        "@action": "animate_die",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "playsound": {
                         "@sound": "##sound_jeep_death##"
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_die",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_shoot",
-                    "action": {
-                        "@action": "animate_fire",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "playsound": {
                         "@sound": "##sound_jeep_shoot##"
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animate_fire",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate180",
-                    "action": {
-                        "@action": "animateL",
-                        "@state": "run",
-                        "@target": "skin"
-                    },
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -120,15 +181,15 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
-                    }
-                },
-                {
-                    "@name": "on_rotate0",
+                    },
                     "action": {
                         "@action": "animateL",
                         "@state": "run",
                         "@target": "skin"
-                    },
+                    }
+                },
+                {
+                    "@name": "on_rotate0",
                     "setproperty": {
                         "@property": "scale",
                         "@target": "skin",
@@ -136,97 +197,36 @@
                     },
                     "stopallaction": {
                         "@target": "skin"
+                    },
+                    "action": {
+                        "@action": "animateL",
+                        "@state": "run",
+                        "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate90",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateD",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
                 {
                     "@name": "on_rotate270",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animateU",
                         "@state": "run",
                         "@target": "skin"
-                    },
-                    "stopallaction": {
-                        "@target": "skin"
                     }
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x30",
-            "@electro_scale": "1",
-            "@electro_size": "big",
-            "@fire_pos": "0x-5",
-            "@fire_scale": "3",
-            "@freezing_pos": "0x-5",
-            "@freezing_scale": "0.35"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "1"
-                }
-            },
-            "transitions": {
-                "death": {
-                    "@stop": "stop"
-                },
-                "move": [
-                    {
-                        "@stop": "stop"
-                    },
-                    {
-                        "@die": "death"
-                    }
-                ],
-                "readyfire": [
-                    {
-                        "@charge": "readyfire"
-                    },
-                    {
-                        "@notarget": "move"
-                    }
-                ],
-                "stop": [
-                    {
-                        "@move": "move"
-                    },
-                    {
-                        "@die": "death"
-                    },
-                    {
-                        "@seetarget": "readyfire"
-                    },
-                    {
-                        "@notarget": "move"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "0,180,90,270"
-                },
-                "thresold": {
-                    "@value": "45"
-                }
-            }
         }
     }
 }

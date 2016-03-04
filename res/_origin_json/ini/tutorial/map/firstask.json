@@ -13,60 +13,60 @@
                             "@name": "bg"
                         },
                         {
-                            "@center": "0x0.5",
-                            "@font": "fonts/helvetica.fnt",
-                            "@name": "text",
-                            "@pos": "-110x00",
                             "@scale": "0.7x0.7",
+                            "@name": "text",
                             "@text": "#tuturial_is_use#",
                             "@textwidth": "420",
-                            "@type": "text"
+                            "@pos": "-110x00",
+                            "@font": "fonts/helvetica.fnt",
+                            "@type": "text",
+                            "@center": "0x0.5"
                         },
                         {
+                            "@type": "menu",
                             "@name": "menu",
                             "@pos": "0x0",
-                            "@type": "menu",
                             "children": {
                                 "node": [
                                     {
-                                        "@callback": "confirm_tutorial_yes",
-                                        "@imageN": "images/tutorial/yes.png",
+                                        "@sound": "##sound_button##",
                                         "@name": "yes",
                                         "@pos": "10x-88",
-                                        "@sound": "##sound_button##",
+                                        "@callback": "confirm_tutorial_yes",
                                         "@type": "menuitem",
+                                        "@imageN": "images/tutorial/yes.png",
                                         "children": {
                                             "node": {
-                                                "@center": "0.5x0.5",
-                                                "@font": "fonts/mdefensefont2.fnt",
-                                                "@name": "yes_text",
-                                                "@pos": "70x40",
                                                 "@scale": "0.7x0.7",
+                                                "@name": "yes_text",
                                                 "@text": "#tutorial_yes#",
-                                                "@type": "text",
+                                                "@z": "2",
+                                                "@pos": "70x40",
                                                 "@visible": "yes",
-                                                "@z": "2"
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@type": "text",
+                                                "@center": "0.5x0.5"
                                             }
                                         }
                                     },
                                     {
-                                        "@callback": "confirm_tutorial_no",
-                                        "@imageN": "images/tutorial/no.png",
+                                        "@sound": "##sound_button##",
                                         "@name": "no",
                                         "@pos": "220x-90",
-                                        "@sound": "##sound_button##",
+                                        "@callback": "confirm_tutorial_no",
                                         "@type": "menuitem",
+                                        "@imageN": "images/tutorial/no.png",
                                         "children": {
                                             "node": {
-                                                "@center": "0.5x0.5",
-                                                "@font": "fonts/mdefensefont2.fnt",
-                                                "@name": "no_text",
-                                                "@pos": "114x44",
                                                 "@scale": "0.7x0.7",
+                                                "@name": "no_text",
                                                 "@text": "#tutorial_nothanks#",
-                                                "@type": "text",
+                                                "@z": "2",
+                                                "@pos": "114x44",
                                                 "@visible": "yes",
-                                                "@z": "2"
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@type": "text",
+                                                "@center": "0.5x0.5"
                                             }
                                         }
                                     }

@@ -2,8 +2,8 @@
     "tutorial": {
         "@closebytap": "yes",
         "@nexttutorial": "level_shoparrow",
-        "@setlevelsscore": "0",
         "@template": "ini/tutorial/template_window.xml",
+        "@setlevelsscore": "0",
         "children": {
             "node": {
                 "@name": "body",
@@ -14,14 +14,14 @@
                             "@name": "bg"
                         },
                         {
-                            "@center": "0x0.5",
-                            "@font": "fonts/helvetica.fnt",
-                            "@name": "text",
-                            "@pos": "-110x00",
                             "@scale": "0.7x0.7",
+                            "@name": "text",
                             "@text": "#tuturial_open_shop_from_game#",
                             "@textwidth": "420",
-                            "@type": "text"
+                            "@pos": "-110x00",
+                            "@font": "fonts/helvetica.fnt",
+                            "@type": "text",
+                            "@center": "0x0.5"
                         }
                     ]
                 }

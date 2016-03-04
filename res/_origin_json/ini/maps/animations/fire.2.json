@@ -1,7 +1,7 @@
 {
     "node": {
-        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..0],           Animate[0.5..1,[folder:maps.animations2::,           frames:           fire2_0001.png,           fire2_0002.png,           fire2_0003.png,           fire2_0004.png,           fire2_0005.png,           fire2_0006.png,           fire2_0007.png,           fire2_0008.png,           fire2_0009.png,           fire2_0010.png]]         ]       ]",
         "@image": "maps.animations2::fire2_0001.png",
+        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..0],           Animate[0.5..1,[folder:maps.animations2::,           frames:           fire2_0001.png,           fire2_0002.png,           fire2_0003.png,           fire2_0004.png,           fire2_0005.png,           fire2_0006.png,           fire2_0007.png,           fire2_0008.png,           fire2_0009.png,           fire2_0010.png]]         ]       ]",
         "@type": "sprite"
     }
 }

@@ -7,18 +7,18 @@
                 {
                     "@path": "menu/buy/normal/cost",
                     "@pos": "108x40",
-                    "@text": "#shop_offerwall#",
-                    "@textalign": "center"
+                    "@textalign": "center",
+                    "@text": "#shop_offerwall#"
                 },
                 {
                     "@path": "menu/buy/normal/text",
-                    "@text": "",
-                    "@visible": "no"
+                    "@visible": "no",
+                    "@text": ""
                 },
                 {
+                    "@text": "FREE!!!",
                     "@name": "text",
-                    "@pos": "115x395",
-                    "@text": "FREE!!!"
+                    "@pos": "115x395"
                 },
                 {
                     "@image": "images/shop/icon_gold.png",

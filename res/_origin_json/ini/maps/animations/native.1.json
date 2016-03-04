@@ -1,7 +1,7 @@
 {
     "node": {
-        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..1],           Animate[1.5..2,[folder:maps.animations2::,           frames:           native1_0001.png,           native1_0002.png,           native1_0003.png,           native1_0004.png,           native1_0005.png,           native1_0006.png,           native1_0007.png,           native1_0008.png,           native1_0009.png,           native1_0010.png,           native1_0011.png,           native1_0012.png,           native1_0013.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png           ]]         ]       ]",
         "@image": "maps.animations2::native1_0001.png",
+        "@animation": "RepeatForever       [         Sequence         [           DelayTime[0..1],           Animate[1.5..2,[folder:maps.animations2::,           frames:           native1_0001.png,           native1_0002.png,           native1_0003.png,           native1_0004.png,           native1_0005.png,           native1_0006.png,           native1_0007.png,           native1_0008.png,           native1_0009.png,           native1_0010.png,           native1_0011.png,           native1_0012.png,           native1_0013.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png,           native1_0014.png           ]]         ]       ]",
         "@type": "sprite"
     }
 }

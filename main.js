@@ -38,14 +38,28 @@ cc.game.onStart = function(){
             EU.xmlLoader.macros.set("icon_paid_version", EU.k.iconForPaidGame );
         };
 
+        var registration = function()
+        {
+            EU.Factory.add_build = function( type ){
+                if( type == "hero" ) return new EU.Hero();
+                //if( type == "createunit" ) return new EU.EventCreateUnit();
+                //if( type == "createunit_reverseroute" ) return new EU.EventCreateUnitReverseRoute();
+                //if( type == "areadamage" ) return new EU.EventAreaDamage();
+                //if( type == "hero2" ) return new EU.Hero2();
+                return null;
+            }
+        };
+
         /**
          * ApplicationWillEnterForeground
          */
+        registration();
         cc.director.startAnimation();
         cc.audioEngine.resumeAllEffects();
         cc.audioEngine.resumeMusic();
         EU.ScoreByTime.checktime( );
         EU.mlTowersInfo.checkAvailabledTowers();
+        EU.HeroExp.onCreate();
         /** */
 
 
@@ -181,28 +195,28 @@ cc.game.run();
 //
 //void AppDelegate.linkPlugins()
 //{
-//    AdsPlugin.shared().use( AdsPlugin.Type.statistic, AdsPlugin.Service.flurry );
-//    AdsPlugin.shared().use( AdsPlugin.Type.OfferWall, AdsPlugin.Service.supersonic );
+//    AdsPlugin.use( AdsPlugin.Type.statistic, AdsPlugin.Service.flurry );
+//    AdsPlugin.use( AdsPlugin.Type.OfferWall, AdsPlugin.Service.supersonic );
 //    switch( k.configuration.AdsTypeInterstitial )
 //    {
-//        case k.configuration.InterstitialAdmob: AdsPlugin.shared().use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.admob ); break;
-//        case k.configuration.InterstitialChartboost: AdsPlugin.shared().use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.chartboost ); break;
-//        case k.configuration.InterstitialSupersonic: AdsPlugin.shared().use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.supersonic ); break;
-//        case k.configuration.InterstitialFyber: AdsPlugin.shared().use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.fyber ); break;
-//        case k.configuration.InterstitialDeltaDNA: AdsPlugin.shared().use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.deltadna ); break;
+//        case k.configuration.InterstitialAdmob: AdsPlugin.use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.admob ); break;
+//        case k.configuration.InterstitialChartboost: AdsPlugin.use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.chartboost ); break;
+//        case k.configuration.InterstitialSupersonic: AdsPlugin.use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.supersonic ); break;
+//        case k.configuration.InterstitialFyber: AdsPlugin.use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.fyber ); break;
+//        case k.configuration.InterstitialDeltaDNA: AdsPlugin.use( AdsPlugin.Type.interstitialBanner, AdsPlugin.Service.deltadna ); break;
 //        default: assert( 0 );
 //    }
 //    switch( k.configuration.AdsTypeRewardVideo )
 //    {
-//        case k.configuration.RewardVideoVungle: AdsPlugin.shared().use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.vungle ); break;
-//        case k.configuration.RewardVideoSupersonic: AdsPlugin.shared().use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.supersonic ); break;
-//        case k.configuration.RewardVideoFyber: AdsPlugin.shared().use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.fyber ); break;
-//        case k.configuration.RewardVideoDeltaDNA: AdsPlugin.shared().use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.deltadna ); break;
+//        case k.configuration.RewardVideoVungle: AdsPlugin.use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.vungle ); break;
+//        case k.configuration.RewardVideoSupersonic: AdsPlugin.use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.supersonic ); break;
+//        case k.configuration.RewardVideoFyber: AdsPlugin.use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.fyber ); break;
+//        case k.configuration.RewardVideoDeltaDNA: AdsPlugin.use( AdsPlugin.Type.rewardVideo, AdsPlugin.Service.deltadna ); break;
 //        default: assert( 0 );
 //    }
 //    switch( k.configuration.AdsTypeOfferWall )
 //    {
-//        case k.configuration.OfferWallSupersonic: AdsPlugin.shared().use( AdsPlugin.Type.OfferWall, AdsPlugin.Service.supersonic ); break;
+//        case k.configuration.OfferWallSupersonic: AdsPlugin.use( AdsPlugin.Type.OfferWall, AdsPlugin.Service.supersonic ); break;
 //        default: assert( 0 );
 //    }
 //}
@@ -262,7 +276,7 @@ cc.game.run();
 //    g_isFullscreenMode = true;
 //#endif
 //
-//    g_isFullscreenMode = UserData.shared().get_bool( "fullscreen", g_isFullscreenMode );
+//    g_isFullscreenMode = UserData.get_bool( "fullscreen", g_isFullscreenMode );
 //
 //#ifdef _DEBUG
 //    g_isFullscreenMode = false;
@@ -338,14 +352,6 @@ cc.game.run();
 //#endif
 //}
 //
-//void registration()
-//{
-//    Factory.shared().book<EventCreateUnit>( "createunit" );
-//    Factory.shared().book<EventCreateUnitReverseRoute>( "createunit_reverseroute" );
-//    Factory.shared().book<EventAreaDamage>( "areadamage" );
-//    Factory.shared().book<Hero>( "hero" );
-//    Factory.shared().book<Hero2>( "hero2" );
-//}
 //
 //void showCursor()
 //{
@@ -358,7 +364,7 @@ cc.game.run();
 //    cc.director.getOpenGLView()->getFrameSize().width;
 //
 //    ShowCursor( FALSE );
-//    var sprite = ImageManager.shared().sprite("images/cursor.png");
+//    var sprite = ImageManager.sprite("images/cursor.png");
 //    sprite->retain();
 //    sprite->setGlobalZOrder(9999);
 //    sprite->setAnchorPoint(Point(0, 1));

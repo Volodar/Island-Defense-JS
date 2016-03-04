@@ -1,14 +1,67 @@
 {
     "tower": {
-        "@allowmenu": "no",
-        "@allowtargets": "earth,sea",
-        "@damagebysector": "yes",
-        "@maxlevel": "1",
         "@name": "bonusitem_dynamit",
-        "@radius": "35",
         "@sectorangle": "360",
-        "@unitlayer": "any",
+        "@damagebysector": "yes",
         "@unittype": "tower",
+        "@allowmenu": "no",
+        "@radius": "35",
+        "@allowtargets": "earth,sea",
+        "@unitlayer": "any",
+        "@maxlevel": "1",
+        "effects": {
+            "positive": {
+                "@damage": "10000"
+            }
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "transitions": {
+                "charging": {
+                    "@ready": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                },
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@image": "",
+                    "@animation": "           Sequence           [             Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],             Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]           ]           ",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@visible": "no",
+                    "@type": "menu",
+                    "@name": "menu",
+                    "@pos": "0x70",
+                    "children": {
+                        "node": {
+                            "@opacity": "128",
+                            "@callback": "push_event:die",
+                            "@type": "menuitem",
+                            "@name": "activate",
+                            "@imageN": "gamescene::button_dyn.png"
+                        }
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -21,61 +74,30 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@animation": "           Sequence           [             Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],             Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]           ]           ",
-                    "@center": "0.5x0.5",
-                    "@image": "",
-                    "@name": "skin",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "menu",
-                    "@pos": "0x70",
-                    "@type": "menu",
-                    "@visible": "no",
-                    "children": {
-                        "node": {
-                            "@callback": "push_event:die",
-                            "@imageN": "gamescene::button_dyn.png",
-                            "@name": "activate",
-                            "@opacity": "128",
-                            "@type": "menuitem"
-                        }
-                    }
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@damage": "10000"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_die",
-                    "areadamage": {
-                        "@asunittype": "tower",
-                        "@radius": "100"
+                    "stopallaction": {
+                        "@target": "skin"
                     },
                     "runaction": {
                         "@action": "animate_die",
                         "@target": "skin"
                     },
-                    "stopallaction": {
-                        "@target": "skin"
+                    "areadamage": {
+                        "@asunittype": "tower",
+                        "@radius": "100"
                     }
                 },
                 {
                     "@name": "on_charging",
-                    "playsound": {
-                        "@sound": "##sound_bonusitem_dinamyte##"
-                    },
                     "runaction": {
                         "@action": "animate_nothing",
                         "@target": "skin"
+                    },
+                    "playsound": {
+                        "@sound": "##sound_bonusitem_dinamyte##"
                     }
                 },
                 {
@@ -95,28 +117,6 @@
                     }
                 }
             ]
-        },
-        "machine_unit": {
-            "@start_state": "charging",
-            "params": {
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_death": {
-                    "@duration": "0.5"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "death"
-                },
-                "death": {
-                    "@stop": "stop"
-                },
-                "stop": {
-                    "@die": "death"
-                }
-            }
         },
         "paramcollection": {
             "showmenu": "no"

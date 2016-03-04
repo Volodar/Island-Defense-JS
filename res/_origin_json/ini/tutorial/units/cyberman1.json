@@ -4,8 +4,8 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut5_ground.png",
-                    "@path": "body/bgtype"
+                    "@path": "body/bgtype",
+                    "@image": "images/tutorial/tut5_ground.png"
                 },
                 {
                     "@path": "body/name",
@@ -21,9 +21,9 @@
                     "@text": "#cyberman1_desc#"
                 },
                 {
-                    "@animation": "         RepeatForever         [           Sequence           [             ScaleTo[0,-1,1],             Spawn[MoveTo[0.5,-180,40],Animate[0.5,[folder:cyberman1::left/,indexes:cyberman1_run_00.png,01:16]]],             Animate[0.5,[folder:cyberman1::fire/,indexes:cyberman1_fire_00.png,01:16]],             ScaleTo[0,1,1],             Spawn[MoveTo[0.5,-240,40],Animate[0.5,[folder:cyberman1::left/,indexes:cyberman1_run_00.png,01:16]]],             Animate[0.5,[folder:cyberman1::fire/,indexes:cyberman1_fire_00.png,01:16]]           ]         ]         ",
                     "@path": "body/unit",
-                    "@scale": "-1x1"
+                    "@scale": "-1x1",
+                    "@animation": "         RepeatForever         [           Sequence           [             ScaleTo[0,-1,1],             Spawn[MoveTo[0.5,-180,40],Animate[0.5,[folder:cyberman1::left/,indexes:cyberman1_run_00.png,01:16]]],             Animate[0.5,[folder:cyberman1::fire/,indexes:cyberman1_fire_00.png,01:16]],             ScaleTo[0,1,1],             Spawn[MoveTo[0.5,-240,40],Animate[0.5,[folder:cyberman1::left/,indexes:cyberman1_run_00.png,01:16]]],             Animate[0.5,[folder:cyberman1::fire/,indexes:cyberman1_fire_00.png,01:16]]           ]         ]         "
                 }
             ]
         }

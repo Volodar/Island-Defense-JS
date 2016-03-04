@@ -1,13 +1,66 @@
 {
     "tower": {
         "@exp": "3",
-        "@health": "100",
-        "@name": "helocopter_medic",
-        "@radius": "150",
         "@sound_onmove": "##sound_helicopter_move##",
+        "@name": "helocopter_medic",
+        "@health": "100",
+        "@radius": "150",
         "@template": "ini/units/templates/creepbase.xml",
         "@unitlayer": "sky",
         "@velocity": "60",
+        "effects": {
+            "positive": {
+                "@armor": "0",
+                "@damage": "1.5"
+            }
+        },
+        "extraproperties": {
+            "@freezing_scale": "0.4",
+            "@freezing_pos": "0x50",
+            "@electro_scale": "1",
+            "@electro_pos": "0x30",
+            "@electro_size": "big",
+            "@fire_scale": "3",
+            "@fire_pos": "0x0"
+        },
+        "skills": {
+            "medic": {
+                "@effect_description": "type:medic,animation:red",
+                "@frequence": "3.5",
+                "@units": "soldier,soldier2,bigman,flamethrower",
+                "@health": "25",
+                "@maxtargets": "5",
+                "@duration": "0.3",
+                "@radius": "500"
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.0"
+                },
+                {
+                    "@visible": "no",
+                    "@type": "sprite",
+                    "@name": "death",
+                    "@center": "0.5x0.0"
+                },
+                {
+                    "@image": "images/creeps/helicopter_shadow.png",
+                    "@type": "sprite",
+                    "@name": "shadow",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x110"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -32,49 +85,16 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.0",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@center": "0.5x0.0",
-                    "@name": "death",
-                    "@type": "sprite",
-                    "@visible": "no"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@image": "images/creeps/helicopter_shadow.png",
-                    "@name": "shadow",
-                    "@type": "sprite"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x110",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@armor": "0",
-                "@damage": "1.5"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "on_healing",
+                    "stopallaction": {
+                        "@target": "skin"
+                    },
                     "action": {
                         "@action": "animate_fire",
                         "@state": "run",
-                        "@target": "skin"
-                    },
-                    "stopallaction": {
                         "@target": "skin"
                     }
                 },
@@ -85,26 +105,6 @@
                     "@name": "on_shoot"
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x30",
-            "@electro_scale": "1",
-            "@electro_size": "big",
-            "@fire_pos": "0x0",
-            "@fire_scale": "3",
-            "@freezing_pos": "0x50",
-            "@freezing_scale": "0.4"
-        },
-        "skills": {
-            "medic": {
-                "@duration": "0.3",
-                "@effect_description": "type:medic,animation:red",
-                "@frequence": "3.5",
-                "@health": "25",
-                "@maxtargets": "5",
-                "@radius": "500",
-                "@units": "soldier,soldier2,bigman,flamethrower"
-            }
         }
     }
 }

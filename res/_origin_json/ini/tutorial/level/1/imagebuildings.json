@@ -5,99 +5,99 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut1.png",
-                    "@path": "body/bg"
+                    "@path": "body/bg",
+                    "@image": "images/tutorial/tut1.png"
                 },
                 {
+                    "@type": "node",
                     "@name": "ballon1",
                     "@pos": "-244x80",
-                    "@type": "node",
                     "children": {
                         "node": [
                             {
                                 "@image": "images/tutorial/baloon1.png",
-                                "@name": "bg",
-                                "@type": "sprite"
+                                "@type": "sprite",
+                                "@name": "bg"
                             },
                             {
                                 "@image": "images/tutorial/baloon1_1.png",
-                                "@name": "arrow",
-                                "@pos": "-60x-40",
+                                "@z": "1",
                                 "@type": "sprite",
-                                "@z": "1"
+                                "@name": "arrow",
+                                "@pos": "-60x-40"
                             },
                             {
-                                "@color": "35352B",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "0x4",
                                 "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@color": "35352B",
                                 "@text": "#tuturial_building_tapflag#",
-                                "@type": "text",
-                                "@z": "2"
+                                "@z": "2",
+                                "@pos": "0x4",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
                             }
                         ]
                     }
                 },
                 {
+                    "@type": "node",
                     "@name": "ballon2",
                     "@pos": "-220x-120",
-                    "@type": "node",
                     "children": {
                         "node": [
                             {
                                 "@image": "images/tutorial/baloon1.png",
-                                "@name": "bg",
+                                "@type": "sprite",
+                                "@name": "bg"
+                            },
+                            {
+                                "@name": "arrow",
+                                "@image": "images/tutorial/baloon1_1.png",
+                                "@pos": "60x40",
+                                "@rotation": "180",
+                                "@z": "1",
                                 "@type": "sprite"
                             },
                             {
-                                "@image": "images/tutorial/baloon1_1.png",
-                                "@name": "arrow",
-                                "@pos": "60x40",
-                                "@rotation": "180",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@color": "35352B",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "0x4",
                                 "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@color": "35352B",
                                 "@text": "#tuturial_building_choosetower#",
-                                "@type": "text",
-                                "@z": "2"
+                                "@z": "2",
+                                "@pos": "0x4",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
                             }
                         ]
                     }
                 },
                 {
+                    "@type": "node",
                     "@name": "ballon3",
                     "@pos": "188x80",
-                    "@type": "node",
                     "children": {
                         "node": [
                             {
                                 "@image": "images/tutorial/baloon1.png",
-                                "@name": "bg",
-                                "@type": "sprite"
+                                "@type": "sprite",
+                                "@name": "bg"
                             },
                             {
                                 "@image": "images/tutorial/baloon1_1.png",
-                                "@name": "arrow",
-                                "@pos": "60x-40",
+                                "@z": "1",
                                 "@type": "sprite",
-                                "@z": "1"
+                                "@name": "arrow",
+                                "@pos": "60x-40"
                             },
                             {
-                                "@color": "35352B",
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "text",
-                                "@pos": "0x4",
                                 "@scale": "0.7x0.7",
+                                "@name": "text",
+                                "@color": "35352B",
                                 "@text": "#tuturial_building_towerready#",
-                                "@type": "text",
-                                "@z": "2"
+                                "@z": "2",
+                                "@pos": "0x4",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
                             }
                         ]
                     }

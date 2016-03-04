@@ -2,8 +2,8 @@
     "node": {
         "@animation": "       RepeatForever       [         Sequence         [           DelayTime[1..2],           Sequence[ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1],ScaleTo[0.5,1.1,1.1],ScaleTo[0.5,1,1]]         ]               ]",
         "@image": "maps.animations::base_icon.png",
-        "@name": "base_point",
+        "@z": "-99999",
         "@type": "sprite",
-        "@z": "-99999"
+        "@name": "base_point"
     }
 }

@@ -4,8 +4,8 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut5_ground.png",
-                    "@path": "body/bgtype"
+                    "@path": "body/bgtype",
+                    "@image": "images/tutorial/tut5_ground.png"
                 },
                 {
                     "@path": "body/name",
@@ -20,8 +20,8 @@
                     "@text": "#tank_m_desc#"
                 },
                 {
-                    "@animation": "         RepeatForever         [           Sequence           [             ScaleTo[0,-1,1],             Spawn[MoveTo[0.6,-190,20],Animate[0.3,[folder:tank_m::left/,indexes:tank2_m_go_00.png,01:10]]],             Animate[0.3,[folder:tank_m::fire/,indexes:tank2_m_fire_00.png,01:10]],             ScaleTo[0,1,1],             Spawn[MoveTo[0.6,-230,20],Animate[0.3,[folder:tank_m::left/,indexes:tank2_m_go_00.png,01:10]]],             Animate[0.3,[folder:tank_m::fire/,indexes:tank2_m_fire_00.png,01:10]]           ]         ]         ",
                     "@path": "body/unit",
+                    "@animation": "         RepeatForever         [           Sequence           [             ScaleTo[0,-1,1],             Spawn[MoveTo[0.6,-190,20],Animate[0.3,[folder:tank_m::left/,indexes:tank2_m_go_00.png,01:10]]],             Animate[0.3,[folder:tank_m::fire/,indexes:tank2_m_fire_00.png,01:10]],             ScaleTo[0,1,1],             Spawn[MoveTo[0.6,-230,20],Animate[0.3,[folder:tank_m::left/,indexes:tank2_m_go_00.png,01:10]]],             Animate[0.3,[folder:tank_m::fire/,indexes:tank2_m_fire_00.png,01:10]]           ]         ]         ",
                     "@pos": "-210x20"
                 }
             ]

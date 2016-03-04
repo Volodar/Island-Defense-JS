@@ -4,12 +4,6 @@
             {
                 "@directory": "infantry/",
                 "@name": "infantrysecond",
-                "effects": {
-                    "positive": {
-                        "@damage": "0.33",
-                        "@isCanStoppedMove": "true"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -35,17 +29,17 @@
                         "@name": "soundmove",
                         "@value": "march.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@isCanStoppedMove": "true",
+                        "@damage": "0.33"
+                    }
+                }
             },
             {
                 "@directory": "marine/",
                 "@name": "marine",
-                "effects": {
-                    "positive": {
-                        "@damage": "0.33",
-                        "@isCanStoppedMove": "true"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -71,17 +65,17 @@
                         "@name": "soundmove",
                         "@value": "march.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@isCanStoppedMove": "true",
+                        "@damage": "0.33"
+                    }
+                }
             },
             {
                 "@directory": "maroon_beret/",
                 "@name": "beret",
-                "effects": {
-                    "positive": {
-                        "@damage": "0.33",
-                        "@isCanStoppedMove": "true"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -107,16 +101,17 @@
                         "@name": "soundmove",
                         "@value": "march.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@isCanStoppedMove": "true",
+                        "@damage": "0.33"
+                    }
+                }
             },
             {
                 "@directory": "car0/",
                 "@name": "car0",
-                "effects": {
-                    "positive": {
-                        "@armor": "3"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -142,16 +137,16 @@
                         "@name": "soundmove",
                         "@value": "car0.wav"
                     }
-                ]
-            },
-            {
-                "@directory": "car1/",
-                "@name": "car1",
+                ],
                 "effects": {
                     "positive": {
                         "@armor": "3"
                     }
-                },
+                }
+            },
+            {
+                "@directory": "car1/",
+                "@name": "car1",
                 "param": [
                     {
                         "@name": "bodytype",
@@ -181,16 +176,16 @@
                         "@name": "soundmove",
                         "@value": "car1.wav"
                     }
-                ]
-            },
-            {
-                "@directory": "car2/",
-                "@name": "car2",
+                ],
                 "effects": {
                     "positive": {
                         "@armor": "3"
                     }
-                },
+                }
+            },
+            {
+                "@directory": "car2/",
+                "@name": "car2",
                 "param": [
                     {
                         "@name": "bodytype",
@@ -220,18 +215,16 @@
                         "@name": "soundmove",
                         "@value": "car2.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "3"
+                    }
+                }
             },
             {
                 "@directory": "tank/",
                 "@name": "tank",
-                "effects": {
-                    "positive": {
-                        "@armor": "10",
-                        "@fireResist": "10",
-                        "@iceResist": "5"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -261,18 +254,18 @@
                         "@name": "soundmove",
                         "@value": "tank0.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                }
             },
             {
                 "@directory": "tank/",
                 "@name": "tank0",
-                "effects": {
-                    "positive": {
-                        "@armor": "10",
-                        "@fireResist": "10",
-                        "@iceResist": "5"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -302,18 +295,18 @@
                         "@name": "soundmove",
                         "@value": "tank0.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                }
             },
             {
                 "@directory": "tank2/",
                 "@name": "tank1",
-                "effects": {
-                    "positive": {
-                        "@armor": "10",
-                        "@fireResist": "10",
-                        "@iceResist": "5"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -343,18 +336,18 @@
                         "@name": "soundmove",
                         "@value": "tank0.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "10",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                }
             },
             {
                 "@directory": "tank3/",
                 "@name": "tank2",
-                "effects": {
-                    "positive": {
-                        "@armor": "15",
-                        "@fireResist": "10",
-                        "@iceResist": "5"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -384,16 +377,18 @@
                         "@name": "soundmove",
                         "@value": "tank1.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "15",
+                        "@fireResist": "10",
+                        "@iceResist": "5"
+                    }
+                }
             },
             {
                 "@directory": "rotorplane0/",
                 "@name": "rotorplane0",
-                "effects": {
-                    "positive": {
-                        "@armor": "10"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -419,16 +414,16 @@
                         "@name": "soundmove",
                         "@value": "rotorplane0.wav"
                     }
-                ]
-            },
-            {
-                "@directory": "rotorplane1/",
-                "@name": "rotorplane1",
+                ],
                 "effects": {
                     "positive": {
                         "@armor": "10"
                     }
-                },
+                }
+            },
+            {
+                "@directory": "rotorplane1/",
+                "@name": "rotorplane1",
                 "param": [
                     {
                         "@name": "bodytype",
@@ -454,16 +449,16 @@
                         "@name": "soundmove",
                         "@value": "rotorplane1.wav"
                     }
-                ]
-            },
-            {
-                "@directory": "rotorplane2/",
-                "@name": "rotorplane2",
+                ],
                 "effects": {
                     "positive": {
                         "@armor": "10"
                     }
-                },
+                }
+            },
+            {
+                "@directory": "rotorplane2/",
+                "@name": "rotorplane2",
                 "param": [
                     {
                         "@name": "bodytype",
@@ -489,16 +484,16 @@
                         "@name": "soundmove",
                         "@value": "rotorplane2.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "10"
+                    }
+                }
             },
             {
                 "@directory": "plane/",
                 "@name": "plane",
-                "effects": {
-                    "positive": {
-                        "@armor": "15"
-                    }
-                },
                 "param": [
                     {
                         "@name": "bodytype",
@@ -524,7 +519,12 @@
                         "@name": "soundmove",
                         "@value": "rotorplane0.wav"
                     }
-                ]
+                ],
+                "effects": {
+                    "positive": {
+                        "@armor": "15"
+                    }
+                }
             }
         ]
     }

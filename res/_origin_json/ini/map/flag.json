@@ -1,8 +1,33 @@
 {
     "menuitem": {
-        "@center": "0.5x0.15",
-        "@imageN": "images/map/##flag_image##.png",
         "@type": "menuitem",
+        "@imageN": "images/map/##flag_image##.png",
+        "@center": "0.5x0.15",
+        "children": {
+            "node": [
+                {
+                    "@visible": "no",
+                    "@image": "images/map/star1.png",
+                    "@type": "sprite",
+                    "@name": "star1",
+                    "@pos": "28x75"
+                },
+                {
+                    "@visible": "no",
+                    "@image": "images/map/star2.png",
+                    "@type": "sprite",
+                    "@name": "star2",
+                    "@pos": "28x75"
+                },
+                {
+                    "@visible": "no",
+                    "@image": "images/map/star3.png",
+                    "@type": "sprite",
+                    "@name": "star3",
+                    "@pos": "28x75"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -23,66 +48,10 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@image": "images/map/star1.png",
-                    "@name": "star1",
-                    "@pos": "28x75",
-                    "@type": "sprite",
-                    "@visible": "no"
-                },
-                {
-                    "@image": "images/map/star2.png",
-                    "@name": "star2",
-                    "@pos": "28x75",
-                    "@type": "sprite",
-                    "@visible": "no"
-                },
-                {
-                    "@image": "images/map/star3.png",
-                    "@name": "star3",
-                    "@pos": "28x75",
-                    "@type": "sprite",
-                    "@visible": "no"
-                }
-            ]
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "star1_show",
-                    "playsound": [
-                        {
-                            "@predelay": "1",
-                            "@sound": "##sound_mapflagnew##"
-                        },
-                        {
-                            "@predelay": "2",
-                            "@sound": "##sound_mapflagstar1##"
-                        }
-                    ],
-                    "runaction": [
-                        {
-                            "@action": "star_scale",
-                            "@target": "star1"
-                        },
-                        {
-                            "@action": "star_scale",
-                            "@target": "fuel"
-                        },
-                        {
-                            "@action": "flag_scale"
-                        },
-                        {
-                            "@action": "flag_fadein",
-                            "@target": "normal"
-                        },
-                        {
-                            "@action": "flag_tint",
-                            "@target": "normal"
-                        }
-                    ],
                     "setproperty": [
                         {
                             "@property": "visible",
@@ -113,18 +82,65 @@
                             "@target": "normal",
                             "@value": "FF0000"
                         }
+                    ],
+                    "runaction": [
+                        {
+                            "@action": "star_scale",
+                            "@target": "star1"
+                        },
+                        {
+                            "@action": "star_scale",
+                            "@target": "fuel"
+                        },
+                        {
+                            "@action": "flag_scale"
+                        },
+                        {
+                            "@action": "flag_fadein",
+                            "@target": "normal"
+                        },
+                        {
+                            "@action": "flag_tint",
+                            "@target": "normal"
+                        }
+                    ],
+                    "playsound": [
+                        {
+                            "@sound": "##sound_mapflagnew##",
+                            "@predelay": "1"
+                        },
+                        {
+                            "@sound": "##sound_mapflagstar1##",
+                            "@predelay": "2"
+                        }
                     ]
                 },
                 {
                     "@name": "star2_show",
-                    "playsound": [
+                    "setproperty": [
                         {
-                            "@predelay": "1",
-                            "@sound": "##sound_mapflagnew##"
+                            "@property": "visible",
+                            "@target": "star2",
+                            "@value": "yes"
                         },
                         {
-                            "@predelay": "2",
-                            "@sound": "##sound_mapflagstar2##"
+                            "@property": "scale",
+                            "@target": "star2",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "normal",
+                            "@value": "0"
+                        },
+                        {
+                            "@property": "scale",
+                            "@value": "0x0"
+                        },
+                        {
+                            "@property": "color",
+                            "@target": "normal",
+                            "@value": "FF0000"
                         }
                     ],
                     "runaction": [
@@ -144,15 +160,28 @@
                             "@target": "normal"
                         }
                     ],
+                    "playsound": [
+                        {
+                            "@sound": "##sound_mapflagnew##",
+                            "@predelay": "1"
+                        },
+                        {
+                            "@sound": "##sound_mapflagstar2##",
+                            "@predelay": "2"
+                        }
+                    ]
+                },
+                {
+                    "@name": "star3_show",
                     "setproperty": [
                         {
                             "@property": "visible",
-                            "@target": "star2",
+                            "@target": "star3",
                             "@value": "yes"
                         },
                         {
                             "@property": "scale",
-                            "@target": "star2",
+                            "@target": "star3",
                             "@value": "0x0"
                         },
                         {
@@ -168,19 +197,6 @@
                             "@property": "color",
                             "@target": "normal",
                             "@value": "FF0000"
-                        }
-                    ]
-                },
-                {
-                    "@name": "star3_show",
-                    "playsound": [
-                        {
-                            "@predelay": "1",
-                            "@sound": "##sound_mapflagnew##"
-                        },
-                        {
-                            "@predelay": "2",
-                            "@sound": "##sound_mapflagstar3##"
                         }
                     ],
                     "runaction": [
@@ -200,30 +216,14 @@
                             "@target": "normal"
                         }
                     ],
-                    "setproperty": [
+                    "playsound": [
                         {
-                            "@property": "visible",
-                            "@target": "star3",
-                            "@value": "yes"
+                            "@sound": "##sound_mapflagnew##",
+                            "@predelay": "1"
                         },
                         {
-                            "@property": "scale",
-                            "@target": "star3",
-                            "@value": "0x0"
-                        },
-                        {
-                            "@property": "opacity",
-                            "@target": "normal",
-                            "@value": "0"
-                        },
-                        {
-                            "@property": "scale",
-                            "@value": "0x0"
-                        },
-                        {
-                            "@property": "color",
-                            "@target": "normal",
-                            "@value": "FF0000"
+                            "@sound": "##sound_mapflagstar3##",
+                            "@predelay": "2"
                         }
                     ]
                 },

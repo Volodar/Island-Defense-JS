@@ -16,16 +16,21 @@ var EU = EU || {};
 EU.UnitSkill = cc.Class.extend(
 {
     //virtual void update( var dt, EU.Unit context )=0;
-    execution: function () { return false; },
-
-    getUnit: function() { return this._unit; },
-    
     /** @type {EU.Unit} */ _unit : null,
-    /** @type {std.string} */ _onlyState : null,
-    /** @type {std.string} */ _needUnitSkill : null,
+    /** @type {String} */ _onlyState : null,
+    /** @type {String} */ _needUnitSkill : null,
     /** @type {int} */ _needUnitSkillLevel : 0,
 
-    /******************************************************************************/
+    getNeedUnitSkill: function(){return this._needUnitSkill; },
+    getNeedUnitSkillLevel: function(){return this._needUnitSkillLevel; },
+    getOnlyState: function(){return this._onlyState;},
+    getUnit: function(){return this._unit;},
+    onDamage: function(){},
+    execution: function () { return false; },
+
+
+
+/******************************************************************************/
     //MARK: UnitSkill
     /******************************************************************************/
 
@@ -35,6 +40,10 @@ EU.UnitSkill = cc.Class.extend(
         this._onlyState = xmlNode.getAttribute( "onlystate" );
         this._needUnitSkill = xmlNode.getAttribute( "unitskill" );
         this._needUnitSkillLevel = EU.Common.strToInt(xmlNode.getAttribute( "unitskilllevel" ));
+        if( !this._onlyState )
+            this._onlyState = "";
+        if( !this._needUnitSkill )
+            this._needUnitSkill = "";
         return this._unit != null;
     }
 
@@ -390,6 +399,9 @@ EU.UnitSkillRateParameter = EU.UnitSkill.extend(
 {
     /** @type {Number} */ _rate : null,
     /** @type {String} */ _parameter : null,
+
+    getParameter: function(){ return this._parameter;},
+    getRate: function(){ return this._rate;},
 
     /*****************************************************************************/
     //MARK: UnitSkillRateParameter

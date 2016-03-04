@@ -4,8 +4,8 @@
         "children": {
             "node": [
                 {
-                    "@image": "images/tutorial/tut5_ground.png",
-                    "@path": "body/bgtype"
+                    "@path": "body/bgtype",
+                    "@image": "images/tutorial/tut5_ground.png"
                 },
                 {
                     "@path": "body/name",
@@ -20,16 +20,16 @@
                     "@text": "#flyingfortress_desc#"
                 },
                 {
-                    "@animation": "RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]",
                     "@path": "body/unit",
-                    "@pos": "-210x60",
-                    "@scale": "-0.5x0.5"
+                    "@animation": "RepeatForever[Animate[0.7,[folder:airship::,indexes:airship_go00.png,01:20]]]",
+                    "@scale": "-0.5x0.5",
+                    "@pos": "-210x60"
                 },
                 {
                     "@image": "images/creeps/helicopter_shadow.png",
+                    "@type": "sprite",
                     "@name": "shadow",
-                    "@pos": "-210x-10",
-                    "@type": "sprite"
+                    "@pos": "-210x-10"
                 }
             ]
         }

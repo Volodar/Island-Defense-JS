@@ -1,11 +1,53 @@
 {
     "tower": {
-        "@exp": "2",
-        "@health": "80",
         "@name": "cyberman2",
+        "@health": "80",
         "@radius": "150",
-        "@template": "ini/units/templates/creepbattle.xml",
+        "@exp": "2",
         "@velocity": "25",
+        "@template": "ini/units/templates/creepbattle.xml",
+        "effects": {
+            "positive": {
+                "@damage": "1.5",
+                "@iceResist": "9",
+                "@electroResist": "1"
+            }
+        },
+        "extraproperties": {
+            "@freezing_scale": "0.25",
+            "@electro_scale": "1",
+            "@electro_pos": "0x15",
+            "@electro_size": "small",
+            "@fire_scale": "1.5",
+            "@fire_pos": "0x0"
+        },
+        "machine_unit": {
+            "@start_state": "stop",
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                },
+                "state_readyfire": {
+                    "@delay": "0.5",
+                    "@charge_volume": "99999"
+                }
+            }
+        },
+        "children": {
+            "node": [
+                {
+                    "@visible": "yes",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.15"
+                },
+                {
+                    "@z": "1",
+                    "@name": "health_indicator",
+                    "@pos": "-18x31"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -30,28 +72,6 @@
                 }
             ]
         },
-        "children": {
-            "node": [
-                {
-                    "@center": "0.5x0.15",
-                    "@name": "skin",
-                    "@type": "sprite",
-                    "@visible": "yes"
-                },
-                {
-                    "@name": "health_indicator",
-                    "@pos": "-18x31",
-                    "@z": "1"
-                }
-            ]
-        },
-        "effects": {
-            "positive": {
-                "@damage": "1.5",
-                "@electroResist": "1",
-                "@iceResist": "9"
-            }
-        },
         "events": {
             "eventlist": [
                 {
@@ -61,26 +81,6 @@
                     "@name": "on_shoot"
                 }
             ]
-        },
-        "extraproperties": {
-            "@electro_pos": "0x15",
-            "@electro_scale": "1",
-            "@electro_size": "small",
-            "@fire_pos": "0x0",
-            "@fire_scale": "1.5",
-            "@freezing_scale": "0.25"
-        },
-        "machine_unit": {
-            "@start_state": "stop",
-            "params": {
-                "state_death": {
-                    "@duration": "0.5"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "99999",
-                    "@delay": "0.5"
-                }
-            }
         }
     }
 }

@@ -40,16 +40,16 @@
                 ],
                 "playsound": [
                     {
-                        "@predelay": "2.0",
-                        "@sound": "##sound_airbomb_exposion##"
+                        "@sound": "##sound_airbomb_exposion##",
+                        "@predelay": "2.0"
                     },
                     {
-                        "@predelay": "2.1",
-                        "@sound": "##sound_airbomb_exposion##"
+                        "@sound": "##sound_airbomb_exposion##",
+                        "@predelay": "2.1"
                     },
                     {
-                        "@predelay": "2.2",
-                        "@sound": "##sound_airbomb_exposion##"
+                        "@sound": "##sound_airbomb_exposion##",
+                        "@predelay": "2.2"
                     }
                 ]
             }

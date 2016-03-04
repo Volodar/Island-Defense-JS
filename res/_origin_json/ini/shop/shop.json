@@ -5,37 +5,37 @@
             "node": [
                 {
                     "@image": "images/itemshop/1136.png",
+                    "@type": "sprite",
                     "@name": "bg",
-                    "@pos": "0x-35",
-                    "@type": "sprite"
+                    "@pos": "0x-35"
                 },
                 {
                     "@image": "images/shop/ui_window_shop_header.png",
+                    "@type": "sprite",
                     "@name": "caption",
-                    "@pos": "0x233",
-                    "@type": "sprite"
+                    "@pos": "0x233"
                 },
                 {
-                    "@center": "0.5x0.5",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "text",
-                    "@pos": "0x240",
                     "@scale": "0.7x0.7",
+                    "@center": "0.5x0.5",
                     "@text": "#main_shop_caption#",
-                    "@type": "text"
+                    "@pos": "0x240",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@name": "text"
                 },
                 {
+                    "@z": "9",
+                    "@type": "menu",
                     "@name": "menu",
                     "@pos": "0x0",
-                    "@type": "menu",
-                    "@z": "9",
                     "children": {
                         "node": {
-                            "@imageN": "images/itemshop/button_x.png",
-                            "@name": "close",
                             "@pos": "475x228",
                             "@sound": "##sound_button##",
-                            "@type": "menuitem"
+                            "@type": "menuitem",
+                            "@name": "close",
+                            "@imageN": "images/itemshop/button_x.png"
                         }
                     }
                 }

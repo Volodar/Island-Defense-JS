@@ -1,12 +1,181 @@
 {
     "layer": {
-        "@cascadeopacity": "yes",
-        "@name": "selecthero",
         "@opacity": "0",
-        "@pos": "frame:0.5x0.5",
         "@scale": "1.1x1.1",
-        "@size": "0x0",
+        "@name": "selecthero",
+        "@pos": "frame:0.5x0.5",
+        "@cascadeopacity": "yes",
         "@type": "selecthero",
+        "@size": "0x0",
+        "children": {
+            "node": [
+                {
+                    "@image": "images/promo/bg.png",
+                    "@type": "sprite",
+                    "@name": "bg",
+                    "@pos": "0x0"
+                },
+                {
+                    "@scale": "1x1",
+                    "@name": "points",
+                    "@color": "FFFFFF",
+                    "@text": "#heroes_promo_caption#",
+                    "@pos": "70x215",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@scale": "1x1",
+                    "@name": "hero1",
+                    "@color": "FFFFFF",
+                    "@text": "#heroes_promo_hero1#",
+                    "@pos": "-300x-175",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@scale": "1x1",
+                    "@name": "hero2",
+                    "@color": "FFFFFF",
+                    "@text": "#heroes_promo_hero2#",
+                    "@pos": "0x-175",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@scale": "1x1",
+                    "@name": "hero3",
+                    "@color": "FFFFFF",
+                    "@text": "#heroes_promo_hero3#",
+                    "@pos": "305x-175",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@opacity": "192",
+                    "@scale": "1x1",
+                    "@name": "hero1_name",
+                    "@color": "FFFFFF",
+                    "@text": "#heroname_0#",
+                    "@pos": "-300x-110",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@opacity": "192",
+                    "@scale": "1x1",
+                    "@name": "hero2_name",
+                    "@color": "FFFFFF",
+                    "@text": "#heroname_2#",
+                    "@pos": "-5x-110",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@opacity": "192",
+                    "@scale": "1x1",
+                    "@name": "hero3_name",
+                    "@color": "FFFFFF",
+                    "@text": "#heroname_1#",
+                    "@pos": "305x-110",
+                    "@font": "fonts/mdefensefont2.fnt",
+                    "@type": "text",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@strech": "500x50:min",
+                    "@name": "points"
+                },
+                {
+                    "@strech": "250x50:min",
+                    "@name": "hero1"
+                },
+                {
+                    "@strech": "250x50:min",
+                    "@name": "hero2"
+                },
+                {
+                    "@strech": "250x50:min",
+                    "@name": "hero3"
+                },
+                {
+                    "@strech": "180x60:min",
+                    "@name": "hero1_name"
+                },
+                {
+                    "@strech": "180x60:min",
+                    "@name": "hero2_name"
+                },
+                {
+                    "@strech": "180x60:min",
+                    "@name": "hero3_name"
+                },
+                {
+                    "@type": "menu",
+                    "@name": "menu",
+                    "@pos": "0x0",
+                    "children": {
+                        "node": [
+                            {
+                                "@name": "buy",
+                                "@visible": "##USE_HEROROOM##",
+                                "@pos": "0x-255",
+                                "@callback": "buy",
+                                "@type": "menuitem",
+                                "@imageN": "heroroom::but_lvlup.png",
+                                "children": {
+                                    "node": {
+                                        "@name": "normal",
+                                        "children": {
+                                            "node": {
+                                                "@scale": "0.75x0.75",
+                                                "@name": "cost",
+                                                "@color": "FFFFFF",
+                                                "@text": "123456789",
+                                                "@pos": "75x35",
+                                                "@strech": "150x60:min",
+                                                "@font": "fonts/mdefensefont2.fnt",
+                                                "@type": "text",
+                                                "@center": "0.5x0.5"
+                                            }
+                                        }
+                                    }
+                                }
+                            },
+                            {
+                                "@name": "go",
+                                "@visible": "##NOUSE_HEROROOM##",
+                                "@text": "#linktofullversion#",
+                                "@pos": "0x-255",
+                                "@callback": "linktofullversion",
+                                "@font": "fonts/mdefensefont2.fnt",
+                                "@type": "menuitem",
+                                "@imageN": "heroroom::but_lvlup.png",
+                                "children": {
+                                    "node": {
+                                        "@path": "normal/text",
+                                        "@strech": "140x60:min"
+                                    }
+                                }
+                            },
+                            {
+                                "@pos": "460x235",
+                                "@callback": "close",
+                                "@type": "menuitem",
+                                "@name": "close",
+                                "@imageN": "heroroom::button_x.png"
+                            }
+                        ]
+                    }
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -16,175 +185,6 @@
                 {
                     "@name": "disappearance",
                     "@value": "Sequence[Spawn[ScaleTo[0.2,1.2,1.2],FadeOut[0.2]],RemoveSelf[]"
-                }
-            ]
-        },
-        "children": {
-            "node": [
-                {
-                    "@image": "images/promo/bg.png",
-                    "@name": "bg",
-                    "@pos": "0x0",
-                    "@type": "sprite"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "points",
-                    "@pos": "70x215",
-                    "@scale": "1x1",
-                    "@text": "#heroes_promo_caption#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero1",
-                    "@pos": "-300x-175",
-                    "@scale": "1x1",
-                    "@text": "#heroes_promo_hero1#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero2",
-                    "@pos": "0x-175",
-                    "@scale": "1x1",
-                    "@text": "#heroes_promo_hero2#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero3",
-                    "@pos": "305x-175",
-                    "@scale": "1x1",
-                    "@text": "#heroes_promo_hero3#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero1_name",
-                    "@opacity": "192",
-                    "@pos": "-300x-110",
-                    "@scale": "1x1",
-                    "@text": "#heroname_0#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero2_name",
-                    "@opacity": "192",
-                    "@pos": "-5x-110",
-                    "@scale": "1x1",
-                    "@text": "#heroname_2#",
-                    "@type": "text"
-                },
-                {
-                    "@center": "0.5x0.5",
-                    "@color": "FFFFFF",
-                    "@font": "fonts/mdefensefont2.fnt",
-                    "@name": "hero3_name",
-                    "@opacity": "192",
-                    "@pos": "305x-110",
-                    "@scale": "1x1",
-                    "@text": "#heroname_1#",
-                    "@type": "text"
-                },
-                {
-                    "@name": "points",
-                    "@strech": "500x50:min"
-                },
-                {
-                    "@name": "hero1",
-                    "@strech": "250x50:min"
-                },
-                {
-                    "@name": "hero2",
-                    "@strech": "250x50:min"
-                },
-                {
-                    "@name": "hero3",
-                    "@strech": "250x50:min"
-                },
-                {
-                    "@name": "hero1_name",
-                    "@strech": "180x60:min"
-                },
-                {
-                    "@name": "hero2_name",
-                    "@strech": "180x60:min"
-                },
-                {
-                    "@name": "hero3_name",
-                    "@strech": "180x60:min"
-                },
-                {
-                    "@name": "menu",
-                    "@pos": "0x0",
-                    "@type": "menu",
-                    "children": {
-                        "node": [
-                            {
-                                "@callback": "buy",
-                                "@imageN": "heroroom::but_lvlup.png",
-                                "@name": "buy",
-                                "@pos": "0x-255",
-                                "@type": "menuitem",
-                                "@visible": "##USE_HEROROOM##",
-                                "children": {
-                                    "node": {
-                                        "@name": "normal",
-                                        "children": {
-                                            "node": {
-                                                "@center": "0.5x0.5",
-                                                "@color": "FFFFFF",
-                                                "@font": "fonts/mdefensefont2.fnt",
-                                                "@name": "cost",
-                                                "@pos": "75x35",
-                                                "@scale": "0.75x0.75",
-                                                "@strech": "150x60:min",
-                                                "@text": "123456789",
-                                                "@type": "text"
-                                            }
-                                        }
-                                    }
-                                }
-                            },
-                            {
-                                "@callback": "linktofullversion",
-                                "@font": "fonts/mdefensefont2.fnt",
-                                "@imageN": "heroroom::but_lvlup.png",
-                                "@name": "go",
-                                "@pos": "0x-255",
-                                "@text": "#linktofullversion#",
-                                "@type": "menuitem",
-                                "@visible": "##NOUSE_HEROROOM##",
-                                "children": {
-                                    "node": {
-                                        "@path": "normal/text",
-                                        "@strech": "140x60:min"
-                                    }
-                                }
-                            },
-                            {
-                                "@callback": "close",
-                                "@imageN": "heroroom::button_x.png",
-                                "@name": "close",
-                                "@pos": "460x235",
-                                "@type": "menuitem"
-                            }
-                        ]
-                    }
                 }
             ]
         },

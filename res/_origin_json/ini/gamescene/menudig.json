@@ -1,6 +1,88 @@
 {
     "node": {
         "@type": "scrollmenu",
+        "children_nonscissor": {
+            "node": {
+                "@image": "gamescene::menudig/menu_digpanel1.png",
+                "@z": "-1",
+                "@type": "sprite",
+                "@name": "bg"
+            }
+        },
+        "items": {
+            "node": [
+                {
+                    "@imageN": "gamescene::menudig/menu_dig1.png",
+                    "@visible": "yes",
+                    "@type": "menuitem",
+                    "@name": "dig",
+                    "@pos": "0x95",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menudig/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x-5"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x-2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menudig/menu_dig2.png",
+                    "@visible": "no",
+                    "@type": "menuitem",
+                    "@name": "dig_un",
+                    "@pos": "0x95",
+                    "children": {
+                        "node": [
+                            {
+                                "@image": "gamescene::menudig/menu_price.png",
+                                "@z": "1",
+                                "@type": "sprite",
+                                "@name": "cost_bg",
+                                "@pos": "41x-5"
+                            },
+                            {
+                                "@scale": "0.5x0.5",
+                                "@name": "cost",
+                                "@text": "999",
+                                "@z": "2",
+                                "@pos": "40x-2",
+                                "@font": "fonts/helvetica.fnt",
+                                "@type": "text"
+                            }
+                        ]
+                    }
+                },
+                {
+                    "@imageN": "gamescene::menudig/menu_ok2.png",
+                    "@pos": "0x95",
+                    "@visible": "no",
+                    "@z": "9",
+                    "@type": "menuitem",
+                    "@name": "confirm"
+                },
+                {
+                    "@imageN": "gamescene::menudig/menu_ok1.png",
+                    "@pos": "0x95",
+                    "@visible": "no",
+                    "@z": "9",
+                    "@type": "menuitem",
+                    "@name": "confirm_un"
+                }
+            ]
+        },
         "actions": {
             "action": [
                 {
@@ -29,18 +111,22 @@
                 }
             ]
         },
-        "children_nonscissor": {
-            "node": {
-                "@image": "gamescene::menudig/menu_digpanel1.png",
-                "@name": "bg",
-                "@type": "sprite",
-                "@z": "-1"
-            }
-        },
         "events": {
             "eventlist": [
                 {
                     "@name": "appearance",
+                    "setproperty": [
+                        {
+                            "@property": "opacity",
+                            "@target": "dig/normal",
+                            "@value": "255"
+                        },
+                        {
+                            "@property": "opacity",
+                            "@target": "dig_un/normal",
+                            "@value": "255"
+                        }
+                    ],
                     "runaction": [
                         {
                             "@action": "appearance",
@@ -53,18 +139,6 @@
                         {
                             "@action": "fadein",
                             "@target": "bg"
-                        }
-                    ],
-                    "setproperty": [
-                        {
-                            "@property": "opacity",
-                            "@target": "dig/normal",
-                            "@value": "255"
-                        },
-                        {
-                            "@property": "opacity",
-                            "@target": "dig_un/normal",
-                            "@value": "255"
                         }
                     ]
                 },
@@ -90,80 +164,6 @@
                 },
                 {
                     "@name": "onconfirm"
-                }
-            ]
-        },
-        "items": {
-            "node": [
-                {
-                    "@imageN": "gamescene::menudig/menu_dig1.png",
-                    "@name": "dig",
-                    "@pos": "0x95",
-                    "@type": "menuitem",
-                    "@visible": "yes",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menudig/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x-5",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x-2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menudig/menu_dig2.png",
-                    "@name": "dig_un",
-                    "@pos": "0x95",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "children": {
-                        "node": [
-                            {
-                                "@image": "gamescene::menudig/menu_price.png",
-                                "@name": "cost_bg",
-                                "@pos": "41x-5",
-                                "@type": "sprite",
-                                "@z": "1"
-                            },
-                            {
-                                "@font": "fonts/helvetica.fnt",
-                                "@name": "cost",
-                                "@pos": "40x-2",
-                                "@scale": "0.5x0.5",
-                                "@text": "999",
-                                "@type": "text",
-                                "@z": "2"
-                            }
-                        ]
-                    }
-                },
-                {
-                    "@imageN": "gamescene::menudig/menu_ok2.png",
-                    "@name": "confirm",
-                    "@pos": "0x95",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "9"
-                },
-                {
-                    "@imageN": "gamescene::menudig/menu_ok1.png",
-                    "@name": "confirm_un",
-                    "@pos": "0x95",
-                    "@type": "menuitem",
-                    "@visible": "no",
-                    "@z": "9"
                 }
             ]
         }

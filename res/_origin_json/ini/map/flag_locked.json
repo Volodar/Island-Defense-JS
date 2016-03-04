@@ -1,8 +1,9 @@
 {
     "menuitem": {
-        "@center": "0.27x0.18",
-        "@imageN": "images/map/button_flag_lock.png",
         "@type": "menuitem",
+        "@imageN": "images/map/button_flag_lock.png",
+        "@center": "0.27x0.18",
+        "children": null,
         "actions": {
             "action": [
                 {
@@ -27,7 +28,6 @@
                 }
             ]
         },
-        "children": null,
         "events": {
             "eventlist": [
                 {
@@ -35,9 +35,10 @@
                 },
                 {
                     "@name": "star0_show",
-                    "playsound": {
-                        "@predelay": "##flag_delay_appearance##",
-                        "@sound": "##sound_mapflagnew##"
+                    "setproperty": {
+                        "@property": "opacity",
+                        "@target": "normal",
+                        "@value": "0"
                     },
                     "runaction": [
                         {
@@ -49,10 +50,9 @@
                             "@target": "normal"
                         }
                     ],
-                    "setproperty": {
-                        "@property": "opacity",
-                        "@target": "normal",
-                        "@value": "0"
+                    "playsound": {
+                        "@sound": "##sound_mapflagnew##",
+                        "@predelay": "##flag_delay_appearance##"
                     }
                 }
             ]

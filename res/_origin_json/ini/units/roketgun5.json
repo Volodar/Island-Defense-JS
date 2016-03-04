@@ -1,11 +1,82 @@
 {
     "tower": {
-        "@allowtargets": "sky,sea",
-        "@effect_on_shoot": "bullet",
-        "@maxlevel": "5",
         "@name": "roketgun",
-        "@radius": "350",
         "@unittype": "tower",
+        "@allowtargets": "sky,sea",
+        "@radius": "350",
+        "@maxlevel": "5",
+        "@effect_on_shoot": "bullet",
+        "effects": {
+            "positive": {
+                "@damage": "10"
+            }
+        },
+        "machine_unit": {
+            "transitions": {
+                "sleep": {
+                    "@seetarget": "readyfire"
+                },
+                "readyfire": [
+                    {
+                        "@notarget": "waittarget"
+                    },
+                    {
+                        "@charge": "charging"
+                    }
+                ],
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "waittarget": [
+                    {
+                        "@seetarget": "readyfire"
+                    },
+                    {
+                        "@relax": "waittarget"
+                    }
+                ]
+            },
+            "params": {
+                "state_readyfire": {
+                    "@delay": "0.1",
+                    "@charge_volume": "5"
+                },
+                "state_waittarget": {
+                    "@duration": "4"
+                },
+                "state_charging": {
+                    "@duration": "0.5"
+                }
+            }
+        },
+        "machine_move": {
+            "transitions": {
+                "move": {
+                    "@stop": "stop"
+                },
+                "stop": {
+                    "@move": "move"
+                }
+            }
+        },
+        "mover": {
+            "params": {
+                "allowangles": {
+                    "@value": "45,135,225,315"
+                },
+                "thresold": {
+                    "@value": "45"
+                }
+            }
+        },
+        "children": {
+            "node": {
+                "@image": "roketgun.5.1::turret2_5_1stage0016.png",
+                "@type": "sprite",
+                "@name": "skin",
+                "@center": "0.5x0.3"
+            }
+        },
         "actions": {
             "action": [
                 {
@@ -25,19 +96,6 @@
                     "@value": "Animate[0.6,[folder:roketgun.5.4::,frames:turret2_5_4stage0016.png,turret2_5_4stage0001.png,turret2_5_4stage0002.png,turret2_5_4stage0003.png,turret2_5_4stage0004.png,turret2_5_4stage0005.png,turret2_5_4stage0006.png,turret2_5_4stage0007.png,turret2_5_4stage0008.png,turret2_5_4stage0009.png,turret2_5_4stage0010.png,turret2_5_4stage0011.png,turret2_5_4stage0012.png,turret2_5_4stage0013.png,turret2_5_4stage0014.png,turret2_5_4stage0015.png,turret2_5_4stage0016.png,turret2_5_4stage0001.png]]"
                 }
             ]
-        },
-        "children": {
-            "node": {
-                "@center": "0.5x0.3",
-                "@image": "roketgun.5.1::turret2_5_1stage0016.png",
-                "@name": "skin",
-                "@type": "sprite"
-            }
-        },
-        "effects": {
-            "positive": {
-                "@damage": "10"
-            }
         },
         "events": {
             "eventlist": [
@@ -138,64 +196,6 @@
                     "@name": "on_rotate270"
                 }
             ]
-        },
-        "machine_move": {
-            "transitions": {
-                "move": {
-                    "@stop": "stop"
-                },
-                "stop": {
-                    "@move": "move"
-                }
-            }
-        },
-        "machine_unit": {
-            "params": {
-                "state_charging": {
-                    "@duration": "0.5"
-                },
-                "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "0.1"
-                },
-                "state_waittarget": {
-                    "@duration": "4"
-                }
-            },
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "readyfire": [
-                    {
-                        "@notarget": "waittarget"
-                    },
-                    {
-                        "@charge": "charging"
-                    }
-                ],
-                "sleep": {
-                    "@seetarget": "readyfire"
-                },
-                "waittarget": [
-                    {
-                        "@seetarget": "readyfire"
-                    },
-                    {
-                        "@relax": "waittarget"
-                    }
-                ]
-            }
-        },
-        "mover": {
-            "params": {
-                "allowangles": {
-                    "@value": "45,135,225,315"
-                },
-                "thresold": {
-                    "@value": "45"
-                }
-            }
         }
     }
 }

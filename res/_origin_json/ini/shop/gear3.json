@@ -9,9 +9,9 @@
                     "@text": "##shopitem_cost##"
                 },
                 {
+                    "@text": "##shopitem_caption##",
                     "@name": "text",
-                    "@pos": "115x401",
-                    "@text": "##shopitem_caption##"
+                    "@pos": "115x401"
                 },
                 {
                     "@image": "images/shop/icon_gear.png",

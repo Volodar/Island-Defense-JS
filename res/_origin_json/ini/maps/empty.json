@@ -1,66 +1,66 @@
 {
     "map": {
+        "@startscore": "300",
         "@healths": "20",
         "@star1": "7",
-        "@star2": "7",
         "@star3": "7",
-        "@startscore": "300",
-        "decorations": null,
+        "@star2": "7",
+        "waves": {
+            "@defaultdelayonewave": "100",
+            "wave": {
+                "@count": "2",
+                "@defaulthealthrate": "1",
+                "@defaultname": "soldier",
+                "@defaultscore": "5",
+                "@defaultroutesubtype": "random",
+                "@defaultdelay": "0.5",
+                "@routetype": "earth",
+                "@defaultrouteindex": "0"
+            }
+        },
         "routes": {
             "route": {
-                "@name": "0",
                 "@type": "normal",
-                "left": {
-                    "point": [
-                        {
-                            "@x": "100",
-                            "@y": "396"
-                        },
-                        {
-                            "@x": "900",
-                            "@y": "396"
-                        }
-                    ]
-                },
+                "@name": "0",
                 "main": {
                     "point": [
                         {
-                            "@x": "100",
-                            "@y": "384"
+                            "@y": "384",
+                            "@x": "100"
                         },
                         {
-                            "@x": "900",
-                            "@y": "384"
+                            "@y": "384",
+                            "@x": "900"
+                        }
+                    ]
+                },
+                "left": {
+                    "point": [
+                        {
+                            "@y": "396",
+                            "@x": "100"
+                        },
+                        {
+                            "@y": "396",
+                            "@x": "900"
                         }
                     ]
                 },
                 "right": {
                     "point": [
                         {
-                            "@x": "100",
-                            "@y": "371"
+                            "@y": "371",
+                            "@x": "100"
                         },
                         {
-                            "@x": "900",
-                            "@y": "371"
+                            "@y": "371",
+                            "@x": "900"
                         }
                     ]
                 }
             }
         },
-        "towerplaces": null,
-        "waves": {
-            "@defaultdelayonewave": "100",
-            "wave": {
-                "@count": "2",
-                "@defaultdelay": "0.5",
-                "@defaulthealthrate": "1",
-                "@defaultname": "soldier",
-                "@defaultrouteindex": "0",
-                "@defaultroutesubtype": "random",
-                "@defaultscore": "5",
-                "@routetype": "earth"
-            }
-        }
+        "decorations": null,
+        "towerplaces": null
     }
 }
