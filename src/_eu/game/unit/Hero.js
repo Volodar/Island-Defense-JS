@@ -228,7 +228,7 @@ EU.Hero = EU.UnitDesant.extend({
     die_update:function( dt )
     {
         this._dieTimer += dt;
-        var dlife = (this._defaultHealth * this.getRate()) / EU.MachineUnit._death.duration;
+        var dlife = (this._defaultHealth * this.getRate()) / this._death.duration;
         var health = dlife * this._dieTimer + this.getCurrentHealth();
     
         this.observerHealth.unlock();

@@ -543,7 +543,7 @@ EU.Unit = cc.Node.extend({
     skillActivated: function (skill) {
         var skillcounter = skill;
         if (skillcounter.__UnitSkillCounter) {
-            /** {String} */ var type = skillcounter.getType();
+            /** {String} */ var type = skillcounter._type;
             var rate = skillcounter.getValue();
 
             if (type == "shield") {
@@ -561,7 +561,7 @@ EU.Unit = cc.Node.extend({
     skillDeactivated: function (skill) {
         var skillcounter = skill;
         if (skillcounter.__UnitSkillCounter) {
-            /** {String} */ var type = skillcounter.getType();
+            /** {String} */ var type = skillcounter._type;
             if (type == "shield") {
                 this._damageShield = 1;
                 this.runEvent("skill_deactivated_shield");

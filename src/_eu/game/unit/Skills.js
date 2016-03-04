@@ -150,7 +150,7 @@ EU.UnitSkillMedic = EU.UnitSkill.extend(
                 if( allow == false )
                     continue;
             }
-            if( target.getType() != EU.UnitType.creep )
+            if( target._type != EU.UnitType.creep )
                 continue;
 
             var health = target.getCurrentHealth();
@@ -287,6 +287,9 @@ EU.UnitSkillRunTasksByTime = EU.UnitSkill.extend(
 
 EU.UnitSkillCounter = EU.UnitSkill.extend(
 {
+    /**Test Instance of */
+    __UnitSkillCounter : true,
+
     Counter : function(active, def, left)
     {
         this.active = active;
