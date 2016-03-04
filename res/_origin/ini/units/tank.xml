@@ -62,18 +62,7 @@
     <action name="animateU" value="RepeatForever[Animate[0.5,[folder:tank.up::,frames:tank1_up0001.png,tank1_up0002.png,tank1_up0003.png,tank1_up0004.png,tank1_up0005.png,tank1_up0006.png,tank1_up0007.png,tank1_up0008.png,tank1_up0009.png]]]"/>
     <action name="animateD" value="RepeatForever[Animate[0.5,[folder:tank.down::,frames:tank1_down0001.png,tank1_down0002.png,tank1_down0003.png,tank1_down0004.png,tank1_down0005.png,tank1_down0006.png,tank1_down0007.png,tank1_down0008.png,tank1_down0009.png]]]"/>
     <action name="animate_die" value="Animate[1.0,[folder:death::,frames:Death_stage0001.png,Death_stage0002.png,Death_stage0003.png,Death_stage0004.png,Death_stage0005.png,Death_stage0006.png,Death_stage0007.png,Death_stage0008.png,Death_stage0009.png,Death_stage0010.png,Death_stage0011.png,Death_stage0012.png,Death_stage0013.png,Death_stage0014.png,Death_stage0015.png,Death_stage0016.png,Death_stage0017.png,Death_stage0018.png,Death_stage0019.png,Death_stage0020.png,Death_stage0021.png,Death_stage0022.png,Death_stage0023.png,Death_stage0024.png,Death_stage0025.png]]"/>
-    <action name="animate_fire" value="Animate[0.7,[folder:tank.fire::,frames:
-            tank1_fire0001.png,
-            tank1_fire0002.png,
-            tank1_fire0003.png,
-            tank1_fire0004.png,
-            tank1_fire0005.png,
-            tank1_fire0006.png,
-            tank1_fire0007.png,
-            tank1_fire0008.png,
-            tank1_fire0009.png,
-            tank1_fire0010.png,
-            ]]"/>
+    <action name="animate_fire" value="Animate[0.7,[folder:tank.fire::,frames:tank1_fire0001.png,tank1_fire0002.png,tank1_fire0003.png,tank1_fire0004.png,tank1_fire0005.png,tank1_fire0006.png,tank1_fire0007.png,tank1_fire0008.png,tank1_fire0009.png,tank1_fire0010.png]]"/>
     <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
   </actions>
 

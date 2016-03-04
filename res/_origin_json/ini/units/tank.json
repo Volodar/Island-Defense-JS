@@ -127,7 +127,7 @@
                 },
                 {
                     "@name": "animate_fire",
-                    "@value": "Animate[0.7,[folder:tank.fire::,frames:             tank1_fire0001.png,             tank1_fire0002.png,             tank1_fire0003.png,             tank1_fire0004.png,             tank1_fire0005.png,             tank1_fire0006.png,             tank1_fire0007.png,             tank1_fire0008.png,             tank1_fire0009.png,             tank1_fire0010.png,             ]]"
+                    "@value": "Animate[0.7,[folder:tank.fire::,frames:tank1_fire0001.png,tank1_fire0002.png,tank1_fire0003.png,tank1_fire0004.png,tank1_fire0005.png,tank1_fire0006.png,tank1_fire0007.png,tank1_fire0008.png,tank1_fire0009.png,tank1_fire0010.png]]"
                 },
                 {
                     "@name": "fadeout",

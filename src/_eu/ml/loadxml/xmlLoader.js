@@ -16,10 +16,13 @@ var EU = EU || {};
 EU.assert = function (condition, message) {
     if (!condition) {
         message = message || "Assertion failed";
+        console.log(message);
+        /**
         if (typeof Error !== "undefined") {
             throw new Error(message);
         }
         throw message; // Fallback
+         */
     }
 };
 
