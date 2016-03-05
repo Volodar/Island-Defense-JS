@@ -57,100 +57,11 @@
   </children>
 
   <actions>
-    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:soldier2.left::,frames:
-            solder2_left0001.png,
-            solder2_left0002.png,
-            solder2_left0003.png,
-            solder2_left0004.png,
-            solder2_left0005.png,
-            solder2_left0006.png,
-            solder2_left0007.png,
-            solder2_left0008.png,
-            solder2_left0009.png,
-            solder2_left0010.png,
-            solder2_left0011.png,
-            solder2_left0012.png,
-            solder2_left0013.png,
-            solder2_left0014.png,
-            solder2_left0015.png
-            ]]]"/>
-    <action name="animateD" value="RepeatForever[Animate[0.5,[folder:soldier2.up::,frames:
-            solder2_front0001.png,
-            solder2_front0002.png,
-            solder2_front0003.png,
-            solder2_front0004.png,
-            solder2_front0005.png,
-            solder2_front0006.png,
-            solder2_front0007.png,
-            solder2_front0008.png,
-            solder2_front0009.png,
-            solder2_front0010.png,
-            solder2_front0011.png,
-            solder2_front0012.png,
-            solder2_front0013.png,
-            solder2_front0014.png,
-            solder2_front0015.png
-            ]]]"/>
-    <action name="animateU" value="RepeatForever[Animate[0.5,[folder:soldier2.down::,frames:
-            solder2_back0001.png,
-            solder2_back0002.png,
-            solder2_back0003.png,
-            solder2_back0004.png,
-            solder2_back0005.png,
-            solder2_back0006.png,
-            solder2_back0007.png,
-            solder2_back0008.png,
-            solder2_back0009.png,
-            solder2_back0010.png,
-            solder2_back0011.png,
-            solder2_back0012.png,
-            solder2_back0013.png,
-            solder2_back0014.png,
-            solder2_back0015.png
-            ]]]"/>
-    <action name="animate_die" value="Animate[0.7,[folder:soldier2.die::,frames:
-            solder2_death0001.png,
-            solder2_death0002.png,
-            solder2_death0003.png,
-            solder2_death0004.png,
-            solder2_death0005.png,
-            solder2_death0006.png,
-            solder2_death0007.png,
-            solder2_death0008.png,
-            solder2_death0009.png,
-            solder2_death0010.png,
-            solder2_death0011.png,
-            solder2_death0012.png,
-            solder2_death0013.png,
-            solder2_death0014.png,
-            solder2_death0015.png,
-            solder2_death0016.png,
-            solder2_death0017.png,
-            solder2_death0018.png,
-            solder2_death0019.png
-            ]]"/>
-    <action name="animate_fire" value="Animate[0.7,[folder:soldier2.fire::,frames:
-            solder2_fire_0001.png,
-            solder2_fire_0002.png,
-            solder2_fire_0003.png,
-            solder2_fire_0004.png,
-            solder2_fire_0005.png,
-            solder2_fire_0006.png,
-            solder2_fire_0007.png,
-            solder2_fire_0008.png,
-            solder2_fire_0009.png,
-            solder2_fire_0010.png,
-            solder2_fire_0011.png,
-            solder2_fire_0012.png,
-            solder2_fire_0013.png,
-            solder2_fire_0014.png,
-            solder2_fire_0015.png,
-            solder2_fire_0016.png,
-            solder2_fire_0017.png,
-            solder2_fire_0018.png,
-            solder2_fire_0019.png,
-            solder2_fire_0020.png
-            ]]"/>
+    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:soldier2.left::,frames:solder2_left0001.png,solder2_left0002.png,solder2_left0003.png,solder2_left0004.png,solder2_left0005.png,solder2_left0006.png,solder2_left0007.png,solder2_left0008.png,solder2_left0009.png,solder2_left0010.png,solder2_left0011.png,solder2_left0012.png,solder2_left0013.png,solder2_left0014.png,solder2_left0015.png]]]"/>
+    <action name="animateD" value="RepeatForever[Animate[0.5,[folder:soldier2.up::,frames:solder2_front0001.png,solder2_front0002.png,solder2_front0003.png,solder2_front0004.png,solder2_front0005.png,solder2_front0006.png,solder2_front0007.png,solder2_front0008.png,solder2_front0009.png,solder2_front0010.png,solder2_front0011.png,solder2_front0012.png,solder2_front0013.png,solder2_front0014.png,solder2_front0015.png]]]"/>
+    <action name="animateU" value="RepeatForever[Animate[0.5,[folder:soldier2.down::,frames:solder2_back0001.png,solder2_back0002.png,solder2_back0003.png,solder2_back0004.png,solder2_back0005.png,solder2_back0006.png,solder2_back0007.png,solder2_back0008.png,solder2_back0009.png,solder2_back0010.png,solder2_back0011.png,solder2_back0012.png,solder2_back0013.png,solder2_back0014.png,solder2_back0015.png]]]"/>
+    <action name="animate_die" value="Animate[0.7,[folder:soldier2.die::,frames:solder2_death0001.png,solder2_death0002.png,solder2_death0003.png,solder2_death0004.png,solder2_death0005.png,solder2_death0006.png,solder2_death0007.png,solder2_death0008.png,solder2_death0009.png,solder2_death0010.png,solder2_death0011.png,solder2_death0012.png,solder2_death0013.png,solder2_death0014.png,solder2_death0015.png,solder2_death0016.png,solder2_death0017.png,solder2_death0018.png,solder2_death0019.png]]"/>
+    <action name="animate_fire" value="Animate[0.7,[folder:soldier2.fire::,frames:solder2_fire_0001.png,solder2_fire_0002.png,solder2_fire_0003.png,solder2_fire_0004.png,solder2_fire_0005.png,solder2_fire_0006.png,solder2_fire_0007.png,solder2_fire_0008.png,solder2_fire_0009.png,solder2_fire_0010.png,solder2_fire_0011.png,solder2_fire_0012.png,solder2_fire_0013.png,solder2_fire_0014.png,solder2_fire_0015.png,solder2_fire_0016.png,solder2_fire_0017.png,solder2_fire_0018.png,solder2_fire_0019.png,solder2_fire_0020.png]]"/>
   </actions>
 
   <events>

@@ -243,7 +243,7 @@ EU.GameGS = EU.LayerExt.extend({
         this.interface_pause = new EU.MenuItemImageWithText(kPathButtonPauseNormal, kPathButtonPauseNormal, kPathButtonPauseNormal, "", "", cb1, this);
         this.interface_desant = new EU.MenuItemCooldown(kPathButtonDesantBack, kPathButtonDesantForward, cdd, cb2, this, kPathButtonDesantCancel);
         this.interface_bomb = new EU.MenuItemCooldown(kPathButtonBombBack, kPathButtonBombForward, cda, cb3, this, kPathButtonBombCancel);
-        this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, cancel);
+        this.interface_heroSkill = new EU.MenuItemCooldown("", "", 0, null, this.interface_heroSkill, cancel);
         this.interface_hero = new EU.HeroIcon("hero" + (EU.UserData.hero_getCurrent() + 1), cb5, this);
         this.interface_hero.setEnabled(true);
         this.interface_desant.setAnimationOnFull("airstike_animation1");
@@ -327,7 +327,7 @@ EU.GameGS = EU.LayerExt.extend({
                 EU.assert(0);
 
             var callback = this.menuSkill.bind(this, EU.Skill.heroskill);
-            this.interface_heroSkill.init(back, forward, duration, callback, cancel);
+            this.interface_heroSkill._init(back, forward, duration, callback, this.interface_heroSkill, cancel);
             this.interface_heroSkill.setAnimationOnFull(skill);
         }
     },
@@ -1075,8 +1075,8 @@ EU.GameGS = EU.LayerExt.extend({
         }
 
         var music = win ? EU.kMusicVictory : EU.kMusicDefeat;
-        //EU.AudioEngine.stopMusic();
-        //EU.AudioEngine.playEffect( music );
+        EU.AudioEngine.stopMusic();
+        EU.AudioEngine.playEffect( music );
 
     },
     flyCameraAboveMap: function (wave) {
@@ -1271,7 +1271,7 @@ EU.GameGS = EU.LayerExt.extend({
     },
 
     menuPause: function () {
-        //EU.AudioEngine.pauseAllEffects( );
+        EU.AudioEngine.pauseAllEffects( );
         var scene = EU.Common.getSceneOfNode(this);
         var pause = new EU.GamePauseLayer("ini/gamescene/pause.xml");
         scene.pushLayer(pause, true);

@@ -8,6 +8,8 @@
 
 #ifndef  _APP_DELEGATE_H_
 #define  _APP_DELEGATE_H_
+#define CC_ENABLE_GC_FOR_NATIVE_OBJECTS 1
+#define CC_ENABLE_SCRIPT_BINDING 1
 
 #include "cocos2d.h"
 /**

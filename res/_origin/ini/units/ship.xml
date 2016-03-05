@@ -52,18 +52,7 @@
   </children>
 
   <actions>
-    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:ship.left::,frames:
-            ship1_0001.png,
-            ship1_0002.png,
-            ship1_0003.png,
-            ship1_0004.png,
-            ship1_0005.png,
-            ship1_0006.png,
-            ship1_0007.png,
-            ship1_0008.png,
-            ship1_0009.png,
-            ship1_0010.png,
-            ]]]"/>
+    <action name="animateL" value="RepeatForever[Animate[0.5,[folder:ship.left::,frames:ship1_0001.png,ship1_0002.png,ship1_0003.png,ship1_0004.png,ship1_0005.png,ship1_0006.png,ship1_0007.png,ship1_0008.png,ship1_0009.png,ship1_0010.png]]]"/>
     <action name="animate_die" value="Animate[1.0,[folder:death::,frames:Death_stage0001.png,Death_stage0002.png,Death_stage0003.png,Death_stage0004.png,Death_stage0005.png,Death_stage0006.png,Death_stage0007.png,Death_stage0008.png,Death_stage0009.png,Death_stage0010.png,Death_stage0011.png,Death_stage0012.png,Death_stage0013.png,Death_stage0014.png,Death_stage0015.png,Death_stage0016.png,Death_stage0017.png,Death_stage0018.png,Death_stage0019.png,Death_stage0020.png,Death_stage0021.png,Death_stage0022.png,Death_stage0023.png,Death_stage0024.png,Death_stage0025.png]]"/>
     <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
   </actions>

@@ -40,7 +40,7 @@ EU.Common = {
      * @param {string} string ("yes", "true", "Y", "y", "Yes")
      */
     strToBool: function (string) {
-        return string == "yes" || string == "y" || string == "true" || string == "Yes" || string == "Y";
+        return string == "yes" || string == "y" || string == "true" || string == "Yes" || string == "Y"|| string == "1";
     },
     /**
      * Convert string to var

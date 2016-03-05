@@ -95,7 +95,7 @@
             "action": [
                 {
                     "@name": "animateL",
-                    "@value": "RepeatForever[Animate[0.5,[folder:ship.left::,frames:             ship1_0001.png,             ship1_0002.png,             ship1_0003.png,             ship1_0004.png,             ship1_0005.png,             ship1_0006.png,             ship1_0007.png,             ship1_0008.png,             ship1_0009.png,             ship1_0010.png,             ]]]"
+                    "@value": "RepeatForever[Animate[0.5,[folder:ship.left::,frames:ship1_0001.png,ship1_0002.png,ship1_0003.png,ship1_0004.png,ship1_0005.png,ship1_0006.png,ship1_0007.png,ship1_0008.png,ship1_0009.png,ship1_0010.png]]]"
                 },
                 {
                     "@name": "animate_die",

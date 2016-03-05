@@ -54,81 +54,10 @@
   </children>
 
   <actions>
-    <action name="animateL" value="RepeatForever[Animate[0.6,[folder:helicopter2.left::,frames:
-            helicopter2_left_0001.png,
-            helicopter2_left_0002.png,
-            helicopter2_left_0003.png,
-            helicopter2_left_0004.png,
-            helicopter2_left_0005.png,
-            helicopter2_left_0006.png,
-            helicopter2_left_0007.png,
-            helicopter2_left_0008.png,
-            helicopter2_left_0009.png,
-            helicopter2_left_0010.png,
-            helicopter2_left_0011.png,
-            helicopter2_left_0012.png,
-            helicopter2_left_0013.png,
-            helicopter2_left_0014.png,
-            helicopter2_left_0015.png,
-            helicopter2_left_0016.png,
-            helicopter2_left_0017.png,
-            helicopter2_left_0018.png,
-            helicopter2_left_0019.png,
-            ]]]"/>
-    <action name="animateU" value="RepeatForever[Animate[0.6,[folder:helicopter2.up::,frames:
-            helicopter2_back_0001.png,
-            helicopter2_back_0002.png,
-            helicopter2_back_0003.png,
-            helicopter2_back_0004.png,
-            helicopter2_back_0005.png,
-            helicopter2_back_0006.png,
-            helicopter2_back_0007.png,
-            helicopter2_back_0008.png,
-            helicopter2_back_0009.png,
-            helicopter2_back_0010.png,
-            helicopter2_back_0011.png,
-            helicopter2_back_0012.png,
-            helicopter2_back_0013.png,
-            helicopter2_back_0014.png,
-            helicopter2_back_0015.png,
-            helicopter2_back_0016.png,
-            helicopter2_back_0017.png,
-            helicopter2_back_0018.png,
-            helicopter2_back_0019.png,
-            ]]]"/>
-    <action name="animateD" value="RepeatForever[Animate[0.6,[folder:helicopter2.down::,frames:
-            helicopter2_front_0001.png,
-            helicopter2_front_0002.png,
-            helicopter2_front_0003.png,
-            helicopter2_front_0004.png,
-            helicopter2_front_0005.png,
-            helicopter2_front_0006.png,
-            helicopter2_front_0007.png,
-            helicopter2_front_0008.png,
-            helicopter2_front_0009.png,
-            helicopter2_front_0010.png,
-            helicopter2_front_0011.png,
-            helicopter2_front_0012.png,
-            helicopter2_front_0013.png,
-            helicopter2_front_0014.png,
-            helicopter2_front_0015.png,
-            helicopter2_front_0016.png,
-            helicopter2_front_0017.png,
-            helicopter2_front_0018.png,
-            helicopter2_front_0019.png,
-            ]]]"/>
-    <action name="animate_die" value="Animate[0.35,[folder:helicopter.death::,frames:
-            helicopter_death_0001.png,
-            helicopter_death_0002.png,
-            helicopter_death_0003.png,
-            helicopter_death_0004.png,
-            helicopter_death_0005.png,
-            helicopter_death_0006.png,
-            helicopter_death_0007.png,
-            helicopter_death_0008.png,
-            helicopter_death_0009.png,
-            helicopter_death_0010.png,
-            ]]"/>
+    <action name="animateL" value="RepeatForever[Animate[0.6,[folder:helicopter2.left::,frames:helicopter2_left_0001.png,helicopter2_left_0002.png,helicopter2_left_0003.png,helicopter2_left_0004.png,helicopter2_left_0005.png,helicopter2_left_0006.png,helicopter2_left_0007.png,helicopter2_left_0008.png,helicopter2_left_0009.png,helicopter2_left_0010.png,helicopter2_left_0011.png,helicopter2_left_0012.png,helicopter2_left_0013.png,helicopter2_left_0014.png,helicopter2_left_0015.png,helicopter2_left_0016.png,helicopter2_left_0017.png,helicopter2_left_0018.png,helicopter2_left_0019.png]]]"/>
+    <action name="animateU" value="RepeatForever[Animate[0.6,[folder:helicopter2.up::,frames:helicopter2_back_0001.png,helicopter2_back_0002.png,helicopter2_back_0003.png,helicopter2_back_0004.png,helicopter2_back_0005.png,helicopter2_back_0006.png,helicopter2_back_0007.png,helicopter2_back_0008.png,helicopter2_back_0009.png,helicopter2_back_0010.png,helicopter2_back_0011.png,helicopter2_back_0012.png,helicopter2_back_0013.png,helicopter2_back_0014.png,helicopter2_back_0015.png,helicopter2_back_0016.png,helicopter2_back_0017.png,helicopter2_back_0018.png,helicopter2_back_0019.png]]]"/>
+    <action name="animateD" value="RepeatForever[Animate[0.6,[folder:helicopter2.down::,frames:helicopter2_front_0001.png,helicopter2_front_0002.png,helicopter2_front_0003.png,helicopter2_front_0004.png,helicopter2_front_0005.png,helicopter2_front_0006.png,helicopter2_front_0007.png,helicopter2_front_0008.png,helicopter2_front_0009.png,helicopter2_front_0010.png,helicopter2_front_0011.png,helicopter2_front_0012.png,helicopter2_front_0013.png,helicopter2_front_0014.png,helicopter2_front_0015.png,helicopter2_front_0016.png,helicopter2_front_0017.png,helicopter2_front_0018.png,helicopter2_front_0019.png]]]"/>
+    <action name="animate_die" value="Animate[0.35,[folder:helicopter.death::,frames:helicopter_death_0001.png,helicopter_death_0002.png,helicopter_death_0003.png,helicopter_death_0004.png,helicopter_death_0005.png,helicopter_death_0006.png,helicopter_death_0007.png,helicopter_death_0008.png,helicopter_death_0009.png,helicopter_death_0010.png]]"/>
     <action name="fadeout" value="EaseOut[FadeOut[1],2]"/>
   </actions>
 

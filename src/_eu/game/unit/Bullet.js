@@ -131,7 +131,7 @@ EU.Bullet = EU.Unit.extend({
             applyDamage = applyDamage || this.getDamageBySector();
             if( applyDamage )
             {
-                this.setType( this._base.getType() );
+                this.setType( this._base._type );
                 this.applyDamageToTarget( this._target );
 
                 EU.Unit.prototype.on_die.call(this, dt );

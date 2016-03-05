@@ -3,6 +3,8 @@
 small Python tool to use convert all xml files in a folder to json with the same name with the option to remove the old file
 
 To run this tool, you need to install these python packages at least: simpleJson, xml2Json.
+sudo pip install simplejson
+sudo pip install xml2Json
 
 Author: Doan Vu Hiep (hd@visionarity.com)
 '''
@@ -59,6 +61,11 @@ def convertAllXmlFilesInDir(dir):
             convertAllXmlFilesInDir(fullPath);
 
 if __name__ == '__main__':
-    convertAllXmlFilesInDir(sourceDir);
-    #convertXmlFileToJsonFile(sourceDir+"/units/desant.xml")
+    #convertAllXmlFilesInDir(sourceDir);
+    convertXmlFileToJsonFile(sourceDir+"/units/desant.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/helicopter.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/laser1.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/ship.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/soldier2.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/tank.xml")
     print ("Number of XML files converted: " + str(numFileConverted));

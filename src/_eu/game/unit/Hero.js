@@ -218,7 +218,7 @@ EU.Hero = EU.UnitDesant.extend({
         this._regeneration = 0;
         this._skill = "";
         this.initMachine();
-        this.add_event(  EU.Hero.event_live ).set_string_name( "live" );
+        this.add_event(  EU.Hero.prototype.event_live ).set_string_name( "live" );
         this._super( path, xmlFile );
     },
 //
@@ -228,7 +228,7 @@ EU.Hero = EU.UnitDesant.extend({
     die_update:function( dt )
     {
         this._dieTimer += dt;
-        var dlife = (this._defaultHealth * this.getRate()) / EU.MachineUnit._death.duration;
+        var dlife = (this._defaultHealth * this.getRate()) / this._death.duration;
         var health = dlife * this._dieTimer + this.getCurrentHealth();
     
         this.observerHealth.unlock();
@@ -481,7 +481,7 @@ EU.Hero = EU.UnitDesant.extend({
     {
         this.runEvent( "on_die_finish" );
         this.setCurrentHealth( this._defaultHealth * this.getRate() );
-        this.push_event( this.event_live );
+        this.push_event( this.event_live);
         this.observerHealth.unlock();
     },
     stop_update: function( dt )
