@@ -26,13 +26,7 @@
   </machine_unit>
 
   <children>
-    <node type="sprite" name="skin" center="0.5x0.5" image=""  animation="
-          Sequence
-          [
-            Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],
-            Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]
-          ]
-          "/>
+    <node type="sprite" name="skin" center="0.5x0.5" image=""  animation="Sequence[Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]]"/>
     <node type="menu" name="menu" pos="0x70" visible="no">
       <children>
         <node name="activate" type="menuitem" imageN="gamescene::button_dyn.png" callback="push_event:die" opacity="128"/>
