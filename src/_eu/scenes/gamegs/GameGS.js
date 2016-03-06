@@ -647,7 +647,7 @@ EU.GameGS = EU.LayerExt.extend({
             var touchEnd = touch;
             var touchBegin = self.touches[touchEnd.__instanceId];
             var location = self.mainlayer.convertToNodeSpace(touchEnd.getLocation());
-            var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan);
+            var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan ? self.scrollInfo.touchBegan : touchEnd.getLocation());
 
             var node = self.getObjectInLocation(location);
             if ( cc.pDistance(location, startLocation) < 50) {

@@ -52,7 +52,7 @@
 
   <children>
     <node type="sprite" name="skin" visible="yes" center="0.5x0.38"/>
-	<node type="sprite" name="skin2" visible="yes" center="0.5x0.38" image="jeep.left::,frames:jeep_leftright0001.png"/>
+	<node type="sprite" name="skin2" visible="yes" center="0.5x0.38" image="jeep.left::jeep_leftright0001.png"/>
     <node type="sprite" name="death" visible="no" opacity="192" center="0.5x0.4"/>
     <node name="health_indicator" pos="-18x65" z="1"/>
   </children>

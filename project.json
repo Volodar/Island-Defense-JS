@@ -35,6 +35,7 @@
         "src/_eu/ml/ScrollMenu.js",
         "src/_eu/ml/Animation.js",
         "src/_eu/support/support.js",
+        "src/_eu/support/EventsGame.js",
         "src/_eu/support/UserData.js",
         "src/_eu/ml/Audio/AudioEngine.js",
         "src/_eu/ml/Audio/AudioMenu.js",

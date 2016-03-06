@@ -480,7 +480,7 @@ EU.Common = {
     strToRect: function (value) {
         var rect = cc.rect(0, 0, 0, 0);
         var list = [];
-        EU.Common.split(list, value);
+        list = EU.Common.split(list, value);
         rect.origin = EU.Common.strToPoint((list.length > 0) ? list[0] : "");
         rect.size = EU.Common.strToSize((list.length > 1) ? list[1] : "");
         return rect;

@@ -85,7 +85,7 @@ EU.EventCreateUnit = EU.EventBase.extend(
 
     setParam: function( /**@type {String} */ name, /**@type {String} */ value )
     {
-        if( name == "units" ) EU.Common.split( this._units, value );
+        if( name == "units" ) this._units = EU.Common.split( this._units, value );
         else if( name == "radius" ) this._radius = EU.Common.strToFloat( value );
         else if( name == "unittype" ) this._unitType = EU.strToUnitType( value );
         else if( name == "lifetime" ) this._lifetime = EU.Common.strToFloat( value );
