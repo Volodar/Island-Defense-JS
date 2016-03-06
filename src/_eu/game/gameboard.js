@@ -370,7 +370,7 @@ EU.GameBoard = cc.Class.extend({
         {
             var child = xmlnode.children[i];
             var index = parseInt(child.getAttribute( "name" ));
-            var unitLayer = EU.strToUnitLayer( child.getAttribute( EU.k.type ) );
+            var unitLayer = EU.strToUnitLayer( child.getAttribute( EU.xmlKey.Type.name ) );
             routes[index] = new EU.TripleRoute();
             var main = child.getElementsByTagName( "main" )[0];
             var left = child.getElementsByTagName( "left" )[0];
