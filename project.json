@@ -55,6 +55,7 @@
         "src/_eu/game/tower.js",
         "src/_eu/game/gameboard.js",
         "src/_eu/game/WaveGenerator.js",
+        "src/_eu/game/LandMine.js",
         "src/_eu/support/ScoreCounter.js",
         "src/_eu/support/AutoPlayer.js",
         "src/_eu/scenes/MainGS.js",
