@@ -359,8 +359,8 @@ EU.Common = {
      * @param startAngleInDegree
      */
     computePointsByRadius: function (out, radius, countPoints, startAngleInDegree) {
-        var delta = Math.PI * 2.0 / countPoints;
-        var startAngleInRadian = startAngleInDegree * Math.PI / 180;
+        var delta = (Math.PI * 2.0) / countPoints;
+        var startAngleInRadian = startAngleInDegree * Math.PI / 180.0;
         out = out || [];
         for (var i = 0; i < countPoints; ++i) {
             var angle = startAngleInRadian + delta * i;

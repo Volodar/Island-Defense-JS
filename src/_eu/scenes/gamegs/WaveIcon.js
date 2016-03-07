@@ -87,7 +87,7 @@ EU.WaveIcon = cc.Menu.extend({
 
         this.setVisible( false );
 
-        this.update( 0 );
+        this.update(0);
         this.scheduleUpdate();
         return true;
     },
@@ -120,7 +120,7 @@ EU.WaveIcon = cc.Menu.extend({
             if( this._duration > 0 )
             {
                 var actiontimer = cc.progressFromTo( this._duration, 0, 100 );
-                var call = cc.callFunc( function(){ self.on_click.call(self)});
+                var call = cc.callFunc( self.on_click.bind(self));
                 var actiontimer2 = cc.sequence( actiontimer, call );
                 this._timer.runAction( actiontimer2 );
             }
@@ -141,7 +141,7 @@ EU.WaveIcon = cc.Menu.extend({
     {
         if( this._callback && this._target )
         {
-            this._callback.call( this._target, this._elapsed, this._duration );
+            this._callback.call( this._target, this._target, this._elapsed, this._duration );
         }
     },
     setActive: function(variable)

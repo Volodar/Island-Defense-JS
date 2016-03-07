@@ -493,8 +493,8 @@ EU.ShootsEffectsIce = cc.Sprite.extend(
     }
 });
 
-EU.ShootsEffectsIce.computePoints = function( /**@type {var} */ basePosition, /**@type {std.vector} */ points,
-                                              /**@type {var} */ radius, /**@type {var} */ maxDistanceToRoad )
+EU.ShootsEffectsIce.computePoints = function( /**@type {cc.Point} */ basePosition, /**@type {Array<cc.Point>} */ points,
+                                              /**@type {Number} */ radius, /**@type {Number} */ maxDistanceToRoad )
 {
     var startRadius = 0;
     var distanceByRadius = 30;
@@ -510,16 +510,16 @@ EU.ShootsEffectsIce.computePoints = function( /**@type {var} */ basePosition, /*
 
         for (var i = 0; i < pointsOnRadius.length; i++) {
             var point = pointsOnRadius[i];
-            var dummy = 0;
             point = cc.pAdd(basePosition, cc.p( point.x, point.y / 2 ));
-            if( EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.sea,  dummy ) ||
-                EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.earth,  dummy ) )
+            if( EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.sea).result ||
+                EU.checkPointOnRoute_1( point, maxDistanceToRoad, EU.UnitLayer.earth ).result )
             {
                 points.push( point );
             }
         }
     }
-}
+    return points;
+};
 
 
 EU.ShootsEffectsIce2 = cc.Sprite.extend(
@@ -740,7 +740,7 @@ EU.ShootsEffects = {
                 var points = [];
                 EU.ShootsEffects.s_IceUnits[base.__instanceId] = [];
 
-                EU.ShootsEffectsIce.computePoints( base.getPosition(), points, radius, maxDistanceToRoad );
+                points = EU.ShootsEffectsIce.computePoints( base.getPosition(), points, radius, maxDistanceToRoad );
 
                 for (var i = 0; i < points.length; i++) {
                     var point = points[i];
