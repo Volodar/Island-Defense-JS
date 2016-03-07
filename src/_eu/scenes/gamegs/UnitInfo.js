@@ -45,7 +45,7 @@ EU.UnitInfo = cc.Menu.extend(
     },
     cb_click: function()
     {
-        var info = EU.Tutorial.create( this._unitName );
+        var info = new EU.Tutorial( this._unitName );
         info.enter();
         EU.removeFromParent(this, true);
     }

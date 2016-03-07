@@ -935,13 +935,14 @@ EU.GameGS = EU.LayerExt.extend({
             case EU.UnitType.creep:
             {
                 //TODO: Show unit description
-                //var isExist = cc.fileUtils.getInstance().isFileExist("ini/tutorial/units/" + unit.getName() + ".xml");
                 var isExist = false;
+                cc.loader.loadJson(EU.xmlLoader.resourcesRootJSON + "ini/tutorial/units/" + unit.getName() + ".json", function(){isExist = true;}, true);
+                //var isExist = false;
                 if (isExist) {
                     var key = "showunitinfo_" + unit.getName();
                     var showed = EU.UserData.get_bool(key);
                     if (!showed) {
-                        var info = new cc.UnitInfo(unit.getName());
+                        var info = new EU.UnitInfo(unit.getName());
                         if (info) {
                             EU.UserData.write(key, true);
                             this.interface.addChild(info);
