@@ -900,7 +900,7 @@ EU.GameBoard = cc.Class.extend({
         {
             for( var i = 0; i < this.creepsRoutes.length; ++i )
             {
-                if( unitLayer == this.creepsRoutes[i].routeSubType )
+                if( unitLayer == this.creepsRoutes[i].type )
                 {
                     routes.push( this.creepsRoutes[i] );
                 }

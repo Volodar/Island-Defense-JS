@@ -75,7 +75,6 @@ EU.AutoPlayer = cc.Class.extend(
         if( this._currentLevel == -1 )
             this._currentLevel = 0;
 
-        //TODO: check if setTimeScale can replace setTimeRate
         cc.director.getScheduler().setTimeScale( rate );
 
         this.SCHEDULE( this.state_selectLevel, 1 );
@@ -276,4 +275,4 @@ EU.AutoPlayer._getInstance = function () {
     }
     return EU.AutoPlayer.sharedInstance;
 };
-//EU.autoPlayer = EU.AutoPlayer._getInstance();
+EU.autoPlayer = EU.AutoPlayer._getInstance();

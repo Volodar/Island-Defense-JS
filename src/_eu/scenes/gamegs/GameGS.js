@@ -645,7 +645,7 @@ EU.GameGS = EU.LayerExt.extend({
             }
 
             var touchEnd = touch;
-            var touchBegin = self.touches[touchEnd.__instanceId];
+            var touchBegin = self.touches[touchEnd.__instanceId] ? self.touches[touchEnd.__instanceId] : touchEnd ;
             var location = self.mainlayer.convertToNodeSpace(touchEnd.getLocation());
             var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan ? self.scrollInfo.touchBegan : touchEnd.getLocation());
 
@@ -670,7 +670,7 @@ EU.GameGS = EU.LayerExt.extend({
             if (node == null) {
                 self.selectedUnit = null;
             }
-            self.touches.length = 0;
+            delete self.touches[touchEnd.__instanceId];
         }
     },
 

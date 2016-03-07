@@ -133,7 +133,7 @@ cc.game.onStart = function(){
     
         cc.director.runScene( EU.MainGS.scene() );//run the GameScene
         //cc.director.runScene( new EU.AudioMenu() );//run the GameScene
-        cc.director.pushScene(EU.MapLayer.scene());
+        //cc.director.pushScene(EU.MapLayer.scene());
 
     }, this);
 };

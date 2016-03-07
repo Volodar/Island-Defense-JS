@@ -247,7 +247,7 @@ EU.Laboratory = EU.ScrollMenu.extend({
             }
             else
             {
-                this.cb_cancel(null, tower);
+                this.cb_cancel(tower);
                 return;
             }
         }
