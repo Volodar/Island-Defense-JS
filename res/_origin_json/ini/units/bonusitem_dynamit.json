@@ -40,25 +40,10 @@
             "node": [
                 {
                     "@image": "",
-                    "@animation": "           Sequence           [             Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],             Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]           ]           ",
+                    "@animation": "Sequence[Spawn[EaseOut[MoveTo[0.2,0,70],3],RotateBy[0.2,180]],Spawn[EaseIn[MoveTo[0.2,0,0],3],RotateBy[0.2,180]]]",
                     "@type": "sprite",
                     "@name": "skin",
                     "@center": "0.5x0.5"
-                },
-                {
-                    "@visible": "no",
-                    "@type": "menu",
-                    "@name": "menu",
-                    "@pos": "0x70",
-                    "children": {
-                        "node": {
-                            "@opacity": "128",
-                            "@callback": "push_event:die",
-                            "@type": "menuitem",
-                            "@name": "activate",
-                            "@imageN": "gamescene::button_dyn.png"
-                        }
-                    }
                 }
             ]
         },

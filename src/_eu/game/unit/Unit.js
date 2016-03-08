@@ -683,7 +683,7 @@ EU.Unit.prototype.loadXmlEntity = function (/**@type {String} */ tag, /** @type 
         this.loadXmlSkills(xmlnode);
     }
     else {
-        return EU.UnitNodeExtloadXmlEntity(tag, xmlnode);
+        //return EU.UnitNodeExtloadXmlEntity(tag, xmlnode);
     }
     return true;
 };
