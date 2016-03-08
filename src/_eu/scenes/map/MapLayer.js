@@ -553,15 +553,13 @@ EU.MapLayer = cc.Layer.extend({
             cc.director.pushScene(scene);
         }
         else {
-            //TODO: AutoPlayer
-            //var player = AutoPlayer.getInstance();
-            //if( player )
-            //{
-            //    cc.director.getScheduler().unscheduleAllForTarget( player );
-            //    player.release();
-            //}
+            var player = EU.autoPlayer;
+            if( player )
+            {
+                cc.director.getScheduler().unscheduleAllForTarget( player );
+                //player.release();
+            }
         }
-        //EU.UserData.save();
     },
     /**
      *

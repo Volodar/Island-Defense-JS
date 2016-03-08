@@ -150,9 +150,6 @@ EU.Unit = cc.Node.extend({
     setMaxLevelForLevel: function (level) {
         this._maxLevelForLevel = level;
     },
-    getType: function() {
-        return this._type;
-    },
 
     ctor: function (path, xmlFile) {
         this.initExt();
@@ -683,7 +680,7 @@ EU.Unit.prototype.loadXmlEntity = function (/**@type {String} */ tag, /** @type 
         this.loadXmlSkills(xmlnode);
     }
     else {
-        //return EU.UnitNodeExtloadXmlEntity(tag, xmlnode);
+        return EU.UnitNodeExtloadXmlEntity.call(this, tag, xmlnode);
     }
     return true;
 };

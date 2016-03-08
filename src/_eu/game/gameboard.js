@@ -370,7 +370,7 @@ EU.GameBoard = cc.Class.extend({
         {
             var child = xmlnode.children[i];
             var index = parseInt(child.getAttribute( "name" ));
-            var unitLayer = EU.strToUnitLayer( child.getAttribute( EU.k.type ) );
+            var unitLayer = EU.strToUnitLayer( child.getAttribute( EU.xmlKey.Type.name ) );
             routes[index] = new EU.TripleRoute();
             var main = child.getElementsByTagName( "main" )[0];
             var left = child.getElementsByTagName( "left" )[0];
@@ -608,7 +608,7 @@ EU.GameBoard = cc.Class.extend({
         var xmlfile = name + ".xml";
         var unit = null;
         var dummy = 0;
-        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ) )
+        if( EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, EU.UnitLayer.earth, dummy ).result )
             unit = new EU.UnitDesant( "ini/units", xmlfile );
         if( unit )
         {
@@ -666,7 +666,7 @@ EU.GameBoard = cc.Class.extend({
     },
     createBonusItem: function( position, name ){
         var layer = EU.mlUnitInfo.info( name ).layer;
-        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer ) )
+        if( !EU.checkPointOnRoute_1( position, this.skillParams.distanceToRoute, layer ).result )
             return null;
 
         var item = new EU.Unit( "ini/units", name + ".xml" );
@@ -900,7 +900,7 @@ EU.GameBoard = cc.Class.extend({
         {
             for( var i = 0; i < this.creepsRoutes.length; ++i )
             {
-                if( unitLayer == this.creepsRoutes[i].routeSubType )
+                if( unitLayer == this.creepsRoutes[i].type )
                 {
                     routes.push( this.creepsRoutes[i] );
                 }
@@ -926,7 +926,7 @@ EU.GameBoard = cc.Class.extend({
         {
             var route = this.creepsRoutes[i];
             var check = EU.checkPointOnRoute_2( position, route, distance, distance );
-            if( check )
+            if( check.result )
             {
                 result = route;
             }

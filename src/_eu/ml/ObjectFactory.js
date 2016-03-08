@@ -51,5 +51,6 @@ EU.Factory  = {
         }
         if( !result )
             cc.log("cannot create object  by type: " + type);
+        return result;
     }
 };

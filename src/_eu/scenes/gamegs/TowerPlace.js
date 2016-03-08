@@ -45,7 +45,6 @@ EU.TowerPlace = cc.Sprite.extend(
         {
             var duration = 0.5 + cc.randomMinus1To1()*0.1;
 
-            //TODO: EU.Animation
             var frames = [];
             frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_01.png" );
             frames.push( EU.k.resourceGameSceneFolder + "active_slot/active_slot_02.png" );

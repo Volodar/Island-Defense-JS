@@ -557,7 +557,7 @@ cc.Menu = cc.Layer.extend(/** @lends cc.Menu# */{
         if (itemChildren && itemChildren.length > 0) {
             for (var i = itemChildren.length - 1; i >= 0; i--) {
                 locItemChild = itemChildren[i];
-                if (locItemChild.isVisible() && locItemChild.isEnabled()) {
+                if (locItemChild.isVisible() && locItemChild.isEnabled && locItemChild.isEnabled()) {
                     var local = locItemChild.convertToNodeSpace(touchLocation);
                     var r = locItemChild.rect();
                     r.x = 0;

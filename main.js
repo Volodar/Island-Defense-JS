@@ -42,9 +42,9 @@ cc.game.onStart = function(){
         {
             EU.Factory.add_build = function( type ){
                 if( type == "hero" ) return new EU.Hero();
-                //if( type == "createunit" ) return new EU.EventCreateUnit();
-                //if( type == "createunit_reverseroute" ) return new EU.EventCreateUnitReverseRoute();
-                //if( type == "areadamage" ) return new EU.EventAreaDamage();
+                if( type == "createunit" ) return new EU.EventCreateUnit();
+                if( type == "createunit_reverseroute" ) return new EU.EventCreateUnitReverseRoute();
+                if( type == "areadamage" ) return new EU.EventAreaDamage();
                 //if( type == "hero2" ) return new EU.Hero2();
                 return null;
             }
@@ -133,6 +133,7 @@ cc.game.onStart = function(){
     
         cc.director.runScene( EU.MainGS.scene() );//run the GameScene
         //cc.director.runScene( new EU.AudioMenu() );//run the GameScene
+        //cc.director.pushScene(EU.MapLayer.scene());
 
     }, this);
 };

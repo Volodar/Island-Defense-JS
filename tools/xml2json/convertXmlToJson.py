@@ -62,10 +62,11 @@ def convertAllXmlFilesInDir(dir):
 
 if __name__ == '__main__':
     #convertAllXmlFilesInDir(sourceDir);
-    convertXmlFileToJsonFile(sourceDir+"/units/desant.xml")
-    convertXmlFileToJsonFile(sourceDir+"/units/helicopter.xml")
-    convertXmlFileToJsonFile(sourceDir+"/units/laser1.xml")
-    convertXmlFileToJsonFile(sourceDir+"/units/ship.xml")
-    convertXmlFileToJsonFile(sourceDir+"/units/soldier2.xml")
-    convertXmlFileToJsonFile(sourceDir+"/units/tank.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/desant.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/helicopter.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/laser1.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/ship.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/soldier2.xml")
+    #convertXmlFileToJsonFile(sourceDir+"/units/tank.xml")
+    convertXmlFileToJsonFile(sourceDir+"/units/bonusitem_dynamit.xml")
     print ("Number of XML files converted: " + str(numFileConverted));

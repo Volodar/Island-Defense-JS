@@ -95,7 +95,7 @@
                 },
                 {
                     "@visible": "yes",
-                    "@image": "jeep.left::,frames:jeep_leftright0001.png",
+                    "@image": "jeep.left::jeep_leftright0001.png",
                     "@type": "sprite",
                     "@name": "skin2",
                     "@center": "0.5x0.38"

@@ -645,9 +645,9 @@ EU.GameGS = EU.LayerExt.extend({
             }
 
             var touchEnd = touch;
-            var touchBegin = self.touches[touchEnd.__instanceId];
+            var touchBegin = self.touches[touchEnd.__instanceId] ? self.touches[touchEnd.__instanceId] : touchEnd ;
             var location = self.mainlayer.convertToNodeSpace(touchEnd.getLocation());
-            var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan);
+            var startLocation = self.mainlayer.convertToNodeSpace(self.scrollInfo.touchBegan ? self.scrollInfo.touchBegan : touchEnd.getLocation());
 
             var node = self.getObjectInLocation(location);
             if ( cc.pDistance(location, startLocation) < 50) {
@@ -670,7 +670,7 @@ EU.GameGS = EU.LayerExt.extend({
             if (node == null) {
                 self.selectedUnit = null;
             }
-            self.touches.length = 0;
+            delete self.touches[touchEnd.__instanceId];
         }
     },
 
@@ -935,13 +935,14 @@ EU.GameGS = EU.LayerExt.extend({
             case EU.UnitType.creep:
             {
                 //TODO: Show unit description
-                //var isExist = cc.fileUtils.getInstance().isFileExist("ini/tutorial/units/" + unit.getName() + ".xml");
                 var isExist = false;
+                cc.loader.loadJson(EU.xmlLoader.resourcesRootJSON + "ini/tutorial/units/" + unit.getName() + ".json", function(){isExist = true;}, true);
+                //var isExist = false;
                 if (isExist) {
                     var key = "showunitinfo_" + unit.getName();
                     var showed = EU.UserData.get_bool(key);
                     if (!showed) {
-                        var info = new cc.UnitInfo(unit.getName());
+                        var info = new EU.UnitInfo(unit.getName());
                         if (info) {
                             EU.UserData.write(key, true);
                             this.interface.addChild(info);
