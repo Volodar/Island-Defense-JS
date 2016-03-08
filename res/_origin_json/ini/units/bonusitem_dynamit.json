@@ -14,28 +14,6 @@
                 "@damage": "10000"
             }
         },
-        "machine_unit": {
-            "@start_state": "charging",
-            "transitions": {
-                "charging": {
-                    "@ready": "death"
-                },
-                "stop": {
-                    "@die": "death"
-                },
-                "death": {
-                    "@stop": "stop"
-                }
-            },
-            "params": {
-                "state_death": {
-                    "@duration": "0.5"
-                },
-                "state_charging": {
-                    "@duration": "1"
-                }
-            }
-        },
         "children": {
             "node": [
                 {
@@ -44,6 +22,10 @@
                     "@type": "sprite",
                     "@name": "skin",
                     "@center": "0.5x0.5"
+                },
+				{
+                    "@name": "health_indicator",
+                    "@scale": "0x0"
                 }
             ]
         },
@@ -102,6 +84,28 @@
                     }
                 }
             ]
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "transitions": {
+                "charging": {
+                    "@ready": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                },
+                "death": {
+                    "@stop": "stop"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "0.5"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                }
+            }
         },
         "paramcollection": {
             "showmenu": "no"

@@ -16,44 +16,20 @@
                 "@velocityRate": "0"
             }
         },
-        "machine_unit": {
-            "@start_state": "charging",
-            "transitions": {
-                "charging": {
-                    "@ready": "readyfire"
-                },
-                "readyfire": {
-                    "@charge": "death"
-                },
-                "stop": {
-                    "@die": "death"
-                },
-                "death": {
-                    "@stop": "death"
-                }
-            },
-            "params": {
-                "state_death": {
-                    "@duration": "0.0"
-                },
-                "state_charging": {
-                    "@duration": "1"
-                },
-                "state_readyfire": {
-                    "@delay": "0.1",
-                    "@charge_volume": "5",
-                    "@havetarget": "no"
-                }
-            }
-        },
         "children": {
-            "node": {
-                "@pos": "0x550",
-                "@animation": "RepeatForever[Animate[0.5,[folder:bombice::,indexes:ice_bomb_00.png,01:11]]]",
-                "@type": "sprite",
-                "@name": "skin",
-                "@center": "0.5x0.5"
-            }
+            "node":[
+                {
+                    "@pos": "0x550",
+                    "@animation": "RepeatForever[Animate[0.5,[folder:bombice::,indexes:ice_bomb_00.png,01:11]]]",
+                    "@type": "sprite",
+                    "@name": "skin",
+                    "@center": "0.5x0.5"
+                },
+                {
+                    "@name": "health_indicator",
+                    "@scale": "0x0"
+                }
+                ]
         },
         "actions": {
             "action": [
@@ -99,6 +75,36 @@
                     "@name": "ondeselect"
                 }
             ]
+        },
+        "machine_unit": {
+            "@start_state": "charging",
+            "transitions": {
+                "charging": {
+                    "@ready": "readyfire"
+                },
+                "readyfire": {
+                    "@charge": "death"
+                },
+                "stop": {
+                    "@die": "death"
+                },
+                "death": {
+                    "@stop": "death"
+                }
+            },
+            "params": {
+                "state_death": {
+                    "@duration": "0.0"
+                },
+                "state_charging": {
+                    "@duration": "1"
+                },
+                "state_readyfire": {
+                    "@delay": "0.1",
+                    "@charge_volume": "5",
+                    "@havetarget": "no"
+                }
+            }
         },
         "paramcollection": {
             "showmenu": "no"

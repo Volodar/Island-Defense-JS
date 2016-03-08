@@ -160,7 +160,7 @@ EU.ShootsEffectsLighting = cc.Sprite.extend(
 EU.ShootsEffectsElectro = cc.Sprite.extend(
 {
     /** @type {EU.Unit} */ _target : null,
-    /** @type {cc.Point} */ _position : null,
+    /** @type {cc.Point} */ _pos : null,
     /** @type static std.set<Unit>*/ s_units : [],
 
     /*****************************************************************************/
@@ -182,7 +182,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
     {
         this._super();
         this._target = null ;
-        this._position = cc.p(0,0);
+        this._pos = cc.p(0,0);
         ++EU.ShootsEffects.ShootsEffectsElectroCount;
         var idx = this.s_units.indexOf(target);
         if (idx >= 0) return null;
@@ -192,8 +192,8 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
             return false;
 
         this._target = target;
-        this._position = position;
-        this.setPosition( cc.pAdd(this._target.getPosition(), this._position ));
+        this._pos = position;
+        this.setPosition( cc.pAdd(this._target.getPosition(), this._pos ));
 
         if( this.checkClean() )
             return false;
@@ -242,7 +242,7 @@ EU.ShootsEffectsElectro = cc.Sprite.extend(
         }
         else
         {
-            this.setPosition( cc.pAdd(this._target.getPosition(), this._position ));
+            this.setPosition( cc.pAdd(this._target.getPosition(), this._pos ));
         }
     },
 
@@ -355,7 +355,7 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
 
     ctor: function( /**@type {EU.Unit} */ target, /**@type {var} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
     {
-        this._super();
+        this._super(target, position, size, scale);
         ++EU.ShootsEffects.ShootsEffectsFreezingCount;
 
         var result = this.init( target, position, size, scale );
@@ -365,9 +365,7 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
 
     init: function( /**@type {EU.Unit} */ target, /**@type {var} */ position, /**@type {Size} */ size, /**@type {var} */ scale )
     {
-        if( EU.ShootsEffectsElectro.init.call(this, target, position, size, scale ) == false )
-            return false;
-        var ANCHOR_MIDDLE_BOTTOM = c.p(0.5, 0);
+        var ANCHOR_MIDDLE_BOTTOM = cc.p(0.5, 0);
         this.setAnchorPoint( ANCHOR_MIDDLE_BOTTOM  );
 
         if( this.getTarget() && this.getTarget().getChildByName( "skin" ) )
@@ -378,7 +376,7 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
 
     initWithAnimation: function( /**@type {Size} */ size )
     {
-        EU.xmlLoader.setProperty( this, EU.xmlKey.Image.int, "images/effects/ice_block.png");
+        EU.xmlLoader.setProperty_int( this, EU.xmlKey.Image.int, "images/effects/ice_block.png");
     },
 
     checkClean: function()
@@ -395,7 +393,12 @@ EU.ShootsEffectsFreezing = EU.ShootsEffectsElectro.extend(
     update: function( /**@type {var} */ dt )
     {
         this.setLocalZOrder( this.getTarget().getLocalZOrder() + 2 );
-        this.update( dt );
+        this._super(dt);
+        //var clean = this.checkClean();
+        //if( clean )
+        //{
+        //    EU.removeFromParent(this, true);
+        //}
     }
 
 });

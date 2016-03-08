@@ -38,17 +38,6 @@ EU.BoxMenu = cc.Menu.extend({
         this.init_machine();
         this.load_str(xml);
         this.displayCountItems();
-        /*
-         var touchListener = cc.EventListener.create({
-         event: cc.EventListener.TOUCH_ONE_BY_ONE,
-         swallowTouches: true,
-         onTouchBegan: this.onTouchBegan,
-         onTouchMoved: this.onTouchMoved,
-         onTouchEnded: this.onTouchEnded,
-         onTouchCancelled: this.onTouchEnded
-         });
-         cc.eventManager.addListener(touchListener, this);
-         */
         return true;
     },
     init_machine: function () {
