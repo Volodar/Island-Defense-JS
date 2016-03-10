@@ -1,19 +1,19 @@
 {
     "tower": {
         "@allowtargets": "earth",
-        "@handradius": "150",
-        "@handradiussector": "180",
-        "@health": "80",
+        "@handradius": "500",
+        "@handradiussector": "800",
+        "@health": "800",
         "@maxlevel": "1",
-        "@maxtargets": "4",
+        "@maxtargets": "40",
         "@name": "hero1",
-        "@radius": "150",
+        "@radius": "500",
         "@regeneration": "1",
         "@skill": "landmine",
         "@type": "hero",
         "@unitlayer": "earth",
         "@unittype": "hero",
-        "@velocity": "150",
+        "@velocity": "1500",
         "actions": {
             "action": [
                 {
@@ -77,8 +77,8 @@
         },
         "effects": {
             "positive": {
-                "@armor": "1",
-                "@damage": "10"
+                "@armor": "1000",
+                "@damage": "10000"
             }
         },
         "events": {
@@ -225,8 +225,8 @@
                     "@duration": "20"
                 },
                 "state_readyfire": {
-                    "@charge_volume": "5",
-                    "@delay": "0.5"
+                    "@charge_volume": "50",
+                    "@delay": "0.01"
                 }
             },
             "transitions": {
