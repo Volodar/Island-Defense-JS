@@ -906,7 +906,6 @@ EU.xmlLoader = {
             return;
 
         var iproperty = this.strToPropertyType(property);
-        cc.log( "setProperty: " + property );
         if (false == this.setProperty_int(node, iproperty, value)) {
             /** @type {EU.NodeExt} nodeext */
             var nodeext = node;
