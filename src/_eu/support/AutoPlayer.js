@@ -71,7 +71,7 @@ EU.AutoPlayer = cc.Class.extend(
         this._onlyOnceLevel = onlyOnceLevel;
         this._withoutDefeat = withoutDefeat;
 
-        this._currentLevel = runCurrentLevel ? this.getMap().selectedLevelIndex : 0;
+        this._currentLevel = runCurrentLevel ? this.getMap().selectedLevelIndex : 14;
         if( this._currentLevel == -1 )
             this._currentLevel = 0;
 

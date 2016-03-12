@@ -9,11 +9,11 @@
         "@maxtargets": "3",
         "@velocity": "100",
         "@unitlayer": "earth",
-        "@health": "50",
+        "@health": "50000",
         "@maxlevel": "1",
         "effects": {
             "positive": {
-                "@damage": "30"
+                "@damage": "30000"
             }
         },
         "extraproperties": {
